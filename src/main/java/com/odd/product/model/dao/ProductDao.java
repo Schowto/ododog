@@ -73,7 +73,7 @@ public class ProductDao {
              while(rset.next()){	
 								list.add(
 										new Product(rset.getInt("pro_no")
-												, rset.getString("category_no")
+												, rset.getString("category")
 												, rset.getString("pro_name")
 												, rset.getInt("price")
 												, rset.getString("soldout")
