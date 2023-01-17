@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<entry key ="selectListCount">
+		SELECT
+			   COUNT(*) count
+		  FROM PRODUCT
+		 WHERE STATUS = 'Y' 
+	</entry>
+	
+	<entry key = "selectList">
+	SELECT RNUM, A.*  	
+	  FROM(
+	  	    SELECT ROWNUM RNUM, P.*
+			  FROM PRODUCT P
+			 WHERE STATUS = 'Y'
+			 ORDER
+	            BY PRO_NO DESC
+		  ) A
+	  WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+
+</properties>
