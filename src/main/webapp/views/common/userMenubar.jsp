@@ -35,6 +35,9 @@
             color: rgb(50, 50, 50);
             border-radius: 5px;
         }
+        button:hover{
+            background: rgb(220, 220, 220);
+        }
 
 
         /* 로고 */
