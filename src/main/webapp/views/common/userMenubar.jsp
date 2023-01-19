@@ -36,6 +36,7 @@
             border-radius: 5px;
         }
         button:hover{
+            font-weight: 600;
             background: rgb(220, 220, 220);
         }
 

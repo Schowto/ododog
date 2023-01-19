@@ -5,9 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 
-    #content{/*border:1px solid red;*/ margin:auto; width:1200px; height:1000px;}
+    #content{/*border:1px solid red;*/ margin:auto; width:1200px;}
 
     /****** 사이드 ******/
     #side{
@@ -23,6 +32,63 @@
         text-decoration:none;
         color: rgb(50, 50, 50);
     }
+
+
+     /****** 내용 ******/
+    #board-area{
+        border:1px solid blue;
+        width:80%; height:100%;
+        float:left;
+    }
+
+
+    #board-detail{
+        width:900px;
+        margin:20px;
+        font-size:15px;
+        border-top:2px solid rgb(220, 220, 220);
+    }
+    #board-detail th, #board-detail td{
+        text-align:left;
+        font-size:13px;
+        border-bottom:1px solid rgb(220, 220, 220);
+        border-left:1px solid rgb(220, 220, 220);
+        padding-left:15px;
+    }
+    #board-detail th:first-child, #board-detail td:first-child{
+        border-left: none;
+    }
+
+    #report img{vertical-align:top;}
+    #report a:hover{font-weight:600;}
+
+    #prev-next{font-size:12px;}
+    #prev-next img{
+        width:10px; margin-right:10px;
+    }
+    #prev-next td, #prev-next th{
+        padding:5px;
+        border:1px solid rgb(220, 220, 220);
+    }
+    #prev-next th{
+        text-align:center;
+        background:rgb(220, 220, 220);
+    }
+    #prev-next a{
+        text-decoration:none;
+        color:rgb(50, 50, 50);
+    }
+    #prev-next a:hover{font-weight:600;}
+
+
+    #reply-area{
+        border: 1px solid red;
+    }
+    #reply-area p{
+        border:1px solid orange;
+        display:inline-block;
+    }
+
     
     
     /****** footer ******/
@@ -64,7 +130,8 @@
             })
         </script>
     
-        <form id="board-area" align="center">
+
+        <div id="board-area" align="center">
     
             <div>
                 <br><br><br><br><br><br><br>
@@ -74,7 +141,7 @@
 
             <br><br><br>
             
-            <table id="board-detail">
+            <table id="board-detail" width="900">
             	<tr>
                 	<th width="100" height="40" style="background:rgb(220,220,220);">제목</th>
                 	<td>여기는 제목자리입니다요</td>
@@ -84,17 +151,28 @@
                 	<td>나는야 작성자</td>
                 </tr>
                 <tr>
-                	<td colspan="2" style="font-size:12px; color:gray;">
-                		<b style="margin-right:10px; color:rgb(50, 50, 50);">작성일</b> 2023-01-17 17:28 <b style="margin-left:30px; color:rgb(50, 50, 50);">조회수</b> 2345
+                	<td colspan="2" style="font-size:11px; color:gray;">
+                		<b style="color:rgb(50, 50, 50);">작성일</b> 2023-01-17 17:28 <b style="margin-left:30px; color:rgb(50, 50, 50);">조회수</b> 2345
                 	</td>
                 </tr>
                 <tr>
-                	<td colspan="2">
+                	<td colspan="2" style="padding:20px;">
                     	<pre>
 dfgdfg
 dfgdfgdgfdfg
 gssf
 sef내용내용내용~~~~
+z
+z
+z
+z
+z
+zz
+z
+z
+z
+z
+
                         </pre>
 					</td>
 				</tr>
@@ -102,16 +180,77 @@ sef내용내용내용~~~~
             
             
             <br><br>
+
             
-            <div align="right" style="width:930px">
+            <div align="right" style="width:900px">
+                <div id="report">
+                    <a href=""><img src="../../resources/icons/siren.png" width="20"></a>
+                    <a href="" style="font-size: 12px; color:gray; text-decoration:none;">신고</a>
+                </div>
+                <br>
                 <button type="submit">목록</button>
-                <br><br>
+                <br><br><br><br><br>
             </div>
+
             
+            <table id="prev-next" width="900">
+                <tr>
+                    <th width="120">
+                        <a href=""><img src="../../resources/icons/upArrow.png"></a>
+                        <a href="">이전글</a>
+                    </th>
+                    <td>
+                        <a href="">이전글 제목입니다요~~~~~~~~</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <a href=""><img src="../../resources/icons/downArrow.png"></a>
+                        <a href="">다음글</a>
+                    </th>
+                    <td>
+                        <a href="">다음글 제목입니다요~~~dgdgdgd~~~gfdgdfgdgdfgdgdfgdgdfgdfgdfgdfg~~</a>
+                    </td>
+                </tr>
+            </table>
+
             <br><br><br><br><br>
+
+        
+            <div id="reply-area" align="center">
+                <div align="left">
+                    <p style="font-size:15px; font-weight:600;">댓글</p>
+                    <p style="font-size:15px; font-weight:600; color:rgb(200, 140, 140)">4</p>
+                </div>
+                
+
+                <table border="1" width="900">
+                    <tr>
+                        <th>요기는닉네임자리</th>
+                        <td style="color:gray; font-size:12px;">
+                            <p style="line-height:px">23-01-19</p>
+                            <p>16:00</p>
+                            <a href="">신고</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">알겠습니다유</tdcol>
+                    </tr>
+                </table>
+
+
+            </div>
+        
+
+
+
+
+
+
+
             
     
-        </form>
+        </div>
     
     
         <div id="footer" style="height:200px; background:rgb(220, 220, 220);">
