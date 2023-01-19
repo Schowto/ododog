@@ -19,8 +19,8 @@
 </style>
 </head>
 <body>
-
-	<%@ include file="forTest.jsp" %>
+	
+  	<%@ include file="../common/adminMenubarForInclude.jsp" %> 
 
 	<div class="outer" align="center">
         <br>
