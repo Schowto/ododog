@@ -9,6 +9,6 @@
 <body>
 
 	<%@include file="views/common/userMenubar.jsp" %>
-
+	
 </body>
 </html>
