@@ -21,10 +21,10 @@ public class ProductService {
 		return result;
 	}
 	
-	public ArrayList<Product> selectList(PageInfo pi){
+	public ArrayList<Product> selectList(PageInfo pi, String order){
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new ProductDao().selectList(conn, pi);
+		ArrayList<Product> list = new ProductDao().selectList(conn, pi, order);
 		close(conn);
 		
 		return list;

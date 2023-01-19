@@ -9,17 +9,21 @@
 		 WHERE STATUS = 'Y' 
 	</entry>
 	
-	<entry key = "selectList">
-	SELECT RNUM, A.*  	
-	  FROM(
-	  	    SELECT ROWNUM RNUM, P.*
-			  FROM PRODUCT P
-			 WHERE STATUS = 'Y'
-			 ORDER
-	            BY PRO_NO DESC
-		  ) A
-	  WHERE RNUM BETWEEN ? AND ?
-	
+	<entry key = "selectList1">
+		 SELECT RNUM,B.*
+		   FROM (
+		        SELECT ROWNUM RNUM, A.*  	
+		          FROM(
+		                 SELECT P.*
+		                 FROM PRODUCT P
+		            	 WHERE STATUS = 'Y'
 	</entry>
-
+	
+	<entry key = "selectList2">
+				       ) A
+		         )B 
+		   WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
 </properties>

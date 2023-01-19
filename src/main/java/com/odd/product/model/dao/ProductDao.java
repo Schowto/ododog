@@ -50,13 +50,18 @@ public class ProductDao {
 		return listCount;
 	}
 
-	public ArrayList<Product> selectList(Connection conn, PageInfo pi){
+	public ArrayList<Product> selectList(Connection conn, PageInfo pi, String order){
 		
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;	
+		String by = "DESC";
 		
-		String sql = prop.getProperty("selectList");
+		if(order.equals("EXPIRED_DATE")) {
+			by = "ASC";
+		}
+		
+		String sql = prop.getProperty("selectList1") + " ORDER BY " + order +" " + by + " " + prop.getProperty("selectList2"); ;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
