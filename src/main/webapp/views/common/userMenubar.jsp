@@ -39,6 +39,18 @@
             font-weight: 600;
             background: rgb(220, 220, 220);
         }
+        .btn-red{   /* 빨간 버튼 */
+        font-size: 13px;
+        border: 2px solid rgb(200, 140, 140);
+        background: white;
+        color: rgb(50, 50, 50);
+        border-radius: 5px;
+        }
+        .btn-red:hover{
+            font-weight: 600;
+            background:rgb(200, 140, 140);
+            color:white;
+        }
 
 
         /* 로고 */

@@ -47,12 +47,12 @@
     }
     .list-area>tbody>tr:hover{background:rgb(220,220,220); cursor: pointer;}
 
-    .paging-area>button{
+    .paging-area button{
         border:none;
         background:none;
         color:rgb(50, 50, 50);
     }
-    .paging-area>button:hover{
+    .paging-area button:hover{
         background:rgb(220,220,220);
         font-weight:700;
     }
@@ -108,8 +108,9 @@
     
     
             <div align="right" style="width:900px">
-                <button>글쓰기</button>
-                <br><br>
+            	<br><br>
+                <a href=""><button>글쓰기</button></a>
+                <br>
             </div>
     
             <table class="list-area">
@@ -170,18 +171,18 @@
     
             <div class="paging-area" align="center">
     
-                <button>&lt;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>10</button>
-                <button>&gt;</button>
+                <a href=""><button>&lt;</button></a>
+                <a href=""><button>1</button></a>
+                <a href=""><button>2</button></a>
+                <a href=""><button>3</button></a>
+                <a href=""><button>4</button></a>
+                <a href=""><button>5</button></a>
+                <a href=""><button>6</button></a>
+                <a href=""><button>7</button></a>
+                <a href=""><button>8</button></a>
+                <a href=""><button>9</button></a>
+                <a href=""><button>10</button></a>
+                <a href=""><button>&gt;</button></a>
     
             </div>
     

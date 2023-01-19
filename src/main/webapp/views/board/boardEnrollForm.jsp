@@ -80,7 +80,7 @@
             })
         </script>
     
-        <form id="board-area" align="center">
+        <form id="board-area" method="post" align="center">
     
             <div>
                 <br><br><br><br><br><br><br>
