@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<%@ include file="../common/userMenubar.jsp" %>
+	
+	<br><br><br>
+	
+	<h1 align="center"><%= request.getAttribute("errorMsg") %></h1>
 </body>
 </html>

@@ -155,11 +155,14 @@
             <div id="icons" align="right">
 
                 <!-- 로그인 전 -->
+
                 <img src="<%= contextPath %>/resources/icons/profile.png">
+           
                 <!-- 로그인 후 -->
                 <img src="<%= contextPath %>/resources/icons/loginProfile.png">
                 <a href="" id="user-id">누구누구</a>님 반갑습니다!
                 <a href="" id="logout">로그아웃</a>
+               
 
                 <!-- 공통 -->
                 <img src="<%= contextPath %>/resources/icons/cart.png">
@@ -206,6 +209,8 @@
         </div>
 
     </div>
+    
+    
 
 </body>
 
