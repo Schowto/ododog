@@ -12,7 +12,7 @@ public class Member {
 	private String Phone;
 	private int Post_Code;
 	private String Address;
-	private String Detail_Address;
+	private String Detailed_Address;
 	private Date Enroll_Date;
 	private Date Modify_Date;
 	private String Status;
@@ -25,7 +25,7 @@ public class Member {
 
 
 public Member(int user_No, String user_Id, String user_Pwd, String user_Name, String email, String phone, int post_Code,
-		String address, String detail_Address, Date enroll_Date, Date modify_Date, String status, int point) {
+		String address, String detailed_Address, Date enroll_Date, Date modify_Date, String status, int point) {
 	super();
 	User_No = user_No;
 	User_Id = user_Id;
@@ -35,7 +35,7 @@ public Member(int user_No, String user_Id, String user_Pwd, String user_Name, St
 	Phone = phone;
 	Post_Code = post_Code;
 	Address = address;
-	Detail_Address = detail_Address;
+	Detailed_Address = detailed_Address;
 	Enroll_Date = enroll_Date;
 	Modify_Date = modify_Date;
 	Status = status;
@@ -140,14 +140,14 @@ public void setAddress(String address) {
 
 
 
-public String getDetail_Address() {
-	return Detail_Address;
+public String getDetailed_Address() {
+	return Detailed_Address;
 }
 
 
 
-public void setDetail_Address(String detail_Address) {
-	Detail_Address = detail_Address;
+public void setDetailed_Address(String detailed_Address) {
+	Detailed_Address = detailed_Address;
 }
 
 
@@ -204,7 +204,7 @@ public void setPoint(int point) {
 public String toString() {
 	return "Member [User_No=" + User_No + ", User_Id=" + User_Id + ", User_Pwd=" + User_Pwd + ", User_Name=" + User_Name
 			+ ", Email=" + Email + ", Phone=" + Phone + ", Post_Code=" + Post_Code + ", Address=" + Address
-			+ ", Detail_Address=" + Detail_Address + ", Enroll_Date=" + Enroll_Date + ", Modify_Date=" + Modify_Date
+			+ ", Detailed_Address=" + Detailed_Address + ", Enroll_Date=" + Enroll_Date + ", Modify_Date=" + Modify_Date
 			+ ", Status=" + Status + ", Point=" + Point + "]";
 }
  

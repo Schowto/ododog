@@ -48,7 +48,7 @@ public class MemberDao {
 							   rset.getString("PHONE"),
 							   rset.getInt("POST_CODE"),
 							   rset.getString("ADDRESS"),
-							   rset.getString("DETAIL_ADDRESS"),
+							   rset.getString("DETAILED_ADDRESS"),
 							   rset.getDate("ENROLL_DATE"),
 							   rset.getDate("MODIFY_DATE"),
 							   rset.getString("STATUS"),
