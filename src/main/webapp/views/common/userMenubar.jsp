@@ -177,8 +177,10 @@
 
                     <li><a href="">SHOP</a>
                         <ul>
-                            <li><a href="">SH</a></li>
-                            <li><a href="">OP</a></li>
+                            <li><a href="">주식</a></li>
+                            <li><a href="">건조간식</a></li>
+                            <li><a href="">오븐간식</a></li>
+                            <li><a href="">PARTY</a></li>
                         </ul>
                     </li>
 
