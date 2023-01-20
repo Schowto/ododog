@@ -199,15 +199,46 @@
 
             
             <div>
-                <form action="">
-                    <select name="search-order" style="font-size:12px;">
+                <form action="" style="font-size:13px;">
+                    <table>
+                        <tr style="font-size:13px;">
+                            <td>
+                                <select name="search-order" style="height:25px;">
+                                    <option value="title">제목</option>
+                                    <option value="title-content">제목+내용</option>
+                                    <option value="writer">작성자</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" name="" style="width:400px; height:25px">
+                            </td>
+                            <td>
+                                <button type="submit" style="height:25px; border-top-right-radius:5px; border-bottom-right-radius: 5px; border:1px solid rgb(220,220,220);">
+                                    <img src="../../resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <select name="search-order" style="height:25px;">
                         <option value="title">제목</option>
                         <option value="title-content">제목+내용</option>
                         <option value="writer">작성자</option>
-                        <input type="text" style="font-size:12px;">
+
+                        <input type="text" name="" style="width:400px; height:25px; border-right:none;">
+
+                        <button type="submit"
+                            style="height:25px; border-top-right-radius:5px; border-bottom-right-radius: 5px; border:1px solid rgb(220,220,220);">
+                            <img src="../../resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
+                        </button>
+
                     </select>
+
+
                 </form>
+
             </div>
+
 
 
 
