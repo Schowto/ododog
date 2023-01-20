@@ -27,6 +27,9 @@
             margin: auto;
         }
         .menubar>div {float: left;}
+        .menubar img:hover{
+            cursor:pointer;
+        }
         
         button {	/* 버튼 스타일 일단 설정해놨어요,,!! 각자 페이지에서 바꿔도 됨 */
             font-size: 13px;
@@ -64,6 +67,7 @@
             margin: auto;
             top: 0; bottom: 0; left: 0; right: 0;
         }
+
 
         /* 아이콘 */
         #icons {
@@ -149,7 +153,7 @@
         <div class="menubar">
 
             <div id="logo-area">
-                <img src="<%= contextPath %>/resources/icons/logo.png" width="200px" height="90px">
+                <img src="<%= contextPath %>/resources/icons/logo.png" width="200px" height="90px" onclick="location.href='<%= contextPath %>'">
             </div>
 
             <div id="icons" align="right">
@@ -157,17 +161,19 @@
                 <!-- 로그인 전 -->
                 
 				<a href="<%=contextPath%>/loginUser.jsp">로그인</a>
-                <img src="<%= contextPath %>/resources/icons/profile.png">
+                <img src="<%= contextPath %>/resources/icons/profile.png" onclick="location.href=''">
            		
+
+
                 <!-- 로그인 후 -->
-                <img src="<%= contextPath %>/resources/icons/loginProfile.png">
-                <a href="" id="user-id">누구누구</a>님 반갑습니다!
-                <a href="" id="logout">로그아웃</a>
+                <img src="<%= contextPath %>/resources/icons/loginProfile.png" onclick="location.href=''">
+                <a href="" id="user-id" onclick="location.href=''">누구누구</a>님 반갑습니다!
+                <a href="" id="logout" onclick="location.href=''">로그아웃</a>
                
 
                 <!-- 공통 -->
-                <img src="<%= contextPath %>/resources/icons/cart.png">
-                <img src="<%= contextPath %>/resources/icons/search.png">
+                <img src="<%= contextPath %>/resources/icons/cart.png" onclick="location.href=''">
+                <img src="<%= contextPath %>/resources/icons/search.png" onclick="location.href=''">
 
             </div>
 
