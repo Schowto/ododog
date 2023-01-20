@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         div {/*border:1px solid red;*/box-sizing: border-box;}
-        .wrap {margin: auto; width: 1200px;}
+        .wrap {margin:auto; width:1200px;}
 
         .menubar {
             height: 200px; width: 1200px;
@@ -200,9 +200,9 @@
                         </ul>
                     </li>
 
-                    <li><a href="">COMMUNITY</a>
+                    <li><a href="<%=contextPath%>/list.bo">COMMUNITY</a>
                         <ul>
-                            <li><a href="">자유게시판</a></li>
+                            <li><a href="<%=contextPath%>/list.bo">자유게시판</a></li>
                             <li><a href="">레시피게시판</a></li>
                         </ul>
                     </li>

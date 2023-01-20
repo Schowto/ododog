@@ -5,9 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <style>
 
-    #content{/*border:1px solid red;*/ margin:auto; width:1200px; height:1000px;}
+    #content{margin:auto; width:1200px; height:1000px;}
 
     /****** 사이드 ******/
     #side{
@@ -77,7 +88,7 @@
 </head>
 <body>
 
-	<%@include file="../common/userMenubar.jsp" %>
+	<%@ include file="../common/userMenubar.jsp" %>
 
     <div id="content">
     
@@ -185,12 +196,26 @@
                 <a href=""><button>&gt;</button></a>
     
             </div>
-    
+
+            
+            <div>
+                <form action="">
+                    <select name="search-order" style="font-size:12px;">
+                        <option value="title">제목</option>
+                        <option value="title-content">제목+내용</option>
+                        <option value="writer">작성자</option>
+                        <input type="text" style="font-size:12px;">
+                    </select>
+                </form>
+            </div>
+
+
+
             <br><br><br><br><br>
     
         </div>
-    
-    
+
+
         <div id="footer" style="height:200px; background:rgb(220, 220, 220);">
     
             <div id="footer-1">
