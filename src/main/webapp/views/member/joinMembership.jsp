@@ -101,7 +101,7 @@ button {
 
             <!-- 회원가입 양식-->
             <div class="joinform" id="">
-                <form action="" id="joinform">
+                <form action="<%=contextPath %>/join.me" id="joinform" method="post">
                     <h1 style="text-align: center;">회원가입</h1>
                     <br><br>
                   <label>아이디*</label> 
@@ -130,10 +130,13 @@ button {
                   <br>
         
                   <label>주소*</label>
-                  <input type="text" id="address" name="address" placeholder="상세주소 입력">
+                  <input type="text" id="post_code" name="post_code" placeholder="우편번호 입력">
+                  <input type="text" id="address" name="address" placeholder="기본주소 입력" style="margin-top:-10px;">
+                  <input type="text" id="detailed_address" name="detailed_address" placeholder="상세주소 입력" style="margin-top:-10px;">
                   <br>
                 </form>
               </div>
+              <br><br>
               <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
               
          

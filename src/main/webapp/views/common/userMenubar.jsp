@@ -2,10 +2,10 @@
     pageEncoding="UTF-8" import="com.odd.member.model.vo.Member"%>
 <%	
 	String contextPath = request.getContextPath();
+
 	Member loginUser = (Member)session.getAttribute("loginUser");
 
-
-	String alertMsg = (String)session.getAttribute("alertMsg");
+	
 
 
 %>
@@ -26,7 +26,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         div {/*border:1px solid red;*/box-sizing: border-box;}
-        .wrap {margin:auto; width:1200px;}
+        .wrap {margin: auto; width: 1200px;}
 
         .menubar {
             height: 200px; width: 1200px;
@@ -166,19 +166,17 @@
 
                 <!-- 로그인 전 -->
                 
-
-				<a href="<%=contextPath%>/views/member/loginUser.jsp">로그인</a>
+				<% if(loginUser == null) { %>
+                <img src="<%= contextPath %>/resources/icons/profile.png" onclick="location.href='<%=contextPath%>/views/member/loginUser.jsp'">
 				
-                <img src="<%= contextPath %>/resources/icons/profile.png" onclick="location.href=''">
-
+				<%}else{ %>
            		
-
-
                 <!-- 로그인 후 -->
                 <img src="<%= contextPath %>/resources/icons/loginProfile.png" onclick="location.href=''">
                 <a href="" id="user-id" onclick="location.href=''">누구누구</a>님 반갑습니다!
                 <a href="" id="logout" onclick="location.href=''">로그아웃</a>
                
+               <%} %>
 
                 <!-- 공통 -->
                 <img src="<%= contextPath %>/resources/icons/cart.png" onclick="location.href=''">
@@ -200,9 +198,9 @@
                         </ul>
                     </li>
 
-                    <li><a href="<%=contextPath%>/list.bo">COMMUNITY</a>
+                    <li><a href="">COMMUNITY</a>
                         <ul>
-                            <li><a href="<%=contextPath%>/list.bo">자유게시판</a></li>
+                            <li><a href="">자유게시판</a></li>
                             <li><a href="">레시피게시판</a></li>
                         </ul>
                     </li>

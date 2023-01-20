@@ -1,29 +1,25 @@
 package com.odd.member.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.MemberService;
 import com.odd.member.model.vo.Member;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class JoinMembershipController
  */
-@WebServlet("/login.me")
-public class LoginController extends HttpServlet {
+@WebServlet("/join.me")
+public class JoinMembershipController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public JoinMembershipController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +28,19 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
+			
+		request.setCharacterEncoding("UTF-8");
 		
-		Member loginUser = new MemberService().loginMember(userId, userPwd);
-		if(loginUser == null) {
-			request.setAttribute("errorMsg", "로그인 실패");
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-			
-		}else {
-			HttpSession session =  request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			
-			
-			response.sendRedirect(request.getContextPath());
-		}
+		String user_id = request.getParameter("user_id");
+		String user_pwd = request.getParameter("user_pwd");
+		String user_name = request.getParameter("user_name");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String post_code = request.getParameter("post_code");
+		String address = request.getParameter("address");
+		String detailed_address = request.getParameter("detailed_address");
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

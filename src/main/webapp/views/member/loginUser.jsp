@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
 
-
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +52,7 @@
     <div class="login-wrapper">
         <h2 style="text-align: center;">로그인</h2>
         <form method="post" action="<%= contextPath %>/login.me" id="login-form">
-            <input type="text" name="userName" placeholder="ID">
+            <input type="text" name="userId" placeholder="ID">
             <input type="password" name="userPassword" placeholder="Password">
             <div class="in" style="text-align: center;">
         <a href="<%=contextPath%>/views/member/joinMembership.jsp">회원가입</a> |
@@ -66,5 +63,6 @@
         </form>
         
     </div>
+
 </body>
 </html>
