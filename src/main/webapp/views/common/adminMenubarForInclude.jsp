@@ -164,8 +164,8 @@
                 </div>
                 <p>
                     <a href="<%=contextPath%>/list.pro?cpage=1&&order=PRO_NO">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전체 상품 조회</a>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp상품 검색 및 관리</a>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp상품 등록</a>
+                    <a href="<%=contextPath%>/search.pro?cpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp상품 검색 및 관리</a>
+                    <a href="<%=contextPath%>/enroll.pro">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp상품 등록</a>
                 </p>
 
                 <div>
@@ -173,8 +173,8 @@
                     주문 관리
                 </div>
                 <p>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전체 주문 조회</a>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주문 배송 처리</a>
+                    <a href="<%=contextPath%>/list.ord?cpage=1&&order=PRO_NO">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전체 주문 조회</a>
+                    <a href="<%=contextPath%>/confirm.ord?cpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주문 배송 처리</a>
                 </p>
 
                 <div>

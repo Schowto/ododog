@@ -7,6 +7,7 @@
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	String order = (String)request.getAttribute("order");
 %>        
     
 <!DOCTYPE html>
@@ -35,11 +36,12 @@
         color: rgb(50, 50, 50);
         background: white;
     }    
-
+	
+	
     .list-area{
         border: 1px solid white;
         text-align: center;
-        font-size: 80%
+        font-size: 80%;
     }
     
     .list-area>tbody>tr:hover{
@@ -51,7 +53,8 @@
     	background:gray;
     	cursor:pointer;
     }
-
+	
+	
 	.page { 
 		float:right;
 		color:black;
@@ -139,21 +142,21 @@
                 <ul class="page pagination">
                     
                     <% if(pi.getCurrentPage() != 1){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=request.getAttribute("order")%>">&lt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=order%>">&lt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link " href="">&lt;</a></li>
                     <%} %>
                     
                     <% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
                     <% 	if(pi.getCurrentPage() == p){ %>
-                            <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=p%>&&order=<%=request.getAttribute("order")%>"><%=p%></a></li>
+                            <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
                     <% 	}else { %>	
-                            <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=p%>&&order=<%=request.getAttribute("order")%>"><%=p%></a></li>
+                            <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
                     <% 	} %>
                     <% } %>
                     
                     <% if(pi.getCurrentPage() != pi.getMaxPage()){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=request.getAttribute("order")%>">&gt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>">&gt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link" href="">&gt;</a></li>
                     <%} %>
