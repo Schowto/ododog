@@ -155,9 +155,10 @@
             <div id="icons" align="right">
 
                 <!-- 로그인 전 -->
-
+                
+				<a href="<%=contextPath%>/loginUser.jsp">로그인</a>
                 <img src="<%= contextPath %>/resources/icons/profile.png">
-           
+           		
                 <!-- 로그인 후 -->
                 <img src="<%= contextPath %>/resources/icons/loginProfile.png">
                 <a href="" id="user-id">누구누구</a>님 반갑습니다!
