@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Member {
 	
-	private int User_NO;
+	private int User_No;
 	private String User_Id;
 	private String User_Pwd;
 	private String User_Name;
@@ -24,10 +24,10 @@ public class Member {
 
 
 
-public Member(int user_NO, String user_Id, String user_Pwd, String user_Name, String email, String phone, int post_Code,
+public Member(int user_No, String user_Id, String user_Pwd, String user_Name, String email, String phone, int post_Code,
 		String address, String detail_Address, Date enroll_Date, Date modify_Date, String status, int point) {
 	super();
-	User_NO = user_NO;
+	User_No = user_No;
 	User_Id = user_Id;
 	User_Pwd = user_Pwd;
 	User_Name = user_Name;
@@ -44,14 +44,14 @@ public Member(int user_NO, String user_Id, String user_Pwd, String user_Name, St
 
 
 
-public int getUser_NO() {
-	return User_NO;
+public int getUser_No() {
+	return User_No;
 }
 
 
 
-public void setUser_NO(int user_NO) {
-	User_NO = user_NO;
+public void setUser_No(int user_No) {
+	User_No = user_No;
 }
 
 
@@ -202,7 +202,7 @@ public void setPoint(int point) {
 
 @Override
 public String toString() {
-	return "Member [User_NO=" + User_NO + ", User_Id=" + User_Id + ", User_Pwd=" + User_Pwd + ", User_Name=" + User_Name
+	return "Member [User_No=" + User_No + ", User_Id=" + User_Id + ", User_Pwd=" + User_Pwd + ", User_Name=" + User_Name
 			+ ", Email=" + Email + ", Phone=" + Phone + ", Post_Code=" + Post_Code + ", Address=" + Address
 			+ ", Detail_Address=" + Detail_Address + ", Enroll_Date=" + Enroll_Date + ", Modify_Date=" + Modify_Date
 			+ ", Status=" + Status + ", Point=" + Point + "]";
