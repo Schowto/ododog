@@ -156,7 +156,7 @@
 
                 <!-- 로그인 전 -->
                 
-				<a href="<%=contextPath%>/loginUser.jsp">로그인</a>
+				<a href="<%=contextPath%>/views/member/loginUser.jsp">로그인</a>
                 <img src="<%= contextPath %>/resources/icons/profile.png">
            		
                 <!-- 로그인 후 -->

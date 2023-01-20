@@ -50,13 +50,13 @@
 
     <div class="login-wrapper">
         <h2 style="text-align: center;">로그인</h2>
-        <form method="post" action="서버의url" id="login-form">
+        <form method="post" action="<%= contextPath %>/login.me" id="login-form">
             <input type="text" name="userName" placeholder="ID">
             <input type="password" name="userPassword" placeholder="Password">
             <div class="in" style="text-align: center;">
-        <a href="">회원가입</a> 
-        <a href="">아이디찾기</a> 
-        <a href="">비밀번호찾기</a>
+        <a href="<%=contextPath%>/views/member/joinMembership.jsp">회원가입</a> |
+        <a href="">아이디찾기</a>  |
+        <a href="">비밀번호찾기</a> 
         </div>
             <input type="submit" value="로그인">
         </form>
