@@ -6,6 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 
     #content{/*border:1px solid red;*/ margin:auto; width:1200px;}
@@ -52,7 +60,10 @@
     }
 
     #report img{vertical-align:top;}
-    #report a:hover{font-weight:600;}
+    #report:hover{
+        font-weight:600;
+        cursor: pointer;
+    }
 
     #prev-next{font-size:12px;}
     #prev-next img{
@@ -183,11 +194,11 @@ z
 
             
             <div align="right" style="width:900px">
-                <div id="report">
-                    <a href=""><img src="../../resources/icons/siren.png" width="20"></a>
-                    <a href="" style="font-size: 12px; color:gray; text-decoration:none;">신고</a>
-                </div>
-                <br>
+                <span id="report" style="font-size: 12px; color:gray;" data-toggle="modal" data-target="#myModal">
+                    <img src="../../resources/icons/siren.png" width="20">
+                    신고
+                </span>
+                <br><br>
                 <a href=""><button type="submit">목록</button></a>
                 <br><br><br><br>
             </div>
@@ -236,7 +247,7 @@ z
                         <td style="color:gray; font-size:11px;">
                             <p style="margin:0px 10px;">23-01-19</p>
                             <p style="margin-right:30px;">16:00</p>
-                            <a href="" style="text-decoration:none; color:gray;" id="reply-report">신고</a>
+                            <p id="report" data-toggle="modal" data-target="#myModal">신고</p>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(220,220,220);">
@@ -248,7 +259,7 @@ z
                         <td style="color:gray; font-size:11px;">
                             <p style="margin:0px 10px;">23-01-19</p>
                             <p style="margin-right:30px;">16:00</p>
-                            <a href="" style="text-decoration:none; color:gray;" id="reply-report">신고</a>
+                            <p id="report" data-toggle="modal" data-target="#myModal">신고</p>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(220,220,220);">
@@ -291,7 +302,68 @@ z
         
 
         </div>
-    
+
+
+        <!-- 모달 -->
+        <div class="modal" id="myModal" style="color:rgb(50, 50, 50);">
+            <div class="modal-dialog">
+                <div class="modal-content" style="padding:30px 20px;">
+        
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="justify-content: left;">
+                        <img src="../../resources/icons/siren.png" width="25" style="margin-right:10px;">
+                        <h5 class="modal-title" style="font-weight:600;">신고하기</h5>
+                    </div>
+        
+                    <!-- Modal body -->
+                    <div class="modal-body" style="color:gray; font-size:13px;">
+                        <br>
+                        글 또는 댓글이 이용규칙 위반으로 관리자에 의해 삭제되어야 마땅하다 판단된다면 신고해주세요. <br>
+                        신고 3회 이상의 글 또는 댓글은 블라인드 처리 될 수 있습니다.
+                        <br><br><br>
+        
+                        <div style="margin-bottom:10px;">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report1" name="report">
+                            <label for="report1">
+                                <b style="color:rgb(50, 50, 50)">집단간 싸움 유발</b> (서열/비교, 지역감정, 종교 등)
+                            </label>
+                        </div>
+                        <div style="margin-bottom:10px;">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report2" name="report">
+                            <label for="report2">
+                                <b style="color:rgb(50, 50, 50)">욕설, 비속어, 인신공격</b> (혐오, 심한 불쾌감 유발)
+                            </label>
+                        </div>
+                        <div style="margin-bottom:10px;">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report3" name="report">
+                            <label for="report3">
+                                <b style="color:rgb(50, 50, 50)">선정적, 음란성</b> (신고자가 선정적이라 판단)
+                            </label>
+                        </div>
+                        <div style="margin-bottom:10px;">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report4" name="report">
+                            <label for="report4">
+                                <b style="color:rgb(50, 50, 50)">홍보, 낚시성, 도배</b> (무의미한 짧은 글 포함)
+                            </label>
+                        </div>
+                        <div>
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report5" name="report">
+                            <label for="report5">
+                                <b style="color:rgb(50, 50, 50)">기타</b> (악성코드, 사생활침해 등)
+                            </label>
+                        </div>
+        
+                        <textarea name="alert-content"
+                            style="width:400px; height:70px; margin-left:25px; border:1px solid rgb(220,220,220); border-radius:5px; resize:none;"></textarea>
+                        <br><br>
+                        <button style="margin-left:384px;">제출</button>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     
         <div id="footer" style="height:200px; background:rgb(220, 220, 220);">
     
