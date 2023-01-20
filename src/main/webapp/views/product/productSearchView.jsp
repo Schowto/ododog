@@ -5,8 +5,6 @@
 
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	String order = (String)request.getAttribute("order");
 %>   
 
     
@@ -37,7 +35,7 @@
         background: white;
     }    
     
-        .list-area{
+    .list-area{
         border: 1px solid white;
         text-align: center;
         font-size: 80%;
@@ -53,10 +51,20 @@
     	cursor:pointer;
     }
     
-    .page { 
-		float:right;
-		color:black;
-	;}
+	#searchForm input{
+		width:50%;
+	}
+	
+	.form-control{
+        width: 150px;
+        height: 50%;
+    }
+	
+	.table-bordered{
+		overflow:hiddlen; white-space:nowrap;
+        font-size: 90%;
+	}
+	
 	
 
 </style>
@@ -75,6 +83,8 @@
             <h2>물품 검색</h2>
             <br>
 			<br>
+			
+			<div style="width:100%; height:50px; overflow:auto">
                <table class="list-area table" >
                    <thead>
                        <tr>
@@ -112,7 +122,7 @@
                        
                    </tbody>
                </table>
-               
+            </div>
                
                <!--  세부 사항 보기 // 나중에 구현
                
@@ -126,49 +136,119 @@
                </script>
                -->
            
-               <br><br>
-               
-               <ul class="page pagination">
-                   
-             		<% if(pi.getCurrentPage() != 1){%>
-                       <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=order%>">&lt;</a></li>
-                   <% }else{ %>
-                       <li class="page-item disabled"><a class="page-link " href="">&lt;</a></li>
-                   <%} %>
-                   
-                   <% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
-                   <% 	if(pi.getCurrentPage() == p){ %>
-                           <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
-                   <% 	}else { %>	
-                           <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
-                   <% 	} %>
-                   <% } %>
-                   
-                   <% if(pi.getCurrentPage() != pi.getMaxPage()){%>
-                       <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>">&gt;</a></li>
-                   <% }else{ %>
-                       <li class="page-item disabled"><a class="page-link" href="">&gt;</a></li>
-                   <%} %>
-               </ul>
-       		</div>
+               <br>
+
+       		<br><br>
        		
-       		<form action="">
-				  <div class="form-group">
-				    <label for="email">Email address:</label>
-				    <input type="email" class="form-control" placeholder="Enter email" id="email">
-				  </div>
-				  <div class="form-group">
-				    <label for="pwd">Password:</label>
-				    <input type="password" class="form-control" placeholder="Enter password" id="pwd">
-				  </div>
-				  <div class="form-group form-check">
-				    <label class="form-check-label">
-				      <input class="form-check-input" type="checkbox"> Remember me
-				    </label>
-				  </div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
+       		<form id="searchForm" action="<%=contextPath%>/search.pro">
+
+
+                  <table class="table-bordered" style="width:700px">
+                    <tr>
+                        <td>상품명</td>
+                        <td>
+                            <input type="text" class="form-control-sm" name="proName" style="width:300px"> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>상품분류</td>
+                        <td>  
+							&nbsp
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="category" value="전체" checked> 
+                                <label class="form-check-label">전체</label>
+                            </div>
+
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="category" value="주식">
+                                <label class="form-check-label">주식</label>
+                            </div>
+                            
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="category" value="건조간식">
+                                <label class="form-check-label">건조간식</label>
+                            </div>
+                            
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="category" value="오븐간식">
+                                <label class="form-check-label">오븐간식</label>
+                            </div>
+
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="category" value="PARTY">
+                                <label class="form-check-label">PARTY</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>품절여부</td>
+                        <td>
+                            	&nbsp
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="soldout" value="all" checked>
+                                <label class="form-check-label">전체</label>
+                            </div>
+                            
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="soldout" value="Y">
+                                <label class="form-check-label">품절</label>
+                            </div>
+                            
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="soldout" value="N">
+                                <label class="form-check-label">재고보유</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>유통기한 잔여일</td>
+                        <td>
+                        	&nbsp
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="expDateRemain" value="all" checked>
+                                <label class="form-check-label">전체</label>
+                            </div>
+                            
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="expDateRemain" value="expMonth">
+                                <label class="form-check-label">1달 이하</label>
+                            </div>
+                            
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="expDateRemain" value="expWeek">
+                                <label class="form-check-label">1주 이하</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>상품 가격</td>
+                        <td>
+                            <div class="input-group-prepend input-group-sm">
+                                <input type="text" class="form-control" name="lowPrice" placeholder="원"> 
+                                <span style="font-size: 130%;">~</span>
+                                <input type="text" class="form-control" name="highPrice" placeholder="원">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>등록일</td>
+                        <td>
+                            <div class="input-group-prepend input-group-sm">
+                                <input type="date" class="form-control" name="firstDate"> 
+                                <span style="font-size: 130%;">~</span>
+                                <input type="date" class="form-control" name="secondDate">
+                            </div>
+                        </td>
+                    </tr>
+                  </table>
+
+				  
+				  <br>
+				  <button type="submit" class="btn btn-primary">검색</button>
 			</form>
         </div>
+        
+       </div>
         
 
 
