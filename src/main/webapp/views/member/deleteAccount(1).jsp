@@ -10,7 +10,6 @@
         margin-top:50px;
         margin:auto;
         width:1000px;
-        border:1px solid black;
         height:500px;
     }
     .delete{
@@ -22,9 +21,13 @@
         font-size: 13px;
         color:gray;
     }
-    form td{
-        margin:auto;
+    table{
+        border-collapse: collapse;
+        border-spacing: 0;
         border-top:1px solid gray;
+    }
+    td{
+        margin:auto;
         border-bottom: 1px solid gray;
         border-left:1px solid gray;
         height:60px

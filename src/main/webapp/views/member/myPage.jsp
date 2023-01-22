@@ -34,6 +34,11 @@ span{
     font-weight: 900;
 
 }
+table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-top:1px solid gray;
+}
 td{
     border-bottom:1px solid gray;
     border-left:1px solid gray;
