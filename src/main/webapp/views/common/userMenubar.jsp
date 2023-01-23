@@ -191,10 +191,10 @@
 
                     <li><a href="">SHOP</a>
                         <ul>
-                            <li><a href="">주식</a></li>
-                            <li><a href="">건조간식</a></li>
-                            <li><a href="">오븐간식</a></li>
-                            <li><a href="">PARTY</a></li>
+                            <li><a href="<%=contextPath%>/list.food">주식</a></li>
+                            <li><a href="<%=contextPath%>/list.dry">건조간식</a></li>
+                            <li><a href="<%=contextPath%>/list.oven">오븐간식</a></li>
+                            <li><a href="<%=contextPath%>/list.party">PARTY</a></li>
                         </ul>
                     </li>
 
