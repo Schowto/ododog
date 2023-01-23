@@ -57,7 +57,8 @@ p:hover {
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
 		<br>
-		<h3 align="center">주식</h3>
+		<h3 align="center" id="top">주식</h3>
+		
 		<br>
 		<!--카테고리순-->
 		<div align="right" style="width: 1110px" class="category">
@@ -72,6 +73,14 @@ p:hover {
 		<div align="right" class="category">
 			<a href="" class="btn btn-outline-light text-dark btn-sm">높은가격</a>
 		</div>
+		
+     	<!-- 스크롤 부분 -->
+     	<a style="display:scroll;position:fixed;bottom:80px; right:30px;" rel="nofollow"
+		href="#" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/upArrowWithCircle.png" width="30px"></a>
+		<a style="display:scroll;position:fixed;bottom:40px; right:30px;" rel="nofollow"
+		href="#scrollbottom" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/downArrowWithCircle.png" width="30px"></a>
+		<div id="scrollbottom"></div>
+
 		<div class="list-area">
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/주식1.png"
@@ -123,7 +132,8 @@ p:hover {
 					onclick="location.href='<%=contextPath%>'">
 				<p>
 					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
+					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레)
+					<br>
 				</p>
 				<p>
 					<!--가격-->
@@ -260,7 +270,7 @@ p:hover {
 				</p>
 				<br>
 			</div>
-			<div class="thumbnail" align="center">
+			<div class="thumbnail" align="center" id="bottom">
 				<img src="<%=contextPath%>/resources/product_img/주식14.png"
 					width="300px" height="300px"
 					onclick="location.href='<%=contextPath%>'">
@@ -273,11 +283,8 @@ p:hover {
 					<b>16,000원</b>
 				</p>
 				<div class="badge bg-light text-dark">
-				
 				</div>
 			</div>
-
-
 		</div>
 
 	</div>

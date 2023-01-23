@@ -59,6 +59,14 @@ p:hover {
 		<div align="right" class="category">
 			<a href="" class="btn btn-outline-light text-dark btn-sm">높은가격</a>
 		</div>
+		
+		<!-- 스크롤 부분 -->
+     	<a style="display:scroll;position:fixed;bottom:80px; right:30px;" rel="nofollow"
+		href="#" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/upArrowWithCircle.png" width="30px"></a>
+		<a style="display:scroll;position:fixed;bottom:40px; right:30px;" rel="nofollow"
+		href="#scrollbottom" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/downArrowWithCircle.png" width="30px"></a>
+		<div id="scrollbottom"></div>
+		
 		<div class="list-area">
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/파티1.png"
