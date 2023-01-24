@@ -25,5 +25,14 @@
 		   WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	<entry key = "selectSearch">
+		SELECT *
+		  FROM PRODUCT 
+		 WHERE STATUS = 'Y'
+	</entry>
+	
+	
+	
+	
 	
 </properties>

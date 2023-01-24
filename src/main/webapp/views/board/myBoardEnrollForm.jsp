@@ -27,9 +27,29 @@
         border-bottom:1px solid gray;
         text-align: center;
         height:50px;
+        font-weight: 500;
     }
-    .myBoardContent{
-        text-align: left;
+    input{
+        height:100%;
+        box-sizing: border-box;
+        border:none;
+        width:100%;
+
+    }
+    textarea{
+        width:100%;
+        border:none;
+        resize:none; 
+        margin-top:5px; 
+        margin-bottom:5px; 
+        background:rgba(128, 128, 128, 0.21);
+    }
+    button{
+        border-radius:4px; 
+        background:white; 
+        width:80px; 
+        height:30px; 
+        border:1px solid gray;
     }
 </style>
 </head>
@@ -54,22 +74,25 @@
 
                     </tr>
                     <tr style="height:50px;"> 
-                        <td>회원작성글번호</td>
-                        <td>회원작성일</td>
-                        <td>회원제목</td>
+                        <td>5</td>
+                        <td>2023.01.22</td>
+                        <td><input type="text" name="myBoardTitle" value=""></td>
                         <td>회원아이디</td>
 
                     </tr>
                     <tr > 
-                        <td colspan="5" id="myBoardContent">
-                            내가쓴게시글내용이 들어올자리 호로로로로로로로로로로로로로ㅗ로ㅗㄹ
-                    </td>
+                        <td colspan="5">
+                         <textarea name="myBoardContent" cols="100%" rows="20px;"></textarea>   
+                        </td>
 
                     </tr>
                 </table>
             </form>
+            <br>
 
-
+            <div align="center">
+            <button type="submit">작성완료</button>
+            </div>
 
         </div>
 

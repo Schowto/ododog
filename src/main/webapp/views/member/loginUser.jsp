@@ -51,9 +51,9 @@
 
     <div class="login-wrapper">
         <h2 style="text-align: center;">로그인</h2>
-        <form method="post" action="<%= contextPath %>/login.me" id="login-form">
+        <form action="<%= request.getContextPath() %>/login.me" method="post" id="login-form">
             <input type="text" name="userId" placeholder="ID">
-            <input type="password" name="userPassword" placeholder="Password">
+            <input type="password" name="userPwd" placeholder="Password">
             <div class="in" style="text-align: center;">
         <a href="<%=contextPath%>/views/member/joinMembership.jsp">회원가입</a> |
         <a href="">아이디찾기</a>  |

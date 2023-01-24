@@ -35,6 +35,13 @@
     td:first-child{
         border-left:none;
     }
+    button{
+        border-radius:4px; 
+        background:white; 
+        width:80px; 
+        height:30px; 
+        border:1px solid gray;
+    }
     
     
 </style>
@@ -97,8 +104,8 @@
             <br>
 
             <div align="center">
-            <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">확인</button>
-            <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">취소</button>
+            <button>확인</button>
+            <button>취소</button>
             </div>
 
 
