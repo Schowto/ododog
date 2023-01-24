@@ -102,17 +102,16 @@
 				<hr style="border: 1px color= silver;" width="100%">
 				<br>
 				<b>결제수단</b>
-				<br>
-				<br>
+				<br><br>
+
 				<input type="radio"> 무통장 입금
-				<br>
-				<br>
+				<br><br>
+
 				<input type="radio"> 신용카드
-				<br>
-				<br>
+				<br><br>
+
 				<input type="radio"> 카카오페이
-				<br>
-				<br>
+				<br><br>
 
 			</table>
 

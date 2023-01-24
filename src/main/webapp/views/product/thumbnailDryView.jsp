@@ -80,6 +80,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-danger text-light">BEST</span>
 
 			</div>
 			<div class="thumbnail" align="center">
@@ -94,6 +96,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조3.png"
@@ -107,6 +110,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-primary text-light">NEW</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조4.png"
@@ -120,6 +125,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<span class="badge bg-danger text-light">BEST</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조5.png"
@@ -133,6 +139,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-primary text-light">NEW</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조6.png"
@@ -146,6 +154,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조7.png"
@@ -159,6 +168,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
+					<span class="badge bg-danger text-light">BEST</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조8.png"
@@ -172,6 +183,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조9.png"
@@ -185,6 +197,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-primary text-light">NEW</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조10.png"
@@ -198,6 +212,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조11.png"
@@ -211,6 +226,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
+				<span class="badge bg-danger text-light">BEST</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조12.png"
@@ -224,6 +241,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
+				<span class="badge bg-danger text-light">BEST</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조13.png"
@@ -237,6 +256,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-primary text-light">NEW</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조14.png"
@@ -250,6 +271,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조15.png"
@@ -263,6 +285,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조16.png"
@@ -276,6 +299,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조17.png"
@@ -289,6 +313,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조18.png"
@@ -302,6 +327,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조19.png"
@@ -315,6 +341,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/건조20.png"
@@ -328,6 +355,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
 
 		</div>
