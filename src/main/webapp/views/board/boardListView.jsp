@@ -180,75 +180,53 @@
     
             <br><br>
     
-            <div class="paging-area" align="center">
-    
-                <a href=""><button>&lt;</button></a>
-                <a href=""><button>1</button></a>
-                <a href=""><button>2</button></a>
-                <a href=""><button>3</button></a>
-                <a href=""><button>4</button></a>
-                <a href=""><button>5</button></a>
-                <a href=""><button>6</button></a>
-                <a href=""><button>7</button></a>
-                <a href=""><button>8</button></a>
-                <a href=""><button>9</button></a>
-                <a href=""><button>10</button></a>
-                <a href=""><button>&gt;</button></a>
-    
-            </div>
-
+        <div>
+            <form action="" style="font-size:13px;">
+                    
+                <select name="search-order" style="height:25px; border:1px solid rgb(220, 220, 220);">
+                    <option value="title">제목</option>
+                    <option value="title-content">제목+내용</option>
+                    <option value="writer">작성자</option>
+                </select>
+                    
+                    <input type="text" name="" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220);">
+                    
+                    <button type="submit"
+                    style="height:25px; border-top-right-radius:5px; border-bottom-right-radius: 5px; border:1px solid rgb(220,220,220);">
+                    <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
+                </button>
+                
+            </form>
+        </div>
             
-            <div>
-                <form action="" style="font-size:13px;">
-                    <table>
-                        <tr style="font-size:13px;">
-                            <td>
-                                <select name="search-order" style="height:25px;">
-                                    <option value="title">제목</option>
-                                    <option value="title-content">제목+내용</option>
-                                    <option value="writer">작성자</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" name="" style="width:400px; height:25px">
-                            </td>
-                            <td>
-                                <button type="submit" style="height:25px; border-top-right-radius:5px; border-bottom-right-radius: 5px; border:1px solid rgb(220,220,220);">
-                                    <img src="../../resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
-                                </button>
-                            </td>
-                        </tr>
-                    </table>
+        <br><br><br>
+        
+        <div class="paging-area" align="center">
 
-                    <select name="search-order" style="height:25px;">
-                        <option value="title">제목</option>
-                        <option value="title-content">제목+내용</option>
-                        <option value="writer">작성자</option>
+            <a href=""><button>&lt;</button></a>
+            <a href=""><button>1</button></a>
+            <a href=""><button>2</button></a>
+            <a href=""><button>3</button></a>
+            <a href=""><button>4</button></a>
+            <a href=""><button>5</button></a>
+            <a href=""><button>6</button></a>
+            <a href=""><button>7</button></a>
+            <a href=""><button>8</button></a>
+            <a href=""><button>9</button></a>
+            <a href=""><button>10</button></a>
+            <a href=""><button>&gt;</button></a>
 
-                        <input type="text" name="" style="width:400px; height:25px; border-right:none;">
-
-                        <button type="submit"
-                            style="height:25px; border-top-right-radius:5px; border-bottom-right-radius: 5px; border:1px solid rgb(220,220,220);">
-                            <img src="../../resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
-                        </button>
-
-                    </select>
-
-
-                </form>
-
-            </div>
-
-
-
-
-            <br><br><br><br><br>
-    
+        </div>
+        
+        
+        
+        <br><br><br><br><br>
+        
         </div>
 
 
         <div id="footer" style="height:200px; background:rgb(220, 220, 220);">
-    
+     
             <div id="footer-1">
                 <p style="font-size:12px;">
                     COMPANY : (주)오도독 CEO : 강보람 PHONE : 031-1234-5678 / FAX : 02-1234-9999 <br>
