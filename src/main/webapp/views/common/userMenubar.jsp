@@ -5,7 +5,7 @@
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
 
-	
+	String alertMsg = (String)session.getAttribute("alertMsg");
 
 
 %>
@@ -153,6 +153,13 @@
 </head>
 
 <body>
+	
+	<% if(alertMsg != null) {%>
+		<script>
+			alert("<%=alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
 
     <div class="wrap">
 

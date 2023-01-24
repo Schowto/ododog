@@ -63,7 +63,33 @@ public class MemberDao {
 		} return m;
 	}
 	
-	
+	public int joinMembership(Connection conn, Member m) {
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("joinMembership");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUser_Id());
+			pstmt.setString(2, m.getUser_Pwd());
+			pstmt.setString(3, m.getUser_Name());
+			pstmt.setString(4, m.getEmail());
+			pstmt.setString(5, m.getPhone());
+			pstmt.setInt(6, m.getPost_Code());
+			pstmt.setString(7, m.getAddress());
+			pstmt.setString(8, m.getDetailed_Address());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+
+	}
 	
 	
 	
