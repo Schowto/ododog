@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.odd.common.model.vo.PageInfo;
+import com.odd.product.model.vo.ProSearch;
 import com.odd.product.model.vo.Product;
 
 public class ProductDao {
@@ -99,6 +100,66 @@ public class ProductDao {
 		}
 		
 		return list;
+		
+	}
+	
+	public ArrayList<Product> searchList(Connection conn, ProSearch proSearch) {
+		
+		ArrayList<Product> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectSearch");
+		String proName = proSearch.getProName();
+		String category = proSearch.getCategory();
+		String soldout = proSearch.getSoldout();
+		
+		
+		if(!proName.equals("")) {
+			sql += " AND PRO_NAME LIKE '%" + proName + "%'"; 
+		}
+		if(!category.equals("전체")) {
+			sql += " AND CATEGORY = '" + category +"'";
+		}
+		if(!category.equals("all")) {
+			sql += " AND SOLDOUT = '" + soldout +"'";
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		
+			
+			rset = pstmt.executeQuery();
+			
+			
+             while(rset.next()){	
+								list.add(
+										new Product(rset.getInt("pro_no")
+												, rset.getString("category")
+												, rset.getString("pro_name")
+												, rset.getInt("price")
+												, rset.getString("soldout")
+												, rset.getString("expired_date")
+												, rset.getString("ENROLL_DATE")
+												, rset.getDouble("SAVE")
+												, rset.getString("thumb_img")
+												)
+										);
+             					}
+						
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+		
+		
 		
 	}
 	

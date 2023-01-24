@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.odd.common.model.vo.PageInfo;
 import com.odd.product.model.dao.ProductDao;
+import com.odd.product.model.vo.ProSearch;
 import com.odd.product.model.vo.Product;
 
 public class ProductService {
@@ -25,6 +26,15 @@ public class ProductService {
 		Connection conn = getConnection();
 		
 		ArrayList<Product> list = new ProductDao().selectList(conn, pi, order);
+		close(conn);
+		
+		return list;
+	}
+	
+	public ArrayList<Product> searchList(ProSearch proSearch){
+		Connection conn = getConnection();
+		
+		ArrayList<Product> list = new ProductDao().searchList(conn, proSearch);
 		close(conn);
 		
 		return list;
