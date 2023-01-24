@@ -37,7 +37,7 @@ public class MemberDao {
 			pstmt.setString(1, userId);
 			pstmt.setString(2, userPwd);
 			
-			rset = pstmt.executeQuery(); // 한행|0행
+			rset = pstmt.executeQuery(); 
 			
 			if(rset.next()) {
 				m = new Member(rset.getInt("USER_NO"),
