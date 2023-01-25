@@ -8,11 +8,13 @@
 <style>
        
         form{
-        border: 1px solid lightgray;
-        width:800px;
+        
+        width:1200px;
+        height:auto;
         font-size: 13px;
+        
         }
-        button{
+        #select{
             margin: auto;
             display: block;
         }
@@ -21,11 +23,13 @@
     </style>
 </head>
 <body>
+	<%@ include file="../common/userMenubar.jsp"%>
    <div class="wrap">
         <form action="" >
             <table align="center">
                 <br>
-                <h3 style="text-align: center;">상품 상세 검색</h3>
+                <h4 style="text-align: center;">상품 상세 검색</h4>
+                <br><br>
                 <tr>
                     <td>상품분류</td>
                     <td>
@@ -66,12 +70,16 @@
                     </td>
                 </tr>
             </table>
-            <br>
-            <button type="submit" id="select" class="btn btn-outline-primary">검색</button>
             <br><br>
-
+            <button type="submit" id="select" class="btn btn-secondary btn-sm">검색</button>
+            <br><br>
+           
         </form>
+        <hr style="border: 1px color= silver;" width="100%">
+            <br><br>
+        
     </div>
+    
                 
                 
 </body>
