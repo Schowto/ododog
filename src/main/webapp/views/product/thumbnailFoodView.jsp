@@ -21,8 +21,10 @@
 
 .thumbnail {
 	width: 300px;
+	
 	display: inline-block;
 	margin: 10px;
+	overflow: hidden;   
 }
 
 .category {
@@ -37,18 +39,18 @@ p:hover {
 	color: rgb(202, 95, 131);
 }
 
-.img:hover  {
-	  transform:  scale(1.2);
-	  -webkit-transform:  scale(1.2);
-	  -moz-transform:  scale(1.2);
-	  -ms-transform:  scale(1.2);
-	  -o-transform:  scale(1.2);
-}
+.thumbnail img{
+    
+   transform:scale(1.0);        
 
-.img {
-	width: 300px;
-	 height: 300px;
-	 overflow: hidden
+   transition: transform .5s; 
+   object-fit:cover;
+     
+}
+.thumbnail img:hover{
+  transform:scale(1.5);            /* 이미지 확대 */
+  transition: transform .5s; 	/*  시간 설정  */
+	  
 }
 </style>
 </head>

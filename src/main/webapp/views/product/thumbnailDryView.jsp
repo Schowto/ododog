@@ -23,6 +23,7 @@
 	width: 300px;
 	display: inline-block;
 	margin: 10px;
+	overflow: hidden;   
 }
 
 .category {
@@ -35,6 +36,19 @@ b {
 
 p:hover {
 	color: rgb(202, 95, 131);
+}
+.thumbnail img{
+    
+   transform:scale(1.0);        
+
+   transition: transform .5s; 
+   object-fit:cover;
+     
+}
+.thumbnail img:hover{
+  transform:scale(1.5);            /* 이미지 확대 */
+  transition: transform .5s; 	/*  시간 설정  */
+	  
 }
 </style>
 </head>
