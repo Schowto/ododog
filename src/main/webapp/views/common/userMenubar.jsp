@@ -208,20 +208,30 @@
                     <li><a href="<%= contextPath %>/list.bo">COMMUNITY</a>
                         <ul>
                             <li><a href="<%= contextPath %>/list.bo">자유게시판</a></li>
-                            <li><a href="">레시피게시판</a></li>
+                            <li><a href="<%= contextPath %>/list.re">레시피게시판</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="">MY PAGE</a>
+
+                    <li><a href="<%=contextPath%>/myPageMain.me">MY PAGE</a>
                         <ul>
+
                             <li><a href="">마이페이지</a></li>
                             <li><a href="">페이지</a></li>
+
+                            <li><a href="">주문조회</a></li>
+                            <li><a href="">회원정보</a></li>
+                            <li><a href="">관심상품</a></li>
+                            <li><a href="">적립금</a></li>
+                            <li><a href="">게시글조회</a></li>
+                            <li><a href="">1:1맞춤상담</a></li>
+
                         </ul>
                     </li>
 
                     <li><a href="">고객센터</a>
                         <ul>
-                            <li><a href="">FAQ</a></li>
+                            <li><a href="<%= contextPath %>/views/board/userFAQ.jsp">FAQ</a></li>
                             <li><a href="">1:1상담</a></li>
                         </ul> 
                     </li>

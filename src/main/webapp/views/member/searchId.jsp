@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,14 +11,18 @@
         margin: 0;
         border: none;
     }
+    body{
+        font-size: 14px;
+        font-family: 'Roboto', sans-serif;
+    }
     .login-wrapper{
         margin: auto;
         width: 400px;
-        height: 350px;
+        height: 100%;
         padding: 40px;
         box-sizing: border-box;
-        font-size: 14px;
-    
+        background-color: #cacaca;
+        margin-top: 50px;
     }
     
     .login-wrapper > h2{
@@ -32,9 +35,10 @@
         height: 48px;
         padding: 0 10px;
         box-sizing: border-box;
+        margin-top: 5px;
         margin-bottom: 16px;
         border-radius: 6px;
-        background-color: #ececec;
+        background-color: #ffffff;
     }
     #login-form > input[type="submit"]{
         color: #fff;
@@ -42,27 +46,31 @@
         background-color: rgb(100, 100, 100);
         margin-top: 20px;
     }
+    #label{
+        font-size: 14px;
+        color:  rgb(100, 100, 100);
+    }
+    
     
         </style>
 </head>
 <body>
-
 	<%@ include file="../common/userMenubar.jsp"%>
 
     <div class="login-wrapper">
-        <h2 style="text-align: center;">로그인</h2>
-        <form action="<%= request.getContextPath() %>/login.me" method="post" id="login-form">
-            <input type="text" name="userId" placeholder="ID">
-            <input type="password" name="userPwd" placeholder="Password">
+        <h2 style="text-align: center;">아이디 찾기</h2>
+        <form method="post" action="" id="login-form" name="lf">
+            <label for="" id="label"><b>이름</b></label>
+            <input type="text" name="user_Name" placeholder="내용을 입력해주세요.">
+            <label for="" id="label"><b>이메일</b></label>
+            <input type="email" name="email" placeholder="내용을 입력해주세요.">
             <div class="in" style="text-align: center;">
-        <a href="<%=contextPath%>/views/member/memberInsert.jsp">회원가입</a> |
-        <a href="<%=contextPath%>/views/member/searchId.jsp"">아이디찾기</a>  |
-        <a href="">비밀번호찾기</a> 
         </div>
-            <input type="submit" value="로그인">
+            <input type="button" value="아이디 찾기" onclick="searchId()">
         </form>
         
     </div>
+  
 
 </body>
 </html>
