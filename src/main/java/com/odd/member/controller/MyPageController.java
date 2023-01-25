@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MyPageMainController
+ * Servlet implementation class MyPageController
  */
-@WebServlet("/myPageMain.me")
-public class MyPageMainController extends HttpServlet {
+@WebServlet("/myPage.me")
+public class MyPageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageMainController() {
+    public MyPageController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +29,7 @@ public class MyPageMainController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		request.getRequestDispatcher("views/member/myPageMain.jsp").forward(request, response);
+		request.getRequestDispatcher("views/member/myPage.jsp").forward(request,response);
 	}
 
 	/**

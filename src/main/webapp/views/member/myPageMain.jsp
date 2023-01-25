@@ -57,6 +57,10 @@
         .menu>div{
             height:90px;
         }
+        img:hover{
+            opacity: 0.7;
+            cursor: pointer;
+        }
 
     </style>
 </head>
@@ -108,7 +112,7 @@
             <div class="menu" style="margin-right:55px; " align="center">
                 <div class="img">
                     <br>
-                    <img src="<%= contextPath %>/resources/images/myOrder.png">
+                    <a href=""><img src="<%= contextPath %>/resources/images/myOrder.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Order <br>
@@ -123,7 +127,7 @@
             <div class="menu" align="center">
                 <div class="img">
                     <br>
-                    <img src="<%= contextPath %>/resources/images/myProfile.png">
+                    <a href="<%=contextPath%>/myPage.me"><img src="<%= contextPath %>/resources/images/myProfile.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Profile <br>
@@ -135,10 +139,10 @@
                 </div>
             </div>
 
-            <div class="menu" style="margin-left:55px;" align="center">
+            <div class="menu" style="margin-left:55px;" align="center" onclick="pageUse();">
                 <div id="img">
                     <br>
-                    <img src="<%= contextPath %>/resources/images/myLike.png">
+                    <a href=""><img src="<%= contextPath %>/resources/images/myLike.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Wishlist <br>
@@ -155,7 +159,7 @@
             <div class="menu" style="margin-right:55px;" align="center">
                 <div id="img">
                     <br>
-                    <img src="<%= contextPath %>/resources/images/myPoint.png">
+                    <a href=""><img src="<%= contextPath %>/resources/images/myPoint.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Mileage <br>
@@ -170,7 +174,7 @@
             <div class="menu" align="center">
                 <div class="img">
                     <br>
-                    <img src="<%= contextPath %>/resources/images/myBoard.png">
+                    <a href=""><img src="<%= contextPath %>/resources/images/myBoard.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Board <br>
@@ -185,7 +189,7 @@
             <div class="menu" align="center" style="margin-left:55px;">
                 <div class="img">
                     <br>
-                    <img src="<%= contextPath %>/resources/images/myConsult.png">
+                    <a href=""><img src="<%= contextPath %>/resources/images/myConsult.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Consult <br>
@@ -198,7 +202,15 @@
             </div>
 
         </div>
-</div>  
+    </div>  
+
+    <script>
+        $function(){
+           $(".menu").click(){
+            ;
+           }
+        }
+    </script>
 
 
 
