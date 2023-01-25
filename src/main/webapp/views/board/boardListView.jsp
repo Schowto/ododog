@@ -6,16 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<!-- Popper JS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
 <style>
 
     #content{margin:auto; width:1200px;}
@@ -189,10 +179,10 @@
                     <option value="writer">작성자</option>
                 </select>
                     
-                    <input type="text" name="" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
+                <input type="text" name="" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
                     
-                    <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);">
-                    <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
+                <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);">
+                <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
                 </button>
                 
             </form>

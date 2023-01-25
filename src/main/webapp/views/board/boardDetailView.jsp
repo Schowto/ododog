@@ -6,15 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<!-- Popper JS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
-
 <style>
 
     #content{/*border:1px solid red;*/ margin:auto; width:1200px;}
@@ -148,9 +139,18 @@
             <div align="right" style="width:900px">
                 <br><br>
                 <a href="" ><button style="margin-right:10px;">수정</button></a>
-                <a href=""><button class="btn-red">삭제</button></a>
+                <a href=""><button class="btn-red" id="delete-post">삭제</button></a>
                 <br>
             </div>
+            <script>
+                $("#delete-post").click(function () {
+                    if (confirm("정말 삭제하시겠습니까?")) {
+                        // 삭제하고
+                        alert("삭제되었습니다.");
+                    }
+                })
+            </script>
+
 
             <!-- 내가 쓴 글이 아닐 때-->
             <br><br><br>
@@ -274,7 +274,7 @@ z
                             <p style="margin:0px 10px;">23-01-19</p>
                             <p style="margin-right:30px;">16:00</p>
                             <p href="" class="report" style="margin-right:10px;" id="reply-modify">수정</p>
-                            <a href="" style="text-decoration:none; color:rgb(200, 140, 140);" id="reply-report">삭제</a>
+                            <a href="" style="text-decoration:none; color:rgb(200, 140, 140);" id="delete-reply">삭제</a>
                         </td>
                     </tr>
 
@@ -297,6 +297,7 @@ z
                 </table>
 
                 <script>
+                    // 수정
                     $(function () {
 
                         const form = $("#reply-modify-form");
@@ -316,8 +317,18 @@ z
                             }
                         })
                     })
-                </script>
 
+                    // 삭제
+                    $("#delete-reply").click(function () {
+                        if (confirm("정말 삭제하시겠습니까?")) {
+                            // 삭제하고
+                            alert("삭제되었습니다.");
+                        } else {
+                            alert("취소되었습니다.");
+                        }
+                    })
+
+                </script>
                 <!-- 댓글 수정삭제 여기까지 ------------->
 
                 <br><br><br>
