@@ -112,7 +112,7 @@
             <div class="menu" style="margin-right:55px; " align="center">
                 <div class="img">
                     <br>
-                    <a href=""><img src="<%= contextPath %>/resources/images/myOrder.png"></a>
+                    <a href="<%=contextPath%>/myOrder.me"><img src="<%= contextPath %>/resources/images/myOrder.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Order <br>
