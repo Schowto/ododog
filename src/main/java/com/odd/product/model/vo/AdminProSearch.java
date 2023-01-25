@@ -1,20 +1,20 @@
 package com.odd.product.model.vo;
 
-public class ProSearch {
+public class AdminProSearch {
 	
 	private String proName;
 	private String category;
 	private String soldout;
 	private String expDateRemain;
-	private int lowPrice;
-	private int highPrice;
+	private String lowPrice;
+	private String highPrice;
 	private String firstDate;
 	private String secondDate;
 	
-	public ProSearch() {}
+	public AdminProSearch() {}
 
-	public ProSearch(String proName, String category, String soldout, String expDateRemain, int lowPrice, int highPrice,
-			String firstDate, String secondDate) {
+	public AdminProSearch(String proName, String category, String soldout, String expDateRemain, String lowPrice,
+			String highPrice, String firstDate, String secondDate) {
 		super();
 		this.proName = proName;
 		this.category = category;
@@ -58,19 +58,19 @@ public class ProSearch {
 		this.expDateRemain = expDateRemain;
 	}
 
-	public int getLowPrice() {
+	public String getLowPrice() {
 		return lowPrice;
 	}
 
-	public void setLowPrice(int lowPrice) {
+	public void setLowPrice(String lowPrice) {
 		this.lowPrice = lowPrice;
 	}
 
-	public int getHighPrice() {
+	public String getHighPrice() {
 		return highPrice;
 	}
 
-	public void setHighPrice(int highPrice) {
+	public void setHighPrice(String highPrice) {
 		this.highPrice = highPrice;
 	}
 
@@ -96,6 +96,8 @@ public class ProSearch {
 				+ expDateRemain + ", lowPrice=" + lowPrice + ", highPrice=" + highPrice + ", firstDate=" + firstDate
 				+ ", secondDate=" + secondDate + "]";
 	}
+
+	
 	
 	
 	

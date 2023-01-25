@@ -80,10 +80,10 @@
             <h2>전체 물품 조회</h2>
             <br>
             	<div class="order">
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO">번호</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()%>&&order=CATEGORY">카테고리</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()%>&&order=PRICE">가격</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()%>&&order=EXPIRED_DATE">유통기한</a>
+	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO">번호</a>
+	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=CATEGORY">카테고리</a>
+	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRICE">가격</a>
+	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=EXPIRED_DATE">유통기한</a>
 				</div>
 				<br>
                 <table class="list-area table" >
@@ -142,21 +142,21 @@
                 <ul class="page pagination">
                     
                     <% if(pi.getCurrentPage() != 1){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=order%>">&lt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=order%>">&lt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link " href="">&lt;</a></li>
                     <%} %>
                     
                     <% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
                     <% 	if(pi.getCurrentPage() == p){ %>
-                            <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
+                            <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
                     <% 	}else { %>	
-                            <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
+                            <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
                     <% 	} %>
                     <% } %>
                     
                     <% if(pi.getCurrentPage() != pi.getMaxPage()){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.pro?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>">&gt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>">&gt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link" href="">&gt;</a></li>
                     <%} %>
