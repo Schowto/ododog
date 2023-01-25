@@ -129,10 +129,17 @@ public class AdminProductDao {
 			sql += " AND SOLDOUT = '" + soldout +"'";
 		}
 		if(!expDateRemain.equals("1")) {
-			sql += " AND SOLDOUT = '" + expDateRemain + "'";
+			sql += " AND EXP_DATE < " + expDateRemain;
 		}
-		if(!firstDate.equals("")&!secondDate.equals("")) {
-			//sql += and TO_DATE(EXPIRED_DATE, 'mm/dd/yyyy') between TO_DATE('01/19/2023', 'mm/dd/yyyy') and TO_DATE('01/23/2023', 'mm/dd/yyyy');
+		if(!lowPrice.equals("") && !highPrice.equals("")) {
+			sql += " AND PRICE BETWEEN "
+				 + lowPrice + " AND "
+				 + highPrice;
+		}
+		if(!firstDate.equals("") && !secondDate.equals("")) {
+			sql += " AND ENR_DATE BETWEEN TO_DATE('"
+				 + firstDate + "', 'YYYY-MM-DD') AND TO_DATE('"
+				 + secondDate +"', 'YYYY-MM-DD')";
 		}
 		
 		System.out.println(firstDate);

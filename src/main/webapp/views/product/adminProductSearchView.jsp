@@ -84,7 +84,7 @@
             <br>
 			<br>
 			
-			<div style="width:100%; height:50px; overflow:auto">
+			<div style="width:100%; height:400px; overflow:auto">
                <table class="list-area table" >
                    <thead>
                        <tr>

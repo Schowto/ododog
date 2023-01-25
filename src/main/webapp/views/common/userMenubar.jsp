@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.odd.member.model.vo.Member"%>
-<%	
-	String contextPath = request.getContextPath();
+<%   
+   String contextPath = request.getContextPath();
 
-	Member loginUser = (Member)session.getAttribute("loginUser");
+   Member loginUser = (Member)session.getAttribute("loginUser");
 
-	String alertMsg = (String)session.getAttribute("alertMsg");
+   String alertMsg = (String)session.getAttribute("alertMsg");
 
 
 %>
@@ -37,7 +37,7 @@
             cursor:pointer;
         }
         
-        button {	/* 버튼 스타일 일단 설정해놨어요,,!! 각자 페이지에서 바꿔도 됨 */
+        button {   /* 버튼 스타일 일단 설정해놨어요,,!! 각자 페이지에서 바꿔도 됨 */
             font-size: 13px;
             border: 2px solid rgb(220, 220, 220);
             background: white;
@@ -153,13 +153,13 @@
 </head>
 
 <body>
-	
-	<% if(alertMsg != null) {%>
-		<script>
-			alert("<%=alertMsg%>");
-		</script>
-		<% session.removeAttribute("alertMsg"); %>
-	<% } %>
+   
+   <% if(alertMsg != null) {%>
+      <script>
+         alert("<%=alertMsg%>");
+      </script>
+      <% session.removeAttribute("alertMsg"); %>
+   <% } %>
 
     <div class="wrap">
 
@@ -173,11 +173,11 @@
 
                 <!-- 로그인 전 -->
                 
-				<% if(loginUser == null) { %>
+            <% if(loginUser == null) { %>
                 <img src="<%= contextPath %>/resources/icons/profile.png" onclick="location.href='<%=contextPath%>/views/member/loginUser.jsp'">
-				
-				<%}else{ %>
-           		
+            
+            <%}else{ %>
+                 
                 <!-- 로그인 후 -->
                 <img src="<%= contextPath %>/resources/icons/loginProfile.png" onclick="location.href=''">
                 <a href="" id="user-id" onclick="location.href=''"><%= loginUser.getUser_Name() %></a>님 반갑습니다!
@@ -205,9 +205,9 @@
                         </ul>
                     </li>
 
-                    <li><a href="<%= contextPath %>/list.bo">COMMUNITY</a>
+                    <li><a href="<%= contextPath %>/list.bo?cpage=">COMMUNITY</a>
                         <ul>
-                            <li><a href="<%= contextPath %>/list.bo">자유게시판</a></li>
+                            <li><a href="<%= contextPath %>/list.bo?cpage=1">자유게시판</a></li>
                             <li><a href="<%= contextPath %>/list.re">레시피게시판</a></li>
                         </ul>
                     </li>
@@ -215,12 +215,13 @@
 
                     <li><a href="<%=contextPath%>/myPageMain.me">MY PAGE</a>
                         <ul>
-                            <li><a href="">주문조회</a></li>
-                            <li><a href="">회원정보</a></li>
+                            <li><a href="<%=contextPath%>/myOrder.me">주문조회</a></li>
+                            <li><a href="<%=contextPath%>/myPage.me">회원정보</a></li>
                             <li><a href="">관심상품</a></li>
-                            <li><a href="">적립금</a></li>
+                            <li><a href="<%=contextPath%>/myPoint.me">적립금</a></li>
                             <li><a href="">게시글조회</a></li>
                             <li><a href="">1:1맞춤상담</a></li>
+
                         </ul>
                     </li>
 

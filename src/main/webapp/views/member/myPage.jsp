@@ -79,16 +79,29 @@ td:first-child{
     font-size:12px;
     font-weight: 900;
 }
-.btn{
+.btn1{
     text-align:center;
     float:left;
-    
+    margin-left:400px;
+}
+.btn2{
+    background:rgb(200, 140, 140); 
+    width:80px; 
+    height:30px; 
+    border:none; 
+    color:white; 
+    font-weight: 900; 
+    float:right; 
 }
 input{
     border: 1px solid rgb(220, 220, 220);
 }
 button{
     border-radius: 4px;
+}
+input::placeholder{
+    color:rgb(220, 220, 220);
+    font-size:12px;
 }
 
 </style>
@@ -103,10 +116,10 @@ button{
             <br><br><br><br><br>
             <p style="font-size:23px;">MYPAGE</p>
             <hr>
-            <a href="" style="font-size:17px;">주문조회</a> <br><br>
-            <a href="" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
+            <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
+            <a href="<%=contextPath%>/myPage.me" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
             <a href="" style="font-size:17px;">관심상품</a> <br><br>
-            <a href="" style="font-size:17px;">적립금</a> <br><br>
+            <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="" style="font-size:17px;">1:1맞춤상담</a>
         </div>
@@ -124,6 +137,7 @@ button{
 
             <form id="profileTable">
                 <h2 align="center" style="font-weight:600; color:rgb(50, 50, 50)">회원정보수정</h3>
+                    <br><br><br><br>
 
                     <span style="float:left; font-weight: 900;">&nbsp;기본정보 </span>
                     <span style="float:right; font-weight: 900;">* 필수입력사항&nbsp;</span>
@@ -144,18 +158,18 @@ button{
                     </tr>
                     <tr>
                         <td>일반전화</td>
-                        <td>&nbsp;<input type="phone" name="phone" placeholder="- 를 포함하여 입력해주세요."></td>
+                        <td>&nbsp;<input type="phone" name="phone" placeholder="&nbsp;- 를 포함하여 입력해주세요."></td>
                     </tr>
                     <tr>
                         <td>휴대전화 *</td>
-                        <td>&nbsp;<input type="phone" name="selfPhone" placeholder="- 를 포함하여 입력해주세요." required></td>
+                        <td>&nbsp;<input type="phone" name="selfPhone" placeholder="&nbsp;- 를 포함하여 입력해주세요." required></td>
                     </tr>
                     <tr>
                         <td>이메일 *</td>
                         <td colspan="2">&nbsp;<input type="email" name="email"></td>
                     </tr>
                     <tr>
-                        <td rowspan="3" >주소</td>
+                        <td rowspan="3" >주소 *</td>
                         <td colspan="3" id="address">&nbsp;<input type="text" name="address1"> <button style="border-radius:4px; border:1px solid gray;">우편번호</button></td>
                     </tr>
                     <tr>
@@ -167,8 +181,8 @@ button{
                     <tr>
                         <td>email 수신여부 *</td>
                         <td style="border-top:1px solid gray;">
-                            <input type="radio" id="check" name="yes" value="Y">&nbsp;예
-                            <input type="radio" id="check" name="no" vlaue="N">&nbsp;아니오
+                            &nbsp;<input type="radio" id="check" name="yes" value="Y">&nbsp;예
+                            &nbsp;<input type="radio" id="check" name="no" vlaue="N">&nbsp;아니오
                         </td>
                     </tr>
                 </table>
@@ -176,12 +190,12 @@ button{
 
             <br>
 
-            <span class="btn">
+            <span class="btn1">
                 <button style="background:white; width:80px; height:30px; border:1px solid gray;">수정하기</button>
                 <button style="background:white; width:80px; height:30px; border:1px solid gray;">취소</button>
             </span>
             <span>
-                <button style="background:rgb(200, 140, 140); width:80px; height:30px; border:none; color:white; font-weight: 900; float:right;">회원탈퇴</button>
+                <button class="btn2">회원탈퇴</button>
             </span>
 
         </div>
