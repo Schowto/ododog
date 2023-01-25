@@ -99,6 +99,7 @@
         color:rgb(50, 50, 50);
         border-radius:5px;
         display: inline-block;
+        height: 25px;
     }
     a{
         font-size: 12px;
