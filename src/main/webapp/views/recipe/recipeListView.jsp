@@ -49,6 +49,10 @@
         font-weight:700;
     }
 
+    .selected{
+        background:rgb(220,220,220);
+    }
+
     /* 검색창 */
     #search-area{
         width:900px;
@@ -82,49 +86,42 @@
 
     /* 정렬순서 */
     .sort-filter{
-        border: 1px solid red;
         list-style-type:none;
         padding:0;
-        margin:0;   /* ul요소가 기본적으로 갖고 있는 여백, 간격 없애기 */
+        margin:0;
         width:100%;
-        height:100%;    /* 상위 요소에 가로세로 길이가 지정되어있어야 하위 요소에서 지정 가능 */
-    }
-    .sort-filter>li{
-        border:1px solid blue;
-        float:left;
-        width:7%;
         height:100%;
     }
-    #navi a{
-        border:1px solid orange;
-        text-decoration:none;
-        color:darkorange;
-        font-size:18px;
-        font-weight: 900;       /* 인라인요소> 블럭단위로 영역이 잡히지 않음 글자만 영역으로 잡힘
-                                   영역을 박스 안까지 늘리면 박스만 눌러도 글자 클릭된 것처럼 되지 */
-        width:100%; height:100%; /* 가로세로길이는 블럭요소에서만 먹힘 */
-        display:block;
-        text-align: center;
-        /*vertical-align: middle;*/ /* 요곤 또 인라인요소에서만 먹히는 속성 */
-        line-height:35px;
-    }
-    #navi a:hover{
-        color:orangered;
-    }
-    #navi>li>ul{
-        list-style-type: none;
-        padding:0;
-        margin:0;
-        display:none;
-    }
-    #navi>li>ul a{
-        font-size:15px;
-    }
-    
-    #navi>li:hover>ul{  /* hover되는 요소 & 적용할 요소 동시에 작성 */
-        display:block;
+    .sort-filter>li{
+        border:1px solid rgb(220, 220, 220);
+        border-radius: 5px;
+        float:right;
+        width:6%;
+        height:100%;
+        cursor:pointer;
     }
 
+    .sort-filter{overflow:hidden}
+
+    /* 썸네일 */
+    .thumbnail{
+        display:inline-block;
+        margin:40px 20px;
+    }
+    .thumbnail-img-area{
+        cursor:pointer;
+    }
+    .thumbnail-img-area img:hover, .title-pointed{
+        transform:scale(1.2);
+        transition:transform .5s;
+    }
+    .thumbnail-img-area img{
+        transform:scale(1.0);
+        transition:transform .5s;
+    }
+    .thumbnail p{
+        cursor:pointer;
+    }
 
     
     
@@ -261,19 +258,149 @@
 
         <br><br><br><br>
 
-        <ul class="sort-filter">
-           <li>최신순</li>
-           <li>하트순</li>
-           <li>댓글순</li>
+        <ul class="sort-filter" style="font-size:13px;">
+           <li class>댓글순</li>
+           <li class>하트순</li>
+           <li class="selected">최신순</li>
         </ul>
+        <br>
+
+        <script>
+            $(".sort-filter>li").click(function(){
+                //console.log($(this).text());
+                $(this).addClass('selected');
+                $(this).siblings().removeClass('selected');
+            })
+        </script>
 
 
 
+        <div class="list-area" style="font-size:15px;">
+
+            <!-- 레시피 없는 경우 -->
+            <div>
+                <br><br><br><br><br>
+                등록된 레시피가 없습니다.
+                <br><br><br><br><br>
+            </div>
+
+            <!-- 레시피 있는 경우 -->
+            <div class="thumbnail" align="center">
+                <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
+                    <img src="https://recipe.bom.co.kr/uploads/posts/images/20220422/6262298eec8f5.png" width="100%" height="100%">
+                </div>
+                <p style="margin:5px;">오리스튜</p>
+                <div align="right" style="width:250px; font-size:12px;" class="heart-area">
+                    <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
+                    <div class="heart-area" style="display:inline-block;">
+                        <!-- 좋아요 안했을 경우 -->
+                        <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
+                        <!-- 좋아요 했을 경우 -->
+                        <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="thumbnail" align="center">
+                <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
+                    <img src="https://recipe.bom.co.kr/uploads/posts/images/20220610/62a29ff919b33.png" width="100%" height="100%">
+                </div>
+                <p style="margin:5px;">캐롭짜장면</p>
+                <div align="right" style="width:250px; font-size:12px;">
+                    <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
+                    <div class="heart-area" style="display:inline-block;">
+                        <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="thumbnail" align="center">
+                <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
+                    <img src="https://recipe.bom.co.kr/uploads/posts/images/20220516/628208f0c4f90.png" width="100%" height="100%">
+                </div>
+                <p style="margin:5px;">소간칩 칙촉</p>
+                <div align="right" style="width:250px; font-size:12px;">
+                    <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
+                    <div class="heart-area" style="display:inline-block;">
+                        <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
+                    </div>
+                </div>
+            </div>
+
+            <div class="thumbnail" align="center">
+                <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
+                    <img src="https://recipe.bom.co.kr/uploads/posts/images/20220422/6262298eec8f5.png" width="100%" height="100%">
+                </div>
+                <p style="margin:5px;">오리스튜</p>
+                <div align="right" style="width:250px; font-size:12px;" class="heart-area">
+                    <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
+                    <div class="heart-area" style="display:inline-block;">
+                        <!-- 좋아요 안했을 경우 -->
+                        <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
+                        <!-- 좋아요 했을 경우 -->
+                        <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="thumbnail" align="center">
+                <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
+                    <img src="https://recipe.bom.co.kr/uploads/posts/images/20220610/62a29ff919b33.png" width="100%" height="100%">
+                </div>
+                <p style="margin:5px;">캐롭짜장면</p>
+                <div align="right" style="width:250px; font-size:12px;">
+                    <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
+                    <div class="heart-area" style="display:inline-block;">
+                        <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="thumbnail" align="center">
+                <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
+                    <img src="https://recipe.bom.co.kr/uploads/posts/images/20220516/628208f0c4f90.png" width="100%" height="100%">
+                </div>
+                <p style="margin:5px;">소간칩 칙촉</p>
+                <div align="right" style="width:250px; font-size:12px;">
+                    <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
+                    <div class="heart-area" style="display:inline-block;">
+                        <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
+                    </div>
+                </div>
+            </div>
 
 
-		
-		
-		
+        </div>
+
+        <script>
+            $(".thumbnail>p").mouseover(function(){
+                $(this).css("font-weight","600").css("color","rgb(200,140,140)");
+                $(this).siblings(".thumbnail-img-area").children().css("transform", "scale(1.2)");
+            })
+            $(".thumbnail>p").mouseleave(function () {
+                $(this).css("font-weight", "500").css("color", "rgb(50,50,50)");
+                $(this).siblings(".thumbnail-img-area").children().css("transform", "scale(1.0)");
+            })
+            $(".thumbnail-img-area>img").mouseover(function () {
+                $(this).parent().siblings("p").css("font-weight", "600").css("color", "rgb(200,140,140)");
+                $(this).css("transform", "scale(1.2)");
+            })
+            $(".thumbnail-img-area>img").mouseleave(function () {
+                $(this).parent().siblings("p").css("font-weight", "500").css("color", "rgb(50,50,50)");
+                $(this).css("transform", "scale(1.0)");
+            })
+
+            $(".heart-area>img").click(function(){
+                //console.log($(this).attr("src"));
+                if($(this).attr("src") == "<%= contextPath %>/resources/icons/heart.png"){
+                    $(this).attr("src", "<%= contextPath %>/resources/icons/heartR.png");
+                } else {
+                    $(this).attr("src", "<%= contextPath %>/resources/icons/heart.png");
+                }
+            })
+
+        </script>
+
 		<br><br><br>
         
         <div class="paging-area" align="center">
