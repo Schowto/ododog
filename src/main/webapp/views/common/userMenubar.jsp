@@ -212,7 +212,7 @@
                         </ul>
                     </li>
 
-                    <li><a href="">MY PAGE</a>
+                    <li><a href="<%=contextPath%>/myPage.me">MY PAGE</a>
                         <ul>
                             <li><a href="">주문조회</a></li>
                             <li><a href="">회원정보</a></li>
