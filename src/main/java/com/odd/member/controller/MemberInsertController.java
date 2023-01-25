@@ -14,14 +14,14 @@ import com.odd.member.model.vo.Member;
 /**
  * Servlet implementation class JoinMembershipController
  */
-@WebServlet("/join.me")
-public class JoinMembershipController extends HttpServlet {
+@WebServlet("/insert.me")
+public class MemberInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public JoinMembershipController() {
+    public MemberInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,7 +30,8 @@ public class JoinMembershipController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+		
+		
 		request.setCharacterEncoding("UTF-8");
 		
 		String user_Id = request.getParameter("user_Id");
@@ -44,7 +45,7 @@ public class JoinMembershipController extends HttpServlet {
 		
 		Member m = new Member(user_Id, user_Pwd, user_Name, email, phone, post_Code, address, detailed_Address);
 		
-		int result = new MemberService().joinMembership(m);
+		int result = new MemberService().insertMember(m);
 		
 		if(result > 0) {
 			HttpSession session = request.getSession();

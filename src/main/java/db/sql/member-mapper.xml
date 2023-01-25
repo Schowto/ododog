@@ -22,7 +22,7 @@
 		AND STATUS = 'Y'
 	</entry>
 	
-	<entry key="joinMembership">
+	<entry key="insertMember">
 		INSERT
 			INTO MEMBER
 			(
@@ -38,7 +38,7 @@
 			)
 			VALUES
 			(
-				 SEQ_UNO.NEXTVAL
+				 MEMBER_SEQ.NEXTVAL
 				, ?
 				, ?
 				, ?
@@ -49,4 +49,6 @@
 				, ?	 
 			)
 	</entry>
+	
+
 </properties>

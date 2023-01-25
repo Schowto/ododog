@@ -19,21 +19,25 @@
     .deleteText{
         margin:auto;
         font-size: 13px;
-        color:gray;
+        color:rgb(50, 50, 50);
+        font-weight:600;
     }
     table{
         border-collapse: collapse;
         border-spacing: 0;
-        border-top:1px solid gray;
+        border-top:1px solid rgb(220, 220, 220);
     }
     td{
         margin:auto;
-        border-bottom: 1px solid gray;
-        border-left:1px solid gray;
+        border-bottom: 1px solid rgb(220, 220, 220);
+        border-left:1px solid rgb(220, 220, 220);
         height:60px
     }
     td:first-child{
         border-left:none;
+    }
+    input{
+        border:1px solid rgb(220, 220, 220);
     }
     
     
@@ -59,7 +63,7 @@
                 <form>
                     <table>
                         <tr>
-                            <td style="width:200px;">비밀번호</td>
+                            <td style="width:200px; text-align:center;">비밀번호</td>
                             <td style="width:800px;">&nbsp;&nbsp;<input type="password" size=30 required></td>
                         </tr>
                     </table>

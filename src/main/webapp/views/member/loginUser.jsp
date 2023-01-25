@@ -55,7 +55,7 @@
             <input type="text" name="userId" placeholder="ID">
             <input type="password" name="userPwd" placeholder="Password">
             <div class="in" style="text-align: center;">
-        <a href="<%=contextPath%>/views/member/joinMembership.jsp">회원가입</a> |
+        <a href="<%=contextPath%>/views/member/memberInsert.jsp">회원가입</a> |
         <a href="">아이디찾기</a>  |
         <a href="">비밀번호찾기</a> 
         </div>

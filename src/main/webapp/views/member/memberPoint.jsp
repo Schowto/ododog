@@ -6,6 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+    .outer{
+        width:1000px;
+        height:100%;
+        margin:auto;
+        margin-top:50px;
+    }
+    .point{
+        width:800px;
+        margin:auto;
+        height:100%;
+    }
     .pointView{
         width:800px;
         height:150px;
@@ -46,42 +57,43 @@
         <h2 align="center">적립금</h2>
         <br><br>
 
-        <div class="pointView">
-            (회원아이디자리) 님의 총 적립금 내역은 (적립금총금액자리) 원 입니다.
+        <div class="point">
+            <div class="pointView">
+                (회원아이디자리) 님의 총 적립금 내역은 (적립금총금액자리) 원 입니다.
+            </div>
+            <br><br>
+
+            <div class="pointHistory">
+                <form>
+                    <table>
+                        <tr>
+                            <td style="width:200px;">날짜</td>
+                            <td style="width:400px;"">내용</th>
+                            <td style="width:200px;">금액</td>
+                        </tr>
+
+                        <tr>
+                            <td>적립된날짜들어올자리</td>
+                            <td style="text-align:center;">적립내역줄줄줄줄</td>
+                            <th>적립금액들어올자리</th>
+                        </tr>
+                        
+                        <tr>
+                            <td>적립된날짜들어올자리</td>
+                            <td style="text-align:center;">적립내역줄줄줄줄</td>
+                            <th>적립금액들어올자리</th>
+                        </tr>
+                        
+                        <tr>
+                            <td>적립된날짜들어올자리</td>
+                            <td style="text-align:center;">적립내역줄줄줄줄</td>
+                            <th>적립금액들어올자리</th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+
         </div>
-        <br><br>
-
-        <div class="pointHistory">
-            <form>
-                <table>
-                    <tr>
-                        <td style="width:200px;">날짜</td>
-                        <td style="width:400px;"">내용</th>
-                        <td style="width:200px;">금액</td>
-                    </tr>
-
-                    <tr>
-                        <td>적립된날짜들어올자리</td>
-                        <td style="text-align:center;">적립내역줄줄줄줄</td>
-                        <th>적립금액들어올자리</th>
-                    </tr>
-                    
-                    <tr>
-                        <td>적립된날짜들어올자리</td>
-                        <td style="text-align:center;">적립내역줄줄줄줄</td>
-                        <th>적립금액들어올자리</th>
-                    </tr>
-                    
-                    <tr>
-                        <td>적립된날짜들어올자리</td>
-                        <td style="text-align:center;">적립내역줄줄줄줄</td>
-                        <th>적립금액들어올자리</th>
-                    </tr>
-                </table>
-            </form>
-        </div>
-
-
 
 
 

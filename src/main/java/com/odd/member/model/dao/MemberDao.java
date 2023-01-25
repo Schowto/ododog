@@ -63,11 +63,11 @@ public class MemberDao {
 		} return m;
 	}
 	
-	public int joinMembership(Connection conn, Member m) {
-		int result = 0;
+	public int insertMember(Connection conn, Member m) {
 		
+		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("joinMembership");
+		String sql = prop.getProperty("insertMember");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -91,11 +91,7 @@ public class MemberDao {
 
 	}
 	
-	
-	
-	
-	
-	
+
 	
 	
 }
