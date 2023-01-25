@@ -148,5 +148,6 @@
 
 		</form>
 	</div>
+	<%@ include file="../common/userFooterbar.jsp"%>
 </body>
 </html>

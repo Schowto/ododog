@@ -103,6 +103,6 @@ th {
 			계속하기</button>
 	</div>
 	<br><br><br><br>
-
+	<%@ include file="../common/userFooterbar.jsp"%>
 </body>
 </html>

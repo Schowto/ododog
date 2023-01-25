@@ -79,6 +79,7 @@
             <br><br>
         
     </div>
+    <%@ include file="../common/userFooterbar.jsp"%>
     
                 
                 
