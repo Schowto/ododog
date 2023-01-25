@@ -212,10 +212,14 @@
                         </ul>
                     </li>
 
-                    <li><a href="">MY PAGE</a>
+                    <li><a href="<%=contextPath%>/myPage.me">MY PAGE</a>
                         <ul>
-                            <li><a href="">마이</a></li>
-                            <li><a href="">페이지</a></li>
+                            <li><a href="">주문조회</a></li>
+                            <li><a href="">회원정보</a></li>
+                            <li><a href="">관심상품</a></li>
+                            <li><a href="">적립금</a></li>
+                            <li><a href="">게시글조회</a></li>
+                            <li><a href="">1:1 맞춤상담</a></li>
                         </ul>
                     </li>
 
