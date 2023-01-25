@@ -39,7 +39,6 @@
 	
 	
     .list-area{
-        border: 1px solid white;
         text-align: center;
         font-size: 80%;
     }

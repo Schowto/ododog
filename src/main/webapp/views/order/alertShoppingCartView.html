@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="./jquery-3.4.1.min.js"></script>
+	<link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />
+	<script src="./bootstrapt/js/bootstrap.min.js"></script>
+<style>
+   .modal-body{
+    text-align: center;
+   }
+</style>
+</head>
+<body>
+  <button id="testBtn" class="btn">
+    <img src="<%=contextPath%>/resources/icons/logoimg.png"
+						 width="2px" height="2px" >
+    ododog.co.kr</button>
+  <!-- d modal-->
+	<div class="modal fade2" id="testModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">ododog.co.kr</h5>
+					<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">X</span>
+					</button>
+				</div>
+                <br><br>
+                <div id="img" align="center">
+                <img src="<%=contextPath%>/resources/icons/heart.png"
+						 width="100px" height="100px" >
+                        </div>         
+				<div class="modal-body" align="center" >괸심상품으로 등록되었습니다.</div>
+                <br><br>
+				<div class="modal-footer">
+	
+					<button class="btn btn-primary" type="button" data-dismiss="modal">계속 쇼핑하기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script>
+		$('#like').click(function(e){
+			e.preventDefault();
+			$('#testModal2').modal("show");
+		});
+	</script>
+	
+</body>

@@ -54,7 +54,6 @@ p:hover {
 </head>
 <body>
 
-
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
 		<br>
@@ -93,8 +92,10 @@ p:hover {
 				</p>
 				<p>
 					<!--가격-->
-					<b>9,000원</b>
+					<b>8,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-danger text-light">BEST</span>
 
 			</div>
 			<div class="thumbnail" align="center">
@@ -107,8 +108,9 @@ p:hover {
 				</p>
 				<p>
 					<!--가격-->
-					<b>9,000원</b>
+					<b>6,500원</b>
 				</p>
+				<br>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐3.png"
@@ -116,12 +118,14 @@ p:hover {
 					onclick="location.href='<%=contextPath%>'">
 				<p>
 					<!-- 상품명-->
-					소간칩쿠키130g(2개입)<br>
+					소간칩쿠키 <br>
 				</p>
 				<p>
 					<!--가격-->
-					<b>9,000원</b>
+					<b>4,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-primary text-light">NEW</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐4.png"
@@ -129,12 +133,13 @@ p:hover {
 					onclick="location.href='<%=contextPath%>'">
 				<p>
 					<!-- 상품명-->
-					연어쿠키<br>
+					연어쿠키 <br>
 				</p>
 				<p>
 					<!--가격-->
-					<b>9,000원</b>
+					<b>8,900원</b>
 				</p>
+				<span class="badge bg-danger text-light">BEST</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐5.png"
@@ -148,6 +153,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-primary text-light">NEW</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐6.png"
@@ -161,6 +168,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐7.png"
@@ -174,6 +182,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
+					<span class="badge bg-danger text-light">BEST</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐8.png"
@@ -187,6 +197,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐9.png"
@@ -200,6 +211,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-primary text-light">NEW</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐10.png"
@@ -213,6 +226,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐11.png"
@@ -226,6 +240,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
+				<span class="badge bg-danger text-light">BEST</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐12.png"
@@ -239,6 +255,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
+				<span class="badge bg-danger text-light">BEST</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐13.png"
@@ -252,6 +270,8 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
+				<span class="badge bg-primary text-light">NEW</span>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐14.png"
@@ -265,6 +285,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐15.png"
@@ -278,6 +299,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-primary text-light">NEW</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐16.png"
@@ -291,6 +313,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<div class="badge bg-info text-light">추천</div>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐17.png"
@@ -304,6 +327,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐18.png"
@@ -317,6 +341,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐19.png"
@@ -330,6 +355,7 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/오븐20.png"
@@ -343,65 +369,15 @@ p:hover {
 					<!--가격-->
 					<b>9,000원</b>
 				</p>
+				<br>
 			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐21.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐22.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐23.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐24.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-
 
 		</div>
 
 	</div>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br>
 	<%@ include file="../common/userFooterbar.jsp"%>
 
 </body>
