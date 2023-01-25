@@ -290,6 +290,9 @@ p:hover {
 		</div>
 
 	</div>
+	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<%@ include file="../common/userFooterbar.jsp"%>
 
 </body>
