@@ -119,7 +119,7 @@ input::placeholder{
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
             <a href="" style="font-size:17px;">관심상품</a> <br><br>
-            <a href="" style="font-size:17px;">적립금</a> <br><br>
+            <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="" style="font-size:17px;">1:1맞춤상담</a>
         </div>
@@ -181,8 +181,8 @@ input::placeholder{
                     <tr>
                         <td>email 수신여부 *</td>
                         <td style="border-top:1px solid gray;">
-                            <input type="radio" id="check" name="yes" value="Y">&nbsp;예
-                            <input type="radio" id="check" name="no" vlaue="N">&nbsp;아니오
+                            &nbsp;<input type="radio" id="check" name="yes" value="Y">&nbsp;예
+                            &nbsp;<input type="radio" id="check" name="no" vlaue="N">&nbsp;아니오
                         </td>
                     </tr>
                 </table>

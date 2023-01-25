@@ -16,7 +16,8 @@
     /****** 사이드 ******/
     #side{
         /*border:1px solid blue;*/
-        width:20%; height:100%;
+        width:20%; 
+        height:100%;
         padding:20px;
         color: rgb(50, 50, 50);
         font-weight: 600;
@@ -51,6 +52,7 @@
         width:100%;
         border-collapse: collapse;
         border-spacing: 0;
+        margin:auto;
 
     }
     .myOrderView td{
@@ -106,7 +108,7 @@
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px; color:rgb(200, 140, 140);">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
             <a href="" style="font-size:17px;">관심상품</a> <br><br>
-            <a href="" style="font-size:17px;">적립금</a> <br><br>
+            <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="" style="font-size:17px;">1:1맞춤상담</a>
         </div>
@@ -131,9 +133,9 @@
                 <br>
                 <div class="myOrderView">
                     <form action="">
-                        <table border="1">
+                        <table>
                             <tr>
-                                <td colspan="2">
+                                <td colspan="2" style="padding-left: 15px;">
                                     <select name="" id="" >
                                         <option value="">&nbsp;&nbsp;전체 주문처리 상태&nbsp;&nbsp;</option>
                                         <option value="">&nbsp;&nbsp;배송준비중&nbsp;&nbsp;</option>
@@ -142,7 +144,7 @@
                                         <option value="">&nbsp;&nbsp;배송완료&nbsp;&nbsp;</option>
                                     </select>
                                 </td>
-                                <td>
+                                <td style="padding-left: 5px;">
                                     <button id="btn1">1주일</button>
                                 </td>
                                 <td>

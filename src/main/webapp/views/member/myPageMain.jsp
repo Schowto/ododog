@@ -159,7 +159,7 @@
             <div class="menu" style="margin-right:55px;" align="center">
                 <div id="img">
                     <br>
-                    <a href=""><img src="<%= contextPath %>/resources/images/myPoint.png"></a>
+                    <a href="<%=contextPath%>/myPoint.me"><img src="<%= contextPath %>/resources/images/myPoint.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Mileage <br>
