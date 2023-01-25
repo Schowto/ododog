@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+    .outer{width: 1200px; margin: auto;}
     #side{
         /*border:1px solid blue;*/
         width:20%; height:100%;
@@ -22,9 +23,9 @@
 
     /*FAQ*/ 
     #FAQ{
-        width: 900px;
-        margin: auto;
-        margin-top: 50px;
+        width:80%; height:100%;
+        float:left;
+        text-align: left;
     }
     #FAQ p{ /*게시글관리*/
         margin-top:10px;
@@ -43,7 +44,7 @@
         margin-top: -5px;
     }
     .qna > li{
-        padding: 10px 0;
+        padding: 10px 10px;
         box-sizing: border-box;
     }
     .qna > li:nth-child(n+2){ /* 아이템 구분 점선 */
@@ -70,7 +71,6 @@
         height: 0;
         border: 8px solid transparent;
         border-left: 8px solid rgb(180, 180, 180);
-        margin: 2px 0 0 8px;
         float: left;
     }
     .qna input:checked + label::before { /* 내용 펼침 상태 제목 앞 화살표 */
@@ -106,18 +106,32 @@
         font-weight: bold;
 
     }
+        /****** footer ******/
+    #footer{clear:both}
+    #footer>div{float:left; height:100%; padding:20px;}
+    #footer-1{width:60%;}
+    #footer-2{width:40%;}
+    #footer-2 a{
+        line-height:35px;
+        color:rgb(50, 50, 50);
+        text-decoration:none;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
 
 </style>
 </head>
 <body>
 	<%@ include file="../common/userMenubar.jsp" %>
 
+    <div class="outer">
     <div id="side">
         <br><br><br><br><br>
         <p style="font-size:23px;">COMMUNITY</p>
         <hr>
         <a href="" style="font-size:17px; color:rgb(200, 140, 140);">FAQ</a> <br><br>
-        <a href="" style="font-size:17px;">1:1 상담</a>
+        <a href="" style="font-size:17px;">1:1 문의하기</a>
     </div>
 
     <script>
@@ -129,14 +143,14 @@
     </script>
 
 
-    <div id="board-area" align="center">
+    <div id="board-area" align="center" style="margin-top: -100px;">
 
         <div>
             <br><br><br><br><br><br><br>
             <h2 style="color:rgb(50, 50, 50); font-weight:600;">FAQ</h2>
-            <br>
+            <br><br><br>
         </div>
-
+        
         <!-- FAQ내용 -->
         <div id="FAQ">
            
@@ -146,10 +160,10 @@
                 <option value="">배송</option>
             </select>
             <input type="text" value="키워드 검색" id="serch" style="float: left;">
-            <button style="float: left;">검색하기</button>
-            <button style="float: right;">게시글 작성</button> <br><br> 
-            <hr style="width: 850px; margin-left: 45px; margin-top: -10px;">
+            <button style="float: left;">검색하기</button><br><br> 
+            
             <ul class="qna">
+                <li></li>
                 <li>
                     <input type="checkbox" id="qna-1">
                     
@@ -200,5 +214,33 @@
                 </li>
             </ul>
         </div>
+
+
+
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <div id="footer" style="height:200px; background:rgb(220, 220, 220);">
+     
+            <div id="footer-1">
+                <p style="font-size:12px;">
+                    COMPANY : (주)오도독 CEO : 강보람 PHONE : 031-1234-5678 / FAX : 02-1234-9999 <br>
+                    BUSINESS LICENCE : [828-88-01900] E-COMMERCE PERMINT 2020-성남중원-0191 <br>
+                    ADDRESS : 13201 경기도 성남시 중원구 갈마치로288번길 14 (상대원동) SK V1타워101호
+                </p>
+                <br><br>
+                <p style="font-size:12px; font-weight:700;">Copyright(C) 2023 (주)오도독 ALL RIGHTS REVERVED</p>
+            </div>
+            <div id="footer-2">
+                <a href="">회사소개</a> <br>
+                <a href="">개인정보처리방침</a> <br>
+                <a href="">이용약관</a> <br>
+                <a href="">이용안내</a> <br>
+            </div>  
+                </div>
+    
+        </div>
+    
+    
+    </div>
 </body>
 </html>
