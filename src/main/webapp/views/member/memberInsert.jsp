@@ -13,7 +13,7 @@ padding: 0;
 margin: 0;
 border: none;
 }
-.joinform{
+.insertform{
 margin: auto;
 width: 400px;
 height: 350px;
@@ -100,25 +100,25 @@ button {
 	<%@ include file="../common/userMenubar.jsp"%>
 
             <!-- 회원가입 양식-->
-            <div class="joinform" id="">
-                <form action="<%=contextPath %>/join.me" id="joinform" method="post">
+            <div class="insertform" id="">
+                <form action="<%=contextPath %>/insert.me" id="joinform" method="post">
                     <h1 style="text-align: center;">회원가입</h1>
                     <br><br>
                   <label>아이디*</label> 
-                  <input type="text" id="user_id" name="user_id" placeholder="아이디를 입력하세요.">
-                  <button>중복확인</button> <br><br><br>
+                  <input type="text" id="user_id" name="user_Id" placeholder="아이디를 입력하세요.">
+                  <button onclick="idcheck();">중복확인</button> <br><br><br>
                   
               
                   <label>비밀번호*</label>
-                  <input type="password" id="user_pwd" name="user_pwd" placeholder="영소문자, 숫자, !@#$%^&*를 포함한 5~13글자">
+                  <input type="password" id="user_pwd" name="user_Pwd" placeholder="영소문자, 숫자, !@#$%^&*를 포함한 5~13글자">
                   <br>
         
                   <label>비밀번호확인*</label>
-                  <input type="password" id="user_pwd" name="user_pwd" placeholder="비밀번호 확인">
+                  <input type="password" id="user_pwd" name="user_Pwd" placeholder="비밀번호 확인">
                   <br>
         
                   <label>이름*</label>
-                  <input type="text" id="user_name" name="user_name" placeholder="이름을 입력해주세요.">
+                  <input type="text" id="user_name" name="user_Name" placeholder="이름을 입력해주세요.">
                   <br>
         
                   <label>이메일*</label>
@@ -126,13 +126,13 @@ button {
                   <br>
         
                   <label>휴대폰번호*</label>
-                  <input type="tel" id="tel" name="tel" placeholder="- 포함해서 입력해주세요.">
+                  <input type="tel" id="tel" name="phone" placeholder="- 포함해서 입력해주세요.">
                   <br>
         
                   <label>주소*</label>
-                  <input type="text" id="post_code" name="post_code" placeholder="우편번호 입력">
+                  <input type="text" id="post_code" name="post_Code" placeholder="우편번호 입력">
                   <input type="text" id="address" name="address" placeholder="기본주소 입력" style="margin-top:-10px;">
-                  <input type="text" id="detailed_address" name="detailed_address" placeholder="상세주소 입력" style="margin-top:-10px;">
+                  <input type="text" id="detailed_address" name="detailed_Address" placeholder="상세주소 입력" style="margin-top:-10px;">
                   <br>
                 </form>
               </div>
@@ -172,5 +172,7 @@ button {
                         <input type="submit" value="회원가입" id="join_btn" style=" display: inline-block;">
                     </div>
                 </form>
+                
+   
 </body>
 </html>

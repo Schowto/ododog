@@ -21,9 +21,9 @@ public class MemberService {
 	 * @param m
 	 * @return
 	 */
-	public int joinMembership(Member m) {
+	public int insertMember(Member m) {
 		 Connection conn = getConnection();
-		 int result = new MemberDao().joinMembership(conn, m);
+		 int result = new MemberDao().insertMember(conn, m);
 		 
 			if(result > 0) {
 				commit(conn);
@@ -34,4 +34,5 @@ public class MemberService {
 			close(conn);
 			return result;
 	}
+
 }
