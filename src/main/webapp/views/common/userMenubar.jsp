@@ -5,7 +5,7 @@
 
 	Member loginUser = (Member)session.getAttribute("loginUser");
 
-	
+	String alertMsg = (String)session.getAttribute("alertMsg");
 
 
 %>
@@ -153,6 +153,13 @@
 </head>
 
 <body>
+	
+	<% if(alertMsg != null) {%>
+		<script>
+			alert("<%=alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+	<% } %>
 
     <div class="wrap">
 
@@ -173,8 +180,8 @@
            		
                 <!-- 로그인 후 -->
                 <img src="<%= contextPath %>/resources/icons/loginProfile.png" onclick="location.href=''">
-                <a href="" id="user-id" onclick="location.href=''">누구누구</a>님 반갑습니다!
-                <a href="" id="logout" onclick="location.href=''">로그아웃</a>
+                <a href="" id="user-id" onclick="location.href=''"><%= loginUser.getUser_Name() %></a>님 반갑습니다!
+                <a href="<%= request.getContextPath()%>/logout.me" id="logout" >로그아웃</a>
                
                <%} %>
 
@@ -198,9 +205,9 @@
                         </ul>
                     </li>
 
-                    <li><a href="">COMMUNITY</a>
+                    <li><a href="<%= contextPath %>/list.bo">COMMUNITY</a>
                         <ul>
-                            <li><a href="">자유게시판</a></li>
+                            <li><a href="<%= contextPath %>/list.bo">자유게시판</a></li>
                             <li><a href="">레시피게시판</a></li>
                         </ul>
                     </li>

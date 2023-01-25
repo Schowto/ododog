@@ -15,5 +15,23 @@ public class MemberService {
 		return m;
 		
 	}
-
+	
+	/**
+	 * 회원가입요청 서비스 (소민)
+	 * @param m
+	 * @return
+	 */
+	public int joinMembership(Member m) {
+		 Connection conn = getConnection();
+		 int result = new MemberDao().joinMembership(conn, m);
+		 
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			
+			close(conn);
+			return result;
+	}
 }

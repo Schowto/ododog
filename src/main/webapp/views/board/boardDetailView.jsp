@@ -5,6 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <style>
 
     #content{/*border:1px solid red;*/ margin:auto; width:1200px;}
@@ -50,8 +60,8 @@
         border-left: none;
     }
 
-    #report img{vertical-align:top;}
-    #report:hover{
+    .report img{vertical-align:top;}
+    .report:hover{
         font-weight:600;
         cursor: pointer;
     }
@@ -184,7 +194,7 @@ z
 
             
             <div align="right" style="width:900px">
-                <span id="report" style="font-size: 12px; color:gray;" data-toggle="modal" data-target="#myModal">
+                <span class="report" style="font-size: 12px; color:gray;" data-toggle="modal" data-target="#myModal">
                     <img src="../../resources/icons/siren.png" width="20">
                     신고
                 </span>
@@ -224,7 +234,7 @@ z
                     <p style="font-size:15px; font-weight:600; color:rgb(200, 140, 140)">4</p>
                 </div>
 
-                <table id="reply-table" width="900">
+                <table id="reply-table" width="900" border="1">
 
                     <!-- 댓글 없을 때 -->
                     <tr style="text-align:center; height:200px; border-bottom:1px solid rgb(220,220,220);">
@@ -237,7 +247,7 @@ z
                         <td style="color:gray; font-size:11px;">
                             <p style="margin:0px 10px;">23-01-19</p>
                             <p style="margin-right:30px;">16:00</p>
-                            <p id="report" data-toggle="modal" data-target="#myModal">신고</p>
+                            <p class="report" data-toggle="modal" data-target="#myModal">신고</p>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(220,220,220);">
@@ -249,32 +259,58 @@ z
                         <td style="color:gray; font-size:11px;">
                             <p style="margin:0px 10px;">23-01-19</p>
                             <p style="margin-right:30px;">16:00</p>
-                            <p id="report" data-toggle="modal" data-target="#myModal">신고</p>
+                            <p class="report" data-toggle="modal" data-target="#myModal">신고</p>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(220,220,220);">
                         <td colspan="2" style="font-size:12px;">알겠습니다유</tdcol>
                     </tr>
 
+                    <!-- 내가 쓴 댓글일 때 -->
                     <tr>
                         <th style="font-size:14px;" width="150">내 아이디!!!!</th>
                         <td style="color:gray; font-size:11px;">
                             <p style="margin:0px 10px;">23-01-19</p>
                             <p style="margin-right:30px;">16:00</p>
-                            <!-- 내가 쓴 댓글일 때 -->
-                            <a href="" style="text-decoration:none; color:gray; margin-right:10px;" id="reply-modify">수정</a>
+                            <p href="" class="report" style="margin-right:10px;" id="reply-modify">수정</p>
                             <a href="" style="text-decoration:none; color:rgb(200, 140, 140);" id="reply-report">삭제</a>
                         </td>
                     </tr>
                     <tr style="border-bottom:1px solid rgb(220,220,220);">
-                        <td colspan="2" style="font-size:12px;">알겠습니다유</td>
-                        <!-- 수정버튼 눌렀을 때 -->
-                        <form action="" method="post">
-
-                        </form>
+                        <td colspan="2" style="font-size:12px;" id="reply-content">기존댓글
+                            <!-- 수정버튼 눌렀을 때 -->
+                            <form action="" method="post" id="reply-modify-form">
+                                <br>
+                                <textarea name="new-reply-content" id="new-reply-content" style="width:900px; height:100px; resize:none; border:1px solid rgb(200, 140, 140);"></textarea>
+                                <button type="submit" style="margin-left:857px;">등록</button>
+                            </form>
+                            <!-- 모르게써,, 왜 td랑 동위로 위치시키면 위로 올라가지 -->
+                        </td>
                     </tr>
+                    
 
                 </table>
+
+                <script>
+                    $(function () {
+
+                        const form = $("#reply-modify-form");
+                        form.hide();
+
+                        $("#reply-modify").click(function () {
+
+                            if (form.css("display") == "none") {
+                                form.slideDown();
+                                form.children("textarea").text("기존댓글");
+
+                            } else {
+                                form.slideUp();
+                            }
+        
+                        })
+                    })
+                </script>
+
 
                 <br><br><br>
 
@@ -353,7 +389,13 @@ z
             </div>
         </div>
 
-
+        <script>
+            $(function(){
+                $("#myModal button").click(function(){
+                    alert("제출되었습니다.");
+                })
+            })
+        </script>
     
         <div id="footer" style="height:200px; background:rgb(220, 220, 220);">
     

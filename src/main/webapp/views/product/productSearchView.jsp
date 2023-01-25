@@ -153,7 +153,7 @@
                     <tr>
                         <td>상품분류</td>
                         <td>  
-							&nbsp
+							&nbsp;
                             <div class="form-check-inline">
                                 <input type="radio" class="form-check-input" name="category" value="전체" checked> 
                                 <label class="form-check-label">전체</label>
@@ -183,7 +183,7 @@
                     <tr>
                         <td>품절여부</td>
                         <td>
-                            	&nbsp
+                            &nbsp;
                             <div class="form-check-inline">
                                 <input type="radio" class="form-check-input" name="soldout" value="all" checked>
                                 <label class="form-check-label">전체</label>
@@ -203,19 +203,19 @@
                     <tr>
                         <td>유통기한 잔여일</td>
                         <td>
-                        	&nbsp
+                        	&nbsp;
                             <div class="form-check-inline">
-                                <input type="radio" class="form-check-input" name="expDateRemain" value="all" checked>
+                                <input type="radio" class="form-check-input" name="expDateRemain" value="1" checked>
                                 <label class="form-check-label">전체</label>
                             </div>
                             
                             <div class="form-check-inline">
-                                <input type="radio" class="form-check-input" name="expDateRemain" value="expMonth">
+                                <input type="radio" class="form-check-input" name="expDateRemain" value="31">
                                 <label class="form-check-label">1달 이하</label>
                             </div>
                             
                             <div class="form-check-inline">
-                                <input type="radio" class="form-check-input" name="expDateRemain" value="expWeek">
+                                <input type="radio" class="form-check-input" name="expDateRemain" value="7">
                                 <label class="form-check-label">1주 이하</label>
                             </div>
                         </td>
