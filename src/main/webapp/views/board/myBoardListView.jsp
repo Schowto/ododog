@@ -12,6 +12,7 @@
     .myBoard{
         margin:auto;
         height:100%;
+        width:800px;
 
     }
     table{
@@ -51,74 +52,74 @@
 
     <div class="outer">
 
-       <h2 align="center">게시글 조회</h2> 
+       <h2 align="center" style="color:rgb(50, 50, 50);">게시글 조회</h2> 
        <br><br>
 
        <div class="myBoard">
 
-        <div style="font-size:14px; font-weight:600; color:rgba(27, 26, 26, 0.753);">
-            내가 쓴 게시글
-        </div>
-        <br>
-        <!-- 작성한 게시글이 없을때 -->
-        <div class="logoutUser">
-            <form>
-                <table>
-                    <tr style="height:50px;"> 
-                        <td style="width:15%;">번호</td>
-                        <td style="width:15%;">작성일</td>
-                        <td style="width:40%;">제목</td>
-                        <td style="width:15%;">수정</td>
-                        <td style="width:15%;">삭제</td>
+            <div style="font-size:14px; font-weight:600; color:rgb(50, 50, 50);">
+                내가 쓴 게시글
+            </div>
+            <br>
+            <!-- 작성한 게시글이 없을때 -->
+            <div class="logoutUser">
+                <form>
+                    <table>
+                        <tr style="height:50px;"> 
+                            <td style="width:15%;">번호</td>
+                            <td style="width:15%;">작성일</td>
+                            <td style="width:40%;">제목</td>
+                            <td style="width:15%;">수정</td>
+                            <td style="width:15%;">삭제</td>
 
-                    </tr>
-                    <tr style="height:100px;">
-                        <td colspan="5" style="font-weight:600; color:rgba(18, 17, 17, 0.795);">
-                            <img src="/resources/images/myBoardError.png"> <br>
-                            게시글이 존재하지 않습니다. 
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </div>
-        <br>
+                        </tr>
+                        <tr style="height:100px;">
+                            <td colspan="5" style="font-weight:600; color:rgba(18, 17, 17, 0.795);">
+                                <img src="/resources/images/myBoardError.png"> <br>
+                                게시글이 존재하지 않습니다. 
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <br>
 
-        <!-- 작성한 게시글이 있을때 -->
-        <div>
-            <form class="loginUser">
-                <table>
-                    <tr>
-                        <td style="width:120px;">번호</td>
-                        <td style="width:120px;">작성일</td>
-                        <td style="width:320px;;">제목</td>
-                        <td style="width:120px;">수정</td>
-                        <td style="width:120px;">삭제</td>
+            <!-- 작성한 게시글이 있을때 -->
+            <div>
+                <form class="loginUser">
+                    <table>
+                        <tr>
+                            <td style="width:120px;">번호</td>
+                            <td style="width:120px;">작성일</td>
+                            <td style="width:320px;;">제목</td>
+                            <td style="width:120px;">수정</td>
+                            <td style="width:120px;">삭제</td>
 
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>2023.01.22</td>
-                        <td>유기견봉사같이하실분구해욥~</td>
-                        <td><button class="btn1">수정</button></td>
-                        <td><button class="btn2">삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>2023.01.22</td>
-                        <td>유기견봉사같이하실분구해욥~</td>
-                        <td><button class="btn1">수정</button></td>
-                        <td><button class="btn2">삭제</button></td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>2023.01.22</td>
-                        <td>유기견봉사같이하실분구해욥~</td>
-                        <td><button class="btn1">수정</button></td>
-                        <td><button class="btn2">삭제</button></td>
-                    </tr>
-                </table>
-            </form>
-        </div>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>2023.01.22</td>
+                            <td>유기견봉사같이하실분구해욥~</td>
+                            <td><button class="btn1">수정</button></td>
+                            <td><button class="btn2">삭제</button></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>2023.01.22</td>
+                            <td>유기견봉사같이하실분구해욥~</td>
+                            <td><button class="btn1">수정</button></td>
+                            <td><button class="btn2">삭제</button></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>2023.01.22</td>
+                            <td>유기견봉사같이하실분구해욥~</td>
+                            <td><button class="btn1">수정</button></td>
+                            <td><button class="btn2">삭제</button></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
 
 
 
