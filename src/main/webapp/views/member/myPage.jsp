@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 .outer{
-    border:1px solid black;
+    /*border:1px solid black;*/
     margin:auto;
     height:100%;
     width:1200px;
@@ -15,7 +15,7 @@
 
 /****** 사이드 ******/
 #side{
-    border:1px solid blue;
+    /*border:1px solid blue;*/
     width:20%; height:100%;
     padding:20px;
     color: rgb(50, 50, 50);
@@ -30,11 +30,12 @@
 
 /****** 내용 ******/
 #content{
-    border:1px solid red;
+    /*border:1px solid red;*/
     color:rgb(50, 50, 50);
-    width:76%;
+    width:75%;
     height:100%;
-    margin-top:150px;
+    margin:auto;
+    margin-top:190px;
     margin-bottom:200px;
     display: inline-block;
 }
@@ -63,7 +64,7 @@ table{
 td{
     border-bottom:1px solid gray;
     border-left:1px solid gray;
-    height:40px;
+    height:50px;
 
 }
 td:first-child{
@@ -80,13 +81,21 @@ td:first-child{
 }
 .btn{
     text-align:center;
+    float:left;
+    
+}
+input{
+    border: 1px solid rgb(220, 220, 220);
+}
+button{
+    border-radius: 4px;
 }
 
 </style>
 </head>
 <body>
 
-	<%@ import file="../common/userMenubar.jsp"%>
+	<%@ include file="../common/userMenubar.jsp"%>
 
     <div class="outer">
 
@@ -96,9 +105,10 @@ td:first-child{
             <hr>
             <a href="" style="font-size:17px;">주문조회</a> <br><br>
             <a href="" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">장바구니</a> <br><br>
+            <a href="" style="font-size:17px;">관심상품</a> <br><br>
             <a href="" style="font-size:17px;">적립금</a> <br><br>
-             <a href="" style="font-size:17px;">게시글조회</a>
+            <a href="" style="font-size:17px;">게시글조회</a> <br><br>
+            <a href="" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
         <script>
@@ -117,7 +127,7 @@ td:first-child{
 
                     <span style="float:left; font-weight: 900;">&nbsp;기본정보 </span>
                     <span style="float:right; font-weight: 900;">* 필수입력사항&nbsp;</span>
-                    <br>
+                    <br><br>
                     
                 <table>
                     <tr>
@@ -157,8 +167,8 @@ td:first-child{
                     <tr>
                         <td>email 수신여부 *</td>
                         <td style="border-top:1px solid gray;">
-                            <input type="radio" id="check" name="yes" value="Y">예
-                            <input type="radio" id="check" name="no" vlaue="N">아니오
+                            <input type="radio" id="check" name="yes" value="Y">&nbsp;예
+                            <input type="radio" id="check" name="no" vlaue="N">&nbsp;아니오
                         </td>
                     </tr>
                 </table>
@@ -166,17 +176,19 @@ td:first-child{
 
             <br>
 
-            <div class="btn">
-            <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">수정하기</button>
-            <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">취소</button>
-            <button style="border-radius:4px; background:rgb(200, 140, 140); width:80px; height:30px; border:none; color:white; font-weight: 900; float:right;">회원탈퇴</button>
-            </div>
+            <span class="btn">
+                <button style="background:white; width:80px; height:30px; border:1px solid gray;">수정하기</button>
+                <button style="background:white; width:80px; height:30px; border:1px solid gray;">취소</button>
+            </span>
+            <span>
+                <button style="background:rgb(200, 140, 140); width:80px; height:30px; border:none; color:white; font-weight: 900; float:right;">회원탈퇴</button>
+            </span>
 
         </div>
         
         <br>
 
-        <% include="../common/userFooterbar.jsp"%>
+        <%@ include file="../common/userFooterbar.jsp"%>
 
     </div>
 
