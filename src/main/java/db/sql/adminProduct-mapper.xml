@@ -26,9 +26,14 @@
 	</entry>
 	
 	<entry key = "selectSearch">
-		SELECT *
-		  FROM PRODUCT 
-		 WHERE STATUS = 'Y'
+	    SELECT A.*
+	      FROM (
+				 SELECT TO_DATE(EXPIRED_DATE, 'YYYY-MM-DD') - SYSDATE EXP_DATE
+				 	  , TO_DATE(ENROLL_DATE, 'YYYY-MM-DD') ENR_DATE
+				 	  , P.*
+				   FROM PRODUCT P
+	            ) A
+	      WHERE STATUS = 'Y'
 	</entry>
 	
 	
