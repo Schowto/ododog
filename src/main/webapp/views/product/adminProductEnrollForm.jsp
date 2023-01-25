@@ -69,7 +69,7 @@
             <br>
 			<br>
 			
-			<form id="enrollForm" action="<%=contextPath%>/enroll.adPro" method=post>			
+			<form id="enrollForm" action="<%=contextPath%>/insert.adPro" method=post>			
 	            <table class="enrollTB1 table-bordered" style="width:850px">
 	                    <tr>
 	                        <th>카테고리</th>
