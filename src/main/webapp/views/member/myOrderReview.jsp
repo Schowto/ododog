@@ -19,9 +19,11 @@
         height:150px;
         border:1px solid gray;
     }
+    .myOrderReview{
+        width:800px;
+        margin:auto;
+    }
     .myOrderView table{
-        border-collapse: collapse;
-        border-spacing: 0;
         width:100%;
         height:150px;
     }
@@ -74,7 +76,7 @@
     }
     .review2 td{
         border-top:1px solid gray;
-
+        border-bottom:1px solid gray;
     }
     textarea{
         border:none;
@@ -88,14 +90,19 @@
         border:1px solid gray;
     }
     .review1, .review2{
+        width:100%;
         margin:auto;
-    }
-    .review2 td{
-        width:800px;
-
     }
     input[type=text]{
         border:none;
+    }
+    .reviewContent{
+        margin:auto;
+        width:800px;
+    }
+    table{
+        border-collapse: collapse;
+        border-spacing: 0;
     }
 </style>
 </head>
@@ -134,8 +141,8 @@
             </div>
             <br>
 
-            <div class="myOrderReviewDetail">
-                <form action="">
+            <div class="reviewContent">
+                <form>
                     <table class="review1">
                         <tr>
                             <td>상품을 사용해보셨나요?</td>
@@ -156,13 +163,12 @@
 
                     <table class="review2">
                         <tr>
-                            <td style="height:30px;">
-                                제목 : <input type="text" name="title" size="50px;" value="내리뷰제목이들어올자리">
-                            </td>
+                            <td height="35px" width="20%;">제목 : </td>
+                            <td><input type="text" name="title" size="50px;" value="내리뷰제목이들어올자리"></td>
                         </tr>
                         <tr>
-                            <td style="border-bottom:1px solid gray;">
-                                내용 : <br>
+                            <td>내용 : </td>
+                            <td>
                                 <textarea name="" id="" cols="100%" rows="30">내리뷰내용이들어올자리</textarea>
                             </td>
                         </tr>

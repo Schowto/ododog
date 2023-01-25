@@ -38,7 +38,7 @@
         color:gray
     }
     .btn2{
-        background-color: red;
+        background-color: rgb(200, 140, 140);
         border:white;
         border-radius: 3px;
         color:white;

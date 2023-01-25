@@ -11,14 +11,15 @@
         height:100%;
         margin:auto;
         margin-top:50px;
-
-
+    }
+    table{
+        border-collapse: collapse;
+        border-spacing: 0;
     }
     .myOrderDetailView{
         width:800px;
         height:100%;
         margin:auto;
-
     }
     .myOrderView{
         width: 100%;
@@ -26,14 +27,12 @@
         border:1px solid gray;
     }
     .myOrderView table{
-        border-collapse: collapse;
-        border-spacing: 0;
         width:100%;
         height:150px;
     }
     .myOrderView td{
        text-align: center;
-       font-weight: 600;;
+       font-weight: 600;
     }
     img{
         width:100%;
@@ -42,23 +41,19 @@
     }
     .myOrderView button{
         border-radius:4px; 
-        background:red; 
+        background:rgb(200, 140, 140); 
         width:80px; height:30px; 
         border:none; 
         color:white; 
         font-weight: 900;
     }
     .myOrderList table{
-        border-collapse: collapse;
-        border-spacing: 0;
         width:100%;
         height:100%;
         border-top:1px solid gray;
-        border-bottom:1px solid gray;
     }
     .myOrderList td{
         height:50px;
-        
     }
     .myOderList td:first-child{
         text-align:left;
@@ -67,6 +62,9 @@
         text-align:right;
     }
     .myOrderList tr:first-child{
+        border-bottom:1px solid gray;
+    }
+    .deliver tr:last-child{
         border-bottom:1px solid gray;
     }
 </style>

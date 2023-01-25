@@ -10,23 +10,23 @@
     color:rgba(27, 25, 25, 0.712);
     width:1000px;
     margin:auto;
+    margin-top:50px;
     
 }
 .profile{
     width:800px;
     margin:auto;
 }
+table{
+    border-top:1px solid gray;
+    width:100%;
+}
 span{
     font-size:13px;
 }
-#profileTable{
-    width:100%;
-    border-top:1px solid rgba(128, 128, 128, 0.756);
-    
-}
 #password{
     color:white;
-    background: red;
+    background: rgb(200, 140, 140);
     border:none;
     width:130px;
     height:30px;
@@ -127,7 +127,7 @@ td:first-child{
             <div class="btn">
             <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">수정하기</button>
             <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">취소</button>
-            <button style="border-radius:4px; background:red; width:80px; height:30px; border:none; color:white; font-weight: 900; float:right;">회원탈퇴</button>
+            <button style="border-radius:4px; background:rgb(200, 140, 140); width:80px; height:30px; border:none; color:white; font-weight: 900; float:right;">회원탈퇴</button>
             </div>
 
         </div>
