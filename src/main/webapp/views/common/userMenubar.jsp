@@ -207,7 +207,7 @@
 
                     <li><a href="<%= contextPath %>/list.bo">COMMUNITY</a>
                         <ul>
-                            <li><a href="<%= contextPath %>/list.bo">자유게시판</a></li>
+                            <li><a href="<%= contextPath %>/views/board/userFAQ.jsp">자유게시판</a></li>
                             <li><a href="">레시피게시판</a></li>
                         </ul>
                     </li>
@@ -221,7 +221,7 @@
 
                     <li><a href="">고객센터</a>
                         <ul>
-                            <li><a href="">FAQ</a></li>
+                            <li><a href="<%= contextPath %>/list.faq">FAQ</a></li>
                             <li><a href="">1:1상담</a></li>
                         </ul> 
                     </li>
