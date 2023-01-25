@@ -14,11 +14,11 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
 <!-- summernote -->
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 
 <style>
 	#content{/*border:1px solid red;*/ margin:auto; width:1200px;}
@@ -89,7 +89,7 @@
             })
         </script>
     
-        <form id="board-area" method="post">
+        <form id="board-area" method="post" align="center">
     
             <div>
                 <br><br><br><br><br><br><br>
@@ -101,10 +101,12 @@
             
             <input type="text"
                 style="border-top:1px solid rgb(220, 220, 220); border-bottom:2px solid rgb(220, 220, 220); border-right:none; border-left:none; width:100%; height:50px;"
-                placeholder="제목을 입력해주세요" required>
+                value="기존제목~~~~~" required>
             
-            왜 안되는지 모르겄따~~~`
-            <div id="summernote"></div>
+            <div id="summernote">
+                ㅇ안됨,,,ㅠ
+                이게맞나? 여기는 기존 내용
+            </div>
             <script>
                 $(document).ready(function () {
                     $('#summernote').summernote({

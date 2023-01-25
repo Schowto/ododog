@@ -18,7 +18,7 @@
 
 <style>
 
-    #content{margin:auto; width:1200px; height:1000px;}
+    #content{margin:auto; width:1200px;}
 
     /****** 사이드 ******/
     #side{
@@ -137,7 +137,7 @@
                 <tbody>
                     <!-- 작성된 글 없을 경우 -->
                     <tr>
-                        <td colspan="5"> 조회된 게시글이 없습니다.</td>
+                        <td colspan="5" style="height:300px;"> 조회된 게시글이 없습니다.</td>
                     </tr>
                     <!-- 작성된 글 있을 경우 -->
                     <tr>
@@ -183,16 +183,15 @@
         <div>
             <form action="" style="font-size:13px;">
                     
-                <select name="search-order" style="height:25px; border:1px solid rgb(220, 220, 220);">
+                <select name="search-order" style="height:25px; border:1px solid rgb(220, 220, 220); border-radius:5px;">
                     <option value="title">제목</option>
                     <option value="title-content">제목+내용</option>
                     <option value="writer">작성자</option>
                 </select>
                     
-                    <input type="text" name="" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220);">
+                    <input type="text" name="" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
                     
-                    <button type="submit"
-                    style="height:25px; border-top-right-radius:5px; border-bottom-right-radius: 5px; border:1px solid rgb(220,220,220);">
+                    <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);">
                     <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
                 </button>
                 
@@ -220,7 +219,7 @@
         
         
         
-        <br><br><br><br><br>
+        <br><br><br><br><br><br><br>
         
         </div>
 

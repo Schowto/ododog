@@ -234,7 +234,7 @@ z
                     <p style="font-size:15px; font-weight:600; color:rgb(200, 140, 140)">4</p>
                 </div>
 
-                <table id="reply-table" width="900" border="1">
+                <table id="reply-table" width="900">
 
                     <!-- 댓글 없을 때 -->
                     <tr style="text-align:center; height:200px; border-bottom:1px solid rgb(220,220,220);">
@@ -266,7 +266,8 @@ z
                         <td colspan="2" style="font-size:12px;">알겠습니다유</tdcol>
                     </tr>
 
-                    <!-- 내가 쓴 댓글일 때 -->
+
+                    <!-- 내가 쓴 댓글일 때 : 댓글 수정 삭제 ---------->
                     <tr>
                         <th style="font-size:14px;" width="150">내 아이디!!!!</th>
                         <td style="color:gray; font-size:11px;">
@@ -276,15 +277,19 @@ z
                             <a href="" style="text-decoration:none; color:rgb(200, 140, 140);" id="reply-report">삭제</a>
                         </td>
                     </tr>
+
                     <tr style="border-bottom:1px solid rgb(220,220,220);">
-                        <td colspan="2" style="font-size:12px;" id="reply-content">기존댓글
-                            <!-- 수정버튼 눌렀을 때 -->
+                        <td colspan="2" style="font-size:12px;" id="reply-content">기존댓zz글</td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="font-size:12px;">
                             <form action="" method="post" id="reply-modify-form">
                                 <br>
-                                <textarea name="new-reply-content" id="new-reply-content" style="width:900px; height:100px; resize:none; border:1px solid rgb(200, 140, 140);"></textarea>
+                                <textarea name="new-reply-content" id="new-reply-content"
+                                    style="width:900px; height:100px; resize:none; border:1px solid rgb(200, 140, 140);"></textarea>
                                 <button type="submit" style="margin-left:857px;">등록</button>
                             </form>
-                            <!-- 모르게써,, 왜 td랑 동위로 위치시키면 위로 올라가지 -->
                         </td>
                     </tr>
                     
@@ -300,17 +305,20 @@ z
                         $("#reply-modify").click(function () {
 
                             if (form.css("display") == "none") {
+                                $("#reply-content").css("display", "none");
+                                $("#reply-modify").text("취소");
                                 form.slideDown();
-                                form.children("textarea").text("기존댓글");
-
+                                form.children("textarea").text($("#reply-content").text());
                             } else {
-                                form.slideUp();
+                                $("#reply-content").css("display", "block");
+                                $("#reply-modify").text("수정");
+                                form.css("display", "none");
                             }
-        
                         })
                     })
                 </script>
 
+                <!-- 댓글 수정삭제 여기까지 ------------->
 
                 <br><br><br>
 
