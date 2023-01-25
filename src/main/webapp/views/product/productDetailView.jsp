@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 <style>
     .outer {
-	width: 1000px;
+	width: 1200px;
 	margin: auto;
-	margin-top: 50px; 
+	margin-top: 100px; 
     }
 .left{
-    width:35%;
+    width:40%;
     float:left;
     box-sizing: border-box;
     
@@ -28,18 +28,17 @@
 
     .float-file{
     border:1px solid black;
-    width: 73px;
-    height: 73px;
+    width: 100px;
+    height: 100px;
     float:left;
     margin-bottom: 30px; 
+    box-sizing: border-box;
+    background-size:cover;
         }
     .file-area{
       margin-bottom: 10px;  
     }
-    .content>div{
-        width: 500px;
-        height:500pxl
-    }    
+    
 </style>
 </head>
 <body>
@@ -49,7 +48,7 @@
         <div class="left">
             <div class="file-area"> <!--대표이미지-->
 				<img src="<%=contextPath%>/resources/product_img/주식1.png"
-					width="300px" height="300px"
+					width="400px" height="400px"
 					onclick="location.href='<%=contextPath%>'">
             </div>
 
@@ -59,21 +58,22 @@
             </div>
 
             <div class="float-file"> <!--미리보기2-->
-                <img src="<%=contextPath%>/resources/product_img/주식1-2.png"
+                <img src="<!--<%=contextPath%>/resources/product_img/주식1-2.png-->"
 					onclick="location.href='<%=contextPath%>'" class=img>
             </div>
 
             <div class="float-file"> <!--미리보기3-->
-                <img src="<%=contextPath%>/resources/product_img/주식1-3.png"
+                <img src="<!--<%=contextPath%>/resources/product_img/주식1-3.png-->"
 					onclick="location.href='<%=contextPath%>'" class=img>
             </div>
 
             <div class="float-file"> <!--미리보기4-->
-                <img src="<%=contextPath%>/resources/product_img/주식1-4.png"
+                <img src="<!--<%=contextPath%>/resources/product_img/주식1-4.png-->"
 					onclick="location.href='<%=contextPath%>'" class=img>
             </div>
         </div>
         <div class="right">
+        <br>
             <span>
                 <b>상품명</b> 
             </span> 
@@ -96,10 +96,10 @@
             <span>
                 1%
             </span>
-            <br><br><br><br><br>
+            <br><br>
 
             <hr style="border: 1px color= silver;" width="100%"> 
-            <br><br>
+            <br>
             
             <span>
                 건강한 한끼 화식 4종세트 (말고기, 닭고기, 소고기영양죽, 야채퓨레)
@@ -128,24 +128,25 @@
             <span>상품 상세정보</span>　　　　　　　　　　　　
             <span>상품 사용후기</span>
             <hr style="border: 1px color= silver;" width="100%">
-        
+          
             <div>
-                <img src="<%=contextPath%>/resources/product_img/본문1.png" width="900px" height="600px">
+                <img src="<%=contextPath%>/resources/product_img/본문1.jpg" width="800px" height="600px">
             </div>
             
             <div>
-                <img src="<%=contextPath%>/resources/product_img/본문2.png" width="900px" height="600px">
+                <img src="<%=contextPath%>/resources/product_img/본문2.jpg" width="800px" height="600px">
             </div>
             
             <div>
-                <img src="<%=contextPath%>/resources/product_img/본문3.png" width="900px" height="800px">
+                <img src="<%=contextPath%>/resources/product_img/본문3.jpg" width="800px" height="800px">
             </div>
             
             <div>
-                <img src="<%=contextPath%>/resources/product_img/본문4.png" width="900px" height="1500px">
+                <img src="<%=contextPath%>/resources/product_img/본문4.jpg" width="800px" height="1500px">
             </div>
             
         </div>
+        <br><br>
        
 
     </form>

@@ -179,7 +179,7 @@
                <%} %>
 
                 <!-- 공통 -->
-                <img src="<%= contextPath %>/resources/icons/cart.png" onclick="location.href=''">
+                <img src="<%= contextPath %>/resources/icons/cart.png" onclick="location.href='<%=contextPath%>/views/order/shoppingCartView.jsp'">
                 <img src="<%= contextPath %>/resources/icons/search.png" onclick="location.href=''">
 
             </div>

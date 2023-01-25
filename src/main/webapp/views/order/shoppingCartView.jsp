@@ -27,9 +27,10 @@ th {
 </style>
 </head>
 <body>
+	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="wrap" align="center">
 		<br>
-		<h2>장바구니</h2>
+		<h3>장바구니</h3>
 		<br>
 		<br>
 		<hr style="border: 1px color= silver;" width="100%">
@@ -101,6 +102,7 @@ th {
 		<button type="button" class="btn btn-dark" id="button">쇼핑
 			계속하기</button>
 	</div>
+	<br><br><br><br>
 
 </body>
 </html>

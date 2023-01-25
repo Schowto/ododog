@@ -85,7 +85,7 @@ p:hover {
 			<div class="thumbnail" align="center">
 				<img src="<%=contextPath%>/resources/product_img/주식1.png"
 					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'" class=img>
+					onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
 				<p>
 					<!-- 상품명-->
 					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
