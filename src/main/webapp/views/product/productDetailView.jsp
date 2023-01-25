@@ -42,6 +42,7 @@
   transition: 0.4s;
 }
 
+
 </style>
 </head>
 <body>
@@ -93,7 +94,7 @@
 
 				<hr style="border: 1px color= silver;" width="100%">
 				<br> <span> 건강한 한끼 화식 4종세트 (말고기, 닭고기, 소고기영양죽, 야채퓨레) </span> <span>
-					<input type="number" name="quantity" style="width: 40px" placeholder:"1">
+					<input type="number" name="quantity" style="width: 40px" >
 				</span> <br>
 				<br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>
@@ -147,5 +148,6 @@
 
 		</form>
 	</div>
+	<%@ include file="../common/userFooterbar.jsp"%>
 </body>
 </html>
