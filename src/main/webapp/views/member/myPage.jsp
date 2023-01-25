@@ -7,15 +7,35 @@
 <title>Insert title here</title>
 <style>
 .outer{
-    color:rgba(27, 25, 25, 0.712);
-    width:1000px;
+    border:1px solid black;
     margin:auto;
-    margin-top:50px;
-    
+    width:1200px;
 }
-.profile{
-    width:800px;
-    margin:auto;
+
+/****** 사이드 ******/
+#side{
+    border:1px solid blue;
+    width:240px; height:100%;
+    padding:20px;
+    color: rgb(50, 50, 50);
+    font-weight: 600;
+    float:left;
+    }
+#side>hr{margin-bottom:30px; border:1px solid rgb(220,220,220);}
+#side>a{
+    text-decoration:none;
+    color: rgb(50, 50, 50);
+    }
+
+/****** 내용 ******/
+#content{
+    border:1px solid red;
+    color:rgb(50, 50, 50);
+    width:960px;
+    height:100%;
+    margin-top:150px;
+    margin-bottom:200px;
+    float:left;
 }
 table{
     border-top:1px solid gray;
@@ -61,6 +81,22 @@ td:first-child{
     text-align:center;
 }
 
+/****** footer ******/
+#footer{
+    clear:both;
+    display:flex;
+}
+#footer>div{float:left; height:100%; padding:20px;}
+#footer-1{width:60%;}
+#footer-2{width:40%;}
+#footer-2 a{
+    line-height:35px;
+    color:rgb(50, 50, 50);
+    text-decoration:none;
+    font-size: 13px;
+    font-weight: 700;
+}
+
 </style>
 </head>
 <body>
@@ -68,16 +104,36 @@ td:first-child{
 	<%@ import file="../common/userMenubar.jsp"%>
 
     <div class="outer">
-        
-        <h2 align="center">회원정보수정</h3>
 
-        <div class="profile">
-    
-            <span style="float:left; font-weight: 900;">&nbsp;기본정보 </span>
-            <span style="float:right; font-weight: 900;">* 필수입력사항&nbsp;</span>
-            <br>
+        <div id="side">
+            <br><br><br><br><br>
+            <p style="font-size:23px;">MYPAGE</p>
+            <hr>
+            <a href="" style="font-size:17px;">주문조회</a> <br><br>
+            <a href="" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
+            <a href="" style="font-size:17px;">장바구니</a> <br><br>
+            <a href="" style="font-size:17px;">적립금</a> <br><br>
+             <a href="" style="font-size:17px;">게시글조회</a>
+        </div>
 
-            <form action="" id="profileTable">
+        <script>
+             $("#side a").hover(function(){
+                $(this).css("color", "rgb(200, 140, 140)");
+            }, function(){
+                 $(this).css("color", "rgb(50, 50, 50)");
+             })
+         </script>
+
+
+        <div id="content">
+
+            <form id="profileTable">
+                <h2 align="center" style="font-weight:600; color:rgb(50, 50, 50)">회원정보수정</h3>
+
+                    <span style="float:left; font-weight: 900;">&nbsp;기본정보 </span>
+                    <span style="float:right; font-weight: 900;">* 필수입력사항&nbsp;</span>
+                    <br>
+                    
                 <table>
                     <tr>
                         <td>아이디 *</td>
@@ -124,6 +180,7 @@ td:first-child{
             </form>
 
             <br>
+
             <div class="btn">
             <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">수정하기</button>
             <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">취소</button>
@@ -131,6 +188,29 @@ td:first-child{
             </div>
 
         </div>
+
+        <div id="footer" style="height:200px; background:rgb(220, 220, 220);">
+    
+            <div id="footer-1">
+                <p style="font-size:12px;">
+                    COMPANY : (주)오도독 CEO : 강보람 PHONE : 031-1234-5678 / FAX : 02-1234-9999 <br>
+                    BUSINESS LICENCE : [828-88-01900] E-COMMERCE PERMINT 2020-성남중원-0191 <br>
+                    ADDRESS : 13201 경기도 성남시 중원구 갈마치로288번길 14 (상대원동) SK V1타워101호
+                </p>
+                <br><br>
+                <p style="font-size:12px; font-weight:700;">Copyright(C) 2023 (주)오도독 ALL RIGHTS REVERVED</p>
+            </div>
+
+            <div id="footer-2">
+                <a href="">회사소개</a> <br>
+                <a href="">개인정보처리방침</a> <br>
+                <a href="">이용약관</a> <br>
+                <a href="">이용안내</a> <br>
+            </div>
+    
+        </div>
+        
+
 
     </div>
 
