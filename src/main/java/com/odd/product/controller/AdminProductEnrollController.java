@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.product.model.service.ProductService;
+import com.odd.product.model.service.AdminProductService;
 
 /**
  * Servlet implementation class ProductEnrollController
  */
-@WebServlet("/enroll.pro")
-public class ProductEnrollController extends HttpServlet {
+@WebServlet("/enroll.adPro")
+public class AdminProductEnrollController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductEnrollController() {
+    public AdminProductEnrollController() {
         super();
         // TODO Auto-generated constructor stub
     }

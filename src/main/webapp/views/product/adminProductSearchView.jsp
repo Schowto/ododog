@@ -140,8 +140,8 @@
 
        		<br><br>
        		
-       		<form id="searchForm" action="<%=contextPath%>/search.pro">
-
+       		<form id="searchForm" action="<%=contextPath%>/search.adPro" method=post>
+				  <input type="hidden" name="cpage" value="2" >
 
                   <table class="table-bordered" style="width:700px">
                     <tr>

@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.common.model.vo.PageInfo;
-import com.odd.product.model.service.ProductService;
+import com.odd.product.model.service.AdminProductService;
 import com.odd.product.model.vo.Product;
 
 /**
  * Servlet implementation class ProductListController
  */
-@WebServlet("/list.pro")
-public class ProductListController extends HttpServlet {
+@WebServlet("/list.adPro")
+public class AdminProductListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductListController() {
+    public AdminProductListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +43,7 @@ public class ProductListController extends HttpServlet {
 		int endPage;	 // 사용자가 요청한 페이지 하단의 페이징 바의 끝 수	
 		
 		// * listCount : 총 게시글 개수
-		listCount = new ProductService().selectListCount();
+		listCount = new AdminProductService().selectListCount();
 		
 		// * currentPage :사용자가 요청한 페이지(==현재 페이지)
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
@@ -77,13 +77,13 @@ public class ProductListController extends HttpServlet {
 		
 		String order = request.getParameter("order");
 		
-		ArrayList<Product> list = new ProductService().selectList(pi, order);
+		ArrayList<Product> list = new AdminProductService().selectList(pi, order);
 		
 		request.setAttribute("pi",pi);
 		request.setAttribute("list",list);
 		request.setAttribute("order",order);
 		
-		request.getRequestDispatcher("views/product/productListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/product/adminProductListView.jsp").forward(request, response);
 		
 		}
 	

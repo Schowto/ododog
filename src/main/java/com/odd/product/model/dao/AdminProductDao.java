@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.odd.common.model.vo.PageInfo;
-import com.odd.product.model.vo.ProSearch;
+import com.odd.product.model.vo.AdminProSearch;
 import com.odd.product.model.vo.Product;
 
-public class ProductDao {
+public class AdminProductDao {
 	
 	private Properties prop = new Properties();
 	
-	public ProductDao() {
+	public AdminProductDao() {
 		try {
-			prop.loadFromXML(new FileInputStream(ProductDao.class.getResource("/db/sql/product-mapper.xml").getPath()));
+			prop.loadFromXML(new FileInputStream(AdminProductDao.class.getResource("/db/sql/adminProduct-mapper.xml").getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -103,7 +103,7 @@ public class ProductDao {
 		
 	}
 	
-	public ArrayList<Product> searchList(Connection conn, ProSearch proSearch) {
+	public ArrayList<Product> searchList(Connection conn, AdminProSearch proSearch) {
 		
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -113,7 +113,11 @@ public class ProductDao {
 		String proName = proSearch.getProName();
 		String category = proSearch.getCategory();
 		String soldout = proSearch.getSoldout();
-		
+		String expDateRemain = proSearch.getExpDateRemain();
+		String lowPrice = proSearch.getLowPrice();
+		String highPrice = proSearch.getHighPrice();
+		String firstDate = proSearch.getFirstDate();
+		String secondDate = proSearch.getSecondDate();
 		
 		if(!proName.equals("")) {
 			sql += " AND PRO_NAME LIKE '%" + proName + "%'"; 
@@ -121,9 +125,17 @@ public class ProductDao {
 		if(!category.equals("전체")) {
 			sql += " AND CATEGORY = '" + category +"'";
 		}
-		if(!category.equals("all")) {
+		if(!soldout.equals("all")) {
 			sql += " AND SOLDOUT = '" + soldout +"'";
 		}
+		if(!expDateRemain.equals("1")) {
+			sql += " AND SOLDOUT = '" + expDateRemain + "'";
+		}
+		if(!firstDate.equals("")&!secondDate.equals("")) {
+			//sql += and TO_DATE(EXPIRED_DATE, 'mm/dd/yyyy') between TO_DATE('01/19/2023', 'mm/dd/yyyy') and TO_DATE('01/23/2023', 'mm/dd/yyyy');
+		}
+		
+		System.out.println(firstDate);
 		
 		
 		try {
