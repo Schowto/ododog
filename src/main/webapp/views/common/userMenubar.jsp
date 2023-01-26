@@ -205,7 +205,7 @@
                         </ul>
                     </li>
 
-                    <li><a href="<%= contextPath %>/list.bo?cpage=">COMMUNITY</a>
+                    <li><a href="<%= contextPath %>/list.bo?cpage=1">COMMUNITY</a>
                         <ul>
                             <li><a href="<%= contextPath %>/list.bo?cpage=1">자유게시판</a></li>
                             <li><a href="<%= contextPath %>/list.re">레시피게시판</a></li>

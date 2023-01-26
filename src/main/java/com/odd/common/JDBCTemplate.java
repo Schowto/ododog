@@ -35,7 +35,7 @@ public class JDBCTemplate {
 			// jdbc driver 등록
 			Class.forName(prop.getProperty("driver")); // ojdbc6.jar 파일 WEB-INF/lib/ 안에 추가
 			// db의 url, 계정명, 비밀번호 제시해서 Connection 생성
-			conn = DriverManager.getConnection(prop.getProperty("url"), 
+			conn = DriverManager.getConnection(prop.getProperty("url"),
 											   prop.getProperty("username"),
 											   prop.getProperty("password"));
 			

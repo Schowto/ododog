@@ -24,6 +24,15 @@ public class Board {
 		this.createDate = createDate;
 		this.status = status;
 	}
+	// selectList
+	public Board(int boardNo, String boardTitle, String boardWriter, int count, String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.count = count;
+		this.createDate = createDate;
+	}
 	
 	public int getBoardNo() {
 		return boardNo;
