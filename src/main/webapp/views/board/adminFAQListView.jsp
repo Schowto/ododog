@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import="java.util.ArrayList, com.odd.board.model.vo.FAQ" %>
+<%@ page import="java.util.ArrayList, com.odd.board.model.vo.FAQ, com.odd.board.model.service.*" %>
 
 <%
-
-	ArrayList<FAQ> list = (ArrayList<FAQ>)request.getAttribute("list");
+	FAQService faq = new FAQService();
+	
+	ArrayList<FAQ> list = faq.selectFAQList(); 
+	// list = (ArrayList<FAQ>)request.getAttribute("list");
 
 %>
  

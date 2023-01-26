@@ -50,5 +50,18 @@
 			)
 	</entry>
 	
+	<entry key="selectMemberList">
+	SELECT
+		USER_NO ,
+		USER_NAME ,
+		USER_ID ,
+		EMAIL ,
+		PHONE ,
+		ADDRESS ,
+		POINT
+	FROM MEMBER
+	WHERE STATUS = 'Y'
+	</entry>
+	
 
 </properties>

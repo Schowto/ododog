@@ -1,8 +1,12 @@
 package com.odd.member.model.service;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import static com.odd.common.JDBCTemplate.*;
+
+import com.odd.board.model.dao.FAQDao;
+import com.odd.board.model.vo.FAQ;
 import com.odd.member.model.dao.MemberDao;
 import com.odd.member.model.vo.Member;
 
@@ -34,6 +38,12 @@ public class MemberService {
 			close(conn);
 			return result;
 	}
-
+	
+	public ArrayList<Member> selectMemberList(){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new MemberDao().selectMemberList(conn);
+		close(conn);
+		return list;
+	}
 
 }

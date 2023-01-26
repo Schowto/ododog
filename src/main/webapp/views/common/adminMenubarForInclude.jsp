@@ -177,7 +177,7 @@
                     회원관리
                 </div>
                 <p>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원</a>
+                    <a href="<%=contextPath%>/views/memer/adminUserListView.jsp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원</a>
                     <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp관리</a>
                 </p>
 

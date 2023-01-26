@@ -39,6 +39,19 @@ public Member(String user_Id, String user_Pwd, String user_Name, String email, S
 
 
 
+public Member(int user_No, String user_Id, String user_Name, String email, String phone, String address, int point) {
+	super();
+	User_No = user_No;
+	User_Id = user_Id;
+	User_Name = user_Name;
+	Email = email;
+	Phone = phone;
+	Address = address;
+	Point = point;
+}
+
+
+
 public Member(int user_No, String user_Id, String user_Pwd, String user_Name, String email, String phone, int post_Code,
 		String address, String detailed_Address, Date enroll_Date, Date modify_Date, String status, int point) {
 	super();
