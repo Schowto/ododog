@@ -93,6 +93,10 @@
         border-bottom:1px solid gray;
         text-align: center;
     }
+    #orderNo:hover{
+        opacity: 0.7;
+        cursor: pointer;
+    }
 </style>
 </head>
 <body>
@@ -210,7 +214,7 @@
                                 <td style="width:200px;">주문처리상태</td>
                             </tr>
                             <tr>
-                                <td style="width:200px; height:150px;">20230122-1234567</td>
+                                <td id="orderNo" style="width:200px; height:150px;" onclick="location.href='<%=contextPath%>/orderDetail.me'">20230122-1234567</td>
                                 <td style="width:150px;"><img src=""></td>
                                 <td style="width:150px;">댕댕이수제간식</td>
                                 <td style="width:100px;">1</td>
@@ -218,7 +222,7 @@
                                 <td style="width:200px;">배송준비중</td>
                             </tr>
                             <tr>
-                                <td style="width:200px; height:150px;">20230122-1234567</td>
+                                <td style="width:200px; height:150px;" id="orderNo">20230122-1234567</td>
                                 <td style="width:150px;"><img src=""></td>
                                 <td style="width:150px;">댕댕이수제간식</td>
                                 <td style="width:100px;">1</td>
