@@ -38,6 +38,10 @@
         margin-bottom:200px;
         display: inline-block;
     }
+    h2{
+        color:rgb(50, 50, 50);
+        font-weight: 600;
+    }
     .myOrder{
         width:800px;
         height:100%;
@@ -127,7 +131,7 @@
 
         <div id="content">
 
-            <h2 align="center" style="color:rgb(50, 50, 50); font-weight: 600;">주문조회</h2>
+            <h2 align="center">주문조회</h2>
             <br><br><br><br>
 
             <div class="myOrde">

@@ -199,6 +199,15 @@ input::placeholder{
             </span>
 
         </div>
+
+        <script>
+            $(function(){
+                $(".btn2").click(function(){
+                    location.href='<%=contextPath%>/delete_1.me';
+                });
+            })
+        </script>
+
         
         <br>
 

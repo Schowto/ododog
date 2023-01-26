@@ -38,6 +38,10 @@
         margin-bottom:200px;
         display: inline-block;
     }
+    h2{
+        color:rgb(50, 50, 50);
+        font-weight: 600;
+    }
     table{
         border-collapse: collapse;
         border-spacing: 0;
@@ -93,6 +97,16 @@
     .deliver tr:last-child{
         border-bottom:1px solid gray;
     }
+    button{
+        border-radius:4px; 
+        background:white; 
+        width:100px; 
+        height:30px; 
+        border:1px solid gray;
+    }
+    .btn2>button{
+        margin-left:400px;
+    }
 </style>
 </head>
 <body>
@@ -138,17 +152,23 @@
                                 <tr>
                                     <td style="width:150px;"><img src="주문한상품이미지들어올자리" ></td>
                                     <td style="width:250px;">댕댕이 수제간식</td>
-                                    <td style="width:200px; padding-right: 20px;"><button>리뷰작성</button></td>
+                                    <td style="width:200px; padding-right: 20px;" onclick="review();"><button>리뷰작성</button></td>
                                     <td style="width:200px; text-align:left;">
                                         &nbsp;상품명 : 댕댕츄르 <br><br>
                                         &nbsp;구매자 : 와그작 <br><br>
                                         &nbsp;총금액 : 15,000원
-                                        
                                     </td>
                                 </tr>
                             </table>
                         </form>
                     </div>
+
+                    <script>
+                        function review(){
+                            location.href="<%=contextPath%>/review.me";
+                        }
+                    </script>
+
 
                     <br><br>
 
@@ -226,9 +246,21 @@
                     </div>
                 </div>
 
-        </div>
+                <br>
+                    <div class="btn2">
+                        <button>주문목록보기</button>
+                    </div>
 
-        <button>주문목록보기</button>
+                    <script>
+                        $(function(){
+                            $(".btn2").click(function(){
+                                location.href="<%=contextPath%>/myOrder.me";
+                            })
+                        })
+                    </script>
+
+        </div>
+        
         
 
         <%@ include file="../common/userFooterbar.jsp"%>
