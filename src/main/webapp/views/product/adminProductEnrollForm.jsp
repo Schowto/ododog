@@ -107,7 +107,7 @@
 	                    <tr>
 	                        <th>적립률</th>
 	                        <td>
-	                        	<select name="category" class="form-control-sm">
+	                        	<select name="save" class="form-control-sm">
                             		<option value="0.1">0.1%</option>
                             		<option value="0.2">0.2%</option>
                             		<option value="0.3">0.3%</option>
