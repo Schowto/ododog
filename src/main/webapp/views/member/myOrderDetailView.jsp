@@ -34,7 +34,7 @@
         width:75%;
         height:100%;
         margin:auto;
-        margin-top:190px;
+        margin-top:180px;
         margin-bottom:200px;
         display: inline-block;
     }
@@ -43,7 +43,7 @@
         border-spacing: 0;
     }
     .myOrderDetailView{
-        width:800px;
+        width:100%;
         height:100%;
         margin:auto;
     }
@@ -65,17 +65,6 @@
         height:100%;
         box-sizing: border-box;
     }
-    .myOrderView button{
-        border-radius:4px; 
-        background:rgb(200, 140, 140); 
-        width:80px; height:30px; 
-        border:none;
-    }
-    .myOrderView a{
-        text-decoration-line:none ;
-        color:white; 
-        font-weight: 900;
-    }
     .myOrderList table{
         width:100%;
         height:100%;
@@ -96,15 +85,9 @@
     .deliver tr:last-child{
         border-bottom:1px solid gray;
     }
-    button{
-        border-radius:4px; 
-        background:white; 
-        width:100px; 
-        height:30px; 
-        border:1px solid gray;
-    }
-    .btn2>button{
-        margin-left:400px;
+    #btnWrap{
+        width:100px;
+        margin:auto;
     }
 </style>
 </head>
@@ -137,9 +120,10 @@
         <div class="content">
 
             <h2 align="center" style="color:rgb(50, 50, 50); font-weight:600;">주문조회 > 상세조회</h2>
+            <br><br><br><br>
 
             <div class="myOrderDetailView">
-                    <div style="font-size:13px; color:rgba(36, 33, 33, 0.903); font-weight:600;">
+                    <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
                         2023.01.22 20:20 (주문날짜시간들어갈자리)
                     </div>
 
@@ -149,10 +133,10 @@
                         <form action="">
                             <table>
                                 <tr>
-                                    <td style="width:150px;"><img src="주문한상품이미지들어올자리" ></td>
+                                    <td style="width:150px;"><img src="" ></td>
                                     <td style="width:250px;">댕댕이 수제간식</td>
                                     <td style="width:200px; padding-right: 20px;">
-                                        <button id="btn1"><a href="<%=contextPath%>/review.me">리뷰작성</a></button>
+                                        <button class="btn-red">리뷰작성</button>
                                     </td>
                                     <td style="width:200px; text-align:left;">
                                         &nbsp;상품명 : 댕댕츄르 <br><br>
@@ -166,9 +150,9 @@
 
                     <script>
                         $(function(){
-                            $("#btn1").click(function(){
-                                location.href = "<%=contextPath%>/review.me";
-                            });
+                            $(".btn-red").click(function(){
+                                location.href="<%=contextPath%>/review.me";
+                            })
                         })
                     </script>
 
@@ -250,13 +234,12 @@
                 </div>
 
                 <br>
-                    <div class="btn2">
-                        <button>주문목록보기</button>
-                    </div>
-
+                    <div id="btnWrap">               
+                        <button id="btn2">주문목록보기</button>
+                    </div> 
                     <script>
                         $(function(){
-                            $(".btn2").click(function(){
+                            $("#btn2").click(function(){
                                 location.href="<%=contextPath%>/myOrder.me";
                             })
                         })

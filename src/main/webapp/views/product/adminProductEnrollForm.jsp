@@ -69,7 +69,7 @@
             <br>
 			<br>
 			
-			<form id="enrollForm" action="<%=contextPath%>/insert.adPro" method=post>			
+			<form id="enrollForm" action="<%=contextPath%>/insert.adPro" method="post" enctype="multipart/form-data">			
 	            <table class="enrollTB1 table-bordered" style="width:850px">
 	                    <tr>
 	                        <th>카테고리</th>
@@ -88,9 +88,9 @@
 	
 	                    <tr>
 	                        <th>상품명</th>
-	                        <td><input type="text" class="form-control-sm" name="proName" style="width:500px" required></td>
+	                        <td><input type="text" class="form-control-sm" name="proName" style="width:400px" required></td>
 	                        <td rowspan="4" style="text-align:center">
-	                        	<img src="" class="img-thumbnail" id="thumbImg" onclick="clickFile(1)" required>
+	                        	<img class="img-thumbnail" id="thumbImg" onclick="clickFile(1)">
 	                        </td>
 	                    </tr>
 	
@@ -125,25 +125,25 @@
 						
 						<tr>
 							<td>
-								<img src="" class="img-thumbnail" id="contentImg1" onclick="clickFile(2)">
+								<img class="img-thumbnail" id="contentImg1" onclick="clickFile(2)">
 							</td>
 							<td>
-								<img src="" class="img-thumbnail" id="contentImg2" onclick="clickFile(3)">
+								<img class="img-thumbnail" id="contentImg2" onclick="clickFile(3)">
 							</td>
 							<td>
-								<img src="" class="img-thumbnail" id="contentImg3" onclick="clickFile(4)">
+								<img class="img-thumbnail" id="contentImg3" onclick="clickFile(4)">
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-								<img src="" class="img-thumbnail" id="contentImg4" onclick="clickFile(5)">
+								<img class="img-thumbnail" id="contentImg4" onclick="clickFile(5)">
 							</td>
 							<td>
-								<img src="" class="img-thumbnail" id="contentImg5" onclick="clickFile(6)">
+								<img class="img-thumbnail" id="contentImg5" onclick="clickFile(6)">
 							</td>	
 							<td>
-								<img src="" class="img-thumbnail" id="contentImg6" onclick="clickFile(7)">
+								<img class="img-thumbnail" id="contentImg6" onclick="clickFile(7)">
 							</td>
 						</tr>
 				</table>

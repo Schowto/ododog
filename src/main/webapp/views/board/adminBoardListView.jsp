@@ -44,22 +44,27 @@
     #content button{
         margin:15px 0px 15px 0px;
     }
-    .table-hover{
-        width:850px;
-        margin:0px 20px;
-        font-size:12px;
+    .list-area{
+        width:900px;
+        margin:20px;
+        font-size:13px;
         text-align:center;
     }
-    .table-hover th, .table-hover td{padding:0; line-height:30px;}
-    .table-hover>tbody>tr:hover{
-        cursor: pointer;
+    .list-area th{
+        border-bottom: 2px solid rgb(220, 220, 220);
     }
-    .paging-area>button{
+    .list-area th, .list-area td{
+        border-top: 1px solid rgb(220, 220, 220);
+        padding:5px 0px; line-height:30px;
+    }
+    .list-area>tbody>tr:hover{background:rgb(220,220,220); cursor: pointer;}
+
+    .paging-area button{
         border:none;
         background:none;
         color:rgb(50, 50, 50);
     }
-    .paging-area>button:hover{
+    .paging-area button:hover{
         background:rgb(220,220,220);
         font-weight:700;
     }
@@ -75,15 +80,15 @@
         <div id="content">
         
             <div id="free">
-
-                <p>게시글 관리</p>
-                <hr style="width:900px">
+                <br>
+                <p>공지사항 관리</p>
+                <hr>
                 <button class="btn-red" style="margin-left:50px;">삭제</button>
                 <button>공지사항 작성</button>
-        
-                <table class="table table-hover">
+
+                <table class="list-area">
                     <thead>
-                        <tr height="20">
+                        <tr>
                             <th width="20"></th>
                             <th width="40">글번호</th>
                             <th width="500">제목</th>
@@ -93,14 +98,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- 작성된 글 없을 경우 -->
+
                         <tr>
-                            <td colspan="6"> 조회된 게시글이 없습니다.</td>
+                            <td colspan="6" style="height:300px;"> 조회된 게시글이 없습니다.</td>
                         </tr>
-                        <!-- 작성된 글 있을 경우 -->
+                        
+                        <tr>
+                            <td style="height:30px;"><input type="checkbox"></td>
+                            <td>1</td>
+                            <td>공지사항제목입니당</td>
+                            <td>오도독</td>
+                            <td>2023-01-26</td>
+                            <td>3545</td>
+                        </tr>
+                        <tr>
+                            <td style="height:30px;"><input type="checkbox"></td>
+                            <td>1</td>
+                            <td>공지사항제목입니당</td>
+                            <td>오도독</td>
+                            <td>2023-01-26</td>
+                            <td>3545</td>
+                        </tr>
+                        <tr>
+                            <td style="height:30px;"><input type="checkbox"></td>
+                            <td>1</td>
+                            <td>공지사항제목입니당</td>
+                            <td>오도독</td>
+                            <td>2023-01-26</td>
+                            <td>3545</td>
+                        </tr>
                         <tr>
                             <td><input type="checkbox"></td>
-                            <td>공지</td>
+                            <td>123</td>
                             <td>제목입니다요</td>
                             <td>나는 작성자</td>
                             <td>2023-01-17</td>
@@ -116,71 +145,17 @@
                         </tr>
                         <tr>
                             <td><input type="checkbox"></td>
-                            <td>122</td>
+                            <td>123</td>
                             <td>제목입니다요</td>
                             <td>나는 작성자</td>
                             <td>2023-01-17</td>
                             <td>3212</td>
                         </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>121</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-17</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>120</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-17</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>120</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-17</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>120</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-17</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>120</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-17</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>120</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-17</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>120</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-17</td>
-                            <td>3212</td>
-                        </tr>
+
                     </tbody>
-                </table>
-        
+            </table>
+
+
                 <br>
         
                 <div class="paging-area" align="center">

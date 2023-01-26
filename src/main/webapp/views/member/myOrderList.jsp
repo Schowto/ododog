@@ -34,7 +34,7 @@
         width:75%;
         height:100%;
         margin:auto;
-        margin-top:190px;
+        margin-top:180px;
         margin-bottom:200px;
         display: inline-block;
     }
@@ -131,7 +131,7 @@
 
         <div id="content">
 
-            <h2 align="center">주문조회</h2>
+            <h2 align="center" style="color:rgb(50,50,50); font-weight:600;">주문조회</h2>
             <br><br><br><br>
 
             <div class="myOrde">

@@ -26,7 +26,7 @@ public class MyBoardEnrollFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("views/board/boardEnrollForm.jsp").forward(request,response);
+		request.getRequestDispatcher("views/board/myBoardEnrollForm.jsp").forward(request,response);
 	}
 
 	/**

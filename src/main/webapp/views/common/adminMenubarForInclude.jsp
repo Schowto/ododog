@@ -82,7 +82,7 @@
             bottom: 0;
         }
 
-        hr {
+        #side hr {
             width: 250px;
             background: rgb(220, 220, 220);
         }
@@ -111,21 +111,21 @@
             line-height: 50px;
         }
 
-        p {
+        #side p {
             /*border: 1px solid yellow;*/
             width: 100%;
             margin-top: 5px;
             display: none;
         }
 
-        p>a {
+        #side p>a {
             display: block;
             color: white;
             font-size: 13px;
             padding: 10px;
         }
 
-        p>a:hover {
+        #side p>a:hover {
             /* 하위메뉴들 */
             background-color: gray;
             color: white;

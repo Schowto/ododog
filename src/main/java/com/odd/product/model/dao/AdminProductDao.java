@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.odd.common.model.vo.PageInfo;
 import com.odd.product.model.vo.AdminProSearch;
+import com.odd.product.model.vo.ProAtt;
 import com.odd.product.model.vo.Product;
 
 public class AdminProductDao {
@@ -176,10 +177,58 @@ public class AdminProductDao {
 		}
 		
 		return list;
+	}
+	
+	public int insertProduct(Connection conn, Product p) {
 		
+		int result = 0;
+		PreparedStatement pstmt = null;
 		
+		String sql = prop.getProperty("insertProduct");
 		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, p.getCategory());
+			pstmt.setString(2, p.getProName());
+			pstmt.setInt(3, p.getPrice());
+			pstmt.setString(4, p.getExpiredDate());
+			pstmt.setString(5, p.getThumbImg());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		
+		return result;
+	}
+	
+	public int insertAttachList(Connection conn, ArrayList<ProAtt> list) {
+		
+		int result = 1;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertAttachList");
+		
+		try {
+			for(ProAtt at : list) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, at.getFilePath());
+				pstmt.setInt(2, at.getFileLevel());
+				
+				result *= pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 }

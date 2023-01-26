@@ -6,14 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<!-- Popper JS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <style>
 
     #content{margin:auto; width:1200px;}
@@ -143,7 +135,7 @@
                 <h2 style="color:rgb(50, 50, 50); font-weight:600;">레시피게시판</h2>
                 <br>
             </div>
-            <br><br>
+            <br><br><br><br><br><br>
 
             <img src="https://recipe.bom.co.kr/uploads/posts/images/20220422/6262298eec8f5.png" width="400" height="300">
             <br><br><br>

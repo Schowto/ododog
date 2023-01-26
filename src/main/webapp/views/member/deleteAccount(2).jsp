@@ -214,22 +214,24 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">예</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> 
         				</div>
+
+                        <script>
+                            $(function(){
+                                $("#btn").click(function(){
+                                    if(){
+                                        
+                                    }else{
+                                        location href="<%=contextPath%>/review.me";
+                                    }
+                                })
+                            })
+                        </script>
         
       					</div>
     					</div>
   				</div>
 
-                <script>
-                    $(function(){
-                        $("#btn").click(function(){
-                            if(){
-                            	
-                            }else{
-                            	location href="<%=contextPath%>/review.me";
-                            }
-                        })
-                    })
-                </script>
+                
 
 
             </div>
