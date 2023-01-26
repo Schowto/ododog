@@ -284,3 +284,27 @@ REFERENCES "ADMIN" (
 );
 
 
+CREATE SEQUENCE SEQ_PRODUCT_NO
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 99999
+       NOCYCLE;
+       
+       
+CREATE SEQUENCE SEQ_ORDER_NO
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 99999
+       NOCYCLE;  
+       
+CREATE SEQUENCE SEQ_FILE_NO
+       INCREMENT BY 1
+       START WITH 1
+       MINVALUE 1
+       MAXVALUE 99999
+       NOCYCLE;        
+       
+       
+       

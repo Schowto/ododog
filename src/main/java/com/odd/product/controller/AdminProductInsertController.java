@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.odd.common.MyFileRenamePolicy;
+import com.odd.product.model.vo.Product;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -41,7 +42,14 @@ public class AdminProductInsertController extends HttpServlet {
 			
 			MultipartRequest multipartRequest = new MultipartRequest(request, savePath, maxSize, new MyFileRenamePolicy());
 			
-//			Product p = new 
+			Product p = new Product();
+			p.setCategory(multipartRequest.getParameter("category"));
+			p.setProName(multipartRequest.getParameter("proName"));
+			p.setPrice(Integer.parseInt(multipartRequest.getParameter("price")));
+			p.setExpiredDate(multipartRequest.getParameter("expiredDate"));
+			p.setSave(Double.parseDouble(multipartRequest.getParameter("save")));
+			
+			ArrayList<ProAtt>
 			
 		}
 		

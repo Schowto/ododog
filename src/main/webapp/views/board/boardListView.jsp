@@ -12,6 +12,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 <style>
 
     #content{margin:auto; width:1200px;}
@@ -92,7 +101,7 @@
             <br><br><br><br><br>
             <p style="font-size:23px;">COMMUNITY</p>
             <hr>
-            <a href="" style="font-size:17px; color:rgb(200, 140, 140);">자유게시판</a> <br><br>
+            <a href="<%= contextPath %>/list.bo?cpage=1" style="font-size:17px; color:rgb(200, 140, 140);">자유게시판</a> <br><br>
             <a href="" style="font-size:17px;">레시피게시판</a>
         </div>
 
@@ -140,8 +149,8 @@
                     	<% } else { %>
                     		<% for(Board b : nList){ %>
                     			<tr>
-			                        <td>공지</td>
-			                        <td><%= b.getBoardTitle() %></td>
+			                        <td style="color:rgb(200,140,140); font-weight:600;">공지</td>
+			                        <td style="font-weight:600;"><%= b.getBoardTitle() %></td>
 			                        <td>오도독</td>
 			                        <td><%= b.getCreateDate() %></td>
 			                        <td><%= b.getCount() %></td>
@@ -166,8 +175,8 @@
                     	<!-- 공지사항, 일반게시글 모두 있을 경우 -->
 		                    <% for(Board b : nList){ %>
 		                    	<tr>
-					                    <td>공지</td>
-					                    <td><%= b.getBoardTitle() %></td>
+					                    <td style="color:rgb(200,140,140); font-weight:600;">공지</td>
+					                    <td style="font-weight:600;"><%= b.getBoardTitle() %></td>
 					                    <td>오도독</td>
 					                    <td><%= b.getCreateDate() %></td>
 					                    <td><%= b.getCount() %></td>
@@ -183,36 +192,7 @@
 					                </tr>
 	                    	<% } %>
                     	<% } %>
-                    
-                    <tr>
-                        <td>123</td>
-                        <td>제목쓰입니당</td>
-                        <td>작성자작성자~</td>
-                        <td>2023-01-17</td>
-                        <td>3212</td>
-                    </tr>
                     <% } %>
-                    <tr>
-                        <td>122</td>
-                        <td>제목쓰입니당</td>
-                        <td>작성자작성자~</td>
-                        <td>2023-01-17</td>
-                        <td>3212</td>
-                    </tr>
-                    <tr>
-                        <td>121</td>
-                        <td>제목쓰입니당</td>
-                        <td>작성자작성자~</td>
-                        <td>2023-01-17</td>
-                        <td>3212</td>
-                    </tr>
-                    <tr>
-                        <td>120</td>
-                        <td>제목쓰입니당</td>
-                        <td>작성자작성자~</td>
-                        <td>2023-01-17</td>
-                        <td>3212</td>
-                    </tr>
                 </tbody>
             </table>
     
@@ -239,21 +219,25 @@
         <br><br><br>
         
         <div class="paging-area" align="center">
-
-            <a href=""><button>&lt;</button></a>
-            <a href=""><button>1</button></a>
-            <a href=""><button>2</button></a>
-            <a href=""><button>3</button></a>
-            <a href=""><button>4</button></a>
-            <a href=""><button>5</button></a>
-            <a href=""><button>6</button></a>
-            <a href=""><button>7</button></a>
-            <a href=""><button>8</button></a>
-            <a href=""><button>9</button></a>
-            <a href=""><button>10</button></a>
-            <a href=""><button>&gt;</button></a>
-
+        	
+        	<!-- 페이지1일 때는 < 버튼 출력 X -->
+        	<% if(pi.getCurrentPage() != 1){ %>
+        		<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()-1%>';">&lt;</button>
+        	<% } %>
+        	
+        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+        		<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=p%>';"><%= p %></button>
+        	<% } %>
+        	
+        	<!-- 마지막페이지일 때 -->
+        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()+1%>'">&gt;</button>
+            <% } %>
         </div>
+        
+        <script>
+        	
+        </script>
         
         
         
