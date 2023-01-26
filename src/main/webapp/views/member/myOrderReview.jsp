@@ -228,8 +228,16 @@
                     <br>
 
                     <div align="center">
-                    <button type="submit">작성완료</button>
+                    <button type="submit" id="btn">작성완료</button>
                     </div>
+
+                    <script>
+                        $(function(){
+                            $("#btn").click(function(){
+                                location.href="<%=contextPath%>/"
+                            })
+                        })
+                    </script>
 
                 </div>
 

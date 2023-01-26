@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
     .outer{
-    border:1px solid black;
+    /*border:1px solid black;*/
     margin:auto;
     height:100%;
     width:1200px;
@@ -15,7 +15,7 @@
 
     /****** 사이드 ******/
     #side{
-        border:1px solid blue;
+        /*border:1px solid blue;*/
         width:20%; height:100%;
         padding:20px;
         color: rgb(50, 50, 50);
@@ -36,11 +36,7 @@
         width:75%;
         height:100%;
         display: inline-block;
-        border:1px solid red;
-    }
-    h2{
-        color:rgb(50, 50, 50);
-        font-weight: 600;
+        /*border:1px solid red;*/
     }
     .delete{
         width:100%;
@@ -69,6 +65,13 @@
     input{
         border:1px solid rgb(220, 220, 220);
     }
+    #btn{
+        border-radius:4px; 
+        background:white; 
+        width:80px; 
+        height:30px; 
+        border:1px solid gray;
+    }
     
     
 </style>
@@ -87,7 +90,7 @@
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
             <a href="" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
-            <a href="" style="font-size:17px;">게시글조회</a> <br><br>
+            <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
@@ -101,7 +104,7 @@
 
         <div class="content">
 
-            <h2 align="center">회원탈퇴</h2>
+            <h2 align="center" style="color:rgb(50, 50, 50); font-weight:600;">회원탈퇴</h2>
             <br><br><br><br>
 
             <div class="delete"">
@@ -124,8 +127,16 @@
                 <br>
 
                 <div align="center">
-                <button style="border-radius:4px; background:white; width:80px; height:30px; border:1px solid gray;">확인</button>
+                <button id="btn">확인</button>
                 </div>
+
+                <script>
+                    $(function(){
+                        $("#btn").click(function(){
+                            location.href="<%=contextPath%>/delete_2.me";
+                        })
+                    })
+                </script>
 
 
             </div>

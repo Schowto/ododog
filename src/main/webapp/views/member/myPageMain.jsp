@@ -174,7 +174,7 @@
             <div class="menu" align="center">
                 <div class="img">
                     <br>
-                    <a href=""><img src="<%= contextPath %>/resources/images/myBoard.png"></a>
+                    <a href="<%=contextPath%>/myBoard.me"><img src="<%= contextPath %>/resources/images/myBoard.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Board <br>

@@ -38,10 +38,6 @@
         margin-bottom:200px;
         display: inline-block;
     }
-    h2{
-        color:rgb(50, 50, 50);
-        font-weight: 600;
-    }
     table{
         border-collapse: collapse;
         border-spacing: 0;
@@ -73,7 +69,10 @@
         border-radius:4px; 
         background:rgb(200, 140, 140); 
         width:80px; height:30px; 
-        border:none; 
+        border:none;
+    }
+    .myOrderView a{
+        text-decoration-line:none ;
         color:white; 
         font-weight: 900;
     }
@@ -123,7 +122,7 @@
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
             <a href="" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
-            <a href="" style="font-size:17px;">게시글조회</a> <br><br>
+            <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
@@ -137,7 +136,7 @@
 
         <div class="content">
 
-            <h2 align="center">주문조회 > 상세조회</h2>
+            <h2 align="center" style="color:rgb(50, 50, 50); font-weight:600;">주문조회 > 상세조회</h2>
 
             <div class="myOrderDetailView">
                     <div style="font-size:13px; color:rgba(36, 33, 33, 0.903); font-weight:600;">
@@ -152,7 +151,9 @@
                                 <tr>
                                     <td style="width:150px;"><img src="주문한상품이미지들어올자리" ></td>
                                     <td style="width:250px;">댕댕이 수제간식</td>
-                                    <td style="width:200px; padding-right: 20px;" onclick="review();"><button>리뷰작성</button></td>
+                                    <td style="width:200px; padding-right: 20px;">
+                                        <button id="btn1"><a href="<%=contextPath%>/review.me">리뷰작성</a></button>
+                                    </td>
                                     <td style="width:200px; text-align:left;">
                                         &nbsp;상품명 : 댕댕츄르 <br><br>
                                         &nbsp;구매자 : 와그작 <br><br>
@@ -164,9 +165,11 @@
                     </div>
 
                     <script>
-                        function review(){
-                            location.href="<%=contextPath%>/review.me";
-                        }
+                        $(function(){
+                            $("#btn1").click(function(){
+                                location.href = "<%=contextPath%>/review.me";
+                            });
+                        })
                     </script>
 
 
