@@ -114,7 +114,7 @@
             <br><br><br><br><br>
             <p style="font-size:23px;">COMMUNITY</p>
             <hr>
-            <a href="" style="font-size:17px; color:rgb(200, 140, 140);">자유게시판</a> <br><br>
+            <a href="<%= contextPath %>/list.bo?cpage=1" style="font-size:17px; color:rgb(200, 140, 140);">자유게시판</a> <br><br>
             <a href="" style="font-size:17px;">레시피게시판</a>
         </div>
 
@@ -277,18 +277,18 @@ z
                             <a href="" style="text-decoration:none; color:rgb(200, 140, 140);" id="delete-reply">삭제</a>
                         </td>
                     </tr>
-
+                    
                     <tr style="border-bottom:1px solid rgb(220,220,220);">
                         <td colspan="2" style="font-size:12px;" id="reply-content">기존댓zz글</td>
                     </tr>
-
+                    
                     <tr>
-                        <td colspan="2" style="font-size:12px;">
+                        <td colspan="2" style="font-size:12px; padding:0;">
                             <form action="" method="post" id="reply-modify-form">
                                 <br>
                                 <textarea name="new-reply-content" id="new-reply-content"
-                                    style="width:900px; height:100px; resize:none; border:1px solid rgb(200, 140, 140);"></textarea>
-                                <button type="submit" style="margin-left:857px;">등록</button>
+                                    style="width:900px; height:120px; resize:none; border:1px solid rgb(200, 140, 140); border-radius:5px;"></textarea>
+                                <button type="submit" style="margin-left:855px; margin-top:10px;">등록</button>
                             </form>
                         </td>
                     </tr>
