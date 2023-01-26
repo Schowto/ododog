@@ -35,7 +35,7 @@
         width:75%;
         height:100%;
         margin:auto;
-        margin-top:190px;
+        margin-top:180px;
         margin-bottom:200px;
     }
     .pointView{

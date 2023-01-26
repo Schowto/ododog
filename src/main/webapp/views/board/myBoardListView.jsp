@@ -60,17 +60,12 @@
         border-bottom:1px solid gray;
         text-align: center;
     }
-    .btn1{
-        background-color: white;
-        border:1px solid gray;
-        border-radius: 3px;
-        color:gray
+    .btn1>a{
+        text-decoration-line:none ;
     }
-    .btn2{
-        background-color: rgb(200, 140, 140);
-        border:white;
-        border-radius: 3px;
-        color:white;
+    #modified{
+        text-decoration-line:none ;
+        color:black;
     }
 </style>
 </head>
@@ -88,7 +83,7 @@
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
             <a href="" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
-            <a href="<%=contextPath%>/myBoard.me" style="font-size:17px; color:rgb(200, 140, 140);"></a>게시글조회</a> <br><br>
+            <a href="<%=contextPath%>/myBoard.me" style="font-size:17px; color:rgb(200, 140, 140);">게시글조회</a> <br><br>
             <a href="" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
@@ -144,7 +139,7 @@
                                     <td style="width:120px;">번호</td>
                                     <td style="width:120px;">작성일</td>
                                     <td style="width:320px;;">제목</td>
-                                    <td style="width:120px;" onclick="location.href='<%=contextPath%>/boardEnroll.me'">수정</td>
+                                    <td style="width:120px;">수정</td>
                                     <td style="width:120px;">삭제</td>
 
                                 </tr>
@@ -152,26 +147,31 @@
                                     <td>5</td>
                                     <td>2023.01.22</td>
                                     <td>유기견봉사같이하실분구해욥~</td>
-                                    <td><button class="btn1">수정</button></td>
-                                    <td><button class="btn2">삭제</button></td>
+                                    <td>
+                                        <button>
+                                            <a href="<%=contextPath%>/boardEnroll.me" id="modified">수정</a>
+                                        </button>
+                                    </td>
+                                    <td><button class="btn-red">삭제</button></td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
                                     <td>2023.01.22</td>
                                     <td>유기견봉사같이하실분구해욥~</td>
-                                    <td><button class="btn1">수정</button></td>
-                                    <td><button class="btn2">삭제</button></td>
+                                    <td><button>수정</button></td>
+                                    <td><button class="btn-red">삭제</button></td>
                                 </tr>
                                 <tr>
                                     <td>1</td>
                                     <td>2023.01.22</td>
                                     <td>유기견봉사같이하실분구해욥~</td>
-                                    <td><button class="btn1">수정</button></td>
-                                    <td><button class="btn2">삭제</button></td>
+                                    <td><button>수정</button></td>
+                                    <td><button class="btn-red">삭제</button></td>
                                 </tr>
                             </table>
                         </form>
                     </div>
+                    
 
 
 

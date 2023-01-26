@@ -34,7 +34,7 @@
         width:75%;
         height:100%;
         margin:auto;
-        margin-top:190px;
+        margin-top:180px;
         margin-bottom:200px;
         display: inline-block;
     }
@@ -107,13 +107,6 @@
         border:none;
         resize: none;
     }
-    button{
-        border-radius:4px; 
-        background:white; 
-        width:80px; 
-        height:30px; 
-        border:1px solid gray;
-    }
     .review1, .review2{
         width:100%;
         margin:auto;
@@ -128,6 +121,10 @@
     table{
         border-collapse: collapse;
         border-spacing: 0;
+    }
+    #btnWrap{
+        width:70px;
+        margin:auto;
     }
 </style>
 </head>
@@ -159,7 +156,7 @@
 
         <div class="content">
 
-            <h2 align="center">주문조회 > 리뷰작성</h2>
+            <h2 align="center" style="color:rgb(50,50,50); font-weight:600;">주문조회 > 리뷰작성</h2>
             <br><br><br><br>
 
             <div class="myOrderReview">
@@ -218,7 +215,7 @@
                                 <td>내용 : </td>
                                 <td>
                                     <br>
-                                    <textarea name="" id="" cols="100%" rows="30">내리뷰내용이들어올자리</textarea>
+                                    <textarea name="" id="" cols="100%" rows="30" style="resize:none;">내리뷰내용이들어올자리</textarea>
                                     <br><br>
                                 </td>
                             </tr>
@@ -226,15 +223,15 @@
                     </form>
                     
                     <br>
-
-                    <div align="center">
-                    <button type="submit" id="btn">작성완료</button>
+                    
+                    <div id="btnWrap">
+                        <button type="submit" id="btn">작성완료</button>
                     </div>
 
                     <script>
                         $(function(){
                             $("#btn").click(function(){
-                                location.href="<%=contextPath%>/"
+                                location.href="<%=contextPath%>/orderDetail.me";
                             })
                         })
                     </script>
