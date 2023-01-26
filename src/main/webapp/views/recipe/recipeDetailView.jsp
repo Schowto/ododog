@@ -143,7 +143,7 @@
                 <h2 style="color:rgb(50, 50, 50); font-weight:600;">레시피게시판</h2>
                 <br>
             </div>
-            <br><br>
+            <br><br><br><br><br><br>
 
             <img src="https://recipe.bom.co.kr/uploads/posts/images/20220422/6262298eec8f5.png" width="400" height="300">
             <br><br><br>
