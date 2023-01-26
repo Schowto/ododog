@@ -136,7 +136,7 @@
             })
         </script>
         
-        <div id="board-area" align="center" style="border: 1px solid red;">
+        <div id="board-area" align="center">
         
             <div>
                 <br><br><br><br><br><br><br>
@@ -162,7 +162,7 @@
                     <img src="<%= contextPath %>/resources/icons/heart.png" width="18" style="margin-left:10px; cursor:pointer;">
                 </div>
             </div>
-            <br><br>
+            <br><br><br>
             <script>
                 $(".heart-area>img").click(function () {
                     //console.log($(this).attr("src"));
