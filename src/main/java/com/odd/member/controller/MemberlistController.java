@@ -1,4 +1,4 @@
-package com.odd.member;
+package com.odd.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
