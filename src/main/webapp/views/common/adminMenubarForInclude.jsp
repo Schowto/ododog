@@ -20,26 +20,41 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-     
 
+        /* 수정 : wrap클래스 스타일 여기에 작성 & position:relative 속성 부여 */
+        .wrap {
+            width: 1200px;
+            margin: auto;
+            position:relative;
+        }
+        .wrap>div {float: left;}
+        div {box-sizing: border-box;}
+     
+        /* 수정 : 사이드 고정 위해 position속성 */
         #side {
-            width: 25%; height: 100vh;
+            height: 100vh;
             background: rgb(50, 50, 50);
+            position:fixed;
         }
 
+        /* 수정 : position속성 */
         #header {
-            width: 75%; height: 30px;
-            margin-bottom: 10px;
-            background: white;
+            width:75%; height:40px;
+            padding: 7px 0px;
             color: rgb(50, 50, 50);
             font-size: 13px;
+            position:absolute;
+            left:300px;
         }
 
+        /* 수정 : height 삭제, position속성 */
         #content {
-            width: 75%; height: 660px;
+            width: 75%;
             padding-top: 20px;
             color: rgb(50, 50, 50);
-            background: white;
+            position:absolute;
+            left:300px;
+            top:36px;
         }
 
         button {	/* 버튼 스타일 일단 설정해놨어요,,!! 각자 페이지에서 바꿔도 됨 */
@@ -160,7 +175,8 @@
  
 
         <div id="side">
-
+            
+            <br><br>
             <div id="logo" style="color:white;" align="center">
                 <img src="<%= contextPath %>/resources/icons/logoW.png" width="150">
             </div>
@@ -170,6 +186,7 @@
                 <a href="">사이트 바로가기</a>
             </div>
             <hr>
+            <br>
 
             <div id="navi">
                 <div>
@@ -256,13 +273,8 @@
                     style="margin-left:30px; text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그아웃</a>
 
             </div>
+            <hr style="margin-top:30px; border:4px solid rgb(220, 220, 220);">
         </div>
-
-
-
-
-
-
 
 </body>
 

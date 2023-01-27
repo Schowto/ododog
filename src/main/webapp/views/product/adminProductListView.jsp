@@ -18,26 +18,6 @@
 
 <style>
 
-    .wrap {
-            /* 전체 -> ????? 세로 사이즈는 여기서 조정 ,,????? */
-            /*border:1px solid blue;*/
-            width: 1200px; height: 700px;
-            margin: auto;
-            background: rgb(220, 220, 220);
-        }
-
-    .wrap>div {float: left;}
-
-    div {/*border:1px solid red;*/ box-sizing: border-box;}
-
-    #content {
-        width: 75%; height: 100%;
-        padding-top: 20px;
-        color: rgb(50, 50, 50);
-        background: white;
-    }    
-	
-	
     .list-area{
         text-align: center;
         font-size: 80%;
@@ -55,6 +35,7 @@
 	;}
 	
 	.order{
+		height: 50px;
 		text-align: right;
 	}
 	
@@ -79,7 +60,7 @@
             <h2>전체 물품 조회</h2>
             <br>
             	<div class="order">
-	                <button type="button" class="btn btn-sm btn-danger" id="deleteBTN">삭제</button>
+	                <button type="button" class="button btn-red" id="deleteBTN">삭제</button>
 	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO">번호</a>
 	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=CATEGORY">카테고리</a>
 	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRICE">가격</a>
