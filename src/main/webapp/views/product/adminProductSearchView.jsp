@@ -78,25 +78,29 @@
 				$(function(){
 					$("#deleteBTN").click(function(){
 						
-						 let deleteArr = [];
+						 let deleteList = [];
 
 				        $("input[name='deleteNo']:checked").each(function() {
 
-				     	   deleteArr.push($(this).val());
+				     	   deleteList.push($(this).val());
 
 				        });
-						
-						console.log(deleteArr);
 				        
 						$.ajax({
 							
 							url:"delete.adPro" , 
-							data:{deleteArr:deleteArr} ,
+							data:{deleteList:deleteList} ,
 							type : "post" ,
+							dataType: "json",
+							traditional: true,
 							success : function(result){
-								
+								if(result > 0) {
+		            				alert("상품 삭제 성공");
+		            			}else { 
+		            				alert("상품 삭제 실패");
+		            			} 
 							} ,
-							error : {
+							error : function(){
 								
 							} 
 						})

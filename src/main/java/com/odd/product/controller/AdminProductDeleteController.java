@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.odd.product.model.service.AdminProductService;
+
 /**
  * Servlet implementation class AdminProductDeleteController
  */
@@ -29,9 +31,20 @@ public class AdminProductDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println(((String[])request.getParameterValues("deleteArr"))[1]);
+	
+		if(request.getParameterValues("deleteList") != null) {
+			
+		String[] deleteList = request.getParameterValues("deleteList");
 		
-		response.getWriter().print("NNNNN");
+		int result = new AdminProductService().deleteProduct(deleteList);
+		
+		response.getWriter().print(result);
+		}else {
+			
+			response.getWriter().print(0);
+			
+		}
+		
 	
 	}
 
