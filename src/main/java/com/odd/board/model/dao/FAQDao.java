@@ -29,7 +29,7 @@ public class FAQDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectFAQList");
-		System.out.println(conn);
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -114,6 +114,7 @@ public class FAQDao {
 			pstmt.setString(1, f.getCategory());
 			pstmt.setString(2, f.getContactTitle());
 			pstmt.setString(3, f.getContactAnswer());
+			pstmt.setInt(4, f.getContactNo());
 			
 			result = pstmt.executeUpdate();
 			
@@ -123,6 +124,27 @@ public class FAQDao {
 			close(pstmt);
 		}
 		return result;
+		
+	}
+	
+	public int deleteFAQ(Connection conn, int contactNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteFAQ");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contactNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		 return result;
+		
 		
 	}
 

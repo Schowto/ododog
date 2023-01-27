@@ -214,6 +214,7 @@ public class AdminProductDao {
 		String sql = prop.getProperty("insertAttachList");
 		
 		try {
+			
 			for(ProAtt at : list) {
 				pstmt = conn.prepareStatement(sql);
 				
@@ -230,5 +231,60 @@ public class AdminProductDao {
 		
 		return result;
 	}
+	
+	public int deleteProduct(Connection conn, String[] deleteList) {
+		
+		int result = 1;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteProduct");
+		
+		try {
+			
+			for(String no : deleteList) {
+
+				pstmt = conn.prepareStatement(sql);
+			
+				pstmt.setInt(1, Integer.parseInt(no));
+				
+				result *= pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int deleteProAtt(Connection conn, String[] deleteList) {
+		
+		int result = 1;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteProAtt");
+		
+		try {
+			
+			for(String no : deleteList) {
+
+				pstmt = conn.prepareStatement(sql);
+			
+				pstmt.setInt(1, Integer.parseInt(no));
+				
+				result *= pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	
 	
 }

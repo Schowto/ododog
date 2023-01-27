@@ -39,11 +39,11 @@ public Member(String user_Id, String user_Pwd, String user_Name, String email, S
 
 
 
-public Member(int user_No, String user_Id, String user_Name, String email, String phone, String address, int point) {
+public Member(int user_No, String user_Name, String user_Id, String email, String phone, String address, int point) {
 	super();
 	User_No = user_No;
-	User_Id = user_Id;
 	User_Name = user_Name;
+	User_Id = user_Id;
 	Email = email;
 	Phone = phone;
 	Address = address;

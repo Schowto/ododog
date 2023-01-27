@@ -46,4 +46,16 @@ public class FAQService {
 		close(conn);
 		return result;
 	}
+	
+	public int deleteFAQ(int contactNo) {
+		Connection conn = getConnection();
+		int result = new FAQDao().deleteFAQ(conn, contactNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

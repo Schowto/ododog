@@ -49,4 +49,10 @@
 	   , CONTACT_ANSWER = ?
 	   WHERE CONTACT_NO = ?
 </entry>
+
+<entry key="deleteFAQ">
+	UPDATE FAQ
+	  SET STATUS = 'N'
+	 WHERE CONTACT_NO = ?
+</entry>
 </properties>

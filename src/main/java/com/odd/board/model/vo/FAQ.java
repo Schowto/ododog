@@ -13,12 +13,12 @@ public class FAQ {
 
 	 
 	 
-	public FAQ(int contactNo, String contactTitle, String contactAnswer, String category) {
+	public FAQ(int contactNo, String category, String contactTitle, String contactAnswer) {
 		super();
+		this.contactNo = contactNo;
+		this.category = category;
 		this.contactTitle = contactTitle;
 		this.contactAnswer = contactAnswer;
-		this.category = category;
-		this.contactNo = contactNo;
 	}
 
 	public FAQ(int contactNo, String contactTitle, String contactAnswer, String category, int faqWriter,

@@ -62,4 +62,21 @@ public class AdminProductService {
 		
 	}
 	
+	public int deleteProduct(String[] deleteList) {
+		Connection conn = getConnection();
+		
+		int result1 = new AdminProductDao().deleteProduct(conn, deleteList);
+		int result2 = new AdminProductDao().deleteProAtt(conn, deleteList);
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2;
+	}
+	
 }

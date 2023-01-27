@@ -30,6 +30,8 @@ public class FAQUpdateController_2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		int contactNo = Integer.parseInt(request.getParameter("no"));
 		String FAQCategory = request.getParameter("category");
 		String FAQTitle = request.getParameter("title");
@@ -45,7 +47,7 @@ public class FAQUpdateController_2 extends HttpServlet {
 		
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "게시글이 수정되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/FAQlist.ad");
+			response.sendRedirect(request.getContextPath() + "/FAQlist.ad?no=" + contactNo);
 		}else {
 			
 		}

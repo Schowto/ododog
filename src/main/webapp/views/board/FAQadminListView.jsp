@@ -123,9 +123,9 @@
         <h1 align="center">FAQ</h1>
          <br><br>   
         	<select name="" id="" style="float: left; margin-left: 40px; font-size: 11px;">
-                <option value="">전체</option>
-                <option value="">제품</option>
-                <option value="">배송</option>
+                <option>전체</option>
+                <option>제품</option>
+                <option>배송</option>
             </select>
             <input type="text" value="키워드 검색" id="serch" style="float: left; font-size: 11px;">
             <button style="float: left;">검색하기</button>
@@ -143,12 +143,12 @@
                 <li>
                     <input type="checkbox" id="qna-<%=count%>">
                     
-                    <label for="qna-<%=count++%>"><span style='color:white;'><%=f.getContactNo() %></span><span>[<%=f.getCategory() %>] </span><%= f.getContactTitle() %></label>
+                    <label for="qna-<%=count++%>"><span>[<%=f.getCategory() %>] </span><%= f.getContactTitle() %></label>
                     <div>
                         <p><%=f.getContactAnswer() %></p>
                         <br>
                         <button onclick="location.href ='<%=contextPath%>/FAQUpdateForm.ad?no=<%= f.getContactNo() %>'">수정하기</button>
-                        <button>삭제하기</button>
+                        <button onclick="location.href ='<%=contextPath%>/delete.faq?no=<%= f.getContactNo() %>'" >삭제하기</button>
                     </div>
                 </li>
             	<%} %>

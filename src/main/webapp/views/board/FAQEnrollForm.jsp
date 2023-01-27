@@ -66,7 +66,7 @@
         <h2>FAQ 작성하기</h2>
         <br><br>
         <form id="enroll-form" action="<%=contextPath %>/insert.faq" method="post" enctype="">
-
+			
             <table>
                 <tr>
                     <th width="70" style="text-align:center;">카테고리</th>
@@ -76,7 +76,7 @@
                             <option>결제</option>
                             <option>상품</option>
                         </select>
-                    </td>
+                        </td>
                 </tr>
                 <tr>
                     <th style="text-align:center;">질문</th>

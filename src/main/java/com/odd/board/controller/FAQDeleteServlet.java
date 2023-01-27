@@ -1,27 +1,25 @@
-package com.odd.product.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.product.model.service.AdminProductService;
+import com.odd.board.model.service.FAQService;
 
 /**
- * Servlet implementation class AdminProductDeleteController
+ * Servlet implementation class FAQDeleteServlet
  */
-@WebServlet("/delete.adPro")
-public class AdminProductDeleteController extends HttpServlet {
+@WebServlet("/delete.faq")
+public class FAQDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminProductDeleteController() {
+    public FAQDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +29,17 @@ public class AdminProductDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	
-		if(request.getParameterValues("deleteList") != null) {
-			
-		String[] deleteList = request.getParameterValues("deleteList");
+		int contactNo = Integer.parseInt(request.getParameter("no"));
 		
-		int result = new AdminProductService().deleteProduct(deleteList);
+		int result = new FAQService().deleteFAQ(contactNo);
 		
-		response.getWriter().print(result);
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/FAQlist.ad");
 		}else {
-			
-			response.getWriter().print(0);
-			
+			request.setAttribute("errorMsg", "공지사항 삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
-	
 	}
 
 	/**

@@ -1,7 +1,6 @@
-package com.odd.product.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.product.model.service.AdminProductService;
+import com.odd.board.model.service.BoardService;
+import com.odd.board.model.vo.Board;
 
 /**
- * Servlet implementation class AdminProductDeleteController
+ * Servlet implementation class BoardEnrollController
  */
-@WebServlet("/delete.adPro")
-public class AdminProductDeleteController extends HttpServlet {
+@WebServlet("/insert.bo")
+public class BoardInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminProductDeleteController() {
+    public BoardInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +31,24 @@ public class AdminProductDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	
-		if(request.getParameterValues("deleteList") != null) {
-			
-		String[] deleteList = request.getParameterValues("deleteList");
+		request.setCharacterEncoding("UTF-8");
 		
-		int result = new AdminProductService().deleteProduct(deleteList);
+		String boardTitle = request.getParameter("title");
+		int userNo = 2;	//넣기!!!!!
+		String boardContent = request.getParameter("content");
 		
-		response.getWriter().print(result);
-		}else {
-			
-			response.getWriter().print(0);
+		Board b = new Board();
+		b.setBoardTitle(boardTitle);
+		b.setBoardWriter(String.valueOf(userNo));
+		b.setBoardContent(boardContent);
+		
+		int result = new BoardService().insertBoard(b);
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "게시글 작성 성공");
+			response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+		} else {
 			
 		}
-		
-	
 	}
 
 	/**

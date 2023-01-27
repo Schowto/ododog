@@ -105,14 +105,16 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Member(rset.getInt("user_No"),
-								 rset.getString("user_Name"),
-								 rset.getString("user_Id"),
-								 rset.getString("email"),
-								 rset.getString("phone"),
-								 rset.getString("address"),
-								 rset.getInt("point")
-								 ));
+				Member m = new Member();
+				m.setUser_No(rset.getInt("User_No"));
+				m.setUser_Name(rset.getString("User_Name"));
+				m.setUser_Id(rset.getString("User_Id"));
+				m.setEmail(rset.getString("Email"));
+				m.setPhone(rset.getString("Phone"));
+				m.setAddress(rset.getString("Address"));
+				m.setPoint(rset.getInt("Point"));
+				list.add(m);
+								 
 			}
 			
 		} catch (SQLException e) {

@@ -58,6 +58,10 @@
     #btnWrap{
         float:right;
     }
+    .consultSearch{
+        width:300px;
+        margin:auto;
+    }
 </style>
 </head>
 <body>
@@ -89,6 +93,11 @@
 			<br><br><br><br>
 
 			<div class="consultView">
+
+                <div class="consultCategory">
+
+                    
+                </div>
                 <!--게시물이없을때-->
                 <form action="" class="logoutUser">
                     <table>
@@ -156,11 +165,12 @@
                     <br><br>
 
                     <div class="consultSearch">
-                        <select name="" id="">
+                        <select name="" id="searchAnswer" style="height:21px;">
                             <option value=""  selected>전체</option>
                             <option value="">미답변</option>
                             <option value="">답변</option>
                         </select>
+                        <input type="text" id="searchInput">
                     </div>
 
 			</div>

@@ -115,7 +115,7 @@
     
             <div align="right" style="width:900px">
             	<br><br>
-                <a href=""><button>글쓰기</button></a>
+                <a href="<%= contextPath %>/enrollForm.bo"><button>글쓰기</button></a>
                 <br>
             </div>
     
@@ -188,7 +188,7 @@
             </table>
     
             <br><br>
-    
+    <%= pi.getListCount() %>
         <div>
             <form action="" style="font-size:13px;">
                     

@@ -1,30 +1,23 @@
-package com.odd.member;
+package com.odd.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.board.model.service.FAQService;
-import com.odd.board.model.vo.FAQ;
-import com.odd.member.model.service.MemberService;
-import com.odd.member.model.vo.Member;
-
 /**
- * Servlet implementation class MemberlistController
+ * Servlet implementation class BoardEnrollFormController
  */
-@WebServlet("/list.ad")
-public class MemberlistController extends HttpServlet {
+@WebServlet("/enrollForm.bo")
+public class BoardEnrollFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberlistController() {
+    public BoardEnrollFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +26,7 @@ public class MemberlistController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ArrayList<Member> list = new MemberService().selectMemberList();
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/member/adminUserListView.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("views/board/boardEnrollForm.jsp").forward(request, response);
 	}
 
 	/**

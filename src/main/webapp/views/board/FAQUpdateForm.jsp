@@ -68,16 +68,16 @@
         <br><br>
         <h2>FAQ 수정하기</h2>
         <br><br>
-        <form id="enroll-form" action="<%=contextPath %>/update.faq" method="post" enctype="">
-
+        <form id="enroll-form" action="<%=contextPath %>/update.faq" method="post">
+			<input type="hidden" name="no" value="<%=f.getContactNo()%>">
             <table>
                 <tr>
                     <th width="70" style="text-align:center;">카테고리</th>
                     <td width="500">
-                        <select name="category" id="category" required value=<%=f.getCategory() %>>
-                            <option>배송</option>
-                            <option>결제</option>
-                            <option>상품</option>
+                        <select name="category" id="category" required>
+                            <option value="배송">배송</option>
+                            <option value="결제">결제</option>
+                            <option value="상품">상품</option>
                         </select>
                     </td>
                 </tr>
@@ -102,6 +102,5 @@
         </div>
      </div>
 
-     
 </body>
 </html>

@@ -103,6 +103,10 @@ public class BoardDao {
 	}
 	
 	
+	/**
+	 * @param conn, pi pi는 페이징정보
+	 * @return 해당 페이지 전체 게시글 목록
+	 */
 	public ArrayList<Board> selectList(Connection conn, PageInfo pi){
 		// select
 		ArrayList<Board> list = new ArrayList<>();
@@ -136,6 +140,25 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int insertBoard(Connection conn, Board b) {
+		// insert
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertBoard");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, Integer.parseInt(b.getBoardWriter()));
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 
 }

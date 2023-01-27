@@ -1,4 +1,4 @@
-package com.odd.product.controller;
+package com.odd.member.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,19 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.product.model.service.AdminProductService;
+import com.odd.board.model.service.FAQService;
+import com.odd.board.model.vo.FAQ;
+import com.odd.member.model.service.MemberService;
+import com.odd.member.model.vo.Member;
 
 /**
- * Servlet implementation class AdminProductDeleteController
+ * Servlet implementation class MemberlistController
  */
-@WebServlet("/delete.adPro")
-public class AdminProductDeleteController extends HttpServlet {
+@WebServlet("/list.ad")
+public class MemberlistController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminProductDeleteController() {
+    public MemberlistController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,21 +34,11 @@ public class AdminProductDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	
-		if(request.getParameterValues("deleteList") != null) {
-			
-		String[] deleteList = request.getParameterValues("deleteList");
+		ArrayList<Member> list = new MemberService().selectMemberList();
 		
-		int result = new AdminProductService().deleteProduct(deleteList);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/member/adminUserListView.jsp").forward(request, response);
 		
-		response.getWriter().print(result);
-		}else {
-			
-			response.getWriter().print(0);
-			
-		}
-		
-	
 	}
 
 	/**
