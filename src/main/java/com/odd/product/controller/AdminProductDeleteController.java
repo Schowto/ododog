@@ -29,9 +29,7 @@ public class AdminProductDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String[] deleteArr = request.getParameterValues("deleteArr");
-		
-		System.out.println(deleteArr[0]);
+		System.out.println(((String[])request.getParameterValues("deleteArr"))[1]);
 		
 		response.getWriter().print("NNNNN");
 	

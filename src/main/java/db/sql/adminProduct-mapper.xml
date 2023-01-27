@@ -49,7 +49,7 @@
               , ENROLL_DATE)
 	    VALUES 
 	         (
-        		SEQ_PRODUCT_NO.NEXTVAL
+        		SEQ_PRODUCTNO.NEXTVAL
          	  , ?
          	  , ?
          	  , ?
@@ -70,8 +70,8 @@
 			  )
 		VALUES 
 			  (
-			    SEQ_FILE_NO.NEXTVAL
-			  , SEQ_PRODUCT_NO.CURRVAL
+			    SEQ_FILENO.NEXTVAL
+			  , SEQ_PRODUCTNO.CURRVAL
 			  , ?
 			  , ?
 		 		)
