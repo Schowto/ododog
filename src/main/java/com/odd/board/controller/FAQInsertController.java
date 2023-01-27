@@ -1,28 +1,27 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.odd.board.model.service.FAQService;
 import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class FAQadminListController
+ * Servlet implementation class FAQInsertController
  */
-@WebServlet("/FAQlist.ad")
-public class FAQadminListController extends HttpServlet {
+@WebServlet("/insert.faq")
+public class FAQInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQadminListController() {
+    public FAQInsertController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +31,30 @@ public class FAQadminListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<FAQ> list = new FAQService().selectFAQList();
+		request.setCharacterEncoding("UTF-8");
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
+		String FAQCategory = request.getParameter("category");
+		String FAQTitle = request.getParameter("title");
+		String FAQContent = request.getParameter("content");
+		
+		HttpSession session = request.getSession();
+		
+		FAQ f = new FAQ();
+		f.setCategory(FAQCategory);
+		f.setContactTitle(FAQTitle);
+		f.setContactAnswer(FAQContent);
+		
+		int result = new FAQService().insertFAQ(f);
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "등록 성공");
+			response.sendRedirect(request.getContextPath() + "/FAQlist.ad");
+		}else {
+			request.setAttribute("errorMsg", "등록 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			
+		}
+		
 		
 	}
 

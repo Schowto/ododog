@@ -15,4 +15,16 @@ public class FAQService {
 		close(conn);
 		return list;
 	}
+	
+	public int insertFAQ(FAQ f) {
+		Connection conn = getConnection();
+		int result = new FAQDao().insertFAQ(conn, f);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

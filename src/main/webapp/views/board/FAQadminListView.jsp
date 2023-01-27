@@ -130,7 +130,7 @@
             <input type="text" value="키워드 검색" id="serch" style="float: left; font-size: 11px;">
             <button style="float: left;">검색하기</button>
             
-            <button style="float: right;">등록하기</button>
+            <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQenrollForm.ad'">등록하기</button>
             <br><br> 
 
             
@@ -145,7 +145,7 @@
                 <li>
                     <input type="checkbox" id="qna-1">
                     
-                    <label for="qna-1"><span><%=f.getCategory() %> </span><%= f.getContactTitle() %></label>
+                    <label for="qna-1"><span>[<%=f.getCategory() %>] </span><%= f.getContactTitle() %></label>
                     <div>
                         <p><%=f.getContactAnswer() %></p>
                         <br>
@@ -158,6 +158,7 @@
             </ul> 
             
         </div>
+    </div>
 			
 </body>
 </html>

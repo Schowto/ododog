@@ -1,28 +1,23 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.board.model.service.FAQService;
-import com.odd.board.model.vo.FAQ;
-
 /**
- * Servlet implementation class FAQadminListController
+ * Servlet implementation class FAQEnrollFormController
  */
-@WebServlet("/FAQlist.ad")
-public class FAQadminListController extends HttpServlet {
+@WebServlet("/FAQenrollForm.ad")
+public class FAQEnrollFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQadminListController() {
+    public FAQEnrollFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,11 +27,7 @@ public class FAQadminListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<FAQ> list = new FAQService().selectFAQList();
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("views/board/FAQEnrollForm.jsp").forward(request, response);
 	}
 
 	/**

@@ -10,4 +10,29 @@
 		FROM FAQ
 		WHERE STATUS = 'Y'
 </entry>
+
+<entry key="insertFAQ">
+	INSERT
+		INTO FAQ
+		(
+		  CONTACT_NO 
+		, CONTACT_TITLE
+		, CONTACT_ANSWER
+		, CATEGORY
+		, FAQ_WRITER
+		)
+		VALUES
+		(
+		  FAQ_SEQ.NEXTVAL
+		, ?
+		, ?
+		, ?
+		, ?  	
+		)
+</entry>
+
+<entry key="selectCategoryList">
+	SELECT 
+	
+</entry>
 </properties>
