@@ -148,7 +148,7 @@
                         <p><%=f.getContactAnswer() %></p>
                         <br>
                         <button onclick="location.href ='<%=contextPath%>/FAQUpdateForm.ad?no=<%= f.getContactNo() %>'">수정하기</button>
-                        <button>삭제하기</button>
+                        <button onclick="location.href ='<%=contextPath%>/delete.faq?no=<%= f.getContactNo() %>'" >삭제하기</button>
                     </div>
                 </li>
             	<%} %>

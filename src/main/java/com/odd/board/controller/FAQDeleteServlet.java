@@ -8,19 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.board.model.service.FAQService;
-import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class FAQUpdateController_2
+ * Servlet implementation class FAQDeleteServlet
  */
-@WebServlet("/update.faq")
-public class FAQUpdateController_2 extends HttpServlet {
+@WebServlet("/delete.faq")
+public class FAQDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQUpdateController_2() {
+    public FAQDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +29,16 @@ public class FAQUpdateController_2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		
 		int contactNo = Integer.parseInt(request.getParameter("no"));
-		String FAQCategory = request.getParameter("category");
-		String FAQTitle = request.getParameter("title");
-		String FAQContent = request.getParameter("content");
 		
-		FAQ f = new FAQ();
-		f.setContactNo(contactNo);
-		f.setCategory(FAQCategory);
-		f.setContactTitle(FAQTitle);
-		f.setContactAnswer(FAQContent);
-		
-		int result = new FAQService().updateFAQ(f);
+		int result = new FAQService().deleteFAQ(contactNo);
 		
 		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "게시글이 수정되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/FAQlist.ad?no=" + contactNo);
+			request.getSession().setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/FAQlist.ad");
 		}else {
-			
+			request.setAttribute("errorMsg", "공지사항 삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 	}
 
