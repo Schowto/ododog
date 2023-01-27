@@ -49,4 +49,24 @@
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	
+	<entry key="insertBoard">
+		INSERT
+		  INTO BOARD
+		  (
+		    BOARD_NO
+		  , BOARD_TYPE
+		  , BOARD_TITLE
+		  , BOARD_CONTENT
+		  , BOARD_WRITER
+		  )
+		 VALUES
+		  (
+		    SEQ_BOARDNO.NEXTVAL
+		  , 2
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
 </properties>

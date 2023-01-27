@@ -5,20 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- 삭제할 것 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<!-- Popper JS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-
-<!-- summernote -->
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
 	#content{/*border:1px solid red;*/ margin:auto; width:1200px;}
@@ -89,9 +77,9 @@
             })
         </script>
     
-        <form id="board-area" method="post">
+        <form action="<%= contextPath %>/insert.bo" id="board-area" method="post">
     
-            <div>
+            <div align="center";>
                 <br><br><br><br><br><br><br>
                 <h2 style="color:rgb(50, 50, 50); font-weight:600;">자유게시판</h2>
                 <br>
@@ -99,36 +87,50 @@
 
             <br><br><br>
             
-            <input type="text"
+            <input type="text" name="title"
                 style="border-top:1px solid rgb(220, 220, 220); border-bottom:2px solid rgb(220, 220, 220); border-right:none; border-left:none; width:100%; height:50px;"
                 placeholder="제목을 입력해주세요" required>
             
-            왜 안되는지 모르겄따~~~`
-            <div id="summernote"></div>
+                <textarea id="summernote" name="content"></textarea>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+                integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
             <script>
                 $(document).ready(function () {
                     $('#summernote').summernote({
                         height: 500,
                         minHeight: 500,
                         maxHeight: 500,
-                        focus: true
+                        lang: "ko-KR",
+                        toolbar: [
+                            // [groupName, [list of button]]
+                            ['fontname', ['fontname']],
+                            ['fontsize', ['fontsize']],
+                            ['style', ['bold', 'italic', 'underline', 'strikethrough', 'clear']],
+                            ['color', ['forecolor', 'backcolor']],
+                            ['table', ['table']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['height', ['height']],
+                            ['insert', ['picture', 'link', 'video']]
+                        ],
+                        fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체'],
+                        fontSizes: ['8', '9', '10', '11', '12', '14', '16', '18', '20', '22', '24', '28', '30', '36', '50', '72']
                     });
                 });
             </script>
             
             
             <br><br>
-            
             <div align="right" style="width:950px">
+                <br>
                 <button type="submit">등록하기</button>
                 <br><br>
             </div>
             
             <br><br><br><br><br>
-            
-    
         </form>
-    
     
         <div id="footer" style="height:200px; background:rgb(220, 220, 220);">
     

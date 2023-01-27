@@ -1,7 +1,6 @@
 package com.odd.board.model.service;
 
-import static com.odd.common.JDBCTemplate.close;
-import static com.odd.common.JDBCTemplate.getConnection;
+import static com.odd.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -41,6 +40,22 @@ public class BoardService {
 		ArrayList<Board> list = new BoardDao().selectList(conn, pi);
 		close(conn);
 		return list;
+	}
+	
+	/**
+	 * @param : Board 제목, 회원번호, 내용
+	 * @return insert 성공여부
+	 */
+	public int insertBoard(Board b){
+		Connection conn = getConnection();
+		int result = new BoardDao().insertBoard(conn, b);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 }
