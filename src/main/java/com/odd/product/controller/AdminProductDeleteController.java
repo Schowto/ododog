@@ -1,6 +1,8 @@
 package com.odd.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,9 @@ public class AdminProductDeleteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println(request.getAttribute("deleteArr"));	
+		String[] deleteArr = request.getParameterValues("deleteArr");
+		
+		System.out.println(deleteArr[0]);
 		
 		response.getWriter().print("NNNNN");
 	

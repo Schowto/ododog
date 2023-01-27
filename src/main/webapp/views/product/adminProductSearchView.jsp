@@ -16,25 +16,6 @@
 <title>Insert title here</title>
 
 <style>
-
-    .wrap {
-            /* 전체 -> ????? 세로 사이즈는 여기서 조정 ,,????? */
-            /*border:1px solid blue;*/
-            width: 1200px; height: 700px;
-            margin: auto;
-            background: rgb(220, 220, 220);
-        }
-
-    .wrap>div {float: left;}
-
-    div {/*border:1px solid red;*/ box-sizing: border-box;}
-
-    #content {
-        width: 75%; height: 100%;
-        padding-top: 20px;
-        color: rgb(50, 50, 50);
-        background: white;
-    }    
     
     .list-area{
         border: 1px solid white;
@@ -61,6 +42,11 @@
         font-size: 90%;
 	}
 	
+	.order{
+		height: 50px;
+		text-align: right;
+	}
+	
 	#deleteBTN{
 		float:left;
 		margin-left:10px;
@@ -83,9 +69,10 @@
             <br>
             <h2>물품 검색</h2>
             <br>
-			<br>
 			
-			<button type="button" class="btn btn-sm btn-danger" id="deleteBTN">삭제</button>
+			<div class="order">
+				<button type="button" class="button btn-red" id="deleteBTN">삭제</button>
+			</div>
 			
 			<script>
 				$(function(){
@@ -99,7 +86,8 @@
 
 				        });
 						
-						
+						console.log(deleteArr);
+				        
 						$.ajax({
 							
 							url:"delete.adPro" , 
@@ -116,10 +104,7 @@
 				})
 			</script>
 			
-			
-			
-			
-			<br><br>
+			<br>
 			
 			<div style="width:100%; height:350px; overflow:auto">
                <table class="list-area table" >
