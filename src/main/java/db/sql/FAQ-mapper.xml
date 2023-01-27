@@ -4,7 +4,8 @@
 
 <entry key="selectFAQList">
 	SELECT
-		  CATEGORY 
+		  CONTACT_NO	
+		, CATEGORY 
 		, CONTACT_TITLE 
 		, CONTACT_ANSWER 
 		FROM FAQ
@@ -23,7 +24,7 @@
 		)
 		VALUES
 		(
-		  FAQ_SEQ.NEXTVAL
+		  SEQ_FAQNO.NEXTVAL
 		, ?
 		, ?
 		, ?

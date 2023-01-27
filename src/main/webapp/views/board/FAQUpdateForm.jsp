@@ -63,9 +63,9 @@
      
         <div id="content" align="center">
         <br><br>
-        <h2>FAQ 작성하기</h2>
+        <h2>FAQ 수정하기</h2>
         <br><br>
-        <form id="enroll-form" action="<%=contextPath %>/insert.faq" method="post" enctype="">
+        <form id="enroll-form" action="<%=contextPath %>/update.faq" method="post" enctype="">
 
             <table>
                 <tr>

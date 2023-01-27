@@ -11,11 +11,14 @@ public class FAQ {
 	 
 	 public FAQ() {}
 
-	public FAQ(String contactTitle, String contactAnswer, String category) {
+	 
+	 
+	public FAQ(int contactNo, String contactTitle, String contactAnswer, String category) {
 		super();
 		this.contactTitle = contactTitle;
 		this.contactAnswer = contactAnswer;
 		this.category = category;
+		this.contactNo = contactNo;
 	}
 
 	public FAQ(int contactNo, String contactTitle, String contactAnswer, String category, int faqWriter,
@@ -80,7 +83,7 @@ public class FAQ {
 	@Override
 	public String toString() {
 		return "FAQ [contactNo=" + contactNo + ", contactTitle=" + contactTitle + ", contactAnswer=" + contactAnswer
-				+ ", category=" + category + ", faqWriter=" + faqWriter + ", Status=" + Status + "]";
+				+ ", category=" + category + "]";
 	}
 
 	

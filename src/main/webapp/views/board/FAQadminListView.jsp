@@ -138,18 +138,16 @@
             <% if(list.isEmpty()) { %>
             	<li></li>
             	<li>존재하는 FAQ가 없습니다.</li> 
-            <% }else{ %>      
+            <% }else{ int count = 0; %>    <li></li>  
             <% for(FAQ f : list){ %>      
-                
-                <li></li>
                 <li>
-                    <input type="checkbox" id="qna-1">
+                    <input type="checkbox" id="qna-<%=count%>">
                     
-                    <label for="qna-1"><span>[<%=f.getCategory() %>] </span><%= f.getContactTitle() %></label>
+                    <label for="qna-<%=count++%>"><span style='color:white;'><%=f.getContactNo() %></span><span>[<%=f.getCategory() %>] </span><%= f.getContactTitle() %></label>
                     <div>
                         <p><%=f.getContactAnswer() %></p>
                         <br>
-                        <button>수정하기</button>
+                        <button onclick="location.href ='<%=contextPath%>/FAQUpdateForm.ad?no=<%= f.getContactNo() %>'">수정하기</button>
                         <button>삭제하기</button>
                     </div>
                 </li>
