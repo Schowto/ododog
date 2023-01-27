@@ -6,25 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<!-- Popper JS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <style>
-    .wrap {
-            /*border:1px solid blue;*/
-            width: 1200px; height: 700px;
-            margin: auto;
-            background: rgb(220, 220, 220);
-        }
-    .wrap>div {float: left;}
-    div {/*border:1px solid red;*/ box-sizing: border-box;}
-    
 
     /******** 내용 *******/
     #content{/*border:1px solid pink;*/}
@@ -63,7 +45,6 @@
         background:rgb(220,220,220);
         font-weight:700;
     }
-
 
 </style>
 
