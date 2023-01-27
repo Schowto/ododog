@@ -27,15 +27,17 @@
             
         }
         .left{
-        	width: 50%;
-        	float: left;
+        	width: 60%;
+        	float:left;
 			box-sizing: border-box;
+			
         }
         .right {
-			width: 50%;
-			float: right;
+			width: 40%;
+			float:right;
 			box-sizing: border-box;
 			font-size: 15px;
+			text-align: left;
 		}
       
 
@@ -85,19 +87,19 @@
         <br>
         <hr style="border:1px color= silver;" width="100%">
         <div>
-        <b>주문상품</b> <br>
+        <b>주문상품</b> <br><br>
                 <div class="left">
                 	<!--상품자리-->
                 	<img src="<%=contextPath%>/resources/product_img/오븐14.png" width="200px" height="200px">
                 	
                 </div>
                 <div class="right">
-                	<b>건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레)</b>
+                	<b>건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레)</b><br><br>
                 	수량 : 3개
-                	<br>
+                	<br><br>
                 	<b>58,000원</b>
                 </div>
-                <br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br>
                 <hr style="border:1px color= silver;" width="100%">
         </div> <br>
         <div>        
