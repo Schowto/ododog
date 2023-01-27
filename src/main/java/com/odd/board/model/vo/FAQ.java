@@ -83,7 +83,7 @@ public class FAQ {
 	@Override
 	public String toString() {
 		return "FAQ [contactNo=" + contactNo + ", contactTitle=" + contactTitle + ", contactAnswer=" + contactAnswer
-				+ ", category=" + category + "]";
+				+ ", category=" + category + ", faqWriter=" + faqWriter + "]";
 	}
 
 	

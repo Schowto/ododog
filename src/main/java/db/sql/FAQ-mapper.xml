@@ -32,8 +32,21 @@
 		)
 </entry>
 
-<entry key="selectCategoryList">
-	SELECT 
-	
+<entry key="selectFAQ">
+	SELECT
+		  CONTACT_NO
+		, CATEGORY
+		, CONTACT_TITLE
+		, CONTACT_ANSWER
+		FROM FAQ 
+		WHERE CONTACT_NO = ?
+</entry>
+
+<entry key="updateFAQ">
+	UPDATE FAQ
+	  SET CATEGORY = ?
+	   , CONTACT_TITLE = ?
+	   , CONTACT_ANSWER = ?
+	   WHERE CONTACT_NO = ?
 </entry>
 </properties>

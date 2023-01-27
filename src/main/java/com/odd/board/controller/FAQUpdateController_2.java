@@ -11,16 +11,16 @@ import com.odd.board.model.service.FAQService;
 import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class FAQUpdateFormController
+ * Servlet implementation class FAQUpdateController_2
  */
-@WebServlet(name = "FAQUpdateController", urlPatterns = { "/FAQUpdateForm.ad" })
-public class FAQUpdateFormController extends HttpServlet {
+@WebServlet("/update.faq")
+public class FAQUpdateController_2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQUpdateFormController() {
+    public FAQUpdateController_2() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +30,25 @@ public class FAQUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int ContactNo = Integer.parseInt(request.getParameter("no"));
+		int contactNo = Integer.parseInt(request.getParameter("no"));
+		String FAQCategory = request.getParameter("category");
+		String FAQTitle = request.getParameter("title");
+		String FAQContent = request.getParameter("content");
 		
-		FAQ f = new FAQService().selectFAQ(ContactNo);
+		FAQ f = new FAQ();
+		f.setContactNo(contactNo);
+		f.setCategory(FAQCategory);
+		f.setContactTitle(FAQTitle);
+		f.setContactAnswer(FAQContent);
 		
-		request.setAttribute("f", f);
-		request.getRequestDispatcher("views/board/FAQUpdateForm.jsp").forward(request, response);
+		int result = new FAQService().updateFAQ(f);
+		
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "게시글이 수정되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/FAQlist.ad");
+		}else {
+			
+		}
 	}
 
 	/**

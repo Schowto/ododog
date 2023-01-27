@@ -75,5 +75,55 @@ public class FAQDao {
 		return result;
 		
 	}
+	
+	public FAQ selectFAQ(Connection conn, int contactNo) {
+		FAQ f = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectFAQ");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, contactNo);
+
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				f = new FAQ(rset.getInt("contact_no"),
+							rset.getString("category"),
+							rset.getString("contact_title"),
+							rset.getString("contact_answer")
+						);			
+				}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return f;
+	}
+	public int updateFAQ(Connection conn, FAQ f) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateFAQ");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, f.getCategory());
+			pstmt.setString(2, f.getContactTitle());
+			pstmt.setString(3, f.getContactAnswer());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
 
 }

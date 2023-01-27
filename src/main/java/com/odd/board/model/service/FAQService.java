@@ -27,4 +27,23 @@ public class FAQService {
 		close(conn);
 		return result;
 	}
+	
+	public FAQ selectFAQ(int contactNo) {
+		Connection conn = getConnection();
+		FAQ f = new FAQDao().selectFAQ(conn, contactNo);
+		close(conn);
+		return f;
+	}
+	
+	public int updateFAQ(FAQ f) {
+		Connection conn = getConnection();
+		int result = new FAQDao().updateFAQ(conn, f);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

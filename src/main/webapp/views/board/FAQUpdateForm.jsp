@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.odd.board.model.vo.FAQ"%>
+<%
+	FAQ f = (FAQ)request.getAttribute("f");
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +74,7 @@
                 <tr>
                     <th width="70" style="text-align:center;">카테고리</th>
                     <td width="500">
-                        <select name="category" id="category">
+                        <select name="category" id="category" required value=<%=f.getCategory() %>>
                             <option>배송</option>
                             <option>결제</option>
                             <option>상품</option>
@@ -80,11 +83,11 @@
                 </tr>
                 <tr>
                     <th style="text-align:center;">질문</th>
-                    <td><input type="text" name="title" required style="border: none; width: 400px;"></td>
+                    <td><input type="text" name="title" required style="border: none; width: 400px;" value="<%=f.getContactTitle() %>"></td>
                 </tr>
                 <tr>
                     <th style="text-align:center;">답변</th>
-                    <td><textarea name="content" rows="10" style="resize:none; border:none; width: 400px;" required ></textarea></td>
+                    <td><textarea name="content" rows="10" required style="resize:none; border:none; width: 400px;" ><%=f.getContactAnswer() %></textarea></td>
                 </tr>
 
             </table>
