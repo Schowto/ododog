@@ -205,8 +205,9 @@
                     게시판관리
                 </div>
                 <p>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp게시판</a>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp관리</a>
+                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp공지사항 관리</a>
+                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp자유게시판 관리</a>
+                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp레시피게시판 관리</a>
                 </p>
 
                 <div>
