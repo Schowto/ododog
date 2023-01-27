@@ -29,7 +29,7 @@ public class FAQDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectFAQList");
-		System.out.println(conn);
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			

@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.odd.member.model.vo.Member" %>    
+<%@ page import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.service.*" %>    
 <%
+	
+		MemberService ms = new MemberService();
 
-	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
-
+	ArrayList<Member> list = ms.selectMemberList();
+	
 %>
 <!DOCTYPE html>
 <html>
