@@ -36,6 +36,7 @@
         width:75%;
         height:100%;
         display: inline-block;
+        margin-left: 40px;
     }
     .delete{
         width:100%;
@@ -44,7 +45,7 @@
     .deleteText{
         margin:auto;
         font-size: 13px;
-        color:rgbargb(50, 50, 50);
+        color:rgb(50, 50, 50);
         font-weight:600;
     }
     table{
@@ -58,6 +59,7 @@
         border-left:1px solid rgb(220, 220, 220);
         height:60px;
         color:rgb(50, 50, 50);
+        font-size:14px;
     }
     td:first-child{
         border-left:none;
@@ -99,7 +101,7 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
@@ -131,8 +133,8 @@
                             <tr>
                                 <td style="width:200px; text-align:center; font-size: 13px;">적립금</td>
                                 <td style="width:800px; font-weight: 900; font-size: 12px;">
-                                    &nbsp;탈퇴하면 적립금이 삭제됩니다. <br><br>
-                                    &nbsp;현재 보유하신 적립금은 (회원적립금들어갈자리) 원 입니다. 
+                                    <div style="margin-bottom:10px;">&nbsp;&nbsp;탈퇴하면 적립금이 삭제됩니다.</div>
+                                    <div>&nbsp;&nbsp;현재 보유하신 적립금은 (회원적립금들어갈자리) 원 입니다.</div>
                                 </td>
                             </tr>
                         </table>

@@ -37,12 +37,13 @@
         margin-top:180px;
         margin-bottom:200px;
         display: inline-block;
+        margin-left:40px;
     }
     .myOrderView{
         margin:auto;
         width: 100%;
         height:150px;
-        border:1px solid gray;
+        border:1px solid rgb(220,220,220);
     }
     .myOrderReview{
         width:800px;
@@ -64,11 +65,11 @@
     .review1 td:first-child{
         width:200px;
         height:50px;
-        border-right:1px solid gray;
+        border-right:1px solid rgb(220,220,220);
         text-align:center;
         font-size: 14px;
         font-weight: 600;
-        color:rgba(20, 18, 18, 0.742);
+        color:rgb(50, 50, 50);
     }
     .review1 td:last-child{
         width:600px;
@@ -77,7 +78,7 @@
     .review1 td{
         border-collapse: collapse;
         border-spacing: 0;
-        border-top:1px solid gray;
+        border-top:1px solid rgb(220,220,220);
     }
     #myStar fieldset{
         display: inline-block;
@@ -100,8 +101,8 @@
         text-shadow:rgba(255, 255, 0, 0.505);
     }
     .review2 td{
-        border-top:1px solid gray;
-        border-bottom:1px solid gray;
+        border-top:1px solid rgb(220,220,220);
+        border-bottom:1px solid rgb(220,220,220);
     }
     textarea{
         border:none;
@@ -140,9 +141,9 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;color:rgb(200, 140, 140);">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
-            <a href="" style="font-size:17px;">게시글조회</a> <br><br>
+            <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
@@ -161,7 +162,7 @@
 
             <div class="myOrderReview">
 
-                <div style="font-size:13px; color:rgba(36, 33, 33, 0.903); font-weight:600;">
+                <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
                     2023.01.22 20:20 (주문날짜시간들어갈자리)
                 </div>
 

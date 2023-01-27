@@ -40,28 +40,23 @@
 	table{
 		width:100%;
 		border-top:1px solid rgb(220,220,220);
-		border-collapse: collapse;
-		border-spacing: 0;
+		text-align: center;
 	}
 	td{
-		height:50px;
+		border-bottom: 1px solid rgb(220,220,220);
+		font-size: 14px;
 		color:rgb(50, 50, 50);
-		border-bottom:1px solid rgb(220,220,220);
 	}
-	select{
-		width:400px;
-		border:1px solid rgb(220,220,220);
+	myWhishList img{
+		height:100px;
+		width:100px;
+	}
+	button{
+		width:100px;
 		height:30px;
-		color:rgb(50, 50, 50);
 	}
-	textarea{
-		width:100%;
-		height:400px;
-		background: rgb(220,220,220);
-		border:none;
-	}
-	#btn1, #btn2{
-		width:70px;
+	.btn-red{
+		width:100px;
 		height:30px;
 	}
 </style>
@@ -94,58 +89,72 @@
 
 		<div class="content">
 
-			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h2>
+			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">관심상품</h2>
 			<br><br><br><br>
 
-			<div class="consultEnroll">
+			<div class="myWhishList">
+
+				<!--관심상품이 없는경우-->
 				<form action="">
 					<table>
-						<tr>
-							<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;제목</td>
-							<td>
-								&nbsp;&nbsp;
-								<select name="" id="">
-									<option value="">&nbsp;문의드립니다.</option>
-								</select>
-							</td>
+						<tr style="height:50px;">
+							<td style="width:100px;">이미지</td>
+							<td style="width:500px;">상품정보</td>
+							<td style="width:100px;">판매가격</td>
+							<td style="width:300px;">선택</td>
 						</tr>
 						<tr>
-							<td colspan=2>
-								<br>
-								<textarea name="" id="" style="resize:none;"></textarea>
+							<td colspan="6" style="height:150px; font-weight: 600;">
 								<br><br>
+								<img src="<%=contextPath%>/resources/images/error.png"> <br>
+								관심상품이 없습니다.
+								<br><br><br>
 							</td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 1</td>
-							<td>&nbsp;&nbsp;<input type="file"></td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 2</td>
-							<td>&nbsp;&nbsp;<input type="file"></td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 3</td>
-							<td>&nbsp;&nbsp;<input type="file"></td>
 						</tr>
 					</table>
 				</form>
+
+				<br><br>
+
+				<!--관심상품이있는경우-->
+				<form action="">
+					<table>
+						<tr style="height:50px;">
+							<td style="width:100px;">이미지</td>
+							<td style="width:500px;">상품정보</td>
+							<td style="width:100px;">판매가격</td>
+							<td style="width:300px;">선택</td>
+						</tr>
+						<tr style="height:150px;">
+							<td style="width:100px;">
+								<img src="">
+							</td>
+							<td style="width:400px;">댕댕이수제간식</td>
+							<td style="width:100px;">15,000</td>
+							<td style="width:400px;">
+								<div style="margin-bottom:5px;">
+									<button onclick="location.href='<%=contextPath%>/dir.buy'">주문하기</button> <br>
+								</div>
+								<div style="margin-bottom:5px;">
+									<button onclick="location.href='<%=contextPath%>/'">장바구니담기</button> <br>
+								</div>
+								<div>
+									<button class="btn-red">삭제</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+
+
+
+
+
+
+
 			</div>
 
-			<br>
 
-			<div align="center">
-				<button type="submit" id="btn1" >등록</button>
-				<button type="reset" id="btn2">취소</button>
-			</div>
-
-			<script>
-				$(function(){
-					$("#btn1, #btn2").click(function(){
-						location.href="<%=contextPath%>/consult.bo";
-					});
-				})
-			</script>
 
 		</div>
 
@@ -155,10 +164,10 @@
 
 
 
-		
 	</div>
 	
-	<%@ include file="../common/userFooterbar.jsp" %>
+	<%@ include file="../common/userFooterbar.jsp" %> 
+	
 
 </body>
 </html>

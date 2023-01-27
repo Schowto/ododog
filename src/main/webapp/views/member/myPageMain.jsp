@@ -142,7 +142,7 @@
             <div class="menu" style="margin-left:55px;" align="center" onclick="pageUse();">
                 <div id="img">
                     <br>
-                    <a href=""><img src="<%= contextPath %>/resources/images/myLike.png"></a>
+                    <a href="<%=contextPath%>/myWhish.me"><img src="<%= contextPath %>/resources/images/myLike.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Wishlist <br>

@@ -35,20 +35,21 @@
 		margin-top:180px;
 		margin-bottom:200px;
         display:inline-block;
+        margin-left:40px;
 	}
     table{
         width:100%;
         height: 100%;
-        border-top:1px solid gray;
+        border-top:1px solid rgb(220,220,220);
         border-collapse: collapse;
         border-spacing: 0;
         text-align:center;
     }
     .logoutUser td{
-        border-bottom:1px solid gray;
+        border-bottom:1px solid rgb(220,220,220);
     }
     .loginUser td{
-        border-bottom:1px solid gray;
+        border-bottom:1px solid rgb(220,220,220);
         height:50px;
     }
     #btn1{
@@ -84,7 +85,7 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px; color:rgb(200, 140, 140);">1:1맞춤상담</a>
@@ -114,7 +115,7 @@
                             <td width="10%;">답변</td>
                         </tr>
                         <tr style="height:100px;">
-                            <td colspan="5" style="font-weight:600; color:rgba(18, 17, 17, 0.795);">
+                            <td colspan="5" style="font-weight:600; color:rgb(50, 50, 50);">
                                 <br><br>
                                 <img src="<%=contextPath%>/resources/images/error.png"> <br>
                                 게시글이 존재하지 않습니다. 

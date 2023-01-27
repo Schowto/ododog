@@ -37,6 +37,7 @@
         margin-top:180px;
         margin-bottom:200px;
         display: inline-block;
+        margin-left:40px;
     }
     h2{
         color:rgb(50, 50, 50);
@@ -50,7 +51,7 @@
     .myOrderView{
         width: 100%;
         height:150px;
-        border:1px solid gray;
+        border:1px solid rgb(220,220,220);
     }
     .myOrderView table{
         width:100%;
@@ -70,7 +71,7 @@
         background:white; 
         width:80px; 
         height:30px; 
-        border:1px solid gray;
+        border:1px solid rgb(220,220,220);
     }
     select{
         height:30px;
@@ -89,12 +90,12 @@
         width:100%;
         border-collapse: collapse;
         border-spacing: 0;
-        border-top:1px solid gray;
+        border-top:1px solid rgb(220,220,220);
         margin-bottom: 20px;
     }
     .myOrderList td{
         height:50px;
-        border-bottom:1px solid gray;
+        border-bottom:1px solid rgb(220,220,220);
         text-align: center;
     }
     #orderNo:hover{
@@ -115,7 +116,7 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px; color:rgb(200, 140, 140);">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
@@ -135,7 +136,7 @@
             <br><br><br><br>
 
             <div class="myOrde">
-                <div style="font-size:13px; color:rgba(36, 33, 33, 0.903); font-weight:600;">
+                <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
                     나의 주문조회 내역(주문횟수들어갈자리)
                 </div>
                 <br>

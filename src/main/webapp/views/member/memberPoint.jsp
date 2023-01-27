@@ -83,7 +83,7 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px; color:rgb(200, 140, 140);">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>

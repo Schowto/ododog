@@ -35,6 +35,7 @@
 		margin-top:180px;
 		margin-bottom: 200px;
 		display:inline-block;
+		margin-left:40px;
 	}
 	table{
 		width:100%;
@@ -63,6 +64,12 @@
 	#btn{
 		width:70px;
 		height:30px;
+		margin-left:400px;
+	}
+	.btn-red{
+		margin-left:354px;
+		width:70px;
+		height:30px;
 	}
 </style>
 </head>
@@ -78,7 +85,7 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px; color:rgb(200, 140, 140);">1:1맞춤상담</a>
@@ -148,13 +155,14 @@
 
 			<br>
 
-			<div align="center">
-				<button type="submit" id="btn" >목록</button>
+			<div>
+				<button type="submit" id="btn">목록</button>
+				<button class="btn-red">삭제</button>
 			</div>
 
 			<script>
 				$(function(){
-					$("#btn1, #btn2").click(function(){
+					$("#btn, .btn-red").click(function(){
 						location.href="<%=contextPath%>/consult.bo";
 					});
 				})

@@ -36,6 +36,7 @@
         margin-top:180px;
         margin-bottom: 200px;
         display: inline-block;
+        margin-left:40px;
     }
     .myBoard{
         margin:auto;
@@ -44,12 +45,12 @@
     }
     table{
         width:800px;
-        border-top:1px solid gray;
+        border-top:1px solid rgb(220,220,220);
         border-collapse: collapse;
         border-spacing: 0;
     }
     td{
-        border-bottom:1px solid gray;
+        border-bottom:1px solid rgb(220,220,220);
         text-align: center;
         height:50px;
         font-weight: 500;
@@ -67,7 +68,7 @@
         resize:none; 
         margin-top:5px; 
         margin-bottom:5px; 
-        background:rgba(128, 128, 128, 0.21);
+        background:rgb(220,220,220);
     }
     #btn{
         width:70px;
@@ -87,7 +88,7 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px; color:rgb(200, 140, 140);">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>

@@ -37,6 +37,7 @@
         margin-top:180px;
         margin-bottom:200px;
         display: inline-block;
+        margin-left:40px;
     }
     table{
         border-collapse: collapse;
@@ -50,7 +51,7 @@
     .myOrderView{
         width: 100%;
         height:150px;
-        border:1px solid gray;
+        border:1px solid rgb(220,220,220);
     }
     .myOrderView table{
         width:100%;
@@ -60,7 +61,7 @@
        text-align: center;
        font-weight: 600;
     }
-    img{
+    .myOrderView img{
         width:100%;
         height:100%;
         box-sizing: border-box;
@@ -68,7 +69,7 @@
     .myOrderList table{
         width:100%;
         height:100%;
-        border-top:1px solid gray;
+        border-top:1px solid rgb(220,220,220);
     }
     .myOrderList td{
         height:50px;
@@ -80,14 +81,18 @@
         text-align:right;
     }
     .myOrderList tr:first-child{
-        border-bottom:1px solid gray;
+        border-bottom:1px solid rgb(220,220,220);
     }
     .deliver tr:last-child{
-        border-bottom:1px solid gray;
+        border-bottom:1px solid rgb(220,220,220);
     }
-    #btnWrap{
+    .btn-red{
+        width:70px;
+        height:30px;
+    }
+    #btn2{
         width:100px;
-        margin:auto;
+        height:30px;
     }
 </style>
 </head>
@@ -103,7 +108,7 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px; color:rgb(200, 140, 140);">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
@@ -234,9 +239,10 @@
                 </div>
 
                 <br>
-                    <div id="btnWrap">               
+                    <div align="center">               
                         <button id="btn2">주문목록보기</button>
                     </div> 
+
                     <script>
                         $(function(){
                             $("#btn2").click(function(){

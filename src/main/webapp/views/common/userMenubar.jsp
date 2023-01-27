@@ -217,7 +217,7 @@
                         <ul>
                             <li><a href="<%=contextPath%>/myOrder.me">주문조회</a></li>
                             <li><a href="<%=contextPath%>/myPage.me">회원정보</a></li>
-                            <li><a href="">관심상품</a></li>
+                            <li><a href="<%=contextPath%>/myWhish.me">관심상품</a></li>
                             <li><a href="<%=contextPath%>/myPoint.me">적립금</a></li>
                             <li><a href="<%=contextPath%>/myBoard.me">게시글조회</a></li>
                             <li><a href="<%=contextPath%>/consult.bo">1:1맞춤상담</a></li>

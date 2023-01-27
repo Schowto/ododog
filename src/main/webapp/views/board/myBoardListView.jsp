@@ -36,28 +36,23 @@
         width:75%;
         height:100%;
         display: inline-block;
-    }
-    .myBoard{
-        margin:auto;
-        height:100%;
-        width:800px;
-
+        margin-left:40px;
     }
     table{
         width:100%;
         height:100%;
-        border-top:1px solid gray;
+        border-top:1px solid rgb(220,220,220);
         border-collapse: collapse;
         border-spacing: 0;
     }
     .loginUser td{
        
-        border-bottom:1px solid gray;
+        border-bottom:1px solid rgb(220,220,220);
         text-align: center;
         height:50px;
     }
     .logoutUser td{
-        border-bottom:1px solid gray;
+        border-bottom:1px solid rgb(220,220,220);
         text-align: center;
     }
     .btn1>a{
@@ -81,7 +76,7 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px; color:rgb(200, 140, 140);">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
@@ -130,7 +125,7 @@
                     <br><br><br>
 
                     <!-- 작성한 게시글이 있을때 -->
-                    <div style="font-size:14px; font-weight:600; color:rgb(50, 50, 50);">
+                    <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
                         내가 쓴 게시글
                     </div>
 

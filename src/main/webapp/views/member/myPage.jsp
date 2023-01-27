@@ -38,9 +38,10 @@
     margin-top:180px;
     margin-bottom:200px;
     display: inline-block;
+    margin-left:40px;
 }
 table{
-    border-top:1px solid gray;
+    border-top:1px solid rgb(220,220,220);
     width:100%;
 }
 span{
@@ -59,11 +60,11 @@ span{
 table{
     border-collapse: collapse;
     border-spacing: 0;
-    border-top:1px solid gray;
+    border-top:1px solid rgb(220,220,220);
 }
 td{
-    border-bottom:1px solid gray;
-    border-left:1px solid gray;
+    border-bottom:1px solid rgb(220,220,220);
+    border-left:1px solid rgb(220,220,220);
     height:50px;
 
 }
@@ -71,7 +72,7 @@ td:first-child{
     border-left:none;
 }
 #address{
-    border-left:1px solid gray;
+    border-left:1px solid rgb(220,220,220);
     border-bottom:none;
 }
 #profileTable label{
@@ -118,7 +119,7 @@ input::placeholder{
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
@@ -139,7 +140,7 @@ input::placeholder{
                 <h2 align="center" style="font-weight:600; color:rgb(50, 50, 50)">회원정보수정</h3>
                     <br><br><br><br>
 
-                    <span style="float:left; font-weight: 900;">&nbsp;기본정보 </span>
+                    <span style="float:left; font-size:13px; font-weight: 600; color:rgb(50, 50, 50)">&nbsp;기본정보 </span>
                     <span style="float:right; font-weight: 900;">* 필수입력사항&nbsp;</span>
                     <br><br>
                     

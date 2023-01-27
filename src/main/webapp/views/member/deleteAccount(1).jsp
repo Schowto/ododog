@@ -36,6 +36,7 @@
         width:75%;
         height:100%;
         display: inline-block;
+        margin-left:40px;
         /*border:1px solid red;*/
     }
     .delete{
@@ -66,11 +67,8 @@
         border:1px solid rgb(220, 220, 220);
     }
     #btn{
-        border-radius:4px; 
-        background:white; 
         width:80px; 
         height:30px; 
-        border:1px solid gray;
     }
     
     
@@ -88,9 +86,9 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px; color:rgb(200, 140, 140);">회원정보</a> <br><br>
-            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
-            <a href="" style="font-size:17px;">게시글조회</a> <br><br>
+            <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
             <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
