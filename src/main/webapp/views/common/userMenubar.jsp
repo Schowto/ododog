@@ -228,7 +228,7 @@
                     <li><a href="">고객센터</a>
                         <ul>
                             <li><a href="<%= contextPath %>/views/board/FAQuser.jsp">FAQ</a></li>
-                            <li><a href="">1:1상담</a></li>
+                            <li><a href="<%=contextPath%>/consult.bo">1:1상담</a></li>
                         </ul> 
                     </li>
 
