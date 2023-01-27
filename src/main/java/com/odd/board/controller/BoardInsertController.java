@@ -34,7 +34,7 @@ public class BoardInsertController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		String boardTitle = request.getParameter("title");
-		int userNo = 0;	//넣기!!!!!
+		int userNo = 2;	//넣기!!!!!
 		String boardContent = request.getParameter("content");
 		
 		Board b = new Board();

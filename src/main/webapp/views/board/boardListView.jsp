@@ -188,7 +188,7 @@
             </table>
     
             <br><br>
-    
+    <%= pi.getListCount() %>
         <div>
             <form action="" style="font-size:13px;">
                     
