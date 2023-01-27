@@ -189,7 +189,7 @@
             <div class="menu" align="center" style="margin-left:55px;">
                 <div class="img">
                     <br>
-                    <a href=""><img src="<%= contextPath %>/resources/images/myConsult.png"></a>
+                    <a href="<%=contextPath%>/consult.bo"><img src="<%= contextPath %>/resources/images/myConsult.png"></a>
                 </div>
                 <div class="body" style="font-size:23px; color:rgb(50, 50, 50);">
                     Consult <br>

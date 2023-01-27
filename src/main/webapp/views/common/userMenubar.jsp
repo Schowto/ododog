@@ -220,15 +220,15 @@
                             <li><a href="">관심상품</a></li>
                             <li><a href="<%=contextPath%>/myPoint.me">적립금</a></li>
                             <li><a href="<%=contextPath%>/myBoard.me">게시글조회</a></li>
-                            <li><a href="">1:1맞춤상담</a></li>
+                            <li><a href="<%=contextPath%>/consult.bo">1:1맞춤상담</a></li>
 
                         </ul>
                     </li>
 
                     <li><a href="">고객센터</a>
                         <ul>
+                            <li><a href="">공지사항</a></li>
                             <li><a href="<%= contextPath %>/views/board/FAQuser.jsp">FAQ</a></li>
-                            <li><a href="<%=contextPath%>/consult.bo">1:1상담</a></li>
                         </ul> 
                     </li>
 

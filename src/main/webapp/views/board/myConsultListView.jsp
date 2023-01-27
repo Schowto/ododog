@@ -59,7 +59,7 @@
         float:right;
     }
     .consultSearch{
-        width:300px;
+        width:330px;
         margin:auto;
     }
 </style>
@@ -76,7 +76,6 @@
             <hr>
             <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">공지사항</a> <br><br>
             <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">FAQ</a> <br><br>
-            <a href="" style="font-size:17px; font-size:17px; color:rgb(200, 140, 140);">1:1 맞춤상담</a> <br><br>
         </div>
 
         <script>
@@ -92,20 +91,15 @@
 			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h2>
 			<br><br><br><br>
 
-			<div class="consultView">
-
-                <div class="consultCategory">
-
-                    
-                </div>
                 <!--게시물이없을때-->
                 <form action="" class="logoutUser">
                     <table>
                         <tr style="height:50px;">
                             <td width="10%;">번호</td>
                             <td width="60%;">제목</td>
-                            <td width="15%;">작성일</td>
-                            <td width="15%;">답변</td>
+                            <td width="10%;">작성자</td>
+                            <td width="10%;">작성일</td>
+                            <td width="10%;">답변</td>
                         </tr>
                         <tr style="height:100px;">
                             <td colspan="5" style="font-weight:600; color:rgba(18, 17, 17, 0.795);">
@@ -126,24 +120,28 @@
                         <tr>
                             <td width="10%;">번호</td>
                             <td width="60%;">제목</td>
-                            <td width="15%;">작성일</td>
-                            <td width="15%;">답변</td>
+                            <td width="10%;">작성자</td>
+                            <td width="10%;">작성일</td>
+                            <td width="10%;">답변</td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td>배송관련문의드립니다</td>
+                            <td>와그작</td>
                             <td>2023.01.27</td>
                             <td>미답변</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>배송관련문의드립니다</td>
+                            <td>와그작</td>
                             <td>2023.01.27</td>
                             <td>답변완료</td>
                         </tr>
                         <tr>
                             <td>1</td>
                             <td>배송관련문의드립니다</td>
+                            <td>와그작</td>
                             <td>2023.01.27</td>
                             <td>답변완료</td>
                         </tr>
@@ -165,13 +163,17 @@
                     <br><br>
 
                     <div class="consultSearch">
-                        <select name="" id="searchAnswer" style="height:21px;">
+                        <select name="" id="searchAnswer">
                             <option value=""  selected>전체</option>
                             <option value="">미답변</option>
                             <option value="">답변</option>
                         </select>
-                        <input type="text" id="searchInput">
-                    </div>
+                        &nbsp;
+                        <input type="text" id="searchInput" value="" style="height:25px;">
+                        &nbsp;
+                        <button type="submit" onclick="">찾기</button>
+
+                    
 
 			</div>
 

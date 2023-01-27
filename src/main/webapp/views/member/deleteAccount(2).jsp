@@ -86,22 +86,6 @@
         font-size: 13px;
     }
 </style>
-<!-- 부트스트랩 css 사용 -->
-<link rel="stylesheet" href="/css/bootstrap.css">
-<!--  부트스트랩 js 사용 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap.js"></script>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-
-<!-- 제이쿼리 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -118,7 +102,7 @@
             <a href="" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
-            <a href="" style="font-size:17px;">1:1맞춤상담</a>
+            <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
         <script>
