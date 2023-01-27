@@ -38,7 +38,7 @@
 			)
 			VALUES
 			(
-				 MEMBER_SEQ.NEXTVAL
+				 SEQ_MEMBERNO.NEXTVAL
 				, ?
 				, ?
 				, ?
