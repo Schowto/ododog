@@ -69,6 +69,10 @@
         margin-bottom:5px; 
         background:rgba(128, 128, 128, 0.21);
     }
+    #btn{
+        width:70px;
+        height:30px;
+    }
 </style>
 </head>
 <body>
@@ -133,8 +137,16 @@
                 <br>
 
                 <div align="center">
-                <button type="submit" onclick="location.href='<%=contextPath%>/myBoard.me'">작성완료</button>
+                <button type="submit" id="btn">작성완료</button>
                 </div>
+
+                <script>
+                    $(function(){
+                        $("#btn").click(function(){
+                            location.href="<%=contextPath%>/myBoard.me";
+                        });
+                    })
+                </script>
 
             </div>
 

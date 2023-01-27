@@ -51,7 +51,7 @@
         border-bottom:1px solid gray;
         height:50px;
     }
-    #btn{
+    #btn1{
         width:70px;
         height:30px
     }
@@ -59,8 +59,16 @@
         float:right;
     }
     .consultSearch{
-        width:330px;
+        width:350px;
         margin:auto;
+    }
+    #btn2{
+        width:50px;
+        height:28px;
+    }
+    #consultDetail:hover{
+        opacity: 0.7;
+        cursor: pointer;
     }
 </style>
 </head>
@@ -72,10 +80,14 @@
 
 		<div id="side">
             <br><br><br><br><br>
-            <p style="font-size:23px;">고객센터</p>
+            <p style="font-size:23px;">MYPAGE</p>
             <hr>
-            <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">공지사항</a> <br><br>
-            <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">FAQ</a> <br><br>
+            <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
+            <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
+            <a href="" style="font-size:17px;">관심상품</a> <br><br>
+            <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
+            <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
+            <a href="<%=contextPath%>/consult.bo" style="font-size:17px; color:rgb(200, 140, 140);">1:1맞춤상담</a>
         </div>
 
         <script>
@@ -126,7 +138,7 @@
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td>배송관련문의드립니다</td>
+                            <td id="consultDetail">배송관련문의드립니다</td>
                             <td>와그작</td>
                             <td>2023.01.27</td>
                             <td>미답변</td>
@@ -147,11 +159,27 @@
                         </tr>
                     </table>
                 </form>
+
+                <script>
+                    $(function(){
+                        $("#consultDetail").click(function(){
+                            location.href="<%=contextPath%>/consultDetail.bo";
+                        });
+                    })
+                </script>
                 <br>
 
                     <div id="btnWrap">
-                    <button id="btn">글쓰기</button>
+                    <button id="btn1">글쓰기</button>
                     </div>
+
+                    <script>
+                        $(function(){
+                            $("#btn1").click(function(){
+                                location.href="<%=contextPath%>/consultEnroll.bo";
+                            });
+                        })
+                    </script>
 
                     <script>
                         $(function(){
@@ -171,25 +199,10 @@
                         &nbsp;
                         <input type="text" id="searchInput" value="" style="height:25px;">
                         &nbsp;
-                        <button type="submit" onclick="">찾기</button>
-
-                    
+                        <button type="submit" id="btn2" onclick="">찾기</button>
 
 			</div>
-
-
-
-
-
-
-
 		</div>
-
-
-
-
-
-
 	</div>
 	
 	<%@ include file="../common/userFooterbar.jsp" %>

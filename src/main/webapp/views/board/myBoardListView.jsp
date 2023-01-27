@@ -151,8 +151,8 @@
                                 <td>2023.01.22</td>
                                 <td>유기견봉사같이하실분구해욥~</td>
                                 <td>
-                                        button>
-                                        <a href="<%=contextPath%>/boardEnroll.me" id="modified">수정</a>
+                                    <button>
+                                       <a href="<%=contextPath%>/boardEnroll.me" id="modified">수정</a>
                                     </button>
                                 </td>
                                 <td><button class="btn-red">삭제</button></td>
@@ -173,10 +173,17 @@
                             </tr>
                         </table>
                     </form>
+
+                    <!--
+                    <script>
+                        $(function(){
+                            $("#modified").click(function(){
+                                location.href="<%=contextPath%>/boardEnroll.me";
+                            });
+                        })
+                    </script>
+                    -->
                     
-
-
-
                 </div>
 
         </div>
