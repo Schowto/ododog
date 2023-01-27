@@ -4,12 +4,9 @@
 
 <entry key="selectFAQList">
 	SELECT
-		  CONTACT_NO
+		  CATEGORY 
 		, CONTACT_TITLE 
 		, CONTACT_ANSWER 
-		, CATEGORY 
-		, FAQ_WRITER
-		, STATUS
 		FROM FAQ
 		WHERE STATUS = 'Y'
 </entry>

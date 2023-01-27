@@ -11,7 +11,6 @@ public class FAQService {
 
 	public ArrayList<FAQ> selectFAQList(){
 		Connection conn = getConnection();
-		System.out.println("서비스확인");
 		ArrayList<FAQ> list = new FAQDao().selectFAQList(conn);
 		close(conn);
 		return list;

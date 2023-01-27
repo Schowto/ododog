@@ -46,7 +46,6 @@ public class JDBCTemplate {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return conn;
 		
 	}

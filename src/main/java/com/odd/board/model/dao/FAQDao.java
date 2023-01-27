@@ -29,21 +29,20 @@ public class FAQDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectFAQList");
-		System.out.println(sql);
+		System.out.println(conn);
 		try {
-			System.out.println("확인");
 			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
 			
+			rset = pstmt.executeQuery();
+		
 			while(rset.next()) {
-				list.add(new FAQ(rset.getInt("contact_no"),
-								 rset.getString("contact_title"),
-								 rset.getString("contact_answer"),
-								 rset.getString("category"),
-								 rset.getInt("faq_writer"),
-								 rset.getString("status")
-								 ));
+				FAQ faq = new FAQ();
+				faq.setCategory(rset.getString("category"));
+				faq.setContactTitle(rset.getString("contact_answer"));
+				faq.setContactAnswer(rset.getString("contact_title"));
+				list.add(faq);
 			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
