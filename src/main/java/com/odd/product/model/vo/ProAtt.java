@@ -15,6 +15,20 @@ public class ProAtt {
 	
 	public ProAtt() {}
 	
+	
+	public ProAtt(int fileNo, int proNo, String changeName, String filePath, Date uploadDate, String status,
+			int fileLevel) {
+		super();
+		this.fileNo = fileNo;
+		this.proNo = proNo;
+		this.changeName = changeName;
+		this.filePath = filePath;
+		this.uploadDate = uploadDate;
+		this.status = status;
+		this.fileLevel = fileLevel;
+	}
+
+
 	public ProAtt(int fileNo, int proNo, String originName, String changeName, String filePath, Date uploadDate,
 			String status, int fileLevel) {
 		super();

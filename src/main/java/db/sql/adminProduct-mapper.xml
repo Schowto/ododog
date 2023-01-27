@@ -26,13 +26,56 @@
 	</entry>
 	
 	<entry key = "selectSearch">
-		SELECT *
-		  FROM PRODUCT 
-		 WHERE STATUS = 'Y'
+	    SELECT A.*
+	      FROM (
+				 SELECT TO_DATE(EXPIRED_DATE, 'YYYY-MM-DD') - SYSDATE EXP_DATE
+				 	  , TO_DATE(ENROLL_DATE, 'YYYY-MM-DD') ENR_DATE
+				 	  , P.*
+				   FROM PRODUCT P
+	            ) A
+	      WHERE STATUS = 'Y'
 	</entry>
 	
+	<entry key="insertProduct">
+		INSERT 
+  		  INTO PRODUCT 
+             (
+            	PRO_NO
+              , CATEGORY
+              , PRO_NAME
+              , PRICE
+              , EXPIRED_DATE
+              , THUMB_IMG
+              , ENROLL_DATE)
+	    VALUES 
+	         (
+        		SEQ_PRODUCT_NO.NEXTVAL
+         	  , ?
+         	  , ?
+         	  , ?
+         	  , ?
+         	  , ?
+         	  , TO_CHAR(SYSDATE,'YYYY-MM-DD')
+	         )
+	</entry>
 	
+	<entry key="insertAttachList">
+		INSERT
+		  INTO PRO_ATT
+			  (
+			     FILE_NO
+			   , PRO_NO
+			   , FILE_PATH
+			   , FILE_LEVEL
+			  )
+		VALUES 
+			  (
+			    SEQ_FILE_NO.NEXTVAL
+			  , SEQ_PRODUCT_NO.CURRVAL
+			  , ?
+			  , ?
+		 		)
 	
-	
+	</entry>
 	
 </properties>

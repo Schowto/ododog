@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList , com.odd.common.model.vo.PageInfo, com.odd.product.model.vo.Product, java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList , com.odd.common.model.vo.PageInfo, com.odd.product.model.vo.Product, java.text.SimpleDateFormat, com.odd.product.model.vo.AdminProSearch" %>
 
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 %>   
+
 
     
 <!DOCTYPE html>
@@ -45,12 +46,7 @@
     	background:gray;
     	cursor:pointer;
     }
-    
-    .list-area>tbody>tr:hover{
-    	background:gray;
-    	cursor:pointer;
-    }
-    
+
 	#searchForm input{
 		width:50%;
 	}
@@ -63,6 +59,11 @@
 	.table-bordered{
 		overflow:hiddlen; white-space:nowrap;
         font-size: 90%;
+	}
+	
+	#deleteBTN{
+		float:left;
+		margin-left:10px;
 	}
 	
 	
@@ -84,17 +85,54 @@
             <br>
 			<br>
 			
-			<div style="width:100%; height:50px; overflow:auto">
+			<button type="button" class="btn btn-sm btn-danger" id="deleteBTN">삭제</button>
+			
+			<script>
+				$(function(){
+					$("#deleteBTN").click(function(){
+						
+						 let deleteArr = [];
+
+				        $("input[name='deleteNo']:checked").each(function() {
+
+				     	   deleteArr.push($(this).val());
+
+				        });
+						
+						
+						$.ajax({
+							
+							url:"delete.adPro" , 
+							data:{deleteArr:deleteArr} ,
+							type : "post" ,
+							success : function(result){
+								
+							} ,
+							error : {
+								
+							} 
+						})
+					})	
+				})
+			</script>
+			
+			
+			
+			
+			<br><br>
+			
+			<div style="width:100%; height:350px; overflow:auto">
                <table class="list-area table" >
                    <thead>
                        <tr>
-                           <th width="30px">번호</th>
+                       	   <th width="5px"></th>
+                           <th width="5px">번호</th>
                            <th width="50px">카테고리</th>
-                           <th width="100px">상품명</th>
-                           <th width="50px">가격</th>
-                           <th width="40px">품절</th>
+                           <th width="170px">상품명</th>
+                           <th width="30px">가격</th>
+                           <th width="20px">품절</th>
                            <th width="40px">유통기한</th>
-                           <th width="30px">등록일</th>
+                           <th width="40px">등록일</th>
                            <th width="10px">적립률</th>
                        </tr>
                    </thead>
@@ -102,11 +140,12 @@
                    
                        <%if (list.isEmpty()){ %>
                        <tr>
-                           <td colspan="8"> 조회된 게시글이 없습니다.</td>
+                           <td colspan="9"> 조회된 게시글이 없습니다.</td>
                        </tr>
                        <%}else{ %>
                            <% for(Product p : list){ %>
                        <tr>
+                           <td><input type="checkbox" name="deleteNo" class="deleteNo" value="<%= p.getProNo() %>"></td>
                            <td><%= p.getProNo() %></td>
                            <td><%= p.getCategory() %></td>
                            <td><%= p.getProName() %></td>
@@ -140,7 +179,7 @@
 
        		<br><br>
        		
-       		<form id="searchForm" action="<%=contextPath%>/search.adPro" method=post>
+       		<form id="searchForm" action="<%=contextPath%>/search.adPro" method="post">
 				  <input type="hidden" name="cpage" value="2" >
 
                   <table class="table-bordered" style="width:700px">
@@ -250,7 +289,7 @@
         
        </div>
         
-
+	
 
 </body>
 </html>

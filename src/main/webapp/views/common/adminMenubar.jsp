@@ -52,7 +52,7 @@
         }
 
         button {	/* 버튼 스타일 일단 설정해놨어요,,!! 각자 페이지에서 바꿔도 됨 */
-            font-size: 12px;
+            font-size: 13px;
             border: 2px solid rgb(220, 220, 220);
             background: white;
             color: rgb(50, 50, 50);
@@ -91,7 +91,7 @@
             bottom: 0;
         }
 
-        hr {
+        #side hr {
             width: 250px;
             background: rgb(220, 220, 220);
         }
@@ -120,21 +120,21 @@
             line-height: 50px;
         }
 
-        p {
+        #side  p {
             /*border: 1px solid yellow;*/
             width: 100%;
             margin-top: 5px;
             display: none;
         }
 
-        p>a {
+        #side p>a {
             display: block;
             color: white;
             font-size: 13px;
             padding: 10px;
         }
 
-        p>a:hover {
+        #side p>a:hover {
             /* 하위메뉴들 */
             background-color: gray;
             color: white;

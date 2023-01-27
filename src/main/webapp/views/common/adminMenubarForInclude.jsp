@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%	
 	String contextPath = request.getContextPath();
+	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,11 +43,27 @@
         }
 
         button {	/* 버튼 스타일 일단 설정해놨어요,,!! 각자 페이지에서 바꿔도 됨 */
-            font-size: 12px;
+            font-size: 13px;
             border: 2px solid rgb(220, 220, 220);
             background: white;
             color: rgb(50, 50, 50);
             border-radius: 5px;
+        }
+        button:hover{
+            font-weight: 600;
+            background: rgb(220, 220, 220);
+        }
+        .btn-red{   /* 빨간 버튼 */
+        font-size: 13px;
+        border: 2px solid rgb(200, 140, 140);
+        background: white;
+        color: rgb(50, 50, 50);
+        border-radius: 5px;
+        }
+        .btn-red:hover{
+            font-weight: 600;
+            background:rgb(200, 140, 140);
+            color:white;
         }
 
 
@@ -65,7 +82,7 @@
             bottom: 0;
         }
 
-        hr {
+        #side hr {
             width: 250px;
             background: rgb(220, 220, 220);
         }
@@ -94,21 +111,21 @@
             line-height: 50px;
         }
 
-        p {
+        #side p {
             /*border: 1px solid yellow;*/
             width: 100%;
             margin-top: 5px;
             display: none;
         }
 
-        p>a {
+        #side p>a {
             display: block;
             color: white;
             font-size: 13px;
             padding: 10px;
         }
 
-        p>a:hover {
+        #side p>a:hover {
             /* 하위메뉴들 */
             background-color: gray;
             color: white;
@@ -133,7 +150,13 @@
 </head>
 
 <body>
-
+		<% if(alertMsg != null) { %>
+		<script>
+			alert("<%=alertMsg%>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+		<% } %>
+		
  
 
         <div id="side">
@@ -154,7 +177,7 @@
                     회원관리
                 </div>
                 <p>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원</a>
+                    <a href="<%=contextPath%>/views/memer/adminUserListView.jsp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원</a>
                     <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp관리</a>
                 </p>
 
@@ -182,8 +205,9 @@
                     게시판관리
                 </div>
                 <p>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp게시판</a>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp관리</a>
+                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp공지사항 관리</a>
+                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp자유게시판 관리</a>
+                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp레시피게시판 관리</a>
                 </p>
 
                 <div>
@@ -191,7 +215,7 @@
                     고객센터관리
                 </div>
                 <p>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp고객센터</a>
+                    <a href="<%=contextPath%>/FAQlist.ad">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFAQ</a>
                     <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp관리</a>
                 </p>
             </div>

@@ -13,6 +13,7 @@ import java.util.Properties;
 
 import com.odd.common.model.vo.PageInfo;
 import com.odd.product.model.vo.AdminProSearch;
+import com.odd.product.model.vo.ProAtt;
 import com.odd.product.model.vo.Product;
 
 public class AdminProductDao {
@@ -129,10 +130,17 @@ public class AdminProductDao {
 			sql += " AND SOLDOUT = '" + soldout +"'";
 		}
 		if(!expDateRemain.equals("1")) {
-			sql += " AND SOLDOUT = '" + expDateRemain + "'";
+			sql += " AND EXP_DATE < " + expDateRemain;
 		}
-		if(!firstDate.equals("")&!secondDate.equals("")) {
-			//sql += and TO_DATE(EXPIRED_DATE, 'mm/dd/yyyy') between TO_DATE('01/19/2023', 'mm/dd/yyyy') and TO_DATE('01/23/2023', 'mm/dd/yyyy');
+		if(!lowPrice.equals("") && !highPrice.equals("")) {
+			sql += " AND PRICE BETWEEN "
+				 + lowPrice + " AND "
+				 + highPrice;
+		}
+		if(!firstDate.equals("") && !secondDate.equals("")) {
+			sql += " AND ENR_DATE BETWEEN TO_DATE('"
+				 + firstDate + "', 'YYYY-MM-DD') AND TO_DATE('"
+				 + secondDate +"', 'YYYY-MM-DD')";
 		}
 		
 		System.out.println(firstDate);
@@ -169,10 +177,58 @@ public class AdminProductDao {
 		}
 		
 		return list;
+	}
+	
+	public int insertProduct(Connection conn, Product p) {
 		
+		int result = 0;
+		PreparedStatement pstmt = null;
 		
+		String sql = prop.getProperty("insertProduct");
 		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, p.getCategory());
+			pstmt.setString(2, p.getProName());
+			pstmt.setInt(3, p.getPrice());
+			pstmt.setString(4, p.getExpiredDate());
+			pstmt.setString(5, p.getThumbImg());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 		
+		return result;
+	}
+	
+	public int insertAttachList(Connection conn, ArrayList<ProAtt> list) {
+		
+		int result = 1;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertAttachList");
+		
+		try {
+			for(ProAtt at : list) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, at.getFilePath());
+				pstmt.setInt(2, at.getFileLevel());
+				
+				result *= pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 	
 }

@@ -6,9 +6,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import static com.odd.common.JDBCTemplate.*;
+
+import com.odd.board.model.vo.FAQ;
 import com.odd.member.model.vo.Member;
 
 public class MemberDao {
@@ -89,6 +92,37 @@ public class MemberDao {
 		return result;
 		
 
+	}
+	
+	public ArrayList<Member> selectMemberList(Connection conn){
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMemberList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Member(rset.getInt("user_No"),
+								 rset.getString("user_Name"),
+								 rset.getString("user_Id"),
+								 rset.getString("email"),
+								 rset.getString("phone"),
+								 rset.getString("address"),
+								 rset.getInt("point")
+								 ));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	
 	}
 	
 

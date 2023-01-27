@@ -37,6 +37,7 @@ public class AdminProductSearchController extends HttpServlet {
 		
 		ArrayList<Product> list = new ArrayList<>();
 		
+		
 		if(!request.getParameter("cpage").equals("1")) {
 			
 			String proName = request.getParameter("proName");
@@ -59,9 +60,9 @@ public class AdminProductSearchController extends HttpServlet {
 												  , secondDate
 												);
 			
-			
 			list = new AdminProductService().searchList(proSearch);
 		}
+		
 		request.setAttribute("list",list);
 		
 		request.getRequestDispatcher("views/product/adminProductSearchView.jsp").forward(request, response);
