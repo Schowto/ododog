@@ -12,9 +12,10 @@
             text-align: center;
         }
         .header{
+        margin-top:80px;
             box-sizing: border-box;
            border: 1px solid black; 
-            width: 800px;
+            width: 1200px;
             height: 100px;
             background: gray;
             color:white;
@@ -22,9 +23,21 @@
         }
         #destination{
             border: 1px solid silver;
-            width: 800px;
+            width: 1200px;
             
         }
+        .left{
+        	width: 50%;
+        	float: left;
+			box-sizing: border-box;
+        }
+        .right {
+			width: 50%;
+			float: right;
+			box-sizing: border-box;
+			font-size: 15px;
+		}
+      
 
     </style>
 </head>
@@ -34,26 +47,27 @@
    <div class="wrap">
     <form action="<%= contextPath %>/" id="destination" ac>
         <div class="header">
-            <h2 align="center">주문/결제</h2>
+        <br>
+            <h4 align="center">주문/결제</h4>
         </div>
         <br><br>
         <table align="center">
             <tr> 
                 <td>받는사람 *</td>
-                <td><input type="text" name="name" placeholder="이름을 입력해주세요" required></td>
+                <td><input type="text" name="name" size=40; placeholder="이름을 입력해주세요" required ></td>
             </tr>
             <tr>
                 <td>휴대전화 * </td>
-                <td><input type="text" name="phone" placeholder="휴대전화를 입력해주세요" required></td>
+                <td><input type="text" name="phone" size=40; placeholder="휴대전화를 입력해주세요" required></td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" name="email" placeholder="이메일을 입력해주세요" required></td>
+                <td><input type="email" name="email" size=40; placeholder="이메일을 입력해주세요" required></td>
                
             </tr>
             <tr>
                 <td>주소 * </td>
-                <td><input type="text" name="address1" placeholder="우편주소" required></td>
+                <td><input type="text" name="address1" size=40; placeholder="우편주소" required></td>
                 <td><button>우편번호 찾기</button></td> 
             </tr>
 
@@ -64,7 +78,7 @@
             </tr>-->
             <tr>
                 <td>배송시 요청사항&nbsp;</td>
-                <td><input type="text" name="request" placeholder="요청 사항을 입력해주세요"></td>
+                <td><input type="text" name="request" size=40; placeholder="요청 사항을 입력해주세요"></td>
                 
             </tr>
         </table>
@@ -72,7 +86,17 @@
         <hr style="border:1px color= silver;" width="100%">
         <div>
         <b>주문상품</b> <br>
-                <!--상품자리-->
+                <div class="left">
+                	<!--상품자리-->
+                	<img src="<%=contextPath%>/resources/product_img/오븐14.png" width="200px" height="200px">
+                	
+                </div>
+                <div class="right">
+                	<b>건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레)</b>
+                	수량 : 3개
+                	<br>
+                	<b>58,000원</b>
+                </div>
                 <br><br><br><br><br><br><br><br><br><br><br>
                 <hr style="border:1px color= silver;" width="100%">
         </div> <br>
@@ -85,6 +109,12 @@
             <hr style="border:1px color= silver;" width="100%">
             <b>결제정보</b>
             <!--주문 상품가격, 배송비 자리 -->
+            <div>
+            	<!-- 주문 상품가격 -->
+            </div>
+            <div>
+            	<!--  배송비 자리 -->
+            </div>
             <br><br>
             주문상품
             <br><br>

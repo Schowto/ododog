@@ -12,6 +12,7 @@
         width:1200px;
         height:auto;
         font-size: 13px;
+        margin-top:50px;
         
         }
         #select{
@@ -28,7 +29,9 @@
         <form action="" >
             <table align="center">
                 <br>
-                <h4 style="text-align: center;">상품 상세 검색</h4>
+                <h4 style="text-align: center;">
+                <img src="<%=contextPath%>/resources/icons/search.png" width=30px; height=30px;>
+                상품 상세 검색</h4>
                 <br><br>
                 <tr>
                     <td>상품분류</td>

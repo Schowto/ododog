@@ -12,6 +12,7 @@ h2 {
 
 .warp {
 	text-align: center;
+	
 }
 
 table {
@@ -33,8 +34,8 @@ input[type=number]::-webkit-inner-spin-button {
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="wrap" align="center">
-		<br>
-		<h3>장바구니</h3>
+		<br><br><br>
+		<h4>장바구니</h4>
 		<br>
 		<br>
 		<hr style="border: 1px color= silver;" width="100%">

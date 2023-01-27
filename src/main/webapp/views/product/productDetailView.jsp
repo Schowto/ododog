@@ -78,7 +78,7 @@ input[type=number]::-webkit-inner-spin-button {
 					<img src="<%=contextPath%>/resources/product_img/주식1-3.png"
 						width="100px" height="100px">
 				</div>
-
+				
 				<div class="float-file">
 					<!--미리보기4-->
 					<img src="<%=contextPath%>/resources/product_img/주식1-4.png"
@@ -87,12 +87,19 @@ input[type=number]::-webkit-inner-spin-button {
 			</div>
 
 			<div class="right">
-				<br> <span> <b>상품명</b>
-				</span> <span> 건강한 한끼 화식 4종세트 (말고기, 닭고기, 소고기영양죽, 야채퓨레) </span> <br> <br>
-				<br> <br> <span> <b>판매가</b>
-				</span> <span> 16,000원 </span> <br> <br> <br> <span>
-					<b>적립금</b>
-				</span> <span> 1% </span> <br> <br>
+			<br>
+				<br> <span> <b>상품명</b> </span> 
+				<span> 건강한 한끼 화식 4종세트 (말고기, 닭고기, 소고기영양죽, 야채퓨레) </span> 
+				<br><br> 
+				<span> <b>판매가</b></span> 
+				<span> 16,000원 </span> 
+				<br><br> 
+				<span><b>적립금</b></span> 
+				<span> 1% </span> 
+				<br> <br>
+				<span><b>제조사</b></span>
+				<span>도그쿡</span>
+				<br><br>
 
 				<hr style="border: 1px color= silver;" width="100%">
 				<br> <span> 건강한 한끼 화식 4종세트 (말고기, 닭고기, 소고기영양죽, 야채퓨레) </span> <span>
@@ -100,8 +107,48 @@ input[type=number]::-webkit-inner-spin-button {
 				</span> <br> <br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>
 				</span> <br> <br> <br>
+				　　　　　　　　
+				<button type="submit" class="btn btn-light" id="like">관심상품
+					등록</button>
+				<!-- like modal-->
+				<div class="modal fade2" id="testModal2" tabindex="-1" role="dialog"
+					aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">
+									<img src="<%=contextPath%>/resources/icons/logoimg.png"
+										width="25px" height="25px"> ododog.co.kr
+								</h5>
+								<button class="close" type="button" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">X</span>
+								</button>
+							</div>
+							<br>
+							<br>
+							<div id="img" align="center">
+								<img src="<%=contextPath%>/resources/icons/heart.png"
+									width="100px" height="100px">
+							</div>
+							<div class="modal-body" align="center">괸심상품으로 등록되었습니다.</div>
+							<br>
+							<br>
+							<div class="modal-footer">
 
-				<button type="submit" class="btn btn-dark">구매하기</button>　　　　　　
+								<button class="btn btn-primary" type="button"
+									data-dismiss="modal">계속 쇼핑하기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<script>
+					$('#like').click(function(e) {
+						e.preventDefault();
+						$('#testModal2').modal("show");
+					});
+				</script>
 				<button type="submit" class="btn btn-secondary" id="shoppingcartBtn">장바구니
 					담기</button>　
 
@@ -146,48 +193,8 @@ input[type=number]::-webkit-inner-spin-button {
 						$('#testModal').modal("show");
 					});
 				</script>
-
-				<button type="submit" class="btn btn-light" id="like">관심상품
-					등록</button>
-				<!-- like modal-->
-				<div class="modal fade2" id="testModal2" tabindex="-1" role="dialog"
-					aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">
-									<img src="<%=contextPath%>/resources/icons/logoimg.png"
-										width="25px" height="25px"> ododog.co.kr
-								</h5>
-								<button class="close" type="button" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">X</span>
-								</button>
-							</div>
-							<br>
-							<br>
-							<div id="img" align="center">
-								<img src="<%=contextPath%>/resources/icons/heart.png"
-									width="100px" height="100px">
-							</div>
-							<div class="modal-body" align="center">괸심상품으로 등록되었습니다.</div>
-							<br>
-							<br>
-							<div class="modal-footer">
-
-								<button class="btn btn-primary" type="button"
-									data-dismiss="modal">계속 쇼핑하기</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<script>
-					$('#like').click(function(e) {
-						e.preventDefault();
-						$('#testModal2').modal("show");
-					});
-				</script>
+				
+				<button type="button" class="btn btn-dark" onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'">구매하기</button>
 
 				<br>
 				<br>
