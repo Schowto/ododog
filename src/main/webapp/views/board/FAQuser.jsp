@@ -139,8 +139,8 @@
         <br><br><br><br><br>
         <p style="font-size:23px;">COMMUNITY</p>
         <hr>
+        <a href="" style="font-size:17px;">공지사항</a>
         <a href="" style="font-size:17px; color:rgb(200, 140, 140);">FAQ</a> <br><br>
-        <a href="" style="font-size:17px;">1:1 문의하기</a>
     </div>
 
     <script>
