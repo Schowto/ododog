@@ -1,7 +1,6 @@
 package com.odd.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,17 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.odd.member.model.service.MemberService;
+import com.odd.member.model.vo.Member;
+
 /**
- * Servlet implementation class MyPageController
+ * Servlet implementation class MemberDeleteController
  */
-@WebServlet("/myPage.me")
-public class MyPageController extends HttpServlet {
+@WebServlet("/delete.me")
+public class MemberDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageController() {
+    public MemberDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,20 +31,26 @@ public class MyPageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPWd");
+		
+		int result = new MemberService().memberDelete(userId, userPwd);
+		
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("loginUser") == null) {
+		if(result > 0) {
 			
-			session.setAttribute("alerMsg", "로그인후에 다시 이용해주세요.");
+			session.setAttribute("alertMsg", "그동안 오도독(DOG)을 이용해주셔서 감사합니다.");
+			request.removeAttribute("loginUser");
 			response.sendRedirect(request.getContextPath());
-			
 			
 		}else {
 			
-			request.getRequestDispatcher("views/member/myPage.jsp").forward(request,response);
+			response.sendRedirect(request.getContextPath() + "/myPage.me");
 			
 		}
-		
 	}
 
 	/**

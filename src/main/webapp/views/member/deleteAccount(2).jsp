@@ -93,6 +93,11 @@
 
 	<%@ include file="../common/userMenubar.jsp" %>
 
+    <%
+        String userId = loginUser.getUser_Id();
+        String userPWd = loginUser.getUser_Pwd();
+    %>
+
     <div class="outer">
 
         <div id="side">
@@ -134,7 +139,7 @@
                                 <td style="width:200px; text-align:center; font-size: 13px;">적립금</td>
                                 <td style="width:800px; font-weight: 900; font-size: 12px;">
                                     <div style="margin-bottom:10px;">&nbsp;&nbsp;탈퇴하면 적립금이 삭제됩니다.</div>
-                                    <div>&nbsp;&nbsp;현재 보유하신 적립금은 (회원적립금들어갈자리) 원 입니다.</div>
+                                    <div>&nbsp;&nbsp;현재 보유하신 적립금은 <%=point%> 원 입니다.</div>
                                 </td>
                             </tr>
                         </table>
@@ -196,25 +201,19 @@
         				</div>
         
         				<!-- Modal footer -->
-        				<div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">예</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> 
-        				</div>
+                        <form action="<%=contextPath%>/delete.me" method="post">
 
-                        <script>
-                            $(function(){
-                                $("#btn").click(function(){
-                                    if(){
-                                        
-                                    }else{
-                                        location href="<%=contextPath%>/review.me";
-                                    }
-                                })
-                            })
-                        </script>
+                            <input type="hidden" name="userId" value="<%=userId%>">
+                            <input type="hidden" name="userPwd" value="<%=userPwd%>">
+
+        				    <div class="modal-footer">
+                                <button type="submit" class="btn btn-secondary" data-dismiss="modal" id="deleteBtn">예</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> 
+        				    </div>
+                        </form>
         
-      					</div>
-    					</div>
+      				</div>
+    			    </div>
   				</div>
 
                 

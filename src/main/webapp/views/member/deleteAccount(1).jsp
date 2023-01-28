@@ -78,6 +78,10 @@
 
 	<%@ include file="../common/userMenubar.jsp" %>
 
+    <%
+        String userId = loginUser.getUser_Id();
+    %>
+
     <div class="outer">
 
         <div id="side">
@@ -113,11 +117,15 @@
                 <br>
 
                 <div class="deletePassword">
-                    <form>
+
+                    <form action="<%=contextPath%>/pwdCheck.me" method="post">
                         <table>
                             <tr>
                                 <td style="width:200px; text-align:center;">비밀번호</td>
-                                <td style="width:800px;">&nbsp;&nbsp;<input type="password" size=30 required></td>
+                                <td style="width:800px;">
+                                    <input type="hidden" name="userId" value="<%=userId%>">
+                                    &nbsp;&nbsp;<input type="password" name="userPWd" size=30 required>
+                                </td>
                             </tr>
                         </table>
                     </form>
@@ -125,16 +133,8 @@
                 <br>
 
                 <div align="center">
-                <button id="btn">확인</button>
+                <button type="submit" id="btn">확인</button>
                 </div>
-
-                <script>
-                    $(function(){
-                        $("#btn").click(function(){
-                            location.href="<%=contextPath%>/delete_2.me";
-                        })
-                    })
-                </script>
 
 
             </div>
