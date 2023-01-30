@@ -148,7 +148,7 @@ input::placeholder{
                     <tr>
                         <td>아이디 *</td>
                         <td colspan="3" style="width:500px;">
-                            &nbsp;&nbsp;<input type="text" value="<%=userId%>" readonly> 
+                            &nbsp;&nbsp;<input type="text" name="userId" value="<%=userId%>" readonly> 
                         </td>
                     </tr>
                     <tr>
@@ -172,7 +172,7 @@ input::placeholder{
                     <tr>
                         <td>휴대전화 *</td>
                         <td>
-                            &nbsp;&nbsp;<input type="phone" name="selfPhone" value="<%=phone%>" placeholder="&nbsp;- 를 포함하여 입력해주세요." required>
+                            &nbsp;&nbsp;<input type="phone" name="phone" value="<%=phone%>" placeholder="&nbsp;- 를 포함하여 입력해주세요." required>
                         </td>
                     </tr>
                     <tr>
@@ -188,19 +188,20 @@ input::placeholder{
                     </tr>
                     <tr>
                         <td colspan="3" style="border-left:1px solid rgb(220,220,220);">
-                            &nbsp;&nbsp;<input type="text" name="detailAddress" value="<%=detailAddress%>" size="40"> &nbsp;<label>상세주소</label>
+                            &nbsp;&nbsp;<input type="text" name="detailedAddress" value="<%=detailAdress%>" size="40"> &nbsp;<label>상세주소</label>
                         </td>
                     </tr>
                 </table>
-            </form>
-
-            <br>
-
-            <div class="btnWrap" align="center">
+                
+                <br>
+                
+                <div class="btnWrap" align="center">
                 <button type="submit">수정하기</button>
                 <button type="button">취소</button>
                 <button type="button" class="btn-red">회원탈퇴</button>
             </div>
+            </form>
+
 
         </div>
 
