@@ -128,18 +128,23 @@
                                 </td>
                             </tr>
                         </table>
+                        
+                        <br>
+                        
+                        <div align="center">
+                			<button type="submit" id="btn">확인</button>
+                		</div>
                     </form>
                 </div>
-                <br>
-
-                <div align="center">
-                <button type="submit" id="btn">확인</button>
-                </div>
+               
 
 
             </div>
 
         </div>
+
+        
+       
 
 
         <%@ include file="../common/userFooterbar.jsp"%>

@@ -79,4 +79,24 @@ public class AdminProductService {
 		return result1 * result2;
 	}
 	
+	public Product selectProduct(int proNo) {
+		Connection conn = getConnection();
+		
+		Product p = new AdminProductDao().selectProduct(conn, proNo);
+		close(conn);
+		
+		return p;
+	}
+	
+	public ArrayList<ProAtt> selectProAtt(int proNo){
+		Connection conn = getConnection();
+		
+		ArrayList<ProAtt> list = new AdminProductDao().selectProAtt(conn, proNo);
+		close(conn);
+		
+		return list;
+	}
+	
+	
+	
 }

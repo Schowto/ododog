@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "com.odd.board.model.vo.Board" %>
+<% Board b = (Board)(request.getAttribute("b")); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,11 +71,7 @@
         text-align:center;
         background:rgb(220, 220, 220);
     }
-    #prev-next a{
-        text-decoration:none;
-        color:rgb(50, 50, 50);
-    }
-    #prev-next a:hover{font-weight:600;}
+    #prev-next tr:hover{font-weight:600; cursor:pointer;}
 
 
     #reply-area{/*border: 1px solid red;*/padding: 10px;}
@@ -135,59 +133,43 @@
                 <br>
             </div>
 
+            <% if(loginUser != null && loginUser.getUser_Id().equals(b.getBoardWriter())){ %>
             <!-- 내가 쓴 글일 때 -->
-            <div align="right" style="width:900px">
-                <br><br>
-                <a href="" ><button style="margin-right:10px;">수정</button></a>
-                <a href=""><button class="btn-red" id="delete-post">삭제</button></a>
-                <br>
-            </div>
-            <script>
-                $("#delete-post").click(function () {
-                    if (confirm("정말 삭제하시겠습니까?")) {
-                        // 삭제하고
-                        alert("삭제되었습니다.");
-                    }
-                })
-            </script>
-
-
-            <!-- 내가 쓴 글이 아닐 때-->
-            <br><br><br>
+	            <div align="right" style="width:900px">
+	                <br><br>
+	                <a href="" ><button style="margin-right:10px;">수정</button></a>
+	                <a href=""><button class="btn-red" id="delete-post">삭제</button></a>
+	                <br>
+	            </div>
+	            
+	            <script>
+	                $("#delete-post").click(function () {
+	                    if (confirm("정말 삭제하시겠습니까?")) {
+	                        // 삭제하고
+	                        alert("삭제되었습니다.");
+	                    }
+	                })
+	            </script>
+            <% } %>
             
+            <br><br><br>
             <table id="board-detail" width="900">
             	<tr>
                 	<th width="100" height="40" style="background:rgb(220,220,220);">제목</th>
-                	<td>여기는 제목자리입니다요</td>
+                	<td><%= b.getBoardTitle() %></td>
                 </tr>
                 <tr>
                 	<th height="40" style="background:rgb(220,220,220);">작성자</th>
-                	<td>나는야 작성자</td>
+                	<td><%= b.getBoardWriter() %></td>
                 </tr>
                 <tr>
                 	<td colspan="2" style="font-size:11px; color:gray;">
-                		<b style="color:rgb(50, 50, 50);">작성일</b> 2023-01-17 17:28 <b style="margin-left:30px; color:rgb(50, 50, 50);">조회수</b> 2345
+                		<b style="color:rgb(50, 50, 50);">작성일</b> <%= b.getCreateDate() %> <b style="margin-left:30px; color:rgb(50, 50, 50);">조회수</b> <%= b.getCount() %>
                 	</td>
                 </tr>
                 <tr>
                 	<td colspan="2" style="padding:20px;">
-                    	<pre>
-dfgdfg
-dfgdfgdgfdfg
-gssf
-sef내용내용내용~~~~
-z
-z
-z
-z
-z
-zz
-z
-z
-z
-z
-
-                        </pre>
+                    	<pre><%= b.getBoardContent() %></pre>
 					</td>
 				</tr>
 			</table>
@@ -195,11 +177,11 @@ z
             
             <div align="right" style="width:900px">
                 <span class="report" style="font-size: 12px; color:gray;" data-toggle="modal" data-target="#myModal">
-                    <img src="../../resources/icons/siren.png" width="20">
+                    <img src="<%= contextPath %>/resources/icons/siren.png" width="20">
                     신고
                 </span>
                 <br><br>
-                <a href=""><button type="submit">목록</button></a>
+                <a href="<%= contextPath %>/list.bo?cpage=1"><button type="submit">목록</button></a>
                 <br><br><br><br>
             </div>
 
@@ -207,20 +189,20 @@ z
             <table id="prev-next" width="900">
                 <tr>
                     <th width="120">
-                        <a href=""><img src="../../resources/icons/upArrow.png"></a>
-                        <a href="">이전글</a>
+                        <img src="<%= contextPath %>/resources/icons/upArrow.png">
+                        이전글
                     </th>
                     <td>
-                        <a href="">이전글 제목입니다요~~~~~~~~</a>
+                        <%= b.getPrevTitle() %>
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        <a href=""><img src="../../resources/icons/downArrow.png"></a>
-                        <a href="">다음글</a>
+                        <img src="<%= contextPath %>/resources/icons/downArrow.png">
+                        다음글
                     </th>
                     <td>
-                        <a href="">다음글 제목입니다요~~~dgdgdgd~~~gfdgdfgdgdfgdgdfgdgdfgdfgdfgdfg~~</a>
+                        <%= b.getNextTitle() %>
                     </td>
                 </tr>
             </table>
@@ -356,7 +338,7 @@ z
         
                     <!-- Modal Header -->
                     <div class="modal-header" style="justify-content: left;">
-                        <img src="../../resources/icons/siren.png" width="25" style="margin-right:10px;">
+                        <img src="<%= contextPath %>/resources/icons/siren.png" width="25" style="margin-right:10px;">
                         <h5 class="modal-title" style="font-weight:600;">신고하기</h5>
                     </div>
         

@@ -111,7 +111,9 @@ public class MemberDao {
 				m.setUser_Id(rset.getString("User_Id"));
 				m.setEmail(rset.getString("Email"));
 				m.setPhone(rset.getString("Phone"));
+				m.setPost_Code(rset.getInt("Post_Code"));
 				m.setAddress(rset.getString("Address"));
+				m.setDetailed_Address(rset.getString("Detailed_Address"));
 				m.setPoint(rset.getInt("Point"));
 				list.add(m);
 								 
@@ -127,6 +129,113 @@ public class MemberDao {
 	
 	}
 	
-
+	public int updateMember(Connection conn, Member m) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUser_Name());
+			pstmt.setString(2, m.getEmail());
+			pstmt.setString(3, m.getPhone());
+			pstmt.setInt(4, m.getPost_Code());
+			pstmt.setString(5, m.getAddress());
+			pstmt.setString(6, m.getDetailed_Address());
+			pstmt.setString(7, m.getUser_Id());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int updatePwdMember(Connection conn, String userId, String userPwd, String updatePwd) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updatePwdMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, updatePwd);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, userPwd);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public Member memberPwdCheck(Connection conn, String userId, String userPwd) {
+		
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("memberPwdCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("user_no"),
+							   rset.getString("user_id"),
+							   rset.getString("user_pwd"),
+							   rset.getString("user_name"),
+							   rset.getString("email"),
+							   rset.getString("phone"),
+							   rset.getInt("post_code"),
+							   rset.getString("address"),
+							   rset.getString("detailed_address"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return m;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

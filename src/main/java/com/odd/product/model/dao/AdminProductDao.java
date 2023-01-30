@@ -76,8 +76,7 @@ public class AdminProductDao {
 			
 			rset = pstmt.executeQuery();
 			
-			
-             while(rset.next()){	
+	        while(rset.next()){	
 								list.add(
 										new Product(rset.getInt("pro_no")
 												, rset.getString("category")
@@ -90,7 +89,7 @@ public class AdminProductDao {
 												, rset.getString("thumb_img")
 												)
 										);
-             					}
+	         				  }
 						
 			
 		} catch (SQLException e) {
@@ -148,10 +147,8 @@ public class AdminProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-		
 			
 			rset = pstmt.executeQuery();
-			
 			
              while(rset.next()){	
 								list.add(
@@ -194,6 +191,7 @@ public class AdminProductDao {
 			pstmt.setInt(3, p.getPrice());
 			pstmt.setString(4, p.getExpiredDate());
 			pstmt.setString(5, p.getThumbImg());
+			pstmt.setString(6, String.valueOf(p.getSave()));
 			
 			result = pstmt.executeUpdate();
 			
@@ -214,8 +212,8 @@ public class AdminProductDao {
 		String sql = prop.getProperty("insertAttachList");
 		
 		try {
-			
 			for(ProAtt at : list) {
+				
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, at.getFilePath());
@@ -240,11 +238,10 @@ public class AdminProductDao {
 		String sql = prop.getProperty("deleteProduct");
 		
 		try {
-			
 			for(String no : deleteList) {
 
 				pstmt = conn.prepareStatement(sql);
-			
+				
 				pstmt.setInt(1, Integer.parseInt(no));
 				
 				result *= pstmt.executeUpdate();
@@ -270,7 +267,7 @@ public class AdminProductDao {
 			for(String no : deleteList) {
 
 				pstmt = conn.prepareStatement(sql);
-			
+				
 				pstmt.setInt(1, Integer.parseInt(no));
 				
 				result *= pstmt.executeUpdate();
@@ -284,7 +281,78 @@ public class AdminProductDao {
 		return result;
 	}
 	
+	public Product selectProduct(Connection conn, int proNo) {
+		
+		Product p = null;
+		ResultSet rset = null;
+		PreparedStatement pstmt= null;
+		
+		String sql = prop.getProperty("selectProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, proNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){	
+							p = new Product(rset.getInt("pro_no")
+									, rset.getString("category")
+									, rset.getString("pro_name")
+									, rset.getInt("price")
+									, rset.getString("soldout")
+									, rset.getString("expired_date")
+									, rset.getString("ENROLL_DATE")
+									, rset.getDouble("SAVE")
+									, rset.getString("thumb_img")
+									);
+							}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return p;
+		
+	}
 	
-	
+	public ArrayList<ProAtt> selectProAtt(Connection conn, int proNo){
+		
+		ResultSet rset = null;
+		ArrayList<ProAtt> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("selectProAtt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, proNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()){	
+				list.add(
+						new ProAtt(rset.getInt("FILE_NO")
+								, rset.getInt("PRO_NO")
+								, rset.getString("FILE_PATH")
+								, rset.getInt("FILE_LEVEL")
+								)
+						);
+					}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 	
 }

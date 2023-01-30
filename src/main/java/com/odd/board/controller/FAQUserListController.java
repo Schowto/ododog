@@ -1,27 +1,28 @@
-package com.odd.member.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.MemberService;
-import com.odd.member.model.vo.Member;
+import com.odd.board.model.service.FAQService;
+import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class MemberPwdCheckController
+ * Servlet implementation class FAQUserListController
  */
-@WebServlet("/pwdCheck.me")
-public class MemberPwdCheckController extends HttpServlet {
+@WebServlet("/FAQlist.ur")
+public class FAQUserListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberPwdCheckController() {
+    public FAQUserListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +32,10 @@ public class MemberPwdCheckController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		// 일반 controller 사용시
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
+		ArrayList<FAQ> list = new FAQService().selectFAQList();
 		
-		Member m = new MemberService().memberPwdCheck(userId, userPwd);
-		
-		HttpSession session = request.getSession();
-		if(m != null) {
-			
-			request.getRequestDispatcher("views/member/deleteAccount(2).jsp");
-		
-			
-		}else {
-			
-			session.setAttribute("alertMsg", "비밀번호가 틀렸습니다. 다시확인해주세요.");
-			response.sendRedirect(request.getContextPath() + "/delete_1.me");
-			
-		}
-		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/board/FAQuser.jsp").forward(request, response);
 	}
 
 	/**

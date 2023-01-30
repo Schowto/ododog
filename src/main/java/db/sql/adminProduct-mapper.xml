@@ -53,7 +53,9 @@
               , PRICE
               , EXPIRED_DATE
               , THUMB_IMG
-              , ENROLL_DATE)
+              , ENROLL_DATE
+              , SAVE
+              )
 	    VALUES 
 	         (
         		SEQ_PRODUCTNO.NEXTVAL
@@ -63,6 +65,7 @@
          	  , ?
          	  , ?
          	  , TO_CHAR(SYSDATE,'YYYY-MM-DD')
+         	  , ?
 	         )
 	         
 	</entry>
@@ -101,6 +104,24 @@
 		   SET STATUS = 'N'
 		 WHERE PRO_NO = ?  
 		 
+	</entry>
+	
+	<entry key="selectProduct">
+	
+		SELECT *
+		  FROM PRODUCT
+		 WHERE STATUS = 'Y'
+	       AND PRO_NO = ?
+	
+	</entry>
+	
+	<entry key="selectProAtt">
+		SELECT FILE_NO, PRO_NO, FILE_PATH, FILE_LEVEL
+		  FROM PRO_ATT
+		 WHERE STATUS = 'Y'
+		   AND PRO_NO = ?
+		 ORDER
+		    BY FILE_NO
 	</entry>
 	
 	

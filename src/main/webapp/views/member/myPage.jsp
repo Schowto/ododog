@@ -148,13 +148,13 @@ input::placeholder{
                     <tr>
                         <td>아이디 *</td>
                         <td colspan="3" style="width:500px;">
-                            &nbsp;&nbsp;<input type="text" value="<%=userId%>" readonly> 
+                            &nbsp;&nbsp;<input type="text" name="userId" value="<%=userId%>" readonly> 
                         </td>
                     </tr>
                     <tr>
                         <td>비밀번호 *</td>
                         <td colspan="3">
-                            &nbsp;&nbsp;<button id="password" data-toggle="modal" data-target="#updatePwdModal">비밀번호 수정하기</button> 
+                            &nbsp;&nbsp;<button type="button" id="password" data-toggle="modal" data-target="#updatePwdModal">비밀번호 수정하기</button> 
                         </td>
                     </tr>
                     <tr>
@@ -172,7 +172,7 @@ input::placeholder{
                     <tr>
                         <td>휴대전화 *</td>
                         <td>
-                            &nbsp;&nbsp;<input type="phone" name="selfPhone" value="<%=phone%>" placeholder="&nbsp;- 를 포함하여 입력해주세요." required>
+                            &nbsp;&nbsp;<input type="phone" name="phone" value="<%=phone%>" placeholder="&nbsp;- 를 포함하여 입력해주세요." required>
                         </td>
                     </tr>
                     <tr>
@@ -188,19 +188,20 @@ input::placeholder{
                     </tr>
                     <tr>
                         <td colspan="3" style="border-left:1px solid rgb(220,220,220);">
-                            &nbsp;&nbsp;<input type="text" name="detailAddress" value="<%=detailAddress%>" size="40"> &nbsp;<label>상세주소</label>
+                            &nbsp;&nbsp;<input type="text" name="detailedAddress" value="<%=detailAdress%>" size="40"> &nbsp;<label>상세주소</label>
                         </td>
                     </tr>
                 </table>
-            </form>
-
-            <br>
-
-            <div class="btnWrap" align="center">
+                
+                <br>
+                
+                <div class="btnWrap" align="center">
                 <button type="submit">수정하기</button>
                 <button type="button">취소</button>
                 <button type="button" class="btn-red">회원탈퇴</button>
             </div>
+            </form>
+
 
         </div>
 
@@ -218,50 +219,46 @@ input::placeholder{
         <%@ include file="../common/userFooterbar.jsp"%>
 
     </div>
-
-    <!-- 비밀번호변경용 Modal -->
-	<div class="modal" id="updatePwdModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
       
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">비밀번호 변경</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <!-- 모달 -->
+        <div class="modal" id="myModal" style="color:rgb(50, 50, 50);">
+            <div class="modal-dialog">
+                <div class="modal-content" style="padding:30px 20px;">
+        
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="justify-content: left;">
+                        <h5 class="modal-title" style="font-weight:600;">비밀번호 변경</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <br>
+                    <!-- Modal body -->
+                    <div class="modal-body" style="color:gray; font-size:13px;">
+                        <form action="<%= contextPath %>/updatePwd.me" method="post">
+                            <input type="hidden" name="userId" value="<%= userId %>" >
+                            <table>
+                                <tr>
+                                    <td>현재 비밀번호</td>
+                                    <td><input type="password" name="userPwd"required></td>
+                                </tr>
+                                <tr>
+                                    <td>변경할 비밀번호</td>
+                                    <td><input type="password" name="updatePwd" required></td>
+                                </tr>
+                                <tr>
+                                    <td>변경할 비밀번호 확인</td>
+                                    <td><input type="password" required></td>
+                                </tr>
+                            </table>
+                            <br>
+                            
+                            <button type="submit" class="btn btn-secondary btn-sm">비밀번호 변경</button>
+                            
+                        </form>
+        
+                    </div>
+                </div>
             </div>
-      
-            <!-- Modal body -->
-            <div class="modal-body">
-              
-              <form action="<%= contextPath %>/updatePwd.me" method="post">
-                  <input type="hidden" name="userId" value="<%= userId %>" >
-                  <table>
-                      <tr>
-                          <td>현재 비밀번호</td>
-                          <td><input type="password" name="userPwd" required></td>
-                      </tr>
-                      <tr>
-                          <td>변경할 비밀번호</td>
-                          <td><input type="password" name="updatePwd" required></td>
-                      </tr>
-                      <tr>
-                          <td>변경할 비밀번호 확인</td>
-                          <td><input type="password" required></td>
-                      </tr>
-                  </table>
-                  <br>
-                  
-                  <button type="submit" class="btn btn-secondary btn-sm">비밀번호 변경</button>
-                  
-                  
-                  
-              </form>
-              
-            </div>
-      
-          </div>
         </div>
-      </div>
 
 </body>
 </html>

@@ -11,9 +11,14 @@ public class Board {
 	private String createDate;
 	private String status;
 	
+	private int prevNo;
+	private String prevTitle;
+	private int nextNo;
+	private String nextTitle;
+	
 	public Board() {};
 	public Board(int boardNo, int boardType, String boardTitle, String boardContent, String boardWriter, int count,
-			String createDate, String status) {
+			String createDate, String status, int prevNo, String prevTitle, int nextNo, String nextTitle) {
 		super();
 		this.boardNo = boardNo;
 		this.boardType = boardType;
@@ -23,7 +28,12 @@ public class Board {
 		this.count = count;
 		this.createDate = createDate;
 		this.status = status;
+		this.prevNo = prevNo;
+		this.prevTitle = prevTitle;
+		this.nextNo = nextNo;
+		this.nextTitle = nextTitle;
 	}
+	
 	// selectList
 	public Board(int boardNo, String boardTitle, String boardWriter, int count, String createDate) {
 		super();
@@ -33,6 +43,24 @@ public class Board {
 		this.count = count;
 		this.createDate = createDate;
 	}
+	
+	// detail
+	public Board(int boardNo, int boardType, String boardTitle, String boardContent, String boardWriter, int count,
+			String createDate, int prevNo, String prevTitle, int nextNo, String nextTitle) {
+		super();
+		this.boardNo = boardNo;
+		this.boardType = boardType;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardWriter = boardWriter;
+		this.count = count;
+		this.createDate = createDate;
+		this.prevNo = prevNo;
+		this.prevTitle = prevTitle;
+		this.nextNo = nextNo;
+		this.nextTitle = nextTitle;
+	}
+	
 	
 	public int getBoardNo() {
 		return boardNo;
@@ -83,6 +111,30 @@ public class Board {
 		this.status = status;
 	}
 	
+	public int getPrevNo() {
+		return prevNo;
+	}
+	public void setPrevBoardNo(int prevNo) {
+		this.prevNo = prevNo;
+	}
+	public String getPrevTitle() {
+		return prevTitle;
+	}
+	public void setPrevBoardTitle(String prevTitle) {
+		this.prevTitle = prevTitle;
+	}
+	public int getNextNo() {
+		return nextNo;
+	}
+	public void setNextBoardNo(int nextNo) {
+		this.nextNo = nextNo;
+	}
+	public String getNextTitle() {
+		return nextTitle;
+	}
+	public void setNextBoardTitle(String nextTitle) {
+		this.nextTitle = nextTitle;
+	}
 	@Override
 	public String toString() {
 		return "Board [boardNo=" + boardNo + ", boardType=" + boardType + ", boardTitle=" + boardTitle

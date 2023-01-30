@@ -1,4 +1,4 @@
-package com.odd.member.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,22 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.MemberService;
-import com.odd.member.model.vo.Member;
+import com.odd.board.model.service.BoardService;
+import com.odd.board.model.vo.Board;
 
 /**
- * Servlet implementation class MemberPwdCheckController
+ * Servlet implementation class BoardDetailController
  */
-@WebServlet("/pwdCheck.me")
-public class MemberPwdCheckController extends HttpServlet {
+@WebServlet("/detail.bo")
+public class BoardDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberPwdCheckController() {
+    public BoardDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,26 +30,19 @@ public class MemberPwdCheckController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		// 일반 controller 사용시
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
+		int boardNo = Integer.parseInt(request.getParameter("no"));
 		
-		Member m = new MemberService().memberPwdCheck(userId, userPwd);
-		
-		HttpSession session = request.getSession();
-		if(m != null) {
-			
-			request.getRequestDispatcher("views/member/deleteAccount(2).jsp");
-		
-			
-		}else {
-			
-			session.setAttribute("alertMsg", "비밀번호가 틀렸습니다. 다시확인해주세요.");
-			response.sendRedirect(request.getContextPath() + "/delete_1.me");
-			
+		BoardService bService = new BoardService();
+		// 조회수 증가
+		int result = bService.increaseCount(boardNo);
+		if(result > 0) {	// 조회수 증가 성공
+			Board b = bService.selectBoard(boardNo);
+			request.setAttribute("b", b);
+			request.getRequestDispatcher("views/board/boardDetailView.jsp").forward(request, response);	
+		} else {			// 조회수 증가 실패
+			request.setAttribute("errorMsg", "상세조회 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
 	}
 
 	/**

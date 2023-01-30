@@ -57,10 +57,47 @@
 		USER_ID ,
 		EMAIL ,
 		PHONE ,
+		POST_CODE,
 		ADDRESS ,
+		DETAILED_ADDRESS,
 		POINT
 	FROM MEMBER
 	WHERE STATUS = 'Y'
+	</entry>
+	
+	<entry key="updateMember">
+	UPDATE MEMBER
+	   SET USER_NAME = ? 
+	   	 , EMAIL = ?
+	   	 , PHONE = ?
+	   	 , POST_CODE = ?
+	   	 , ADDRESS = ?
+	   	 , DETAILED_ADDRESS = ?
+	 WHERE USER_ID = ? 
+	</entry>
+	
+	<entry key="updatePwdMember">
+		UPDATE MEMBER
+		   SET USER_PWD = ?
+		     , MODIFY_DATE = SYSDATE
+		WHERER USER_ID = ?
+		   AND USER_PWD =?
+	</entry>
+	
+	<entry key="memberPwdCheck">
+		SELECT USER_NO,
+		       USER_ID,
+		       USER_PWD,
+		       USER_NAME,
+		       EMAIL,
+		       PHONE,
+		       POST_CODE,
+		       ADDRESS,
+		       DETAILED_ADDRESS
+		  FROM MEMBER
+		 WHERE USER_ID = ? 
+		   AND USER_PWD = ?
+		   AND STATUS = 'Y'
 	</entry>
 	
 
