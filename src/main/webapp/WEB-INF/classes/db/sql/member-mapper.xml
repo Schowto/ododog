@@ -63,5 +63,18 @@
 	WHERE STATUS = 'Y'
 	</entry>
 	
+	<entry key="updateMember">
+	UPDATE MEMBER
+	   SET USER_NAME = ? 
+	   	 , EMAIL = ?
+	   	 , PHONE = ?
+	   	 , POST_CODE = ?
+	   	 , ADDRESS = ?
+	   	 , DETAILED_ADDRESS = ?
+	 WHERE USER_ID = ? 
+	   	   
+	  
+	</entry>
+	
 
 </properties>
