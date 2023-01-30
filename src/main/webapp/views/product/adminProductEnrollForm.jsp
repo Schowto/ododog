@@ -159,17 +159,6 @@
 							</td>
 						</tr>
 						
-						<tr>
-							<td>
-								<img class="img-thumbnail" id="contentImg10" onclick="clickFile(11)">
-							</td>
-							<td>
-								<img class="img-thumbnail" id="contentImg11" onclick="clickFile(12)">
-							</td>	
-							<td>
-								<img class="img-thumbnail" id="contentImg12" onclick="clickFile(13)">
-							</td>
-						</tr>
 						
 				</table>
 				
@@ -184,9 +173,7 @@
 	                <input type="file" name="file8" onchange="loadImg(this, 8)">
 	                <input type="file" name="file9" onchange="loadImg(this, 9)">
 	                <input type="file" name="file10" onchange="loadImg(this, 10)">
-	                <input type="file" name="file11" onchange="loadImg(this, 11)">
-	                <input type="file" name="file12" onchange="loadImg(this, 12)">
-	                <input type="file" name="file13" onchange="loadImg(this, 13)">
+
           		</div>
 
 				<script>
@@ -217,9 +204,7 @@
                                 case 8:$("#contentImg7").attr("src",e.target.result); break;
                                 case 9:$("#contentImg8").attr("src",e.target.result); break;
                                 case 10:$("#contentImg9").attr("src",e.target.result); break;
-                                case 11:$("#contentImg10").attr("src",e.target.result); break;
-                                case 12:$("#contentImg11").attr("src",e.target.result); break;
-                                case 13:$("#contentImg12").attr("src",e.target.result); break;
+                    
                             }
                         }
 
@@ -235,9 +220,7 @@
                                 case 8:$("#contentImg7").attr("src",null); break;
                                 case 9:$("#contentImg8").attr("src",null); break;
                                 case 10:$("#contentImg9").attr("src",null); break;
-                                case 11:$("#contentImg10").attr("src",null); break;
-                                case 12:$("#contentImg11").attr("src",null); break;
-                                case 13:$("#contentImg12").attr("src",null); break;
+                
                             }
 
                     }
