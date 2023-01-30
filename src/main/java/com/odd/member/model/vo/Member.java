@@ -37,14 +37,25 @@ public Member(String user_Id, String user_Pwd, String user_Name, String email, S
 	Detailed_Address = detailed_Address;
 }
 
-
-
-
-
 public Member(String user_Id, String user_Name, String email, String phone, int post_Code, String address,
 		String detailed_Address) {
 	super();
 	User_Id = user_Id;
+	User_Name = user_Name;
+	Email = email;
+	Phone = phone;
+	Post_Code = post_Code;
+	Address = address;
+	Detailed_Address = detailed_Address;
+}
+
+
+public Member(int user_No, String user_Id, String user_Pwd, String user_Name, String email, String phone, int post_Code,
+		String address, String detailed_Address) {
+	super();
+	User_No = user_No;
+	User_Id = user_Id;
+	User_Pwd = user_Pwd;
 	User_Name = user_Name;
 	Email = email;
 	Phone = phone;

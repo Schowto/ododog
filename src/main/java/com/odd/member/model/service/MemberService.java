@@ -81,5 +81,40 @@ public class MemberService {
 		return updateMem;		
 		
 	}
+	
+	public Member memberPwdCheck(String userId, String userPwd) {
+		Connection conn = getConnection();
+		Member m = new MemberDao().memberPwdCheck(conn, userId, userPwd);
+		
+		close(conn);
+		return m;
+	}
+	
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

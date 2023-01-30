@@ -219,48 +219,6 @@ input::placeholder{
         <%@ include file="../common/userFooterbar.jsp"%>
 
     </div>
-
-    <!-- 비밀번호변경용 Modal -->
-	<div class="modal" id="updatePwdModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-      
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">비밀번호 변경</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-      
-            <!-- Modal body -->
-            <div class="modal-body">
-              
-              <form action="<%= contextPath %>/updatePwd.me" method="post">
-                  <input type="hidden" name="userId" value="<%= userId %>" >
-                  <table>
-                      <tr>
-                          <td>현재 비밀번호</td>
-                          <td><input type="password" name="userPwd" required></td>
-                      </tr>
-                      <tr>
-                          <td>변경할 비밀번호</td>
-                          <td><input type="password" name="updatePwd" required></td>
-                      </tr>
-                      <tr>
-                          <td>변경할 비밀번호 확인</td>
-                          <td><input type="password" required></td>
-                      </tr>
-                  </table>
-                  <br>
-                  
-                  <button type="submit" class="btn btn-secondary btn-sm">비밀번호 변경</button>
-                  
-              </form>
-              
-            </div>
-      
-          </div>
-        </div>
-      </div>
       
       <!-- 모달 -->
         <div class="modal" id="myModal" style="color:rgb(50, 50, 50);">

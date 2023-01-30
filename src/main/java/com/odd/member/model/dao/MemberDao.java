@@ -176,6 +176,41 @@ public class MemberDao {
 		return result;
 	}
 	
+	public Member memberPwdCheck(Connection conn, String userId, String userPwd) {
+		
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("memberPwdCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("user_no"),
+							   rset.getString("user_id"),
+							   rset.getString("user_pwd"),
+							   rset.getString("user_name"),
+							   rset.getString("email"),
+							   rset.getString("phone"),
+							   rset.getInt("post_code"),
+							   rset.getString("address"),
+							   rset.getString("detailed_address"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return m;
+	}
+	
 	
 	
 	
