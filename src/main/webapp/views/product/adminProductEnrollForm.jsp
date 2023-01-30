@@ -146,6 +146,31 @@
 								<img class="img-thumbnail" id="contentImg6" onclick="clickFile(7)">
 							</td>
 						</tr>
+						
+						<tr>
+							<td>
+								<img class="img-thumbnail" id="contentImg7" onclick="clickFile(8)">
+							</td>
+							<td>
+								<img class="img-thumbnail" id="contentImg8" onclick="clickFile(9)">
+							</td>	
+							<td>
+								<img class="img-thumbnail" id="contentImg9" onclick="clickFile(10)">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<img class="img-thumbnail" id="contentImg10" onclick="clickFile(11)">
+							</td>
+							<td>
+								<img class="img-thumbnail" id="contentImg11" onclick="clickFile(12)">
+							</td>	
+							<td>
+								<img class="img-thumbnail" id="contentImg12" onclick="clickFile(13)">
+							</td>
+						</tr>
+						
 				</table>
 				
 		        <div id="file-area" style="display: none;">
@@ -156,6 +181,12 @@
 	                <input type="file" name="file5" onchange="loadImg(this, 5)">
 	                <input type="file" name="file6" onchange="loadImg(this, 6)">
 	                <input type="file" name="file7" onchange="loadImg(this, 7)">
+	                <input type="file" name="file8" onchange="loadImg(this, 8)">
+	                <input type="file" name="file9" onchange="loadImg(this, 9)">
+	                <input type="file" name="file10" onchange="loadImg(this, 10)">
+	                <input type="file" name="file11" onchange="loadImg(this, 11)">
+	                <input type="file" name="file12" onchange="loadImg(this, 12)">
+	                <input type="file" name="file13" onchange="loadImg(this, 13)">
           		</div>
 
 				<script>
@@ -183,6 +214,12 @@
                                 case 5:$("#contentImg4").attr("src",e.target.result); break;
                                 case 6:$("#contentImg5").attr("src",e.target.result); break;
                                 case 7:$("#contentImg6").attr("src",e.target.result); break;
+                                case 8:$("#contentImg7").attr("src",e.target.result); break;
+                                case 9:$("#contentImg8").attr("src",e.target.result); break;
+                                case 10:$("#contentImg9").attr("src",e.target.result); break;
+                                case 11:$("#contentImg10").attr("src",e.target.result); break;
+                                case 12:$("#contentImg11").attr("src",e.target.result); break;
+                                case 13:$("#contentImg12").attr("src",e.target.result); break;
                             }
                         }
 
@@ -195,6 +232,12 @@
                                 case 5:$("#contentImg4").attr("src",null); break;
                                 case 6:$("#contentImg5").attr("src",null); break;
                                 case 7:$("#contentImg6").attr("src",null); break;
+                                case 8:$("#contentImg7").attr("src",null); break;
+                                case 9:$("#contentImg8").attr("src",null); break;
+                                case 10:$("#contentImg9").attr("src",null); break;
+                                case 11:$("#contentImg10").attr("src",null); break;
+                                case 12:$("#contentImg11").attr("src",null); break;
+                                case 13:$("#contentImg12").attr("src",null); break;
                             }
 
                     }
