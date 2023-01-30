@@ -1229,8 +1229,6 @@ Insert into PRO_ATT (FILE_NO,PRO_NO,FILE_PATH,UPLOAD_DATE,STATUS,FILE_LEVEL) val
 
 --------------------------------------------------------
 
-TRUNCATE TAVLE PRODUCT;
-
 
 
 
