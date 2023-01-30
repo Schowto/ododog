@@ -52,7 +52,30 @@
 		margin-left:10px;
 	}
 	
-	
+	    .enrollTB{
+        font-size: 80%;
+    }
+    
+    .enrollTB1 th{
+        text-align: center;
+    }
+    .enrollTB2{
+        text-align: center;
+    }
+    
+    .enrollTB1 img{
+    	object-fit: cover;
+   		width:150px;
+   		height:150px;
+    }
+    
+    .enrollTB2 img{
+    	object-fit: cover;
+    	width:250px;
+   		height:180px;
+    }
+    
+		
 
 </style>
 
@@ -114,7 +137,7 @@
                <table class="list-area table" >
                    <thead>
                        <tr>
-                       	   <th width="5px"></th>
+                       	   <th width="5px" onclick="event.stopPropagation()"></th>
                            <th width="5px">번호</th>
                            <th width="50px">카테고리</th>
                            <th width="170px">상품명</th>
@@ -133,8 +156,8 @@
                        </tr>
                        <%}else{ %>
                            <% for(Product p : list){ %>
-                       <tr>
-                           <td><input type="checkbox" name="deleteNo" class="deleteNo" value="<%= p.getProNo() %>"></td>
+                       <tr role="button" data-toggle="modal" data-target="#myModal">
+                           <td onclick="event.stopPropagation()"><input type="checkbox" name="deleteNo" class="deleteNo" value="<%= p.getProNo() %>"></td>
                            <td><%= p.getProNo() %></td>
                            <td><%= p.getCategory() %></td>
                            <td><%= p.getProName() %></td>
@@ -152,19 +175,19 @@
                </table>
             </div>
                
-               <!--  세부 사항 보기 // 나중에 구현
-               
-               <script>
-               $(function(){
-                   $(".list-area>tbody>tr").click(function(){
-                       location.href = '<%=contextPath%>/detail.bo?no=' + $(this).children().eq(0).text();
-                   })
-               })
-               
-               </script>
-               -->
-           
-               <br>
+            <!--  세부 사항 보기 // 나중에 구현
+            
+            <script>
+            $(function(){
+                $(".list-area>tbody>tr").click(function(){
+                    location.href = '<%=contextPath%>/detail.bo?no=' + $(this).children().eq(0).text();
+                })
+            })
+            
+            </script>
+            -->
+         
+            <br>
 
        		<br><br>
        		
@@ -274,10 +297,246 @@
 				  <br>
 				  <button type="submit" class="btn btn-primary">검색</button>
 			</form>
-        </div>
+			
+   		</div>
         
-       </div>
+    </div>
         
+       <script>
+       
+       $(function(){
+	  		$(".list-area>tbody>tr").click(function(){
+	  			
+				$.ajax({
+					
+					url:"select.adPro" , 
+					data:{proNo:$(this).children().eq(1).text()} ,
+					type : "post" ,
+					success : function(p){
+						
+							$("select>option").each(function(){
+		            			if(p.category == $(this).val() || p.save == $(this).val()){
+		            				$(this).attr("selected", true);
+		            			}
+		            		})
+						
+							$("#proName").val(p.proName);
+							$("#price").val(p.price);
+							$("#expiredDate").val(p.expiredDate);
+							
+							$("#thumbImg").attr("src", p.proAtt1);
+							$("#contentImg1").attr("src", p.proAtt2);
+							$("#contentImg2").attr("src", p.proAtt3);
+							$("#contentImg3").attr("src", p.proAtt4);
+							$("#contentImg4").attr("src", p.proAtt5);
+							$("#contentImg5").attr("src", p.proAtt6);
+							$("#contentImg6").attr("src", p.proAtt7);
+							$("#contentImg7").attr("src", p.proAtt8);
+							$("#contentImg8").attr("src", p.proAtt9);
+							$("#contentImg9").attr("src", p.proAtt10);
+					} ,
+					error : function(){
+						
+					} 
+				})
+	  		})
+   		})
+	
+	</script>
+	        
+        
+	
+	<!-- The Modal -->
+	<div class="modal" id="myModal">
+	  <div class="modal-dialog modal-lg">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">Modal Heading</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	        <form id="enrollForm" action="<%=contextPath%>/insert.adPro" method="post" enctype="multipart/form-data" >			
+	            <table class="enrollTB1 table-bordered" style="width:750px">
+	                    <tr>
+	                        <th>카테고리</th>
+	                        <td>
+	                        	<select name="category" id="category" class="form-control-sm">
+                            		<option value="주식">주식</option>
+                            		<option value="건조간식">건조간식</option>
+                            		<option value="오븐간식">오븐간식</option>
+                            		<option value="PARTY">PARTY</option>
+	                        	</select>
+	                        </td>
+	                        <th style="width:200px" class="table-active">
+	                        	섬네일 등록
+	                        </th>
+	                    </tr>
+	
+	                    <tr>
+	                        <th>상품명</th>
+	                        <td><input type="text" class="form-control-sm" name="proName" style="width:400px" id="proName" required></td>
+	                        <td rowspan="4" style="text-align:center">
+	                        	<img class="img-thumbnail" id="thumbImg" onclick="clickFile(1)">
+	                        </td>
+	                    </tr>
+	
+	                    <tr>
+	                        <th>가격</th>
+	                        <td><input type="text" class="form-control-sm" name="price" style="width:150px" id="price" required></td>
+	                    </tr>
+	
+	                    <tr>
+	                        <th>유통 기한</th>
+	                    	<td><input type="date" class="form-control-sm" name="expiredDate" id="expiredDate" style="width:150px" required></td>
+	                    </tr>
+	
+	                    <tr>
+	                        <th>적립률</th>
+	                        <td>
+	                        	<select name="save" class="form-control-sm">
+                            		<option value="0.1">0.1%</option>
+                            		<option value="0.2">0.2%</option>
+                            		<option value="0.3">0.3%</option>
+                            		<option value="0.4">0.4%</option>
+	                        	</select>
+	                        </td>
+	                    </tr>
+	                    
+	            </table>
+
+				<table class="enrollTB2 table-bordered" style="width:750px">
+						<tr>
+							<th colspan="3" class="table-active">상세 이미지 등록</th>
+						</tr>
+						
+						<tr>
+							<td>
+								<img class="img-thumbnail" id="contentImg1" onclick="clickFile(2)">
+							</td>
+							<td>
+								<img class="img-thumbnail" id="contentImg2" onclick="clickFile(3)">
+							</td>
+							<td>
+								<img class="img-thumbnail" id="contentImg3" onclick="clickFile(4)">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<img class="img-thumbnail" id="contentImg4" onclick="clickFile(5)">
+							</td>
+							<td>
+								<img class="img-thumbnail" id="contentImg5" onclick="clickFile(6)">
+							</td>	
+							<td>
+								<img class="img-thumbnail" id="contentImg6" onclick="clickFile(7)">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<img class="img-thumbnail" id="contentImg7" onclick="clickFile(8)">
+							</td>
+							<td>
+								<img class="img-thumbnail" id="contentImg8" onclick="clickFile(9)">
+							</td>	
+							<td>
+								<img class="img-thumbnail" id="contentImg9" onclick="clickFile(10)">
+							</td>
+						</tr>
+						
+						
+				</table>
+				
+		        <div id="file-area" style="display: none;">
+	                <input type="file" name="file1" onchange="loadImg(this, 1)" required>
+	                <input type="file" name="file2" onchange="loadImg(this, 2)">
+	                <input type="file" name="file3" onchange="loadImg(this, 3)">
+	                <input type="file" name="file4" onchange="loadImg(this, 4)">
+	                <input type="file" name="file5" onchange="loadImg(this, 5)">
+	                <input type="file" name="file6" onchange="loadImg(this, 6)">
+	                <input type="file" name="file7" onchange="loadImg(this, 7)">
+	                <input type="file" name="file8" onchange="loadImg(this, 8)">
+	                <input type="file" name="file9" onchange="loadImg(this, 9)">
+	                <input type="file" name="file10" onchange="loadImg(this, 10)">
+
+          		</div>
+
+				<script>
+                function clickFile(num){
+                
+                    $("input[name=file"+num+"]").click();
+                
+                }
+
+
+
+                function loadImg(inputFile, num){
+                	
+                    if(inputFile.files.length == 1){
+                    	
+                        const reader = new FileReader();
+                        reader.readAsDataURL(inputFile.files[0]);
+
+                        reader.onload = function(e){
+                            switch(num){
+                                case 1:$("#thumbImg").attr("src",e.target.result); break;
+                                case 2:$("#contentImg1").attr("src",e.target.result); break;
+                                case 3:$("#contentImg2").attr("src",e.target.result); break;
+                                case 4:$("#contentImg3").attr("src",e.target.result); break;
+                                case 5:$("#contentImg4").attr("src",e.target.result); break;
+                                case 6:$("#contentImg5").attr("src",e.target.result); break;
+                                case 7:$("#contentImg6").attr("src",e.target.result); break;
+                                case 8:$("#contentImg7").attr("src",e.target.result); break;
+                                case 9:$("#contentImg8").attr("src",e.target.result); break;
+                                case 10:$("#contentImg9").attr("src",e.target.result); break;
+                    
+                            }
+                        }
+
+                    }else{
+                        switch(num){
+                                case 1:$("#thumbImg").attr("src",null); break;
+                                case 2:$("#contentImg1").attr("src",null); break;
+                                case 3:$("#contentImg2").attr("src",null); break;
+                                case 4:$("#contentImg3").attr("src",null); break;
+                                case 5:$("#contentImg4").attr("src",null); break;
+                                case 6:$("#contentImg5").attr("src",null); break;
+                                case 7:$("#contentImg6").attr("src",null); break;
+                                case 8:$("#contentImg7").attr("src",null); break;
+                                case 9:$("#contentImg8").attr("src",null); break;
+                                case 10:$("#contentImg9").attr("src",null); break;
+                
+                            }
+
+                    }
+
+
+                }
+              	  
+            </script>
+				
+            <br>
+			<button type="submit" class="btn btn-primary">등록하기</button>
+				
+	    	</form>        
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
+	
+	
+	
 	
 
 </body>

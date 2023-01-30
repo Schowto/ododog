@@ -96,7 +96,7 @@
 	
 	                    <tr>
 	                        <th>가격</th>
-	                        <td><input type="text" class="form-control-sm" name="price" style="width:150px" required></td>
+	                        <td><input type="text" class="form-control-sm" name="price" id="price" style="width:150px" required></td>
 	                    </tr>
 	
 	                    <tr>
