@@ -46,6 +46,11 @@ public class MemberService {
 		return list;
 	}
 	
+	/**
+	 * 회원정보수정 (정은)
+	 * @param m
+	 * @return
+	 */
 	public Member updateMember(Member m) {
 		Connection conn = getConnection();
 		int result = new MemberDao().updateMember(conn, m);
@@ -63,6 +68,13 @@ public class MemberService {
 		
 	}
 	
+	/**
+	 * 비밀번호변경 (정은)
+	 * @param userId
+	 * @param userPwd
+	 * @param updatePwd
+	 * @return
+	 */
 	public ArrayList<Member> updatePwdMember(String userId, String userPwd, String updatePwd) {
 		
 		Connection conn = getConnection();
@@ -82,6 +94,12 @@ public class MemberService {
 		
 	}
 	
+	/**
+	 * 회원탈퇴시 비밀번호확인 (정은)
+	 * @param userId
+	 * @param userPwd
+	 * @return
+	 */
 	public Member memberPwdCheck(String userId, String userPwd) {
 		Connection conn = getConnection();
 		Member m = new MemberDao().memberPwdCheck(conn, userId, userPwd);

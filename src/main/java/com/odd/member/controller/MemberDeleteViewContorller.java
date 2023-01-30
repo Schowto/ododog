@@ -14,14 +14,14 @@ import com.odd.member.model.vo.Member;
 /**
  * Servlet implementation class DeleteAccount_1
  */
-@WebServlet("/delete_1.me")
-public class DeleteAccount_1 extends HttpServlet {
+@WebServlet("/deleteView.me")
+public class MemberDeleteViewContorller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteAccount_1() {
+    public MemberDeleteViewContorller() {
         super();
         // TODO Auto-generated constructor stub
     }

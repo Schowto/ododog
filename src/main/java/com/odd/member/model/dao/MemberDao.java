@@ -129,6 +129,12 @@ public class MemberDao {
 	
 	}
 	
+	/**
+	 * 회원정보수정 정은
+	 * @param conn
+	 * @param m
+	 * @return
+	 */
 	public int updateMember(Connection conn, Member m) {
 		
 		int result = 0;
@@ -156,6 +162,14 @@ public class MemberDao {
 		
 	}
 	
+	/**
+	 * 비밀번호변경 (정은)
+	 * @param conn
+	 * @param userId
+	 * @param userPwd
+	 * @param updatePwd
+	 * @return
+	 */
 	public int updatePwdMember(Connection conn, String userId, String userPwd, String updatePwd) {
 		
 		int result = 0;
@@ -178,6 +192,13 @@ public class MemberDao {
 		return result;
 	}
 	
+	/**
+	 * 회원탈퇴시 비밀번호확인 (정은)
+	 * @param conn
+	 * @param userId
+	 * @param userPwd
+	 * @return
+	 */
 	public Member memberPwdCheck(Connection conn, String userId, String userPwd) {
 		
 		Member m = null;
@@ -193,15 +214,19 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				m = new Member(rset.getInt("user_no"),
-							   rset.getString("user_id"),
-							   rset.getString("user_pwd"),
-							   rset.getString("user_name"),
-							   rset.getString("email"),
-							   rset.getString("phone"),
-							   rset.getInt("post_code"),
-							   rset.getString("address"),
-							   rset.getString("detailed_address"));
+				m = new Member(rset.getInt("USER_NO"),
+						   	   rset.getString("USER_ID"),
+						   	   rset.getString("USER_PWD"),
+						   	   rset.getString("USER_NAME"),
+						   	   rset.getString("EMAIL"),
+						   	   rset.getString("PHONE"),
+						   	   rset.getInt("POST_CODE"),
+						   	   rset.getString("ADDRESS"),
+						   	   rset.getString("DETAILED_ADDRESS"),
+						   	   rset.getDate("ENROLL_DATE"),
+						   	   rset.getDate("MODIFY_DATE"),
+						   	   rset.getString("STATUS"),
+						   	   rset.getInt("POINT"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

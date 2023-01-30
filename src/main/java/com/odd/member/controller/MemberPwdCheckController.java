@@ -31,23 +31,20 @@ public class MemberPwdCheckController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		// 일반 controller 사용시
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
 		Member m = new MemberService().memberPwdCheck(userId, userPwd);
 		
-		HttpSession session = request.getSession();
 		if(m != null) {
 			
 			request.getRequestDispatcher("views/member/deleteAccount(2).jsp");
 		
 			
 		}else {
-			
+			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "비밀번호가 틀렸습니다. 다시확인해주세요.");
-			response.sendRedirect(request.getContextPath() + "/delete_1.me");
+			response.sendRedirect(request.getContextPath() + "/deleteView.me");
 			
 		}
 		

@@ -207,9 +207,9 @@ input::placeholder{
 
         <script>
             $(function(){
-                $(".btn-red").click(function(){
-                    location.href='<%=contextPath%>/delete_1.me';
-                });
+            	$(".btn-red").click(function(){
+            		location.href="<%=contextPath%>/deleteView.me";
+            	})
             })
         </script>
 
