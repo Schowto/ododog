@@ -137,7 +137,7 @@
             <!-- 내가 쓴 글일 때 -->
 	            <div align="right" style="width:900px">
 	                <br><br>
-	                <a href="" ><button style="margin-right:10px;">수정</button></a>
+	                <a href="<%= contextPath %>/updateForm.bo?no=<%= b.getBoardNo() %>" ><button style="margin-right:10px;">수정</button></a>
 	                <a href=""><button class="btn-red" id="delete-post">삭제</button></a>
 	                <br>
 	            </div>
@@ -187,7 +187,8 @@
 
             
             <table id="prev-next" width="900">
-                <tr>
+            <% if(b.getBoardTitle() != null){ %>
+                <tr id="prev-board">
                     <th width="120">
                         <img src="<%= contextPath %>/resources/icons/upArrow.png">
                         이전글
@@ -196,7 +197,9 @@
                         <%= b.getPrevTitle() %>
                     </td>
                 </tr>
-                <tr>
+            <% } %>
+            <% if(b.getNextTitle() != null){ %>
+                <tr id="next-board">
                     <th>
                         <img src="<%= contextPath %>/resources/icons/downArrow.png">
                         다음글
@@ -205,7 +208,21 @@
                         <%= b.getNextTitle() %>
                     </td>
                 </tr>
+            <% } %>
             </table>
+            
+            <script>
+	        	$(function(){
+	        		$("#prev-board").click(function(){
+	        			location.href = '<%= contextPath %>/detail.bo?no=<%= b.getPrevNo() %>';
+                    })
+                    $("#next-board").click(function(){
+	        			location.href = '<%= contextPath %>/detail.bo?no=<%= b.getNextNo() %>';
+                    })
+	        	})
+        	</script>
+            
+            
 
             <br><br><br><br>
 

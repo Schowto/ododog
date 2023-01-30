@@ -7,23 +7,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.odd.board.model.service.BoardService;
 import com.odd.board.model.vo.Board;
-import com.odd.member.model.vo.Member;
 
 /**
- * Servlet implementation class BoardEnrollController
+ * Servlet implementation class BoardUpdateController
  */
-@WebServlet("/insert.bo")
-public class BoardInsertController extends HttpServlet {
+@WebServlet("/updateForm.bo")
+public class BoardUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardInsertController() {
+    public BoardUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,26 +30,10 @@ public class BoardInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		
-		String boardTitle = request.getParameter("title");
-		HttpSession session = request.getSession();
-		int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
-		String boardContent = request.getParameter("content");
-		
-		Board b = new Board();
-		b.setBoardTitle(boardTitle);
-		b.setBoardWriter(String.valueOf(userNo));
-		b.setBoardContent(boardContent);
-		
-		int result = new BoardService().insertBoard(b);
-		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "게시글 작성 성공");
-			response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
-		} else {
-			
-		}
+		int boardNo = Integer.parseInt(request.getParameter("no"));
+		Board b = new BoardService().selectBoard(boardNo);
+		request.setAttribute("b", b);
+		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
 	}
 
 	/**
