@@ -55,7 +55,7 @@ public class AdminProductInsertController extends HttpServlet {
 			
 			ArrayList<ProAtt> list = new ArrayList<>();
 			
-			for(int i=1; i<=7; i++) {
+			for(int i=1; i<=10; i++) {
 				String key = "file" + i;
 				if(multipartRequest.getOriginalFileName(key) != null) {
 					
