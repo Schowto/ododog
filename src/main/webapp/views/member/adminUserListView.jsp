@@ -13,41 +13,35 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 
-    .wrap {
-            /* 전체 -> ????? 세로 사이즈는 여기서 조정 ,,????? */
-            /*border:1px solid blue;*/
-            width: 1200px; height: 700px;
-            margin: auto;
-            background: rgb(220, 220, 220);
-        }
 
-    .wrap>div {float: left;}
+  #content {
+      width: 75%; height: 100%;
+      padding-top: 20px;
+      color: rgb(50, 50, 50);
+      background: white;
+  }    
+  .membertable{
+      height:1160px; width:900px;
+      margin: auto;
+      margin-top: 50px;
+  }
+  .usertable{
+      border-collapse: collapse;
+      width: 100%;
+  }
 
-    div {/*border:1px solid red;*/ box-sizing: border-box;}
-
-    #content {
-        width: 75%; height: 100%;
-        padding-top: 20px;
-        color: rgb(50, 50, 50);
-        background: white;
-    }    
-    .membertable{
-        height:1160px; width:900px;
-        margin: auto;
-        margin-top: 50px;
-      }
-      .usertable{
-        border-collapse: collapse;
-        width: 100%;
-      }
-
-      th,td{
-        padding: 8px;
-        text-align: center;
-        border-bottom: 1px solid #DDD;
-      }
+  th,td{
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #DDD;
+  }
 
       tr:hover {background-color: #D6EEEE;}
         
@@ -71,7 +65,32 @@
         display: inline-block;
         width: 100%;
       }
-
+      #btn{
+            font-size: 12px;
+            border:2px solid rgb(220,220,220);
+            background:white;
+            color:rgb(50, 50, 50);
+            border-radius:5px;
+        }
+        .modal-body{
+    margin: auto;
+    width: 400px;
+    height: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    background-color: #cacaca;
+    margin-top: 50px;
+}
+        #modal-body > input {
+          width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 16px;
+    border-radius: 6px;
+    background-color: #ffffff;
+        }
 </style>
 </head>
 <body>
@@ -86,14 +105,66 @@
                     <input type="text" value="아이디로 회원검색" id="serch" style="float: left;">
                     <button style="float: left;">조회하기</button>
       
-                    <button style="float: right;">회원조회</button> 
-                    <button style="float: right;">회원수정</button> 
-                    <button style="float: right;">회원삭제</button>
+                    <button style="float: right;">회원삭제</button> 
+                    
+        <!--모달-->
+
+<!-- Modal -->
+<div class="container">
+  <!-- Button to Open the Modal -->
+  <button type="button" id="btn" class="btn" data-toggle="modal" data-target="#myModal" style="float: right; height: 25px; font-size: 13px; display: flex; align-items:center;">
+    회원수정
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">회원정보수정</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body" style="text-align: left;">
+
+         <form action="" method="post" id="modal-body">
+          <label>아이디</label> <br><br>
+          <label>이름</label> 
+          <input type="text" name="" value=""> <br>
+
+          <label>이메일</label> 
+          <input type="email" name="" value=""> <br>
+
+          <label>전화번호</label> 
+          <input type="tel" name="" value=""> <br>
+
+          <label>주소</label> 
+          <input type="text" name="" value="우편번호"> <br>
+          <input type="text" name="" value="기본주소"> <br>
+          <input type="text" name="" value="상세주소"> <br>
+        </form>  
+        </div>
+        <br><br>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-secondary" data-dismiss="modal">수정</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="history.back();">취소</button>
+        </div>
+        
+      </div>
+    </div>
+    </div>
+  
+  </div>  
+                    <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
                 </div>
              
               <table class="usertable" style="text-align: center;">
                 <tr>
-                  <th><input type="checkbox"></th>
+                  <th></th>
                   <th>회원번호</th>
                   <th>이름</th>
                   <th>아이디</th>
@@ -109,19 +180,20 @@
                 <% }else { %>
                 <% for(Member m : list){ %> 
                 <tr>
-                  <td><input type="checkbox"></td>
+                  <td><input type="checkbox" value=<%= m.getUser_No() %>></td>
                   <td><%= m.getUser_No() %></td>
                   <td><%= m.getUser_Name() %></td>
                   <td><%= m.getUser_Id() %></td>
                   <td><%= m.getEmail() %></td>
                   <td><%= m.getPhone() %></td>
-                  <td><%= m.getAddress() %></td>
+                  <td><%= m.getPost_Code()%> / <%= m.getAddress() %> / <%=m.getDetailed_Address() %></td>
                   <td><%= m.getPoint() %></td>
                 </tr>
                 <%} %>
             <%} %>
               </table>
-              </div>
+              </div>            
         </div>
+
 </body>
 </html>

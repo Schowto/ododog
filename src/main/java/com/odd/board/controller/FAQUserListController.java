@@ -1,26 +1,28 @@
-package com.odd.member.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.member.model.service.MemberService;
-import com.odd.member.model.vo.Member;
+import com.odd.board.model.service.FAQService;
+import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class MemberUpdateController
+ * Servlet implementation class FAQUserListController
  */
-@WebServlet("/update.me")
-public class MemberUpdateController extends HttpServlet {
+@WebServlet("/FAQlist.ur")
+public class FAQUserListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberUpdateController() {
+    public FAQUserListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +31,11 @@ public class MemberUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
+		ArrayList<FAQ> list = new FAQService().selectFAQList();
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/board/FAQuser.jsp").forward(request, response);
 	}
 
 	/**
