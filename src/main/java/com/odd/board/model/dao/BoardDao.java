@@ -160,5 +160,48 @@ public class BoardDao {
 		}
 		return result;
 	}
-
+	
+	
+	public int increaseCount(Connection conn, int boardNo) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public Board selectBoard(Connection conn, int boardNo) {
+		// select
+		Board b = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBoard");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				b = new Board(rset.getInt("board_type"),
+							  rset.getString("board_title"),
+							  rset.getString("board_content"),
+							  rset.getString("user_id"),
+							  rset.getInt("count"),
+							  rset.getString("create_date"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return b;
+	}
 }

@@ -7,15 +7,6 @@
 <title>Insert title here</title>
 
 <style>
-    .wrap {
-            /*border:1px solid blue;*/
-            width: 1200px; height: 700px;
-            margin: auto;
-            background: rgb(220, 220, 220);
-        }
-    .wrap>div {float: left;}
-    div {/*border:1px solid red;*/ box-sizing: border-box;}
-    
 
     /******** 내용 *******/
     #content{/*border:1px solid pink;*/}

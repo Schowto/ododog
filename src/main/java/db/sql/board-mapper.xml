@@ -69,4 +69,24 @@
 		  , ?
 		  )
 	</entry>
+	
+	<entry key="increaseCount">
+		UPDATE
+		       BOARD
+		   SET COUNT = COUNT+1
+		 WHERE BOARD_NO = ?
+	</entry>
+	<entry key="selectBoard">
+		SELECT 
+			   BOARD_TITLE
+		     , BOARD_TYPE
+		     , USER_ID
+		     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD HH24:MI') create_date
+		     , COUNT
+		     , BOARD_CONTENT
+		  FROM BOARD
+		  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+		 WHERE BOARD_NO = ?
+	</entry>
+	
 </properties>

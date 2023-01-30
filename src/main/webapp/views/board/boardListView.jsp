@@ -140,6 +140,7 @@
                     	<% } else { %>
                     		<% for(Board b : nList){ %>
                     			<tr>
+                    				<input type="hidden" name="boardNo" value="<%= b.getBoardNo() %>">
 			                        <td style="color:rgb(200,140,140); font-weight:600;">공지</td>
 			                        <td style="font-weight:600;"><%= b.getBoardTitle() %></td>
 			                        <td>오도독</td>
@@ -155,6 +156,7 @@
                     	<!-- 공지사항은 없을 경우 -->
                     		<% for(Board b : list){ %>
                     			<tr>
+                                    <input type="hidden" name="boardNo" value="<%= b.getBoardNo() %>">
 			                        <td><%= b.getBoardNo() %></td>
 			                        <td><%= b.getBoardTitle() %></td>
 			                        <td><%= b.getBoardWriter() %></td>
@@ -166,6 +168,7 @@
                     	<!-- 공지사항, 일반게시글 모두 있을 경우 -->
 		                    <% for(Board b : nList){ %>
 		                    	<tr>
+                                        <input type="hidden" value="<%= b.getBoardNo() %>">
 					                    <td style="color:rgb(200,140,140); font-weight:600;">공지</td>
 					                    <td style="font-weight:600;"><%= b.getBoardTitle() %></td>
 					                    <td>오도독</td>
@@ -175,6 +178,7 @@
 		                    <% } %>
 		                    <% for(Board b : list){ %>
 		                    	<tr>
+                                        <input type="hidden" value="<%= b.getBoardNo() %>">
 					                    <td><%= b.getBoardNo() %></td>
 					                    <td><%= b.getBoardTitle() %></td>
 					                    <td><%= b.getBoardWriter() %></td>
@@ -186,9 +190,22 @@
                     <% } %>
                 </tbody>
             </table>
+            
+            <script>
+	        	$(function(){
+	        		$(".list-area>tbody>tr").click(function(){
+                        //console.log($(this).children("input").val());
+	        			location.href = '<%= contextPath %>/detail.bo?no=' + $(this).children("input").val();
+	        		})
+	        	})
+        	</script>
+            
+            
+            
+            
     
             <br><br>
-    <%= pi.getListCount() %>
+            
         <div>
             <form action="" style="font-size:13px;">
                     

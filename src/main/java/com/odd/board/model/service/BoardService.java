@@ -57,5 +57,29 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
+	
+	/**
+	 * 자유게시판게시글(공지사항 & 일반게시글) 조회시 조회수 +1
+	 * @param boardNo
+	 * @return
+	 */
+	public int increaseCount(int boardNo) {
+		Connection conn = getConnection();
+		int result = new BoardDao().increaseCount(conn, boardNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public Board selectBoard(int boardNo) {
+		Connection conn = getConnection();
+		Board b = new BoardDao().selectBoard(conn, boardNo);
+		close(conn);
+		return b;
+	}
 
 }

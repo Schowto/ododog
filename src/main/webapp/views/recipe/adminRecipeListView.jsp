@@ -45,6 +45,28 @@
         background:rgb(220,220,220);
         font-weight:700;
     }
+
+    /* 정렬순서 */
+    .sort-filter{
+        list-style-type:none;
+        padding:0;
+        margin:0;
+        width:100%;
+        height:100%;
+    }
+    .sort-filter>li{
+        border:1px solid rgb(220, 220, 220);
+        border-radius: 5px;
+        margin-top:20px;
+        float:right;
+        width:50px;
+        cursor:pointer;
+    }
+
+    .sort-filter{overflow:hidden}
+    .selected{
+        background:rgb(220,220,220);
+    }
     
 </style>
 
@@ -58,29 +80,27 @@
     
                 <br>
                 <div align="left">
-                    <p>게시글 관리</p>
+                    <p>레시피 관리</p>
                 </div>
                 <hr>
-    
-                <div align="right" style="margin:15px 0px;">
-                    <form action="" style="font-size:13px;">
-    
-                        <select name="search-order"
-                            style="height:25px; border:1px solid rgb(220, 220, 220); border-radius:5px;">
-                            <option value="title">제목</option>
-                            <option value="writer">작성자</option>
-                        </select>
-    
-                        <input type="text" name=""
-                            style="width:200px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
-    
-                        <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);">
-                            <img src="<%= contextPath %>/resources/icons/search.png" width="12px"
-                                style="opacity:0.5; margin-bottom:3px;">
-                        </button>
-    
-                    </form>
+
+                <div align="left" style="width:200px; float:left;">
+                    <button style="width:100px; height:30px; margin:15px 20px 10px;">레시피 작성</button>
                 </div>
+    
+                <ul class="sort-filter" style="width:700px; font-size:13px;">
+                    <li class>댓글순</li>
+                    <li class>하트순</li>
+                    <li class="selected">최신순</li>
+                </ul>
+                
+                <script>
+                    $(".sort-filter>li").click(function () {
+                        //console.log($(this).text());
+                        $(this).addClass('selected');
+                        $(this).siblings().removeClass('selected');
+                    })
+                </script>
     
                 <table class="list-area">
                     <thead>
