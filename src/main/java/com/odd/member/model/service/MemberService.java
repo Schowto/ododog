@@ -12,6 +12,12 @@ import com.odd.member.model.vo.Member;
 
 public class MemberService {
 	
+	/**
+	 * 로그인 요청 (소민)
+	 * @param userId
+	 * @param userPwd
+	 * @return
+	 */
 	public Member loginMember(String userId, String userPwd) {
 		Connection conn = getConnection();
 		Member m = new MemberDao().loginMember(conn, userId, userPwd);
@@ -38,7 +44,10 @@ public class MemberService {
 			close(conn);
 			return result;
 	}
-	
+	/**
+	 * 회원조회 (소민)
+	 * @return
+	 */
 	public ArrayList<Member> selectMemberList(){
 		Connection conn = getConnection();
 		ArrayList<Member> list = new MemberDao().selectMemberList(conn);
@@ -108,6 +117,40 @@ public class MemberService {
 		return m;
 	}
 	
+	/**
+	 * 아이디 중복체크 (소민)
+	 * @param checkId
+	 * @return
+	 */
+	public int idcheck(String checkId) {
+		Connection conn = getConnection();
+		int count = new MemberDao().idcheck(conn, checkId);
+		close(conn);
+		return count;
+	}
+	
+	/**
+	 * 관리자가 회원정보수정 (소민)
+	 * @param m
+	 */
+	public Member updateAdmin(Member m) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updateAdmin(conn, m);
+		
+		ArrayList<Member> updateAdmin = null;
+		if(result > 0) {
+			commit(conn);
+			updateAdmin = new MemberDao().selectMemberList(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return m;
+		}
+		
+	
 
 	
 	
@@ -136,4 +179,6 @@ public class MemberService {
 	
 	
 
-}
+
+		
+	}

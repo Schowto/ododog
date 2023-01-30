@@ -3,11 +3,18 @@
 <%@ page import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.service.*" %>    
 <%
 	
-		MemberService ms = new MemberService();
+	MemberService ms = new MemberService();
 
 	ArrayList<Member> list = ms.selectMemberList();
-	
+
+	String contextPath = request.getContextPath();
+
+	Member loginUser = (Member)session.getAttribute("loginUser");
+
+	String alertMsg = (String)session.getAttribute("alertMsg");
+
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,6 +118,7 @@
 
 <!-- Modal -->
 <div class="container">
+<form action="<%=contextPath %>/update.ad" method="post" id="modal-body">
   <!-- Button to Open the Modal -->
   <button type="button" id="btn" class="btn" data-toggle="modal" data-target="#myModal" style="float: right; height: 25px; font-size: 13px; display: flex; align-items:center;">
     회원수정
@@ -130,22 +138,20 @@
         <!-- Modal body -->
         <div class="modal-body" style="text-align: left;">
 
-         <form action="" method="post" id="modal-body">
           <label>아이디</label> <br><br>
-          <label>이름</label> 
-          <input type="text" name="" value=""> <br>
+          <label>이름 <%=userId%></label> 
+          <input type="text" name="userName" value="<%=userName%>"> <br>
 
           <label>이메일</label> 
-          <input type="email" name="" value=""> <br>
+          <input type="email" name="email" value="<%=email%>"> <br>
 
           <label>전화번호</label> 
-          <input type="tel" name="" value=""> <br>
+          <input type="tel" name="phone" value="<%=phone %>"> <br>
 
           <label>주소</label> 
-          <input type="text" name="" value="우편번호"> <br>
-          <input type="text" name="" value="기본주소"> <br>
-          <input type="text" name="" value="상세주소"> <br>
-        </form>  
+          <input type="text" name="post_Code" value="<%=post_Code%>"> <br>
+          <input type="text" name="address" value="<%=address%>"> <br>
+          <input type="text" name="Detailed_Address" value="<%=Detailed_Address%>"> <br>
         </div>
         <br><br>
         <!-- Modal footer -->
@@ -158,16 +164,19 @@
     </div>
     </div>
   
+</form>  
   </div>  
-                    <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
-                </div>
+               
+               <!-- 리스트 -->
+               <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
+               </div>
              
               <table class="usertable" style="text-align: center;">
                 <tr>
                   <th></th>
                   <th>회원번호</th>
-                  <th>이름</th>
                   <th>아이디</th>
+                  <th>이름</th>
                   <th>이메일</th>
                   <th>전화번호</th>
                   <th>주소</th>
@@ -182,8 +191,8 @@
                 <tr>
                   <td><input type="checkbox" value=<%= m.getUser_No() %>></td>
                   <td><%= m.getUser_No() %></td>
-                  <td><%= m.getUser_Name() %></td>
                   <td><%= m.getUser_Id() %></td>
+                  <td><%= m.getUser_Name() %></td>
                   <td><%= m.getEmail() %></td>
                   <td><%= m.getPhone() %></td>
                   <td><%= m.getPost_Code()%> / <%= m.getAddress() %> / <%=m.getDetailed_Address() %></td>

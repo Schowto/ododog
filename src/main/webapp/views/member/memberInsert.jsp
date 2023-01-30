@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 <style>
         
     /* 회원가입양식 */
@@ -106,7 +107,8 @@ button {
                     <br><br>
                   <label>아이디*</label> 
                   <input type="text" id="user_id" name="user_Id" placeholder="아이디를 입력하세요." required>
-                  <button onclick="idcheck();">중복확인</button> <br><br><br>
+                  <button type="button" onclick="idcheck();">중복확인</button> 
+                  <br><br><br>
                   
               
                   <label>비밀번호*</label>
@@ -169,7 +171,7 @@ button {
                         </div> 
                         <br>
         
-                        <input type="submit" value="회원가입" id="join_btn" style=" display: inline-block;">
+                        <input type="submit" value="회원가입" name="submit" id="join_btn" style=" display: inline-block;">
                     </div>
                 </form>
                 </form>
@@ -180,8 +182,35 @@ button {
                 let agreeChk = document.querySelectorAll('input[name=agree]');
                 for(let i = 0; i < agreeChk.length; i++){
                   agreeChk[i].checked = e.target.checked;
-                }
-            });
+                	}
+           		 });
+                </script>
+                
+                <script>
+                function idcheck(){
+                const $idInput = $("#joinform input[name=user_Id]");
+                
+                $.ajax({
+                	url:"<%=contextPath%>/idcheck.me",
+                	data:{checkId:$idInput.val()},
+                	success:function(result){
+                		if(result == "nnnnn"){
+                			alert("이미 존재하거나 탈퇴한 회원의 아이디입니다.");
+                			$idInput.focus();
+                		}else {
+                			if(confirm("사용가능한 아이디입니다. 사용하시겠습니까?")){
+                				$idInput.attr("readonly", true);
+                			}else {
+                				$idInput.focus();
+                			}
+                		}
+                	},
+                	error:function(){
+    				console.log("아이디 중복체크용 ajax 통신실패");
+    			}
+                });
+                	
+            }
                
                 </script>
                  

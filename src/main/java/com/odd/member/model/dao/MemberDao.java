@@ -107,8 +107,8 @@ public class MemberDao {
 			while(rset.next()) {
 				Member m = new Member();
 				m.setUser_No(rset.getInt("User_No"));
-				m.setUser_Name(rset.getString("User_Name"));
 				m.setUser_Id(rset.getString("User_Id"));
+				m.setUser_Name(rset.getString("User_Name"));
 				m.setEmail(rset.getString("Email"));
 				m.setPhone(rset.getString("Phone"));
 				m.setPost_Code(rset.getInt("Post_Code"));
@@ -238,11 +238,68 @@ public class MemberDao {
 		return m;
 	}
 	
+	/**
+	 * 아이디 중복체크 (소민)
+	 * @param conn
+	 * @param checkId
+	 * @return
+	 */
+	public int idcheck(Connection conn, String checkId) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("idcheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return count;
+		
+	}
 	
-	
-	
-	
-	
+	/**
+	 * 관리자가 회원정보 수정 (소민)
+	 * @param conn
+	 * @param m
+	 * @return
+	 */
+	public int updateAdmin(Connection conn, Member m) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAdmin");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, m.getUser_Name());
+			pstmt.setString(2, m.getPhone());
+			pstmt.setString(3, m.getEmail());
+			pstmt.setInt(4, m.getPost_Code());
+			pstmt.setString(5,m.getAddress());
+			pstmt.setString(6, m.getDetailed_Address());
+			pstmt.setString(7, m.getUser_Id());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	
