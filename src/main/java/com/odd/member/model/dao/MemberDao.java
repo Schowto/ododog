@@ -111,7 +111,9 @@ public class MemberDao {
 				m.setUser_Id(rset.getString("User_Id"));
 				m.setEmail(rset.getString("Email"));
 				m.setPhone(rset.getString("Phone"));
+				m.setPost_Code(rset.getInt("Post_Code"));
 				m.setAddress(rset.getString("Address"));
+				m.setDetailed_Address(rset.getString("Detailed_Address"));
 				m.setPoint(rset.getInt("Point"));
 				list.add(m);
 								 

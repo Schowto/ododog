@@ -11,6 +11,9 @@ import javax.servlet.http.HttpSession;
 import com.odd.member.model.service.MemberService;
 import com.odd.member.model.vo.Member;
 
+import com.odd.member.model.service.MemberService;
+import com.odd.member.model.vo.Member;
+
 /**
  * Servlet implementation class MemberUpdateController
  */
@@ -30,6 +33,9 @@ public class MemberUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
+	
+=======
 		
 		request.setCharacterEncoding("UTF-8");
 		
@@ -55,6 +61,7 @@ public class MemberUpdateController extends HttpServlet {
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		
+>>>>>>> 4b363667b6fbe5f2c33ec5b0ade62334f1e9ff07
 	}
 
 	/**

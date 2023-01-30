@@ -142,7 +142,7 @@ button {
          
               <!--동의양식-->
               <h2 align="center"><b>전체동의</b></h2> <br>
-              <p align="center"><input type="checkbox" name="chk"> 이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</p>
+              <p align="center"><input type="checkbox" name="agree_all"> 이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</p>
               <br> <hr style="border: 0.5px solid rgb(206, 206, 206); width: 900px; margin: auto;">
                 <form action="" id="joinForm">
                     <div class="join_box" style=" text-align: center;"> 
@@ -173,7 +173,7 @@ button {
                     </div>
                 </form>
                 </form>
-                <!--     
+                    
                 <script>
                 const agreeChkAll = document.querySelector('input[name=agree_all]');
                 agreeChkAll.addEventListener('change', (e) => {
@@ -184,7 +184,7 @@ button {
             });
                
                 </script>
-                 -->
+                 
                
 </body>
 </html>

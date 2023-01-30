@@ -257,10 +257,8 @@ public void setPoint(int point) {
 
 @Override
 public String toString() {
-	return "Member [User_No=" + User_No + ", User_Id=" + User_Id + ", User_Pwd=" + User_Pwd + ", User_Name=" + User_Name
-			+ ", Email=" + Email + ", Phone=" + Phone + ", Post_Code=" + Post_Code + ", Address=" + Address
-			+ ", Detailed_Address=" + Detailed_Address + ", Enroll_Date=" + Enroll_Date + ", Modify_Date=" + Modify_Date
-			+ ", Status=" + Status + ", Point=" + Point + "]";
+	return "Member [User_Id=" + User_Id + ", User_Name=" + User_Name + ", Email=" + Email + ", Phone=" + Phone
+			+ ", Post_Code=" + Post_Code + ", Address=" + Address + ", Detailed_Address=" + Detailed_Address + "]";
 }
  
  
