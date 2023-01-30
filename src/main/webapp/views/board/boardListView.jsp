@@ -195,8 +195,17 @@
 	        	$(function(){
 	        		$(".list-area>tbody>tr").click(function(){
                         //console.log($(this).children("input").val());
-	        			location.href = '<%= contextPath %>/detail.bo?no=' + $(this).children("input").val();
-	        		})
+                        <% if(loginUser == null){ %>
+                        	if($(this).children("td").eq(0).text() != "공지"){
+                        		alert("로그인 후 이용 가능합니다.");
+    	                        location.href = '<%= contextPath %>/views/member/loginUser.jsp';
+                        	} else {
+                        		location.href = '<%= contextPath %>/detail.bo?no=' + $(this).children("input").val();
+                        	}
+                        <% } else { %>
+	        				location.href = '<%= contextPath %>/detail.bo?no=' + $(this).children("input").val();
+	        			<% } %>
+                    })
 	        	})
         	</script>
             

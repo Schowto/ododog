@@ -77,13 +77,42 @@
 		 WHERE BOARD_NO = ?
 	</entry>
 	<entry key="selectBoard">
-		SELECT 
-			   BOARD_TITLE
+		SELECT
+		       BOARD_NO
+		     , BOARD_TITLE
 		     , BOARD_TYPE
 		     , USER_ID
-		     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD HH24:MI') create_date
+		     , TO_CHAR(CREATE_DATE, 'YYYY-MM-DD HH24:MI') "CREATE_DATE"
 		     , COUNT
 		     , BOARD_CONTENT
+		     , (
+		        SELECT MAX(BOARD_NO)
+		          FROM BOARD
+		         WHERE BOARD_NO &lt; ?
+		           AND STATUS = 'Y'
+		       ) "PREV_NO"
+		     , (
+		        SELECT BOARD_TITLE
+		          FROM BOARD
+		         WHERE BOARD_NO = (SELECT MAX(BOARD_NO)
+		                             FROM BOARD
+		                            WHERE BOARD_NO &lt; ?
+		                              AND STATUS = 'Y')
+		       ) "PREV_TITLE"
+		     , (
+		        SELECT MIN(BOARD_NO)
+		          FROM BOARD
+		         WHERE BOARD_NO > ?
+		           AND STATUS = 'Y'
+		       ) "NEXT_NO"
+		     , (
+		        SELECT BOARD_TITLE
+		          FROM BOARD
+		         WHERE BOARD_NO = (SELECT MIN(BOARD_NO)
+		                             FROM BOARD
+		                            WHERE BOARD_NO > ?
+		                              AND STATUS = 'Y')
+		       ) "NEXT_TITLE"
 		  FROM BOARD
 		  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
 		 WHERE BOARD_NO = ?

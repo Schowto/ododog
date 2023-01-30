@@ -187,14 +187,23 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, boardNo);
+			pstmt.setInt(3, boardNo);
+			pstmt.setInt(4, boardNo);
+			pstmt.setInt(5, boardNo);
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				b = new Board(rset.getInt("board_type"),
+				b = new Board(rset.getInt("board_no"),
+							  rset.getInt("board_type"),
 							  rset.getString("board_title"),
 							  rset.getString("board_content"),
 							  rset.getString("user_id"),
 							  rset.getInt("count"),
-							  rset.getString("create_date"));
+							  rset.getString("create_date"),
+							  rset.getInt("prev_no"),
+							  rset.getString("prev_title"),
+							  rset.getInt("next_no"),
+							  rset.getString("next_title"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

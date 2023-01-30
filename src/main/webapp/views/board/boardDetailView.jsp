@@ -71,11 +71,7 @@
         text-align:center;
         background:rgb(220, 220, 220);
     }
-    #prev-next a{
-        text-decoration:none;
-        color:rgb(50, 50, 50);
-    }
-    #prev-next a:hover{font-weight:600;}
+    #prev-next tr:hover{font-weight:600; cursor:pointer;}
 
 
     #reply-area{/*border: 1px solid red;*/padding: 10px;}
@@ -137,7 +133,7 @@
                 <br>
             </div>
 
-            <% if(loginUser.getUser_Id().equals(b.getBoardWriter())){ %>
+            <% if(loginUser != null && loginUser.getUser_Id().equals(b.getBoardWriter())){ %>
             <!-- 내가 쓴 글일 때 -->
 	            <div align="right" style="width:900px">
 	                <br><br>
@@ -185,7 +181,7 @@
                     신고
                 </span>
                 <br><br>
-                <a href=""><button type="submit">목록</button></a>
+                <a href="<%= contextPath %>/list.bo?cpage=1"><button type="submit">목록</button></a>
                 <br><br><br><br>
             </div>
 
@@ -193,20 +189,20 @@
             <table id="prev-next" width="900">
                 <tr>
                     <th width="120">
-                        <a href=""><img src="<%= contextPath %>/resources/icons/upArrow.png"></a>
-                        <a href="">이전글</a>
+                        <img src="<%= contextPath %>/resources/icons/upArrow.png">
+                        이전글
                     </th>
                     <td>
-                        <a href="">이전글 제목입니다요~~~~~~~~</a>
+                        <%= b.getPrevTitle() %>
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        <a href=""><img src="<%= contextPath %>/resources/icons/downArrow.png"></a>
-                        <a href="">다음글</a>
+                        <img src="<%= contextPath %>/resources/icons/downArrow.png">
+                        다음글
                     </th>
                     <td>
-                        <a href="">다음글 제목입니다요~~~dgdgdgd~~~gfdgdfgdgdfgdgdfgdgdfgdfgdfgdfg~~</a>
+                        <%= b.getNextTitle() %>
                     </td>
                 </tr>
             </table>
