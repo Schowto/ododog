@@ -72,8 +72,14 @@
 	   	 , ADDRESS = ?
 	   	 , DETAILED_ADDRESS = ?
 	 WHERE USER_ID = ? 
-	   	   
-	  
+	</entry>
+	
+	<entry key="updatePwdMember">
+		UPDATE MEMBER
+		   SET USER_PWD = ?
+		     , MODIFY_DATE = SYSDATE
+		WHERER USER_ID = ?
+		   AND USER_PWD =?
 	</entry>
 	
 

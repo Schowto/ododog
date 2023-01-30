@@ -50,14 +50,35 @@ public class MemberService {
 		Connection conn = getConnection();
 		int result = new MemberDao().updateMember(conn, m);
 		
+		ArrayList<Member> updateMem = null;
 		if(result > 0) {
 			commit(conn);
+			updateMem = new MemberDao().selectMemberList(conn);
 		}else {
 			rollback(conn);
 		}
 		
 		close(conn);
 		return m;
+		
+	}
+	
+	public ArrayList<Member> updatePwdMember(String userId, String userPwd, String updatePwd) {
+		
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().updatePwdMember(conn, userId, userPwd, updatePwd);
+		
+		ArrayList<Member> updateMem = null;
+		if(result > 0) {
+			commit(conn);
+			updateMem = new MemberDao().selectMemberList(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return updateMem;		
 		
 	}
 

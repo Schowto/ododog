@@ -1,11 +1,17 @@
 package com.odd.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.odd.member.model.service.MemberService;
+import com.odd.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberPwdUpdateController
@@ -26,8 +32,23 @@ public class MemberPwdUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		String updatePwd = request.getParameter("updatePwd");
+		
+		ArrayList<Member> updateMem = new MemberService().updatePwdMember(userId, userPwd, updatePwd);
+		
+		HttpSession session = request.getSession();
+		if(updateMem != null) {
+			session.setAttribute("alertMsg", "비밀번호 변경에 성공했습니다.");
+			session.setAttribute("loginUser", updateMem);
+		}else {
+			session.setAttribute("alertMsg", "비밀번호가 틀렸습니다. 다시한번 확인해주세요.");
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/myPage.me");
+		
 	}
 
 	/**

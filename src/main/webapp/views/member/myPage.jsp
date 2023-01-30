@@ -154,7 +154,7 @@ input::placeholder{
                     <tr>
                         <td>비밀번호 *</td>
                         <td colspan="3">
-                            &nbsp;&nbsp;<button id="password" data-toggle="modal" data-target="#updatePwdModal">비밀번호 수정하기</button> 
+                            &nbsp;&nbsp;<button type="button" id="password" data-toggle="modal" data-target="#updatePwdModal">비밀번호 수정하기</button> 
                         </td>
                     </tr>
                     <tr>
@@ -254,8 +254,6 @@ input::placeholder{
                   
                   <button type="submit" class="btn btn-secondary btn-sm">비밀번호 변경</button>
                   
-                  
-                  
               </form>
               
             </div>
@@ -263,6 +261,46 @@ input::placeholder{
           </div>
         </div>
       </div>
+      
+      <!-- 모달 -->
+        <div class="modal" id="myModal" style="color:rgb(50, 50, 50);">
+            <div class="modal-dialog">
+                <div class="modal-content" style="padding:30px 20px;">
+        
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="justify-content: left;">
+                        <h5 class="modal-title" style="font-weight:600;">비밀번호 변경</h5>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <br>
+                    <!-- Modal body -->
+                    <div class="modal-body" style="color:gray; font-size:13px;">
+                        <form action="<%= contextPath %>/updatePwd.me" method="post">
+                            <input type="hidden" name="userId" value="<%= userId %>" >
+                            <table>
+                                <tr>
+                                    <td>현재 비밀번호</td>
+                                    <td><input type="password" name="userPwd"required></td>
+                                </tr>
+                                <tr>
+                                    <td>변경할 비밀번호</td>
+                                    <td><input type="password" name="updatePwd" required></td>
+                                </tr>
+                                <tr>
+                                    <td>변경할 비밀번호 확인</td>
+                                    <td><input type="password" required></td>
+                                </tr>
+                            </table>
+                            <br>
+                            
+                            <button type="submit" class="btn btn-secondary btn-sm">비밀번호 변경</button>
+                            
+                        </form>
+        
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 </html>
