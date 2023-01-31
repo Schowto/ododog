@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.common.model.vo.PageInfo;
+import com.odd.order.model.service.AdminOrderService;
+import com.odd.order.model.vo.AdminOrder;
 import com.odd.product.model.service.AdminProductService;
-import com.odd.product.model.vo.Product;
 
 /**
  * Servlet implementation class AdminOrderListController
@@ -77,13 +78,13 @@ public class AdminOrderListController extends HttpServlet {
 		
 		String order = request.getParameter("order");
 		
-		ArrayList<Product> list = new AdminProductService().selectList(pi, order);
+		ArrayList<AdminOrder> list = new AdminOrderService().selectList(pi, order);
 		
 		request.setAttribute("pi",pi);
 		request.setAttribute("list",list);
 		request.setAttribute("order",order);
 		
-		request.getRequestDispatcher("views/product/adminProductListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/product/adminOrderListView.jsp").forward(request, response);
 		
 		}
 

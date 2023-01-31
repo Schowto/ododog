@@ -11,23 +11,24 @@ public class AdminOrder {
 	private int userNo;
 	private String userName;
 	private String delAdd;
-	
-	private String payment;
-	private String delivery;
 	private String phone;
 	private String email;
 	private String address;
-	private String require;
 	
 	private int discount;
 	private int totalPrice;
 	private double save;
 	
+	private String payment;
+	private String delivery;
+	
+	private String require;
+	
 	public AdminOrder() {}
 
 	public AdminOrder(int ordNo, int proNo, String proName, int amount, int userNo, String userName, String delAdd,
-			String payment, String delivery, String phone, String email, String address, String require, int discount,
-			int totalPrice, double save) {
+			String phone, String email, String address, int discount, int totalPrice, double save, String payment,
+			String delivery, String require) {
 		super();
 		this.ordNo = ordNo;
 		this.proNo = proNo;
@@ -36,15 +37,33 @@ public class AdminOrder {
 		this.userNo = userNo;
 		this.userName = userName;
 		this.delAdd = delAdd;
-		this.payment = payment;
-		this.delivery = delivery;
 		this.phone = phone;
 		this.email = email;
 		this.address = address;
-		this.require = require;
 		this.discount = discount;
 		this.totalPrice = totalPrice;
 		this.save = save;
+		this.payment = payment;
+		this.delivery = delivery;
+		this.require = require;
+	}
+
+	
+	
+	public AdminOrder(int ordNo, String proName, int amount, String userName, String delAdd, String phone, String email,
+			int totalPrice, String payment, String delivery, String require) {
+		super();
+		this.ordNo = ordNo;
+		this.proName = proName;
+		this.amount = amount;
+		this.userName = userName;
+		this.delAdd = delAdd;
+		this.phone = phone;
+		this.email = email;
+		this.totalPrice = totalPrice;
+		this.payment = payment;
+		this.delivery = delivery;
+		this.require = require;
 	}
 
 	public int getOrdNo() {
