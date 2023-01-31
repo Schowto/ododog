@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,23 +45,23 @@
 </style>
 </head>
 <body>
+    <div class="wrap">
+ 	    
+ 	    <%@ include file="../common/adminMenubarForInclude.jsp" %>
 
-	<%@ include file="../common/userMenubar.jsp"%>
-
-    <div class="login-wrapper">
+        <div id="content" align="center">
+			    <div class="login-wrapper">
         <h2 style="text-align: center;">로그인</h2>
         <form action="<%= request.getContextPath() %>/login.me" method="post" id="login-form">
             <input type="text" name="userId" placeholder="ID">
             <input type="password" name="userPwd" placeholder="Password">
             <div class="in" style="text-align: center;">
-        <a href="<%=contextPath%>/views/member/memberInsert.jsp">회원가입</a> |
-        <a href="<%=contextPath%>/views/member/searchId.jsp"">아이디찾기</a>  |
-        <a href="">비밀번호찾기</a> 
         </div>
             <input type="submit" value="로그인">
         </form>
+
+        </div>
         
     </div>
-
 </body>
 </html>

@@ -1,17 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.service.*" %>    
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.service.*"%>
+
 <%
-	
 	MemberService ms = new MemberService();
 
 	ArrayList<Member> list = ms.selectMemberList();
 
-	String contextPath = request.getContextPath();
-
 	Member loginUser = (Member)session.getAttribute("loginUser");
-
-	String alertMsg = (String)session.getAttribute("alertMsg");
 
 %>
 
@@ -102,9 +97,20 @@
 </head>
 <body>
 	
-	 <div class="wrap">
+    <div class="wrap">
  	    
- 	    <%@ include file="../common/adminMenubarForInclude.jsp" %>
+ 	      <%@ include file="../common/adminMenubarForInclude.jsp" %>
+ 	      
+ 	      <%
+		        String userId = loginUser.getUser_Id();
+		        String userPassword = loginUser.getUser_Pwd();
+		        String userName = loginUser.getUser_Name();
+		        String email = loginUser.getEmail();
+		        String phone = loginUser.getPhone();
+		        int postCode = loginUser.getPost_Code();
+		        String address = loginUser.getAddress();
+		        String Detailed_Address = loginUser.getDetailed_Address();
+    		%>
 
         <div id="content" align="center">
             <div class="membertable">
@@ -149,7 +155,7 @@
           <input type="tel" name="phone" value="<%=phone %>"> <br>
 
           <label>주소</label> 
-          <input type="text" name="post_Code" value="<%=post_Code%>"> <br>
+          <input type="text" name="post_Code" value="<%=postCode%>"> <br>
           <input type="text" name="address" value="<%=address%>"> <br>
           <input type="text" name="Detailed_Address" value="<%=Detailed_Address%>"> <br>
         </div>

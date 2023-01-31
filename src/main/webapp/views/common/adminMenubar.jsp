@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.odd.member.model.vo.Admin"%>
 <%	
 	String contextPath = request.getContextPath();
+
+	Admin loginAdmin = (Admin)session.getAttribute("loginAdmin");
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -249,14 +253,18 @@
             <div id="admin-profile">
 
                 <!-- 로그인 전 -->
+                <% if(loginAdmin == null) { %>
                 <img src="<%= contextPath %>/resources/icons/profile.png" width="15" style="margin-right:10px;">
-                <a href="" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
-
+                <a href="<%=contextPath %>//views/member/loginAdmin.jsp" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
+				
+				 <%}else{ %>
+				 
                 <!-- 로그인 후 -->
                 <img src="<%= contextPath %>/resources/icons/loginProfile.png" width="15" style="margin-right:10px;">관리자님
-                <a href=""
+                <a href="<%=contextPath %>/logout.ad"
                     style="margin-left:30px; text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그아웃</a>
-
+	
+				<%} %>	
             </div>
         </div>
 

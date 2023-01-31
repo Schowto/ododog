@@ -284,8 +284,8 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, m.getUser_Name());
-			pstmt.setString(2, m.getPhone());
-			pstmt.setString(3, m.getEmail());
+			pstmt.setString(2, m.getEmail());
+			pstmt.setString(3, m.getPhone());
 			pstmt.setInt(4, m.getPost_Code());
 			pstmt.setString(5,m.getAddress());
 			pstmt.setString(6, m.getDetailed_Address());
