@@ -28,6 +28,10 @@ public class AdminProductDao {
 		}
 	}
 	
+	
+	/**
+	 * @return 전체 상품 리스트
+	 */
 	public int selectListCount(Connection conn) {
 		
 		int listCount = 0;
@@ -52,6 +56,11 @@ public class AdminProductDao {
 		return listCount;
 	}
 
+	/**
+	 * @param pi >> 페이지 처리 정보
+	 * @param order >> 정렬
+	 * @return 현재 페이지에 들어갈 상품 리스트
+	 */
 	public ArrayList<Product> selectList(Connection conn, PageInfo pi, String order){
 		
 		ArrayList<Product> list = new ArrayList<>();
@@ -103,6 +112,11 @@ public class AdminProductDao {
 		
 	}
 	
+	/**
+	 * @param conn
+	 * @param proSearch >> 검색 조건 객체
+	 * @return 검색된 상품 리스트
+	 */
 	public ArrayList<Product> searchList(Connection conn, AdminProSearch proSearch) {
 		
 		ArrayList<Product> list = new ArrayList<>();
@@ -176,6 +190,7 @@ public class AdminProductDao {
 		return list;
 	}
 	
+	// 상품 등록
 	public int insertProduct(Connection conn, Product p) {
 		
 		int result = 0;
@@ -204,6 +219,7 @@ public class AdminProductDao {
 		return result;
 	}
 	
+	// 상품 이미지 등록
 	public int insertAttachList(Connection conn, ArrayList<ProAtt> list) {
 		
 		int result = 1;
@@ -230,6 +246,10 @@ public class AdminProductDao {
 		return result;
 	}
 	
+	/**
+	 * @param deleteList >> 삭제할 상품 번호 배열
+	 * @return result >> 상품 삭제 결과  
+	 */
 	public int deleteProduct(Connection conn, String[] deleteList) {
 		
 		int result = 1;
@@ -255,6 +275,10 @@ public class AdminProductDao {
 		return result;
 	}
 	
+	/**
+	 * @param deleteList >> 삭제할 상품 번호 배열
+	 * @return result >> 상품 삭제 결과  
+	 */
 	public int deleteProAtt(Connection conn, String[] deleteList) {
 		
 		int result = 1;
@@ -281,6 +305,11 @@ public class AdminProductDao {
 		return result;
 	}
 	
+	
+	/**
+	 * @param proNo >> 클릭한 상품 번호
+	 * @return 번호로 조회한 상품 정보
+	 */
 	public Product selectProduct(Connection conn, int proNo) {
 		
 		Product p = null;
@@ -320,6 +349,10 @@ public class AdminProductDao {
 		
 	}
 	
+	/**
+	 * @param proNo >> 클릭한 상품 번호
+	 * @return 번호로 조회한 상품 이미지 리스트
+	 */
 	public ArrayList<ProAtt> selectProAtt(Connection conn, int proNo){
 		
 		ResultSet rset = null;
@@ -355,36 +388,38 @@ public class AdminProductDao {
 		return list;
 	}
 	
-public int updateProduct(Connection conn, Product p) {
-		
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("updateProduct");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
+	// 상품 정보 수정
+	public int updateProduct(Connection conn, Product p) {
 			
-			pstmt.setString(1, p.getCategory());
-			pstmt.setString(2, p.getProName());
-			pstmt.setInt(3, p.getPrice());
-			pstmt.setString(4, p.getExpiredDate());
-			pstmt.setString(5, p.getThumbImg());
-			pstmt.setString(6, String.valueOf(p.getSave()));
-			pstmt.setString(7, p.getSoldout());
-			pstmt.setInt(8, p.getProNo());
+			int result = 0;
+			PreparedStatement pstmt = null;
 			
-			result = pstmt.executeUpdate();
+			String sql = prop.getProperty("updateProduct");
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, p.getCategory());
+				pstmt.setString(2, p.getProName());
+				pstmt.setInt(3, p.getPrice());
+				pstmt.setString(4, p.getExpiredDate());
+				pstmt.setString(5, p.getThumbImg());
+				pstmt.setString(6, String.valueOf(p.getSave()));
+				pstmt.setString(7, p.getSoldout());
+				pstmt.setInt(8, p.getProNo());
+				
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
 		}
-		
-		return result;
-	}
 	
+	// 상품 이미지 수정
 	public int updateAttachList(Connection conn, ArrayList<ProAtt> list) {
 		
 		int result = 1;
