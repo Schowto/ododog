@@ -100,17 +100,36 @@
  	    
  	      <%@ include file="../common/adminMenubarForInclude.jsp" %>
  	      
+ 	      
         <div id="content" align="center">
             <div class="membertable">
                 <div class="memberbutton">
-                    <input type="text" value="아이디로 회원검색" id="serch" style="float: left;">
-                    <button style="float: left;">조회하기</button>
-      
-                    <button style="float: right;">회원삭제</button> 
-
+                <form name="search-form"> 
+                <input type="text" value="아이디로 회원검색" id="serch" style="float: left;">
+                    <button style="float: left;" onclick="serch();">조회하기</button>
+                </form>
+                
+                <script>
+                function serch(){
+                	$.ajax({
+                		url:"/web/serch.do",
+                		data:{id;$("#serch").val()},
+                		success:function(result){
+                			console.log("result");
+                		}, error:function(){
+                			console.log("ajax 통신 실패");
+                		}
+                	})
+                }
+                </script>
+                    
+      				<% for(Member m : list){ %> 
+                    <button style="float: right;" onclick="location.href ='<%=contextPath%>/delete.ad?no=<%=m.getUser_No()%>'">회원삭제</button> 
+					<%} %>
+					
                <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
                </div>
-             
+            
               <table class="usertable" style="text-align: center;">
                 <tr>
                   <th></th>

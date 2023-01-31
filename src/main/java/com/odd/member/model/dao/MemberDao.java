@@ -327,10 +327,10 @@ public class MemberDao {
 		}finally {
 			close(rset);
 			close(pstmt);
-		}
 		
 		return m;
 		
+		}return m;
 	}
 		
 		
