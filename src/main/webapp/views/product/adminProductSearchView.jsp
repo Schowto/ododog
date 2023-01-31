@@ -153,7 +153,7 @@
                    
                        <%if (list.isEmpty()){ %>
                        <tr>
-                           <td colspan="9"> 조회된 게시글이 없습니다.</td>
+                           <td colspan="9"> 조회된 상품이 없습니다.</td>
                        </tr>
                        <%}else{ %>
                            <% for(Product p : list){ %>
