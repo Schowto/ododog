@@ -42,7 +42,7 @@ public class BoardUpdateController extends HttpServlet {
 		
 		int result = new BoardService().updateBoard(b);
 		if(result > 0) {
-			request.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
+			request.getSession().setAttribute("alertMsg", "성공적으로 수정되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/detail.bo?no=" + boardNo);
 		} else {
 			request.setAttribute("errorMsg", "일반게시글 작성 실패");

@@ -136,9 +136,9 @@ public class MemberService {
 	 * @param userPwd
 	 * @return
 	 */
-	public int memberDelete(String userId, String userPwd) {
-		Connection conn = getConnection();
+	public int deleteMember(String userId, String userPwd) {
 		
+		Connection conn = getConnection();
 		int result = new MemberDao().memberDelete(conn, userId, userPwd);
 		
 		close(conn);

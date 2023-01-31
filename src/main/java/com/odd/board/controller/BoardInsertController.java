@@ -47,7 +47,7 @@ public class BoardInsertController extends HttpServlet {
 		
 		int result = new BoardService().insertBoard(b);
 		if(result > 0) {
-			request.getSession().setAttribute("alertMsg", "게시글 작성 성공");
+			request.getSession().setAttribute("alertMsg", "성공적으로 작성되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
 		} else {
 			

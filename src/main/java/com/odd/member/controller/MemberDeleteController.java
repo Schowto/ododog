@@ -35,7 +35,7 @@ public class MemberDeleteController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		int result = new MemberService().memberDelete(userId, userPwd);
+		int result = new MemberService().deleteMember(userId, userPwd);
 		
 		HttpSession session = request.getSession();
 		
@@ -46,7 +46,6 @@ public class MemberDeleteController extends HttpServlet {
 			response.sendRedirect(request.getContextPath());
 			
 		}else {
-			
 			response.sendRedirect(request.getContextPath() + "/myPage.me");
 			
 		}

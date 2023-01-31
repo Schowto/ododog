@@ -50,11 +50,11 @@ public class BoardSearchController extends HttpServlet {
 		
 		ArrayList<Board> nList = new BoardService().selectNoticeList();
 		
-		String searchOrder = request.getParameter("search");
+		String searchOption = request.getParameter("search");
 		String keyword = request.getParameter("keyword");
 		ArrayList<Board> list = new ArrayList<>();
 		
-		if(searchOrder.equals("ti")) {				// 제목검색
+		if(searchOption.equals("ti")) {				// 제목검색
 			listCount = new BoardService().selectSearchListCountT(keyword);
 			maxPage = (int) Math.ceil((double) listCount / boardLimit);
 			startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
@@ -65,7 +65,7 @@ public class BoardSearchController extends HttpServlet {
 			pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 			list = new BoardService().searchBoardT(pi, keyword);
 			
-		} else if(searchOrder.equals("ti-con")) {	// 제목 + 내용검색
+		} else if(searchOption.equals("ti-con")) {	// 제목 + 내용검색
 			listCount = new BoardService().selectSearchListCountTC(keyword);
 			maxPage = (int) Math.ceil((double) listCount / boardLimit);
 			startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
@@ -88,11 +88,12 @@ public class BoardSearchController extends HttpServlet {
 			list = new BoardService().searchBoardW(pi, keyword);
 		}
 		
+		request.setAttribute("searchOption", searchOption);
+		request.setAttribute("keyword", keyword);
 		request.setAttribute("pi", pi);
 		request.setAttribute("nList", nList);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/board/boardListView.jsp").forward(request, response);
-		
 	}
 
 	/**

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class myPointController
@@ -27,7 +28,20 @@ public class MyPointController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/member/myPointListView.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginUser") == null) {
+			
+			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
+			response.sendRedirect(request.getContextPath());
+			
+			
+		}else {
+			
+			request.getRequestDispatcher("views/member/myPointListView.jsp").forward(request, response);
+			
+		}
+		
+		
 		
 		
 	}

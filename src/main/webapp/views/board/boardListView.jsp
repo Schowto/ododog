@@ -5,6 +5,8 @@
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Board> nList = (ArrayList<Board>)request.getAttribute("nList");
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	String searchOption = (String)request.getAttribute("searchOption");
+	String keyword = (String)request.getAttribute("keyword");
 %>
 <!DOCTYPE html>
 <html>
@@ -209,47 +211,78 @@
 	        	})
         	</script>
             
-            
-            
-            
-    
             <br><br>
             
         <div>
-            <form action="<%= contextPath %>/search.bo" style="font-size:13px;">
+            <form action="<%= contextPath %>/search.bo" style="font-size:13px;" id="search-form">
                 <input type="hidden" name="cpage" value="1">
+                
                 <select name="search" style="height:25px; border:1px solid rgb(220, 220, 220); border-radius:5px;">
                     <option value="ti">제목</option>
                     <option value="ti-con">제목+내용</option>
                     <option value="wr">작성자</option>
                 </select>
-                    
-                <input type="text" name="keyword" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
-                    
-                <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);">
-                <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
-                </button>
                 
+                <input type="text" name="keyword" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
+               
+                <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);" >
+                	<img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
+                </button>
             </form>
         </div>
-            
+        
+        <script>
+	        
+	        $(function(){
+	        	console.log($("#search-form :text").val());
+	        	<% if(keyword == null){ %>
+	        		$("#search-form :text").val("");
+	        	<% } else { %>
+	        		$("#search-form :text").val("<%= keyword %>");
+	        	<% } %>
+	        	
+        		$("#search-form option").each(function(){
+        			if($(this).val() == "<%= searchOption %>"){
+        				$(this).attr("selected", true);
+        			}
+        		})
+        	})
+        	
+        </script>
+        
         <br><br><br>
         
         <div class="paging-area" align="center">
-        	
-        	<!-- 페이지1일 때는 < 버튼 출력 X -->
-        	<% if(pi.getCurrentPage() != 1){ %>
-        		<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()-1%>';">&lt;</button>
-        	<% } %>
-        	
-        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
-        		<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=p%>';"><%= p %></button>
-        	<% } %>
-        	
-        	<!-- 마지막페이지일 때 -->
-        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
-            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()+1%>'">&gt;</button>
+        
+        	<% if(keyword == null){ %>
+        	<!-- 검색어 없을 때 : 전체조회 -->
+        		<!-- 페이지1일 때는 < 버튼 출력 X -->
+	        	<% if(pi.getCurrentPage() != 1){ %>
+	        		<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()-1%>';">&lt;</button>
+	        	<% } %>
+	        	
+	        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+	        		<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=p%>';"><%= p %></button>
+	        	<% } %>
+	        	
+	        	<!-- 마지막페이지일 때 -->
+	        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+	            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()+1%>'">&gt;</button>
+	            <% } %>
+            <% } else {%>
+	        	<% if(pi.getCurrentPage() != 1){ %>
+	        		<button onclick="location.href='<%=contextPath%>/search.bo?cpage=<%=pi.getCurrentPage()-1%>&search=<%= searchOption %>&keyword=<%= keyword %>';">&lt;</button>
+	        	<% } %>
+	        	
+	        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+	        		<button onclick="location.href='<%=contextPath%>/search.bo?cpage=<%= p %>&search=<%= searchOption %>&keyword=<%= keyword %>';"><%= p %></button>
+	        	<% } %>
+	        	
+	        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+	            	<button onclick="location.href='<%=contextPath%>/search.bo?cpage=<%=pi.getCurrentPage()+1%>&search=<%= searchOption %>&keyword=<%= keyword %>';">&gt;</button>
+	            <% } %>
             <% } %>
+            
         </div>
         
         <script>
