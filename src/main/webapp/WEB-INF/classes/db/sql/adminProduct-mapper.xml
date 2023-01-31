@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	
+	<entry key ="selectListCount">
+	
+		SELECT
+			   COUNT(*) count
+		  FROM PRODUCT
+		 WHERE STATUS = 'Y' 
+		 
+	</entry>
+	
+	<entry key = "selectList1">
+	
+		 SELECT RNUM,B.*
+		   FROM (
+		        SELECT ROWNUM RNUM, A.*  	
+		          FROM(
+		                 SELECT P.*
+		                 FROM PRODUCT P
+		            	 WHERE STATUS = 'Y'
+	</entry>
+	
+	<entry key = "selectList2">
+				       ) A
+		         )B 
+		   WHERE RNUM BETWEEN ? AND ?
+		   
+	</entry>
+	
+	<entry key = "selectSearch">
+	
+	    SELECT A.*
+	      FROM (
+				 SELECT TO_DATE(EXPIRED_DATE, 'YYYY-MM-DD') - SYSDATE EXP_DATE
+				 	  , TO_DATE(ENROLL_DATE, 'YYYY-MM-DD') ENR_DATE
+				 	  , P.*
+				   FROM PRODUCT P
+	            ) A
+	      WHERE STATUS = 'Y'
+	      
+	</entry>
+	
+	<entry key="insertProduct">
+	
+		INSERT 
+  		  INTO PRODUCT 
+             (
+            	PRO_NO
+              , CATEGORY
+              , PRO_NAME
+              , PRICE
+              , EXPIRED_DATE
+              , THUMB_IMG
+              , ENROLL_DATE
+              , SAVE
+              )
+	    VALUES 
+	         (
+        		SEQ_PRODUCTNO.NEXTVAL
+         	  , ?
+         	  , ?
+         	  , ?
+         	  , ?
+         	  , ?
+         	  , TO_CHAR(SYSDATE,'YYYY-MM-DD')
+         	  , ?
+	         )
+	         
+	</entry>
+	
+	<entry key="insertAttachList">
+	
+		INSERT
+		  INTO PRO_ATT
+			  (
+			     FILE_NO
+			   , PRO_NO
+			   , FILE_PATH
+			   , FILE_LEVEL
+			  )
+		VALUES 
+			  (
+			    SEQ_FILENO.NEXTVAL
+			  , SEQ_PRODUCTNO.CURRVAL
+			  , ?
+			  , ?
+		 		)
+	
+	</entry>
+	
+	<entry key="deleteProduct">
+	
+		UPDATE PRODUCT
+		   SET STATUS = 'N'
+		 WHERE PRO_NO = ? 
+ 
+	</entry>
+	
+	<entry key="deleteProAtt">
+		 
+		UPDATE PRO_ATT
+		   SET STATUS = 'N'
+		 WHERE PRO_NO = ?  
+		 
+	</entry>
+	
+	<entry key="selectProduct">
+	
+		SELECT *
+		  FROM PRODUCT
+		 WHERE STATUS = 'Y'
+	       AND PRO_NO = ?
+	
+	</entry>
+	
+	<entry key="selectProAtt">
+		SELECT FILE_NO, PRO_NO, FILE_PATH, FILE_LEVEL
+		  FROM PRO_ATT
+		 WHERE STATUS = 'Y'
+		   AND PRO_NO = ?
+		 ORDER
+		    BY FILE_NO
+	</entry>
+	
+	<entry key="updateProduct">
+		UPDATE PRODUCT
+		   SET CATEGORY = ?
+		     , PRO_NAME = ?
+		     , PRICE = ?
+		     , EXPIRED_DATE = ?
+		     , THUMB_IMG = ?
+		     , SAVE = ?
+		     , SOLDOUT = ?
+		     , ENROLL_DATE = TO_CHAR(SYSDATE,'YYYY-MM-DD')
+		 WHERE PRO_NO = ?  
+	</entry>
+	
+	<entry key="updateAttachList">
+		UPDATE PRO_ATT
+		   SET FILE_PATH = ?
+		     , UPLOAD_DATE = SYSDATE
+		 WHERE FILE_NO = ?    
+	</entry>
+	
+</properties>

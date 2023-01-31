@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="detailProduct">
+		SELECT PRO_NAME
+		   	 , PRICE
+		   	 , thumImg
+		FROM PRODUCT
+	
+	</entry>
+
+	<entry key="detailProductImg">
+		SELECT FILE_PATH
+			FROM PRO_ATT
+				
+	</entry>
+</properties>
