@@ -60,14 +60,14 @@ public class MemberService {
 	 * @param m
 	 * @return
 	 */
-	public ArrayList<Member> updateMember(Member m) {
+	public Member updateMember(Member m, String userId) {
 		Connection conn = getConnection();
 		int result = new MemberDao().updateMember(conn, m);
 		
-		ArrayList<Member> updateMem = null;
+		Member updateMem = null;
 		if(result > 0) {
 			commit(conn);
-			updateMem = new MemberDao().selectMemberList(conn);
+			updateMem = new MemberDao().selectLoginMember(conn, userId);
 		}else {
 			rollback(conn);
 		}
@@ -84,16 +84,16 @@ public class MemberService {
 	 * @param updatePwd
 	 * @return
 	 */
-	public ArrayList<Member> updatePwdMember(String userId, String userPwd, String updatePwd) {
+	public Member updatePwdMember(String userId, String userPwd, String updatePwd) {
 		
 		Connection conn = getConnection();
 		
 		int result = new MemberDao().updatePwdMember(conn, userId, userPwd, updatePwd);
 		
-		ArrayList<Member> updateMem = null;
+		Member updateMem = null;
 		if(result > 0) {
 			commit(conn);
-			updateMem = new MemberDao().selectMemberList(conn);
+			updateMem = new MemberDao().selectLoginMember(conn, userId);
 		}else {
 			rollback(conn);
 		}

@@ -48,7 +48,7 @@ public class MemberUpdateController extends HttpServlet {
 		
 		Member m = new Member(userId, userName, email, phone, postCode, address, detailedAddress);
 		
-		ArrayList<Member> updateMem = new MemberService().updateMember(m);
+		Member updateMem = new MemberService().updateMember(m, userId);
 		
 		if(updateMem != null) {
 			HttpSession session = request.getSession();

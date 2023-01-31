@@ -288,6 +288,44 @@ public class MemberDao {
 		return result;
 	}
 	
+	public Member selectLoginMember(Connection conn, String userId) {
+		
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectLoginMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("user_no"),
+						       rset.getString("user_id"),
+						       rset.getString("user_pwd"),
+						       rset.getString("user_name"),
+						       rset.getString("email"),
+						       rset.getString("phone"),
+						       rset.getInt("post_code"),
+						       rset.getString("address"),
+						       rset.getString("detailed_address"),
+						       rset.getDate("enroll_date"),
+						       rset.getDate("modify_Date"),
+						       rset.getString("status"),
+						       rset.getInt("point"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		
+		}return m;
+	}
+		
+		
 	/**
 	 * 관리자가 회원삭제 (소민)
 	 * @param conn
