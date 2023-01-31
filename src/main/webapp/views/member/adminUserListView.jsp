@@ -42,11 +42,12 @@
       padding: 8px;
       text-align: center;
       border-bottom: 1px solid #DDD;
+      font-size: 13px;
   }
 
-      tr:hover {background-color: #D6EEEE;}
+    tr:hover {background-color: #D6EEEE;}
         
-      button{
+    button{
             font-size: 12px;
             border:2px solid rgb(220,220,220);
             background:white;
@@ -54,7 +55,7 @@
             border-radius:5px;
         }
         
-      #serch{
+    #serch{
             margin-left: 20px;
             font-size: 13px;
             border:2px solid rgb(220,220,220);
@@ -62,18 +63,18 @@
             color:rgb(99, 99, 99);
             border-radius:5px;
       }
-      .memberbutton{
+    .memberbutton{
         display: inline-block;
         width: 100%;
       }
-      #btn{
+    #btn{
             font-size: 12px;
             border:2px solid rgb(220,220,220);
             background:white;
             color:rgb(50, 50, 50);
             border-radius:5px;
         }
-        .modal-body{
+    .modal-body{
     margin: auto;
     width: 400px;
     height: 100%;
@@ -82,7 +83,7 @@
     background-color: #cacaca;
     margin-top: 50px;
 }
-        #modal-body > input {
+    #modal-body > input {
           width: 100%;
     height: 40px;
     padding: 0 10px;
@@ -108,31 +109,15 @@
                 <input type="text" value="아이디로 회원검색" id="serch" style="float: left;">
                     <button style="float: left;" onclick="serch();">조회하기</button>
                 </form>
-                
-                <script>
-                function serch(){
-                	$.ajax({
-                		url:"/web/serch.do",
-                		data:{id;$("#serch").val()},
-                		success:function(result){
-                			console.log("result");
-                		}, error:function(){
-                			console.log("ajax 통신 실패");
-                		}
-                	})
-                }
-                </script>
+
                     
-      				<% for(Member m : list){ %> 
-                    <button style="float: right;" onclick="location.href ='<%=contextPath%>/delete.ad?no=<%=m.getUser_No()%>'">회원삭제</button> 
-					<%} %>
+      				
 					
                <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
                </div>
             
-              <table class="usertable" style="text-align: center;">
+              <table id="usertable" class="usertable" style="text-align: center;">
                 <tr>
-                  <th></th>
                   <th>회원번호</th>
                   <th>아이디</th>
                   <th>이름</th>
@@ -140,6 +125,7 @@
                   <th>전화번호</th>
                   <th>주소</th>
                   <th>적립금</th>
+                  <th>관리</th>
                 </tr>
                 <% if(list.isEmpty()) { %>
                 <tr>
@@ -148,20 +134,71 @@
                 <% }else { %>
                 <% for(Member m : list){ %> 
                 <tr>
-                  <td><input type="checkbox" value=<%= m.getUser_No() %>></td>
                   <td><%= m.getUser_No() %></td>
                   <td><%= m.getUser_Id() %></td>
                   <td><%= m.getUser_Name() %></td>
                   <td><%= m.getEmail() %></td>
                   <td><%= m.getPhone() %></td>
                   <td><%= m.getPost_Code()%> / <%= m.getAddress() %> / <%=m.getDetailed_Address() %></td>
-                  <td><%= m.getPoint() %></td>
+                  <td><a id="point" href="#" data-toggle="modal"  data-target="#myModal"><%= m.getPoint() %></a></td>
+                  <td><button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.ad?no=<%=m.getUser_No()%>'">회원삭제</button> </td>
                 </tr>
                 <%} %>
             <%} %>
               </table>
               </div>            
         </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h4 class="modal-title">적립금 상세내역</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <form>
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th>날짜</th>
+                                <th>내용</th>
+                                <th>금액</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                            <% if(list.isEmpty()) { %>
+                                <tr>
+                                <td clospan="3">적립/사용내역이 없습니다.</td>
+                                </tr>
+                                <% }else { %>
+                                <% for(Point p : list){ %> 
+                              <tr>
+                                <td>John</td>
+                                <td>Doe</td>
+                                <td>john@example.com</td>
+                              </tr>
+                              <%} %>
+                              <%} %>
+                            </tbody>
+                          </table>
+                     </form>
+                </div>
+        
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+        
+            </div>
+            </div>
+        </div>
+     
 
 </body>
 </html>
