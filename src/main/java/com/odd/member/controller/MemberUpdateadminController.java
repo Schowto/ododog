@@ -33,15 +33,15 @@ public class MemberUpdateadminController extends HttpServlet {
 
 		request.setCharacterEncoding("UTF-8");
 		
-		String userId = request.getParameter("user_Id");
-		String userName = request.getParameter("user_Name");
+		String userId = request.getParameter("userId");
+		String userName = request.getParameter("userName");
 		String phone = request.getParameter("phone");
 		String email = request.getParameter("email");
-		int post_Code = Integer.parseInt(request.getParameter("post_Code"));
+		int postCode = Integer.parseInt(request.getParameter("postCode"));
 		String address = request.getParameter("address");
 		String Detailed_Address = request.getParameter("Detailed_Address");
 		
-		Member m = new Member(userId, userName, phone, email, post_Code, address, Detailed_Address);
+		Member m = new Member(userId, userName, phone, email, postCode, address, Detailed_Address);
 		
 		Member updateAdmin = new MemberService().updateAdmin(m);
 		
@@ -52,12 +52,11 @@ public class MemberUpdateadminController extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "성공적으로 회원정보를 수정했습니다.");
 			session.setAttribute("loginUser", updateAdmin);
-			
-			
 			response.sendRedirect(request.getContextPath() + "/list.ad");
 		}
 	}
 
+		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

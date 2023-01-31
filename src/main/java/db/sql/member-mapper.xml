@@ -85,5 +85,15 @@
 	 WHERE USER_ID = ?  
 	</entry>
 	
+	<entry key="loginAdmin">
+	SELECT
+		  ADMIN_NO
+		, ADMIN_ID
+		, PASSWORD
+		FROM ADMIN
+		WHERE ADMIN_ID = ?
+		AND PASSWORD = ?
+	</entry>
+	
 
 </properties>

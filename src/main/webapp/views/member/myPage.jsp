@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,13 +101,13 @@ input::placeholder{
 
     <%
         String userId = loginUser.getUser_Id();
-        String userPassword = loginUser.getUser_Pwd();
+        String userPwd = loginUser.getUser_Pwd();
         String userName = loginUser.getUser_Name();
         String email = loginUser.getEmail();
         String phone = loginUser.getPhone();
         int postCode = loginUser.getPost_Code();
         String address = loginUser.getAddress();
-        String detailAdress = loginUser.getDetailed_Address();
+        String detailedAdress = loginUser.getDetailed_Address();
     %>
 
     <div class="outer">
@@ -188,7 +188,7 @@ input::placeholder{
                     </tr>
                     <tr>
                         <td colspan="3" style="border-left:1px solid rgb(220,220,220);">
-                            &nbsp;&nbsp;<input type="text" name="detailedAddress" value="<%=detailAdress%>" size="40"> &nbsp;<label>상세주소</label>
+                            &nbsp;&nbsp;<input type="text" name="detailedAddress" value="<%=detailedAdress%>" size="40"> &nbsp;<label>상세주소</label>
                         </td>
                     </tr>
                 </table>
@@ -196,10 +196,10 @@ input::placeholder{
                 <br>
                 
                 <div class="btnWrap" align="center">
-                <button type="submit">수정하기</button>
-                <button type="button">취소</button>
-                <button type="button" class="btn-red">회원탈퇴</button>
-            </div>
+                	<button type="submit">수정하기</button>
+                	<button type="button">취소</button>
+                	<button type="button" class="btn-red">회원탈퇴</button>
+            	</div>
             </form>
 
 
@@ -221,7 +221,7 @@ input::placeholder{
     </div>
       
       <!-- 모달 -->
-        <div class="modal" id="myModal" style="color:rgb(50, 50, 50);">
+        <div class="modal" id="updatePwdModal" style="color:rgb(50, 50, 50);">
             <div class="modal-dialog">
                 <div class="modal-content" style="padding:30px 20px;">
         

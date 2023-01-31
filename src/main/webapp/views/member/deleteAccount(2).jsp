@@ -95,7 +95,8 @@
 
     <%
         String userId = loginUser.getUser_Id();
-        String userPWd = loginUser.getUser_Pwd();
+        String userPwd = loginUser.getUser_Pwd();
+        int point = loginUser.getPoint();
     %>
 
     <div class="outer">
@@ -143,61 +144,66 @@
                                 </td>
                             </tr>
                         </table>
+                        
+                        <br><br>
+
+                		<div class="deleteText">
+                   		 회원 탈퇴 사유
+                		</div>
+                		<br>
+
+                		<div class="deletePassword">
+                    		<table>
+                            		<tr>
+                                		<td style="width:200px; text-align:center; font-size: 13px;">선택</td>
+                               		 	<td style="width:800px;">
+                                    		&nbsp;&nbsp; 
+                                    		<select name="deleteReason" id="deleteReason" style="height:25px; font-size:13px;">
+                                        		<option value="no" selected>&nbsp;&nbsp;-선택안함-&nbsp;&nbsp;</option>
+		                                        <option value="sort">&nbsp;&nbsp;상품종류가 부족하다</option>
+		                                        <option value="price">&nbsp;&nbsp;상품가격이 비싸다</option>
+		                                        <option value="delevery">&nbsp;&nbsp;배송이 느리다</option>
+		                                        <option value="sevice">&nbsp;&nbsp;삼담원 고객응대 서비스가 불만이다</option>
+		                                        <option value="point">&nbsp;&nbsp;쇼핑몰 혜택이 부족하다(쿠폰, 적립금, 할인 등)</option>
+		                                        <option value="use">&nbsp;&nbsp;이용빈도가 낮다</option>
+		                                        <option value="else">&nbsp;&nbsp;기타</option>
+		                                    </select>
+		                                </td>
+		                            </tr>
+		                        </table>
+		                </div>
+		                <br>
+		                
+		               <div align="center">
+		               <button class="btn-red" type="button" data-toggle="modal" data-target="#checkModal">탈퇴</button>
+		               <button type=button id="btn">취소</button>
+		               </div>
                     </form>
                 </div>
-                <br><br>
-
-                <div class="deleteText">
-                    회원 탈퇴 사유
-                </div>
-                <br>
-
-                <div class="deletePassword">
-                    <form>
-                        <table>
-                            <tr>
-                                <td style="width:200px; text-align:center; font-size: 13px;">선택</td>
-                                <td style="width:800px;">
-                                    &nbsp;&nbsp; 
-                                    <select name="deleteReason" id="deleteReason" style="height:25px; font-size:13px;">
-                                        <option value="no" selected>&nbsp;&nbsp;-선택안함-&nbsp;&nbsp;</option>
-                                        <option value="">&nbsp;&nbsp;상품종류가 부족하다</option>
-                                        <option value="">&nbsp;&nbsp;상품가격이 비싸다</option>
-                                        <option value="">&nbsp;&nbsp;배송이 느리다</option>
-                                        <option value="">&nbsp;&nbsp;삼담원 고객응대 서비스가 불만이다</option>
-                                        <option value="">&nbsp;&nbsp;쇼핑몰 혜택이 부족하다(쿠폰, 적립금, 할인 등)</option>
-                                        <option value="">&nbsp;&nbsp;이용빈도가 낮다</option>
-                                        <option value="">&nbsp;&nbsp;기타</option>
-                                    </select>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
-                <br>
-
-                <!-- Button to Open the Modal -->
-                <div align="center">
-                    <button type="button" class="btn btn-primary" id="deleteBtn1" data-toggle="modal" data-target="#checkModal">
-    				    탈퇴
-  				    </button>
-                    <button onclick="location.href='<%=contextPath%>/myPage.me'" id="deleteBtn2">취소</button>
-                </div>
+                
+                <script>
+                	$(function(){
+                		$("#btn").click(function(){
+                			location.href="<%=contextPath%>/myPage.me";
+                		})
+                	})
+                </script>
+           
 
   				<!-- The Modal -->
-  				<div class="modal fade" id="checkModal">
+  				<div class="modal fade" id="checkModal" >
     				<div class="modal-dialog modal-sm">
       				<div class="modal-content">
       
         				<!-- Modal Header -->
         				<div class="modal-header">
-          				<h4 class="modal-title" style="font-size:13px;">정말 오도독(DOG)을 탈퇴하시겠습니까?</h4>
+
           				<button type="button" class="close" data-dismiss="modal">&times;</button>
         				</div>
         
         				<!-- Modal body -->
         				<div class="modal-body">
-         				
+         				<h4 class="modal-title" style="font-size:13px;">정말 오도독(DOG)을 탈퇴하시겠습니까?</h4>
         				</div>
         
         				<!-- Modal footer -->
@@ -207,8 +213,8 @@
                             <input type="hidden" name="userPwd" value="<%=userPwd%>">
 
         				    <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal" id="deleteBtn">예</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> 
+                                <button type="submit" class="btn btn-secondary btn-sm" data-dismiss="modal">예</button>
+                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">아니오</button> 
         				    </div>
                         </form>
         

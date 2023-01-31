@@ -1,27 +1,27 @@
-package com.odd.member.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.MemberService;
-import com.odd.member.model.vo.Member;
+import com.odd.board.model.service.BoardService;
+import com.odd.board.model.vo.Board;
 
 /**
- * Servlet implementation class MemberDeleteController
+ * Servlet implementation class BoardUpdateController
  */
-@WebServlet("/delete.me")
-public class MemberDeleteController extends HttpServlet {
+@WebServlet("/updateForm.bo")
+public class BoardUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberDeleteController() {
+    public BoardUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,26 +30,10 @@ public class MemberDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		
-		int result = new MemberService().memberDelete(userId, userPwd);
-		
-		HttpSession session = request.getSession();
-		
-		if(result > 0) {
-			
-			session.setAttribute("alertMsg", "그동안 오도독(DOG)을 이용해주셔서 감사합니다.");
-			session.removeAttribute("loginUser");
-			response.sendRedirect(request.getContextPath());
-			
-		}else {
-			
-			response.sendRedirect(request.getContextPath() + "/myPage.me");
-			
-		}
+		int boardNo = Integer.parseInt(request.getParameter("no"));
+		Board b = new BoardService().selectBoard(boardNo);
+		request.setAttribute("b", b);
+		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

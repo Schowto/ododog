@@ -34,11 +34,11 @@ public class MemberPwdCheckController extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPwd = request.getParameter("userPwd");
 		
-		Member m = new MemberService().memberPwdCheck(userId, userPwd);
+		int count = new MemberService().memberPwdCheck(userId, userPwd);
 		
-		if(m != null) {
+		if(count > 0) {
 			
-			request.getRequestDispatcher("views/member/deleteAccount(2).jsp");
+			request.getRequestDispatcher("views/member/deleteAccount(2).jsp").forward(request, response);
 		
 			
 		}else {
