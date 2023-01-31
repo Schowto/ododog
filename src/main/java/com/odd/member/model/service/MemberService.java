@@ -9,6 +9,7 @@ import com.odd.board.model.dao.FAQDao;
 import com.odd.board.model.vo.FAQ;
 import com.odd.member.model.dao.MemberDao;
 import com.odd.member.model.vo.Member;
+import com.odd.point.model.vo.Point;
 
 public class MemberService {
 	
@@ -160,6 +161,13 @@ public class MemberService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public ArrayList<Point> selectPointList(int userNo) {
+		Connection conn = getConnection();
+		ArrayList<Point> list = new MemberDao().selectPointList(conn, userNo);
+		close(conn);
+		return list;
 	}
 		
 	

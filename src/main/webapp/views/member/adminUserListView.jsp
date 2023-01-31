@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*
+    ,com.odd.point.model.vo.Point"%>
 
 <%
 	MemberService ms = new MemberService();
 
 	ArrayList<Member> list = ms.selectMemberList();
-
+	
+	//Point p = (Point)request.getAttribute("p");
 	
 %>
 
@@ -106,11 +108,10 @@
             <div class="membertable">
                 <div class="memberbutton">
                 <form name="search-form"> 
-                <input type="text" value="아이디로 회원검색" id="serch" style="float: left;">
+                <input type="text" placeholder="아이디로 회원검색" id="serch" style="float: left;">
                     <button style="float: left;" onclick="serch();">조회하기</button>
                 </form>
 
-                    
       				
 					
                <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
@@ -127,7 +128,7 @@
                   <th>적립금</th>
                   <th>관리</th>
                 </tr>
-                <% if(list.isEmpty()) { %>
+            	<% if(list.isEmpty()) { %>
                 <tr>
                 <td clospan="8">존재하는 회원이 없습니다.</td>
                 </tr>
@@ -140,14 +141,64 @@
                   <td><%= m.getEmail() %></td>
                   <td><%= m.getPhone() %></td>
                   <td><%= m.getPost_Code()%> / <%= m.getAddress() %> / <%=m.getDetailed_Address() %></td>
-                  <td><a id="point" href="#" data-toggle="modal"  data-target="#myModal"><%= m.getPoint() %></a></td>
+                  
+                  <td>
+                  <a id="point" data-toggle="modal"  data-target="#myModal" value="" onclick="selectPointList(<%= m.getUser_No() %>);"><%= m.getPoint() %></a>
+                  </td>
+                  
                   <td><button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.ad?no=<%=m.getUser_No()%>'">회원삭제</button> </td>
                 </tr>
                 <%} %>
-            <%} %>
+            <%} %>          
+    
               </table>
               </div>            
         </div>
+        
+        <script>
+        	function selectPointList(userNo){
+        		
+        		// ajax요청해서 해당 회원의 적립금 리스트 조회해오기
+        		/* success:function(매개변수){ // 적립금 리스트
+        			적립금 리스트를 가지고 
+        			여러개의 tr 요소 만들어서
+        			아이디가 pointTbody 영역 안에 뿌리기
+        		//*/
+        		
+    		$.ajax({
+    			url:"<%=contextPath%>/list.po",
+    			<% for(Member m : list){ %> 
+    			data:{no:<%=m.getUser_No()%>},
+    			<% }%>
+    			success:function(list){
+    				
+    				//console.log(list);
+    				
+    				let value = "";
+    				if(list.length == 0){ 
+    					value += "<tr>"
+    							+	"<td colspan='3'>조회된 적립금이 없습니다</td>"
+    							+"</tr>";
+    				}else{ 
+    					for(let i=0; i<list.length; i++){
+    						value += "<tr>"
+    								+	"<td>" + list[i].pointDate + "</td>"
+    								+	"<td>" + list[i].pointUse + "</td>"
+    								+	"<td>" + list[i].pointPrice + "</td>"
+    								+"</tr>";
+    					}
+    				}
+    				
+    				$("#pointTbody").html(value);
+    				
+    				
+    			},error:function(){
+    				console.log("댓글목록 조회용 ajax 통신실패");
+    			}
+    		})
+    	}
+    	
+        </script>
 
         <!-- The Modal -->
         <div class="modal" id="myModal">
@@ -171,20 +222,14 @@
                                 <th>금액</th>
                               </tr>
                             </thead>
-                            <tbody>
-                            <% if(list.isEmpty()) { %>
-                                <tr>
-                                <td clospan="3">적립/사용내역이 없습니다.</td>
-                                </tr>
-                                <% }else { %>
-                                <% for(Point p : list){ %> 
+                            <tbody id="pointTbody">
+     
                               <tr>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                               </tr>
-                              <%} %>
-                              <%} %>
+                             
                             </tbody>
                           </table>
                      </form>
@@ -198,7 +243,7 @@
             </div>
             </div>
         </div>
-     
+     	
 
 </body>
 </html>
