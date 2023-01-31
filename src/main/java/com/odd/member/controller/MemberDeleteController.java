@@ -43,7 +43,7 @@ public class MemberDeleteController extends HttpServlet {
 		if(result > 0) {
 			
 			session.setAttribute("alertMsg", "그동안 오도독(DOG)을 이용해주셔서 감사합니다.");
-			request.removeAttribute("loginUser");
+			session.removeAttribute("loginUser");
 			response.sendRedirect(request.getContextPath());
 			
 		}else {

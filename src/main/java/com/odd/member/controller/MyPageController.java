@@ -33,7 +33,7 @@ public class MyPageController extends HttpServlet {
 		
 		if(session.getAttribute("loginUser") == null) {
 			
-			session.setAttribute("alerMsg", "로그인후에 다시 이용해주세요.");
+			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
 			response.sendRedirect(request.getContextPath());
 			
 			

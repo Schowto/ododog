@@ -1,27 +1,27 @@
-package com.odd.member.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.MemberService;
-import com.odd.member.model.vo.Member;
+import com.odd.board.model.service.BoardService;
+import com.odd.board.model.vo.Board;
 
 /**
- * Servlet implementation class MemberPwdCheckController
+ * Servlet implementation class BoardUpdateController
  */
-@WebServlet("/pwdCheck.me")
-public class MemberPwdCheckController extends HttpServlet {
+@WebServlet("/updateForm.bo")
+public class BoardUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberPwdCheckController() {
+    public BoardUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +30,10 @@ public class MemberPwdCheckController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		
-		int count = new MemberService().memberPwdCheck(userId, userPwd);
-		
-		if(count > 0) {
-			
-			request.getRequestDispatcher("views/member/deleteAccount(2).jsp");
-		
-			
-		}else {
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "비밀번호가 틀렸습니다. 다시확인해주세요.");
-			response.sendRedirect(request.getContextPath() + "/deleteView.me");
-			
-		}
-		
+		int boardNo = Integer.parseInt(request.getParameter("no"));
+		Board b = new BoardService().selectBoard(boardNo);
+		request.setAttribute("b", b);
+		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

@@ -16,7 +16,7 @@ import com.odd.member.model.vo.Member;
 /**
  * Servlet implementation class MemberPwdUpdateController
  */
-@WebServlet("/pwdUpdate.me")
+@WebServlet("/updatePwd.me")
 public class MemberPwdUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

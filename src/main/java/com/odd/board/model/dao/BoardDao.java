@@ -213,4 +213,23 @@ public class BoardDao {
 		}
 		return b;
 	}
+	
+	public int updateBoard(Connection conn, Board b) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateBoard");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, b.getBoardNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.odd.member.model.vo.Member"%>
+    pageEncoding="UTF-8" import="com.odd.member.model.vo.Member, java.util.ArrayList"%>
 <%   
    String contextPath = request.getContextPath();
 
    Member loginUser = (Member)session.getAttribute("loginUser");
 
    String alertMsg = (String)session.getAttribute("alertMsg");
+   
 
 
 %>

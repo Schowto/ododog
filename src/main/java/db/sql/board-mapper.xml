@@ -118,4 +118,12 @@
 		 WHERE BOARD_NO = ?
 	</entry>
 	
+	<entry key="updateBoard">
+		UPDATE
+		       BOARD
+		   SET BOARD_TITLE = ?
+		     , BOARD_CONTENT = ?
+		 WHERE BOARD_NO = ?
+	</entry>
+	
 </properties>
