@@ -107,6 +107,7 @@
 			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h2>
 			<br><br><br><br>
 
+                <%if(consult == null) %>
                 <!--게시물이없을때-->
                 <form action="" class="logoutUser">
                     <table>
@@ -141,9 +142,8 @@
                             <td width="10%;">답변</td>
                         </tr>
                         
-                        <% for(Board b : list) %>
-                        	<tr> +=
-                            	<td><%=consultNo%></td>
+                        	<tr> 
+                            	<td>3</td>
                             <td id="consultDetail">배송관련문의드립니다</td>
                             <td>와그작</td>
                             <td>2023.01.27</td>
@@ -189,7 +189,7 @@
 
                     <script>
                         $(function(){
-                            $("#btn").click(function(){
+                            $("#btn1").click(function(){
                                 location.href="<%=contextPath%>/consultEnroll.bo";
                             })
                         })
