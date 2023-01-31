@@ -61,6 +61,13 @@
 		background: rgb(220,220,220);
 		border:none;
 	}
+	.consultAnswer textarea{
+		display:none;
+	}
+	.blink:hover{
+		opacity:0.7;
+		cursor:pointer;
+	}
 	#btn{
 		width:70px;
 		height:30px;
@@ -70,6 +77,21 @@
 		margin-left:354px;
 		width:70px;
 		height:30px;
+	}
+	@keyframes blink-effect {
+		50%{
+			opacity:0;
+		}
+	}
+
+	.blink{
+		/*color:blue;*/
+		animation:blink-effect is step-end infinite;
+
+		animation-name: blink-effect;
+		animation-duration: 1s;
+		animation-iteration-count:infinite;
+		animation-timing-function:step-end;
 	}
 </style>
 </head>
@@ -119,7 +141,7 @@
 						<tr>
 							<td colspan=2>
 								<br>
-								<textarea name="" id="" style="resize:none;" readonly></textarea>
+								<textarea name="" id="" style="resize:none; padding:40px;" readonly>문의내용이들어올자리</textarea>
 								<br><br>
 							</td>
 						</tr>
@@ -137,20 +159,31 @@
 						</tr>
 					</table>
 					<br>
-					<table>
+					<table class="consultAnswer">
 						<tr>
-							<td style="width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;답변</td>
-							<td>&nbsp;&nbsp;안녕하세요 오도독(DOG)입니다. 문의에 대해 답변드립니다.</td>
+							<td style="text-align:center; width:15%; border-right:1px solid rgb(220,220,220);">클릭해서 확인하기</td>
+							<td class="blink">&nbsp;&nbsp;안녕하세요 오도독(DOG)입니다. 문의에 대해 답변드립니다.</td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<br>
-								<textarea name="" id="" style="resize:none;"></textarea>
+								<textarea style="padding:40px;">답변이들어올자리입니다</textarea>
 								<br><br>
 							</td>
 						</tr>
 					</table>
 				</form>
+
+				<!--
+				<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+				-->
+    			<script>
+      				$( document ).ready( function() {
+        				$( 'button.a' ).click( function() {
+          					$( '.b' ).slideDown();
+        				} );
+      				} );
+    			</script>
 			</div>
 
 			<br>

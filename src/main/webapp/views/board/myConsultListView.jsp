@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,21 +78,31 @@
 
 	<%@ include file="../common/userMenubar.jsp"%>
 	
+	<%
+		String userId = loginUser.getUser_Id();
+	%>
+	
 	<div class="outer">
 
 		<div id="side">
-            <br><br><br><br><br>
-            <p style="font-size:23px;">MYPAGE</p>
-            <hr>
-            <a href="<%=contextPath%>/myOrder.me" style="font-size:17px;">주문조회</a> <br><br>
-            <a href="<%=contextPath%>/myPage.me" style="font-size:17px;">회원정보</a> <br><br>
-            <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
-            <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
-            <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
-            <a href="<%=contextPath%>/consult.bo" style="font-size:17px; color:rgb(200, 140, 140);">1:1맞춤상담</a>
-        </div>
+			<br><br><br><br><br>
+			<p style="font-size: 23px;">MYPAGE</p>
+			<hr>
+			<a href="<%=contextPath%>/myOrder.me" style="font-size: 17px;">주문조회</a>
+			<br>
+			<br> <a href="<%=contextPath%>/myPage.me"
+				style="font-size: 17px;">회원정보</a> <br>
+			<br> <a href="<%=contextPath%>/myWhish.me"
+				style="font-size: 17px;">관심상품</a> <br>
+			<br> <a href="<%=contextPath%>/myPoint.me"
+				style="font-size: 17px;">적립금</a> <br>
+			<br> <a href="<%=contextPath%>/myBoard.me"
+				style="font-size: 17px;">게시글조회</a> <br>
+			<br> <a href="<%=contextPath%>/consult.co"
+				style="font-size: 17px; color: rgb(200, 140, 140);">1:1맞춤상담</a>
+		</div>
 
-        <script>
+		<script>
             $("#side a").hover(function(){
                 $(this).css("color", "rgb(200, 140, 140)");
             }, function(){
@@ -104,114 +112,122 @@
 
 		<div class="content">
 
-			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h2>
-			<br><br><br><br>
+			<h2 align="center" style="font-weight: 600; color: rgb(50, 50, 50);">1:1
+				문의 게시판</h2>
+			<br>
+			<br>
+			<br>
+			<br>
 
-                <%if(consult == null) %>
-                <!--게시물이없을때-->
-                <form action="" class="logoutUser">
-                    <table>
-                        <tr style="height:50px;">
-                            <td width="10%;">번호</td>
-                            <td width="60%;">제목</td>
-                            <td width="10%;">작성자</td>
-                            <td width="10%;">작성일</td>
-                            <td width="10%;">답변</td>
-                        </tr>
-                        <tr style="height:100px;">
-                            <td colspan="5" style="font-weight:600; color:rgb(50, 50, 50);">
-                                <br><br>
-                                <img src="<%=contextPath%>/resources/images/error.png"> <br>
-                                게시글이 존재하지 않습니다. 
-                                <br><br><br>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+			<!--게시물이없을때-->
+			
+			<form action="" class="logoutUser">
+				<table>
+					<tr style="height: 50px;">
+						<td width="10%;">번호</td>
+						<td width="60%;">제목</td>
+						<td width="10%;">작성자</td>
+						<td width="10%;">작성일</td>
+						<td width="10%;">답변</td>
+					</tr>
+					<tr style="height: 100px;">
+						<td colspan="5" style="font-weight: 600; color: rgb(50, 50, 50);">
+							<br>
+						<br> <img src="<%=contextPath%>/resources/images/error.png">
+							<br> 게시글이 존재하지 않습니다. <br>
+						<br>
+						<br>
+						</td>
+					</tr>
+				</table>
+			</form>
 
-                <br><br><br>
+			
 
-                <!--게시물이있을때-->
-                <form action="" class="loginUser">
-                    <table>
-                        <tr>
-                            <td width="10%;">번호</td>
-                            <td width="60%;">제목</td>
-                            <td width="10%;">작성자</td>
-                            <td width="10%;">작성일</td>
-                            <td width="10%;">답변</td>
-                        </tr>
-                        
-                        	<tr> 
-                            	<td>3</td>
-                            <td id="consultDetail">배송관련문의드립니다</td>
-                            <td>와그작</td>
-                            <td>2023.01.27</td>
-                            <td>미답변</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>배송관련문의드립니다</td>
-                            <td>와그작</td>
-                            <td>2023.01.27</td>
-                            <td>답변완료</td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>배송관련문의드립니다</td>
-                            <td>와그작</td>
-                            <td>2023.01.27</td>
-                            <td>답변완료</td>
-                        </tr>
-                    </table>
-                </form>
+			<!--게시물이있을때-->
+			<form action="" class="loginUser">
+				<table>
+					<tr>
+						<td width="10%;">번호</td>
+						<td width="60%;">제목</td>
+						<td width="10%;">작성자</td>
+						<td width="10%;">작성일</td>
+						<td width="10%;">답변</td>
+					</tr>
 
-                <script>
+					<tr>
+						<td>3</td>
+						<td id="consultDetail">배송관련문의드립니다</td>
+						<td>와그작</td>
+						<td>2023.01.27</td>
+						<td>미답변</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>배송관련문의드립니다</td>
+						<td>와그작</td>
+						<td>2023.01.27</td>
+						<td>답변완료</td>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>배송관련문의드립니다</td>
+						<td>와그작</td>
+						<td>2023.01.27</td>
+						<td>답변완료</td>
+					</tr>
+				</table>
+			</form>
+			
+
+			<script>
                     $(function(){
                         $("#consultDetail").click(function(){
-                            location.href="<%=contextPath%>/consultDetail.bo";
+                            location.href="<%=contextPath%>/consultDetail.co";
                         });
                     })
                 </script>
-                <br>
+			<br>
 
-                    <div id="btnWrap">
-                    <button id="btn1">글쓰기</button>
-                    </div>
+			<div id="btnWrap">
+				<button id="btn1">글쓰기</button>
+			</div>
 
-                    <script>
+			<script>
                         $(function(){
                             $("#btn1").click(function(){
-                                location.href="<%=contextPath%>/consultEnroll.bo";
+                                location.href="<%=contextPath%>/consultEnroll.co";
                             });
                         })
                     </script>
 
-                    <script>
+			<script>
                         $(function(){
                             $("#btn1").click(function(){
-                                location.href="<%=contextPath%>/consultEnroll.bo";
+                                location.href="<%=contextPath%>/consultEnroll.co";
                             })
                         })
                     </script>
-                    <br><br>
+			<br>
+			<br>
 
-                    <div class="consultSearch">
-                        <select name="" id="searchAnswer">
-                            <option value=""  selected>전체</option>
-                            <option value="">미답변</option>
-                            <option value="">답변</option>
-                        </select>
-                        &nbsp;
-                        <input type="text" id="searchInput" value="" style="height:25px;">
-                        &nbsp;
-                        <button type="submit" id="btn2" onclick="">찾기</button>
-
-			</div>
 		</div>
+
+		<div class="consultAnswer">
+			<select name="" id="searchAnswer">
+				<option value="" selected>전체</option>
+				<option value="">미답변</option>
+				<option value="">답변</option>
+			</select> &nbsp; <input type="text" id="searchInput" value=""
+				style="height: 25px;"> &nbsp;
+			<button type="submit" id="btn2" onclick="">찾기</button>
+
+		</div>
+
+		<%@ include file="../common/userFooterbar.jsp"%>
 	</div>
 	
-	<%@ include file="../common/userFooterbar.jsp" %>
+	
 
 </body>
 </html>
