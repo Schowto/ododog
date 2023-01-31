@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,8 +140,10 @@
                             <td width="10%;">작성일</td>
                             <td width="10%;">답변</td>
                         </tr>
-                        <tr>
-                            <td>3</td>
+                        
+                        <% for(Board b : list) %>
+                        	<tr> +=
+                            	<td><%=consultNo%></td>
                             <td id="consultDetail">배송관련문의드립니다</td>
                             <td>와그작</td>
                             <td>2023.01.27</td>

@@ -30,7 +30,14 @@ public class MyPageMainController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		request.getRequestDispatcher("views/member/myPageMain.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("loginUser") == null) {
+			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
+			response.sendRedirect(request.getContextPath());
+		}else {
+			request.getRequestDispatcher("views/member/myPageMain.jsp").forward(request, response);
+		}
+		
 	}
 
 	/**

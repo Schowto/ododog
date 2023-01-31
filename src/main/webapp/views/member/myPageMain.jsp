@@ -69,8 +69,8 @@
     <%@ include file="../common/userMenubar.jsp"%>
 
     <div class="outer">
-
-        <h2 align="center" style="color:rgb(50, 50, 50);">마이페이지</h2>
+    
+    	<h2 align="center" style="color:rgb(50, 50, 50);">마이페이지</h2>
 
         <div class="line"></div>
         <br>
@@ -211,8 +211,6 @@
            }
         }
     </script>
-
-
 
 
 
