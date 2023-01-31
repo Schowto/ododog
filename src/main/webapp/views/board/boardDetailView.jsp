@@ -74,6 +74,11 @@
     #prev-next tr:hover{font-weight:600; cursor:pointer;}
 
 
+	.disabled-btn:hover{
+		background:white;
+		font-weight:500;
+		cursor:default;
+	}
     #reply-area{/*border: 1px solid red;*/padding: 10px;}
     #reply-area p{
         /*border:1px solid orange;*/
@@ -138,17 +143,16 @@
 	            <div align="right" style="width:900px">
 	                <br><br>
 	                <a href="<%= contextPath %>/updateForm.bo?no=<%= b.getBoardNo() %>" ><button style="margin-right:10px;">수정</button></a>
-	                <a href=""><button class="btn-red" id="delete-post">삭제</button></a>
+	                <button class="btn-red" id="delete-post" onclick="deleteBoard();">삭제</button>
 	                <br>
 	            </div>
 	            
 	            <script>
-	                $("#delete-post").click(function () {
-	                    if (confirm("정말 삭제하시겠습니까?")) {
-	                        // 삭제하고
-	                        alert("삭제되었습니다.");
-	                    }
-	                })
+	            	function deleteBoard(){
+	            		if(confirm("정말 삭제하시겠습니까?")){
+	            			location.href = "<%= contextPath %>/delete.bo?no=<%= b.getBoardNo() %>";
+	            		}
+	            	}
 	            </script>
             <% } %>
             
@@ -294,6 +298,72 @@
                     
 
                 </table>
+                
+                
+			<script>
+	        	$(function(){
+	        		selectReplyList();
+	        	})
+	        	
+	        	// 댓글 작성 - ajax
+	        	function insertReply(){
+	        		$.ajax({
+	        			url:"<%=contextPath%>/rinsert.bo",
+	        			data:{
+	        				content: $("#reply-area textarea").val(),
+	        				no: <%=b.getBoardNo()%>
+	        				//userNo:<loginUser.getUserNo()>  : 상세페이지에 로그인 안된 회원도 진입 가능 -> 자바스크립트 코드도 로딩됨, 비회원 상태에서 이 페이지 들어오면 null.getUserNo() -> NullPointerException으로 오류 날 거임}
+	        				//로그인한 회원번호는 session을 통해 언제든지 불러올 수 있기 때문에 여기서 안 넘길 거임
+	        			},
+	        			type:"post",
+	        			success:function(result){
+	        				if(result>0){//댓글등록성공
+	        					$("#reply-area textarea").val("");
+	        					selectReplyList();	// 함수호출
+	        				}else{//실패
+	        					alert("댓글등록 실패");
+	        				}
+	        			}, error:function(){
+	        				console.log("댓글작성용 ajax 통신실패")
+	        			}
+	        		})
+	        	}
+	        	
+		        // 댓글 목록 조회 - ajax
+	        	function selectReplyList(){
+	        		$.ajax({
+	        			url:"<%=contextPath%>/rlist.bo",
+	        			data:{no:<%= b.getBoardNo() %>},	// 숫자이기 때문에 ""안묶어도 됨, 문자열이면 감싸야 혀요
+	        			success:function(list){
+	        				//console.log(list);
+	        				// 요소들 동적으로 만들기
+	        				let value = "";
+	        				if(list.length == 0) {	// 댓글이 없을 경우
+	        					value += "<tr>"
+	        						   +	"<td colspan='3'>조회된 댓글이 없습니다</td>"
+	        						   + "</tr>";
+	        				} else {	// 댓글이 있을 경우
+	        					for(let i=0; i<list.length; i++){
+	        						value += "<tr>"
+								  		   + 	"<td>" + list[i].replyWriter + "</td>"
+								  		   + 	"<td>" + list[i].replyContent + "</td>"
+								  		   + 	"<td>" + list[i].createDate + "</td>"
+								   		   + "</tr>";
+	        					}
+	        				}
+		        			$("#reply-area tbody").html(value);
+	        				
+	        			}, error:function(){
+	        				console.log("댓글목록 조회용 ajax 통신실패")
+	        			}
+	        		})
+	        	}
+	        
+	        </script>
+                
+                
+                
+                
 
                 <script>
                     // 수정
@@ -331,14 +401,22 @@
                 <!-- 댓글 수정삭제 여기까지 ------------->
 
                 <br><br><br>
-
-                <form action="" method="post">
-                    <textarea name="content" placeholder="소중한 댓글을 입력해주세요."
+				
+				<% if(loginUser != null){ %>
+                <!-- 로그인이 되어있을 경우 -->
+                	<textarea name="content" placeholder="소중한 댓글을 입력해주세요."
                         style="width:900px; height:150px; border:1px solid rgb(220, 220, 220); border-radius:5px; color:rgb(50, 50, 50); font-size:13px; resize:none;"></textarea>
                     <div align="right" style="width:900px;">
                         <button type="submit">등록</button>
                     </div>
-                </form>
+                <% } else { %>
+                <!-- 로그인이 되어있지 않을 경우 -->
+                	<textarea name="content" style="width:900px; height:150px; border:1px solid rgb(220, 220, 220); border-radius:5px; color:rgb(50, 50, 50); font-size:13px; resize:none;" readonly>로그인 이후 작성 가능합니다.</textarea>
+                    <div align="right" style="width:900px;">
+                        <button class="disabled-btn" style="color:gray;">등록</button>
+                    </div>
+                <% } %>
+                
                 
                 <br><br><br><br><br>
 

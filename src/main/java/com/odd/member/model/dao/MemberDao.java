@@ -258,38 +258,7 @@ public class MemberDao {
 		
 	}
 	
-	/**
-	 * 관리자가 회원정보 수정 (소민)
-	 * @param conn
-	 * @param m
-	 * @return
-	 */
-	public int updateAdmin(Connection conn, Member m) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("updateAdmin");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getUser_Name());
-			pstmt.setString(2, m.getEmail());
-			pstmt.setString(3, m.getPhone());
-			pstmt.setInt(4, m.getPost_Code());
-			pstmt.setString(5,m.getAddress());
-			pstmt.setString(6, m.getDetailed_Address());
-			pstmt.setString(7, m.getUser_Id());
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-	}
-	
-	
+
 	/**
 	 * 회원탈퇴 (정은)
 	 * @param conn
@@ -301,7 +270,7 @@ public class MemberDao {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("memberDelete");
+		String sql = prop.getProperty("deleteMember");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -318,6 +287,80 @@ public class MemberDao {
 		
 		return result;
 	}
+	
+	/**
+	 * 정보수정후 객체조회 (정은)
+	 * @param conn
+	 * @param userId
+	 * @return
+	 */
+	public Member selectLoginMember(Connection conn, String userId) {
+		
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectLoginMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getInt("user_no"),
+						       rset.getString("user_id"),
+						       rset.getString("user_pwd"),
+						       rset.getString("user_name"),
+						       rset.getString("email"),
+						       rset.getString("phone"),
+						       rset.getInt("post_code"),
+						       rset.getString("address"),
+						       rset.getString("detailed_address"),
+						       rset.getDate("enroll_date"),
+						       rset.getDate("modify_Date"),
+						       rset.getString("status"),
+						       rset.getInt("point"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return m;
+	}
+		
+		
+	/**
+	 * 관리자가 회원삭제 (소민)
+	 * @param conn
+	 * @param userNo
+	 * @return
+	 */
+	public int admindeleteMember(Connection conn, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("admindeleteMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		 return result;
+		
+		
+	}
+	
+
 	
 	
 	

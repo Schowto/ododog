@@ -60,14 +60,14 @@ public class MemberService {
 	 * @param m
 	 * @return
 	 */
-	public ArrayList<Member> updateMember(Member m) {
+	public Member updateMember(Member m, String userId) {
 		Connection conn = getConnection();
 		int result = new MemberDao().updateMember(conn, m);
 		
-		ArrayList<Member> updateMem = null;
+		Member updateMem = null;
 		if(result > 0) {
 			commit(conn);
-			updateMem = new MemberDao().selectMemberList(conn);
+			updateMem = new MemberDao().selectLoginMember(conn, userId);
 		}else {
 			rollback(conn);
 		}
@@ -84,16 +84,16 @@ public class MemberService {
 	 * @param updatePwd
 	 * @return
 	 */
-	public ArrayList<Member> updatePwdMember(String userId, String userPwd, String updatePwd) {
+	public Member updatePwdMember(String userId, String userPwd, String updatePwd) {
 		
 		Connection conn = getConnection();
 		
 		int result = new MemberDao().updatePwdMember(conn, userId, userPwd, updatePwd);
 		
-		ArrayList<Member> updateMem = null;
+		Member updateMem = null;
 		if(result > 0) {
 			commit(conn);
-			updateMem = new MemberDao().selectMemberList(conn);
+			updateMem = new MemberDao().selectLoginMember(conn, userId);
 		}else {
 			rollback(conn);
 		}
@@ -129,38 +129,35 @@ public class MemberService {
 		return count;
 	}
 	
-	/**
-	 * 관리자가 회원정보수정 (소민)
-	 * @param m
-	 */
-	public Member updateAdmin(Member m) {
-		Connection conn = getConnection();
-		
-		int result = new MemberDao().updateAdmin(conn, m);
-		
-		ArrayList<Member> updateAdmin = null;
-		if(result > 0) {
-			commit(conn);
-			updateAdmin = new MemberDao().selectMemberList(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		
-		return m;
-		}
-	
+
 	/**
 	 * 회원탈퇴 (정은)
 	 * @param userId
 	 * @param userPwd
 	 * @return
 	 */
-	public int memberDelete(String userId, String userPwd) {
-		Connection conn = getConnection();
+	public int deleteMember(String userId, String userPwd) {
 		
+		Connection conn = getConnection();
 		int result = new MemberDao().memberDelete(conn, userId, userPwd);
 		
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 관리자가 회원삭제 (소민)
+	 * @param userNo
+	 * @return
+	 */
+	public int admindeleteMember(int userNo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().admindeleteMember(conn, userNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}

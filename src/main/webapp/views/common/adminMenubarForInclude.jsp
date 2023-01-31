@@ -267,12 +267,13 @@
                 <% if(loginAdmin == null) { %>
                 <img src="<%= contextPath %>/resources/icons/profile.png" width="15" style="margin-right:10px;">
                 <a href="<%=contextPath %>/views/member/loginAdmin.jsp" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
-
+				 <%}else{ %>
                 <!-- 로그인 후 -->
                 <img src="<%= contextPath %>/resources/icons/loginProfile.png" width="15" style="margin-right:10px;">관리자님
                 <a href="<%=contextPath %>/logout.ad"
                     style="margin-left:30px; text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그아웃</a>
-				<%} %>
+	
+				<%} %>	
             </div>
             	
             <hr style="margin-top:30px; border:4px solid rgb(220, 220, 220);">

@@ -2,18 +2,25 @@ package com.odd.member.model.vo;
 
 public class Admin {
 
-	private int Admin_no;
+	private int Admin_No;
 	private String Admin_Id;
 	private String Password;
 	
 	public Admin() {}
 
-	public int getAdmin_no() {
-		return Admin_no;
+	public Admin(int admin_No, String admin_Id, String password) {
+		super();
+		Admin_No = admin_No;
+		Admin_Id = admin_Id;
+		Password = password;
 	}
 
-	public void setAdmin_no(int admin_no) {
-		Admin_no = admin_no;
+	public int getAdmin_No() {
+		return Admin_No;
+	}
+
+	public void setAdmin_No(int admin_No) {
+		Admin_No = admin_No;
 	}
 
 	public String getAdmin_Id() {
@@ -32,18 +39,9 @@ public class Admin {
 		Password = password;
 	}
 
-	public Admin(int admin_no, String admin_Id, String password) {
-		super();
-		Admin_no = admin_no;
-		Admin_Id = admin_Id;
-		Password = password;
-	}
-
 	@Override
 	public String toString() {
-		return "Admin [Admin_no=" + Admin_no + ", Admin_Id=" + Admin_Id + ", Password=" + Password + "]";
+		return "Admin [Admin_No=" + Admin_No + ", Admin_Id=" + Admin_Id + ", Password=" + Password + "]";
 	}
 
-	
-	
 }

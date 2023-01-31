@@ -141,5 +141,12 @@ public class BoardService {
 		close(conn);
 		return list;
 	}
+	
+	public int deleteBoard(int boardNo) {
+		Connection conn = getConnection();
+		int result = new BoardDao().deleteBoard(conn, boardNo);
+		close(conn);
+		return result;
+	}
 
 }

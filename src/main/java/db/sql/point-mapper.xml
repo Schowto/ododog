@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectpoint">
+	SELECT
+		USER_NO ,
+		POINT_DATE ,
+		POINT_USE ,
+		POINT_PRICE
+	FROM POINT
+	JOIN MEMBER ON (USER_NO = USER_NO)
+	</entry>
+	
+</properties>

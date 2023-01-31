@@ -17,7 +17,7 @@ public class AdminDao {
 	private Properties prop = new Properties();
 	
 	public AdminDao() {
-		String filePath = AdminDao.class.getResource("/db/sql/member-mapper.xml").getPath();
+		String filePath = AdminDao.class.getResource("/db/sql/admin-mapper.xml").getPath();
 		
 		try {
 			prop.loadFromXML(new FileInputStream(filePath));

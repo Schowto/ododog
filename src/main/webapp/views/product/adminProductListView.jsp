@@ -106,19 +106,6 @@
                         
                     </tbody>
                 </table>
-                
-                
-                <!--  세부 사항 보기 // 나중에 구현
-                
-                <script>
-                $(function(){
-                    $(".list-area>tbody>tr").click(function(){
-                        location.href = '<%=contextPath%>/detail.bo?no=' + $(this).children().eq(0).text();
-                    })
-                })
-                
-                </script>
-                -->
             
                 <br><br>
                 

@@ -355,4 +355,63 @@ public class AdminProductDao {
 		return list;
 	}
 	
+public int updateProduct(Connection conn, Product p) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, p.getCategory());
+			pstmt.setString(2, p.getProName());
+			pstmt.setInt(3, p.getPrice());
+			pstmt.setString(4, p.getExpiredDate());
+			pstmt.setString(5, p.getThumbImg());
+			pstmt.setString(6, String.valueOf(p.getSave()));
+			pstmt.setString(7, p.getSoldout());
+			pstmt.setInt(8, p.getProNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int updateAttachList(Connection conn, ArrayList<ProAtt> list) {
+		
+		int result = 1;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateAttachList");
+		
+		try {
+			for(ProAtt at : list) {
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, at.getFilePath());
+				pstmt.setInt(2, at.getFileNo());
+				
+				result *= pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
 }

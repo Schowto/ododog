@@ -1,24 +1,26 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.odd.board.model.service.BoardService;
 
 /**
- * Servlet implementation class ConsultBoardListController
+ * Servlet implementation class BoardDeleteController
  */
-@WebServlet("/consult.bo")
-public class MyConsultListController extends HttpServlet {
+@WebServlet("/delete.bo")
+public class BoardDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyConsultListController() {
+    public BoardDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,22 +29,16 @@ public class MyConsultListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int boardNo = Integer.parseInt(request.getParameter("no"));
 		
-HttpSession session = request.getSession();
-		
-		if(session.getAttribute("loginUser") == null) {
-			
-			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
-			response.sendRedirect(request.getContextPath());
-			
-			
-		}else {
-			
-			request.getRequestDispatcher("views/board/myConsultListView.jsp").forward(request,response);
-			
+		int result = new BoardService().deleteBoard(boardNo);
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
+		} else {
+			request.setAttribute("errorMsg", "일반게시글 삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.odd.board.controller;
+package com.odd.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,19 +6,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
+import com.odd.member.model.service.MemberService;
 
 /**
- * Servlet implementation class ConsultBoardListController
+ * Servlet implementation class AdminDeleteMemberServlet
  */
-@WebServlet("/consult.bo")
-public class MyConsultListController extends HttpServlet {
+@WebServlet("/delete.ad")
+public class AdminDeleteMemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyConsultListController() {
+    public AdminDeleteMemberServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,22 +29,19 @@ public class MyConsultListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-HttpSession session = request.getSession();
+		int userNo = Integer.parseInt(request.getParameter("no"));
 		
-		if(session.getAttribute("loginUser") == null) {
-			
-			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
-			response.sendRedirect(request.getContextPath());
-			
-			
+		int result = new MemberService().admindeleteMember(userNo);
+		
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "성공적으로 삭제되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.ad");
 		}else {
-			
-			request.getRequestDispatcher("views/board/myConsultListView.jsp").forward(request,response);
-			
+			request.setAttribute("errorMsg", "회원 삭제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
-		
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
