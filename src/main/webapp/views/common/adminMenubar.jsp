@@ -255,7 +255,7 @@
                 <!-- 로그인 전 -->
                 <% if(loginAdmin == null) { %>
                 <img src="<%= contextPath %>/resources/icons/profile.png" width="15" style="margin-right:10px;">
-                <a href="<%=contextPath %>//views/member/loginAdmin.jsp" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
+                <a href="<%=contextPath %>/views/member/loginAdmin.jsp" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
 				
 				 <%}else{ %>
 				 

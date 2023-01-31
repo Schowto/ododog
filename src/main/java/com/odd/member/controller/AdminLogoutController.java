@@ -1,8 +1,6 @@
 package com.odd.member.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,20 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.AdminService;
-import com.odd.member.model.vo.Admin;
-
 /**
- * Servlet implementation class AdminLoginController
+ * Servlet implementation class AdminLogoutController
  */
-@WebServlet("/login.ad")
-public class AdminLoginController extends HttpServlet {
+@WebServlet("/logout.ad")
+public class AdminLogoutController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminLoginController() {
+    public AdminLogoutController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,23 +28,10 @@ public class AdminLoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String adminId = request.getParameter("adminId");
-		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+		session.invalidate();
 		
-		Admin loginAdmin = new AdminService().loginAdmin(adminId, password);
-
-		if(loginAdmin == null) {
-			request.setAttribute("errorMsg", "로그인 실패");
-			
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
-			view.forward(request, response);
-		}else {
-			HttpSession session =  request.getSession();
-			session.setAttribute("loginAdmin", loginAdmin);
-			
-			
-			response.sendRedirect(request.getContextPath() + "/views/common/adminMenubarForInclude.jsp");
-		}
+		response.sendRedirect(request.getContextPath() + "/views/common/adminMenubarForInclude.jsp");
 	}
 
 	/**
