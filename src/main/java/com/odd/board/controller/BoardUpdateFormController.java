@@ -14,14 +14,14 @@ import com.odd.board.model.vo.Board;
 /**
  * Servlet implementation class BoardUpdateController
  */
-@WebServlet("/update.bo")
-public class BoardUpdateController extends HttpServlet {
+@WebServlet("/updateForm.bo")
+public class BoardUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardUpdateController() {
+    public BoardUpdateFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +30,10 @@ public class BoardUpdateController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
 		int boardNo = Integer.parseInt(request.getParameter("no"));
-		String boardTitle = request.getParameter("title");
-		String boardContent = request.getParameter("content");
-		Board b = new Board();
-		b.setBoardNo(boardNo);
-		b.setBoardTitle(boardTitle);
-		b.setBoardContent(boardContent);
-		
-		int result = new BoardService().updateBoard(b);
-		if(result > 0) {
-			request.setAttribute("alertMsg", "성공적으로 수정되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/detail.bo?no=" + boardNo);
-		} else {
-			request.setAttribute("errorMsg", "일반게시글 작성 실패");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-		}
+		Board b = new BoardService().selectBoard(boardNo);
+		request.setAttribute("b", b);
+		request.getRequestDispatcher("views/board/boardUpdateForm.jsp").forward(request, response);
 	}
 
 	/**

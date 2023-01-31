@@ -106,8 +106,7 @@
                 })
             </script>
 
-            <form action="<%= contextPath %>/insert.bo" id="board-area" method="post">
-
+            <form action="<%= contextPath %>/update.bo" id="board-area" method="post">
                 <div align="center" ;>
                     <br><br><br><br><br><br><br>
                     <h2 style="color:rgb(50, 50, 50); font-weight:600;">자유게시판</h2>
@@ -115,7 +114,8 @@
                 </div>
 
                 <br><br><br>
-
+				<input type="hidden" name="no" value="<%= b.getBoardNo() %>">
+				
                 <input type="text" name="title"
                     style="border-top:1px solid rgb(220, 220, 220); border-bottom:2px solid rgb(220, 220, 220); border-right:none; border-left:none; width:100%; height:50px;"
                     value="<%= b.getBoardTitle() %>" required>
