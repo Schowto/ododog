@@ -53,8 +53,8 @@
 	<entry key="selectMemberList">
 	SELECT
 		USER_NO ,
-		USER_NAME ,
 		USER_ID ,
+		USER_NAME ,
 		EMAIL ,
 		PHONE ,
 		POST_CODE,
@@ -65,40 +65,61 @@
 	WHERE STATUS = 'Y'
 	</entry>
 	
-	<entry key="updateMember">
+	<entry key="idcheck">
+	SELECT
+			COUNT(*) "COUNT"
+		FROM MEMBER
+		WHERE USER_ID = ?
+		
+	</entry>
+	
+	<entry key="updateAdmin">
 	UPDATE MEMBER
-	   SET USER_NAME = ? 
-	   	 , EMAIL = ?
-	   	 , PHONE = ?
-	   	 , POST_CODE = ?
-	   	 , ADDRESS = ?
-	   	 , DETAILED_ADDRESS = ?
-	 WHERE USER_ID = ? 
+	SET USER_NAME = ?
+	  , PHONE = ?
+	  , EMAIL = ?
+	  , POST_CODE = ?
+	  , ADDRESS = ?
+	  , DETAILED_ADDRESS = ? 
+	  , MODIFY_DATE = SYSDATE
+	 WHERE USER_ID = ?  
 	</entry>
 	
-	<entry key="updatePwdMember">
-		UPDATE MEMBER
-		   SET USER_PWD = ?
-		     , MODIFY_DATE = SYSDATE
-		WHERER USER_ID = ?
-		   AND USER_PWD =?
-	</entry>
+	 <entry key="updateMember">
+   UPDATE MEMBER
+      SET USER_NAME = ? 
+          , EMAIL = ?
+          , PHONE = ?
+          , POST_CODE = ?
+          , ADDRESS = ?
+          , DETAILED_ADDRESS = ?
+    WHERE USER_ID = ? 
+   </entry>
+   
+   <entry key="updatePwdMember">
+      UPDATE MEMBER
+         SET USER_PWD = ?
+           , MODIFY_DATE = SYSDATE
+      WHERER USER_ID = ?
+         AND USER_PWD =?
+   </entry>
+   
+   <entry key="memberPwdCheck">
+      SELECT USER_NO,
+             USER_ID,
+             USER_PWD,
+             USER_NAME,
+             EMAIL,
+             PHONE,
+             POST_CODE,
+             ADDRESS,
+             DETAILED_ADDRESS
+        FROM MEMBER
+       WHERE USER_ID = ? 
+         AND USER_PWD = ?
+         AND STATUS = 'Y'
+   </entry>
 	
-	<entry key="memberPwdCheck">
-		SELECT USER_NO,
-		       USER_ID,
-		       USER_PWD,
-		       USER_NAME,
-		       EMAIL,
-		       PHONE,
-		       POST_CODE,
-		       ADDRESS,
-		       DETAILED_ADDRESS
-		  FROM MEMBER
-		 WHERE USER_ID = ? 
-		   AND USER_PWD = ?
-		   AND STATUS = 'Y'
-	</entry>
 	
 
 </properties>
