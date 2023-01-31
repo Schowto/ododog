@@ -32,9 +32,8 @@ public class MemberDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		
 		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPWd");
+		String userPwd = request.getParameter("userPwd");
 		
 		int result = new MemberService().memberDelete(userId, userPwd);
 		

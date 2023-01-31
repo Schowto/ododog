@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.odd.member.model.vo.Member, java.util.ArrayList"%>
+    pageEncoding="UTF-8" import="com.odd.member.model.vo.Member"%>
 <%   
    String contextPath = request.getContextPath();
 
@@ -7,8 +7,6 @@
 
    String alertMsg = (String)session.getAttribute("alertMsg");
    
-
-
 %>
 <!DOCTYPE html>
 <html lang="en">

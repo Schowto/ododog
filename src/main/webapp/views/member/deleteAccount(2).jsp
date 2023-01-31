@@ -174,29 +174,36 @@
 		                </div>
 		                <br>
 		                
-		               <button class="btn-red" type="button" data-toggle="modal" data-target="#checkModal">
-		               		탈퇴
-		               </button>
-		               <button onclick="location.href='<%=contextPath%>/myPage.me'" id="deleteBtn2">취소</button>
-		               
+		               <div align="center">
+		               <button class="btn-red" type="button" data-toggle="modal" data-target="#checkModal">탈퇴</button>
+		               <button type=button id="btn">취소</button>
+		               </div>
                     </form>
                 </div>
+                
+                <script>
+                	$(function(){
+                		$("#btn").click(function(){
+                			location.href="<%=contextPath%>/myPage.me";
+                		})
+                	})
+                </script>
            
 
   				<!-- The Modal -->
-  				<div class="modal fade" id="checkModal">
+  				<div class="modal fade" id="checkModal" >
     				<div class="modal-dialog modal-sm">
       				<div class="modal-content">
       
         				<!-- Modal Header -->
         				<div class="modal-header">
-          				<h4 class="modal-title" style="font-size:13px;">정말 오도독(DOG)을 탈퇴하시겠습니까?</h4>
+
           				<button type="button" class="close" data-dismiss="modal">&times;</button>
         				</div>
         
         				<!-- Modal body -->
         				<div class="modal-body">
-         				
+         				<h4 class="modal-title" style="font-size:13px;">정말 오도독(DOG)을 탈퇴하시겠습니까?</h4>
         				</div>
         
         				<!-- Modal footer -->
@@ -206,8 +213,8 @@
                             <input type="hidden" name="userPwd" value="<%=userPwd%>">
 
         				    <div class="modal-footer">
-                                <button type="submit" class="btn btn-secondary" data-dismiss="modal" id="deleteBtn">예</button>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button> 
+                                <button type="submit" class="btn btn-secondary btn-sm" data-dismiss="modal">예</button>
+                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">아니오</button> 
         				    </div>
                         </form>
         

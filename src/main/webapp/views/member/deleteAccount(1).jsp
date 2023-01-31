@@ -125,7 +125,7 @@
                                 <td style="width:200px; text-align:center;">비밀번호</td>
                                 <td style="width:800px;">
                                     <input type="hidden" name="userId" value="<%=userId%>">
-                                    &nbsp;&nbsp;<input type="password" name="userPWd" size=30 required>
+                                    &nbsp;&nbsp;<input type="password" name="userPwd" size=30 required>
                                 </td>
                             </tr>
                         </table>

@@ -101,7 +101,7 @@
          SET USER_PWD = ?
            , MODIFY_DATE = SYSDATE
        WHERE USER_ID = ?
-         AND USER_PWD =?
+         AND USER_PWD = ?
    </entry>
    
    <entry key="memberPwdCheck">

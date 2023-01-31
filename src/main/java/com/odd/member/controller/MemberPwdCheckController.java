@@ -38,7 +38,7 @@ public class MemberPwdCheckController extends HttpServlet {
 		
 		if(count > 0) {
 			
-			request.getRequestDispatcher("views/member/deleteAccount(2).jsp");
+			request.getRequestDispatcher("views/member/deleteAccount(2).jsp").forward(request, response);
 		
 			
 		}else {

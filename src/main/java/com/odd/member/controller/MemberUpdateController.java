@@ -1,6 +1,8 @@
 package com.odd.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +48,7 @@ public class MemberUpdateController extends HttpServlet {
 		
 		Member m = new Member(userId, userName, email, phone, postCode, address, detailedAddress);
 		
-		Member updateMem = new MemberService().updateMember(m);
+		ArrayList<Member> updateMem = new MemberService().updateMember(m);
 		
 		if(updateMem != null) {
 			HttpSession session = request.getSession();
