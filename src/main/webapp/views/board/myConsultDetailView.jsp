@@ -167,7 +167,7 @@
 						<tr>
 							<td colspan="2">
 								<br>
-								<textarea style="padding:40px;">답변이들어올자리입니다</textarea>
+								<textarea class="answer" style="padding:40px;">답변이들어올자리입니다</textarea>
 								<br><br>
 							</td>
 						</tr>
@@ -179,8 +179,8 @@
 				-->
     			<script>
       				$( document ).ready( function() {
-        				$( 'button.a' ).click( function() {
-          					$( '.b' ).slideDown();
+        				$( '.blink' ).click( function() {
+          					$( '.answer' ).slideDown();
         				} );
       				} );
     			</script>
