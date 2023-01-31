@@ -50,9 +50,11 @@ public class AdminProductSelectController extends HttpServlet {
 		jObj.put("price", p.getPrice());
 		jObj.put("expiredDate", p.getExpiredDate());
 		jObj.put("save", p.getSave());
+		jObj.put("thumbImg", p.getThumbImg());
 		
 		for(int i = 0; i < list.size() ; i++) {
-				jObj.put("proAtt" + (i+1), list.get(i).getFilePath());
+			jObj.put("proAtt" + (i+1), list.get(i).getFilePath());
+			jObj.put("proAttNo" + (i+1), list.get(i).getFileNo());
 			}
 		
 		response.setContentType("application/json; charset=utf-8");

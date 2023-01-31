@@ -52,7 +52,7 @@
 		margin-left:10px;
 	}
 	
-	    .enrollTB{
+    .enrollTB{
         font-size: 80%;
     }
     
@@ -122,6 +122,9 @@
 		            			}else { 
 		            				alert("상품 삭제 실패");
 		            			} 
+								
+								// 페이지 새로 고침
+								location.reload();
 							} ,
 							error : function(){
 								
@@ -130,8 +133,6 @@
 					})	
 				})
 			</script>
-			
-			<br>
 			
 			<div style="width:100%; height:350px; overflow:auto">
                <table class="list-area table" >
@@ -157,7 +158,12 @@
                        <%}else{ %>
                            <% for(Product p : list){ %>
                        <tr role="button" data-toggle="modal" data-target="#myModal">
-                           <td onclick="event.stopPropagation()"><input type="checkbox" name="deleteNo" class="deleteNo" value="<%= p.getProNo() %>"></td>
+                           
+                           <!-- 체크박스 부분에서는 클릭 이벤트 작동하지 않도록 -->
+                           <td onclick="event.stopPropagation()"> 
+                           	<input type="checkbox" name="deleteNo" class="deleteNo" value="<%= p.getProNo() %>">
+                           </td>
+                           
                            <td><%= p.getProNo() %></td>
                            <td><%= p.getCategory() %></td>
                            <td><%= p.getProName() %></td>
@@ -175,21 +181,7 @@
                </table>
             </div>
                
-            <!--  세부 사항 보기 // 나중에 구현
-            
-            <script>
-            $(function(){
-                $(".list-area>tbody>tr").click(function(){
-                    location.href = '<%=contextPath%>/detail.bo?no=' + $(this).children().eq(0).text();
-                })
-            })
-            
-            </script>
-            -->
-         
-            <br>
-
-       		<br><br>
+            <br><br><br>
        		
        		<form id="searchForm" action="<%=contextPath%>/search.adPro" method="post">
 				  <input type="hidden" name="cpage" value="2" >
@@ -307,6 +299,7 @@
        $(function(){
 	  		$(".list-area>tbody>tr").click(function(){
 	  			
+				// 선택된 상품 정보 불러오기	  			
 				$.ajax({
 					
 					url:"select.adPro" , 
@@ -334,6 +327,23 @@
 							$("#contentImg7").attr("src", p.proAtt8);
 							$("#contentImg8").attr("src", p.proAtt9);
 							$("#contentImg9").attr("src", p.proAtt10);
+							
+							$("input[name=file1No]").val(p.proAttNo1);
+							$("input[name=file2No]").val(p.proAttNo2);
+							$("input[name=file3No]").val(p.proAttNo3);
+							$("input[name=file4No]").val(p.proAttNo4);
+							$("input[name=file5No]").val(p.proAttNo5);
+							$("input[name=file6No]").val(p.proAttNo6);
+							$("input[name=file7No]").val(p.proAttNo7);
+							$("input[name=file8No]").val(p.proAttNo8);
+							$("input[name=file9No]").val(p.proAttNo9);
+							$("input[name=file10No]").val(p.proAttNo10);
+							
+							$("input[name=proNo]").val(p.proNo);
+							
+							$("input[name=thumbImg]").val(p.thumbImg);
+							
+							
 					} ,
 					error : function(){
 						
@@ -353,17 +363,17 @@
 	
 	      <!-- Modal Header -->
 	      <div class="modal-header">
-	        <h4 class="modal-title">Modal Heading</h4>
+	        <h4 class="modal-title">상품 정보 수정</h4>
 	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	      </div>
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	        <form id="enrollForm" action="<%=contextPath%>/insert.adPro" method="post" enctype="multipart/form-data" >			
+	        <form action="<%=contextPath%>/update.adPro" method="post" enctype="multipart/form-data" >			
 	            <table class="enrollTB1 table-bordered" style="width:750px">
 	                    <tr>
 	                        <th>카테고리</th>
-	                        <td>
+	                        <td colspan="3">
 	                        	<select name="category" id="category" class="form-control-sm">
                             		<option value="주식">주식</option>
                             		<option value="건조간식">건조간식</option>
@@ -378,7 +388,10 @@
 	
 	                    <tr>
 	                        <th>상품명</th>
-	                        <td><input type="text" class="form-control-sm" name="proName" style="width:400px" id="proName" required></td>
+	                        <td colspan="3">
+	                        	<input type="text" class="form-control-sm" name="proName" style="width:400px" id="proName" required>
+	                        </td>
+	                        
 	                        <td rowspan="4" style="text-align:center">
 	                        	<img class="img-thumbnail" id="thumbImg" onclick="clickFile(1)">
 	                        </td>
@@ -386,12 +399,16 @@
 	
 	                    <tr>
 	                        <th>가격</th>
-	                        <td><input type="text" class="form-control-sm" name="price" style="width:150px" id="price" required></td>
+	                        <td colspan="3">
+	                        	<input type="text" class="form-control-sm" name="price" style="width:150px" id="price" required>
+                       		</td>
 	                    </tr>
 	
 	                    <tr>
 	                        <th>유통 기한</th>
-	                    	<td><input type="date" class="form-control-sm" name="expiredDate" id="expiredDate" style="width:150px" required></td>
+	                    	<td colspan="3">
+	                    		<input type="date" class="form-control-sm" name="expiredDate" id="expiredDate" style="width:150px" required>
+                    		</td>
 	                    </tr>
 	
 	                    <tr>
@@ -404,6 +421,13 @@
                             		<option value="0.4">0.4%</option>
 	                        	</select>
 	                        </td>
+	                        <th style="width:100px">품절 여부</th>
+	                        <td style="width:150px">
+	                        	<select name="soldout" class="form-control-sm">
+                            		<option value="N">재고보유</option>
+                            		<option value="Y">품절</option>
+	                        	</select>
+							</td>
 	                    </tr>
 	                    
 	            </table>
@@ -453,7 +477,7 @@
 				</table>
 				
 		        <div id="file-area" style="display: none;">
-	                <input type="file" name="file1" onchange="loadImg(this, 1)" required>
+	                <input type="file" name="file1" onchange="loadImg(this, 1)">
 	                <input type="file" name="file2" onchange="loadImg(this, 2)">
 	                <input type="file" name="file3" onchange="loadImg(this, 3)">
 	                <input type="file" name="file4" onchange="loadImg(this, 4)">
@@ -463,7 +487,22 @@
 	                <input type="file" name="file8" onchange="loadImg(this, 8)">
 	                <input type="file" name="file9" onchange="loadImg(this, 9)">
 	                <input type="file" name="file10" onchange="loadImg(this, 10)">
+	                
+	                <input type="hidden" name="file1No">
+	                <input type="hidden" name="file2No">
+	                <input type="hidden" name="file3No">
+	                <input type="hidden" name="file4No">
+	                <input type="hidden" name="file5No">
+	                <input type="hidden" name="file6No">
+	                <input type="hidden" name="file7No">
+	                <input type="hidden" name="file8No">
+	                <input type="hidden" name="file9No">
+	                <input type="hidden" name="file10No">
 
+                   <input type="hidden" name="proNo">
+                   
+                   <input type="hidden" name="thumbImg">
+                   
           		</div>
 
 				<script>
@@ -472,8 +511,6 @@
                     $("input[name=file"+num+"]").click();
                 
                 }
-
-
 
                 function loadImg(inputFile, num){
                 	
@@ -484,16 +521,36 @@
 
                         reader.onload = function(e){
                             switch(num){
-                                case 1:$("#thumbImg").attr("src",e.target.result); break;
-                                case 2:$("#contentImg1").attr("src",e.target.result); break;
-                                case 3:$("#contentImg2").attr("src",e.target.result); break;
-                                case 4:$("#contentImg3").attr("src",e.target.result); break;
-                                case 5:$("#contentImg4").attr("src",e.target.result); break;
-                                case 6:$("#contentImg5").attr("src",e.target.result); break;
-                                case 7:$("#contentImg6").attr("src",e.target.result); break;
-                                case 8:$("#contentImg7").attr("src",e.target.result); break;
-                                case 9:$("#contentImg8").attr("src",e.target.result); break;
-                                case 10:$("#contentImg9").attr("src",e.target.result); break;
+                                case 1:
+                                	$("#thumbImg").attr("src",e.target.result);
+                                	break;
+                                case 2:
+                                	$("#contentImg1").attr("src",e.target.result); 
+                                	break;
+                                case 3:
+                                	$("#contentImg2").attr("src",e.target.result); 
+                                	break;
+                                case 4:
+                                	$("#contentImg3").attr("src",e.target.result); 
+                                	break;
+                                case 5:
+                                	$("#contentImg4").attr("src",e.target.result); 
+                                	break;
+                                case 6:
+                                	$("#contentImg5").attr("src",e.target.result); 
+                                	break;
+                                case 7:
+                                	$("#contentImg6").attr("src",e.target.result); 
+                                	break;
+                                case 8:
+                                	$("#contentImg7").attr("src",e.target.result); 
+                                	break;
+                                case 9:
+                                	$("#contentImg8").attr("src",e.target.result); 
+                                	break;
+                                case 10:
+                                	$("#contentImg9").attr("src",e.target.result); 
+                                	break;
                     
                             }
                         }
@@ -528,7 +585,7 @@
 	
 	      <!-- Modal footer -->
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 	      </div>
 	
 	    </div>

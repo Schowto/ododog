@@ -124,5 +124,24 @@
 		    BY FILE_NO
 	</entry>
 	
+	<entry key="updateProduct">
+		UPDATE PRODUCT
+		   SET CATEGORY = ?
+		     , PRO_NAME = ?
+		     , PRICE = ?
+		     , EXPIRED_DATE = ?
+		     , THUMB_IMG = ?
+		     , SAVE = ?
+		     , SOLDOUT = ?
+		     , ENROLL_DATE = TO_CHAR(SYSDATE,'YYYY-MM-DD')
+		 WHERE PRO_NO = ?  
+	</entry>
+	
+	<entry key="updateAttachList">
+		UPDATE PRO_ATT
+		   SET FILE_PATH = ?
+		     , UPLOAD_DATE = SYSDATE
+		 WHERE FILE_NO = ?    
+	</entry>
 	
 </properties>

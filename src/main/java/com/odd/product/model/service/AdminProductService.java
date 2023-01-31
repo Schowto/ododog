@@ -97,6 +97,23 @@ public class AdminProductService {
 		return list;
 	}
 	
-	
+	public int updateProduct(Product p, ArrayList<ProAtt> list) {
+		
+		Connection conn = getConnection();
+
+		int result1 = new AdminProductDao().updateProduct(conn, p);
+		int result2 = new AdminProductDao().updateAttachList(conn, list);
+		
+		if(result1>0 && result2>0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2;
+		
+	}
 	
 }
