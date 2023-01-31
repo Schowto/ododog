@@ -85,41 +85,34 @@
 	 WHERE USER_ID = ?  
 	</entry>
 	
-	 <entry key="updateMember">
-   UPDATE MEMBER
-      SET USER_NAME = ? 
-          , EMAIL = ?
-          , PHONE = ?
-          , POST_CODE = ?
-          , ADDRESS = ?
-          , DETAILED_ADDRESS = ?
-    WHERE USER_ID = ? 
-   </entry>
-   
-   <entry key="updatePwdMember">
-      UPDATE MEMBER
-         SET USER_PWD = ?
-           , MODIFY_DATE = SYSDATE
-       WHERE USER_ID = ?
-         AND USER_PWD = ?
-   </entry>
-   
-   <entry key="memberPwdCheck">
-      SELECT COUNT(*) "COUNT"
-        FROM MEMBER
-       WHERE USER_ID = ? 
-         AND USER_PWD = ?
-         AND STATUS = 'Y'
-   </entry>
-   
-   <entry key="memberDelete">
-   		UPDATE MEMBER
-   		   SET STATUS = 'N',
-   		       MODIFY_DATE = SYSDATE
-   		 WHERE USER_ID =?
-   		   AND USER_PWD =?
-   </entry>
+	<entry key="loginAdmin">
+	SELECT
+		  ADMIN_NO
+		, ADMIN_ID
+		, PASSWORD
+		FROM ADMIN
+		WHERE ADMIN_ID = ?
+		AND PASSWORD = ?
+	</entry>
 	
-	
+	<entry key="selectLoginMember">
+		SELECT
+			   USER_NO ,
+			   USER_ID ,
+			   USER_PWD,
+			   USER_NAME ,
+			   EMAIL ,
+			   PHONE ,
+			   POST_CODE,
+			   ADDRESS ,
+			   DETAILED_ADDRESS,
+			   ENROLL_DATE,
+			   MODIFY_DATE,
+			   STATUS,
+			   POINT
+		  FROM MEMBER
+		 WHERE USER_ID = ?
+	       AND STATUS = 'Y'
+	</entry>
 
 </properties>
