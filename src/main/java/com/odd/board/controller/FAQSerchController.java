@@ -1,4 +1,4 @@
-package com.odd.point.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.odd.member.model.service.MemberService;
-import com.odd.point.model.vo.Point;
+import com.odd.board.model.service.FAQService;
+import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class AjaxPointListController
+ * Servlet implementation class FAQSerchController
  */
-@WebServlet("/list.po")
-public class AjaxPointListController extends HttpServlet {
+@WebServlet("/serch.faq")
+public class FAQSerchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxPointListController() {
+    public FAQSerchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,12 +32,11 @@ public class AjaxPointListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int userNo = Integer.parseInt(request.getParameter("no"));
+		request.setCharacterEncoding("UTF-8");
 		
-		ArrayList<Point> list = new MemberService().selectPointList(userNo);
+		String keyword = request.getParameter("keyword");
 		
-		response.setContentType("application/json; charset=utf-8");
-		new Gson().toJson(list, response.getWriter());
+		ArrayList<FAQ> list = new FAQService().serchFAQ(keyword);
 	}
 
 	/**

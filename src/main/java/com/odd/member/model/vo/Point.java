@@ -1,4 +1,4 @@
-package com.odd.point.model.vo;
+package com.odd.member.model.vo;
 
 import java.sql.Date;
 

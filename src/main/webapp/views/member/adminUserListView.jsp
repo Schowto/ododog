@@ -1,13 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*
-    ,com.odd.point.model.vo.Point"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*"%>
 
 <%
 	MemberService ms = new MemberService();
 
 	ArrayList<Member> list = ms.selectMemberList();
 	
-	//Point p = (Point)request.getAttribute("p");
 	
 %>
 
@@ -175,18 +173,17 @@
     				//console.log(list);
     				
     				let value = "";
-    				if(list.length == 0){ 
+    				if(list.isEmpty()){ 
     					value += "<tr>"
     							+	"<td colspan='3'>조회된 적립금이 없습니다</td>"
     							+"</tr>";
     				}else{ 
-    					for(let i=0; i<list.length; i++){
     						value += "<tr>"
     								+	"<td>" + list[i].pointDate + "</td>"
     								+	"<td>" + list[i].pointUse + "</td>"
     								+	"<td>" + list[i].pointPrice + "</td>"
     								+"</tr>";
-    					}
+    					
     				}
     				
     				$("#pointTbody").html(value);
@@ -207,7 +204,7 @@
         
                 <!-- Modal Header -->
                 <div class="modal-header">
-                <h4 class="modal-title">적립금 상세내역</h4>
+                <h4 class="modal-title">적립금 상세내역</h4>S
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
         

@@ -9,7 +9,7 @@ import com.odd.board.model.dao.FAQDao;
 import com.odd.board.model.vo.FAQ;
 import com.odd.member.model.dao.MemberDao;
 import com.odd.member.model.vo.Member;
-import com.odd.point.model.vo.Point;
+import com.odd.member.model.vo.Point;
 
 public class MemberService {
 	

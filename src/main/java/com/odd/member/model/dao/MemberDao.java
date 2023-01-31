@@ -13,7 +13,7 @@ import static com.odd.common.JDBCTemplate.*;
 
 import com.odd.board.model.vo.FAQ;
 import com.odd.member.model.vo.Member;
-import com.odd.point.model.vo.Point;
+import com.odd.member.model.vo.Point;
 
 public class MemberDao {
 	
@@ -382,13 +382,15 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
 		}
 		
 		 return list;
 	}
 	
+	
+		
 
 	
 	
