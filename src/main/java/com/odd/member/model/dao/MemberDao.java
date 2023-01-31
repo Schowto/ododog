@@ -270,7 +270,7 @@ public class MemberDao {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("memberDelete");
+		String sql = prop.getProperty("deleteMember");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -288,6 +288,12 @@ public class MemberDao {
 		return result;
 	}
 	
+	/**
+	 * 정보수정후 객체조회 (정은)
+	 * @param conn
+	 * @param userId
+	 * @return
+	 */
 	public Member selectLoginMember(Connection conn, String userId) {
 		
 		Member m = null;
@@ -324,6 +330,10 @@ public class MemberDao {
 		}
 		
 		return m;
+		
+	}
+		
+		
 	/**
 	 * 관리자가 회원삭제 (소민)
 	 * @param conn
