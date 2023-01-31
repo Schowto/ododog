@@ -1,104 +1,115 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+	pageEncoding="UTF-8"%>
+<%@ page
+	import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.Consult "%>
+<%
+PageInfo pi = (PageInfo) request.getAttribute("pi");
+ArrayList<Consult> list = (ArrayList<Consult>) request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-	.outer{
-		width:1200px;
-		height:100%;
-		margin:auto;
-	}
-	/****** 사이드 ******/
-    #side{
-        /*border:1px solid blue;*/
-        width:20%; 
-        height:100%;
-        padding:20px;
-        color: rgb(50, 50, 50);
-        font-weight: 600;
-        float:left;
-    }
-    #side>hr{margin-bottom:30px; border:1px solid rgb(220,220,220);}
-    #side>a{
-        text-decoration:none;
-        color: rgb(50, 50, 50);
-    }
+.outer {
+	width: 1200px;
+	height: 100%;
+	margin: auto;
+}
+/****** 사이드 ******/
+#side {
+	/*border:1px solid blue;*/
+	width: 20%;
+	height: 100%;
+	padding: 20px;
+	color: rgb(50, 50, 50);
+	font-weight: 600;
+	float: left;
+}
 
-    /****** 내용 ******/
-	.content{
-		width:75%;
-		height:100%;
-		margin:auto;
-		margin-top:180px;
-		margin-bottom:200px;
-        display:inline-block;
-        margin-left:40px;
-	}
-    table{
-        width:100%;
-        height: 100%;
-        border-top:1px solid rgb(220,220,220);
-        border-collapse: collapse;
-        border-spacing: 0;
-        text-align:center;
-    }
-    .logoutUser td{
-        border-bottom:1px solid rgb(220,220,220);
-    }
-    .loginUser td{
-        border-bottom:1px solid rgb(220,220,220);
-        height:50px;
-    }
-    #btn1{
-        width:70px;
-        height:30px
-    }
-    #btnWrap{
-        float:right;
-    }
-    .consultSearch{
-        width:350px;
-        margin:auto;
-    }
-    #btn2{
-        width:50px;
-        height:28px;
-    }
-    #consultDetail:hover{
-        opacity: 0.7;
-        cursor: pointer;
-    }
+#side>hr {
+	margin-bottom: 30px;
+	border: 1px solid rgb(220, 220, 220);
+}
+
+#side>a {
+	text-decoration: none;
+	color: rgb(50, 50, 50);
+}
+
+/****** 내용 ******/
+.content {
+	width: 75%;
+	height: 100%;
+	margin: auto;
+	margin-top: 180px;
+	margin-bottom: 200px;
+	display: inline-block;
+	margin-left: 40px;
+}
+
+table {
+	width: 100%;
+	height: 100%;
+	border-top: 1px solid rgb(220, 220, 220);
+	border-collapse: collapse;
+	border-spacing: 0;
+	text-align: center;
+}
+
+.logoutUser td {
+	border-bottom: 1px solid rgb(220, 220, 220);
+}
+
+.loginUser td {
+	border-bottom: 1px solid rgb(220, 220, 220);
+	height: 50px;
+}
+
+#btn1 {
+	width: 70px;
+	height: 30px
+}
+
+.consultSearch {
+	width: 350px;
+	margin: auto;
+}
+
+#btn2 {
+	width: 50px;
+	height: 28px;
+}
+
+#consultDetail:hover {
+	opacity: 0.7;
+	cursor: pointer;
+}
 </style>
 </head>
 <body>
 
 	<%@ include file="../common/userMenubar.jsp"%>
-	
+
 	<%
-		String userId = loginUser.getUser_Id();
+	String userId = loginUser.getUser_Id();
 	%>
-	
+
 	<div class="outer">
 
 		<div id="side">
-			<br><br><br><br><br>
+			<br> <br> <br> <br> <br>
 			<p style="font-size: 23px;">MYPAGE</p>
 			<hr>
 			<a href="<%=contextPath%>/myOrder.me" style="font-size: 17px;">주문조회</a>
-			<br>
-			<br> <a href="<%=contextPath%>/myPage.me"
-				style="font-size: 17px;">회원정보</a> <br>
-			<br> <a href="<%=contextPath%>/myWhish.me"
-				style="font-size: 17px;">관심상품</a> <br>
-			<br> <a href="<%=contextPath%>/myPoint.me"
-				style="font-size: 17px;">적립금</a> <br>
-			<br> <a href="<%=contextPath%>/myBoard.me"
-				style="font-size: 17px;">게시글조회</a> <br>
-			<br> <a href="<%=contextPath%>/consult.co"
+			<br> <br> <a href="<%=contextPath%>/myPage.me"
+				style="font-size: 17px;">회원정보</a> <br> <br> <a
+				href="<%=contextPath%>/myWhish.me" style="font-size: 17px;">관심상품</a>
+			<br> <br> <a href="<%=contextPath%>/myPoint.me"
+				style="font-size: 17px;">적립금</a> <br> <br> <a
+				href="<%=contextPath%>/myBoard.me" style="font-size: 17px;">게시글조회</a>
+			<br> <br> <a href="<%=contextPath%>/consult.co"
 				style="font-size: 17px; color: rgb(200, 140, 140);">1:1맞춤상담</a>
 		</div>
 
@@ -112,17 +123,11 @@
 
 		<div class="content">
 
-			<h2 align="center" style="font-weight: 600; color: rgb(50, 50, 50);">1:1
-				문의 게시판</h2>
-			<br>
-			<br>
-			<br>
-			<br>
+			<h2 align="center" style="font-weight: 600; color: rgb(50, 50, 50);">1:1문의 게시판</h2>
+			<br> <br> <br> <br>
 
-			<!--게시물이없을때-->
-			
-			<form action="" class="logoutUser">
-				<table>
+			<table class="list-area">
+				<thead>
 					<tr style="height: 50px;">
 						<td width="10%;">번호</td>
 						<td width="60%;">제목</td>
@@ -130,86 +135,91 @@
 						<td width="10%;">작성일</td>
 						<td width="10%;">답변</td>
 					</tr>
+				</thead>
+				<tbody>
+					<%if (list.isEmpty()) {%>
+					<!-- 게시글이 없을 경우 -->
 					<tr style="height: 100px;">
 						<td colspan="5" style="font-weight: 600; color: rgb(50, 50, 50);">
-							<br>
-						<br> <img src="<%=contextPath%>/resources/images/error.png">
-							<br> 게시글이 존재하지 않습니다. <br>
-						<br>
-						<br>
+							<br> <br> 
+							<img src="<%=contextPath%>/resources/images/error.png"> <br>
+							게시글이 존재하지 않습니다. <br> <br> <br>
 						</td>
 					</tr>
-				</table>
-			</form>
+					<%
+					} else {%>
+					<!-- 게시물이 있는 경우  -->
+					<%for (Consult c : list) {%>
+						<tr>
+							<td><%=c.getConsultNo()%></td>
+							<td><%=c.getConsultTitle()%></td>
+							<td><%=c.getUserNo()%></td>
+							<td><%=c.getEnrollDate()%></td>
+							<td><%=c.getStatus()%></td>
+						</tr>
+					<%}%>
 
+				<%}%>
+
+				</tbody>
+			</table>
 			
+			<!-- 게시글 상세보기 -->
+        	<script>
+        		$(function(){
+	        		$(".list-area>tbody>tr").click(function(){
+	        			location.href = '<%=contextPath%>/detail.co?no=' + $(this).children().eq(0).text();
+	        		})
+	        	})
+	        </script>
+	        <br><br>
+	
+	        <div class="paging-area">
+	
+				<% if(pi.getCurrentPage() != 1){ %>
+	            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()-1%>';">&lt;</button>
+	            <% } %>
+	
+				<% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++){ %>
+	            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=p%>';"><%= p %></button>
+	            <% } %>
+	
+				<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+	            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()+1%>';">&gt;</button>
+				<% } %>
+	        </div>
 
-			<!--게시물이있을때-->
-			<form action="" class="loginUser">
-				<table>
-					<tr>
-						<td width="10%;">번호</td>
-						<td width="60%;">제목</td>
-						<td width="10%;">작성자</td>
-						<td width="10%;">작성일</td>
-						<td width="10%;">답변</td>
-					</tr>
 
-					<tr>
-						<td>3</td>
-						<td id="consultDetail">배송관련문의드립니다</td>
-						<td>와그작</td>
-						<td>2023.01.27</td>
-						<td>미답변</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>배송관련문의드립니다</td>
-						<td>와그작</td>
-						<td>2023.01.27</td>
-						<td>답변완료</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>배송관련문의드립니다</td>
-						<td>와그작</td>
-						<td>2023.01.27</td>
-						<td>답변완료</td>
-					</tr>
-				</table>
-			</form>
-			
 
-			<script>
-                    $(function(){
-                        $("#consultDetail").click(function(){
-                            location.href="<%=contextPath%>/consultDetail.co";
-                        });
-                    })
-                </script>
 			<br>
 
-			<div id="btnWrap">
+
+			<%
+			if (loginUser != null) {
+			%>
+			<div align="right">
 				<button id="btn1">글쓰기</button>
 			</div>
+			<%
+			}
+			%>
 
 			<script>
-                        $(function(){
-                            $("#btn1").click(function(){
-                                location.href="<%=contextPath%>/consultEnroll.co";
-                            });
-                        })
-                    </script>
+            $(function(){
+            	$("#btn1").click(function(){
+            		location.href="<%=contextPath%>/consultEnroll.co";
+            	});
+            })
+            </script>
 
 			<script>
-                        $(function(){
-                            $("#btn1").click(function(){
-                                location.href="<%=contextPath%>/consultEnroll.co";
-                            })
-                        })
-                    </script>
-			<br>
-			<br>
+            $(function(){
+            	$("#btn1").click(function(){
+            		location.href="<%=contextPath%>/consultUpdate.co";
+					})
+				})
+			</script>
+			<br> <br>
 
 		</div>
 
@@ -220,14 +230,14 @@
 				<option value="">답변</option>
 			</select> &nbsp; <input type="text" id="searchInput" value=""
 				style="height: 25px;"> &nbsp;
-			<button type="submit" id="btn2" onclick="">찾기</button>
+			<button type="button" id="btn2" onclick="">찾기</button>
 
 		</div>
 
 		<%@ include file="../common/userFooterbar.jsp"%>
 	</div>
-	
-	
+
+
 
 </body>
 </html>

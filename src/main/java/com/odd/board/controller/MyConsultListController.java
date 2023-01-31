@@ -17,7 +17,7 @@ import com.odd.common.model.vo.PageInfo;
 /**
  * Servlet implementation class ConsultBoardListController
  */
-@WebServlet("/consult.co")
+@WebServlet("/list.co")
 public class MyConsultListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
