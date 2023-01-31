@@ -3,9 +3,9 @@
 <properties>
 	<entry key="detailProduct">
 		SELECT PRO_NAME
-		   	 , PRICE
-		   	 , thumImg
-		FROM PRODUCT
+	     , PRICE
+	       FROM PRODUCT
+    WHERE PRO_NAME = '주식 1';
 	
 	</entry>
 

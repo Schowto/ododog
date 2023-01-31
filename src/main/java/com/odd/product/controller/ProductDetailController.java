@@ -1,7 +1,6 @@
 package com.odd.product.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.product.model.service.ProductDetailService;
+import com.odd.product.model.vo.Product;
 
 /**
  * Servlet implementation class ProductDetailController
@@ -30,10 +30,13 @@ public class ProductDetailController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String proName = request.getParameter("proName");
+		int price = Integer.parseInt(request.getParameter("price"));
 		
 		
-		/*ArrayList<detail> list = new ProductDetailService().selectProductDetail();*/
-		
+		Product p  = new ProductDetailService().selectProductDetail(proName, price);
+		  
 		// 응답페이지
 		request.getRequestDispatcher("views/productDetailView.jsp").forward(request,response);
 		

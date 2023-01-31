@@ -4,17 +4,17 @@ public class ProductDetail {
 
 	private String proName;
 	private int price;
-	private String thumbImg;
+	
 		
 
 	public ProductDetail() {}
 
 
-	public ProductDetail(String proName, int price, String thumbImg) {
+	public ProductDetail(String proName, int price) {
 		super();
 		this.proName = proName;
 		this.price = price;
-		this.thumbImg = thumbImg;
+		
 	}
 
 
@@ -38,19 +38,11 @@ public class ProductDetail {
 	}
 
 
-	public String getThumbImg() {
-		return thumbImg;
-	}
-
-
-	public void setThumbImg(String thumbImg) {
-		this.thumbImg = thumbImg;
-	}
 
 
 	@Override
 	public String toString() {
-		return "ProductDetail [proName=" + proName + ", price=" + price + ", thumbImg=" + thumbImg + "]";
+		return "ProductDetail [proName=" + proName + ", price=" + price + "]";
 	}
 	
 	

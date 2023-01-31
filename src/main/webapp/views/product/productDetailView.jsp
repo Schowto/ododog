@@ -53,7 +53,7 @@ input[type=number]::-webkit-inner-spin-button {
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
-		<form action="" method="post">
+		<form action="list.de" method="post">
 			<div class="left">
 				<div class="file-area">
 					<!--대표이미지-->
