@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.odd.board.model.vo.Board;
+import com.odd.board.model.vo.Reply;
 import com.odd.common.model.vo.PageInfo;
 
 public class BoardDao {
@@ -405,5 +406,30 @@ public class BoardDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	//-- 댓글
+	public ArrayList<Reply> selectReplyList(Connection conn, int boardNo){
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReplyList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_no"),
+								   rset.getString("user_id"),
+								   rset.getString("reply_content"),
+								   rset.getString("create_date")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 }

@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "com.odd.board.model.vo.Board" %>
-<% Board b = (Board)(request.getAttribute("b")); %>
+<%
+	Board b = (Board)(request.getAttribute("b")); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,6 +111,7 @@
 <body>
 
 	<%@ include file="../common/userMenubar.jsp" %>
+	<% String userId = (loginUser == null) ? "" : loginUser.getUser_Id(); %>
 	
 	<div id="content">
     
@@ -238,90 +241,29 @@
                 </div>
 
                 <table id="reply-table" width="900">
-
-                    <!-- 댓글 없을 때 -->
-                    <tr style="text-align:center; height:200px; border-bottom:1px solid rgb(220,220,220);">
-                        <td colspan="2" style="font-size:14px">등록된 댓글이 없습니다</td>
-                    </tr>
-
-                    <!-- 댓글 있을 때 -->
-                    <tr>
-                        <th style="font-size:14px;" width="150">요기는아이디자리</th>
-                        <td style="color:gray; font-size:11px;">
-                            <p style="margin:0px 10px;">23-01-19</p>
-                            <p style="margin-right:30px;">16:00</p>
-                            <p class="report" data-toggle="modal" data-target="#myModal">신고</p>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgb(220,220,220);">
-                        <td colspan="2" style="font-size:12px;">알겠습니다유</tdcol>
-                    </tr>
-
-                    <tr>
-                        <th style="font-size:14px;" width="150">요기는아이디자리</th>
-                        <td style="color:gray; font-size:11px;">
-                            <p style="margin:0px 10px;">23-01-19</p>
-                            <p style="margin-right:30px;">16:00</p>
-                            <p class="report" data-toggle="modal" data-target="#myModal">신고</p>
-                        </td>
-                    </tr>
-                    <tr style="border-bottom:1px solid rgb(220,220,220);">
-                        <td colspan="2" style="font-size:12px;">알겠습니다유</tdcol>
-                    </tr>
-
-
-                    <!-- 내가 쓴 댓글일 때 : 댓글 수정 삭제 ---------->
-                    <tr>
-                        <th style="font-size:14px;" width="150">내 아이디!!!!</th>
-                        <td style="color:gray; font-size:11px;">
-                            <p style="margin:0px 10px;">23-01-19</p>
-                            <p style="margin-right:30px;">16:00</p>
-                            <p href="" class="report" style="margin-right:10px;" id="reply-modify">수정</p>
-                            <a href="" style="text-decoration:none; color:rgb(200, 140, 140);" id="delete-reply">삭제</a>
-                        </td>
-                    </tr>
-                    
-                    <tr style="border-bottom:1px solid rgb(220,220,220);">
-                        <td colspan="2" style="font-size:12px;" id="reply-content">기존댓zz글</td>
-                    </tr>
-                    
-                    <tr>
-                        <td colspan="2" style="font-size:12px; padding:0;">
-                            <form action="" method="post" id="reply-modify-form">
-                                <br>
-                                <textarea name="new-reply-content" id="new-reply-content"
-                                    style="width:900px; height:120px; resize:none; border:1px solid rgb(200, 140, 140); border-radius:5px;"></textarea>
-                                <button type="submit" style="margin-left:855px; margin-top:10px;">등록</button>
-                            </form>
-                        </td>
-                    </tr>
-                    
-
+                	<tbody></tbody>
                 </table>
                 
                 
 			<script>
-	        	$(function(){
-	        		selectReplyList();
-	        	})
+	        	$(function(){selectReplyList();})
 	        	
-	        	// 댓글 작성 - ajax
+	        	// 댓글 작성
 	        	function insertReply(){
 	        		$.ajax({
 	        			url:"<%=contextPath%>/rinsert.bo",
 	        			data:{
 	        				content: $("#reply-area textarea").val(),
-	        				no: <%=b.getBoardNo()%>
-	        				//userNo:<loginUser.getUserNo()>  : 상세페이지에 로그인 안된 회원도 진입 가능 -> 자바스크립트 코드도 로딩됨, 비회원 상태에서 이 페이지 들어오면 null.getUserNo() -> NullPointerException으로 오류 날 거임}
-	        				//로그인한 회원번호는 session을 통해 언제든지 불러올 수 있기 때문에 여기서 안 넘길 거임
+	        				boardType: <%= b.getBoardType() %>,
+	        				no: <%= b.getBoardNo() %>
 	        			},
 	        			type:"post",
 	        			success:function(result){
-	        				if(result>0){//댓글등록성공
+	        				if(result>0){	// 댓글등록성공
 	        					$("#reply-area textarea").val("");
-	        					selectReplyList();	// 함수호출
-	        				}else{//실패
-	        					alert("댓글등록 실패");
+	        					selectReplyList();
+	        				}else{			// 실패
+	        					alert("댓글 등록 실패");
 	        				}
 	        			}, error:function(){
 	        				console.log("댓글작성용 ajax 통신실패")
@@ -333,22 +275,51 @@
 	        	function selectReplyList(){
 	        		$.ajax({
 	        			url:"<%=contextPath%>/rlist.bo",
-	        			data:{no:<%= b.getBoardNo() %>},	// 숫자이기 때문에 ""안묶어도 됨, 문자열이면 감싸야 혀요
+	        			data:{no:<%= b.getBoardNo() %>},
 	        			success:function(list){
-	        				//console.log(list);
-	        				// 요소들 동적으로 만들기
 	        				let value = "";
-	        				if(list.length == 0) {	// 댓글이 없을 경우
-	        					value += "<tr>"
-	        						   +	"<td colspan='3'>조회된 댓글이 없습니다</td>"
+	        				if(list.length == 0) {
+	        					// 댓글이 없을 때
+	        					value += "<tr style='text-align:center; height:200px; border-bottom:1px solid rgb(220,220,220);'>"
+	        						   +	"<td colspan='2' style='font-size:14px'>등록된 댓글이 없습니다</td>"
 	        						   + "</tr>";
-	        				} else {	// 댓글이 있을 경우
+	        				} else {
+	        					// 댓글이 있을 때
 	        					for(let i=0; i<list.length; i++){
-	        						value += "<tr>"
-								  		   + 	"<td>" + list[i].replyWriter + "</td>"
-								  		   + 	"<td>" + list[i].replyContent + "</td>"
-								  		   + 	"<td>" + list[i].createDate + "</td>"
-								   		   + "</tr>";
+	        						console.log("<%=userId%>");
+	        						if("<%= userId %>" == list[i].replyWriter){
+	        						// 내 댓글일 때
+		        						value += "<tr>"
+		        							   +	"<th style='font-size:14px;' width='150'>" + list[i].replyWriter + "</th>"
+		        							   +	"<td style='color:gray; font-size:11px;'>"
+									  		   + 		"<p style='margin:0px 10px;'>" + list[i].createDate + "</p>"
+									  		   +		"<p class='report' style='margin-left:30px; margin-right:10px;' id='reply-modify'>수정</p>"
+									  		   +		"<a href='' style='text-decoration:none; color:rgb(200, 140, 140);' id='delete-reply'>삭제</a>"
+									  		   + 	"</td>"
+									   		   + "</tr>"
+									   		   + "<tr style='border-bottom:1px solid rgb(220,220,220);'>"
+									   		   + 	"<td colspan='2' style='font-size:12px;' id='reply-content'>" + list[i].replyContent + "</td>"
+									   		   + "</tr>"
+									   		   + "<tr>"
+									   		   +	"<td colspan='2' style='font-size:12px; padding:0;'>"
+									   		   +		"<form action='' method='post' id='reply-modify-form'> <br>"
+									   		   +			"<textarea name='new-reply-content' id='new-reply-content' style='width:900px; height:120px; resize:none; border:1px solid rgb(200, 140, 140); border-radius:5px;'></textarea>"
+									   		   +			"<button type='submit' style='margin-left:855px; margin-top:10px;'>등록</button>"
+									   		   +		"</form>"
+									   		   +	"</td>"
+									   		   + "</tr>"
+	        						} else {
+		        						value += "<tr>"
+		        							   +	"<th style='font-size:14px;' width='150'>" + list[i].replyWriter + "</th>"
+		        							   +	"<td style='color:gray; font-size:11px;'>"
+									  		   + 		"<p style='margin:0px 10px;'>" + list[i].createDate + "</p>"
+									  		   +		"<p class='report' data-toggle='modal' data-target='#myModal' style='margin-left:30px;'>신고</p>"
+									  		   + 	"</td>"
+									   		   + "</tr>"
+									   		   + "<tr style='border-bottom:1px solid rgb(220,220,220);'>"
+									   		   + 	"<td colspan='2' style='font-size:12px;'>" + list[i].replyContent + "</td>"
+									   		   + "</tr>"
+	        						}
 	        					}
 	        				}
 		        			$("#reply-area tbody").html(value);
@@ -365,39 +336,40 @@
                 
                 
 
-                <script>
-                    // 수정
-                    $(function () {
+            <script>
+            
+                // 수정
+                $(function () {
 
-                        const form = $("#reply-modify-form");
-                        form.hide();
+                    const form = $("#reply-modify-form");
+                    form.hide();
 
-                        $("#reply-modify").click(function () {
+                    $("#reply-modify").click(function () {
 
-                            if (form.css("display") == "none") {
-                                $("#reply-content").css("display", "none");
-                                $("#reply-modify").text("취소");
-                                form.slideDown();
-                                form.children("textarea").text($("#reply-content").text());
-                            } else {
-                                $("#reply-content").css("display", "block");
-                                $("#reply-modify").text("수정");
-                                form.css("display", "none");
-                            }
-                        })
-                    })
-
-                    // 삭제
-                    $("#delete-reply").click(function () {
-                        if (confirm("정말 삭제하시겠습니까?")) {
-                            // 삭제하고
-                            alert("삭제되었습니다.");
+                        if (form.css("display") == "none") {
+                            $("#reply-content").css("display", "none");
+                            $("#reply-modify").text("취소");
+                            form.slideDown();
+                            form.children("textarea").text($("#reply-content").text());
                         } else {
-                            alert("취소되었습니다.");
+                            $("#reply-content").css("display", "block");
+                            $("#reply-modify").text("수정");
+                            form.css("display", "none");
                         }
                     })
+                })
 
-                </script>
+                // 삭제
+                $("#delete-reply").click(function () {
+                    if (confirm("정말 삭제하시겠습니까?")) {
+                        // 삭제하고
+                        alert("삭제되었습니다.");
+                    } else {
+                        alert("취소되었습니다.");
+                    }
+                })
+
+            </script>
                 <!-- 댓글 수정삭제 여기까지 ------------->
 
                 <br><br><br>
