@@ -73,27 +73,10 @@
 		
 	</entry>
 	
-	<entry key="updateAdmin">
+	<entry key="admindeleteMember">
 	UPDATE MEMBER
-	SET USER_NAME = ?
-	  , PHONE = ?
-	  , EMAIL = ?
-	  , POST_CODE = ?
-	  , ADDRESS = ?
-	  , DETAILED_ADDRESS = ? 
-	  , MODIFY_DATE = SYSDATE
-	 WHERE USER_ID = ?  
-	</entry>
-	
-	<entry key="loginAdmin">
-	SELECT
-		  ADMIN_NO
-		, ADMIN_ID
-		, PASSWORD
-		FROM ADMIN
-		WHERE ADMIN_ID = ?
-		AND PASSWORD = ?
-	</entry>
-	
+	  SET STATUS = 'N'
+	 WHERE USER_NO = ?
+</entry>
 
 </properties>

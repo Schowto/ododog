@@ -129,27 +129,7 @@ public class MemberService {
 		return count;
 	}
 	
-	/**
-	 * 관리자가 회원정보수정 (소민)
-	 * @param m
-	 */
-	public Member updateAdmin(Member m) {
-		Connection conn = getConnection();
-		
-		int result = new MemberDao().updateAdmin(conn, m);
-		
-		ArrayList<Member> updateAdmin = null;
-		if(result > 0) {
-			commit(conn);
-			updateAdmin = new MemberDao().selectMemberList(conn);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		
-		return m;
-		}
-	
+
 	/**
 	 * 회원탈퇴 (정은)
 	 * @param userId
@@ -161,6 +141,23 @@ public class MemberService {
 		
 		int result = new MemberDao().memberDelete(conn, userId, userPwd);
 		
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * 관리자가 회원삭제 (소민)
+	 * @param userNo
+	 * @return
+	 */
+	public int admindeleteMember(int userNo) {
+		Connection conn = getConnection();
+		int result = new MemberDao().admindeleteMember(conn, userNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}

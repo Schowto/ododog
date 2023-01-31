@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.service.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*"%>
 
 <%
 	MemberService ms = new MemberService();
 
 	ArrayList<Member> list = ms.selectMemberList();
 
-	Member loginUser = (Member)session.getAttribute("loginUser");
-
+	
 %>
 
 <!DOCTYPE html>
@@ -101,17 +100,6 @@
  	    
  	      <%@ include file="../common/adminMenubarForInclude.jsp" %>
  	      
- 	      <%
-		        String userId = loginUser.getUser_Id();
-		        String userPassword = loginUser.getUser_Pwd();
-		        String userName = loginUser.getUser_Name();
-		        String email = loginUser.getEmail();
-		        String phone = loginUser.getPhone();
-		        int postCode = loginUser.getPost_Code();
-		        String address = loginUser.getAddress();
-		        String Detailed_Address = loginUser.getDetailed_Address();
-    		%>
-
         <div id="content" align="center">
             <div class="membertable">
                 <div class="memberbutton">
@@ -119,61 +107,7 @@
                     <button style="float: left;">조회하기</button>
       
                     <button style="float: right;">회원삭제</button> 
-                    
-        <!--모달-->
 
-<!-- Modal -->
-<div class="container">
-<form action="<%=contextPath %>/update.ad" method="post" id="modal-body">
-  <!-- Button to Open the Modal -->
-  <button type="button" id="btn" class="btn" data-toggle="modal" data-target="#myModal" style="float: right; height: 25px; font-size: 13px; display: flex; align-items:center;">
-    회원수정
-  </button>
-
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">회원정보수정</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body" style="text-align: left;">
-
-          <label>아이디</label> <br><br>
-          <label>이름 <%=userId%></label> 
-          <input type="text" name="userName" value="<%=userName%>"> <br>
-
-          <label>이메일</label> 
-          <input type="email" name="email" value="<%=email%>"> <br>
-
-          <label>전화번호</label> 
-          <input type="tel" name="phone" value="<%=phone %>"> <br>
-
-          <label>주소</label> 
-          <input type="text" name="post_Code" value="<%=postCode%>"> <br>
-          <input type="text" name="address" value="<%=address%>"> <br>
-          <input type="text" name="Detailed_Address" value="<%=Detailed_Address%>"> <br>
-        </div>
-        <br><br>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-secondary" data-dismiss="modal">수정</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="history.back();">취소</button>
-        </div>
-        
-      </div>
-    </div>
-    </div>
-  
-</form>  
-  </div>  
-               
-               <!-- 리스트 -->
                <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
                </div>
              
