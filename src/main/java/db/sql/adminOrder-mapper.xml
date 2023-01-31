@@ -2,6 +2,13 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+	<entry key="selectListCount">
+		SELECT COUNT(*) count
+		  FROM TB_ORDER
+		 WHERE STATUS = 'Y' 
+	
+	</entry>
+
 	<entry key="selectList1">
 		SELECT RNUM, TB1.*
 		  FROM (
@@ -19,10 +26,10 @@
 		                     , TB_ORDER.PHONE 휴대전화
 		                     , TB_ORDER.EMAIL 이메일
 		                     , TB_ORDER.ADDRESS 주소
-		                     , TB_ORDER.REQUIRE 요청사항
 		                     , PAYMENT.DISCOUNT 사용적립금
 		                     , PAYMENT.TOTAL_PRICE 최종결제금액
 		                     , PRODUCT.SAVE 적립률
+		                     , TB_ORDER.REQUIRE 배송시요청사항
 		                  FROM TB_ORDER 
                      LEFT JOIN PRODUCT ON( TB_ORDER.PRO_NO = PRODUCT.PRO_NO)
                      LEFT JOIN ORD_PRO ON ( TB_ORDER.ORD_NO = ORD_PRO.ORD_NO)

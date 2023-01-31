@@ -67,7 +67,7 @@
 				<br>
 				
 				
-				<div style="width:100%; height:700px; overflow:auto; white-space: nowrap;">
+				<div style="width:100%; height:520px; overflow:auto; white-space: nowrap;">
 	                <table class="list-area table" >
 	                    <thead>
 	                        <tr>
@@ -77,9 +77,9 @@
 	                           <th width="10px">상품 개수</th>
 	                           
 	                           <th width="20px">유저 이름</th>
+	                           <th width="150px">배송지</th>
 	                           <th width="30px">휴대전화</th>
 	                           <th width="50px">이메일</th>
-	                           <th width="100px">배송지</th>
 	                           
 	                           <th width="50px">최종결제금액</th>
 	                           
@@ -106,9 +106,9 @@
 	                            <td><%= o.getAmount() %></td>
 	                            
 	                            <td><%= o.getUserName() %></td>
+	                            <td><%= o.getDelAdd() %></td>
 	                            <td><%= o.getPhone() %></td>
 	                            <td><%= o.getEmail()%></td>
-	                            <td><%= o.getDelAdd() %></td>
 	                            
 	                            <td><%= o.getTotalPrice() %></td>
 	                            
