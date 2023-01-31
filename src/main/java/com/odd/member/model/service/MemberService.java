@@ -60,7 +60,7 @@ public class MemberService {
 	 * @param m
 	 * @return
 	 */
-	public Member updateMember(Member m) {
+	public ArrayList<Member> updateMember(Member m) {
 		Connection conn = getConnection();
 		int result = new MemberDao().updateMember(conn, m);
 		
@@ -73,7 +73,7 @@ public class MemberService {
 		}
 		
 		close(conn);
-		return m;
+		return updateMem;
 		
 	}
 	
@@ -109,12 +109,12 @@ public class MemberService {
 	 * @param userPwd
 	 * @return
 	 */
-	public Member memberPwdCheck(String userId, String userPwd) {
+	public int memberPwdCheck(String userId, String userPwd) {
 		Connection conn = getConnection();
-		Member m = new MemberDao().memberPwdCheck(conn, userId, userPwd);
+		int count = new MemberDao().memberPwdCheck(conn, userId, userPwd);
 		
 		close(conn);
-		return m;
+		return count;
 	}
 	
 	/**
@@ -149,6 +149,21 @@ public class MemberService {
 		
 		return m;
 		}
+	
+	/**
+	 * 회원탈퇴 (정은)
+	 * @param userId
+	 * @param userPwd
+	 * @return
+	 */
+	public int memberDelete(String userId, String userPwd) {
+		Connection conn = getConnection();
+		
+		int result = new MemberDao().memberDelete(conn, userId, userPwd);
+		
+		close(conn);
+		return result;
+	}
 		
 	
 

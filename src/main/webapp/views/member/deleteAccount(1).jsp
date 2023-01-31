@@ -80,6 +80,7 @@
 
     <%
         String userId = loginUser.getUser_Id();
+    	String userPwd = loginUser.getUser_Pwd();
     %>
 
     <div class="outer">
@@ -132,8 +133,36 @@
                         <br>
                         
                         <div align="center">
-                			<button type="submit" id="btn">확인</button>
+                			<button type="submit">확인</button>
                 		</div>
+                		
+                		
+                		
+                		
+                		
+                		
+                		
+                		
+                		
+                		
+                		<!--  
+                		<script>
+                		onclick="return validate();"
+                			function validate(){
+                				const userPwd = document.querySelector("<%=userPwd%>");
+                				const checkPwd = document.getElementByName("userPwd").value();
+                				
+                				if(userPwd != checkPwd){
+                					alert("비밀번호가 일치하지않습니다!");
+                					document.getElementByName("userPwd").select();
+                					return flase;
+                				}else{
+                					
+                				}
+                			}
+                		</script>
+                		-->
+                		
                     </form>
                 </div>
                

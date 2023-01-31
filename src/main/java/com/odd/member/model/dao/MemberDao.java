@@ -199,9 +199,9 @@ public class MemberDao {
 	 * @param userPwd
 	 * @return
 	 */
-	public Member memberPwdCheck(Connection conn, String userId, String userPwd) {
+	public int memberPwdCheck(Connection conn, String userId, String userPwd) {
 		
-		Member m = null;
+		int count = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("memberPwdCheck");
@@ -214,19 +214,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				m = new Member(rset.getInt("USER_NO"),
-						   	   rset.getString("USER_ID"),
-						   	   rset.getString("USER_PWD"),
-						   	   rset.getString("USER_NAME"),
-						   	   rset.getString("EMAIL"),
-						   	   rset.getString("PHONE"),
-						   	   rset.getInt("POST_CODE"),
-						   	   rset.getString("ADDRESS"),
-						   	   rset.getString("DETAILED_ADDRESS"),
-						   	   rset.getDate("ENROLL_DATE"),
-						   	   rset.getDate("MODIFY_DATE"),
-						   	   rset.getString("STATUS"),
-						   	   rset.getInt("POINT"));
+				count = rset.getInt("count");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -235,7 +223,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		return m;
+		return count;
 	}
 	
 	/**
@@ -302,7 +290,34 @@ public class MemberDao {
 	}
 	
 	
-	
+	/**
+	 * 회원탈퇴 (정은)
+	 * @param conn
+	 * @param userId
+	 * @param userPwd
+	 * @return
+	 */
+	public int memberDelete(Connection conn, String userId, String userPwd) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("memberDelete");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

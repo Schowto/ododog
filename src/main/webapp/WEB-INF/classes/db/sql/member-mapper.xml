@@ -100,24 +100,24 @@
       UPDATE MEMBER
          SET USER_PWD = ?
            , MODIFY_DATE = SYSDATE
-      WHERER USER_ID = ?
+       WHERE USER_ID = ?
          AND USER_PWD =?
    </entry>
    
    <entry key="memberPwdCheck">
-      SELECT USER_NO,
-             USER_ID,
-             USER_PWD,
-             USER_NAME,
-             EMAIL,
-             PHONE,
-             POST_CODE,
-             ADDRESS,
-             DETAILED_ADDRESS
+      SELECT COUNT(*) "COUNT"
         FROM MEMBER
        WHERE USER_ID = ? 
          AND USER_PWD = ?
          AND STATUS = 'Y'
+   </entry>
+   
+   <entry key="memberDelete">
+   		UPDATE MEMBER
+   		   SET STATUS = 'N',
+   		       MODIFY_DATE = SYSDATE
+   		 WHERE USER_ID =?
+   		   AND USER_PWD =?
    </entry>
 	
 	
