@@ -2,11 +2,24 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		  		SELCT ROWNUM "RNUM", A.*
+		  		 FROM (
+		  		 		SELECT CONSULT_NO
+		  		 	  , CONSULT_TITLE
+		  		 	  , USER_ID
+		  		 	  , ENROLL_DATE
+		  		 	  , RESPONDENTS
+		  		 	   )
+		  		)
+	</entry>
+
 	<entry key="selectListCount">
 		SELECT COUNT(*) "COUNT"
 		  FROM CONSULT
 		 WHERE STATUS = 'Y'
-		   AND USER_ID = ?
 	</entry>
 	
 	

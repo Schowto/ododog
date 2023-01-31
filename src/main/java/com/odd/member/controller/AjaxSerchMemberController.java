@@ -1,4 +1,4 @@
-package com.odd.board.controller;
+package com.odd.member.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.odd.common.JDBCTemplate;
+import com.odd.member.model.dao.MemberDao;
+import com.odd.member.model.vo.Member;
+
 /**
- * Servlet implementation class MyConsultDetailController
+ * Servlet implementation class AjaxSerchMemberController
  */
-@WebServlet("/detail.co")
-public class MyConsultDetailController extends HttpServlet {
+@WebServlet("/serch.ad")
+public class AjaxSerchMemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyConsultDetailController() {
+    public AjaxSerchMemberController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +32,11 @@ public class MyConsultDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/board/myConsultDetailView.jsp").forward(request,response);
+		String userId = request.getParameter("id");
+		
+		Member m = new MemberDao().selectLoginMember(JDBCTemplate.getConnection(), userId);
+		response.setContentType("application/json; charset=UTF-8");
+		new Gson().toJson(m, response.getWriter());
 	}
 
 	/**

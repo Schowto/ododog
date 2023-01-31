@@ -1,4 +1,4 @@
-package com.odd.point.model.vo;
+package com.odd.member.model.vo;
 
 import java.sql.Date;
 
@@ -13,6 +13,18 @@ public class Point {
 	 private int ordNo;
 	 
 	 public Point() {}
+	 
+	 
+
+	public Point(int userNo, Date pointDate, String pointUse, int pointPrice) {
+		super();
+		this.userNo = userNo;
+		this.pointDate = pointDate;
+		this.pointUse = pointUse;
+		this.pointPrice = pointPrice;
+	}
+
+
 
 	public int getPointNo() {
 		return pointNo;

@@ -161,13 +161,16 @@
         <div id="content" align="center">
         <br><br>    
          <br><br>   
+
         	<select name="" id="" style="float: left; margin-left: 40px; font-size: 11px;">
                 <option>전체</option>
                 <option>제품</option>
                 <option>배송</option>
             </select>
-            <input type="text" value="키워드 검색" id="serch" style="float: left; font-size: 11px;">
-            <button style="float: left;">검색하기</button>
+            <input type="text" placeholder="키워드 검색" id="serch" style="float: left; font-size: 11px;">
+            <button style="float: left;">검색하기</button>         
+
+
             
             
             <br><br> 

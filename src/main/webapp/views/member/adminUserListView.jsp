@@ -5,7 +5,7 @@
 	MemberService ms = new MemberService();
 
 	ArrayList<Member> list = ms.selectMemberList();
-
+	
 	
 %>
 
@@ -106,11 +106,10 @@
             <div class="membertable">
                 <div class="memberbutton">
                 <form name="search-form"> 
-                <input type="text" value="아이디로 회원검색" id="serch" style="float: left;">
+                <input type="text" placeholder="아이디로 회원검색" id="serch" style="float: left;">
                     <button style="float: left;" onclick="serch();">조회하기</button>
                 </form>
 
-                    
       				
 					
                <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
@@ -127,7 +126,7 @@
                   <th>적립금</th>
                   <th>관리</th>
                 </tr>
-                <% if(list.isEmpty()) { %>
+            	<% if(list.isEmpty()) { %>
                 <tr>
                 <td clospan="8">존재하는 회원이 없습니다.</td>
                 </tr>
@@ -140,14 +139,63 @@
                   <td><%= m.getEmail() %></td>
                   <td><%= m.getPhone() %></td>
                   <td><%= m.getPost_Code()%> / <%= m.getAddress() %> / <%=m.getDetailed_Address() %></td>
-                  <td><a id="point" href="#" data-toggle="modal"  data-target="#myModal"><%= m.getPoint() %></a></td>
+                  
+                  <td>
+                  <a id="point" data-toggle="modal"  data-target="#myModal" value="" onclick="selectPointList(<%= m.getUser_No() %>);"><%= m.getPoint() %></a>
+                  </td>
+                  
                   <td><button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.ad?no=<%=m.getUser_No()%>'">회원삭제</button> </td>
                 </tr>
                 <%} %>
-            <%} %>
+            <%} %>          
+    
               </table>
               </div>            
         </div>
+        
+        <script>
+        	function selectPointList(userNo){
+        		
+        		// ajax요청해서 해당 회원의 적립금 리스트 조회해오기
+        		/* success:function(매개변수){ // 적립금 리스트
+        			적립금 리스트를 가지고 
+        			여러개의 tr 요소 만들어서
+        			아이디가 pointTbody 영역 안에 뿌리기
+        		//*/
+        		
+    		$.ajax({
+    			url:"<%=contextPath%>/list.po",
+    			<% for(Member m : list){ %> 
+    			data:{no:<%=m.getUser_No()%>},
+    			<% }%>
+    			success:function(list){
+    				
+    				//console.log(list);
+    				
+    				let value = "";
+    				if(list.isEmpty()){ 
+    					value += "<tr>"
+    							+	"<td colspan='3'>조회된 적립금이 없습니다</td>"
+    							+"</tr>";
+    				}else{ 
+    						value += "<tr>"
+    								+	"<td>" + list[i].pointDate + "</td>"
+    								+	"<td>" + list[i].pointUse + "</td>"
+    								+	"<td>" + list[i].pointPrice + "</td>"
+    								+"</tr>";
+    					
+    				}
+    				
+    				$("#pointTbody").html(value);
+    				
+    				
+    			},error:function(){
+    				console.log("댓글목록 조회용 ajax 통신실패");
+    			}
+    		})
+    	}
+    	
+        </script>
 
         <!-- The Modal -->
         <div class="modal" id="myModal">
@@ -156,7 +204,7 @@
         
                 <!-- Modal Header -->
                 <div class="modal-header">
-                <h4 class="modal-title">적립금 상세내역</h4>
+                <h4 class="modal-title">적립금 상세내역</h4>S
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
         
@@ -171,20 +219,14 @@
                                 <th>금액</th>
                               </tr>
                             </thead>
-                            <tbody>
-                            <% if(list.isEmpty()) { %>
-                                <tr>
-                                <td clospan="3">적립/사용내역이 없습니다.</td>
-                                </tr>
-                                <% }else { %>
-                                <% for(Point p : list){ %> 
+                            <tbody id="pointTbody">
+     
                               <tr>
-                                <td>John</td>
-                                <td>Doe</td>
-                                <td>john@example.com</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                               </tr>
-                              <%} %>
-                              <%} %>
+                             
                             </tbody>
                           </table>
                      </form>
@@ -198,7 +240,7 @@
             </div>
             </div>
         </div>
-     
+     	
 
 </body>
 </html>

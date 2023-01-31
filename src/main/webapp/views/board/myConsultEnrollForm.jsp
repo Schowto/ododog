@@ -142,7 +142,7 @@
 			<script>
 				$(function(){
 					$("#btn1, #btn2").click(function(){
-						location.href="<%=contextPath%>/consult.bo";
+						location.href="<%=contextPath%>/consult.co";
 					});
 				})
 			</script>
