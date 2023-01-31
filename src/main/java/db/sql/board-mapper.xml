@@ -126,4 +126,101 @@
 		 WHERE BOARD_NO = ?
 	</entry>
 	
+	<entry key="selectSearchListCountT">
+		SELECT
+			   COUNT(*) count
+		  FROM BOARD
+		 WHERE BOARD_TYPE = 2
+		   AND STATUS = 'Y'
+		   AND BOARD_TITLE LIKE ?
+	</entry>
+	<entry key="searchBoardT">
+		SELECT *
+		  FROM (
+				SELECT ROWNUM RNUM, A.*
+		          FROM (
+				        SELECT 
+				               BOARD_NO,
+				               BOARD_TITLE,
+				               USER_ID,
+				               TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
+				               COUNT
+		                   FROM BOARD B
+				           JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+				          WHERE BOARD_TYPE = 2
+		                    AND BOARD_TITLE LIKE ?
+				            AND B.STATUS = 'Y'
+		                  ORDER
+				             BY BOARD_NO DESC
+				       ) A
+				 )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectSearchListCountTC">
+		SELECT
+			   COUNT(*) count
+		  FROM BOARD
+		 WHERE BOARD_TYPE = 2
+		   AND STATUS = 'Y'
+		   AND BOARD_TITLE LIKE ?
+		    OR BOARD_CONTENT LIKE ?
+	</entry>
+	<entry key="searchBoardTC">
+		SELECT *
+		  FROM (
+				SELECT ROWNUM RNUM, A.*
+		          FROM (
+				        SELECT 
+				               BOARD_NO,
+				               BOARD_TITLE,
+				               USER_ID,
+				               TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
+				               COUNT
+		                   FROM BOARD B
+				           JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+				          WHERE BOARD_TYPE = 2
+		                    AND BOARD_TITLE LIKE ?
+		                     OR BOARD_CONTENT LIKE ?
+				            AND B.STATUS = 'Y'
+		                  ORDER
+				             BY BOARD_NO DESC
+				       ) A
+				 )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectSearchListCountW">
+		SELECT
+			   COUNT(*) count
+		  FROM BOARD
+		 WHERE BOARD_TYPE = 2
+		   AND STATUS = 'Y'
+		   AND BOARD_WRITER = (SELECT USER_NO
+		                         FROM MEMBER
+		                        WHERE USER_ID = ?)
+	</entry>
+	<entry key="searchBoardW">
+		SELECT *
+		  FROM (
+				SELECT ROWNUM RNUM, A.*
+		          FROM (
+				        SELECT 
+				               BOARD_NO,
+				               BOARD_TITLE,
+				               USER_ID,
+				               TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
+				               COUNT
+		                   FROM BOARD B
+				           JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+				          WHERE BOARD_TYPE = 2
+		                    AND BOARD_WRITER = (SELECT USER_NO
+						                          FROM MEMBER
+						                         WHERE USER_ID = ?)
+				            AND B.STATUS = 'Y'
+		                  ORDER
+				             BY BOARD_NO DESC
+				       ) A
+				 )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
 </properties>

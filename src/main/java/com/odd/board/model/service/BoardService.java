@@ -93,5 +93,53 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
+	/**
+	 * 제목검색
+	 */
+	public int selectSearchListCountT(String keyword) {
+		Connection conn = getConnection();
+		int count = new BoardDao().selectSearchListCountT(conn, keyword);
+		close(conn);
+		return count;
+	}
+	public ArrayList<Board> searchBoardT(PageInfo pi, String keyword){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().searchBoardT(conn, pi, keyword);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 제목+내용검색
+	 */
+	public int selectSearchListCountTC(String keyword) {
+		Connection conn = getConnection();
+		int count = new BoardDao().selectSearchListCountTC(conn, keyword);
+		close(conn);
+		return count;
+	}
+	public ArrayList<Board> searchBoardTC(PageInfo pi, String keyword){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().searchBoardTC(conn, pi, keyword);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 작성자검색
+	 */
+	public int selectSearchListCountW(String keyword) {
+		Connection conn = getConnection();
+		int count = new BoardDao().selectSearchListCountW(conn, keyword);
+		close(conn);
+		return count;
+	}
+	public ArrayList<Board> searchBoardW(PageInfo pi, String keyword){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().searchBoardW(conn, pi, keyword);
+		close(conn);
+		return list;
+	}
 
 }

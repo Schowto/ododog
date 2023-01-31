@@ -216,15 +216,15 @@
             <br><br>
             
         <div>
-            <form action="" style="font-size:13px;">
-                    
-                <select name="search-order" style="height:25px; border:1px solid rgb(220, 220, 220); border-radius:5px;">
-                    <option value="title">제목</option>
-                    <option value="title-content">제목+내용</option>
-                    <option value="writer">작성자</option>
+            <form action="<%= contextPath %>/search.bo" style="font-size:13px;">
+                <input type="hidden" name="cpage" value="1">
+                <select name="search" style="height:25px; border:1px solid rgb(220, 220, 220); border-radius:5px;">
+                    <option value="ti">제목</option>
+                    <option value="ti-con">제목+내용</option>
+                    <option value="wr">작성자</option>
                 </select>
                     
-                <input type="text" name="" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
+                <input type="text" name="keyword" style="width:400px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
                     
                 <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);">
                 <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
