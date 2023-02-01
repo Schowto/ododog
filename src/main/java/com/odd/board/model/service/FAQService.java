@@ -59,9 +59,9 @@ public class FAQService {
 		return result;
 	}
 	
-	public ArrayList<FAQ> serchFAQ(String keyword){
+	public ArrayList<FAQ> searchFAQ(String keyword){
 		Connection conn = getConnection();
-		ArrayList<FAQ> list = new FAQDao().serchFAQ(conn, keyword);
+		ArrayList<FAQ> list = new FAQDao().searchFAQ(conn, keyword);
 		close(conn);
 		return list;
 	}
