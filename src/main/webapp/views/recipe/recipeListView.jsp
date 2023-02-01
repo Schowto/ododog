@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.recipe.model.vo.Recipe" %>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Recipe> list = (ArrayList<Recipe>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -269,29 +274,33 @@
 
             <div class="list-area" style="font-size:15px;">
 
-                <!-- 레시피 없는 경우 -->
-                <div>
-                    <br><br><br><br><br>
-                    등록된 레시피가 없습니다.
-                    <br><br><br><br><br>
-                </div>
-
-                <!-- 레시피 있는 경우 -->
-                <div class="thumbnail" align="center">
-                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
-                        <img src="https://recipe.bom.co.kr/uploads/posts/images/20220422/6262298eec8f5.png" width="100%" height="100%">
-                    </div>
-                    <p style="margin:5px;">오리스튜</p>
-                    <div align="right" style="width:250px; font-size:12px;" class="heart-area">
-                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
-                        <div class="heart-area" style="display:inline-block;">
-                            <!-- 좋아요 안했을 경우 -->
-                            <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
-                            <!-- 좋아요 했을 경우 -->
-                            <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
-                        </div>
-                    </div>
-                </div>
+                <% if(list.isEmpty()){ %>
+                <!-- 레시피가 없는 경우 -->
+	                <div>
+	                    <br><br><br><br><br>
+	                    등록된 레시피가 없습니다.
+	                    <br><br><br><br><br>
+	                </div>
+				<% } else { %>
+					<% for(Recipe r : list){ %>
+	                <!-- 레시피 있는 경우 -->
+	                <div class="thumbnail" align="center">
+	                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
+	                        <img src="<%= r.getRecipeThumbImg() %>" width="100%" height="100%">
+	                    </div>
+	                    <p style="margin:5px;"><%= r.getRecipeTitle() %></p>
+	                    <div align="right" style="width:250px; font-size:12px;" class="heart-area">
+	                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> <%= r.getReplyCount() %>
+	                        <div class="heart-area" style="display:inline-block;">
+	                            <!-- 좋아요 안했을 경우 -->
+	                            <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
+	                            <!-- 좋아요 했을 경우 -->
+	                            <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
+	                        </div>
+	                    </div>
+	                </div>
+                	<% } %>
+                <% } %>
 
                 <div class="thumbnail" align="center">
                     <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">

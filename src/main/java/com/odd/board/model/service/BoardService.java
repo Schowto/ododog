@@ -1,9 +1,6 @@
 package com.odd.board.model.service;
 
-import static com.odd.common.JDBCTemplate.close;
-import static com.odd.common.JDBCTemplate.commit;
-import static com.odd.common.JDBCTemplate.getConnection;
-import static com.odd.common.JDBCTemplate.rollback;
+import static com.odd.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
