@@ -286,5 +286,36 @@
 		   SET STATUS = 'N'
 		 WHERE REPLY_NO = ?
 	</entry>
+	<entry key="selectReportList">
+	SELECT
+	    REPORT_NO ,
+	    USER_NO ,
+	    POST_NO ,
+	    COMMENT_NO ,
+	    REPORT_CONTENT ,
+	    REPORT_DATE,
+	    DONE
+	   FROM REPORT
+	</entry>
+	<entry key="deleteReport">
+	UPDATE REPORT
+	  SET DONE = 'Y'
+	 WHERE REPORT_NO = ?
+	</entry>
+	<entry key="exposeReport">
+	UPDATE REPORT
+	  SET DONE = 'N'
+	 WHERE REPORT_NO = ?
+</entry>
+	<entry key="selectReportReplyList">
+	SELECT
+	    REPORT_NO ,
+	    USER_NO ,
+	    COMMENT_NO ,
+	    REPORT_CONTENT ,
+	    REPORT_DATE,
+	    DONE
+	   FROM REPORT
+	</entry>
 	
 </properties>

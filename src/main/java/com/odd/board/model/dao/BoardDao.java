@@ -487,4 +487,81 @@ public class BoardDao {
 		}
 		return result;
 	}
+	
+	/**
+	 * 신고관리
+	 * @param conn
+	 * @return
+	 */
+	public ArrayList<Board> selectReportList(Connection conn){
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReportList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Board(rset.getInt("report_No"),
+								   rset.getInt("user_No"),
+								   rset.getInt("post_No"),
+								   rset.getInt("comment_No"),
+								   rset.getString("report_Content"),
+								   rset.getDate("report_Date"),
+								   rset.getString("done")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	/**
+	 * 신고게시글 블라인드
+	 * @param conn
+	 * @param contactNo
+	 * @return
+	 */
+	public int deleteReport(Connection conn, int reportNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReport");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reportNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		 return result;
+	}
+	
+	public int exposeReport(Connection conn, int reportNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("exposeReport");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reportNo);
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		 return result;
+	}
 }

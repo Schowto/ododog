@@ -35,10 +35,10 @@ public class AjaxPointListController extends HttpServlet {
 		
 		int userNo = Integer.parseInt(request.getParameter("no"));
 		
-		ArrayList<Point> list = new MemberService().selectPointList(userNo);
+		ArrayList<Point> plist = new MemberService().selectPointList(userNo);
 		
 		response.setContentType("application/json; charset=utf-8");
-		new Gson().toJson(list, response.getWriter());
+		new Gson().toJson(plist, response.getWriter());
 	}
 
 	/**

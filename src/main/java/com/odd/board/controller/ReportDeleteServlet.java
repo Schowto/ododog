@@ -1,28 +1,26 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.odd.board.model.service.BoardService;
 import com.odd.board.model.service.FAQService;
-import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class FAQSerchController
+ * Servlet implementation class ReportDeleteServlet
  */
-@WebServlet("/search.faq")
-public class FAQSearchController extends HttpServlet {
+@WebServlet("/delete.rp")
+public class ReportDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQSearchController() {
+    public ReportDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +30,17 @@ public class FAQSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
+		int reportNo = Integer.parseInt(request.getParameter("no"));
 		
-		String keyword = request.getParameter("keyword");
+		int result = new BoardService().deleteReport(reportNo);
 		
-		ArrayList<FAQ> list = new FAQService().searchFAQ(keyword);
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
-		
-		
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "블라인드처리 되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.rp");
+		}else {
+			request.setAttribute("errorMsg", "블라인드처리 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 	}
 
 	/**

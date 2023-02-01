@@ -362,7 +362,7 @@ public class MemberDao {
 	}
 	
 	public ArrayList<Point> selectPointList(Connection conn, int userNo){
-		ArrayList<Point> list = new ArrayList<>();
+		ArrayList<Point> plist = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectPointList");
@@ -374,10 +374,10 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Point(rset.getInt("userNo"),
-								   rset.getDate("pointDate"),
-								   rset.getString("pointUse"),
-								   rset.getInt("pointPrice")));
+				plist.add(new Point(rset.getInt("user_No"),
+								   rset.getDate("point_Date"),
+								   rset.getString("point_Use"),
+								   rset.getInt("point_Price")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -386,7 +386,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 		
-		 return list;
+		 return plist;
 	}
 	
 	

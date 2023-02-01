@@ -129,13 +129,13 @@
             </select>
             <form action="<%=contextPath%>/search.faq" method="post">
             <input type="text" placeholder="키워드 검색" id="search" style="float: left; font-size: 11px;">
-            <button style="float: left;">검색하기</button>            
+            <button type="submit" style="float: left;">검색하기</button>            
             </form>
 
             
             <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQenrollForm.ad'">등록하기</button>
             <br><br> 
-
+			
             
             <ul class="qna">
             <% if(list.isEmpty()) { %>
@@ -157,9 +157,10 @@
             	<%} %>
             <%} %>
             </ul> 
+			
             
         </div>
+        
     </div>
-			
 </body>
 </html>

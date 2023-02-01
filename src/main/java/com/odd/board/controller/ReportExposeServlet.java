@@ -1,28 +1,26 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.odd.board.model.service.BoardService;
 import com.odd.board.model.service.FAQService;
-import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class FAQSerchController
+ * Servlet implementation class ReportExposeServlet
  */
-@WebServlet("/search.faq")
-public class FAQSearchController extends HttpServlet {
+@WebServlet("/expose.rp")
+public class ReportExposeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQSearchController() {
+    public ReportExposeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +29,19 @@ public class FAQSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int reportNo = Integer.parseInt(request.getParameter("no"));
 		
-		request.setCharacterEncoding("UTF-8");
+		int result = new BoardService().exposeReport(reportNo);
 		
-		String keyword = request.getParameter("keyword");
-		
-		ArrayList<FAQ> list = new FAQService().searchFAQ(keyword);
-		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
-		
-		
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "블라인드 해제 되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.rp");
+		}else {
+			request.setAttribute("errorMsg", "블라인드 해제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+	
 	}
 
 	/**

@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.odd.board.model.dao.BoardDao;
+import com.odd.board.model.dao.FAQDao;
 import com.odd.board.model.vo.Board;
 import com.odd.board.model.vo.Reply;
 import com.odd.common.model.vo.PageInfo;
@@ -192,4 +193,43 @@ public class BoardService {
 		return result;
 	}
 
+	/**
+	 * 신고관리
+	 * @return
+	 */
+	public ArrayList<Board> selectReportList(){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectReportList(conn);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 신고게시글 블라인드처리
+	 * @param reportNo
+	 * @return
+	 */
+	public int deleteReport(int reportNo) {
+		Connection conn = getConnection();
+		int result = new BoardDao().deleteReport(conn, reportNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int exposeReport(int reportNo) {
+		Connection conn = getConnection();
+		int result = new BoardDao().exposeReport(conn, reportNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

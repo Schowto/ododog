@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.board.model.service.FAQService;
-import com.odd.board.model.vo.FAQ;
+import com.odd.board.model.service.BoardService;
+import com.odd.board.model.vo.Board;
 
 /**
- * Servlet implementation class FAQSerchController
+ * Servlet implementation class ReportListController
  */
-@WebServlet("/search.faq")
-public class FAQSearchController extends HttpServlet {
+@WebServlet("/list.rp")
+public class ReportListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQSearchController() {
+    public ReportListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,16 +32,10 @@ public class FAQSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		
-		String keyword = request.getParameter("keyword");
-		
-		ArrayList<FAQ> list = new FAQService().searchFAQ(keyword);
+		ArrayList<Board> list = new BoardService().selectReportList();
 		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
-		
-		
+		request.getRequestDispatcher("views/board/reportList.jsp").forward(request, response);
 	}
 
 	/**
