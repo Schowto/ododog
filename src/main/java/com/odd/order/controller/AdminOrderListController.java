@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.odd.common.model.vo.PageInfo;
 import com.odd.order.model.service.AdminOrderService;
 import com.odd.order.model.vo.AdminOrder;
-import com.odd.product.model.service.AdminProductService;
 
 /**
  * Servlet implementation class AdminOrderListController
