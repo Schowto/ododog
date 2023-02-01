@@ -38,7 +38,7 @@ public class FAQSearchController extends HttpServlet {
 		
 		ArrayList<FAQ> list = new FAQService().searchFAQ(keyword);
 		
-		request.setAttribute("list", list);
+		request.setAttribute("keyword", keyword);
 		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
 		
 		
