@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct" %>	
+<%
+	ArrayList<UserProduct> list = (ArrayList<UserProduct>)request.getAttribute("list");
+%>		
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,17 +59,17 @@ input[type=number]::-webkit-inner-spin-button {
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
-		<form action="" method="post">
+		<form action="/list.de" method="post">
 			<div class="left">
 				<div class="file-area">
 					<!--대표이미지-->
-					<img src="<%=contextPath%>/resources/product_img/주식1.png"
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
 						width="400px" height="400px">
 				</div>
 
 				<div class="float-file">
 					<!--미리보기1-->
-					<img src="<%=contextPath%>/resources/product_img/주식1.png"
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
 						width="100px" height="100px">
 				</div>
 
@@ -92,23 +98,7 @@ input[type=number]::-webkit-inner-spin-button {
 			<br>
 			
 				<br> <span> <b>상품명</b> </span> 
-				<!--  
-				Product p = null;
-				Connection conn = null;
-				PreparedStatement pstmt = null;
-				ResultSet rset = null;
-				String sql = "SELECT PRO_NAME FROM PRODUCT WHERE PRO_NAME = '주식 1'"
 				
-				Connection conn = getConnection();
-				pstmt = conn.prepareStatement(sql);
-				
-				rset= pstmt.executeQuery();
-				
-				if(rset.next()){
-					p = new Product();
-					t.setProNo(rset.getString("PRO_NAME"));
-				}
-				-->
 				<span> 상품명 </span> 
 				<br><br> 
 				<span> <b>판매가</b></span> 
@@ -151,7 +141,7 @@ input[type=number]::-webkit-inner-spin-button {
 								<img src="<%=contextPath%>/resources/icons/heart.png"
 									width="100px" height="100px">
 							</div>
-							<div class="modal-body" align="center">괸심상품으로 등록되었습니다.</div>
+							<div class="modal-body" align="center">관심상품으로 등록되었습니다.</div>
 							<br>
 							<br>
 							<div class="modal-footer">
