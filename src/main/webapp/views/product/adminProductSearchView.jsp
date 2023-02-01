@@ -82,7 +82,10 @@
      #header{
    	    z-index:-1;
      }
-		
+     
+   
+     	
+ 
 
 </style>
 
@@ -370,7 +373,7 @@
         
 	
 	<!-- The Modal -->
-	<div class="modal" id="myModal">
+	<div class="modal fade" id="myModal">
 	  <div class="modal-dialog modal-lg">
 	    <div class="modal-content">
 	
@@ -381,7 +384,7 @@
 	      </div>
 	
 	      <!-- Modal body -->
-	      <div class="modal-body">
+	      <div class="modal-body" style="overflow:auto; white-space: nowrap;">
 	        <form action="<%=contextPath%>/update.adPro" method="post" enctype="multipart/form-data" >			
 	            <table class="enrollTB1 table-bordered" style="width:750px">
 	                    <tr>

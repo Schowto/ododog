@@ -56,7 +56,7 @@ public class AdminOrderDao {
 		ArrayList<AdminOrder> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;	
-		String by = "DESC";
+		String by = "ASC";
 		
 		String sql = prop.getProperty("selectList1") + " ORDER BY " + order +" " + by + " " + prop.getProperty("selectList2"); ;
 		

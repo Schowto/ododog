@@ -10,23 +10,6 @@
 <title>Insert title here</title>
 <style>
 
-    .wrap {
-            /* 전체 -> ????? 세로 사이즈는 여기서 조정 ,,????? */
-            /*border:1px solid blue;*/
-            width: 1200px; height: 700px;
-            margin: auto;
-            background: rgb(220, 220, 220);
-        }
-
-    .wrap>div {float: left;}
-
-    div {/*border:1px solid red;*/ box-sizing: border-box;}
-
-    #content {
-        height: 1000px;
-        background: white;
-    }    
-
     .enrollTB{
         font-size: 80%;
     }
@@ -50,6 +33,13 @@
    		height:180px;
     }
     
+    #content{
+   	    z-index:-1;
+    }
+    
+    #header{
+   	    z-index:-1;
+     }
     
 </style>
 

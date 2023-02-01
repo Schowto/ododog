@@ -214,7 +214,7 @@
                 </div>
                 <p>
                     <a href="<%=contextPath%>/list.adOrd?cpage=1&&order=주문번호">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전체 주문 조회</a>
-                    <a href="<%=contextPath%>/confirm.adOrd?cpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주문 배송 처리</a>
+                    <a href="<%=contextPath%>/search.adOrd?cpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주문 배송 처리</a>
                 </p>
 
                 <div>
