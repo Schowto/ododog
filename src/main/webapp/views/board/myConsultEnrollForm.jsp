@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.board.model.vo.Consult" %>
+<%
+	ArrayList<Consult> list = (ArrayList<Consult>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,9 +53,8 @@
 		border-bottom:1px solid rgb(220,220,220);
 	}
 	.consultEnroll input[type=text]{
-		width:400px;
+		width:300px;
 		border:1px solid rgb(220,220,220);
-		height:20px;
 		color:rgb(50, 50, 50);
 	}
 	textarea{
@@ -59,8 +62,8 @@
 		height:400px;
 		background: rgb(220,220,220);
 		border:none;
-		padding:40px;
 		font-size:14px;
+		box-sizing: border-box;
 	}
 	button{
 		width:70px;
@@ -100,33 +103,36 @@
 			<br><br><br><br>
 
 			<div class="consultEnroll">
-				<form action="<%=contextPath%>/insert.co" method="post">
+				<form action="<%=contextPath%>/insert.co" method="post" enctype="multipart/form-data">
 					<table>
 						<tr>
-							<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;제목</td>
-							<td>
-								&nbsp;&nbsp;
-								<input type="text" >
+							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
+							<td style="width:40%; border-right:1px solid rgb(220,220,220);">
+								&nbsp;&nbsp;<input type="text" name="consultTitle">
+							</td>
+							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
+							<td style="width:40%">
+								&nbsp;&nbsp;<input type="text" name="consultCategory" placeholder="배송, 결제, 주문 등등">
 							</td>
 						</tr>
 						<tr>
-							<td colspan=2>
+							<td colspan="4">
 								<br>
-								<textarea name="" id="" style="resize:none;"></textarea>
+								<textarea name="consultContent" style="resize:none;"></textarea>
 								<br><br>
 							</td>
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 1</td>
-							<td>&nbsp;&nbsp;<input type="file"></td>
+							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile1"></td>
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 2</td>
-							<td>&nbsp;&nbsp;<input type="file"></td>
+							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile2"></td>
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 3</td>
-							<td>&nbsp;&nbsp;<input type="file"></td>
+							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile3"></td>
 						</tr>
 					</table>
 					

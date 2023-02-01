@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.odd.board.model.service.ConsultService;
 import com.odd.board.model.vo.Consult;
 import com.odd.common.model.vo.PageInfo;
+import com.odd.member.model.vo.Member;
 
 /**
  * Servlet implementation class ConsultBoardListController
@@ -44,8 +45,8 @@ public class MyConsultListController extends HttpServlet {
 			
 		}else {
 			
-			
-			String userId = (String)session.getAttribute("loginUser.getUser_Id()");
+			//String userId = (String)session.getAttribute("loginUser.getUser_Id()");
+			// String userId = ((String)session.getAttribute("loginUser")).getUser_Id();
 			
 			/*
 			// 페이징처리
@@ -85,7 +86,9 @@ public class MyConsultListController extends HttpServlet {
 			request.setAttribute("pi", pi);
 			*/
 			
-			ArrayList<Consult> list = new ConsultService().selectConsult(userId);
+			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
+			
+			ArrayList<Consult> list = new ConsultService().selectConsult(userNo);
 			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("views/board/myConsultListView.jsp").forward(request,response);

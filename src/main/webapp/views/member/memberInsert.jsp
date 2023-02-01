@@ -106,13 +106,13 @@ button {
                     <h1 style="text-align: center;">회원가입</h1>
                     <br><br>
                   <label>아이디*</label> 
-                  <input type="text" id="user_id" name="user_Id" placeholder="아이디를 입력하세요." required>
+                  <input type="text" id="user_id" name="user_Id" placeholder="아이디를 입력해주세요." required>
                   <button type="button" onclick="idcheck();">중복확인</button> 
                   <br><br><br>
                   
               
                   <label>비밀번호*</label>
-                  <input type="password" id="user_pwd" name="user_Pwd" placeholder="영소문자, 숫자, !@#$%^&*를 포함한 5~13글자" required>
+                  <input type="password" id="user_pwd" name="user_Pwd" placeholder="비밀번호를 입력해주세요." required>
                   <br>
         
                   <label>비밀번호확인*</label>
@@ -120,7 +120,7 @@ button {
                   <br>
         
                   <label>이름*</label>
-                  <input type="text" id="user_name" name="user_Name" placeholder="이름을 입력해주세요." required>
+                  <input type="text" id="user_name" name="user_Name" placeholder="이름을 입력해주세요." maxlength="5" required>
                   <br>
         
                   <label>이메일*</label>

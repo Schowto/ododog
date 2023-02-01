@@ -15,7 +15,7 @@
 		  		 	  		 , STATUS
 		  		 	      FROM CONSULT C
 		  		 	      JOIN MEMBER M USING (USER_NO)
-		  		 	     WHERE USER_ID = ?
+		  		 	     WHERE USER_NO = ?
 		  		 	     	 , C.STATUS = 'Y'
 		  		 	     ORDER 
 		  		 	        BY COUNSULT_NO DESC
@@ -34,26 +34,51 @@
 	
 	
 	<entry key="selectConsult">
-		SELECT CONSULT_NO
-			 , USER_NO
+		SELECT 
+			   CONSULT_NO
+			 , M.USER_NO
 		     , CONSULT_TITLE
 		     , CONSULT_CONTENT
-		     , ENROLL_DATE
-		     , MODIFY_DATE
+		     , C.ENROLL_DATE
+		     , C.MODIFY_DATE
 		     , CONSULT_ANSWER
 		     , ANSWER_DATE
-		     , STATUS
+		     , C.STATUS
 		     , ORIGIN_NAME
 		     , FILE_PATH
 		     , CONSULT_CATEGORY
 		     , RESPONDENTS
 		  FROM CONSULT C
-		  JOIN MEMBER M USING (USER_NO) 
-		 WHERE USER_ID = ?
+		  JOIN MEMBER M USING (USER_NO)
+		 WHERE USER_NO = ?
 		   AND STATUS = 'Y'
 	</entry>
 
-
+	<entry key="insertConsult">
+		INSERT
+		  INTO CONSULT
+		  (
+		  	CONSULT_NO
+		  , USER_NO
+		  , CONSULT_TITLE
+		  , CONSULT_CONTENT
+		  , ENROLL_DATE
+		  , ORIGIN_NAME
+		  , FILE_PATH
+		  , CONSULT_CATEGORY
+		  )
+		  VALUES
+		  (
+		  	SEQ_CONSULTNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
 
 
 
