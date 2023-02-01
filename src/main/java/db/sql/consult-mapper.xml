@@ -2,18 +2,40 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		  		SELCT ROWNUM "RNUM", A.*
+		  		 FROM (
+		  		 		SELECT 
+		  		 			   CONSULT_NO
+		  		 	  		 , CONSULT_TITLE
+		  		 	  		 , USER_ID
+		  		 	  		 , TO_CHAR(ENROLL_DATE, 'YYYY/MM/DD') "ENROLL_DATE"
+		  		 	  		 , STATUS
+		  		 	      FROM CONSULT C
+		  		 	      JOIN MEMBER M USING (USER_NO)
+		  		 	     WHERE USER_ID = ?
+		  		 	     	 , C.STATUS = 'Y'
+		  		 	     ORDER 
+		  		 	        BY COUNSULT_NO DESC
+		  		 	   ) A
+		  		)
+		 WHERE RNUM BETWEEN ? AND ?
+		  		
+	</entry>
+
 	<entry key="selectListCount">
 		SELECT COUNT(*) "COUNT"
 		  FROM CONSULT
 		 WHERE STATUS = 'Y'
-		   AND USER_ID = ?
 	</entry>
 	
 	
 	
 	<entry key="selectConsult">
 		SELECT CONSULT_NO
-		     , USER_NO
+			 , USER_NO
 		     , CONSULT_TITLE
 		     , CONSULT_CONTENT
 		     , ENROLL_DATE

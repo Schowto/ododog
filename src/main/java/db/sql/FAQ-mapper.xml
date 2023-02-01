@@ -55,4 +55,15 @@
 	  SET STATUS = 'N'
 	 WHERE CONTACT_NO = ?
 </entry>
+
+<entry key="serchFAQ">
+	SELECT
+		  CONTACT_NO	
+		, CATEGORY 
+		, CONTACT_TITLE 
+		, CONTACT_ANSWER 
+		FROM FAQ
+		WHERE STATUS = 'Y'
+		AND CONTACT_TITLE LIKE ?	
+</entry>
 </properties>

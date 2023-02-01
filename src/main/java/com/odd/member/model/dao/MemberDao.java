@@ -13,6 +13,7 @@ import static com.odd.common.JDBCTemplate.*;
 
 import com.odd.board.model.vo.FAQ;
 import com.odd.member.model.vo.Member;
+import com.odd.member.model.vo.Point;
 
 public class MemberDao {
 	
@@ -360,6 +361,36 @@ public class MemberDao {
 		
 	}
 	
+	public ArrayList<Point> selectPointList(Connection conn, int userNo){
+		ArrayList<Point> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectPointList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Point(rset.getInt("userNo"),
+								   rset.getDate("pointDate"),
+								   rset.getString("pointUse"),
+								   rset.getInt("pointPrice")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		 return list;
+	}
+	
+	
+		
 
 	
 	

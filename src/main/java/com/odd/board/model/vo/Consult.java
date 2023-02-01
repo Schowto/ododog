@@ -43,7 +43,17 @@ public class Consult {
 	}
 	
 	
-	
+	public Consult(int consultNo, String consultTitle, String consultContent, Date enrollDate, String status) {
+		super();
+		this.consultNo = consultNo;
+		this.consultTitle = consultTitle;
+		this.consultContent = consultContent;
+		this.enrollDate = enrollDate;
+		this.status = status;
+	}
+
+
+
 	public int getConsultNo() {
 		return consultNo;
 	}

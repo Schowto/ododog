@@ -127,8 +127,11 @@
                 <option>제품</option>
                 <option>배송</option>
             </select>
+            <form action="<%=contextPath%>/serch.faq" method="post">
             <input type="text" value="키워드 검색" id="serch" style="float: left; font-size: 11px;">
-            <button style="float: left;">검색하기</button>
+            <button style="float: left;">검색하기</button>            
+            </form>
+
             
             <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQenrollForm.ad'">등록하기</button>
             <br><br> 

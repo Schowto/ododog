@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.odd.board.model.vo.*" %>
-<%
-	// c : 번호, 제목, 작성자, 작성일, status, 원본명, 첨부파일명||저장경로
-	Consult c = (Consult)request.getAttribute("c");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,11 +87,6 @@
 		animation-iteration-count:infinite;
 		animation-timing-function:step-end;
 	}
-	.consultEnroll input[name=consultTitle]{
-		width:400px;
-		height:20px;
-		border:none;
-	}
 </style>
 </head>
 <body>
@@ -131,56 +121,38 @@
 			<br><br><br><br>
 
 			<div class="consultEnroll">
-				<form action="<%=contextPath %>/enroll.co" method="post">
+				<form action="">
 					<table>
 						<tr>
 							<td style="width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;제목</td>
 							<td>
 								&nbsp;&nbsp;
-								<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>" readonly>
+								<select name="" id="">
+									<option value="">&nbsp;문의드립니다.</option>
+								</select>
 							</td>
 						</tr>
 						<tr>
 							<td colspan=2>
 								<br>
-								<textarea name="" id="" style="resize:none; padding:40px;" readonly><%=c.getConsultContent()%></textarea>
+								<textarea name="" id="" style="resize:none; padding:40px;" readonly>문의내용이들어올자리</textarea>
 								<br><br>
 							</td>
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 1</td>
-							<td>
-								<%if(c.getOriginName() != null){ %>
-									&nbsp;&nbsp;<input type="file value="<%=c.getOriginName() %>">
-								<%}else{ %>
-									첨부파일이 없습니다.
-								<%} %>
-							</td>
+							<td>&nbsp;&nbsp;<input type="file" readonly></td>
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 2</td>
-							<td>
-								<%if(c.getOriginName() != null){ %>
-									&nbsp;&nbsp;<input type="file" value="<%=c.getOriginName() %>">
-								<%}else{ %>
-									첨부파일이 없습니다.
-								<%} %>
-							</td>
+							<td>&nbsp;&nbsp;<input type="file" readonly></td>
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 3</td>
-							<td>
-								<%if(c.getOriginName() != null){ %>
-									&nbsp;&nbsp;<input type="file" value="<%=c.getOriginName() %>">
-								<%}else{ %>
-									첨부파일이 없습니다.
-								<%} %>
-							</td>
+							<td>&nbsp;&nbsp;<input type="file" readonly></td>
 						</tr>
 					</table>
 					<br>
-					
-					<%if(c.getConsultAnswer() != null){ %>
 					<table class="consultAnswer">
 						<tr>
 							<td style="text-align:center; width:15%; border-right:1px solid rgb(220,220,220);">클릭해서 확인하기</td>
@@ -189,37 +161,22 @@
 						<tr>
 							<td colspan="2">
 								<br>
-								<textarea class="answer" style="padding:40px;"><%=c.getConsultAnswer()%></textarea>
+								<textarea class="answer" style="padding:40px;">답변이들어올자리입니다</textarea>
 								<br><br>
 							</td>
 						</tr>
 					</table>
-					<%} %>
-					
-					
-					<!-- 
-					<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-					-->
-    				<script>
-      					$( document ).ready( function() {
-        					$( '.blink' ).click( function() {
-          						$( '.answer' ).slideDown();
-        					} );
-      					} );
-    				</script>
-    				
-    				</div>
-
-					<br>
-		
-					<div align="center">
-						<button type="submit" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
-						<button type="submit" class="btnUpdate">수정</button>
-						<button class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
-					</div>
-    				
-    				
 				</form>
+
+
+			<br>
+
+			<div align="center">
+				<button type="button">목록</button>
+				<button type="submit">확인</button>
+			</div>
+
+			
 
 		</div>
 
@@ -228,11 +185,11 @@
 
 
 
-		<%@ include file="../common/userFooterbar.jsp" %>
+
 		
 	</div>
 	
-	
+	<%@ include file="../common/userFooterbar.jsp" %>
 
 </body>
 </html>

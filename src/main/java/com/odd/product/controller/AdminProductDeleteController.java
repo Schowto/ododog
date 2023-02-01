@@ -34,11 +34,12 @@ public class AdminProductDeleteController extends HttpServlet {
 	
 		if(request.getParameterValues("deleteList") != null) {
 			
-		String[] deleteList = request.getParameterValues("deleteList");
+			String[] deleteList = request.getParameterValues("deleteList");
 		
-		int result = new AdminProductService().deleteProduct(deleteList);
+			int result = new AdminProductService().deleteProduct(deleteList);
 		
-		response.getWriter().print(result);
+			response.getWriter().print(result);
+			
 		}else {
 			
 			response.getWriter().print(0);

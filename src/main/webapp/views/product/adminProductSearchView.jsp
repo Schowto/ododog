@@ -38,11 +38,11 @@
     }
 	
 	.table-bordered{
-		overflow:hiddlen; white-space:nowrap;
+		overflow:hidden; white-space:nowrap;
         font-size: 90%;
 	}
 	
-	.order{
+	.delete{
 		height: 50px;
 		text-align: right;
 	}
@@ -75,6 +75,13 @@
    		height:180px;
     }
     
+    #content{
+   	    z-index:-1;
+    }
+    
+     #header{
+   	    z-index:-1;
+     }
 		
 
 </style>
@@ -88,12 +95,13 @@
  	    <%@ include file="../common/adminMenubarForInclude.jsp" %>
 
         <div id="content" align="center">
-			<!-- 세부페이지 들어갈 자리 -->
+        
             <br>
             <h2>물품 검색</h2>
             <br>
 			
-			<div class="order">
+			<!-- 상품 삭제 버튼 -->
+			<div class="delete">
 				<button type="button" class="button btn-red" id="deleteBTN">삭제</button>
 			</div>
 			
@@ -134,7 +142,11 @@
 				})
 			</script>
 			
+			
+			<!-- 상하 스크롤바 -->
 			<div style="width:100%; height:350px; overflow:auto">
+			 
+			   <!-- 상품 검색 결과 테이블 -->				
                <table class="list-area table" >
                    <thead>
                        <tr>
@@ -153,7 +165,7 @@
                    
                        <%if (list.isEmpty()){ %>
                        <tr>
-                           <td colspan="9"> 조회된 게시글이 없습니다.</td>
+                           <td colspan="9"> 조회된 상품이 없습니다.</td>
                        </tr>
                        <%}else{ %>
                            <% for(Product p : list){ %>
@@ -183,6 +195,7 @@
                
             <br><br><br>
        		
+       		<!-- 상품 검색 조건 폼 -->
        		<form id="searchForm" action="<%=contextPath%>/search.adPro" method="post">
 				  <input type="hidden" name="cpage" value="2" >
 
@@ -296,10 +309,10 @@
         
        <script>
        
+       // 클릭시 모달에 상품 정보 불러오기
        $(function(){
 	  		$(".list-area>tbody>tr").click(function(){
 	  			
-				// 선택된 상품 정보 불러오기	  			
 				$.ajax({
 					
 					url:"select.adPro" , 
@@ -374,6 +387,7 @@
 	                    <tr>
 	                        <th>카테고리</th>
 	                        <td colspan="3">
+	                        	&nbsp;
 	                        	<select name="category" id="category" class="form-control-sm">
                             		<option value="주식">주식</option>
                             		<option value="건조간식">건조간식</option>
@@ -389,6 +403,7 @@
 	                    <tr>
 	                        <th>상품명</th>
 	                        <td colspan="3">
+	                        	&nbsp;
 	                        	<input type="text" class="form-control-sm" name="proName" style="width:400px" id="proName" required>
 	                        </td>
 	                        
@@ -400,6 +415,7 @@
 	                    <tr>
 	                        <th>가격</th>
 	                        <td colspan="3">
+	                        	&nbsp;
 	                        	<input type="text" class="form-control-sm" name="price" style="width:150px" id="price" required>
                        		</td>
 	                    </tr>
@@ -407,6 +423,7 @@
 	                    <tr>
 	                        <th>유통 기한</th>
 	                    	<td colspan="3">
+	                    		&nbsp;
 	                    		<input type="date" class="form-control-sm" name="expiredDate" id="expiredDate" style="width:150px" required>
                     		</td>
 	                    </tr>
@@ -414,6 +431,7 @@
 	                    <tr>
 	                        <th>적립률</th>
 	                        <td>
+	                     	    &nbsp;
 	                        	<select name="save" class="form-control-sm">
                             		<option value="0.1">0.1%</option>
                             		<option value="0.2">0.2%</option>
@@ -423,6 +441,7 @@
 	                        </td>
 	                        <th style="width:100px">품절 여부</th>
 	                        <td style="width:150px">
+                        		&nbsp;
 	                        	<select name="soldout" class="form-control-sm">
                             		<option value="N">재고보유</option>
                             		<option value="Y">품절</option>
@@ -578,7 +597,7 @@
             </script>
 				
             <br>
-			<button type="submit" class="btn btn-primary">등록하기</button>
+			<button type="submit" class="btn btn-primary" style="float:right; margin:15px;">등록하기</button>
 				
 	    	</form>        
 	      </div>

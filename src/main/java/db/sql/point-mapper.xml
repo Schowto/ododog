@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-	<entry key="selectpoint">
+   	<entry key="selectPointList">
 	SELECT
 		USER_NO ,
 		POINT_DATE ,
@@ -9,6 +9,7 @@
 		POINT_PRICE
 	FROM POINT
 	JOIN MEMBER ON (USER_NO = USER_NO)
+	WHERE USER_NO = ?
 	</entry>
 	
 </properties>

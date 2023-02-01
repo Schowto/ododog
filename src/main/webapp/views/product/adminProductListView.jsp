@@ -28,11 +28,10 @@
     	
     }
     
-	.page { 
+	.page{ 
 		float:right;
-		color:black;
-	;}
-	
+	}
+
 	.order{
 		height: 50px;
 		text-align: right;
@@ -42,6 +41,14 @@
 		float:left;
 		margin-left:10px;
 	}
+	
+    #content{
+   	    z-index:-1;
+    }
+    
+    #header{
+   	    z-index:-1;
+     }
 
 </style>
 
@@ -59,7 +66,6 @@
             <h2>전체 물품 조회</h2>
             <br>
             	<div class="order">
-	                <!-- <button type="button" class="button btn-red" id="deleteBTN">삭제</button> -->
 	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO">번호</a>
 	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=CATEGORY">카테고리</a>
 	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRICE">가격</a>
@@ -69,7 +75,6 @@
                 <table class="list-area table" >
                     <thead>
                         <tr>
-                      	   <!--  <th width="5px"></th> -->
                            <th width="5px">번호</th>
                            <th width="50px">카테고리</th>
                            <th width="170px">상품명</th>
@@ -84,13 +89,11 @@
                     
                         <%if (list.isEmpty()){ %>
                         <tr>
-                        	<!-- 9 => 8  -->
-                            <td colspan="8"> 조회된 게시글이 없습니다.</td>
+                            <td colspan="8"> 조회된 상품이 없습니다.</td>
                         </tr>
                         <%}else{ %>
                             <% for(Product p : list){ %>
                         <tr>
-                        	<!-- <td><input type="checkbox" name="deleteNo" class="deleteCheck" value="<%= p.getProNo() %>"></td> -->
                             <td><%= p.getProNo() %></td>
                             <td><%= p.getCategory() %></td>
                             <td><%= p.getProName() %></td>

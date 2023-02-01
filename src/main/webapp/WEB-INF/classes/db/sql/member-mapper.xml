@@ -133,5 +133,15 @@
    		WHERE USER_ID = ?
    		  AND USER_PWD = ?
    </entry>
+   	<entry key="selectPointList">
+	SELECT
+		POINT_DATE ,
+		POINT_USE ,
+		POINT_PRICE
+	FROM POINT P
+	JOIN MEMBER M ON (P.USER_NO = M.USER_NO)
+	WHERE USER_NO = ?
+	</entry>
+	
 
 </properties>
