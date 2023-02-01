@@ -36,7 +36,7 @@
                 <tr>
                     <td>상품분류</td>
                     <td>
-                        <select id="category" name="category" placeholder="상품분류 선택">
+                        <select id="category" name="category">
                             <option value="food">주식</option>
                             <option value="dry">건조간식</option>
                             <option value="oven">오븐간식</option>
@@ -47,7 +47,7 @@
                 <tr>
                     <td>상품명</td>
                     <td>
-                        <select id="category2" name="category2" placeholder="상품명">
+                        <select id="category2" name="category2" >
                             <option value="productName">상품명</option>
                             <option value="productCode">상품코드</option> 
                         </select>

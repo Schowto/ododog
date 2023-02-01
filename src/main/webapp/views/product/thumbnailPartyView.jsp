@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct" %>	
+<%
+	ArrayList<UserProduct> list = (ArrayList<UserProduct>)request.getAttribute("list");
+%>	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +27,7 @@
 
 .thumbnail {
 	width: 300px;
+	
 	display: inline-block;
 	margin: 10px;
 	overflow: hidden;   
@@ -37,6 +44,7 @@ b {
 p:hover {
 	color: rgb(202, 95, 131);
 }
+
 .thumbnail img{
     
    transform:scale(1.0);        
@@ -54,11 +62,11 @@ p:hover {
 </head>
 <body>
 
-
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
 		<br>
-		<h3 align="center">PARTY</h3>
+		<h3 align="center" id="top">PARTY</h3>
+		
 		<br>
 		<!--카테고리순-->
 		<div align="right" style="width: 1110px" class="category">
@@ -74,217 +82,38 @@ p:hover {
 			<a href="" class="btn btn-outline-light text-dark btn-sm">높은가격</a>
 		</div>
 		
-		<!-- 스크롤 부분 -->
+     	<!-- 스크롤 부분 -->
      	<a style="display:scroll;position:fixed;bottom:80px; right:30px;" rel="nofollow"
 		href="#" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/upArrowWithCircle.png" width="30px"></a>
 		<a style="display:scroll;position:fixed;bottom:40px; right:30px;" rel="nofollow"
 		href="#scrollbottom" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/downArrowWithCircle.png" width="30px"></a>
 		<div id="scrollbottom"></div>
+
+		<% if(list.isEmpty()) { %>
+		<div>
+		<p>존재하는 상품이 없습니다.</p>
+		</div>
+		<% }%>
 		
 		<div class="list-area">
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티1.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-
-				<p>
-					<!-- 상품명-->
-					[해피해피 생일세트] 강아지 케이크4종 택 일+강아지 생일파티용품SET 포함 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-
+			<% for(UserProduct p : list){ %>
+			
+				<div class="thumbnail" align="center">
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px"
+						onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
+					<p> <%= p.getProName() %> <br>
+						<b><%= p.getPrice() %>원</b>
+					</p>
+					<div class="badge bg-info text-light">추천</div>
+					<span class="badge bg-primary text-light">NEW</span>
+				</div>
+				<%} %>
 			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티2.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					[해피해피 생일세트] 강아지 케이크4종 택 일+강아지 생일파티용품SET 포함 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티3.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					[해피해피 생일세트] 강아지 케이크4종 택 일+강아지 생일파티용품SET 포함<br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티4.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					[해피해피 생일세트] 강아지 케이크4종 택 일+강아지 생일파티용품SET 포함<br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티5.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티6.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티7.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티8.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티9.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티10.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티11.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티12.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티13.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티14.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/파티15.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-			</div>
-
-
-		</div>
-
+				
+					
 	</div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<%@ include file="../common/userFooterbar.jsp"%>
 

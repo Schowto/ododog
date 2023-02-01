@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct" %>	
+<%
+	ArrayList<UserProduct> list = (ArrayList<UserProduct>)request.getAttribute("list");
+%>	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,212 +89,28 @@ p:hover {
 		href="#scrollbottom" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/downArrowWithCircle.png" width="30px"></a>
 		<div id="scrollbottom"></div>
 
-		<div class="list-area">
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식1.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식2.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'"> 
-
-				<p>
-					<!--상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식3.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식4.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레)
-					<br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식5.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-light text-dark">
-				
-				</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식6.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-				<span class="badge bg-primary text-light">NEW</span>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식7.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식8.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식9.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-danger text-light">BEST</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식10.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<br>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식11.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<br>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식12.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<br>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/주식13.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<br>
-			</div>
-			<div class="thumbnail" align="center" id="bottom">
-				<img src="<%=contextPath%>/resources/product_img/주식14.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					건강한 한끼 화식 4종세트(말고기, 닭고기, 소고기영양죽, 야채퓨레) <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>16,000원</b>
-				</p>
-				<div class="badge bg-light text-dark">
-				</div>
-			</div>
+		<% if(list.isEmpty()) { %>
+		<div>
+		<p>존재하는 상품이 없습니다.</p>
 		</div>
-
+		<% }%>
+		
+		<div class="list-area">
+			<% for(UserProduct p : list){ %>
+			
+				<div class="thumbnail" align="center">
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px"
+						onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
+					<p> <%= p.getProName() %> <br>
+						<b><%= p.getPrice() %>원</b>
+					</p>
+					<div class="badge bg-info text-light">추천</div>
+					<span class="badge bg-primary text-light">NEW</span>
+				</div>
+				<%} %>
+			</div>
+				
+					
 	</div>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

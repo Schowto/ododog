@@ -5,14 +5,14 @@ import static com.odd.common.JDBCTemplate.getConnection;
 import java.sql.Connection;
 import static com.odd.common.JDBCTemplate.*;
 import com.odd.product.model.dao.UserProductDao;
-import com.odd.product.model.vo.Product;
+import com.odd.product.model.vo.ProductDetail;
 
 public class ProductDetailService {
 
-	public Product selectProductDetail(String proName, int price) {
+	public ProductDetail selectProductDetail(String proName, int price) {
 		
 		Connection conn = getConnection();
-		Product p = new UserProductDao().selectProductDetail(conn, proName, price);
+		ProductDetail p = new UserProductDao().selectProductDetail(conn, proName, price);
 		close(conn);
 		return p;
 	}

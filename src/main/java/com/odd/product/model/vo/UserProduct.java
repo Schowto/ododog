@@ -1,7 +1,11 @@
 package com.odd.product.model.vo;
 
-public class Product {
-	
+/**
+ * @author user
+ *
+ */
+public class UserProduct {
+
 	private int proNo;
 	private String category;
 	private String proName;
@@ -11,11 +15,11 @@ public class Product {
 	private String enrollDate;
 	private double save;
 	private String status;
-	private String thumbImg;
-	
-	public Product() {}
+	private String thumbImg;	
 
-	public Product(int proNo, String category, String proName, int price, String soldout, String expiredDate,
+	public UserProduct() {}
+
+	public UserProduct(int proNo, String category, String proName, int price, String soldout, String expiredDate,
 			String enrollDate, double save, String status, String thumbImg) {
 		super();
 		this.proNo = proNo;
@@ -27,20 +31,6 @@ public class Product {
 		this.enrollDate = enrollDate;
 		this.save = save;
 		this.status = status;
-		this.thumbImg = thumbImg;
-	}
-
-	public Product(int proNo, String category, String proName, int price, String soldout, String expiredDate,
-			String enrollDate, double save, String thumbImg) {
-		super();
-		this.proNo = proNo;
-		this.category = category;
-		this.proName = proName;
-		this.price = price;
-		this.soldout = soldout;
-		this.expiredDate = expiredDate;
-		this.enrollDate = enrollDate;
-		this.save = save;
 		this.thumbImg = thumbImg;
 	}
 
@@ -124,16 +114,32 @@ public class Product {
 		this.thumbImg = thumbImg;
 	}
 
-	
 	@Override
 	public String toString() {
-		return "Product [proNo=" + proNo + ", category=" + category + ", proName=" + proName + ", price=" + price
+		return "UserProduct [proNo=" + proNo + ", category=" + category + ", proName=" + proName + ", price=" + price
 				+ ", soldout=" + soldout + ", expiredDate=" + expiredDate + ", enrollDate=" + enrollDate + ", save="
 				+ save + ", status=" + status + ", thumbImg=" + thumbImg + "]";
 	}
 
+	public UserProduct(String proName, int price) {
+		super();
+		this.proName = proName;
+		this.price = price;
+	}
+
+	public UserProduct(String proName, int price, String thumbImg) {
+		super();
+		this.proName = proName;
+		this.price = price;
+		this.thumbImg = thumbImg;
+	}
+	
 
 
+	
+
+
+	
 
 	
 }

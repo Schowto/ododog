@@ -53,7 +53,7 @@ input[type=number]::-webkit-inner-spin-button {
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
-		<form action="list.de" method="post">
+		<form action="" method="post">
 			<div class="left">
 				<div class="file-area">
 					<!--대표이미지-->
@@ -86,13 +86,33 @@ input[type=number]::-webkit-inner-spin-button {
 				</div>
 			</div>
 
+			
+			
 			<div class="right">
 			<br>
+			
 				<br> <span> <b>상품명</b> </span> 
-				<span> 건강한 한끼 화식 4종세트 (말고기, 닭고기, 소고기영양죽, 야채퓨레) </span> 
+				<!--  
+				Product p = null;
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+				String sql = "SELECT PRO_NAME FROM PRODUCT WHERE PRO_NAME = '주식 1'"
+				
+				Connection conn = getConnection();
+				pstmt = conn.prepareStatement(sql);
+				
+				rset= pstmt.executeQuery();
+				
+				if(rset.next()){
+					p = new Product();
+					t.setProNo(rset.getString("PRO_NAME"));
+				}
+				-->
+				<span> 상품명 </span> 
 				<br><br> 
 				<span> <b>판매가</b></span> 
-				<span> 16,000원 </span> 
+				<span> 가격 </span> 
 				<br><br> 
 				<span><b>적립금</b></span> 
 				<span> 1% </span> 
@@ -102,7 +122,7 @@ input[type=number]::-webkit-inner-spin-button {
 				<br><br>
 
 				<hr style="border: 1px color= silver;" width="100%">
-				<br> <span> 건강한 한끼 화식 4종세트 (말고기, 닭고기, 소고기영양죽, 야채퓨레) </span> <span>
+				<br> <span> 수량 </span> 
 					<input type="number" name="quantity" style="width: 50px">
 				</span> <br> <br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>

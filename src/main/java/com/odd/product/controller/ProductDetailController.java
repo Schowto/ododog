@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.product.model.service.ProductDetailService;
-import com.odd.product.model.vo.Product;
+import com.odd.product.model.vo.ProductDetail;
 
 /**
  * Servlet implementation class ProductDetailController
@@ -35,7 +35,7 @@ public class ProductDetailController extends HttpServlet {
 		int price = Integer.parseInt(request.getParameter("price"));
 		
 		
-		Product p  = new ProductDetailService().selectProductDetail(proName, price);
+		ProductDetail p  = new ProductDetailService().selectProductDetail(proName, price);
 		  
 		// 응답페이지
 		request.getRequestDispatcher("views/productDetailView.jsp").forward(request,response);

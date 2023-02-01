@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct" %>	
+<%
+	ArrayList<UserProduct> list = (ArrayList<UserProduct>)request.getAttribute("list");
+%>	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +27,7 @@
 
 .thumbnail {
 	width: 300px;
+	
 	display: inline-block;
 	margin: 10px;
 	overflow: hidden;   
@@ -37,6 +44,7 @@ b {
 p:hover {
 	color: rgb(202, 95, 131);
 }
+
 .thumbnail img{
     
    transform:scale(1.0);        
@@ -57,7 +65,8 @@ p:hover {
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
 		<br>
-		<h3 align="center">오븐 간식</h3>
+		<h3 align="center" id="top">오븐 간식</h3>
+		
 		<br>
 		<!--카테고리순-->
 		<div align="right" style="width: 1110px" class="category">
@@ -73,311 +82,42 @@ p:hover {
 			<a href="" class="btn btn-outline-light text-dark btn-sm">높은가격</a>
 		</div>
 		
-		<!-- 스크롤 부분 -->
+     	<!-- 스크롤 부분 -->
      	<a style="display:scroll;position:fixed;bottom:80px; right:30px;" rel="nofollow"
 		href="#" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/upArrowWithCircle.png" width="30px"></a>
 		<a style="display:scroll;position:fixed;bottom:40px; right:30px;" rel="nofollow"
 		href="#scrollbottom" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/downArrowWithCircle.png" width="30px"></a>
 		<div id="scrollbottom"></div>
+
+		<% if(list.isEmpty()) { %>
+		<div>
+		<p>존재하는 상품이 없습니다.</p>
+		</div>
+		<% }%>
 		
 		<div class="list-area">
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐1.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-
-				<p>
-					<!-- 상품명-->
-					소고기치즈버거 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>8,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-				<span class="badge bg-danger text-light">BEST</span>
-
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐2.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					연어 도너츠 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>6,500원</b>
-				</p>
-				<br>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐3.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					소간칩쿠키 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>4,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-				<span class="badge bg-primary text-light">NEW</span>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐4.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					연어쿠키 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>8,900원</b>
-				</p>
-				<span class="badge bg-danger text-light">BEST</span>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐5.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-				<span class="badge bg-primary text-light">NEW</span>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐6.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐7.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-primary text-light">NEW</div>
+			<% for(UserProduct p : list){ %>
+			
+				<div class="thumbnail" align="center">
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px"
+						onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
+					<p> <%= p.getProName() %> <br>
+						<b><%= p.getPrice() %>원</b>
+					</p>
+					<div class="badge bg-info text-light">추천</div>
 					<span class="badge bg-danger text-light">BEST</span>
+				</div>
+				<%} %>
 			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐8.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐9.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-				<span class="badge bg-primary text-light">NEW</span>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐10.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-primary text-light">NEW</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐11.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-primary text-light">NEW</div>
-				<span class="badge bg-danger text-light">BEST</span>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐12.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-primary text-light">NEW</div>
-				<span class="badge bg-danger text-light">BEST</span>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐13.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-				<span class="badge bg-primary text-light">NEW</span>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐14.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-primary text-light">NEW</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐15.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-primary text-light">NEW</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐16.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<div class="badge bg-info text-light">추천</div>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐17.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<br>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐18.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<br>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐19.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<br>
-			</div>
-			<div class="thumbnail" align="center">
-				<img src="<%=contextPath%>/resources/product_img/오븐20.png"
-					width="300px" height="300px"
-					onclick="location.href='<%=contextPath%>'">
-				<p>
-					<!-- 상품명-->
-					도그쿡 전라북도 남원 청정 강아지 오리안심육포 <br>
-				</p>
-				<p>
-					<!--가격-->
-					<b>9,000원</b>
-				</p>
-				<br>
-			</div>
-
-		</div>
-
+				
+					
 	</div>
+	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br>
+	
 	<%@ include file="../common/userFooterbar.jsp"%>
 
 </body>
