@@ -232,12 +232,22 @@
 	
 	
 	<!-- 댓글 -->
+	<entry key="selectReplyCount">
+		SELECT COUNT(*) COUNT
+		  FROM REPLY
+		 WHERE BOARD_NO = ?
+		   AND STATUS = 'Y'
+	</entry>
 	<entry key="selectReplyList">
 		SELECT
 		       REPLY_NO
 			 , REPLY_CONTENT
 		     , USER_ID
 			 , TO_CHAR(CREATE_DATE, 'YY-MM-DD HH:MI') "CREATE_DATE"
+		     , (SELECT COUNT(*)
+		          FROM REPLY
+		         WHERE BOARD_NO = ?
+		           AND STATUS = 'Y') COUNT
 		  FROM REPLY R
 		  JOIN MEMBER ON (REPLY_WRITER = USER_NO)
 		 WHERE R.STATUS = 'Y'
@@ -263,6 +273,18 @@
 		  , ?
 		  , ?
 		  )
+	</entry>
+	<entry key="updateReply">
+		UPDATE
+		       REPLY
+		   SET REPLY_CONTENT = ?
+		 WHERE REPLY_NO = ?
+	</entry>
+	<entry key="deleteReply">
+		UPDATE
+		       REPLY
+		   SET STATUS = 'N'
+		 WHERE REPLY_NO = ?
 	</entry>
 	
 </properties>

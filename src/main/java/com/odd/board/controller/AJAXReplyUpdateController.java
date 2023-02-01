@@ -10,19 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.odd.board.model.service.BoardService;
 import com.odd.board.model.vo.Reply;
-import com.odd.member.model.vo.Member;
 
 /**
- * Servlet implementation class AjaxReplyInsertController
+ * Servlet implementation class AJAXReplyUpdateController
  */
-@WebServlet("/rinsert.bo")
-public class AjaxReplyInsertController extends HttpServlet {
+@WebServlet("/rupdate.bo")
+public class AJAXReplyUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxReplyInsertController() {
+    public AJAXReplyUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,19 +30,14 @@ public class AjaxReplyInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String replyContent = request.getParameter("content");
-		int boardType = Integer.parseInt(request.getParameter("boardType"));
-		int boardNo = Integer.parseInt(request.getParameter("no"));
-		int replyWriter = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
+		int replyNo = Integer.parseInt(request.getParameter("replyNo"));
+		String replyContent = request.getParameter("replyContent");
 		
 		Reply r = new Reply();
+		r.setReplyNo(replyNo);
 		r.setReplyContent(replyContent);
-		r.setBoardType(boardType);
-		r.setBoardNo(boardNo);
-		r.setReplyWriter(String.valueOf(replyWriter));
 		
-		int result = new BoardService().insertReply(r);
+		int result = new BoardService().updateReply(r);
 		response.getWriter().print(result);
 	}
 

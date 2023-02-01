@@ -417,12 +417,14 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
+			pstmt.setInt(2, boardNo);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Reply(rset.getInt("reply_no"),
 								   rset.getString("user_id"),
 								   rset.getString("reply_content"),
-								   rset.getString("create_date")));
+								   rset.getString("create_date"),
+								   rset.getInt("count")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -443,6 +445,40 @@ public class BoardDao {
 			pstmt.setInt(2, r.getBoardNo());
 			pstmt.setInt(3, Integer.parseInt(r.getReplyWriter()));
 			pstmt.setString(4, r.getReplyContent());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateReply(Connection conn, Reply r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateReply");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getReplyNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteReply(Connection conn, int replyNo) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReply");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, replyNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

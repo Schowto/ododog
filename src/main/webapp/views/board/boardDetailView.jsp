@@ -229,15 +229,12 @@
 	        	})
         	</script>
             
-            
-
             <br><br><br><br>
 
-        
             <div id="reply-area" align="center">
                 <div align="left" style="margin-left:15px; border-bottom: 2px solid rgb(220, 220, 220);">
                     <p style="font-size:15px; font-weight:600; margin-bottom:5px;">댓글</p>
-                    <p style="font-size:15px; font-weight:600; color:rgb(200, 140, 140)">4</p>
+                    <p id="reply-count" style="font-size:15px; font-weight:600; color:rgb(200, 140, 140)">0</p>
                 </div>
 
                 <table id="reply-table" width="900">
@@ -254,17 +251,19 @@
                     </div>
                 <% } else { %>
                 <!-- 로그인이 되어있지 않을 경우 -->
-                	<textarea name="content" style="width:900px; height:150px; border:1px solid rgb(220, 220, 220); border-radius:5px; color:rgb(50, 50, 50); font-size:13px; resize:none;" readonly>로그인 이후 작성 가능합니다.</textarea>
+                	<textarea style="width:900px; height:150px; border:1px solid rgb(220, 220, 220); border-radius:5px; color:rgb(50, 50, 50); font-size:13px; resize:none;" readonly>로그인 이후 작성 가능합니다.</textarea>
                     <div align="right" style="width:900px;">
                         <button class="disabled-btn" style="color:gray;">등록</button>
                     </div>
                 <% } %>
+                <br><br><br><br><br>
+			</div>
                 
                 
 			<script>
 	        	$(function(){selectReplyList();})
 	        	
-	        	// 댓글 작성
+	        	// 댓글 작성 - ajax
 	        	function insertReply(){
 	        		$.ajax({
 	        			url:"<%=contextPath%>/rinsert.bo",
@@ -294,6 +293,7 @@
 	        			data:{no:<%= b.getBoardNo() %>},
 	        			success:function(list){
 	        				let value = "";
+	        				let replyCount = 0;
 	        				if(list.length == 0) {
 	        					// 댓글이 없을 때
 	        					value += "<tr style='text-align:center; height:200px; border-bottom:1px solid rgb(220,220,220);'>"
@@ -302,8 +302,8 @@
 	        				} else {
 	        					// 댓글이 있을 때
 	        					for(let i=0; i<list.length; i++){
+	        						replyCount = list[i].count;
 	        						if("<%= userId %>" == list[i].replyWriter){
-	        							
 	        						// 내 댓글일 때
 		        						value += "<tr>"
 		        							   +	"<th style='font-size:14px;' width='150'>" + list[i].replyWriter + "</th>"
@@ -320,11 +320,10 @@
 									   		   + "<tr class='reply-modify-area' style='display:none;'>"
 									   		   +	"<td colspan='2' style='font-size:12px; padding:0;'>"
 									   		   +		"<input type='hidden' name='reply-no' value='"+ list[i].replyNo +"'>"
-									   		   +		"<textarea name='new-reply-content' id='new-reply-content' style='width:900px; height:120px; resize:none; border:1px solid rgb(200, 140, 140); border-radius:5px;'>" + list[i].replyContent + "</textarea>"
-									   		   +		"<button type='submit' style='margin-left:855px; margin-top:10px;'>등록</button>"
+									   		   +		"<textarea style='width:900px; height:120px; resize:none; border:1px solid rgb(200, 140, 140); border-radius:5px;'>" + list[i].replyContent + "</textarea>"
+									   		   +		"<button style='margin-left:855px; margin-top:10px;'>등록</button>"
 									   		   +	"</td>"
 									   		   + "</tr>"
-									   		   
 	        						} else {
 		        						value += "<tr>"
 		        							   +	"<th style='font-size:14px;' width='150'>" + list[i].replyWriter + "</th>"
@@ -339,21 +338,75 @@
 	        						}
 	        					}
 	        				}
+	        				$("#reply-count").html(replyCount);
 		        			$("#reply-area tbody").html(value);
 	        			}, error:function(){
 	        				console.log("댓글목록 조회용 ajax 통신실패");
 	        			}
 	        		})
 	        	}
+		        
+	        	// 댓글 수정 - ajax
+	        	$(function(){
+            		$(document).on("click", ".reply-modify-area button", function(){
+            			updateReply($(this).prev().prev().val(), $(this).prev().val());
+            		})
+            	})
+	        	function updateReply(no, content){
+	        		$.ajax({
+	        			url:"<%=contextPath%>/rupdate.bo",
+	        			data:{
+	        				replyContent: content,
+	        				replyNo: no
+	        			},
+	        			type:"post",
+	        			success:function(result){
+	        				if(result>0){	// 댓글수정성공
+	        					selectReplyList();
+	        					alert("성공적으로 수정되었습니다.");
+	        				}else{			// 실패
+	        					alert("댓글 등록 실패");
+	        				}
+	        			}, error:function(){
+	        				console.log("댓글작성용 ajax 통신실패")
+	        			}
+	        		})
+	        	}
+	        	
+	        	// 댓글 삭제 - ajax
+	        	$(function(){
+            		$(document).on("click", ".reply-btn-area .delete-btn", function(){
+            			if (confirm("정말 삭제하시겠습니까?")) {
+            				deleteReply($(this).prev().val());
+                        }
+            		})
+            	})
+            	function deleteReply(no){
+	        		$.ajax({
+	        			url:"<%=contextPath%>/rdelete.bo",
+	        			data:{replyNo: no},
+	        			type:"post",
+	        			success:function(result){
+	        				if(result>0){	// 댓글삭제성공
+	        					selectReplyList();
+	        					alert("성공적으로 삭제되었습니다.");
+	        				} else {			// 실패
+	        					alert("댓글 삭제 실패");
+	        				}
+	        			}, error:function(){
+	        				console.log("댓글작성용 ajax 통신실패")
+	        			}
+	        		})
+	        	}
 	        </script>
-                
+
+
             <script>
-            	// 수정
+            	// 수정area 보이기
             	$(function(){
             		$(document).on("click", ".reply-btn-area .modify-btn", function(){
             			const area = $(this).parents("tr").next().next();	// 수정 tr(.reply-modify-area)
             			if (area.css("display") == "none") {
-            				console.log($(this).parents("tr").next());
             				$(this).parents("tr").next().children("td").css("display", "none");
             				$(this).parents("tr").next().css("border-bottom", "none")
                             $(this).text("취소");
@@ -366,25 +419,8 @@
                         }
             		})
             	})
-            	// 삭제
-            	$(function(){
-            		$(document).on("click", ".reply-btn-area .delete-btn", function(){
-            			if (confirm("정말 삭제하시겠습니까?")) {
-                            // 삭제하고
-                            alert("삭제되었습니다.");
-                        }
-            		})
-            	})
-
             </script>
-                <!-- 댓글 수정삭제 여기까지 ------------->
 
-                
-                
-                
-                <br><br><br><br><br>
-
-            </div>
         
 
         </div>
