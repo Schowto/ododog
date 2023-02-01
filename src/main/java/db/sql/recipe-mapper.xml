@@ -30,4 +30,49 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	<entry key="insertRecipe">
+		INSERT
+		  INTO RECIPE
+		  (
+		    RECIPE_NO
+		  , RECIPE_TITLE
+		  , RECIPE_CONTENT
+		  , THUMBIMG
+		  , EFFECT
+		  , TIME
+		  , INGREDIENT
+		  , PROCESS_COUNT
+		  )
+		  VALUES
+		  (
+		    SEQ_RECIPENO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
+	<entry key="insertCooking">
+		INSERT
+		  INTO Cooking
+		  (
+		    COOKING_NO
+		  , RECIPE_NO
+		  , COOKING_ORDER
+		  , COOKING_CONTENT
+		  , FILE_PATH
+		  )
+		  VALUES
+		  (
+		    SEQ_COOKINGNO.NEXTVAL
+		  , SEQ_RECIPENO.CURRVAL
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
+	
 </properties>

@@ -14,13 +14,13 @@ import com.odd.board.model.service.BoardService;
  * Servlet implementation class AJAXReplyDelete
  */
 @WebServlet("/rdelete.bo")
-public class AJAXReplyDelete extends HttpServlet {
+public class AjaxReplyDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AJAXReplyDelete() {
+    public AjaxReplyDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }

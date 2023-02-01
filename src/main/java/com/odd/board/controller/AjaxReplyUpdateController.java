@@ -15,13 +15,13 @@ import com.odd.board.model.vo.Reply;
  * Servlet implementation class AJAXReplyUpdateController
  */
 @WebServlet("/rupdate.bo")
-public class AJAXReplyUpdateController extends HttpServlet {
+public class AjaxReplyUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AJAXReplyUpdateController() {
+    public AjaxReplyUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }

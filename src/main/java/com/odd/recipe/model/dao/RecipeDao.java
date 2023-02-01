@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.odd.board.model.vo.Cooking;
 import com.odd.common.model.vo.PageInfo;
 import com.odd.recipe.model.vo.Recipe;
 
@@ -73,6 +74,48 @@ public class RecipeDao {
 		return list;
 	}
 	
-	
+	public int insertRecipe(Connection conn, Recipe r) {
+		// insert
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertRecipe");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getRecipeTitle());
+			pstmt.setString(2, r.getRecipeContent());
+			pstmt.setString(3, r.getRecipeThumbImg());
+			pstmt.setString(4, r.getEffect());
+			pstmt.setString(5, r.getTime());
+			pstmt.setString(6, r.getIngredient());
+			pstmt.setInt(7, r.getProcessCount());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int insertCooking(Connection conn, ArrayList<Cooking> list) {
+		// insert
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCooking");
+		try {
+			for(Cooking c : list) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, c.getCookingOrder());
+				pstmt.setString(2, c.getCookingContent());
+				pstmt.setString(3, c.getFilePath());
+				// 실행
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 }

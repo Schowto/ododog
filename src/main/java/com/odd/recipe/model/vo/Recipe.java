@@ -14,7 +14,7 @@ public class Recipe {
 	private String status;
 	
 	private int replyCount;
-	
+	public Recipe() {}
 	public Recipe(int recipeNo, String recipeTitle, String recipeContent, String recipeThumbImg, String effect,
 			String time, String ingredient, int processCount, int count, String createDate, String status) {
 		super();
