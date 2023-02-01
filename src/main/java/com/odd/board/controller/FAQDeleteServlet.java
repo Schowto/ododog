@@ -40,7 +40,9 @@ public class FAQDeleteServlet extends HttpServlet {
 			request.setAttribute("errorMsg", "공지사항 삭제 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
+		
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
