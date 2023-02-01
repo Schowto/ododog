@@ -3,7 +3,8 @@
 <%@ page
 	import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.Consult "%>
 <%
-	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	
+	//PageInfo pi = (PageInfo) request.getAttribute("pi");
 	ArrayList<Consult> list = (ArrayList<Consult>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
@@ -58,11 +59,7 @@ table {
 	text-align: center;
 }
 
-.logoutUser td {
-	border-bottom: 1px solid rgb(220, 220, 220);
-}
-
-.loginUser td {
+td {
 	border-bottom: 1px solid rgb(220, 220, 220);
 	height: 50px;
 }
@@ -105,7 +102,7 @@ table {
 			<br> <br> <a href="<%=contextPath%>/myPoint.me"
 				style="font-size: 17px;">적립금</a> <br> <br> <a
 				href="<%=contextPath%>/myBoard.me" style="font-size: 17px;">게시글조회</a>
-			<br> <br> <a href="<%=contextPath%>/consult.co"
+			<br> <br> <a href="<%=contextPath%>/list.co"
 				style="font-size: 17px; color: rgb(200, 140, 140);">1:1맞춤상담</a>
 		</div>
 
@@ -168,27 +165,8 @@ table {
 	        		})
 	        	})
 	        </script>
-	        <br><br>
-	
-	        <div class="paging-area">
-	
-				<% if(pi.getCurrentPage() != 1){ %>
-	            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()-1%>';">&lt;</button>
-	            <% } %>
-	
-				<% for(int p=pi.getStartPage(); p<=pi.getEndPage(); p++){ %>
-	            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=p%>';"><%= p %></button>
-	            <% } %>
-	
-				<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
-	            	<button onclick="location.href='<%=contextPath%>/list.bo?cpage=<%=pi.getCurrentPage()+1%>';">&gt;</button>
-				<% } %>
-	        </div>
-
-
 
 			<br>
-
 
 			<div align="right">
 				<button id="btn1">글쓰기</button>
@@ -197,7 +175,7 @@ table {
 			<script>
             $(function(){
             	$("#btn1").click(function(){
-            		location.href="<%=contextPath%>/consultEnroll.co";
+            		location.href="<%=contextPath%>/enroll.co";
             	});
             })
             </script>
@@ -205,7 +183,7 @@ table {
 			<script>
             $(function(){
             	$("#btn1").click(function(){
-            		location.href="<%=contextPath%>/consultUpdate.co";
+            		location.href="<%=contextPath%>/update.co";
 					})
 				})
 			</script>
@@ -224,16 +202,9 @@ table {
 
 		</div>
 
-		<%@ include file="../common/userFooterbar.jsp"%>
-	</div>
-	
-	<form action="<%=contextPath %>/list.co" method="post" id="userId">
-		<input type="hidden" name="userId" value="<%=userId %>" >
-	</form>
-	
-	<script>
-		document.getElementById(userId).ready();
-	</script>
+			<%@ include file="../common/userFooterbar.jsp"%>
+			
+		</div>
 
 
 

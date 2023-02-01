@@ -48,10 +48,10 @@
 		color:rgb(50, 50, 50);
 		border-bottom:1px solid rgb(220,220,220);
 	}
-	select{
+	.consultEnroll input[type=text]{
 		width:400px;
 		border:1px solid rgb(220,220,220);
-		height:30px;
+		height:20px;
 		color:rgb(50, 50, 50);
 	}
 	textarea{
@@ -59,8 +59,10 @@
 		height:400px;
 		background: rgb(220,220,220);
 		border:none;
+		padding:40px;
+		font-size:14px;
 	}
-	#btn1, #btn2{
+	button{
 		width:70px;
 		height:30px;
 	}
@@ -81,7 +83,7 @@
             <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
-            <a href="<%=contextPath%>/consult.bo" style="font-size:17px; color:rgb(200, 140, 140);">1:1맞춤상담</a>
+            <a href="<%=contextPath%>/list.co" style="font-size:17px; color:rgb(200, 140, 140);">1:1맞춤상담</a>
         </div>
 
         <script>
@@ -98,15 +100,13 @@
 			<br><br><br><br>
 
 			<div class="consultEnroll">
-				<form action="">
+				<form action="<%=contextPath%>/insert.co" method="post">
 					<table>
 						<tr>
 							<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;제목</td>
 							<td>
 								&nbsp;&nbsp;
-								<select name="" id="">
-									<option value="">&nbsp;문의드립니다.</option>
-								</select>
+								<input type="text" >
 							</td>
 						</tr>
 						<tr>
@@ -129,14 +129,15 @@
 							<td>&nbsp;&nbsp;<input type="file"></td>
 						</tr>
 					</table>
+					
+					<br>
+
+					<div align="center">
+						<button type="submit">등록</button>
+						<button type="reset" id="resetBtn">취소</button>
+					</div>
+					
 				</form>
-			</div>
-
-			<br>
-
-			<div align="center">
-				<button type="submit" id="btn1" >등록</button>
-				<button type="reset" id="btn2">취소</button>
 			</div>
 
 			<script>

@@ -44,8 +44,10 @@ public class MyConsultListController extends HttpServlet {
 			
 		}else {
 			
-			String userId = (String)request.getAttribute("login.getUser_Id()");
 			
+			String userId = (String)session.getAttribute("loginUser.getUser_Id()");
+			
+			/*
 			// 페이징처리
 			int listCount;
 			int currentPage;
@@ -77,9 +79,13 @@ public class MyConsultListController extends HttpServlet {
 					                   boardLimit, maxPage, startPage, endPage);
 			
 			//응답페이지
+			
 			ArrayList<Consult> list = new ConsultService().selectList(pi, userId);
 					
 			request.setAttribute("pi", pi);
+			*/
+			
+			ArrayList<Consult> list = new ConsultService().selectConsult(userId);
 			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("views/board/myConsultListView.jsp").forward(request,response);

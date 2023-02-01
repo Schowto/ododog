@@ -94,7 +94,7 @@
             <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px;">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
-            <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
+            <a href="<%=contextPath%>/list.co" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
         <script>
