@@ -15,6 +15,41 @@
 		        SELECT ROWNUM RNUM, TB.*
 		          FROM (
 		                SELECT TB_ORDER.ORD_NO 주문번호
+		                
+		                     , PRODUCT.PRO_NAME 상품이름
+		                     , ORD_PRO.AMOUNT 상품개수
+		                     
+		                     , MEMBER.USER_NAME 유저이름
+		                     , TB_ORDER.DEL_ADD 배송지
+		                     , TB_ORDER.PHONE 휴대전화
+		                     , TB_ORDER.EMAIL 이메일
+		                     
+		                     , PAYMENT.TOTAL_PRICE 최종결제금액
+		                     
+		                     , TB_ORDER.PAYMENT 결제여부
+		                     , TB_ORDER.DELIVERY 배송여부
+		                     
+		                     , TB_ORDER.REQUIRE 배송시요청사항
+		                  FROM TB_ORDER 
+                     LEFT JOIN PRODUCT ON( TB_ORDER.PRO_NO = PRODUCT.PRO_NO)
+                     LEFT JOIN ORD_PRO ON ( TB_ORDER.ORD_NO = ORD_PRO.ORD_NO)
+                     LEFT JOIN PAYMENT ON ( TB_ORDER.ORD_NO = PAYMENT.ORD_NO)
+                     LEFT JOIN MEMBER  ON ( TB_ORDER.USER_NO = MEMBER.USER_NO)
+		                 WHERE TB_ORDER.STATUS = 'Y'
+	</entry>
+		
+	<entry key="selectList2">
+		               ) TB
+	       	 ) TB1
+	   WHERE RNUM BETWEEN ? AND ?    
+	</entry>
+	
+	<entry key="dummy">
+			SELECT RNUM, TB1.*
+		  FROM (
+		        SELECT ROWNUM RNUM, TB.*
+		          FROM (
+		                SELECT TB_ORDER.ORD_NO 주문번호
 		                     , TB_ORDER.PRO_NO 상품번호
 		                     , PRODUCT.PRO_NAME 상품이름
 		                     , ORD_PRO.AMOUNT 상품개수
@@ -35,13 +70,7 @@
                      LEFT JOIN ORD_PRO ON ( TB_ORDER.ORD_NO = ORD_PRO.ORD_NO)
                      LEFT JOIN PAYMENT ON ( TB_ORDER.ORD_NO = PAYMENT.ORD_NO)
                      LEFT JOIN MEMBER  ON ( TB_ORDER.USER_NO = MEMBER.USER_NO)
-		                 WHERE TB_ORDER.STATUS = 'Y'
-	</entry>
-		
-	<entry key="selectList2">
-		               ) TB
-	       	 ) TB1
-	   WHERE RNUM BETWEEN ? AND ?    
+		                 WHERE TB_ORDER.STATUS = 'Y'	
 	</entry>
 
 

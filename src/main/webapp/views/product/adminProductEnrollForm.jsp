@@ -23,9 +23,7 @@
     div {/*border:1px solid red;*/ box-sizing: border-box;}
 
     #content {
-        width: 75%; height: 100%;
-        padding-top: 20px;
-        color: rgb(50, 50, 50);
+        height: 1000px;
         background: white;
     }    
 
@@ -46,12 +44,12 @@
    		height:150px;
     }
     
-    
     .enrollTB2 img{
     	object-fit: cover;
     	width:250px;
    		height:180px;
     }
+    
     
 </style>
 
@@ -74,6 +72,7 @@
 	                    <tr>
 	                        <th>카테고리</th>
 	                        <td>
+	                        	&nbsp;
 	                        	<select name="category" class="form-control-sm">
                             		<option value="주식">주식</option>
                             		<option value="건조간식">건조간식</option>
@@ -88,7 +87,10 @@
 	
 	                    <tr>
 	                        <th>상품명</th>
-	                        <td><input type="text" class="form-control-sm" name="proName" style="width:400px" required></td>
+	                        <td>
+	                        	&nbsp;
+	                        	<input type="text" class="form-control-sm" name="proName" style="width:400px" required>
+                        	</td>
 	                        <td rowspan="4" style="text-align:center">
 	                        	<img class="img-thumbnail" id="thumbImg" onclick="clickFile(1)">
 	                        </td>
@@ -96,17 +98,24 @@
 	
 	                    <tr>
 	                        <th>가격</th>
-	                        <td><input type="text" class="form-control-sm" name="price" id="price" style="width:150px" required></td>
+	                        <td>
+	                        	&nbsp;
+	                        	<input type="text" class="form-control-sm" name="price" id="price" style="width:150px" required>
+                        	</td>
 	                    </tr>
 	
 	                    <tr>
 	                        <th>유통 기한</th>
-	                    	<td><input type="date" class="form-control-sm" name="expiredDate" style="width:150px" required></td>
+	                    	<td>
+	                    		&nbsp;
+	                    		<input type="date" class="form-control-sm" name="expiredDate" style="width:150px" required>
+                    		</td>
 	                    </tr>
 	
 	                    <tr>
 	                        <th>적립률</th>
 	                        <td>
+	                        	&nbsp;
 	                        	<select name="save" class="form-control-sm">
                             		<option value="0.1">0.1%</option>
                             		<option value="0.2">0.2%</option>

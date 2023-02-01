@@ -44,7 +44,7 @@ public class AdminOrderListController extends HttpServlet {
 		int endPage;	 // 사용자가 요청한 페이지 하단의 페이징 바의 끝 수	
 		
 		// * listCount : 총 게시글 개수
-		listCount = new AdminProductService().selectListCount();
+		listCount = new AdminOrderService().selectListCount();
 		
 		// * currentPage :사용자가 요청한 페이지(==현재 페이지)
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
@@ -69,8 +69,6 @@ public class AdminOrderListController extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		// common에 만드는 이유 : 다른 페이지에서도 공통으로 사용할 것
-		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit,boardLimit
 									,maxPage, startPage, endPage);
 		
@@ -84,7 +82,7 @@ public class AdminOrderListController extends HttpServlet {
 		request.setAttribute("list",list);
 		request.setAttribute("order",order);
 		
-		request.getRequestDispatcher("views/product/adminOrderListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/order/adminOrderListView.jsp").forward(request, response);
 		
 		}
 

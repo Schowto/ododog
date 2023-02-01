@@ -68,8 +68,6 @@ public class AdminProductListController extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		// common에 만드는 이유 : 다른 페이지에서도 공통으로 사용할 것
-		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit,boardLimit
 									,maxPage, startPage, endPage);
 		

@@ -28,11 +28,10 @@
     	
     }
     
-	.page { 
+	.page{ 
 		float:right;
-		color:black;
-	;}
-	
+	}
+
 	.order{
 		height: 50px;
 		text-align: right;
@@ -42,6 +41,14 @@
 		float:left;
 		margin-left:10px;
 	}
+	
+    #content{
+   	    z-index:-1;
+    }
+    
+    #header{
+   	    z-index:-1;
+     }
 
 </style>
 

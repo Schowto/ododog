@@ -30,7 +30,6 @@
     
 	.page { 
 		float:right;
-		color:black;
 	;}
 	
 	.order{
@@ -42,6 +41,14 @@
 		float:left;
 		margin-left:10px;
 	}
+	
+    #content{
+   	    z-index:-1;
+    }
+    
+    #header{
+   	    z-index:-1;
+     }
 
 </style>
 
@@ -59,10 +66,10 @@
             <h2>전체 주문 조회</h2>
             <br>
             	<div class="order">
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO">번호</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=CATEGORY">카테고리</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=PRICE">가격</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=EXPIRED_DATE">유통기한</a>
+	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=주문번호">번호</a>
+	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=상품이름">상품이름</a>
+	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=유저이름">유저 이름</a>
+	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=최종결제금액">결제 금액</a>
 				</div>
 				<br>
 				
@@ -145,7 +152,7 @@
                     <% } %>
                     
                     <% if(pi.getCurrentPage() != pi.getMaxPage()){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPOrd?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>">&gt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>">&gt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link" href="">&gt;</a></li>
                     <%} %>
