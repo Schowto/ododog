@@ -432,4 +432,23 @@ public class BoardDao {
 		}
 		return list;
 	}
+	
+	public int insertReply(Connection conn, Reply r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertReply");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, r.getBoardType());
+			pstmt.setInt(2, r.getBoardNo());
+			pstmt.setInt(3, Integer.parseInt(r.getReplyWriter()));
+			pstmt.setString(4, r.getReplyContent());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

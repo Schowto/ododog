@@ -244,6 +244,22 @@
                 	<tbody></tbody>
                 </table>
                 
+               	<br><br><br>
+				<% if(loginUser != null){ %>
+                <!-- 로그인이 되어있을 경우 -->
+                	<textarea id="reply-insert-area" name="content" placeholder="소중한 댓글을 입력해주세요."
+                        style="width:900px; height:150px; border:1px solid rgb(220, 220, 220); border-radius:5px; color:rgb(50, 50, 50); font-size:13px; resize:none;"></textarea>
+                    <div align="right" style="width:900px;">
+                        <button onclick="insertReply();">등록</button>
+                    </div>
+                <% } else { %>
+                <!-- 로그인이 되어있지 않을 경우 -->
+                	<textarea name="content" style="width:900px; height:150px; border:1px solid rgb(220, 220, 220); border-radius:5px; color:rgb(50, 50, 50); font-size:13px; resize:none;" readonly>로그인 이후 작성 가능합니다.</textarea>
+                    <div align="right" style="width:900px;">
+                        <button class="disabled-btn" style="color:gray;">등록</button>
+                    </div>
+                <% } %>
+                
                 
 			<script>
 	        	$(function(){selectReplyList();})
@@ -253,14 +269,14 @@
 	        		$.ajax({
 	        			url:"<%=contextPath%>/rinsert.bo",
 	        			data:{
-	        				content: $("#reply-area textarea").val(),
+	        				content: $("#reply-insert-area").val(),
 	        				boardType: <%= b.getBoardType() %>,
 	        				no: <%= b.getBoardNo() %>
 	        			},
 	        			type:"post",
 	        			success:function(result){
 	        				if(result>0){	// 댓글등록성공
-	        					$("#reply-area textarea").val("");
+	        					$("#reply-insert-area").val("");
 	        					selectReplyList();
 	        				}else{			// 실패
 	        					alert("댓글 등록 실패");
@@ -286,28 +302,29 @@
 	        				} else {
 	        					// 댓글이 있을 때
 	        					for(let i=0; i<list.length; i++){
-	        						console.log("<%=userId%>");
 	        						if("<%= userId %>" == list[i].replyWriter){
+	        							
 	        						// 내 댓글일 때
 		        						value += "<tr>"
 		        							   +	"<th style='font-size:14px;' width='150'>" + list[i].replyWriter + "</th>"
-		        							   +	"<td style='color:gray; font-size:11px;'>"
+		        							   +	"<td class='reply-btn-area' style='color:gray; font-size:11px;>"
 									  		   + 		"<p style='margin:0px 10px;'>" + list[i].createDate + "</p>"
-									  		   +		"<p class='report' style='margin-left:30px; margin-right:10px;' id='reply-modify'>수정</p>"
-									  		   +		"<a href='' style='text-decoration:none; color:rgb(200, 140, 140);' id='delete-reply'>삭제</a>"
+									  		   +		"<p class='report modify-btn' style='margin-left:30px; margin-right:10px;'>수정</p>"
+									  		   +		"<input type='hidden' name='reply-no' value='"+ list[i].replyNo +"'>"
+									  		   +		"<p class='report delete-btn' style='color:rgb(200, 140, 140);'>삭제</a>"
 									  		   + 	"</td>"
 									   		   + "</tr>"
 									   		   + "<tr style='border-bottom:1px solid rgb(220,220,220);'>"
-									   		   + 	"<td colspan='2' style='font-size:12px;' id='reply-content'>" + list[i].replyContent + "</td>"
+									   		   + 	"<td colspan='2' style='font-size:12px;'>" + list[i].replyContent + "</td>"
 									   		   + "</tr>"
-									   		   + "<tr>"
+									   		   + "<tr class='reply-modify-area' style='display:none;'>"
 									   		   +	"<td colspan='2' style='font-size:12px; padding:0;'>"
-									   		   +		"<form action='' method='post' id='reply-modify-form'> <br>"
-									   		   +			"<textarea name='new-reply-content' id='new-reply-content' style='width:900px; height:120px; resize:none; border:1px solid rgb(200, 140, 140); border-radius:5px;'></textarea>"
-									   		   +			"<button type='submit' style='margin-left:855px; margin-top:10px;'>등록</button>"
-									   		   +		"</form>"
+									   		   +		"<input type='hidden' name='reply-no' value='"+ list[i].replyNo +"'>"
+									   		   +		"<textarea name='new-reply-content' id='new-reply-content' style='width:900px; height:120px; resize:none; border:1px solid rgb(200, 140, 140); border-radius:5px;'>" + list[i].replyContent + "</textarea>"
+									   		   +		"<button type='submit' style='margin-left:855px; margin-top:10px;'>등록</button>"
 									   		   +	"</td>"
 									   		   + "</tr>"
+									   		   
 	        						} else {
 		        						value += "<tr>"
 		        							   +	"<th style='font-size:14px;' width='150'>" + list[i].replyWriter + "</th>"
@@ -323,71 +340,46 @@
 	        					}
 	        				}
 		        			$("#reply-area tbody").html(value);
-	        				
 	        			}, error:function(){
-	        				console.log("댓글목록 조회용 ajax 통신실패")
+	        				console.log("댓글목록 조회용 ajax 통신실패");
 	        			}
 	        		})
 	        	}
-	        
 	        </script>
                 
-                
-                
-                
-
             <script>
-            
-                // 수정
-                $(function () {
-
-                    const form = $("#reply-modify-form");
-                    form.hide();
-
-                    $("#reply-modify").click(function () {
-
-                        if (form.css("display") == "none") {
-                            $("#reply-content").css("display", "none");
-                            $("#reply-modify").text("취소");
-                            form.slideDown();
-                            form.children("textarea").text($("#reply-content").text());
+            	// 수정
+            	$(function(){
+            		$(document).on("click", ".reply-btn-area .modify-btn", function(){
+            			const area = $(this).parents("tr").next().next();	// 수정 tr(.reply-modify-area)
+            			if (area.css("display") == "none") {
+            				console.log($(this).parents("tr").next());
+            				$(this).parents("tr").next().children("td").css("display", "none");
+            				$(this).parents("tr").next().css("border-bottom", "none")
+                            $(this).text("취소");
+                            area.slideDown();
                         } else {
-                            $("#reply-content").css("display", "block");
-                            $("#reply-modify").text("수정");
-                            form.css("display", "none");
+                        	$(this).parents("tr").next().children("td").css("display", "block");
+            				$(this).parents("tr").next().css("border-bottom", "1px solid rgb(220,220,220)")
+                            $(this).text("수정");
+                            area.css("display", "none");
                         }
-                    })
-                })
-
-                // 삭제
-                $("#delete-reply").click(function () {
-                    if (confirm("정말 삭제하시겠습니까?")) {
-                        // 삭제하고
-                        alert("삭제되었습니다.");
-                    } else {
-                        alert("취소되었습니다.");
-                    }
-                })
+            		})
+            	})
+            	// 삭제
+            	$(function(){
+            		$(document).on("click", ".reply-btn-area .delete-btn", function(){
+            			if (confirm("정말 삭제하시겠습니까?")) {
+                            // 삭제하고
+                            alert("삭제되었습니다.");
+                        }
+            		})
+            	})
 
             </script>
                 <!-- 댓글 수정삭제 여기까지 ------------->
 
-                <br><br><br>
-				
-				<% if(loginUser != null){ %>
-                <!-- 로그인이 되어있을 경우 -->
-                	<textarea name="content" placeholder="소중한 댓글을 입력해주세요."
-                        style="width:900px; height:150px; border:1px solid rgb(220, 220, 220); border-radius:5px; color:rgb(50, 50, 50); font-size:13px; resize:none;"></textarea>
-                    <div align="right" style="width:900px;">
-                        <button type="submit">등록</button>
-                    </div>
-                <% } else { %>
-                <!-- 로그인이 되어있지 않을 경우 -->
-                	<textarea name="content" style="width:900px; height:150px; border:1px solid rgb(220, 220, 220); border-radius:5px; color:rgb(50, 50, 50); font-size:13px; resize:none;" readonly>로그인 이후 작성 가능합니다.</textarea>
-                    <div align="right" style="width:900px;">
-                        <button class="disabled-btn" style="color:gray;">등록</button>
-                    </div>
-                <% } %>
+                
                 
                 
                 <br><br><br><br><br>
