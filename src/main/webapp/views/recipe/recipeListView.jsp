@@ -273,7 +273,6 @@
 
 
             <div class="list-area" style="font-size:15px;">
-
                 <% if(list.isEmpty()){ %>
                 <!-- 레시피가 없는 경우 -->
 	                <div>
@@ -301,76 +300,6 @@
 	                </div>
                 	<% } %>
                 <% } %>
-
-                <div class="thumbnail" align="center">
-                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
-                        <img src="https://recipe.bom.co.kr/uploads/posts/images/20220610/62a29ff919b33.png" width="100%" height="100%">
-                    </div>
-                    <p style="margin:5px;">캐롭짜장면</p>
-                    <div align="right" style="width:250px; font-size:12px;">
-                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
-                        <div class="heart-area" style="display:inline-block;">
-                            <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="thumbnail" align="center">
-                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
-                        <img src="https://recipe.bom.co.kr/uploads/posts/images/20220516/628208f0c4f90.png" width="100%" height="100%">
-                    </div>
-                    <p style="margin:5px;">소간칩 칙촉</p>
-                    <div align="right" style="width:250px; font-size:12px;">
-                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
-                        <div class="heart-area" style="display:inline-block;">
-                            <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="thumbnail" align="center">
-                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
-                        <img src="https://recipe.bom.co.kr/uploads/posts/images/20220422/6262298eec8f5.png" width="100%" height="100%">
-                    </div>
-                    <p style="margin:5px;">오리스튜</p>
-                    <div align="right" style="width:250px; font-size:12px;" class="heart-area">
-                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
-                        <div class="heart-area" style="display:inline-block;">
-                            <!-- 좋아요 안했을 경우 -->
-                            <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
-                            <!-- 좋아요 했을 경우 -->
-                            <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="thumbnail" align="center">
-                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
-                        <img src="https://recipe.bom.co.kr/uploads/posts/images/20220610/62a29ff919b33.png" width="100%" height="100%">
-                    </div>
-                    <p style="margin:5px;">캐롭짜장면</p>
-                    <div align="right" style="width:250px; font-size:12px;">
-                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
-                        <div class="heart-area" style="display:inline-block;">
-                            <img src="<%= contextPath %>/resources/icons/heart.png" width="15" style="margin-left:7px; cursor:pointer;">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="thumbnail" align="center">
-                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
-                        <img src="https://recipe.bom.co.kr/uploads/posts/images/20220516/628208f0c4f90.png" width="100%" height="100%">
-                    </div>
-                    <p style="margin:5px;">소간칩 칙촉</p>
-                    <div align="right" style="width:250px; font-size:12px;">
-                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> 2
-                        <div class="heart-area" style="display:inline-block;">
-                            <img src="<%= contextPath %>/resources/icons/heartR.png" width="15" style="margin-left:7px; cursor:pointer;">
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
 
             <script>
@@ -405,21 +334,22 @@
             <br><br><br>
             
             <div class="paging-area" align="center">
-
-                <a href=""><button>&lt;</button></a>
-                <a href=""><button>1</button></a>
-                <a href=""><button>2</button></a>
-                <a href=""><button>3</button></a>
-                <a href=""><button>4</button></a>
-                <a href=""><button>5</button></a>
-                <a href=""><button>6</button></a>
-                <a href=""><button>7</button></a>
-                <a href=""><button>8</button></a>
-                <a href=""><button>9</button></a>
-                <a href=""><button>10</button></a>
-                <a href=""><button>&gt;</button></a>
-                
-            </div>
+            
+        		<!-- 페이지1일 때는 < 버튼 출력 X -->
+	        	<% if(pi.getCurrentPage() != 1){ %>
+	        		<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=pi.getCurrentPage()-1%>';">&lt;</button>
+	        	<% } %>
+	        	
+	        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+	        		<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=p%>';"><%= p %></button>
+	        	<% } %>
+	        	
+	        	<!-- 마지막페이지일 때 -->
+	        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+	            	<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=pi.getCurrentPage()+1%>'">&gt;</button>
+	            <% } %>
+            
+        </div>
             <br><br><br><br><br><br><br>
 
         </div>
