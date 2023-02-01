@@ -180,15 +180,6 @@ td {
             })
             </script>
 
-			<script>
-            $(function(){
-            	$("#btn1").click(function(){
-            		location.href="<%=contextPath%>/update.co";
-					})
-				})
-			</script>
-			<br> <br>
-
 		</div>
 
 		<div class="consultAnswer">

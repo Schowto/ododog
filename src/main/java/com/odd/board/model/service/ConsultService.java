@@ -16,9 +16,9 @@ public class ConsultService {
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Consult> selectList(PageInfo pi, String userId){
+	public ArrayList<Consult> selectList(PageInfo pi, int userNo){
 		Connection conn = getConnection();
-		ArrayList<Consult> list = new ConsultDao().selectList(conn, pi, userId);
+		ArrayList<Consult> list = new ConsultDao().selectList(conn, pi, userNo);
 		close(conn);
 		return list;
 	}
@@ -41,13 +41,28 @@ public class ConsultService {
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<Consult> selectConsult(String userId){
+	public ArrayList<Consult> selectConsult(int userNo){
 		Connection conn = getConnection();
-		ArrayList<Consult> list = new ConsultDao().selectConsult(conn,userId);
+		ArrayList<Consult> list = new ConsultDao().selectConsult(conn,userNo);
 		close(conn);
 		return list;
 	}
 	
+	
+	public int insertConsult(int userNo, Consult c) {
+		Connection conn = getConnection();
+		int result = new ConsultDao().insertConsult(conn,userNo, c);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
 	
 	
 	
