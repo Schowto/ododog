@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList , com.odd.common.model.vo.PageInfo, com.odd.product.model.vo.Product, java.text.SimpleDateFormat, com.odd.product.model.vo.AdminProSearch" %>
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.Product, com.odd.product.model.vo.AdminProSearch" %>
 
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품 검색 및 관리</title>
 
 <style>
     
@@ -310,9 +310,9 @@
         
     </div>
         
+        
+       <!-- 클릭시 모달에 상품 정보 불러오기  -->
        <script>
-       
-       // 클릭시 모달에 상품 정보 불러오기
        $(function(){
 	  		$(".list-area>tbody>tr").click(function(){
 	  			

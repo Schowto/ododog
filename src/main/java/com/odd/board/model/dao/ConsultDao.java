@@ -32,7 +32,7 @@ public class ConsultDao {
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Consult> selectList(Connection conn, PageInfo pi, String userId) {
+	public ArrayList<Consult> selectList(Connection conn, PageInfo pi, int userNo) {
 
 		ArrayList<Consult> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -46,7 +46,7 @@ public class ConsultDao {
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit() - 1;
 			
-			pstmt.setString(1, userId);
+			pstmt.setInt(1, userNo);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
 			
@@ -107,7 +107,7 @@ public class ConsultDao {
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<Consult> selectConsult(Connection conn, String userId){
+	public ArrayList<Consult> selectConsult(Connection conn, int userNo){
 		
 		ArrayList<Consult> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -116,7 +116,7 @@ public class ConsultDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userId);
+			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -148,7 +148,32 @@ public class ConsultDao {
 		
 	}
 	
-	
+	public int insertConsult(Connection conn, int userNo, Consult c) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertConsult");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,  userNo);
+			pstmt.setString(2, c.getConsultTitle());
+			pstmt.setString(3, c.getConsultContent());
+			pstmt.setString(4, c.getOriginName());
+			pstmt.setString(5, c.getFilePath());
+			pstmt.setString(6, c.getConsultCategory());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

@@ -65,17 +65,25 @@
 		height:400px;
 		background: rgb(220,220,220);
 		border:none;
+		font-size:14px;
+		box-sizing: border-box;
 	}
 	.consultAnswer textarea{
 		display:none;
 	}
-	.blink:hover{
-		opacity:0.7;
-		cursor:pointer;
+	.consultEnroll input[type=text]{
+		width:400px;
+		border:1px solid rgb(220,220,220);
+		height:20px;
+		color:rgb(50, 50, 50);
 	}
 	button{
 		width:70px;
 		height:30px;
+	}
+	.blink:hover{
+		opacity:0.7;
+		cursor:pointer;
 	}
 	@keyframes blink-effect {
 		50%{
@@ -131,44 +139,39 @@
 			<br><br><br><br>
 
 			<div class="consultEnroll">
-				<form action="<%=contextPath %>/enroll.co" method="post">
-					<table>
+				<table>
 						<tr>
-							<td style="width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;제목</td>
-							<td>
+							<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
+							<td style="width:50%; border-right:1px solid rgb(220,220,220);">
 								&nbsp;&nbsp;
 								<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>" readonly>
 							</td>
+							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카데고리</td>
+							<td style="width:30%">
+								<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>">
+							</td>
 						</tr>
 						<tr>
-							<td colspan=2>
+							<td colspan="4">
 								<br>
-								<textarea name="" id="" style="resize:none; padding:40px;" readonly><%=c.getConsultContent()%></textarea>
+								<textarea name="consultContent" style="resize:none;" readonly><%=c.getConsultContent()%></textarea>
 								<br><br>
 							</td>
 						</tr>
 						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 1</td>
-							<td>
-								<%if(c.getOriginName() != null){ %>
-									&nbsp;&nbsp;<input type="file value="<%=c.getOriginName() %>">
-								<%}else{ %>
-									첨부파일이 없습니다.
-								<%} %>
-							</td>
+							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 1</td>
+							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile1" value="<%=c.getOriginName()%>"></td>
+						</tr>
+						<tr>
+							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 2</td>
+							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile2" value="<%=c.getOriginName()%>"></td>
+						</tr>
+						<tr>
+							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 3</td>
+							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile3" value="<%=c.getOriginName()%>"></td>
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 2</td>
-							<td>
-								<%if(c.getOriginName() != null){ %>
-									&nbsp;&nbsp;<input type="file" value="<%=c.getOriginName() %>">
-								<%}else{ %>
-									첨부파일이 없습니다.
-								<%} %>
-							</td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 3</td>
 							<td>
 								<%if(c.getOriginName() != null){ %>
 									&nbsp;&nbsp;<input type="file" value="<%=c.getOriginName() %>">
@@ -217,9 +220,7 @@
 						<button type="submit" class="btnUpdate">수정</button>
 						<button class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
 					</div>
-    				
-    				
-				</form>
+    					
 
 		</div>
 
