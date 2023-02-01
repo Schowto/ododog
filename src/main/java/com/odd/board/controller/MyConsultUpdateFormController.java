@@ -1,16 +1,19 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.odd.board.model.vo.Consult;
+
 /**
  * Servlet implementation class MyConsultUpdateFormController
  */
-@WebServlet("/update.co")
+@WebServlet("/updateform.co")
 public class MyConsultUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +30,15 @@ public class MyConsultUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/board/myConsultUpdateForm.jsp").forward(request,response);
+		int consultNo = Integer.parseInt(request.getParameter("no"));
+		
+		Consult c = ConsultService().selectBoard(consultNo);
+		
+		request.setAttribute("c", c);
+		
+		request.getRequestDispatcher("views/board/myConsultUpdateForm.jsp").forward(request, response);
+		
+		
 	}
 
 	/**

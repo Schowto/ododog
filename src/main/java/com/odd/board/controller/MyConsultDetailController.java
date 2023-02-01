@@ -1,11 +1,17 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.odd.board.model.service.ConsultService;
+import com.odd.board.model.vo.Consult;
+import com.odd.member.model.vo.Member;
 
 /**
  * Servlet implementation class MyConsultDetailController
@@ -27,7 +33,26 @@ public class MyConsultDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/board/myConsultDetailView.jsp").forward(request,response);
+		HttpSession session = request.getSession();
+		
+		int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
+		int consultNo = Integer.parseInt(request.getParameter("no"));
+		
+		Consult c = ConsultService().selectConsult(userNo, consultNo);
+		
+		if(c != null) {
+			request.setAttribute("c", c);
+			request.getRequestDispatcher("views/board/myConsultDetailView.jsp").forward(request,response);
+		}else {
+			request.setAttribute("alertMsg", "상세조회 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+		
+		
+	}
+
+	private Object ConsultService() {
+		return null;
 	}
 
 	/**

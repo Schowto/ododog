@@ -107,12 +107,12 @@ public class ConsultDao {
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<Consult> selectConsult(Connection conn, int userNo){
+	public ArrayList<Consult> selectAllConsult(Connection conn, int userNo){
 		
 		ArrayList<Consult> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectConsult");
+		String sql = prop.getProperty("selectAllConsult");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -148,6 +148,13 @@ public class ConsultDao {
 		
 	}
 	
+	/**
+	 * 맞춤상담 등록
+	 * @param conn
+	 * @param userNo
+	 * @param c
+	 * @return
+	 */
 	public int insertConsult(Connection conn, int userNo, Consult c) {
 		
 		int result = 0;
@@ -176,7 +183,45 @@ public class ConsultDao {
 	}
 	
 	
-	
+	public Consult selectConsult(Connection conn, int userNo, int consultNo) {
+		
+		Consult c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectConsult");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, consultNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				c = new Consult(rset.getInt("consult_no"),
+						        rset.getInt("user_no"),
+						        rset.getString("consult_title"),
+						        rset.getString("consult_content"),
+						        rset.getDate("enroll_date"),
+						        rset.getDate("modify_date"),
+						        rset.getString("consult_answer"),
+						        rset.getDate("answer_date"),
+						        rset.getString("status"),
+						        rset.getString("origin_name"),
+						        rset.getString("file_path"),
+						        rset.getString("consult_category"),
+						        rset.getInt("respondents"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return c;
+		
+	}
 	
 	
 	

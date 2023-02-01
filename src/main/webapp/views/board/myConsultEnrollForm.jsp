@@ -51,6 +51,7 @@
 		height:50px;
 		color:rgb(50, 50, 50);
 		border-bottom:1px solid rgb(220,220,220);
+		font-size:14px;
 	}
 	.consultEnroll input[type=text]{
 		width:300px;
@@ -72,7 +73,7 @@
 </style>
 </head>
 <body>
-
+	
 	<%@ include file="../common/userMenubar.jsp" %>
 
 	<div class="outer">
@@ -108,64 +109,43 @@
 						<tr>
 							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
 							<td style="width:40%; border-right:1px solid rgb(220,220,220);">
-								&nbsp;&nbsp;<input type="text" name="consultTitle">
+								&nbsp;&nbsp;<input type="text" name="consultTitle" required>
 							</td>
 							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
 							<td style="width:40%">
-								&nbsp;&nbsp;<input type="text" name="consultCategory" placeholder="배송, 결제, 주문 등등">
+								&nbsp;&nbsp;<input type="text" name="consultCategory" placeholder="배송, 결제, 주문, 기타">
 							</td>
 						</tr>
 						<tr>
 							<td colspan="4">
 								<br>
-								<textarea name="consultContent" style="resize:none;"></textarea>
+								<textarea name="consultContent" style="resize:none;" required></textarea>
 								<br><br>
 							</td>
 						</tr>
 						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 1</td>
-							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile1"></td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 2</td>
-							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile2"></td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 3</td>
-							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile3"></td>
+							<td style="border-right:1px solid rgb(220,220,220);">첨부파일</td>
+							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile"></td>
 						</tr>
 					</table>
 					
 					<br>
 
 					<div align="center">
-						<button type="submit">등록</button>
-						<button type="reset" id="resetBtn">취소</button>
+						<button type="submit" id="enrollBtn">등록</button>
+						<button type="reset">취소</button>
 					</div>
 					
 				</form>
 			</div>
 
-			<script>
-				$(function(){
-					$("#btn1, #btn2").click(function(){
-						location.href="<%=contextPath%>/consult.co";
-					});
-				})
-			</script>
-
 		</div>
 
-
-
-
-
-
-
+	<%@ include file="../common/userFooterbar.jsp" %>
 		
 	</div>
 	
-	<%@ include file="../common/userFooterbar.jsp" %>
+	
 
 </body>
 </html>

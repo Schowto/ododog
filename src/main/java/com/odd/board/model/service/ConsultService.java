@@ -41,9 +41,9 @@ public class ConsultService {
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<Consult> selectConsult(int userNo){
+	public ArrayList<Consult> selectAllConsult(int userNo){
 		Connection conn = getConnection();
-		ArrayList<Consult> list = new ConsultDao().selectConsult(conn,userNo);
+		ArrayList<Consult> list = new ConsultDao().selectAllConsult(conn,userNo);
 		close(conn);
 		return list;
 	}
@@ -62,6 +62,14 @@ public class ConsultService {
 		close(conn);
 		
 		return result;
+	}
+	
+	public Consult selectConsult(int userNo, int consultNo) {
+		Connection conn = getConnection();
+		Consult c = new ConsultDao().selectConsult(conn, userNo, consultNo);
+		
+		close(conn);
+		return c;
 	}
 	
 	

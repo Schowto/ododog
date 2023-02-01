@@ -33,7 +33,8 @@
 	
 	
 	
-	<entry key="selectConsult">
+	<entry key="selectAllConsult">
+	<!-- 왜 ambiguously가 뜰까 -->
 		SELECT 
 			   CONSULT_NO
 			 , M.USER_NO
@@ -49,9 +50,9 @@
 		     , CONSULT_CATEGORY
 		     , RESPONDENTS
 		  FROM CONSULT C
-		  JOIN MEMBER M USING (USER_NO)
-		 WHERE USER_NO = ?
-		   AND STATUS = 'Y'
+		  JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
+		 WHERE M.USER_NO = ?
+		   AND C.STATUS = 'Y'
 	</entry>
 
 	<entry key="insertConsult">
@@ -80,7 +81,27 @@
 		  )
 	</entry>
 
-
+	<entry key="selectConsult">
+		SELECT 
+		       CONSULT_NO
+			 , M.USER_NO
+		     , CONSULT_TITLE
+		     , CONSULT_CONTENT
+		     , C.ENROLL_DATE
+		     , C.MODIFY_DATE
+		     , CONSULT_ANSWER
+		     , ANSWER_DATE
+		     , C.STATUS
+		     , ORIGIN_NAME
+		     , FILE_PATH
+		     , CONSULT_CATEGORY
+		     , RESPONDENTS
+		  FROM CONSULT C
+		  JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
+		 WHERE USER_NO = ?
+		   AND CONSULT_NO = ?
+		   AND STATUS = 'Y'
+	</entry>
 
 
 

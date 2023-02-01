@@ -146,7 +146,7 @@
 								&nbsp;&nbsp;
 								<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>" readonly>
 							</td>
-							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카데고리</td>
+							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
 							<td style="width:30%">
 								<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>">
 							</td>
@@ -159,27 +159,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 1</td>
-							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile1" value="<%=c.getOriginName()%>"></td>
+							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 </td>
+							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile" value="<%=c.getOriginName()%>" readonly></td>
 						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 2</td>
-							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile2" value="<%=c.getOriginName()%>"></td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 3</td>
-							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile3" value="<%=c.getOriginName()%>"></td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 2</td>
-							<td>
-								<%if(c.getOriginName() != null){ %>
-									&nbsp;&nbsp;<input type="file" value="<%=c.getOriginName() %>">
-								<%}else{ %>
-									첨부파일이 없습니다.
-								<%} %>
-							</td>
-						</tr>
+						
 					</table>
 					<br>
 					
@@ -192,7 +175,7 @@
 						<tr>
 							<td colspan="2">
 								<br>
-								<textarea class="answer" style="padding:40px;"><%=c.getConsultAnswer()%></textarea>
+								<textarea class="answer" style="padding:40px;" readonly><%=c.getConsultAnswer()%></textarea>
 								<br><br>
 							</td>
 						</tr>
@@ -220,6 +203,14 @@
 						<button type="submit" class="btnUpdate">수정</button>
 						<button class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
 					</div>
+					
+					<script>
+						$(function(){
+							$(".btnUpdate").click(function(){
+								location.href="<%=contextPath%>/updateForm.co";
+							})
+						})
+					</script>
     					
 
 		</div>
