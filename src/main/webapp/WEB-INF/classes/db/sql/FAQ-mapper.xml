@@ -56,7 +56,7 @@
 	 WHERE CONTACT_NO = ?
 </entry>
 
-<entry key="serchFAQ">
+<entry key="searchFAQ">
 	SELECT
 		  CONTACT_NO	
 		, CATEGORY 

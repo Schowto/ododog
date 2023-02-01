@@ -165,9 +165,9 @@ public class MemberService {
 
 	public ArrayList<Point> selectPointList(int userNo) {
 		Connection conn = getConnection();
-		ArrayList<Point> list = new MemberDao().selectPointList(conn, userNo);
+		ArrayList<Point> plist = new MemberDao().selectPointList(conn, userNo);
 		close(conn);
-		return list;
+		return plist;
 	}
 		
 	

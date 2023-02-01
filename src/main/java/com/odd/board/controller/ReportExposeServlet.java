@@ -1,7 +1,6 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,20 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.board.model.service.BoardService;
-import com.odd.board.model.vo.Reply;
-import com.odd.member.model.vo.Member;
+import com.odd.board.model.service.FAQService;
 
 /**
- * Servlet implementation class AjaxReplyInsertController
+ * Servlet implementation class ReportExposeServlet
  */
-@WebServlet("/rinsert.bo")
-public class AjaxReplyInsertController extends HttpServlet {
+@WebServlet("/expose.rp")
+public class ReportExposeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxReplyInsertController() {
+    public ReportExposeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +29,19 @@ public class AjaxReplyInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int reportNo = Integer.parseInt(request.getParameter("no"));
 		
-		String replyContent = request.getParameter("content");
-		int boardType = Integer.parseInt(request.getParameter("boardType"));
-		int boardNo = Integer.parseInt(request.getParameter("no"));
-		int replyWriter = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
+		int result = new BoardService().exposeReport(reportNo);
 		
-		Reply r = new Reply();
-		r.setReplyContent(replyContent);
-		r.setBoardType(boardType);
-		r.setBoardNo(boardNo);
-		r.setReplyWriter(String.valueOf(replyWriter));
-		
-		int result = new BoardService().insertReply(r);
-		response.getWriter().print(result);
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "블라인드 해제 되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.rp");
+		}else {
+			request.setAttribute("errorMsg", "블라인드 해제 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
+	
 	}
 
 	/**

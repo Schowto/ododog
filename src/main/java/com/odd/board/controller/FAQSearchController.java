@@ -1,6 +1,7 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.board.model.service.BoardService;
-import com.odd.board.model.vo.Reply;
-import com.odd.member.model.vo.Member;
+import com.odd.board.model.service.FAQService;
+import com.odd.board.model.vo.FAQ;
 
 /**
- * Servlet implementation class AjaxReplyInsertController
+ * Servlet implementation class FAQSerchController
  */
-@WebServlet("/rinsert.bo")
-public class AjaxReplyInsertController extends HttpServlet {
+@WebServlet("/search.faq")
+public class FAQSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxReplyInsertController() {
+    public FAQSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +32,16 @@ public class AjaxReplyInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String replyContent = request.getParameter("content");
-		int boardType = Integer.parseInt(request.getParameter("boardType"));
-		int boardNo = Integer.parseInt(request.getParameter("no"));
-		int replyWriter = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
+		request.setCharacterEncoding("UTF-8");
 		
-		Reply r = new Reply();
-		r.setReplyContent(replyContent);
-		r.setBoardType(boardType);
-		r.setBoardNo(boardNo);
-		r.setReplyWriter(String.valueOf(replyWriter));
+		String keyword = request.getParameter("keyword");
 		
-		int result = new BoardService().insertReply(r);
-		response.getWriter().print(result);
+		ArrayList<FAQ> list = new FAQService().searchFAQ(keyword);
+		
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
+		
+		
 	}
 
 	/**

@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+
+	<entry key="selectFoodList">
+		SELECT 
+				PRO_NAME
+		      , PRICE
+			  , THUMB_IMG
+		     FROM PRODUCT
+	 WHERE CATEGORY = '주식'	     
+	
+	</entry>
+	
+	<entry key="selectDryList">
+		SELECT			
+				PRO_NAME
+		      , PRICE
+			  , THUMB_IMG
+			  FROM PRODUCT
+	 WHERE CATEGORY = '건조간식'	     
+	
+	</entry>
+	
+	<entry key="selectOvenList">
+		SELECT 
+				PRO_NAME
+		      , PRICE
+			  , THUMB_IMG
+		     FROM PRODUCT
+	 WHERE CATEGORY = '오븐간식'	     
+	
+	</entry>
+	
+	<entry key="selectPartyList">
+	SELECT 
+				PRO_NAME
+		      , PRICE
+			  , THUMB_IMG
+		     FROM PRODUCT
+	 WHERE CATEGORY = 'PARTY'	     
+	
+	</entry>
+	
+	
 	<entry key="detailProduct">
 		SELECT PRO_NAME
-		   	 , PRICE
-		   	 , thumImg
-		FROM PRODUCT
+	     , PRICE
+	       FROM PRODUCT
+    WHERE PRO_NAME = '주식 1'
 	
 	</entry>
 
@@ -14,4 +56,6 @@
 			FROM PRO_ATT
 				
 	</entry>
+	
+	
 </properties>

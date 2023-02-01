@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*
+    , com.odd.member.model.vo.Point"%>
 
 <%
 	MemberService ms = new MemberService();
 
 	ArrayList<Member> list = ms.selectMemberList();
 	
+	ArrayList<Point> plist = (ArrayList<Point>)request.getAttribute("plist");
 	
 %>
 
@@ -165,27 +167,27 @@
         		
     		$.ajax({
     			url:"<%=contextPath%>/list.po",
-    			<% for(Member m : list){ %> 
-    			data:{no:<%=m.getUser_No()%>},
-    			<% }%>
-    			success:function(list){
+    			data:{no:userNo},
+    			success:function(plist){ // 
     				
-    				//console.log(list);
+    				console.log(plist);  // [{}, {}, ...]
     				
     				let value = "";
-    				if(list.isEmpty()){ 
+    				
+    				if(plist.length == 0){ 
     					value += "<tr>"
     							+	"<td colspan='3'>조회된 적립금이 없습니다</td>"
     							+"</tr>";
-    				}else{ 
-    						value += "<tr>"
-    								+	"<td>" + list[i].pointDate + "</td>"
-    								+	"<td>" + list[i].pointUse + "</td>"
-    								+	"<td>" + list[i].pointPrice + "</td>"
-    								+"</tr>";
-    					
-    				}
-    				
+    				} else{ 
+        				for(let i=0; i<plist.length; i++){
+        					value += "<tr>"
+        							+ "<td>" + plist[i].pointDate + "</td>"
+        							+ "<td>" + plist[i].pointUse + "</td>"
+        							+ "<td>" + plist[i].pointPrice + "</td>"
+        							+ "</tr>";
+        				}
+        			}
+        			
     				$("#pointTbody").html(value);
     				
     				

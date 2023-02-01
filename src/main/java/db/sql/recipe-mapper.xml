@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		SELECT
+			   COUNT(*) count
+		  FROM RECIPE
+		 WHERE STATUS = 'Y'
+	</entry>
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT 
+		                       RECIPE_NO
+		                     , RECIPE_TITLE
+		                     , THUMBIMG
+		                     , (SELECT COUNT(*)
+		                          FROM REPLY
+		                         WHERE BOARD_TYPE = 3
+		                           AND BOARD_NO = RECIPE_NO
+		                       ) "REPLY_COUNT"
+		                  FROM RECIPE
+		                 WHERE STATUS = 'Y'
+		                 ORDER
+		                    BY RECIPE_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+</properties>

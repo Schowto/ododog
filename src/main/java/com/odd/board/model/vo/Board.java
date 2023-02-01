@@ -1,5 +1,7 @@
 package com.odd.board.model.vo;
 
+import java.sql.Date;
+
 public class Board {
 	
 	private int boardNo;
@@ -16,6 +18,63 @@ public class Board {
 	private int nextNo;
 	private String nextTitle;
 	
+	private int reportNo;
+	private int userNo; // 신고관리
+	private int reportSort;
+	private int postNo;
+	private String reportContent;
+	private String done;
+	private Date reportDate;
+	private int commentNo;
+	
+	
+	public int getReportNo() {
+		return reportNo;
+	}
+	public void setReportNo(int reportNo) {
+		this.reportNo = reportNo;
+	}
+	public int getUserNo() {
+		return userNo;
+	}
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+	public int getReportSort() {
+		return reportSort;
+	}
+	public void setReportSort(int reportSort) {
+		this.reportSort = reportSort;
+	}
+	public String getReportContent() {
+		return reportContent;
+	}
+	public void setReportContent(String reportContent) {
+		this.reportContent = reportContent;
+	}
+	public String getDone() {
+		return done;
+	}
+	public void setDone(String done) {
+		this.done = done;
+	}
+	public Date getReportDate() {
+		return reportDate;
+	}
+	public void setReportDate(Date reportDate) {
+		this.reportDate = reportDate;
+	}
+	public Board(int reportNo, int userNo, int postNo, int commentNo, String reportContent,
+			Date reportDate ,String done) {
+		super();
+		this.reportNo = reportNo;
+		this.userNo = userNo;
+		this.postNo= postNo;
+		this.commentNo = commentNo;
+		this.reportContent = reportContent;
+		this.reportDate = reportDate;
+		this.done = done;
+	}
 	public Board() {};
 	public Board(int boardNo, int boardType, String boardTitle, String boardContent, String boardWriter, int count,
 			String createDate, String status, int prevNo, String prevTitle, int nextNo, String nextTitle) {
@@ -141,5 +200,18 @@ public class Board {
 				+ ", boardContent=" + boardContent + ", boardWriter=" + boardWriter + ", count=" + count
 				+ ", createDate=" + createDate + ", status=" + status + "]";
 	}
+	public int getPostNo() {
+		return postNo;
+	}
+	public void setPostNo(int postNo) {
+		this.postNo = postNo;
+	}
+	public int getCommentNo() {
+		return commentNo;
+	}
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
+	}
+	
 	
 }

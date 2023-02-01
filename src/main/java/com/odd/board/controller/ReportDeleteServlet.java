@@ -1,7 +1,6 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,20 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.board.model.service.BoardService;
-import com.odd.board.model.vo.Reply;
-import com.odd.member.model.vo.Member;
+import com.odd.board.model.service.FAQService;
 
 /**
- * Servlet implementation class AjaxReplyInsertController
+ * Servlet implementation class ReportDeleteServlet
  */
-@WebServlet("/rinsert.bo")
-public class AjaxReplyInsertController extends HttpServlet {
+@WebServlet("/delete.rp")
+public class ReportDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxReplyInsertController() {
+    public ReportDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +30,17 @@ public class AjaxReplyInsertController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String replyContent = request.getParameter("content");
-		int boardType = Integer.parseInt(request.getParameter("boardType"));
-		int boardNo = Integer.parseInt(request.getParameter("no"));
-		int replyWriter = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
+		int reportNo = Integer.parseInt(request.getParameter("no"));
 		
-		Reply r = new Reply();
-		r.setReplyContent(replyContent);
-		r.setBoardType(boardType);
-		r.setBoardNo(boardNo);
-		r.setReplyWriter(String.valueOf(replyWriter));
+		int result = new BoardService().deleteReport(reportNo);
 		
-		int result = new BoardService().insertReply(r);
-		response.getWriter().print(result);
+		if(result > 0) {
+			request.getSession().setAttribute("alertMsg", "블라인드처리 되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/list.rp");
+		}else {
+			request.setAttribute("errorMsg", "블라인드처리 실패");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		}
 	}
 
 	/**

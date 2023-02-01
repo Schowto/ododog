@@ -1,4 +1,4 @@
-package com.odd.board.controller;
+package com.odd.order.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.board.model.service.FAQService;
-import com.odd.board.model.vo.FAQ;
+import com.odd.order.model.vo.AdminOrder;
+
+
 
 /**
- * Servlet implementation class FAQSerchController
+ * Servlet implementation class AdminOrderSearchController
  */
-@WebServlet("/serch.faq")
-public class FAQSerchController extends HttpServlet {
+@WebServlet("/search.adOrd")
+public class AdminOrderSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQSerchController() {
+    public AdminOrderSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,11 +35,18 @@ public class FAQSerchController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		String keyword = request.getParameter("keyword");
+		ArrayList<AdminOrder> list = new ArrayList<>();
 		
-		ArrayList<FAQ> list = new FAQService().serchFAQ(keyword);
+		
+		if(!request.getParameter("cpage").equals("1")) {
+			// 기본 화면
+		}
+		
+		request.setAttribute("list",list);
+		
+		request.getRequestDispatcher("views/product/adminProductSearchView.jsp").forward(request, response);
 	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

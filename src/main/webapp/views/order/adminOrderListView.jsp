@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>전체 주문 조회</title>
 
 <style>
 
@@ -57,6 +57,7 @@
 <body>
 
     <div class="wrap">
+    
  	    <%@ include file="../common/adminMenubarForInclude.jsp" %>
 
         <div id="content" align="center">

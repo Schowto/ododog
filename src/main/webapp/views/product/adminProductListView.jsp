@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
     
-<%@ page import="java.util.ArrayList , com.odd.common.model.vo.PageInfo, com.odd.product.model.vo.Product, java.text.SimpleDateFormat" %>
+<%@ page import="java.util.ArrayList , com.odd.common.model.vo.PageInfo, com.odd.product.model.vo.Product" %>
 
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>전체 상품 조회</title>
 
 <style>
 
@@ -56,9 +56,19 @@
 
 <body>
 
+
     <div class="wrap">
  	    <%@ include file="../common/adminMenubarForInclude.jsp" %>
-
+		
+		<!-- 관리자 로그인 확인 (마지막에 추가 예정)
+		<% if(loginAdmin == null) { %>
+		<script>
+			alert("로그인 후 사용해주시기바랍니다.");
+			history.back();
+		</script>
+		<% } %>
+		-->
+		 
         <div id="content" align="center">
         
         

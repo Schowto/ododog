@@ -9,6 +9,8 @@ public class Reply {
 	private String replyContent;
 	private String createDate;
 	private String status;
+	private int count;
+	
 	public Reply() {}
 	public Reply(int replyNo, int boardType, int boardNo, String replyWriter, String replyContent, String createDate,
 			String status) {
@@ -22,13 +24,15 @@ public class Reply {
 		this.status = status;
 	}
 	// selectReplyList
-	public Reply(int replyNo, String replyWriter, String replyContent, String createDate) {
+	public Reply(int replyNo, String replyWriter, String replyContent, String createDate, int count) {
 		super();
 		this.replyNo = replyNo;
 		this.replyWriter = replyWriter;
 		this.replyContent = replyContent;
 		this.createDate = createDate;
+		this.count = count;
 	}
+	
 	
 	public int getReplyNo() {
 		return replyNo;
@@ -72,6 +76,14 @@ public class Reply {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
 	@Override
 	public String toString() {
 		return "Reply [replyNo=" + replyNo + ", boardType=" + boardType + ", boardNo=" + boardNo + ", replyWriter="

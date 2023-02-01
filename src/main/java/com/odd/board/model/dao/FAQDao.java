@@ -148,11 +148,11 @@ public class FAQDao {
 		
 	}
 	
-	public ArrayList<FAQ> serchFAQ(Connection conn, String keyword){
+	public ArrayList<FAQ> searchFAQ(Connection conn, String keyword){
 		ArrayList<FAQ> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("serchFAQ");
+		String sql = prop.getProperty("searchFAQ");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
