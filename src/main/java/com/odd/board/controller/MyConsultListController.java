@@ -44,7 +44,43 @@ public class MyConsultListController extends HttpServlet {
 			
 		}else {
 			
+			String userId = (String)request.getAttribute("login.getUser_Id()");
 			
+			// 페이징처리
+			int listCount;
+			int currentPage;
+			int pageLimit;
+			int boardLimit;
+			
+			int maxPage;
+			int startPage;
+			int endPage;
+			
+			listCount = new ConsultService().selectListCount();
+			
+			currentPage = Integer.parseInt(request.getParameter("cpage"));
+			
+			pageLimit = 10;
+			boardLimit = 10;
+			
+			maxPage = (int)Math.ceil((double)listCount / boardLimit);
+			
+			startPage = (currentPage-1) / pageLimit * pageLimit + 1;
+			
+			endPage = startPage + pageLimit - 1;
+			
+			if(endPage > maxPage) {
+				endPage = maxPage;
+			}
+			
+			PageInfo pi = new PageInfo(listCount, currentPage, pageLimit,
+					                   boardLimit, maxPage, startPage, endPage);
+			
+			//응답페이지
+			ArrayList<Consult> list = new ConsultService().selectList(pi, userId);
+					
+			request.setAttribute("pi", pi);
+			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("views/board/myConsultListView.jsp").forward(request,response);
 			

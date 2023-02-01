@@ -135,12 +135,11 @@
    </entry>
    	<entry key="selectPointList">
 	SELECT
-		USER_NO ,
 		POINT_DATE ,
 		POINT_USE ,
 		POINT_PRICE
-	FROM POINT
-	JOIN MEMBER ON (USER_NO = USER_NO)
+	FROM POINT P
+	JOIN MEMBER M ON (P.USER_NO = M.USER_NO)
 	WHERE USER_NO = ?
 	</entry>
 	

@@ -5,6 +5,7 @@ import static com.odd.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.odd.board.model.dao.ConsultDao;
 import com.odd.board.model.vo.Consult;
 import com.odd.common.model.vo.PageInfo;
 
@@ -15,9 +16,9 @@ public class ConsultService {
 	 * @param pi
 	 * @return
 	 */
-	public ArrayList<Consult> selectList(PageInfo pi){
+	public ArrayList<Consult> selectList(PageInfo pi, String userId){
 		Connection conn = getConnection();
-		ArrayList<Consult> list = new ConsultService().selectList(conn, pi);
+		ArrayList<Consult> list = new ConsultDao().selectList(conn, pi, userId);
 		close(conn);
 		return list;
 	}
@@ -29,20 +30,20 @@ public class ConsultService {
 	 */
 	public int selectListCount() {
 		Connection conn = getConnection();
-		int result = new ConsultService().selectListCount();
+		int listCount = new ConsultDao().selectListCount(conn);
 		close(conn);
-		return result;
+		return listCount;
 		
 	}
 	
 	/**
-	 * 맞춤상담 조회
+	 * 맞춤상담 총조회
 	 * @param userId
 	 * @return
 	 */
 	public ArrayList<Consult> selectConsult(String userId){
 		Connection conn = getConnection();
-		ArrayList<Consult> list = new ConsultService().selectConsult(userId);
+		ArrayList<Consult> list = new ConsultDao().selectConsult(conn,userId);
 		close(conn);
 		return list;
 	}

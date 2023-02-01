@@ -3,8 +3,8 @@
 <%@ page
 	import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.Consult "%>
 <%
-PageInfo pi = (PageInfo) request.getAttribute("pi");
-ArrayList<Consult> list = (ArrayList<Consult>) request.getAttribute("list");
+	PageInfo pi = (PageInfo) request.getAttribute("pi");
+	ArrayList<Consult> list = (ArrayList<Consult>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -92,10 +92,6 @@ table {
 
 	<%@ include file="../common/userMenubar.jsp"%>
 
-	<%
-	String userId = loginUser.getUser_Id();
-	%>
-
 	<div class="outer">
 
 		<div id="side">
@@ -131,7 +127,7 @@ table {
 					<tr style="height: 50px;">
 						<td width="10%;">번호</td>
 						<td width="60%;">제목</td>
-						<td width="10%;">작성자</td>
+						<td width="10%;">카테고리</td>
 						<td width="10%;">작성일</td>
 						<td width="10%;">답변</td>
 					</tr>
@@ -153,7 +149,7 @@ table {
 						<tr>
 							<td><%=c.getConsultNo()%></td>
 							<td><%=c.getConsultTitle()%></td>
-							<td><%=c.getUserNo()%></td>
+							<td><%=c.getConsultCategory()%></td>
 							<td><%=c.getEnrollDate()%></td>
 							<td><%=c.getStatus()%></td>
 						</tr>
@@ -194,15 +190,9 @@ table {
 			<br>
 
 
-			<%
-			if (loginUser != null) {
-			%>
 			<div align="right">
 				<button id="btn1">글쓰기</button>
 			</div>
-			<%
-			}
-			%>
 
 			<script>
             $(function(){
@@ -236,6 +226,14 @@ table {
 
 		<%@ include file="../common/userFooterbar.jsp"%>
 	</div>
+	
+	<form action="<%=contextPath %>/list.co" method="post" id="userId">
+		<input type="hidden" name="userId" value="<%=userId %>" >
+	</form>
+	
+	<script>
+		document.getElementById(userId).ready();
+	</script>
 
 
 
