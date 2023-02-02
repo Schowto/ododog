@@ -64,9 +64,11 @@
 		  , CONSULT_TITLE
 		  , CONSULT_CONTENT
 		  , ENROLL_DATE
+		  , STATUS
 		  , ORIGIN_NAME
 		  , FILE_PATH
 		  , CONSULT_CATEGORY
+		  
 		  )
 		  VALUES
 		  (
@@ -75,9 +77,11 @@
 		  , ?
 		  , ?
 		  , SYSDATE
+		  , 'Y'
 		  , ?
 		  , ?
 		  , ?
+		  
 		  )
 	</entry>
 
@@ -98,9 +102,8 @@
 		     , RESPONDENTS
 		  FROM CONSULT C
 		  JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
-		 WHERE USER_NO = ?
-		   AND CONSULT_NO = ?
-		   AND STATUS = 'Y'
+		 WHERE C.CONSULT_NO = ?
+		   AND C.STATUS = 'Y'
 	</entry>
 
 

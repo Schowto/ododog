@@ -56,10 +56,10 @@ public class MyConsultUpdateController extends HttpServlet {
 			
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				c.setOriginName(multiRequest.getOriginalFileName("upfile"));
-				c.setFilePath(multiRequest.getFilesystemName("upfile" + "resources/consult_upfiles/"));
+				c.setFilePath(multiRequest.getFilesystemName("resources/consult_upfiles/" + "upfile"));
 			}
 			
-			int result = new ConsultService().updateConsult(c);
+			int result = new ConsultService().updateConsult(consultNo);
 			
 			if(result > 0) {
 				request.getSession().setAttribute("alertMsg", "성공적으로 수정되었습니다.");

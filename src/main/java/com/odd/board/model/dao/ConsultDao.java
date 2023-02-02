@@ -183,7 +183,7 @@ public class ConsultDao {
 	}
 	
 	
-	public Consult selectConsult(Connection conn, int userNo, int consultNo) {
+	public Consult selectConsult(Connection conn, int consultNo) {
 		
 		Consult c = null;
 		PreparedStatement pstmt = null;
@@ -192,8 +192,7 @@ public class ConsultDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, userNo);
-			pstmt.setInt(2, consultNo);
+			pstmt.setInt(1, consultNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -223,7 +222,25 @@ public class ConsultDao {
 		
 	}
 	
-	
+	public int updateConsult(Connection conn, int consultNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateConsult");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, consultNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 	
 	

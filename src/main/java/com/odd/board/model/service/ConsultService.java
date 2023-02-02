@@ -64,16 +64,25 @@ public class ConsultService {
 		return result;
 	}
 	
-	public Consult selectConsult(int userNo, int consultNo) {
+	public Consult selectConsult(int consultNo) {
 		Connection conn = getConnection();
-		Consult c = new ConsultDao().selectConsult(conn, userNo, consultNo);
+		Consult c = new ConsultDao().selectConsult(conn, consultNo);
 		
 		close(conn);
 		return c;
 	}
 	
 	
-	
+	public int updateConsult(int consultNo) {
+		
+		Connection conn = getConnection();
+		int result = new ConsultDao().updateConsult(conn, consultNo);
+		
+		close(conn);
+		return result;
+		
+		
+	}
 	
 	
 	

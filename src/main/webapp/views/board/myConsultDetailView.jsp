@@ -141,18 +141,23 @@
 			<div class="consultEnroll">
 				<table>
 						<tr>
+							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;번호</td>
+							<td style="width:10%; border-right:1px solid rgb(220,220,220);">
+								&nbsp;&nbsp;
+								<input type="text" name="consultNo" value="<%=c.getConsultNo()%>" readonly>
+							</td>
 							<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
-							<td style="width:50%; border-right:1px solid rgb(220,220,220);">
+							<td style="width:40%; border-right:1px solid rgb(220,220,220);">
 								&nbsp;&nbsp;
 								<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>" readonly>
 							</td>
 							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
-							<td style="width:30%">
-								<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>">
+							<td style="width:20%">
+								<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>" readonly>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="4">
+							<td colspan="6">
 								<br>
 								<textarea name="consultContent" style="resize:none;" readonly><%=c.getConsultContent()%></textarea>
 								<br><br>
@@ -160,7 +165,7 @@
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 </td>
-							<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile" value="<%=c.getOriginName()%>" readonly></td>
+							<td colspan="5">&nbsp;&nbsp;<input type="file" name="upfile" value="<%=c.getOriginName()%>" readonly></td>
 						</tr>
 						
 					</table>
@@ -173,7 +178,7 @@
 							<td class="blink">&nbsp;&nbsp;안녕하세요 오도독(DOG)입니다. 문의에 대해 답변드립니다.</td>
 						</tr>
 						<tr>
-							<td colspan="2">
+							<td colspan="6">
 								<br>
 								<textarea class="answer" style="padding:40px;" readonly><%=c.getConsultAnswer()%></textarea>
 								<br><br>
@@ -199,15 +204,15 @@
 					<br>
 		
 					<div align="center">
-						<button type="submit" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
+						<button type="button" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
 						<button type="submit" class="btnUpdate">수정</button>
-						<button class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
+						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
 					</div>
 					
 					<script>
 						$(function(){
 							$(".btnUpdate").click(function(){
-								location.href="<%=contextPath%>/updateForm.co";
+								location.href='<%=contextPath%>/updateForm.co?no=<%=c.getConsultNo()%>';
 							})
 						})
 					</script>
