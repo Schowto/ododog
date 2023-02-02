@@ -1,19 +1,21 @@
 package com.odd.product.model.service;
 
-import static com.odd.common.JDBCTemplate.getConnection;
+import static com.odd.common.JDBCTemplate.*;
 
 import java.sql.Connection;
-import static com.odd.common.JDBCTemplate.*;
+import java.util.ArrayList;
+
 import com.odd.product.model.dao.UserProductDao;
-import com.odd.product.model.vo.ProductDetail;
+import com.odd.product.model.vo.ProAtt;
+
 
 public class ProductDetailService {
 
-	public ProductDetail selectProductDetail(String proName, int price) {
+	public ArrayList<ProAtt> productDetail(int productNo){
 		
 		Connection conn = getConnection();
-		ProductDetail p = new UserProductDao().selectProductDetail(conn, proName, price);
+		ArrayList<ProAtt> list = new UserProductDao().productDetail(conn);
 		close(conn);
-		return p;
+		return list;
 	}
 }

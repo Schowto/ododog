@@ -119,6 +119,13 @@ public class ProAtt {
 				+ changeName + ", filePath=" + filePath + ", uploadDate=" + uploadDate + ", status=" + status
 				+ ", fileLevel=" + fileLevel + "]";
 	}
+
+	public ProAtt(int proNo, String filePath, int fileLevel) {
+		super();
+		this.proNo = proNo;
+		this.filePath = filePath;
+		this.fileLevel = fileLevel;
+	}
 	
 	
 	

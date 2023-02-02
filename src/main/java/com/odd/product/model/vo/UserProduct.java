@@ -133,6 +133,15 @@ public class UserProduct {
 		this.price = price;
 		this.thumbImg = thumbImg;
 	}
+
+	public UserProduct(int proNo, String proName, int price, String thumbImg) {
+		super();
+		this.proNo = proNo;
+		this.proName = proName;
+		this.price = price;
+		this.thumbImg = thumbImg;
+	}
+	
 	
 
 

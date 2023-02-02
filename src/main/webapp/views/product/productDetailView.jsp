@@ -63,13 +63,13 @@ input[type=number]::-webkit-inner-spin-button {
 			<div class="left">
 				<div class="file-area">
 					<!--대표이미지-->
-					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
+					<img src="<%=contextPath%>/"
 						width="400px" height="400px">
 				</div>
 
 				<div class="float-file">
 					<!--미리보기1-->
-					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
+					<img src="<%=contextPath%>/"
 						width="100px" height="100px">
 				</div>
 
