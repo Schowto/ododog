@@ -93,19 +93,19 @@
                 <table>
                     <tr>
                         <td style="width:100px;">레시피 이름</td>
-                        <td style="padding:10px 30px;"><input type="text" name="title" style="width:350px;"></td>
+                        <td style="padding:10px 30px;"><input type="text" name="title" style="width:350px;" required></td>
                         <td rowspan="2" align="center" style="padding-left:30px;">
                             <img id="thumbnail-img" style="width:200px; height:150px;">
                             <label id="input-thumbnail-btn" for="input-thumbnail">
                                 대표 이미지 등록
                             </label>
-                            <input type="file" id="input-thumbnail" name="thumbImg" accept="image/*" onchange="loadThumb(this);" style="display:none;">
+                            <input type="file" id="input-thumbnail" name="thumbImg" accept="image/*" onchange="loadThumb(this);" style="display:none;" required>
                         </td>
                     </tr>
                     <tr>
                         <td>레시피 소개</td>
                         <td style="padding:10px 30px;">
-                            <textarea name="content" style="width:350px; height:80px; resize:none;"></textarea>
+                            <textarea name="content" style="width:350px; height:80px; resize:none;" required></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -228,7 +228,7 @@
                             </div>
                         </td>
                         <td width="430" style="padding:30px 10px;">
-                            <textarea name="cooking-content1" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
+                            <textarea name="cooking-content1" style="width:370px; height:120px; resize:none; border:1px solid gray" required></textarea>
                         </td>
                         <td width="200" align="center">
                             <img width="180" height="130" style="padding: 10px 0px;">
@@ -246,7 +246,7 @@
                             </div>
                         </td>
                         <td width="430" style="padding:30px 10px;">
-                            <textarea name="cooking-content2" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
+                            <textarea name="cooking-content2" style="width:370px; height:120px; resize:none; border:1px solid gray" required></textarea>
                         </td>
                         <td width="200" align="center">
                             <img width="180" height="130" style="padding: 10px 0px;">
@@ -285,7 +285,7 @@
                                    +        "<div style='background: rgb(200, 140, 140); width: 25px; height: 25px; border-radius: 25px; text-align: center; font-size: 17px; font-weight: 600; color: white;'>"+ (count + 1) +"</div>"
                                    +    "</td>"
                                    +    "<td width='430' style='padding: 30px 10px;''>"
-                                   +        "<textarea name='cooking-content" + (count+1) + "' style='width: 370px; height: 120px; resize: none; border: 1px solid gray'></textarea>"
+                                   +        "<textarea name='cooking-content" + (count+1) + "' style='width: 370px; height: 120px; resize: none; border: 1px solid gray' required></textarea>"
                                    +    "</td>"
                                    +    "<td width='200' align='center'>"
                                    +        "<img width='180' height='130' style='padding: 10px 0px;'>"

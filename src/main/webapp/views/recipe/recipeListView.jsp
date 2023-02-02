@@ -17,7 +17,6 @@
 
     /****** 사이드 ******/
     #side{
-        /*border:1px solid blue;*/
         width:20%; height:100%;
         padding:20px;
         color: rgb(50, 50, 50);
@@ -32,7 +31,6 @@
     
     /****** 내용 ******/
     #board-area{
-        /*border:1px solid blue;*/
         width:80%; height:100%;
         float:left;
     }
@@ -82,23 +80,19 @@
     }
 
     /* 정렬순서 */
-    .sort-filter{
-        list-style-type:none;
-        padding:0;
-        margin:0;
-        width:100%;
-        height:100%;
-    }
-    .sort-filter>li{
+    .sort-filter-area label{
+    	position:relative;
+    	margin:0px;
         border:1px solid rgb(220, 220, 220);
         border-radius: 5px;
         float:right;
         width:6%;
-        height:100%;
         cursor:pointer;
     }
-
-    .sort-filter{overflow:hidden}
+    .sort-filter-area input{
+    	position:absolute;
+        opacity:0;
+    }
 
     /* 썸네일 */
     .thumbnail{
@@ -255,18 +249,31 @@
 
             <br><br><br><br>
 
-            <ul class="sort-filter" style="font-size:13px;">
-            <li class>댓글순</li>
-            <li class>하트순</li>
-            <li class="selected">최신순</li>
-            </ul>
+            <div class="sort-filter-area" style="font-size:13px;">
+            	<label class="sort" style="border-radius:5px;">
+                    <input type="radio" name="sort-by" value="reply" style="cursor:pointer;">
+                    <span>댓글순</span>
+                </label>
+                <label class="sort" style="border-radius:5px;">
+                    <input type="radio" name="sort-by" value="heart" style="cursor:pointer;">
+                    <span>하트순</span>
+                </label>
+                <label class="sort selected" style="border-radius:5px;">
+                    <input type="radio" name="sort-by" value="new" style="cursor:pointer;">
+                    <span>최신순</span>
+                </label>
+            </div>
             <br>
 
             <script>
-                $(".sort-filter>li").click(function(){
+            	$(function(){
+            		
+            	})
+                $(".sort-filter-area label").click(function(){
                     //console.log($(this).text());
                     $(this).addClass('selected');
                     $(this).siblings().removeClass('selected');
+                    location.href = "<%= contextPath %>/list.re?cpage=1&sort=" + $(this).children("input").val();
                 })
             </script>
             

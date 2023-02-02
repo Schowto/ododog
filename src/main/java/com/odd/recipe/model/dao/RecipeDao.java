@@ -72,6 +72,32 @@ public class RecipeDao {
 		}
 		return list;
 	}
+	public ArrayList<Recipe> selectListSortByHeart(Connection conn, PageInfo pi){
+		ArrayList<Recipe> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectListSortByHeart");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Recipe(rset.getInt("recipe_no"),
+								    rset.getString("recipe_title"),
+								    rset.getString("thumbimg"),
+								    rset.getInt("reply_count")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	public int insertRecipe(Connection conn, Recipe r) {
 		// insert
