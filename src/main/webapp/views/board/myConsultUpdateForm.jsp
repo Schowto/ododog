@@ -163,6 +163,22 @@
 							</tr>
 							
 						</table>
+						
+						<br>
+						
+						<div align="center">
+						<button type="submit" class="btnUpdate">확인</button>
+						<button class="btn-red" onclick="location.href='<%=contextPath%>/list.co'">취소</button>
+					</div>
+    					
+    				<script>
+						$(function(){
+							$(".btnUpdate").click(function(){
+								location.href='<%=contextPath%>/updateForm.co?no=<%=c.getConsultNo()%>';
+							})
+						})
+					</script>
+						
 					</form>
 					<br>
 					
@@ -198,12 +214,7 @@
 
 					<br>
 		
-					<div align="center">
-						<button type="submit" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
-						<button type="submit" class="btnUpdate">수정</button>
-						<button class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
-					</div>
-    					
+					
 
 		</div>
 		<%@ include file="../common/userFooterbar.jsp" %>

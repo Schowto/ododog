@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.odd.board.model.service.ConsultService;
 import com.odd.board.model.vo.Consult;
 
 /**
@@ -32,11 +33,13 @@ public class MyConsultUpdateFormController extends HttpServlet {
 
 		int consultNo = Integer.parseInt(request.getParameter("no"));
 		
-		Consult c = ConsultService().selectBoard(consultNo);
+		Consult c = new ConsultService().selectConsult(consultNo);
 		
 		request.setAttribute("c", c);
-		
 		request.getRequestDispatcher("views/board/myConsultUpdateForm.jsp").forward(request, response);
+		
+		
+		
 		
 		
 	}

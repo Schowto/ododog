@@ -53,9 +53,9 @@ public class MyConsultInsertController extends HttpServlet {
 			
 			// DB에 기록할데이터 담기
 			
-			String consultTitle = request.getParameter("consultTitle");
-			String consultCategory = request.getParameter("consultCategory");
-			String consultContent = request.getParameter("consultContent");
+			String consultTitle = multiRequest.getParameter("consultTitle");
+			String consultCategory = multiRequest.getParameter("consultCategory");
+			String consultContent = multiRequest.getParameter("consultContent");
 			
 			HttpSession session = request.getSession();
 			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
@@ -67,7 +67,7 @@ public class MyConsultInsertController extends HttpServlet {
 			
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				c.setOriginName(multiRequest.getOriginalFileName("upfile"));
-				c.setFilePath(multiRequest.getFilesystemName("upfile" + "resources/consult_upfile/"));
+				c.setFilePath(multiRequest.getFilesystemName("resources/consult_upfile/" + "upfile"));
 			}
 			
 			
@@ -77,7 +77,7 @@ public class MyConsultInsertController extends HttpServlet {
 			// 응답페이지
 			if(result > 0) {
 				session.setAttribute("alertMsg", "1:1상담이 등록되었습니다.");
-				response.sendRedirect(request.getContextPath() + "list.co");
+				response.sendRedirect(request.getContextPath() + "/list.co");
 			}else {
 				if(c.getOriginName() != null) {
 					new File(savePath + c.getFilePath()).delete();
@@ -92,15 +92,6 @@ public class MyConsultInsertController extends HttpServlet {
 			
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 	}

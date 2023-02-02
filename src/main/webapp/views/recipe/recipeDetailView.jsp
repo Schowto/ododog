@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.recipe.model.vo.Recipe, com.odd.recipe.model.vo.Cooking" %>
+<%
+	Recipe r = (Recipe)request.getAttribute("r");
+	ArrayList<Cooking> list = (ArrayList<Cooking>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -137,16 +142,16 @@
             </div>
             <br><br><br><br><br><br>
 
-            <img src="https://recipe.bom.co.kr/uploads/posts/images/20220422/6262298eec8f5.png" width="400" height="300">
+            <img src="<%= r.getRecipeThumbImg() %>" width="400" height="300">
             <br><br><br>
-            <p style="font-weight:700; margin-bottom:10px;">오리스튜</p>
+            <p style="font-weight:700; margin-bottom:10px;"><%= r.getRecipeTitle() %></p>
             <div style="width:300px; font-size:13px;">
-                철분이 풍부해 소화가 쉽고 근육을 강하게 만드는 아미노산의 훌륭한 공급원인 오리! 오리고기로 만들어 보는 오리 스튜 만들기!
+                <%= r.getRecipeContent() %>
             </div>
             <br>
 
-            <div class="badges">모질개선</div>
-            <div class="badges">30분</div>
+            <div class="badges"><%= r.getEffect() %></div>
+            <div class="badges"><%= r.getTime() %></div>
 
             <div align="right" style="width:900px; font-size:12px;">
                 <img src="<%= contextPath %>/resources/icons/comment.png" width="18"> 2

@@ -33,12 +33,9 @@ public class MyConsultDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		
-		int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
 		int consultNo = Integer.parseInt(request.getParameter("no"));
 		
-		Consult c = ConsultService().selectConsult(userNo, consultNo);
+		Consult c = new ConsultService().selectConsult(consultNo);
 		
 		if(c != null) {
 			request.setAttribute("c", c);

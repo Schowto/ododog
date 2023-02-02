@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.odd.board.model.vo.Cooking;
+import com.odd.recipe.model.vo.Cooking;
 import com.odd.common.model.vo.PageInfo;
 import com.odd.recipe.model.vo.Recipe;
 
@@ -31,7 +31,6 @@ public class RecipeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectListCount");
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
@@ -116,6 +115,73 @@ public class RecipeDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	public int increaseCount(Connection conn, int recipeNo) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public Recipe selectRecipe(Connection conn, int recipeNo) {
+		Recipe r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectRecipe");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipeNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				r = new Recipe(rset.getInt("recipe_no"),
+							   rset.getString("recipe_title"),
+							   rset.getString("recipe_content"),
+							   rset.getString("thumbimg"),
+							   rset.getString("effect"),
+							   rset.getString("time"),
+							   rset.getString("ingredient"),
+							   rset.getInt("process_count"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return r;
+	}
+	public ArrayList<Cooking> selectCooking(Connection conn, int recipeNo) {
+		ArrayList<Cooking> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCooking");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipeNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Cooking c = new Cooking();
+				c.setCookingContent(rset.getString("cooking_content"));
+				c.setFilePath(rset.getString("file_path"));
+				list.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
 	}
 	
 }
