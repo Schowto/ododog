@@ -184,6 +184,7 @@
                         }
                     }
                 </script>
+                
                 <script>
                     // 효과, 소요시간 버튼 클릭
                     $(":checkbox").change(function () {
@@ -227,7 +228,7 @@
                             </div>
                         </td>
                         <td width="430" style="padding:30px 10px;">
-                            <textarea name="cooking-content" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
+                            <textarea name="cooking-content1" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
                         </td>
                         <td width="200" align="center">
                             <img width="180" height="130" style="padding: 10px 0px;">
@@ -245,7 +246,7 @@
                             </div>
                         </td>
                         <td width="430" style="padding:30px 10px;">
-                            <textarea name="cooking-content" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
+                            <textarea name="cooking-content2" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
                         </td>
                         <td width="200" align="center">
                             <img width="180" height="130" style="padding: 10px 0px;">
@@ -284,7 +285,7 @@
                                    +        "<div style='background: rgb(200, 140, 140); width: 25px; height: 25px; border-radius: 25px; text-align: center; font-size: 17px; font-weight: 600; color: white;'>"+ (count + 1) +"</div>"
                                    +    "</td>"
                                    +    "<td width='430' style='padding: 30px 10px;''>"
-                                   +        "<textarea name='cooking-content'" + (count+1) + " style='width: 370px; height: 120px; resize: none; border: 1px solid gray'></textarea>"
+                                   +        "<textarea name='cooking-content" + (count+1) + "' style='width: 370px; height: 120px; resize: none; border: 1px solid gray'></textarea>"
                                    +    "</td>"
                                    +    "<td width='200' align='center'>"
                                    +        "<img width='180' height='130' style='padding: 10px 0px;'>"

@@ -58,7 +58,7 @@ public class AdminRecipeInsertController extends HttpServlet {
 			r.setProcessCount(Integer.parseInt(multiRequest.getParameter("process-count")));
 			
 			if(multiRequest.getOriginalFileName("thumbImg") != null) {
-				r.setRecipeThumbImg(savePath + multiRequest.getFilesystemName("thumbImg"));
+				r.setRecipeThumbImg("resources/recipe_img/" + multiRequest.getFilesystemName("thumbImg"));
 			}
 			
 			// Cooking에 여러번 insert할 데이터 담기
@@ -71,8 +71,8 @@ public class AdminRecipeInsertController extends HttpServlet {
 					// 첨부파일이 있을 경우
 					Cooking cook = new Cooking();
 					cook.setCookingOrder(i);
-					cook.setCookingContent(content);
-					cook.setFilePath(savePath + multiRequest.getFilesystemName("imgName"));
+					cook.setCookingContent(multiRequest.getParameter(content));
+					cook.setFilePath("resources/recipe_img/" + multiRequest.getFilesystemName(imgName));
 					list.add(cook);
 				}
 			}

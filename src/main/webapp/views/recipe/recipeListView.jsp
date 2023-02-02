@@ -285,7 +285,7 @@
 	                <!-- 레시피 있는 경우 -->
 	                <div class="thumbnail" align="center">
 	                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
-	                        <img src="<%= r.getRecipeThumbImg() %>" width="100%" height="100%">
+	                        <img src="<%= r.getRecipeThumbImg() %>" width="100%" height="100%" onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>';">
 	                    </div>
 	                    <p style="margin:5px;"><%= r.getRecipeTitle() %></p>
 	                    <div align="right" style="width:250px; font-size:12px;" class="heart-area">
