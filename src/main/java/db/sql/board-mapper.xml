@@ -307,7 +307,7 @@
 	UPDATE REPORT
 	  SET DONE = 'N'
 	 WHERE REPORT_NO = ?
-</entry>
+	</entry>
 	<entry key="selectReportReplyList">
 	SELECT
 	    REPORT_NO ,
@@ -318,5 +318,4 @@
 	    DONE
 	   FROM REPORT
 	</entry>
-	
 </properties>

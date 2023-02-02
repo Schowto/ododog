@@ -104,4 +104,24 @@
 		 WHERE RECIPE_NO = ?
 	</entry>
 	
+	<entry key="insertHeart">
+		INSERT
+		  INTO HEART
+		  (
+		    RECIPE_NO
+		  , USER_NO
+		  )
+		  VALUES
+		  (
+		    ?
+		  , ?
+		  )
+	</entry>
+	<entry key="deleteHeart">
+		DELETE
+		  FROM HEART
+		 WHERE USER_NO = ?
+		   AND RECIPE_NO = ?
+	</entry>
+	
 </properties>
