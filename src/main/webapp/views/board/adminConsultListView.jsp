@@ -6,6 +6,7 @@
 	
 	//PageInfo pi = (PageInfo) request.getAttribute("pi");
 	ArrayList<Consult> list = (ArrayList<Consult>) request.getAttribute("list");
+	Consult c = (Consult)request.getAttribute("c");
 %>
 <!DOCTYPE html>
 <html>

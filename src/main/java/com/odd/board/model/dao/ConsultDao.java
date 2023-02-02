@@ -269,7 +269,27 @@ public class ConsultDao {
 		return result;
 	}
 	
-	
+	public int insertAnswer(Connection conn, int consultNo, String consultAnswer) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAnswer");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, consultAnswer);
+			pstmt.setInt(2, consultNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
 	
 	
 	

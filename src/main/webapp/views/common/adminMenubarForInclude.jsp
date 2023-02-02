@@ -234,6 +234,7 @@
                 <p>
                     <a href="<%=contextPath%>/FAQlist.ad">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFAQ</a>
                     <a href="<%=contextPath%>/list.rp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp신고관리</a>
+                    <a href="<%=contextPath%>/admin.co">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1:1상담관리</a>
                 </p>
             </div>
 
