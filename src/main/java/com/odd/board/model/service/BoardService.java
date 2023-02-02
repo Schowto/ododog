@@ -152,9 +152,9 @@ public class BoardService {
 	}
 	
 	//-- 댓글
-	public ArrayList<Reply> selectReplyList(int boardNo){
+	public ArrayList<Reply> selectReplyList(int boardNo, int boardType){
 		Connection conn = getConnection();
-		ArrayList<Reply> list = new BoardDao().selectReplyList(conn, boardNo);
+		ArrayList<Reply> list = new BoardDao().selectReplyList(conn, boardNo, boardType);
 		close(conn);
 		return list;
 	}

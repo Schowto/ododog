@@ -98,6 +98,12 @@
 		animation-iteration-count:infinite;
 		animation-timing-function:step-end;
 	}
+	.consultEnroll input[name=consultTitle]{
+
+	}
+	.consultEnroll input[name=consultCategory]{
+		
+	}
 </style>
 </head>
 <body>
@@ -131,14 +137,11 @@
 			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h2>
 			<br><br><br><br>
 
-			<div class="content">
-
-			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h2>
-			<br><br><br><br>
 
 			<div class="consultEnroll">
 				<form action="<%=contextPath%>/update.co" method="post" enctype="multipart/form-data">
 					<table>
+							<input type="hidden" name="consultNo" value="<%=c.getConsultNo()%>">
 							<tr>
 								<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
 								<td style="width:50%; border-right:1px solid rgb(220,220,220);">
@@ -147,6 +150,7 @@
 								</td>
 								<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
 								<td style="width:30%">
+									&nbsp;&nbsp;
 									<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>">
 								</td>
 							</tr>

@@ -259,7 +259,6 @@
                 <br><br><br><br><br>
 			</div>
                 
-                
 			<script>
 	        	$(function(){selectReplyList();})
 	        	
@@ -290,7 +289,10 @@
 	        	function selectReplyList(){
 	        		$.ajax({
 	        			url:"<%=contextPath%>/rlist.bo",
-	        			data:{no:<%= b.getBoardNo() %>},
+	        			data:{
+	        				no:<%= b.getBoardNo() %>,
+	        				boardType: <%= b.getBoardType() %>
+	        			},
 	        			success:function(list){
 	        				let value = "";
 	        				let replyCount = 0;
@@ -368,7 +370,7 @@
 	        					alert("댓글 등록 실패");
 	        				}
 	        			}, error:function(){
-	        				console.log("댓글작성용 ajax 통신실패")
+	        				console.log("댓글수정용 ajax 통신실패")
 	        			}
 	        		})
 	        	}
@@ -394,7 +396,7 @@
 	        					alert("댓글 삭제 실패");
 	        				}
 	        			}, error:function(){
-	        				console.log("댓글작성용 ajax 통신실패")
+	        				console.log("댓글삭제용 ajax 통신실패")
 	        			}
 	        		})
 	        	}
@@ -420,9 +422,6 @@
             		})
             	})
             </script>
-
-        
-
         </div>
 
 

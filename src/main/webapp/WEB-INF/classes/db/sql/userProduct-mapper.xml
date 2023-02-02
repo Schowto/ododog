@@ -4,7 +4,8 @@
 
 	<entry key="selectFoodList">
 		SELECT 
-				PRO_NAME
+				PRO_NO
+			  ,	PRO_NAME
 		      , PRICE
 			  , THUMB_IMG
 		     FROM PRODUCT
@@ -13,8 +14,9 @@
 	</entry>
 	
 	<entry key="selectDryList">
-		SELECT			
-				PRO_NAME
+		SELECT	
+				PRO_NO		
+			  ,	PRO_NAME
 		      , PRICE
 			  , THUMB_IMG
 			  FROM PRODUCT
@@ -24,7 +26,8 @@
 	
 	<entry key="selectOvenList">
 		SELECT 
-				PRO_NAME
+				PRO_NO
+			  ,	PRO_NAME
 		      , PRICE
 			  , THUMB_IMG
 		     FROM PRODUCT
@@ -34,7 +37,8 @@
 	
 	<entry key="selectPartyList">
 	SELECT 
-				PRO_NAME
+				PRO_NO
+			  ,	PRO_NAME
 		      , PRICE
 			  , THUMB_IMG
 		     FROM PRODUCT
@@ -44,10 +48,13 @@
 	
 	
 	<entry key="detailProduct">
-		SELECT PRO_NAME
-	     , PRICE
-	       FROM PRODUCT
-    WHERE PRO_NAME = '주식 1'
+		SELECT PRO_NO
+	       , PRO_NAME
+	       , PRICE
+	       , FILE_PATH
+	       , FILE_LEVEL
+	         FROM PRODUCT P JOIN PRO_ATT A
+	        ON P.PRO_NO=A.PRO_NO
 	
 	</entry>
 

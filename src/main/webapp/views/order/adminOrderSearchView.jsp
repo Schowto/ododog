@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.odd.order.model.vo.AdminOrder, com.odd.product.model.vo.AdminProSearch" %>
+<%@ page import="java.util.ArrayList, com.odd.order.model.vo.AdminOrder" %>
 
 <%
 	ArrayList<AdminOrder> list = (ArrayList<AdminOrder>)request.getAttribute("list");
@@ -81,6 +81,12 @@
      #header{
    	    z-index:-1;
      }
+     
+      #searchForm th{
+   	 	text-align:center;
+   	 	width:140px;
+   	 }
+   	 
 </style>
 
 </head>
@@ -93,31 +99,33 @@
         <div id="content" align="center">
         
             <br>
-            <h2>물품 검색</h2>
+            <h2>배송 가능한 주문 
+            	<span class="font-italic font-weight-lighter" style="font-size:0.4em;"> 유통기한, 재고, 결제 유무</span>
+           	</h2>
             <br>
 			
 			<!-- 상하 스크롤바 -->
-			<div style="width:100%; height:350px; overflow:auto">
+			<div style="width:100%; height:350px; overflow:auto white-space: nowrap;">
 			 
 			   <!-- 주문 검색 결과 테이블 -->				
                <table class="list-area table" >
                    <thead>
-                       <tr>
+                       <tr style="white-space: nowrap;">
+                           <th width="50px">배송여부</th>
                            <th width="5px">번호</th>
-                           <th width="50px">카테고리</th>
                            <th width="170px">상품명</th>
-                           <th width="30px">가격</th>
-                           <th width="20px">품절</th>
-                           <th width="40px">유통기한</th>
-                           <th width="40px">등록일</th>
-                           <th width="10px">적립률</th>
+                           <th width="170px">배송지</th>                           
+                           <th width="15px">최종결제금액</th>
+                           <th width="5px">적립률</th>
+                           <th width="300px">배송시 요청 사항</th>
+                           
                        </tr>
                    </thead>
                    <tbody>
                    
                        <%if (list.isEmpty()){ %>
                        <tr>
-                           <td colspan="8"> 조회된 주문이 없습니다.</td>
+                           <td colspan="7"> 조회된 주문이 없습니다.</td>
                        </tr>
                        <%}else{ %>
                            <% for(AdminOrder p : list){ %>
@@ -155,19 +163,29 @@
 
                   <table class="table-bordered" style="width:700px">
                     <tr>
-                        <td>상품명</td>
+                        <th>상품명</th>
                         <td>
                             <input type="text" class="form-control-sm" name="proName" style="width:300px"> 
                         </td>
                     </tr>
                     
                     <tr>
-                        <td>고객명</td>
+                        <th>고객명</th>
                         <td>
                             <input type="text" class="form-control-sm" name="proName" style="width:300px"> 
                         </td>
                     </tr>
                     
+                    <tr>
+                        <th>최종 결제 금액</th>
+                        <td>
+                            <div class="input-group-prepend input-group-sm">
+                                <input type="text" class="form-control" name="lowPrice" placeholder="원"> 
+                                <span style="font-size: 130%;">~</span>
+                                <input type="text" class="form-control" name="highPrice" placeholder="원">
+                            </div>
+                    </td>
+                    </tr>
                   </table>
 
 				  

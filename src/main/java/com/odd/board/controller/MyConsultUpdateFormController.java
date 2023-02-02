@@ -14,7 +14,7 @@ import com.odd.board.model.vo.Consult;
 /**
  * Servlet implementation class MyConsultUpdateFormController
  */
-@WebServlet("/updateform.co")
+@WebServlet("/updateForm.co")
 public class MyConsultUpdateFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,7 +31,7 @@ public class MyConsultUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int consultNo = Integer.parseInt(request.getParameter("no"));
+		int consultNo = Integer.parseInt(request.getParameter("consultNo"));
 		
 		Consult c = new ConsultService().selectConsult(consultNo);
 		

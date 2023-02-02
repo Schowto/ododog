@@ -171,6 +171,7 @@ public class RecipeDao {
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Cooking c = new Cooking();
+				c.setCookingOrder(rset.getInt("cooking_order"));
 				c.setCookingContent(rset.getString("cooking_content"));
 				c.setFilePath(rset.getString("file_path"));
 				list.add(c);
@@ -182,6 +183,61 @@ public class RecipeDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int insertHeart(Connection conn, int userNo, int recipeNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertHeart");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipeNo);
+			pstmt.setInt(2, userNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int deleteHeart(Connection conn, int userNo, int recipeNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteHeart");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, recipeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int selectHeartCount(Connection conn, int recipeNo, int userNo) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectHeartCount");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipeNo);
+			pstmt.setInt(2, userNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return count;
 	}
 	
 }

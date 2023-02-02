@@ -37,7 +37,7 @@ public class AdminProductSearchController extends HttpServlet {
 		
 		ArrayList<Product> list = new ArrayList<>();
 		
-		
+		// 첫 화면이 아닐 경우
 		if(!request.getParameter("cpage").equals("1")) {
 			
 			String proName = request.getParameter("proName");
