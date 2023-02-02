@@ -88,7 +88,7 @@ public class MyConsultListController extends HttpServlet {
 			
 			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
 			
-			ArrayList<Consult> list = new ConsultService().selectConsult(userNo);
+			ArrayList<Consult> list = new ConsultService().selectAllConsult(userNo);
 			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("views/board/myConsultListView.jsp").forward(request,response);

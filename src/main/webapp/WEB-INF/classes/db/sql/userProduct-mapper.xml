@@ -51,11 +51,6 @@
 	
 	</entry>
 
-	<entry key="detailProductImg">
-		SELECT FILE_PATH
-			FROM PRO_ATT
-				
-	</entry>
 	
 	
 </properties>

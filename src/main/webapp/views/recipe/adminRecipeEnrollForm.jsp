@@ -88,24 +88,24 @@
 			<hr>
 
             
-            <form action="" method="post">
+            <form action="<%= contextPath %>/insert.re" method="post" enctype="multipart/form-data">
                 <div style="border: 1px solid rgb(220, 220, 220); border-radius:3px; width:800px; padding:20px; margin:40px 0px; font-size:14px;">
                 <table>
                     <tr>
                         <td style="width:100px;">레시피 이름</td>
-                        <td style="padding:10px 30px;"><input type="text" style="width:350px;"></td>
+                        <td style="padding:10px 30px;"><input type="text" name="title" style="width:350px;"></td>
                         <td rowspan="2" align="center" style="padding-left:30px;">
                             <img id="thumbnail-img" style="width:200px; height:150px;">
                             <label id="input-thumbnail-btn" for="input-thumbnail">
                                 대표 이미지 등록
                             </label>
-                            <input type="file" id="input-thumbnail" accept="image/*" onchange="loadThumb(this);" style="display:none;">
+                            <input type="file" id="input-thumbnail" name="thumbImg" accept="image/*" onchange="loadThumb(this);" style="display:none;">
                         </td>
                     </tr>
                     <tr>
                         <td>레시피 소개</td>
                         <td style="padding:10px 30px;">
-                            <textarea name="" style="width:350px; height:80px; resize:none;"></textarea>
+                            <textarea name="content" style="width:350px; height:80px; resize:none;"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -157,18 +157,14 @@
                     <tr>
                         <td>재료</td>
                         <td colspan="2" width="500" id="ingredient-insert" style="padding:10px 30px;">
-                            <input type="">
-                            <button>추가</button>
+                            <input type="text" id="ingredient-add" placeholder="재료를 입력해주세요">
+                            <button type="button" onclick="input()">추가</button>
+                            <input type="hidden" name="ingredient" id="ingredient">
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td colspan="2" width="500" id="ingredient-print" style="padding:0px 30px;">
-                            <span>어쩌구저쩌구</span>
-                            <span>재료재료어쩌구재료</span>
-                            <span>재료재료어쩌구재료</span>
-                            <span>재료재료어쩌구재료</span>
-                            <span>재료재료어쩌구재료</span>
                         </td>
                     </tr>
                 </table>
@@ -188,7 +184,9 @@
                         }
                     }
                 </script>
+                
                 <script>
+                    // 효과, 소요시간 버튼 클릭
                     $(":checkbox").change(function () {
                         //console.log($(this).prop("checked"));
                         if ($(this).prop("checked")) {
@@ -203,7 +201,24 @@
                             $(this).parent().siblings().css("backgroundColor", "rgb(220,220,220)").css("color", "rgb(50, 50, 50)");
                         }
                     })
+                    let ingredients = new Array();
+                    function input() {
+                        if($("#ingredient-add").val() != ""){
+                            // 재료 뿌리기
+                            let value = $("#ingredient-add").val();
+                            document.getElementById("ingredient-print").innerHTML += "<span name='ingredient'>" + value + "</span>";
+                            // 배열에 담기
+                            ingredients.push($("#ingredient-add").val());
+                            document.getElementById("ingredient-add").value = "";
+                            // input으로 넘기기
+                            document.getElementById("ingredient").value = ingredients;
+                        }
+                    }
                 </script>
+
+
+
+
 
                 <table id="cooking-area" style="margin:50px 0px;">
                     <tr>
@@ -213,14 +228,14 @@
                             </div>
                         </td>
                         <td width="430" style="padding:30px 10px;">
-                            <textarea name="cooking-content" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
+                            <textarea name="cooking-content1" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
                         </td>
                         <td width="200" align="center">
                             <img width="180" height="130" style="padding: 10px 0px;">
                             <label class="input-img-btn" for="input-img1" style="margin-top:0;">
                                 이미지 등록
                             </label>
-                            <input type="file" id="input-img1" accept="image/*" onchange="loadImg(this);" style="display:none;">
+                            <input type="file" name="input-img1" id="input-img1" accept="image/*" onchange="loadImg(this);" style="display:none;">
                         </td>
                     </tr>
                     <tr>
@@ -231,38 +246,36 @@
                             </div>
                         </td>
                         <td width="430" style="padding:30px 10px;">
-                            <textarea name="cooking-content" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
+                            <textarea name="cooking-content2" style="width:370px; height:120px; resize:none; border:1px solid gray"></textarea>
                         </td>
                         <td width="200" align="center">
                             <img width="180" height="130" style="padding: 10px 0px;">
                             <label class="input-img-btn" for="input-img2" style="margin-top:0;">
                                 이미지 등록
                             </label>
-                            <input type="file" id="input-img2" accept="image/*" onchange="loadImg(this);" style="display:none;">
+                            <input type="file" name="input-img2" id="input-img2" accept="image/*" onchange="loadImg(this);" style="display:none;">
                         </td>
                     </tr>
                 </table>
 
                 <span style="color:rgb(200, 140, 140); font-weight:600; display:block; width:70px; height:30px; cursor:pointer;" onclick="add();">+ 추가</span>
-                
+                <input type="hidden" name="process-count" id="process-count" value="2">
 
                 <script>
-
-
                     function loadImg(inputFile) {
                             if (inputFile.files.length == 1) {
                                 const reader = new FileReader();
                                 reader.readAsDataURL(inputFile.files[0]);
                                 reader.onload = function (e) {
                                                             // e.target.result => 현재 읽어들이기가 완료된 파일의 고유한 url
-                                    $(inputFile).prev().prev().attr("src", e.target.result);    // 인라인에서 $(this)는 window를 가리킴
+                                    $(inputFile).prev().prev().attr("src", e.target.result);    // 인라인에서 $(this)는 window를 가리킴 -> inputFile로 받기!
                                 }
                             } else {
                                 $(inputFile).prev().attr("src", null);
                             }
                         }
 
-
+                    // 요리과정 추가 기능
                     let count = 2;
                     function add(){
                         let value = "";
@@ -272,12 +285,12 @@
                                    +        "<div style='background: rgb(200, 140, 140); width: 25px; height: 25px; border-radius: 25px; text-align: center; font-size: 17px; font-weight: 600; color: white;'>"+ (count + 1) +"</div>"
                                    +    "</td>"
                                    +    "<td width='430' style='padding: 30px 10px;''>"
-                                   +        "<textarea name='cooking-content' style='width: 370px; height: 120px; resize: none; border: 1px solid gray'></textarea>"
+                                   +        "<textarea name='cooking-content" + (count+1) + "' style='width: 370px; height: 120px; resize: none; border: 1px solid gray'></textarea>"
                                    +    "</td>"
                                    +    "<td width='200' align='center'>"
                                    +        "<img width='180' height='130' style='padding: 10px 0px;'>"
                                    +        "<label class='input-img-btn' for='input-img"+ (count+1) +"' style='margin-top: 0;'>이미지 등록</label>"
-                                   +        "<input type='file' id='input-img" + (count+1) + "' accept='image/*'' onchange='loadImg(this);'' style='display:none;'>"
+                                   +        "<input type='file' name='input-img" + (count+1) + "' id='input-img" + (count+1) + "' accept='image/*'' onchange='loadImg(this);'' style='display:none;'>"
                                    +    "</td>"
                                    + "</tr>";
                             document.getElementById("cooking-area").innerHTML += value;
@@ -285,11 +298,14 @@
                         } else {
                             alert("10개까지만 등록 가능합니다.")
                         }
-
+                        document.getElementById("process-count").value = count;
                     }
-
-                    
                 </script>
+
+                <br><br><br><br><br>
+                <button style="width:60px; margin-right:5px;">등록</button>
+                <button type="reset" class="btn-red" style="width:60px;">취소</button>
+                <br><br><br>
 
             </form>
             

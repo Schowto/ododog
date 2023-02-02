@@ -23,7 +23,6 @@ public class Member {
  public Member() {}
 
 
-
 public Member(String user_Id, String user_Pwd, String user_Name, String email, String phone, int post_Code,
 		String address, String detailed_Address) {
 	super();
@@ -97,6 +96,10 @@ public Member(int user_No, String user_Id, String user_Pwd, String user_Name, St
 	Point = point;
 }
 
+public Member(String user_Id) {
+	super();
+	User_Id = user_Id;
+}
 
 
 public int getUser_No() {

@@ -15,6 +15,7 @@ public class Recipe {
 	
 	private int replyCount;
 	
+	public Recipe() {}
 	public Recipe(int recipeNo, String recipeTitle, String recipeContent, String recipeThumbImg, String effect,
 			String time, String ingredient, int processCount, int count, String createDate, String status) {
 		super();
@@ -31,6 +32,19 @@ public class Recipe {
 		this.status = status;
 	}
 	
+	// selectRecipe
+	public Recipe(int recipeNo, String recipeTitle, String recipeContent, String recipeThumbImg, String effect,
+			String time, String ingredient, int processCount) {
+		super();
+		this.recipeNo = recipeNo;
+		this.recipeTitle = recipeTitle;
+		this.recipeContent = recipeContent;
+		this.recipeThumbImg = recipeThumbImg;
+		this.effect = effect;
+		this.time = time;
+		this.ingredient = ingredient;
+		this.processCount = processCount;
+	}
 	public Recipe(int recipeNo, String recipeTitle, String recipeThumbImg, int replyCount) {
 		super();
 		this.recipeNo = recipeNo;

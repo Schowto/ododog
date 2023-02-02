@@ -52,12 +52,12 @@ public class MyConsultInsertController extends HttpServlet {
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
 			// DB에 기록할데이터 담기
-			HttpSession session = request.getSession();
-			String userId = (String)session.getAttribute("loginUser.getUser_Id()");
-			String consultTitle = request.getParameter("consultTitle");
-			String consultCategory = request.getParameter("consultCategory");
-			String consultContent = request.getParameter("consultContent");
 			
+			String consultTitle = multiRequest.getParameter("consultTitle");
+			String consultCategory = multiRequest.getParameter("consultCategory");
+			String consultContent = multiRequest.getParameter("consultContent");
+			
+			HttpSession session = request.getSession();
 			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
 			
 			Consult c = new Consult();
@@ -65,8 +65,11 @@ public class MyConsultInsertController extends HttpServlet {
 			c.setConsultCategory(consultCategory);
 			c.setConsultContent(consultContent);
 			
-			c.setOriginName(multiRequest.getOriginalFileName("upfile"));
-			c.setFilePath(multiRequest.getFilesystemName("upfile" + "resources/consult_upfile/"));
+			if(multiRequest.getOriginalFileName("upfile") != null) {
+				c.setOriginName(multiRequest.getOriginalFileName("upfile"));
+				c.setFilePath(multiRequest.getFilesystemName("resources/consult_upfile/" + "upfile"));
+			}
+			
 			
 			// 서비스요청처리
 			int result = new ConsultService().insertConsult(userNo, c);
@@ -74,14 +77,14 @@ public class MyConsultInsertController extends HttpServlet {
 			// 응답페이지
 			if(result > 0) {
 				session.setAttribute("alertMsg", "1:1상담이 등록되었습니다.");
-				response.sendRedirect(request.getContextPath() + "list.co");
+				response.sendRedirect(request.getContextPath() + "/list.co");
 			}else {
 				if(c.getOriginName() != null) {
 					new File(savePath + c.getFilePath()).delete();
 				}
 				
 				request.setAttribute("errorPage", "1:1상담 작성 실패.");
-				request.getRequestDispatcher("views/common/errorPage").forward(request, response);
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 				
 				
 			}
@@ -89,15 +92,6 @@ public class MyConsultInsertController extends HttpServlet {
 			
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 		
 	}

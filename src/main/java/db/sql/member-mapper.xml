@@ -144,5 +144,16 @@
 	WHERE P.USER_NO = ?
 	</entry>
 	
+	<entry key="searchId">
+	SELECT
+		 USER_NO ,
+	     USER_ID ,
+	     USER_PWD 
+	   FROM MEMBER
+	   WHERE USER_NAME = ?
+	   AND EMAIL = ?
+	   AND STATUS = 'Y'
+	</entry>
+	
 
 </properties>

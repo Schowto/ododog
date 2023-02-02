@@ -389,10 +389,38 @@ public class MemberDao {
 		 return plist;
 	}
 	
-	
+	/**
+	 * 아이디 찾기 (소민)
+	 * @param conn
+	 * @param user_Name
+	 * @param email
+	 * @return
+	 */
+	public Member searchId(Connection conn, String user_Name, String email) {
+		Member m = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		
-
-	
+		String sql = prop.getProperty("searchId");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, user_Name);
+			pstmt.setString(2, email);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				m = new Member(rset.getString("USER_ID"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return m;
+	}
 	
 	
 	

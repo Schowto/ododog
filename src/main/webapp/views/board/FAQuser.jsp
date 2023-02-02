@@ -152,9 +152,9 @@
     <div id="board-area" align="center" style="margin-top: -100px;">
 
         <div>
-            <br><br><br><br><br><br><br>
+            <br><br><br><br><br><br>
             <h2 style="color:rgb(50, 50, 50); font-weight:600;">FAQ</h2>
-            <br><br><br>
+           
         </div>
         
         <!-- FAQ내용 -->
@@ -194,9 +194,9 @@
             	<%} %>
             <%} %>
             </ul> 
-            
+            <br><br><br><br><br><br><br><br><br><br><br><br>
         </div>
-    
+    	
     
     </div>
 </body>

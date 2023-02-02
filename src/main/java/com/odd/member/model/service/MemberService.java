@@ -169,6 +169,19 @@ public class MemberService {
 		close(conn);
 		return plist;
 	}
+	
+	/**
+	 * 아이디 찾기(소민)
+	 * @param user_Name
+	 * @param email
+	 * @return 
+	 */
+	public Member searchId(String user_Name, String email) {
+		Connection conn = getConnection();
+		Member m = new MemberDao().searchId(conn, user_Name, email);
+		close(conn);
+		return m;
+	}
 		
 	
 

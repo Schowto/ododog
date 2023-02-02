@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.odd.board.model.vo.Consult" %>
+<%
+	Consult c = (Consult)request.getAttribute("c");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,11 +59,18 @@
 		height:30px;
 		color:rgb(50, 50, 50);
 	}
+	.consultEnroll input[type=text]{
+		width:300px;
+		border:1px solid rgb(220,220,220);
+		color:rgb(50, 50, 50);
+	}
 	textarea{
 		width:100%;
 		height:400px;
 		background: rgb(220,220,220);
 		border:none;
+		font-size:14px;
+		box-sizing: border-box;
 	}
 	.consultAnswer textarea{
 		display:none;
@@ -120,39 +131,58 @@
 			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h2>
 			<br><br><br><br>
 
+			<div class="content">
+
+			<h2 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h2>
+			<br><br><br><br>
+
 			<div class="consultEnroll">
-				<form action="">
+				<form action="<%=contextPath%>/update.co" method="post" enctype="multipart/form-data">
 					<table>
-						<tr>
-							<td style="width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;제목</td>
-							<td>
-								&nbsp;&nbsp;
-								<select name="" id="">
-									<option value="">&nbsp;문의드립니다.</option>
-								</select>
-							</td>
-						</tr>
-						<tr>
-							<td colspan=2>
-								<br>
-								<textarea name="" id="" style="resize:none; padding:40px;" readonly>문의내용이들어올자리</textarea>
-								<br><br>
-							</td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 1</td>
-							<td>&nbsp;&nbsp;<input type="file" readonly></td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 2</td>
-							<td>&nbsp;&nbsp;<input type="file" readonly></td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;첨부파일 3</td>
-							<td>&nbsp;&nbsp;<input type="file" readonly></td>
-						</tr>
-					</table>
+							<tr>
+								<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
+								<td style="width:50%; border-right:1px solid rgb(220,220,220);">
+									&nbsp;&nbsp;
+									<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>">
+								</td>
+								<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
+								<td style="width:30%">
+									<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>">
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									<br>
+									<textarea name="consultContent" style="resize:none;"><%=c.getConsultContent()%></textarea>
+									<br><br>
+								</td>
+							</tr>
+							<tr>
+								<td style="border-right:1px solid rgb(220,220,220);">첨부파일 </td>
+								<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile" value="<%=c.getOriginName()%>"></td>
+							</tr>
+							
+						</table>
+						
+						<br>
+						
+						<div align="center">
+						<button type="submit" class="btnUpdate">확인</button>
+						<button class="btn-red" onclick="location.href='<%=contextPath%>/list.co'">취소</button>
+					</div>
+    					
+    				<script>
+						$(function(){
+							$(".btnUpdate").click(function(){
+								location.href='<%=contextPath%>/updateForm.co?no=<%=c.getConsultNo()%>';
+							})
+						})
+					</script>
+						
+					</form>
 					<br>
+					
+					<%if(c.getConsultAnswer() != null){ %>
 					<table class="consultAnswer">
 						<tr>
 							<td style="text-align:center; width:15%; border-right:1px solid rgb(220,220,220);">클릭해서 확인하기</td>
@@ -161,35 +191,37 @@
 						<tr>
 							<td colspan="2">
 								<br>
-								<textarea class="answer" style="padding:40px;">답변이들어올자리입니다</textarea>
+								<textarea class="answer" style="padding:40px;"><%=c.getConsultAnswer()%></textarea>
 								<br><br>
 							</td>
 						</tr>
 					</table>
-				</form>
+					<%} %>
+					
+					
+					<!-- 
+					<script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
+					-->
+    				<script>
+      					$( document ).ready( function() {
+        					$( '.blink' ).click( function() {
+          						$( '.answer' ).slideDown();
+        					} );
+      					} );
+    				</script>
+    				
+    				</div>
 
-
-			<br>
-
-			<div align="center">
-				<button type="button">목록</button>
-				<button type="submit">확인</button>
-			</div>
-
-			
+					<br>
+		
+					
 
 		</div>
-
-
-
-
-
-
-
+		<%@ include file="../common/userFooterbar.jsp" %>
 		
 	</div>
 	
-	<%@ include file="../common/userFooterbar.jsp" %>
+	
 
 </body>
 </html>
