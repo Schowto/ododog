@@ -8,6 +8,8 @@
 	ArrayList<AdminOrder> list = (ArrayList<AdminOrder>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	String order = (String)request.getAttribute("order");
+	String by = (String)request.getAttribute("by");
+	String byAdv = (String)request.getAttribute("byAdv");
 %>        
     
 <!DOCTYPE html>
@@ -61,16 +63,63 @@
  	    <%@ include file="../common/adminMenubarForInclude.jsp" %>
 
         <div id="content" align="center">
-        
+        	
+        	<script>
+                $(function(){
+					let by = "<%=by%>";                	
+                	let order ="<%=order%>";
+                	
+                    switch(order){
+                        case "주문번호" : 
+                            if(by == "ASC"){
+                                $("#btn1").html("주문번호↑");
+                            }else{
+                                $("#btn1").html("주문번호↓");
+                            }
+                            $("#btn1").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                       break;
+                            
+                       case "상품이름" :
+                           if(by == "ASC"){
+                               $("#btn2").html("상품이름↑");
+                           }else{
+                               $("#btn2").html("상품이름↓");
+                           }
+                           $("#btn2").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                       break;
+                       
+                       case "유저이름" :
+                           if(by == "ASC"){
+                               $("#btn3").html("유저이름↑");
+                           }else{
+                               $("#btn3").html("유저이름↓");
+                           }
+                           $("#btn3").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                       break;
+                               
+                       case "최종결제금액" :
+                           if(by == "ASC"){
+                               $("#btn4").html("최종결제금액↑");
+                           }else{
+                               $("#btn4").html("최종결제금액↓");
+                     	   }
+                           $("#btn4").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                       break;
+
+                    }
+
+                })
+        	
+        	</script>
         
             <br>
             <h2>전체 주문 조회</h2>
             <br>
             	<div class="order">
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=주문번호">번호</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=상품이름">상품이름</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=유저이름">유저 이름</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=최종결제금액">결제 금액</a>
+	                <a class="btn btn-sm btn-secondary" id="btn1" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=주문번호&&by=ASC">주문번호</a>
+	                <a class="btn btn-sm btn-secondary" id="btn2" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=상품이름&&by=ASC">상품이름</a>
+	                <a class="btn btn-sm btn-secondary" id="btn3" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=유저이름&&by=ASC">유저이름</a>
+	                <a class="btn btn-sm btn-secondary" id="btn4" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=최종결제금액&&by=ASC">최종결제금액</a>
 				</div>
 				<br>
 				
@@ -139,21 +188,21 @@
                 <ul class="page pagination">
                     
                     <% if(pi.getCurrentPage() != 1){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=order%>">&lt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=order%>&&by=<%=by%>">&lt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link " href="">&lt;</a></li>
                     <%} %>
                     
                     <% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
                     <% 	if(pi.getCurrentPage() == p){ %>
-                            <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
+                            <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=p%>&&order=<%=order%>&&by=<%=by%>"><%=p%></a></li>
                     <% 	}else { %>	
-                            <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
+                            <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=p%>&&order=<%=order%>&&by=<%=by%>"><%=p%></a></li>
                     <% 	} %>
                     <% } %>
                     
                     <% if(pi.getCurrentPage() != pi.getMaxPage()){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>">&gt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>&&by=<%=by%>">&gt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link" href="">&gt;</a></li>
                     <%} %>

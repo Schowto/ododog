@@ -23,11 +23,11 @@ public class AdminOrderService {
 	}
 	
 	
-	public ArrayList<AdminOrder> selectList(PageInfo pi, String order){
+	public ArrayList<AdminOrder> selectList(PageInfo pi, String order, String by){
 		
 		Connection conn = getConnection();
 		
-		ArrayList<AdminOrder> list = new AdminOrderDao().selectList(conn, pi, order);
+		ArrayList<AdminOrder> list = new AdminOrderDao().selectList(conn, pi, order, by);
 		close(conn);
 		
 		return list;

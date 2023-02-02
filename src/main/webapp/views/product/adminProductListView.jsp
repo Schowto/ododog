@@ -82,45 +82,40 @@
                         case "PRO_NO" : 
                             if(by == "ASC"){
                                 $("#btn1").html("번호↑");
-                                $("#btn1").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
                             }else{
                                 $("#btn1").html("번호↓");
-                                $("#btn1").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
                             }
-                            break;
+                            $("#btn1").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                       break;
                             
-                            case "CATEGORY" :
-                                if(by == "ASC"){
-                                    $("#btn2").html("카테고리↑");
-                                    $("#btn2").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
-                                }else{
-                                    $("#btn2").html("카테고리↓");
-                                    $("#btn2").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
-                                }
-                            break;
-                            
-                            case "PRICE" :
-                                if(by == "ASC"){
-                                    $("#btn3").html("가격↑");
-                                    $("#btn3").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
-                                }else{
-                                    $("#btn3").html("가격↓");
-                                    $("#btn3").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
-                                }
-                            break;
-                                    
-                            case "EXPIRED_DATE" :
-                                if(by == "ASC"){
-                                    $("#btn4").html("유통기한↑");
-                                    $("#btn4").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
-                                }else{
-                                    $("#btn4").html("유통기한↓");
-                                    $("#btn4").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
-                            }
-                            break;
+                       case "CATEGORY" :
+                           if(by == "ASC"){
+                               $("#btn2").html("카테고리↑");
+                           }else{
+                               $("#btn2").html("카테고리↓");
+                           }
+                           $("#btn2").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                       break;
+                       
+                       case "PRICE" :
+                           if(by == "ASC"){
+                               $("#btn3").html("가격↑");
+                           }else{
+                               $("#btn3").html("가격↓");
+                           }
+                           $("#btn3").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                       break;
+                               
+                       case "EXPIRED_DATE" :
+                           if(by == "ASC"){
+                               $("#btn4").html("유통기한↑");
+                           }else{
+                               $("#btn4").html("유통기한↓");
+                     	   }
+                           $("#btn4").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                       break;
 
                     }
-
 
                 })
         	
