@@ -40,7 +40,6 @@ public class AdminProductSelectController extends HttpServlet {
 		Product p = new AdminProductService().selectProduct(proNo);
 		ArrayList<ProAtt> list = new AdminProductService().selectProAtt(proNo); 
 		
-		String pro = p.getProName();
 		
 		// Gson 사용 가능
 		JSONObject jObj = new JSONObject();

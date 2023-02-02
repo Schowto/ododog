@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.odd.order.model.vo.AdminOrder, com.odd.product.model.vo.AdminProSearch" %>
+<%@ page import="java.util.ArrayList, com.odd.order.model.vo.AdminOrder" %>
 
 <%
 	ArrayList<AdminOrder> list = (ArrayList<AdminOrder>)request.getAttribute("list");
@@ -81,6 +81,12 @@
      #header{
    	    z-index:-1;
      }
+     
+      #searchForm th{
+   	 	text-align:center;
+   	 	width:140px;
+   	 }
+   	 
 </style>
 
 </head>
@@ -108,7 +114,7 @@
                            <th width="50px">배송여부</th>
                            <th width="5px">번호</th>
                            <th width="170px">상품명</th>
-                           <th width="100px">배송지</th>                           
+                           <th width="170px">배송지</th>                           
                            <th width="15px">최종결제금액</th>
                            <th width="5px">적립률</th>
                            <th width="300px">배송시 요청 사항</th>
@@ -157,21 +163,21 @@
 
                   <table class="table-bordered" style="width:700px">
                     <tr>
-                        <td>상품명</td>
+                        <th>상품명</th>
                         <td>
                             <input type="text" class="form-control-sm" name="proName" style="width:300px"> 
                         </td>
                     </tr>
                     
                     <tr>
-                        <td>고객명</td>
+                        <th>고객명</th>
                         <td>
                             <input type="text" class="form-control-sm" name="proName" style="width:300px"> 
                         </td>
                     </tr>
                     
                     <tr>
-                        <td>최종 결제 금액</td>
+                        <th>최종 결제 금액</th>
                         <td>
                             <div class="input-group-prepend input-group-sm">
                                 <input type="text" class="form-control" name="lowPrice" placeholder="원"> 

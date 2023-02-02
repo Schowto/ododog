@@ -51,6 +51,10 @@
     #header{
    	    z-index:-1;
      }
+     
+     .order>a{
+     	opacity:0.4;
+     }
 
 </style>
 
@@ -64,6 +68,7 @@
 
         <div id="content" align="center">
         	
+        	<!-- 오름차순/내림차순 버튼 변경 -->
         	<script>
                 $(function(){
 					let by = "<%=by%>";                	
@@ -76,7 +81,8 @@
                             }else{
                                 $("#btn1").html("주문번호↓");
                             }
-                            $("#btn1").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                            $("#btn1").css("opacity","1");
+                            $("#btn1").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
                             
                        case "상품이름" :
@@ -85,7 +91,8 @@
                            }else{
                                $("#btn2").html("상품이름↓");
                            }
-                           $("#btn2").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                           $("#btn2").css("opacity","1");
+                           $("#btn2").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
                        
                        case "유저이름" :
@@ -94,7 +101,8 @@
                            }else{
                                $("#btn3").html("유저이름↓");
                            }
-                           $("#btn3").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                           $("#btn3").css("opacity","1");
+                           $("#btn3").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
                                
                        case "최종결제금액" :
@@ -103,7 +111,8 @@
                            }else{
                                $("#btn4").html("최종결제금액↓");
                      	   }
-                           $("#btn4").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                           $("#btn4").css("opacity","1");
+                           $("#btn4").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
 
                     }

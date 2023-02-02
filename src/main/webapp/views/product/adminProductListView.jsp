@@ -52,6 +52,10 @@
    	    z-index:-1;
      }
 
+	 .order>a{
+     	opacity:0.4;
+     }
+	 
 </style>
 
 </head>
@@ -73,6 +77,7 @@
 		 
         <div id="content" align="center">
         	
+        	<!-- 오름차순/내림차순 버튼 변경 -->
         	<script>
                 $(function(){
 					let by = "<%=by%>";                	
@@ -85,7 +90,8 @@
                             }else{
                                 $("#btn1").html("번호↓");
                             }
-                            $("#btn1").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                            $("#btn1").css("opacity","1");
+                            $("#btn1").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
                             
                        case "CATEGORY" :
@@ -94,7 +100,8 @@
                            }else{
                                $("#btn2").html("카테고리↓");
                            }
-                           $("#btn2").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                           $("#btn2").css("opacity","1");
+                           $("#btn2").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
                        
                        case "PRICE" :
@@ -103,7 +110,8 @@
                            }else{
                                $("#btn3").html("가격↓");
                            }
-                           $("#btn3").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                           $("#btn3").css("opacity","1");
+                           $("#btn3").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
                                
                        case "EXPIRED_DATE" :
@@ -112,7 +120,8 @@
                            }else{
                                $("#btn4").html("유통기한↓");
                      	   }
-                           $("#btn4").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>")
+                           $("#btn4").css("opacity","1");
+                           $("#btn4").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
 
                     }
@@ -126,7 +135,7 @@
             <h2>전체 물품 조회</h2>
             <br>
             	<div class="order">
-	                <a class="btn btn-sm btn-secondary" id="btn1" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO&&by=ASC>">번호</a>
+	                <a class="btn btn-sm btn-secondary" id="btn1" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO&&by=ASC">번호</a>
 	                <a class="btn btn-sm btn-secondary" id="btn2" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=CATEGORY&&by=ASC">카테고리</a>
 	                <a class="btn btn-sm btn-secondary" id="btn3" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRICE&&by=ASC">가격</a>
 	                <a class="btn btn-sm btn-secondary" id="btn4" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=EXPIRED_DATE&&by=ASC">유통기한</a>
