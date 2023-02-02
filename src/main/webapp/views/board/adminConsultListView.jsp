@@ -128,7 +128,7 @@
                 <tbody>
 	            	<% if(list.isEmpty()) { %>
 	                <tr>
-	                <td clospan="5">존재하는 회원이 없습니다.</td>
+	                <td colspan="5">존재하는 회원이 없습니다.</td>
 	                </tr>
 	                <% }else { %>
 	                <% for(Consult c : list){ %> 
@@ -139,7 +139,7 @@
 	                  <td><%=c.getEnrollDate()%></td>
 	                  <td><%=c.getAnswerStatus()%></td>
 	                  <td>
-	                  <a id="point" data-toggle="modal"  data-target="#myModal" value="" onclick="selectPointList(<%= c.getConsultNo() %>);"></a>
+	                  <a id="point" data-toggle="modal"  data-target="#myModal" onclick="selectPointList(<%= c.getConsultNo() %>);"></a>
 	                  </td>
 	                  
 	                  <td><button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">게시물삭제</button> </td>
@@ -150,7 +150,7 @@
               </table>
               </div>            
         </div>
-        
+       </div>
         
 
         
