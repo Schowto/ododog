@@ -20,6 +20,7 @@
 		                          FROM REPLY
 		                         WHERE BOARD_TYPE = 3
 		                           AND BOARD_NO = RECIPE_NO
+		                           AND STATUS = 'Y'
 		                       ) "REPLY_COUNT"
 		                  FROM RECIPE
 		                 WHERE STATUS = 'Y'
@@ -102,6 +103,33 @@
 		     , FILE_PATH
 		  FROM COOKING
 		 WHERE RECIPE_NO = ?
+	</entry>
+	
+	<entry key="insertHeart">
+		INSERT
+		  INTO HEART
+		  (
+		    RECIPE_NO
+		  , USER_NO
+		  )
+		  VALUES
+		  (
+		    ?
+		  , ?
+		  )
+	</entry>
+	<entry key="deleteHeart">
+		DELETE
+		  FROM HEART
+		 WHERE USER_NO = ?
+		   AND RECIPE_NO = ?
+	</entry>
+	
+	<entry key="selectHeartCount">
+		SELECT COUNT(*) "COUNT"
+		  FROM HEART
+		 WHERE RECIPE_NO = ?
+		   AND USER_NO = ?
 	</entry>
 	
 </properties>

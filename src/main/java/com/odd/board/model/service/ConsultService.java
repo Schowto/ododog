@@ -78,6 +78,12 @@ public class ConsultService {
 		Connection conn = getConnection();
 		int result = new ConsultDao().updateConsult(conn, consultNo, c);
 		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
 		close(conn);
 		return result;
 		
@@ -87,12 +93,31 @@ public class ConsultService {
 	public int deleteConsult(int consultNo) {
 		Connection conn = getConnection();
 		int result = new ConsultDao().deleteConsult(conn, consultNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
 		close(conn);
 		return result;
 	}
 	
 	
-	
+	public int insertAnswer(int consultNo, String consultAnswer) {
+		Connection conn = getConnection();
+		int result = new ConsultDao().insertAnswer(conn, consultNo, consultAnswer);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+	}
 	
 	
 	

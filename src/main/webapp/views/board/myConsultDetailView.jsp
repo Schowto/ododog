@@ -146,7 +146,7 @@
 
 			<div class="consultEnroll">
 				
-				<form action="<%=contextPath%>/delete.co" method="post" enctype="mutipart/form-data">
+				<form action="<%=contextPath%>/updateForm.co" method="post" enctype="mutipart/form-data">
 					<table>
 						<tr>
 							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;번호</td>
@@ -182,10 +182,24 @@
 					<br>
 		
 					<div align="center">
+					<%if(loginUser.getUser_Id() != "admin"){ %>
 						<button type="button" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
 						<button type="submit">수정</button>
-						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
+						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">삭제</button>
+					<%}else{ %>
+						<button type="button" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
+						<button type="button" id="answerBtn" >답변등록</button>
+						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">삭제</button>
+					<%} %>
 					</div>
+					
+					<script>
+						$(function(){
+							$("#answerBtn").click(function(){
+								location.href='<%=contextPath%>/answer.co?no=<%=c.getConsultNo()%>';
+							})
+						})
+					</script>
 					
 				</form>	
     		</div>

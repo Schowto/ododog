@@ -55,8 +55,8 @@ public class ConsultDao {
 			while(rset.next()) {
 				list.add(new Consult(rset.getInt("counsult_no"),
 									 rset.getString("consult_title"),
-									 rset.getString("consult_category"),
 									 rset.getDate("enroll_date"),
+									 rset.getString("consult_category"),
 									 rset.getString("answer_status")
 						));
 			}
@@ -122,7 +122,7 @@ public class ConsultDao {
 			
 			while(rset.next()) {
 				list.add(new Consult(rset.getInt("consult_no"),
-									 rset.getInt("user_no"),
+									 rset.getString("user_Id"),
 									 rset.getString("consult_title"),
 									 rset.getString("consult_content"),
 									 rset.getDate("enroll_date"),
@@ -199,7 +199,7 @@ public class ConsultDao {
 			
 			if(rset.next()) {
 				c = new Consult(rset.getInt("consult_no"),
-						        rset.getInt("user_no"),
+						        rset.getString("user_no"),
 						        rset.getString("consult_title"),
 						        rset.getString("consult_content"),
 						        rset.getDate("enroll_date"),

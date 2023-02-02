@@ -6,6 +6,7 @@
 	
 	//PageInfo pi = (PageInfo) request.getAttribute("pi");
 	ArrayList<Consult> list = (ArrayList<Consult>) request.getAttribute("list");
+	Consult c = (Consult)request.getAttribute("c");
 %>
 <!DOCTYPE html>
 <html>
@@ -51,6 +52,20 @@
         background:rgb(220,220,220);
         font-weight:700;
     }
+	textarea{
+		width:100%;
+		height:400px;
+		background: rgb(220,220,220);
+		border:none;
+		font-size:14px;
+		box-sizing: border-box;
+	}
+	table{
+		width:100%;
+		border-top:1px solid rgb(220,220,220);
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
 
 </style>
 
@@ -64,66 +79,50 @@
         
             <br>
             <div align="left">
-                <p>맞춤상담 관리</p>
+                <p>맞춤상담 답변</p>
             </div>
             <hr>
 
-            <div align="right" style="margin:15px 0px;">
-                <form action="" style="font-size:13px;">
-                
-                    <select name="search-order" style="height:25px; border:1px solid rgb(220, 220, 220); border-radius:5px;">
-                        <option value="title">제목</option>
-                        <option value="writer">작성자</option>
-                    </select>
-                
-                    <input type="text" name=""
-                        style="width:200px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
-                
-                    <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);">
-                        <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:3px;">
-                    </button>
-                
-                </form>
-            </div>
-
             <table class="list-area">
-                <thead>
-                    <tr>
-                        <th width="60"></th>
-                        <th width="40">글번호</th>
-                        <th width="500">작성자</th>
-                        <th width="100">제목</th>
-                        <th width="100">작성일</th>
-                        <th width="50">답변여부</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%if(list.isEmpty()){%>
-		                    <tr>
-		                        <td colspan="6" style="height:300px;"> 조회된 게시글이 없습니다.</td>
-		                    </tr>
-                    <%}else{%>
-                    	<%for(Consult c : list){ %>
-		                    <tr>
-		                        <td><input type="checkbox"></td>
-		                        <td><%=c.getConsultNo() %></td>
-		                        <td><%=c.getUserId() %></td>
-		                        <td><%=c.getConsultTitle() %></td>
-		                        <td><%=c.getEnrollDate() %></td>
-		                        <td><%=c.getAnswerStatus() %></td>
-		                    </tr>
-		                <%} %>
-                    <%} %>
-                </tbody>
+				<form action="<%=contextPath%>/answer.co" method="post">
+					<thead style="text-align:center">
+						<tr>
+							<th width="10%"></th>
+							<th width="10%">글번호</th>
+							<th width="10%">작성자</th>
+							<th width="50%">제목</th>
+							<th width="10%">작성일</th>
+							<th width="10%">답변여부</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th></th>
+							<th><%=c.getConsultNo()%></th>
+							<th><%=c.getUserId()%></th>
+							<th><%=c.getConsultTitle()%></th>
+							<th><%=c.getEnrollDate()%></th>
+							<th><%=c.getAnswerStatus()%></th>
+						</tr>
+						<tr>
+							<td colspan="6">
+							<br>
+							<textarea name="consultAnswer" style="resize:none;" required></textarea>
+							<br><br>
+							</td>
+						</tr>
+						
+					</tbody>
 
-                <tfoot>
-                    <tr>
-                        <td>
-                        	<button class="btn-red" style="height:25px; line-height:20px;">삭제</button>
-                        </td>
-                        <td colspan="5"></td>
-                    </tr>
-                </tfoot>
+					<tfoot>
+						<tr>
+							<td colspan="6">
+								<button class="btn-red" style="height:25px; line-height:20px;">취소</button>
+							</td>
+							
+						</tr>
+					</tfoot>
+				</form>
                 
                 <script>
 	        		$(function(){
@@ -136,7 +135,7 @@
                 <script>
                 	$(function(){
                 		$(".btn-red").click(function(){
-                			location.href="<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>";
+                			location.href="<%=contextPath%>/admin.co";
                 		})
                 	})
                 </script>
