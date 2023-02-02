@@ -44,7 +44,7 @@ public class AdminOrderSearchController extends HttpServlet {
 		
 		request.setAttribute("list",list);
 		
-		request.getRequestDispatcher("views/product/adminProductSearchView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/order/adminOrderSearchView.jsp").forward(request, response);
 	}
 	
 	/**

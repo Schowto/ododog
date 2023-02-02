@@ -61,16 +61,11 @@ public class AdminProductDao {
 	 * @param order >> 정렬
 	 * @return 현재 페이지에 들어갈 상품 리스트
 	 */
-	public ArrayList<Product> selectList(Connection conn, PageInfo pi, String order){
+	public ArrayList<Product> selectList(Connection conn, PageInfo pi, String order, String by){
 		
 		ArrayList<Product> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;	
-		String by = "DESC";
-		
-		if(order.equals("EXPIRED_DATE")) {
-			by = "ASC";
-		}
 		
 		String sql = prop.getProperty("selectList1") + " ORDER BY " + order +" " + by + " " + prop.getProperty("selectList2"); ;
 		

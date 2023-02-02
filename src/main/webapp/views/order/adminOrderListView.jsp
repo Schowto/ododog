@@ -74,7 +74,7 @@
 				</div>
 				<br>
 				
-				
+				<!-- 상하 좌우 스크롤 -->
 				<div style="width:100%; height:520px; overflow:auto; white-space: nowrap;">
 	                <table class="list-area table" >
 	                    <thead>
