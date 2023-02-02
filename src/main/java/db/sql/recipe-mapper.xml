@@ -20,6 +20,7 @@
 		                          FROM REPLY
 		                         WHERE BOARD_TYPE = 3
 		                           AND BOARD_NO = RECIPE_NO
+		                           AND STATUS = 'Y'
 		                       ) "REPLY_COUNT"
 		                  FROM RECIPE
 		                 WHERE STATUS = 'Y'
@@ -122,6 +123,13 @@
 		  FROM HEART
 		 WHERE USER_NO = ?
 		   AND RECIPE_NO = ?
+	</entry>
+	
+	<entry key="selectHeartCount">
+		SELECT COUNT(*) "COUNT"
+		  FROM HEART
+		 WHERE RECIPE_NO = ?
+		   AND USER_NO = ?
 	</entry>
 	
 </properties>

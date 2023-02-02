@@ -12,16 +12,16 @@ import com.odd.member.model.vo.Member;
 import com.odd.recipe.model.service.RecipeService;
 
 /**
- * Servlet implementation class HeartInsertController
+ * Servlet implementation class HeartSelectController
  */
-@WebServlet("/hinsert.re")
-public class AjaxHeartInsertController extends HttpServlet {
+@WebServlet("/hcount.re")
+public class AjaxHeartCountController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxHeartInsertController() {
+    public AjaxHeartCountController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,13 +30,12 @@ public class AjaxHeartInsertController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
 		int recipeNo = Integer.parseInt(request.getParameter("no"));
+		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
 		
-		int result = new RecipeService().insertHeart(userNo, recipeNo);
+		int count = new RecipeService().selectHeartCount(recipeNo, userNo);
 		
-		response.getWriter().print(result);
+		response.getWriter().print(count);	// 하트 등록되어있으면 1, 없으면 0
 	}
 
 	/**

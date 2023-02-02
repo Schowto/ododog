@@ -97,5 +97,17 @@ public class RecipeService {
 		close(conn);
 		return result;
 	}
+	
+	/**
+	 * @param recipeNo
+	 * @param userNo
+	 * @return HEART 테이블에 등록되어있는지 : 있으면 1, 없으면 0
+	 */
+	public int selectHeartCount(int recipeNo, int userNo) {
+		Connection conn = getConnection();
+		int count = new RecipeDao().selectHeartCount(conn, recipeNo, userNo);
+		close(conn);
+		return count;
+	}
 
 }
