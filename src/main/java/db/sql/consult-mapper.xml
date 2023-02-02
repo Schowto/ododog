@@ -126,7 +126,7 @@
 		 WHERE CONSULT_NO = ?
 	</entry>
 	
-	<entry key="insertAnswer">
+	<entry key="consultAnswer">
 		UPDATE 
 		       CONSULT 
 		   SET CONSULT_ANSWER = ?

@@ -7,8 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.odd.board.model.service.ConsultService;
 import com.odd.board.model.vo.Consult;
+import com.odd.common.MyFileRenamePolicy;
 
 /**
  * Servlet implementation class MyConsultAnswerController
@@ -30,16 +33,19 @@ public class MyConsultAnswerFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-int consultNo = Integer.parseInt(request.getParameter("no"));
+		int consultNo = Integer.parseInt(request.getParameter("no"));
 		
 		Consult c = new ConsultService().selectConsult(consultNo);
 		
 		request.setAttribute("c", c);
-		request.getRequestDispatcher("views/board/myConsultAnswerForm.jsp").forward(request, response);
+		request.getRequestDispatcher("views/board/adminConsultAnswerForm.jsp").forward(request, response);
+			
+			
+			
+		}
 		
 		
-	}
-
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

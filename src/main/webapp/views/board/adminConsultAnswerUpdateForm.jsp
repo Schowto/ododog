@@ -102,7 +102,17 @@
  	      
  	      
         <div id="content" align="center">
-            
+            <div class="membertable">
+                <div class="memberbutton">
+                <form name="search-form"> 
+                <input type="text" placeholder="아이디로 회원검색" id="serch" style="float: left;">
+                    <button style="float: left;" onclick="serch();">조회하기</button>
+                </form>
+
+      				
+					
+               <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
+               </div>
             
               <table id="userTable" class="userTable" style="text-align: center;">
                 <thead>

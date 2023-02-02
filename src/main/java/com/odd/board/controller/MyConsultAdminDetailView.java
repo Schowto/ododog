@@ -1,31 +1,26 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.odd.board.model.service.ConsultService;
 import com.odd.board.model.vo.Consult;
-import com.odd.common.MyFileRenamePolicy;
 
 /**
- * Servlet implementation class MyConsultAnswerController
+ * Servlet implementation class MyConsultAdminDetailView
  */
-@WebServlet("/answer.co")
-public class MyConsultAnswerController extends HttpServlet {
+@WebServlet("/detailAdmin.co")
+public class MyConsultAdminDetailView extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyConsultAnswerController() {
+    public MyConsultAdminDetailView() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,25 +29,18 @@ public class MyConsultAnswerController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int consultNo = Integer.parseInt(request.getParameter("no"));
 		
-		int consultNo = Integer.parseInt(request.getParameter("consultNo"));
-		String consultAnswer = request.getParameter("consultAnswer");
+		Consult c = new ConsultService().selectConsult(consultNo);
 		
-		int result = new ConsultService().consultAnswer(consultNo, consultAnswer);
-		
-		if(result > 0) {
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "답변이 등록되었습니다.");
-			
-			
+		if(c != null) {
+			request.setAttribute("c", c);
+			request.getRequestDispatcher("views/board/myConsultAdminDetailView.jsp").forward(request,response);
 		}else {
-			request.setAttribute("errorMsg", "답변등록에 실패했습니다.");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			
+			request.setAttribute("alertMsg", "상세조회 실패");
+			response.sendRedirect(request.getContextPath() + "/admin.co");
 		}
-		
-		response.sendRedirect(request.getContextPath() + "/admin.co");
-		
 		
 	}
 

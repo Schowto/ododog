@@ -5,7 +5,7 @@
 <%
 	
 	//PageInfo pi = (PageInfo) request.getAttribute("pi");
-	ArrayList<Consult> list = (ArrayList<Consult>) request.getAttribute("list");
+	Consult c = (Consult)request.getAttribute("c");
 %>
 
 <!DOCTYPE html>
@@ -92,6 +92,57 @@
     border-radius: 6px;
     background-color: #ffffff;
         }
+    /*디테일 가져온부분*/
+    table{
+		width:100%;
+		border-top:1px solid rgb(220,220,220);
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	td{
+		height:50px;
+		color:rgb(50, 50, 50);
+		border-bottom:1px solid rgb(220,220,220);
+		font-size:14px;
+	}
+	select{
+		width:400px;
+		border:1px solid rgb(220,220,220);
+		height:30px;
+		color:rgb(50, 50, 50);
+	}
+	.consultEnroll input[type=text]{
+		width:300px;
+		border:1px solid rgb(220,220,220);
+		color:rgb(50, 50, 50);
+	}
+	textarea{
+		width:100%;
+		height:400px;
+		background: rgb(220,220,220);
+		border:none;
+		font-size:14px;
+		box-sizing: border-box;
+	}
+	.consultAnswer textarea{
+		display:none;
+	}
+	.consultEnroll input[name=consultNo]{
+		width:70px;
+		border:none;
+		height:20px;
+		color:rgb(50, 50, 50);
+	}
+	.consultEnroll input[name=consultCategory]{
+		width:150px;
+		border:none;
+		height:20px;
+		color:rgb(50, 50, 50);
+	}
+	button{
+		width:70px;
+		height:30px;
+	}
 </style>
 </head>
 <body>
@@ -102,50 +153,53 @@
  	      
  	      
         <div id="content" align="center">
-            
-            
-              <table id="userTable" class="userTable" style="text-align: center;">
-                <thead>
-	                <tr>
-	                  <th>번호</th>
-	                  <th>제목</th>
-	                  <th>카테고리</th>
-	                  <th>작성일</th>
-	                  <th>답변여부</th>
-	                  <th>관리</th>
-	                </tr>
-                </thead>
-                <tbody>
-	            	<% if(list.isEmpty()) { %>
-	                <tr>
-	                <td colspan="6">존재하는 회원이 없습니다.</td>
-	                </tr>
-	                <% }else { %>
-	                <% for(Consult c : list){ %> 
-	                <tr>
-	                  <td><%=c.getConsultNo()%></td>
-	                  <td><%=c.getConsultTitle()%></td>
-	                  <td><%=c.getConsultCategory()%></td>
-	                  <td><%=c.getEnrollDate()%></td>
-	                  <td><%=c.getAnswerStatus()%></td>
-	                  <td>
-	                  <button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">게시물삭제</button> 
-	                  </td>
-	                </tr>
-	                <%} %>
-	            <%} %>          
-    			</tbody>
-              </table>
-              
-              <script>
-              	$(function(){
-              		$("#userTable>tbody>tr").click(function(){
-              			location.href='<%=contextPath%>/detailAdmin.co?no=' + "$(this).children().ep(0).text();"
-              		})
-              	})
-              </script>
-              </div>            
-        </div>
+            <h6 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 게시판</h6>
+            <hr>
+			<br><br><br><br>
+
+			<div class="consultEnroll">
+				
+				<form action="<%=contextPath %>/answer.co" method="get" enctype="mutipart/form-data">
+					<table>
+						<tr>
+							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;번호</td>
+							<td style="width:10%; border-right:1px solid rgb(220,220,220);">
+								&nbsp;&nbsp;
+								<input type="text" name="consultNo" value="<%=c.getConsultNo()%>" readonly>
+							</td>
+							<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
+							<td style="width:40%; border-right:1px solid rgb(220,220,220);">
+								&nbsp;&nbsp;
+								<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>" readonly>
+							</td>
+							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
+							<td style="width:20%">
+								&nbsp;&nbsp;
+								<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>" readonly>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="6">
+								<br>
+								<textarea name="consultAnswer" style="resize:none;" ></textarea>
+								<br><br>
+							</td>
+						</tr>
+						
+					</table>
+					
+					<br>
+		
+					<div align="center">
+						<button type="submit">등록</button>
+						<button type="button" onclick="location.href='<%=contextPath%>/admin.co>'">취소</button>
+					</div>
+					
+				</form>	
+    		</div>
+          </div> 
+          
+          
        </div>
         
 
