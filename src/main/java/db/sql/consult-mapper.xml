@@ -10,8 +10,8 @@
 		  		 		SELECT 
 		  		 			   CONSULT_NO
 		  		 	  		 , CONSULT_TITLE
-		  		 	  		 , CONSULT_CATEGORY
 		  		 	  		 , TO_CHAR(ENROLL_DATE, 'YYYY/MM/DD') "ENROLL_DATE"
+		  		 	  		 , CONSULT_CATEGORY
 		  		 	  		 , ANSWER_STATUS
 		  		 	      FROM CONSULT C
 		  		 	      JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
@@ -33,10 +33,9 @@
 	
 	
 	<entry key="selectAllConsult">
-	<!-- 왜 ambiguously가 뜰까 -->
 		SELECT 
 			   CONSULT_NO
-			 , M.USER_NO
+			 , USER_Id
 		     , CONSULT_TITLE
 		     , CONSULT_CONTENT
 		     , C.ENROLL_DATE
@@ -126,6 +125,26 @@
 		   SET STATUS = 'N'
 		 WHERE CONSULT_NO = ?
 	</entry>
+	
+	<entry key="insertAnswer">
+		INSERT 
+		  INTO
+		  (
+		  	CONSULT_ANSWER
+		  , ANSWER_DATE
+		  , RESPONDENTS
+		  , ANSWER_STATUS
+		  )
+		  VALUSES
+		  (
+		  	?
+		  , SYSDATE
+		  , 1
+		  , '답변완료'
+		  )
+	</entry>
+	
+	
 
 
 

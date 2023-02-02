@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Consult {
 	
 	private int consultNo;
-	private int userNo;
+	private String userId;
 	private String consultTitle;
 	private String consultContent;
 	private Date enrollDate;
@@ -23,12 +23,12 @@ public class Consult {
 	public Consult() {}
 
 
-	public Consult(int consultNo, int userNo, String consultTitle, String consultContent, Date enrollDate,
+	public Consult(int consultNo, String userId, String consultTitle, String consultContent, Date enrollDate,
 			Date modifyDate, String consultAnswer, Date answerDate, String status, String originName, String filePath,
 			String consultCategory, int respondents, String answerStatus) {
 		super();
 		this.consultNo = consultNo;
-		this.userNo = userNo;
+		this.userId = userId;
 		this.consultTitle = consultTitle;
 		this.consultContent = consultContent;
 		this.enrollDate = enrollDate;
@@ -43,23 +43,15 @@ public class Consult {
 		this.answerStatus = answerStatus;
 	}
 	
+	
 
-	public Consult(int consultNo, String consultTitle, String consultContent, Date enrollDate, String answerStatus) {
+
+	public Consult(int consultNo, String consultTitle, Date enrollDate, String consultCategory, String answerStatus) {
 		super();
 		this.consultNo = consultNo;
 		this.consultTitle = consultTitle;
-		this.consultContent = consultContent;
 		this.enrollDate = enrollDate;
-		this.answerStatus = answerStatus;
-	}
-
-
-	public Consult(int consultNo, int userNo, String consultTitle, Date enrollDate, String answerStatus) {
-		super();
-		this.consultNo = consultNo;
-		this.userNo = userNo;
-		this.consultTitle = consultTitle;
-		this.enrollDate = enrollDate;
+		this.consultCategory = consultCategory;
 		this.answerStatus = answerStatus;
 	}
 
@@ -74,13 +66,13 @@ public class Consult {
 	}
 
 
-	public int getUserNo() {
-		return userNo;
+	public String getUserId() {
+		return userId;
 	}
 
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 
@@ -206,26 +198,14 @@ public class Consult {
 
 	@Override
 	public String toString() {
-		return "Consult [consultNo=" + consultNo + ", userNo=" + userNo + ", consultTitle=" + consultTitle
+		return "Consult [consultNo=" + consultNo + ", userId=" + userId + ", consultTitle=" + consultTitle
 				+ ", consultContent=" + consultContent + ", enrollDate=" + enrollDate + ", modifyDate=" + modifyDate
 				+ ", consultAnswer=" + consultAnswer + ", answerDate=" + answerDate + ", status=" + status
 				+ ", originName=" + originName + ", filePath=" + filePath + ", consultCategory=" + consultCategory
 				+ ", respondents=" + respondents + ", answerStatus=" + answerStatus + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
 	
 	
 	
