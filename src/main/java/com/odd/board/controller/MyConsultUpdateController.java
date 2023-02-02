@@ -37,6 +37,7 @@ public class MyConsultUpdateController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		if(ServletFileUpload.isMultipartContent(request)) {
+			
 			int maxSize = 10 * 1024 * 1024;
 			
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/consult_upfiles/");
@@ -63,7 +64,7 @@ public class MyConsultUpdateController extends HttpServlet {
 			
 			if(result > 0) {
 				request.getSession().setAttribute("alertMsg", "성공적으로 수정되었습니다.");
-				response.sendRedirect(request.getContextPath() + "/detail.co?no=?" + consultNo);
+				response.sendRedirect(request.getContextPath() + "/detail.co?no=" + consultNo);
 			}else {
 				request.setAttribute("errorMsg", "수정에 실패했습니다.");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);

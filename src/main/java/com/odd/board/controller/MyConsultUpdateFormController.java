@@ -31,7 +31,7 @@ public class MyConsultUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int consultNo = Integer.parseInt(request.getParameter("consultNo"));
+		int consultNo = Integer.parseInt(request.getParameter("no"));
 		
 		Consult c = new ConsultService().selectConsult(consultNo);
 		

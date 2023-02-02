@@ -60,6 +60,11 @@
 		height:30px;
 		color:rgb(50, 50, 50);
 	}
+	.consultEnroll input[type=text]{
+		width:300px;
+		border:1px solid rgb(220,220,220);
+		color:rgb(50, 50, 50);
+	}
 	textarea{
 		width:100%;
 		height:400px;
@@ -146,7 +151,8 @@
 
 			<div class="consultEnroll">
 				
-				<form action="<%=contextPath%>/updateForm.co" method="post" enctype="mutipart/form-data">
+				<form action="<%=contextPath%>/updateForm.co" method="get" enctype="mutipart/form-data">
+					<input type="hidden" name="no" value="<%=c.getConsultNo()%>">
 					<table>
 						<tr>
 							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;번호</td>
@@ -183,13 +189,17 @@
 		
 					<div align="center">
 					<%if(loginUser.getUser_Id() != "admin"){ %>
+					
 						<button type="button" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
 						<button type="submit">수정</button>
 						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">삭제</button>
+					
 					<%}else{ %>
+					
 						<button type="button" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
 						<button type="button" id="answerBtn" >답변등록</button>
 						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">삭제</button>
+					
 					<%} %>
 					</div>
 					

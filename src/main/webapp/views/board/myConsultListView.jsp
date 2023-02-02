@@ -160,6 +160,19 @@ td {
 				</tbody>
 			</table>
 			
+			<br>
+			
+			<div class="consultAnswer" align="center">
+				<select name="searchAnswer" id="searchAnswer" onchange="">
+					<option value="" selected>전체</option>
+					<option value="no">미답변</option>
+					<option value="yes">답변</option>
+				</select> &nbsp; <input type="text" id="searchInput" value=""
+					style="height: 25px;"> &nbsp;
+				<button type="button" id="btn2" onclick="">찾기</button>
+
+			</div>
+			
 			<!-- 게시글 상세보기 -->
         	<script>
         		$(function(){
@@ -185,16 +198,7 @@ td {
 
 		</div>
 
-		<div class="consultAnswer">
-			<select name="" id="searchAnswer">
-				<option value="" selected>전체</option>
-				<option value="">미답변</option>
-				<option value="">답변</option>
-			</select> &nbsp; <input type="text" id="searchInput" value=""
-				style="height: 25px;"> &nbsp;
-			<button type="button" id="btn2" onclick="">찾기</button>
-
-		</div>
+		
 
 			<%@ include file="../common/userFooterbar.jsp"%>
 			
