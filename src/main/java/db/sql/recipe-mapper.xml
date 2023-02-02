@@ -75,4 +75,32 @@
 		  )
 	</entry>
 	
+	<entry key="increaseCount">
+		UPDATE
+		       RECIPE
+		   SET COUNT = COUNT+1
+		 WHERE RECIPE_NO = ?
+		   AND STATUS = 'Y'
+	</entry>
+	<entry key="selectRecipe">
+		SELECT
+		       RECIPE_NO
+		     , RECIPE_TITLE
+		     , RECIPE_CONTENT
+		     , THUMBIMG
+		     , EFFECT
+		     , TIME
+		     , INGREDIENT
+		     , PROCESS_COUNT
+		  FROM RECIPE
+		 WHERE RECIPE_NO = ?
+	</entry>
+	<entry key="selectCooking">
+		SELECT
+		       COOKING_CONTENT
+		     , FILE_PATH
+		  FROM COOKING
+		 WHERE RECIPE_NO = ?
+	</entry>
+	
 </properties>

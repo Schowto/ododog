@@ -1,4 +1,4 @@
-package com.odd.board.controller;
+package com.odd.recipe.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.odd.board.model.vo.Cooking;
+import com.odd.recipe.model.vo.Cooking;
 import com.odd.common.MyFileRenamePolicy;
 import com.odd.recipe.model.service.RecipeService;
 import com.odd.recipe.model.vo.Recipe;
@@ -76,9 +76,7 @@ public class AdminRecipeInsertController extends HttpServlet {
 					list.add(cook);
 				}
 			}
-			
 			int result = new RecipeService().insertRecipe(r, list);
-			
 			if(result > 0) {
 				request.getSession().setAttribute("alertMsg", "성공적으로 등록되었습니다.");
 				response.sendRedirect(request.getContextPath() + "/list.re?cpage=1");		// 수정해야됨!!!!!!!!!!!

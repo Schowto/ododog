@@ -5,7 +5,7 @@ import static com.odd.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.odd.board.model.vo.Cooking;
+import com.odd.recipe.model.vo.Cooking;
 import com.odd.common.model.vo.PageInfo;
 import com.odd.recipe.model.dao.RecipeDao;
 import com.odd.recipe.model.vo.Recipe;
@@ -44,6 +44,31 @@ public class RecipeService {
 		}
 		close(conn);
 		return result1 * result2;
+	}
+	
+	public int increaseCount(int recipeNo) {
+		Connection conn = getConnection();
+		int result = new RecipeDao().increaseCount(conn, recipeNo);
+		close(conn);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public Recipe selectRecipe(int recipeNo) {
+		Connection conn = getConnection();
+		Recipe r = new RecipeDao().selectRecipe(conn, recipeNo);
+		close(conn);
+		return r;
+	}
+	public ArrayList<Cooking> selectCooking(int recipeNo){
+		Connection conn = getConnection();
+		ArrayList<Cooking> list = new RecipeDao().selectCooking(conn, recipeNo);
+		close(conn);
+		return list;
 	}
 
 }

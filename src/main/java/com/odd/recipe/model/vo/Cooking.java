@@ -1,4 +1,4 @@
-package com.odd.board.model.vo;
+package com.odd.recipe.model.vo;
 
 public class Cooking {
 	private int cookingNo;

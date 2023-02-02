@@ -259,7 +259,7 @@
                 </table>
 
                 <span style="color:rgb(200, 140, 140); font-weight:600; display:block; width:70px; height:30px; cursor:pointer;" onclick="add();">+ 추가</span>
-                <input type="hidden" name="process-count" id="process-count">
+                <input type="hidden" name="process-count" id="process-count" value="2">
 
                 <script>
                     function loadImg(inputFile) {

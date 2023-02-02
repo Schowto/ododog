@@ -287,7 +287,7 @@
 	                    <div class="thumbnail-img-area" style="width:230px; height:200px; overflow:hidden;">
 	                        <img src="<%= r.getRecipeThumbImg() %>" width="100%" height="100%" onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>';">
 	                    </div>
-	                    <p style="margin:5px;"><%= r.getRecipeTitle() %></p>
+	                    <p style="margin:5px;" onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>';" ><%= r.getRecipeTitle() %></p>
 	                    <div align="right" style="width:250px; font-size:12px;" class="heart-area">
 	                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> <%= r.getReplyCount() %>
 	                        <div class="heart-area" style="display:inline-block;">
