@@ -30,7 +30,7 @@ public class AdminProductDao {
 	
 	
 	/**
-	 * @return 전체 상품 리스트
+	 * @return 전체 상품 개수
 	 */
 	public int selectListCount(Connection conn) {
 		
@@ -58,7 +58,8 @@ public class AdminProductDao {
 
 	/**
 	 * @param pi >> 페이지 처리 정보
-	 * @param order >> 정렬
+	 * @param order >> 정렬 기준
+	 * @param by >>  오름차순/내림차순
 	 * @return 현재 페이지에 들어갈 상품 리스트
 	 */
 	public ArrayList<Product> selectList(Connection conn, PageInfo pi, String order, String by){

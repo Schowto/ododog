@@ -146,13 +146,30 @@
 	
 	<entry key="searchId">
 	SELECT
-		 USER_NO ,
-	     USER_ID ,
-	     USER_PWD 
+	     USER_ID 
 	   FROM MEMBER
 	   WHERE USER_NAME = ?
 	   AND EMAIL = ?
 	   AND STATUS = 'Y'
+	</entry>
+	
+	<entry key="searchPwd">
+	SELECT
+		 USER_ID ,
+	     USER_PWD 
+	   FROM MEMBER
+	   WHERE USER_ID = ? 
+	   AND USER_NAME = ?
+	   AND EMAIL = ?
+	   AND STATUS = 'Y'
+	</entry>
+	<entry key="updatePwdUser">
+		UPDATE MEMBER
+		    SET USER_PWD = ?
+		    , MODIFY_DATE = SYSDATE
+		   WHERE USER_ID = ?
+		   AND USER_NAME = ?
+		   AND EMAIL = ?
 	</entry>
 	
 

@@ -13,6 +13,16 @@
 	
 	</entry>
 	
+	<entry key="selectDetail">
+			SELECT
+				PRO_NO
+			  ,	PRO_NAME
+		      , PRICE
+			  , THUMB_IMG
+		     FROM PRODUCT
+		     WHERE PRO_NO = ?
+	</entry>
+	
 	<entry key="selectDryList">
 		SELECT	
 				PRO_NO		
@@ -49,12 +59,10 @@
 	
 	<entry key="detailProduct">
 		SELECT PRO_NO
-	       , PRO_NAME
-	       , PRICE
+	       
 	       , FILE_PATH
 	       , FILE_LEVEL
-	         FROM PRODUCT P JOIN PRO_ATT A
-	        ON P.PRO_NO=A.PRO_NO
+	        
 	
 	</entry>
 

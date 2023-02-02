@@ -43,15 +43,27 @@ Member searchId = (Member)session.getAttribute("searchId");
         border-radius: 6px;
         background-color: #ffffff;
     }
-    #login-form > input[type="submit"]{
+    #btn{
         color: #fff;
         font-size: 16px;
         background-color: rgb(100, 100, 100);
         margin-top: 20px;
+        width: 100%;
+        height: 48px;
+        padding: 0 10px;
+        box-sizing: border-box;
+        margin-top: 5px;
+        margin-bottom: 16px;
+        border-radius: 6px;
     }
     #label{
         font-size: 14px;
         color:  rgb(100, 100, 100);
+
+    }
+    .login-wrapper > p{
+        font-size: 16px;
+        text-align: center;
     }
 </style>
 </head>
@@ -61,14 +73,12 @@ Member searchId = (Member)session.getAttribute("searchId");
 
     <div class="login-wrapper">
         <h2 style="text-align: center;">아이디 찾기</h2>
-        
-        <form action="<%= request.getContextPath() %>/search.id" method="post" id="login-form">
-          
-            <input type="text" name="user_Name" placeholder="이름을 입력해주세요.">
-            <input type="email" name="email" placeholder="이메일을 입력해주세요.">
+            <br><br><br>
+            <p>회원님의 아이디는 <span style="color: rgb(226, 36, 36); font-weight: bolder;" ><%= searchId.getUser_Id() %></span> 입니다.</p>
+            <br><br><br>
 
-            <input type="submit" value="확인"> 
-        </form>
+            <input type="button" value="로그인 하러가기" id="btn" onclick="location.href ='<%=contextPath%>/views/member/loginUser.jsp'"> 
+        
         
     </div>
     

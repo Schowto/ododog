@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.odd.member.model.vo.Member"%>
 <%
-Member searchId = (Member)session.getAttribute("searchId");
+Member searchPwd = (Member)session.getAttribute("searchPwd");
 %>    
 <!DOCTYPE html>
 <html>
@@ -60,10 +60,11 @@ Member searchId = (Member)session.getAttribute("searchId");
 	<%@ include file="../common/userMenubar.jsp"%>
 
     <div class="login-wrapper">
-        <h2 style="text-align: center;">아이디 찾기</h2>
+        <h2 style="text-align: center;">비밀번호 찾기</h2>
         
-        <form action="<%= request.getContextPath() %>/search.id" method="post" id="login-form">
-          
+        <form action="<%= request.getContextPath() %>/search.pwd" method="post" id="login-form">
+          	
+          	<input type="text" name="user_Id" placeholder="아이디를 입력해주세요.">
             <input type="text" name="user_Name" placeholder="이름을 입력해주세요.">
             <input type="email" name="email" placeholder="이메일을 입력해주세요.">
 
