@@ -10,12 +10,12 @@
 		  		 		SELECT 
 		  		 			   CONSULT_NO
 		  		 	  		 , CONSULT_TITLE
-		  		 	  		 , USER_ID
+		  		 	  		 , CONSULT_CATEGORY
 		  		 	  		 , TO_CHAR(ENROLL_DATE, 'YYYY/MM/DD') "ENROLL_DATE"
-		  		 	  		 , STATUS
+		  		 	  		 , ANSWER_STATUS
 		  		 	      FROM CONSULT C
-		  		 	      JOIN MEMBER M USING (USER_NO)
-		  		 	     WHERE USER_NO = ?
+		  		 	      JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
+		  		 	     WHERE C.USER_NO = ?
 		  		 	     	 , C.STATUS = 'Y'
 		  		 	     ORDER 
 		  		 	        BY COUNSULT_NO DESC
@@ -30,7 +30,6 @@
 		  FROM CONSULT
 		 WHERE STATUS = 'Y'
 	</entry>
-	
 	
 	
 	<entry key="selectAllConsult">
@@ -49,6 +48,7 @@
 		     , FILE_PATH
 		     , CONSULT_CATEGORY
 		     , RESPONDENTS
+		     , ANSWER_STATUS
 		  FROM CONSULT C
 		  JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
 		 WHERE M.USER_NO = ?
@@ -68,7 +68,7 @@
 		  , ORIGIN_NAME
 		  , FILE_PATH
 		  , CONSULT_CATEGORY
-		  
+		  , ANSWER_STATUS
 		  )
 		  VALUES
 		  (
@@ -81,7 +81,7 @@
 		  , ?
 		  , ?
 		  , ?
-		  
+		  , '미답변'
 		  )
 	</entry>
 
@@ -100,10 +100,31 @@
 		     , FILE_PATH
 		     , CONSULT_CATEGORY
 		     , RESPONDENTS
+		     , ANSWER_STATUS
 		  FROM CONSULT C
 		  JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
 		 WHERE C.CONSULT_NO = ?
 		   AND C.STATUS = 'Y'
+	</entry>
+	
+	<entry key="updateConsult">
+		UPDATE 
+			   CONSULT
+		   SET CONSULT_TITLE = ?
+		     , CONSULT_CATEGORY = ?
+		     , CONSULT_CONTENT = ?
+		     , ORIGIN_NAME = ?
+		     , FILE_PATH = ?
+		     , MODIFY_DATE = SYSDATE
+		 WHERE CONSULT_NO = ?
+		   AND STATUS = 'Y'
+	</entry>
+	
+	<entry key="deleteConsult">
+		UPDATE 
+			   CONSULT
+		   SET STATUS = 'N'
+		 WHERE CONSULT_NO = ?
 	</entry>
 
 

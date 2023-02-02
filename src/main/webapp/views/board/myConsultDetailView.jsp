@@ -71,9 +71,15 @@
 	.consultAnswer textarea{
 		display:none;
 	}
-	.consultEnroll input[type=text]{
-		width:400px;
-		border:1px solid rgb(220,220,220);
+	.consultEnroll input[name=consultNo]{
+		width:70px;
+		border:none;
+		height:20px;
+		color:rgb(50, 50, 50);
+	}
+	.consultEnroll input[name=consultCategory]{
+		width:150px;
+		border:none;
 		height:20px;
 		color:rgb(50, 50, 50);
 	}
@@ -101,7 +107,7 @@
 		animation-timing-function:step-end;
 	}
 	.consultEnroll input[name=consultTitle]{
-		width:400px;
+		width:300px;
 		height:20px;
 		border:none;
 	}
@@ -139,7 +145,9 @@
 			<br><br><br><br>
 
 			<div class="consultEnroll">
-				<table>
+				
+				<form action="<%=contextPath%>/delete.co" method="post" enctype="mutipart/form-data">
+					<table>
 						<tr>
 							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;번호</td>
 							<td style="width:10%; border-right:1px solid rgb(220,220,220);">
@@ -153,6 +161,7 @@
 							</td>
 							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
 							<td style="width:20%">
+								&nbsp;&nbsp;
 								<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>" readonly>
 							</td>
 						</tr>
@@ -169,7 +178,20 @@
 						</tr>
 						
 					</table>
+					
 					<br>
+		
+					<div align="center">
+						<button type="button" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
+						<button type="submit">수정</button>
+						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
+					</div>
+					
+				</form>	
+    		</div>
+    			
+    			
+    			<br>
 					
 					<%if(c.getConsultAnswer() != null){ %>
 					<table class="consultAnswer">
@@ -197,31 +219,9 @@
           						$( '.answer' ).slideDown();
         					} );
       					} );
-    				</script>
-    				
-    				</div>
-
-					<br>
-		
-					<div align="center">
-						<button type="button" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
-						<button type="submit" class="btnUpdate">수정</button>
-						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co'">삭제</button>
-					</div>
-					
-					<script>
-						$(function(){
-							$(".btnUpdate").click(function(){
-								location.href='<%=contextPath%>/updateForm.co?no=<%=c.getConsultNo()%>';
-							})
-						})
-					</script>
-    					
+    				</script>	
 
 		</div>
-
-
-
 
 
 

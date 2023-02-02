@@ -43,7 +43,7 @@ public class MyConsultUpdateController extends HttpServlet {
 			
 			MultipartRequest multiRequest = new MultipartRequest(request,savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
-			int consultNo = Integer.parseInt(multiRequest.getParameter("no"));
+			int consultNo = Integer.parseInt(multiRequest.getParameter("consultNo"));
 			String consultTitle = multiRequest.getParameter("consultTitle");
 			String consultCategory = multiRequest.getParameter("consultCategory");
 			String consultContent = multiRequest.getParameter("consultContent");
@@ -59,7 +59,7 @@ public class MyConsultUpdateController extends HttpServlet {
 				c.setFilePath(multiRequest.getFilesystemName("resources/consult_upfiles/" + "upfile"));
 			}
 			
-			int result = new ConsultService().updateConsult(consultNo);
+			int result = new ConsultService().updateConsult(consultNo, c);
 			
 			if(result > 0) {
 				request.getSession().setAttribute("alertMsg", "성공적으로 수정되었습니다.");

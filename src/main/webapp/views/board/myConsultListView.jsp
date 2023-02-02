@@ -152,7 +152,7 @@ td {
 							<td><%=c.getConsultTitle()%></td>
 							<td><%=c.getConsultCategory()%></td>
 							<td><%=c.getEnrollDate()%></td>
-							<td><%=c.getStatus()%></td>
+							<td><%=c.getAnswerStatus()%></td>
 						</tr>
 					<%}%>
 

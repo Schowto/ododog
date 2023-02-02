@@ -31,7 +31,7 @@ public class ConsultDao {
 	 * @param conn
 	 * @param pi
 	 * @return
-	 */
+	*/ 
 	public ArrayList<Consult> selectList(Connection conn, PageInfo pi, int userNo) {
 
 		ArrayList<Consult> list = new ArrayList<>();
@@ -55,9 +55,9 @@ public class ConsultDao {
 			while(rset.next()) {
 				list.add(new Consult(rset.getInt("counsult_no"),
 									 rset.getString("consult_title"),
-									 rset.getString("user_id"),
+									 rset.getString("consult_category"),
 									 rset.getDate("enroll_date"),
-									 rset.getString("status")
+									 rset.getString("answer_status")
 						));
 			}
 			
@@ -133,7 +133,8 @@ public class ConsultDao {
 									 rset.getString("origin_name"),
 									 rset.getString("file_path"),
 									 rset.getString("consult_category"),
-									 rset.getInt("respondents")
+									 rset.getInt("respondents"),
+									 rset.getString("answer_status")
 						));
 			}
 		} catch (SQLException e) {
@@ -209,7 +210,8 @@ public class ConsultDao {
 						        rset.getString("origin_name"),
 						        rset.getString("file_path"),
 						        rset.getString("consult_category"),
-						        rset.getInt("respondents"));
+						        rset.getInt("respondents"),
+						        rset.getString("answer_status"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -222,11 +224,36 @@ public class ConsultDao {
 		
 	}
 	
-	public int updateConsult(Connection conn, int consultNo) {
+	public int updateConsult(Connection conn, int consultNo, Consult c) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateConsult");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getConsultTitle());
+			pstmt.setString(2, c.getConsultCategory());
+			pstmt.setString(3, c.getConsultContent());
+			pstmt.setString(4, c.getOriginName());
+			pstmt.setString(5, c.getFilePath());
+			pstmt.setInt(6, c.getConsultNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	public int deleteConsult(Connection conn, int consultNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteConsult");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

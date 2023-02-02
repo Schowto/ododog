@@ -46,7 +46,7 @@ public class MyConsultInsertController extends HttpServlet {
 			int maxSize = 10 * 1024 * 1024;
 			
 			// 전달될 파일을 저장시킬 폴더의 물리적인 경로 알아내기
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/consult_upfile/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/consult_upfiles/");
 			
 			// 전달할 파일의 파일명 수정 및 서버에 업로드 작업
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
@@ -67,7 +67,7 @@ public class MyConsultInsertController extends HttpServlet {
 			
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				c.setOriginName(multiRequest.getOriginalFileName("upfile"));
-				c.setFilePath(multiRequest.getFilesystemName("resources/consult_upfile/" + "upfile"));
+				c.setFilePath(multiRequest.getFilesystemName("resources/consult_upfiles/" + "upfile"));
 			}
 			
 			
