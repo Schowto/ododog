@@ -33,8 +33,8 @@ public class AjaxReplyListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int boardNo = Integer.parseInt(request.getParameter("no"));
-		
-		ArrayList<Reply> list = new BoardService().selectReplyList(boardNo);
+		int boardType = Integer.parseInt(request.getParameter("boardType"));
+		ArrayList<Reply> list = new BoardService().selectReplyList(boardNo, boardType);
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(list, response.getWriter());
 	}

@@ -409,7 +409,7 @@ public class BoardDao {
 	}
 	
 	//-- 댓글
-	public ArrayList<Reply> selectReplyList(Connection conn, int boardNo){
+	public ArrayList<Reply> selectReplyList(Connection conn, int boardNo, int boardType){
 		ArrayList<Reply> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -417,7 +417,8 @@ public class BoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, boardNo);
-			pstmt.setInt(2, boardNo);
+			pstmt.setInt(2, boardType);
+			pstmt.setInt(3, boardNo);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Reply(rset.getInt("reply_no"),

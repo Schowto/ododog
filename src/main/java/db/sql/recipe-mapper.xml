@@ -97,7 +97,8 @@
 	</entry>
 	<entry key="selectCooking">
 		SELECT
-		       COOKING_CONTENT
+			   COOKING_ORDER
+		     , COOKING_CONTENT
 		     , FILE_PATH
 		  FROM COOKING
 		 WHERE RECIPE_NO = ?

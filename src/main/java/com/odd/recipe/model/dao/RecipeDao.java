@@ -171,6 +171,7 @@ public class RecipeDao {
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Cooking c = new Cooking();
+				c.setCookingOrder(rset.getInt("cooking_order"));
 				c.setCookingContent(rset.getString("cooking_content"));
 				c.setFilePath(rset.getString("file_path"));
 				list.add(c);
