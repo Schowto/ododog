@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.product.model.service.ProductDetailService;
+import com.odd.product.model.service.ProductFoodService;
 import com.odd.product.model.vo.ProAtt;
+import com.odd.product.model.vo.UserProduct;
 
 /**
  * Servlet implementation class ProductDetailController
@@ -33,12 +35,17 @@ public class ProductDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 응답페이지
-		int productNo = Integer.parseInt(request.getParameter("no"));
+		request.setCharacterEncoding("UTF-8");
 		
 		
-		ArrayList<ProAtt> list = new ProductDetailService().productDetail(productNo);
-				
+		int productNo = Integer.parseInt(request.getParameter("no")); //넘어오는 자손값
+		
+		ArrayList<ProAtt> list = new ProductDetailService().productDetail(productNo);  //상품상세테이블값
+		ArrayList<UserProduct> list2 = new ProductDetailService().productDetailFood(productNo); // 상품테이블값
+		
+		
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
 		request.getRequestDispatcher("views/product/productDetailView.jsp").forward(request,response);
 	}
 

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct" %>	
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.ProAtt, com.odd.product.model.vo.UserProduct" %>	
+
 <%
-	ArrayList<UserProduct> list = (ArrayList<UserProduct>)request.getAttribute("list");
+	ArrayList<ProAtt> list = (ArrayList<ProAtt>)request.getAttribute("list");
+	ArrayList<UserProduct> list2 = (ArrayList<UserProduct>)request.getAttribute("list2");
 %>		
 	
 <!DOCTYPE html>
@@ -99,7 +101,7 @@ input[type=number]::-webkit-inner-spin-button {
 			
 				<br> <span> <b>상품명</b> </span> 
 				
-				<span> 상품명 </span> 
+				<span>  </span> 
 				<br><br> 
 				<span> <b>판매가</b></span> 
 				<span> 가격 </span> 

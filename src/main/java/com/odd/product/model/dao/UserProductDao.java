@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.odd.product.model.vo.ProAtt;
+import com.odd.product.model.vo.Product;
 import com.odd.product.model.vo.UserProduct;
 
 
@@ -171,8 +172,44 @@ public class UserProductDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
 		return list;
+	}
+	
+	public ArrayList<UserProduct> productDetailFood(Connection conn, int productNo){
+		ArrayList<UserProduct> list2 = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectDetail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				list2.add(new UserProduct(
+										rset.getInt("pro_no"),
+										rset.getString("pro_name"),
+										rset.getInt("price"),
+										rset.getString("thumb_img")
+										
+										
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list2;
+		
 	}
 	
 	
