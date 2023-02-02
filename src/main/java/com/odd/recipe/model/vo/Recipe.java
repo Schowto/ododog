@@ -14,6 +14,7 @@ public class Recipe {
 	private String status;
 	
 	private int replyCount;
+	private int heartCount;
 	
 	public Recipe() {}
 	public Recipe(int recipeNo, String recipeTitle, String recipeContent, String recipeThumbImg, String effect,
@@ -45,12 +46,14 @@ public class Recipe {
 		this.ingredient = ingredient;
 		this.processCount = processCount;
 	}
-	public Recipe(int recipeNo, String recipeTitle, String recipeThumbImg, int replyCount) {
+	// selectList
+	public Recipe(int recipeNo, String recipeTitle, String recipeThumbImg, int replyCount, int heartCount) {
 		super();
 		this.recipeNo = recipeNo;
 		this.recipeTitle = recipeTitle;
 		this.recipeThumbImg = recipeThumbImg;
 		this.replyCount = replyCount;
+		this.heartCount = heartCount;
 	}
 
 	public int getRecipeNo() {
@@ -125,6 +128,12 @@ public class Recipe {
 	}
 	public void setReplyCount(int replyCount) {
 		this.replyCount = replyCount;
+	}
+	public int getHeartCount() {
+		return heartCount;
+	}
+	public void setHeartCount(int heartCount) {
+		this.heartCount = heartCount;
 	}
 	
 	@Override

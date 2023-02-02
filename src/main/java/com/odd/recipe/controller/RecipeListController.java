@@ -56,7 +56,6 @@ public class RecipeListController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		String sort = request.getParameter("sort");
-		System.out.println(sort);
 		
 		ArrayList<Recipe> list = null;
 		if(sort == null || sort.equals("new")) {
@@ -67,11 +66,11 @@ public class RecipeListController extends HttpServlet {
 			list = new RecipeService().selectListSortByHeart(pi);
 		} else {
 			// 댓글순
-			
+			list = new RecipeService().selectListSortByReply(pi);
 		}
-		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		request.setAttribute("sort", sort);
 		request.getRequestDispatcher("views/recipe/recipeListView.jsp").forward(request, response);
 	}
 

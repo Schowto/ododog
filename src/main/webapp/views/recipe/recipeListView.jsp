@@ -4,6 +4,7 @@
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Recipe> list = (ArrayList<Recipe>)request.getAttribute("list");
+	String sort = (String)request.getAttribute("sort");
 %>
 <!DOCTYPE html>
 <html>
@@ -166,11 +167,9 @@
             <form id="search-area">
 
                 <table style="font-size:15px;">
-
                     <tr>
                         <td width="200" height="50" style="font-weight:600;">아이들에게 필요한 건?</td>
                         <td width="500" id="select-effect">
-
                             <label class="checkbox" style="border-radius:5px; background: white;">
                                 <input type="checkbox" name="effect" value="10">
                                 <span>다이어트</span>
@@ -191,10 +190,8 @@
                                 <input type="checkbox" name="effect" value="50">
                                 <span>장관련</span>
                             </label>
-
                         </td>
                     </tr>
-
                     <tr>
                         <td height="50" style="font-weight:600;">만드는 시간은?</td>
                         <td id="select-time">
@@ -216,7 +213,6 @@
                             </label>
                         </td>
                     </tr>
-
                     <tr>
                         <td colspan="2" align="center" style="padding-top:50px; font-size:18px; font-weight:600; line-height:26px;">
                             내가 가진 재료로 레시피 추천받기 <br>
@@ -224,27 +220,21 @@
                             <button type="submit" style="height:25px; width:50px; border:none; margin-top:10px;">
                                 <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:5px;">
                             </button>
-                            
                         </td>
                     </tr>
-
                 </table>
 
             </form>
 
             <script>
-
                 $(":checkbox").change(function(){
                     //console.log($(this).prop("checked"));
-
                     if($(this).prop("checked")){
                         $(this).parent().css("backgroundColor","rgb(200, 140, 140)").css("color","white");
                     } else {
                         $(this).parent().css("backgroundColor", "white").css("color","rgb(50, 50, 50)");
                     }
-
                 })
-
             </script>
 
             <br><br><br><br>
@@ -264,17 +254,23 @@
                 </label>
             </div>
             <br>
-
+            
             <script>
-            	$(function(){
-            		
-            	})
                 $(".sort-filter-area label").click(function(){
                     //console.log($(this).text());
                     $(this).addClass('selected');
                     $(this).siblings().removeClass('selected');
                     location.href = "<%= contextPath %>/list.re?cpage=1&sort=" + $(this).children("input").val();
                 })
+            	$(function(){
+            		const sortList = $(".sort-filter-area :radio");
+            		$(sortList).each(function(){
+            			if($(this).val() == "<%= sort %>"){
+            				$(this).parents("label").addClass("selected");
+            				$(this).parents("label").siblings().removeClass('selected');
+            			}
+            		})
+            	})
             </script>
             
             <div class="list-area" style="font-size:15px;">
@@ -297,6 +293,7 @@
 	                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> <%= r.getReplyCount() %>
 	                        <div style="display:inline-block;">
 	                            <img src="<%= contextPath %>/resources/icons/heart.png" id="heart-area<%= r.getRecipeNo() %>" width="15" style="margin-left:7px; cursor:pointer;">
+	                            <%= r.getHeartCount() %>
 	                        </div>
 	                    </div>
 	                </div>

@@ -32,6 +32,12 @@ public class RecipeService {
 		close(conn);
 		return list;
 	}
+	public ArrayList<Recipe> selectListSortByReply(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<Recipe> list = new RecipeDao().selectListSortByReply(conn, pi);
+		close(conn);
+		return list;
+	}
 	
 	/**
 	 * 레시피 등록
