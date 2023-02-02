@@ -56,7 +56,8 @@ public class AdminProductUpdateController extends HttpServlet {
 			p.setSoldout(multipartRequest.getParameter("soldout"));
 			p.setThumbImg(multipartRequest.getParameter("thumbImg"));
 			
-			ArrayList<ProAtt> list = new ArrayList<>();
+			ArrayList<ProAtt> updateList = new ArrayList<>();
+			ArrayList<ProAtt> insertList = new ArrayList<>();
 			
 			
 			for(int i=1; i<=10; i++) {
@@ -65,17 +66,32 @@ public class AdminProductUpdateController extends HttpServlet {
 					
 					ProAtt at = new ProAtt();
 					at.setFilePath("resources/product_img/" + multipartRequest.getFilesystemName(key));
-					at.setFileNo(Integer.parseInt(multipartRequest.getParameter("file" + i + "No")));
+					
+					// 기존에 이미지가 존재 했다면  
+					if(multipartRequest.getParameter("file" + i + "No") != null || !(multipartRequest.getParameter("file" + i + "No").equals(""))) {
+						
+						at.setFileNo(Integer.parseInt(multipartRequest.getParameter("file" + i + "No")));
 				
-					if(i == 1) {
-						p.setThumbImg("resources/product_img/" + multipartRequest.getFilesystemName(key));
+						if(i == 1) {
+							p.setThumbImg("resources/product_img/" + multipartRequest.getFilesystemName(key));
+						}
+					
+						updateList.add(at);
 					}
-				
-					list.add(at);
+					
+					// 기존에 이미지가 존재 하지 않았다면 (보완 필요)
+//					else {
+//						
+//						at.setFileLevel(2);
+//						
+//						insertList.add(at);
+//					}
+						
 				}
 			}
 			
-			int result = new AdminProductService().updateProduct(p, list);
+			int result = new AdminProductService().updateProduct(p, updateList);
+//			int result2 = new AdminProductService().insertProduct(p, updateList);
 			
 			if(result>0) {
 				request.getSession().setAttribute("alertMsg", "상품 수정 성공");
