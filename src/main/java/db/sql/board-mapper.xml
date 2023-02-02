@@ -251,6 +251,7 @@
 		  FROM REPLY R
 		  JOIN MEMBER ON (REPLY_WRITER = USER_NO)
 		 WHERE R.STATUS = 'Y'
+		   AND BOARD_TYPE = ?
 		   AND BOARD_NO = ?
 		 ORDER
 			BY REPLY_NO
@@ -306,7 +307,7 @@
 	UPDATE REPORT
 	  SET DONE = 'N'
 	 WHERE REPORT_NO = ?
-</entry>
+	</entry>
 	<entry key="selectReportReplyList">
 	SELECT
 	    REPORT_NO ,
@@ -317,5 +318,4 @@
 	    DONE
 	   FROM REPORT
 	</entry>
-	
 </properties>

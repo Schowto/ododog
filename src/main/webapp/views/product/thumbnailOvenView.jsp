@@ -99,8 +99,7 @@ p:hover {
 			<% for(UserProduct p : list){ %>
 			
 				<div class="thumbnail" align="center">
-					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px"
-						onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px">
 					<p> <%= p.getProName() %> <br>
 						<b><%= p.getPrice() %>원</b>
 					</p>

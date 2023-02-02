@@ -23,11 +23,11 @@ public class AdminProductService {
 		return result;
 	}
 	
-	public ArrayList<Product> selectList(PageInfo pi, String order){
+	public ArrayList<Product> selectList(PageInfo pi, String order, String by){
 		
 		Connection conn = getConnection();
 		
-		ArrayList<Product> list = new AdminProductDao().selectList(conn, pi, order);
+		ArrayList<Product> list = new AdminProductDao().selectList(conn, pi, order, by);
 		close(conn);
 		
 		return list;

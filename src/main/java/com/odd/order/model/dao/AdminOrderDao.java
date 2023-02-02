@@ -51,12 +51,11 @@ public class AdminOrderDao {
 		
 	}
 	
-	public ArrayList<AdminOrder> selectList(Connection conn, PageInfo pi, String order){
+	public ArrayList<AdminOrder> selectList(Connection conn, PageInfo pi, String order, String by){
 		
 		ArrayList<AdminOrder> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;	
-		String by = "ASC";
 		
 		String sql = prop.getProperty("selectList1") + " ORDER BY " + order +" " + by + " " + prop.getProperty("selectList2"); ;
 		

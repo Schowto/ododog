@@ -8,6 +8,8 @@
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	String order = (String)request.getAttribute("order");
+	String by = (String)request.getAttribute("by");
+	String byAdv = (String)request.getAttribute("byAdv");
 %>        
     
 <!DOCTYPE html>
@@ -50,6 +52,10 @@
    	    z-index:-1;
      }
 
+	 .order>a{
+     	opacity:0.4;
+     }
+	 
 </style>
 
 </head>
@@ -70,16 +76,69 @@
 		-->
 		 
         <div id="content" align="center">
-        
+        	
+        	<!-- 오름차순/내림차순 버튼 변경 -->
+        	<script>
+                $(function(){
+					let by = "<%=by%>";                	
+                	let order ="<%=order%>";
+                	
+                    switch(order){
+                        case "PRO_NO" : 
+                            if(by == "ASC"){
+                                $("#btn1").html("번호↑");
+                            }else{
+                                $("#btn1").html("번호↓");
+                            }
+                            $("#btn1").css("opacity","1");
+                            $("#btn1").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
+                       break;
+                            
+                       case "CATEGORY" :
+                           if(by == "ASC"){
+                               $("#btn2").html("카테고리↑");
+                           }else{
+                               $("#btn2").html("카테고리↓");
+                           }
+                           $("#btn2").css("opacity","1");
+                           $("#btn2").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
+                       break;
+                       
+                       case "PRICE" :
+                           if(by == "ASC"){
+                               $("#btn3").html("가격↑");
+                           }else{
+                               $("#btn3").html("가격↓");
+                           }
+                           $("#btn3").css("opacity","1");
+                           $("#btn3").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
+                       break;
+                               
+                       case "EXPIRED_DATE" :
+                           if(by == "ASC"){
+                               $("#btn4").html("유통기한↑");
+                           }else{
+                               $("#btn4").html("유통기한↓");
+                     	   }
+                           $("#btn4").css("opacity","1");
+                           $("#btn4").attr("href","<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
+                       break;
+
+                    }
+
+                })
+        	
+        	</script>
+        	
         
             <br>
             <h2>전체 물품 조회</h2>
             <br>
             	<div class="order">
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO">번호</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=CATEGORY">카테고리</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRICE">가격</a>
-	                <a class="btn btn-sm btn-secondary" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=EXPIRED_DATE">유통기한</a>
+	                <a class="btn btn-sm btn-secondary" id="btn1" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO&&by=ASC">번호</a>
+	                <a class="btn btn-sm btn-secondary" id="btn2" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=CATEGORY&&by=ASC">카테고리</a>
+	                <a class="btn btn-sm btn-secondary" id="btn3" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRICE&&by=ASC">가격</a>
+	                <a class="btn btn-sm btn-secondary" id="btn4" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=EXPIRED_DATE&&by=ASC">유통기한</a>
 				</div>
 				<br>
                 <table class="list-area table" >
@@ -125,21 +184,21 @@
                 <ul class="page pagination">
                     
                     <% if(pi.getCurrentPage() != 1){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=order%>">&lt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()-1%>&&order=<%=order%>&&by=<%=by%>">&lt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link " href="">&lt;</a></li>
                     <%} %>
                     
                     <% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
                     <% 	if(pi.getCurrentPage() == p){ %>
-                            <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
+                            <li class="page-item active"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=p%>&&order=<%=order%>&&by=<%=by%>"><%=p%></a></li>
                     <% 	}else { %>	
-                            <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=p%>&&order=<%=order%>"><%=p%></a></li>
+                            <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=p%>&&order=<%=order%>&&by=<%=by%>"><%=p%></a></li>
                     <% 	} %>
                     <% } %>
                     
                     <% if(pi.getCurrentPage() != pi.getMaxPage()){%>
-                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>">&gt;</a></li>
+                        <li class="page-item"><a class="page-link" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()+1%>&&order=<%=order%>&&by=<%=by%>">&gt;</a></li>
                     <% }else{ %>
                         <li class="page-item disabled"><a class="page-link" href="">&gt;</a></li>
                     <%} %>

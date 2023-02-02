@@ -203,7 +203,7 @@
                     상품 관리
                 </div>
                 <p>
-                    <a href="<%=contextPath%>/list.adPro?cpage=1&&order=PRO_NO">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전체 상품 조회</a>
+                    <a href="<%=contextPath%>/list.adPro?cpage=1&&order=PRO_NO&&by=ASC">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전체 상품 조회</a>
                     <a href="<%=contextPath%>/search.adPro?cpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp상품 검색 및 관리</a>
                     <a href="<%=contextPath%>/enroll.adPro">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp상품 등록</a>
                 </p>
@@ -213,7 +213,7 @@
                     주문 관리
                 </div>
                 <p>
-                    <a href="<%=contextPath%>/list.adOrd?cpage=1&&order=주문번호">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전체 주문 조회</a>
+                    <a href="<%=contextPath%>/list.adOrd?cpage=1&&order=주문번호&&by=ASC">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp전체 주문 조회</a>
                     <a href="<%=contextPath%>/search.adOrd?cpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp주문 배송 처리</a>
                 </p>
 
@@ -234,6 +234,7 @@
                 <p>
                     <a href="<%=contextPath%>/FAQlist.ad">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFAQ</a>
                     <a href="<%=contextPath%>/list.rp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp신고관리</a>
+                    <a href="<%=contextPath%>/admin.co">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1:1상담관리</a>
                 </p>
             </div>
 

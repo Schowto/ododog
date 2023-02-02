@@ -5,6 +5,15 @@
 
 <%
 	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	String proName = request.getParameter("proName");
+	String category = request.getParameter("category");
+	String soldout = request.getParameter("soldout");
+	String expDateRemain = request.getParameter("expDateRemain");
+	String lowPrice = request.getParameter("lowPrice");
+	String highPrice = request.getParameter("highPrice");
+	String firstDate = request.getParameter("firstDate");
+	String secondDate = request.getParameter("secondDate");
+	String cpage = request.getParameter("cpage");
 %>   
 
 
@@ -83,9 +92,10 @@
    	    z-index:-1;
      }
      
-   
-     	
- 
+   	 #searchForm th{
+   	 	text-align:center;
+   	 	width:140px;
+   	 }
 
 </style>
 
@@ -96,7 +106,7 @@
     <div class="wrap">
  	    
  	    <%@ include file="../common/adminMenubarForInclude.jsp" %>
-
+ 	 	
         <div id="content" align="center">
         
             <br>
@@ -110,6 +120,7 @@
 			
 			<script>
 				$(function(){
+					
 					$("#deleteBTN").click(function(){
 						
 						 let deleteList = [];
@@ -198,19 +209,58 @@
                
             <br><br><br>
        		
+       		<script>
+			$(function(){
+ 	    		
+ 	    		let proName = "<%=proName%>"; 
+ 	    		let category ="<%=category%>";
+ 	    		let soldout = "<%=soldout%>";
+ 	    		let expDateRemain ="<%=expDateRemain%>";
+ 	    		let lowPrice = "<%=lowPrice%>";
+ 	    		let highPrice ="<%=highPrice%>";
+ 	    		let firstDate ="<%=firstDate%>";
+ 	    		let secondDate = "<%=secondDate%>";
+ 	    		
+ 	    		if(<%=cpage%> != 1){
+ 	    			$("input[name=proName]").val(proName);
+ 	    	
+	    		    $("input[name='category']").each(function() {
+						if($(this).val() == category){
+							$(this).attr("checked",true);							
+						} 
+	    		    })	
+	    		    $("input[name='soldout']").each(function() {
+						if($(this).val() == soldout){
+							$(this).attr("checked",true);							
+						} 
+	    		    })	
+	    		    $("input[name='expDateRemain']").each(function() {
+						if($(this).val() == expDateRemain){
+							$(this).attr("checked",true);							
+						} 
+	    		    })
+					$("input[name=lowPrice]").val(lowPrice);
+					$("input[name=highPrice]").val(highPrice);
+					$("input[name=firstDate]").val(firstDate);
+					$("input[name=secondDate]").val(secondDate);
+ 	    		}	
+ 	    	});
+       		</script>
+       		
+       		
        		<!-- 상품 검색 조건 폼 -->
        		<form id="searchForm" action="<%=contextPath%>/search.adPro" method="post">
 				  <input type="hidden" name="cpage" value="2" >
 
                   <table class="table-bordered" style="width:700px">
                     <tr>
-                        <td>상품명</td>
+                        <th>상품명</th>
                         <td>
                             <input type="text" class="form-control-sm" name="proName" style="width:300px"> 
                         </td>
                     </tr>
                     <tr>
-                        <td>상품분류</td>
+                        <th>상품분류</th>
                         <td>  
 							&nbsp;
                             <div class="form-check-inline">
@@ -240,7 +290,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>품절여부</td>
+                        <th>품절여부</th>
                         <td>
                             &nbsp;
                             <div class="form-check-inline">
@@ -260,7 +310,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>유통기한 잔여일</td>
+                        <th>유통기한 잔여일</th>
                         <td>
                         	&nbsp;
                             <div class="form-check-inline">
@@ -280,7 +330,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>상품 가격</td>
+                        <th>상품 가격</th>
                         <td>
                             <div class="input-group-prepend input-group-sm">
                                 <input type="text" class="form-control" name="lowPrice" placeholder="원"> 
@@ -290,7 +340,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>등록일</td>
+                        <th>등록일</th>
                         <td>
                             <div class="input-group-prepend input-group-sm">
                                 <input type="date" class="form-control" name="firstDate"> 
@@ -311,9 +361,10 @@
     </div>
         
         
-       <!-- 클릭시 모달에 상품 정보 불러오기  -->
+       <!-- 검색결과에서 상품 클릭시 모달에 상품 정보 불러오기  -->
        <script>
        $(function(){
+    	   
 	  		$(".list-area>tbody>tr").click(function(){
 	  			
 				$.ajax({

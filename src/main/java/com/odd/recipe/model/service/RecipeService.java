@@ -46,6 +46,10 @@ public class RecipeService {
 		return result1 * result2;
 	}
 	
+	/**
+	 * 레시피 게시판 글 상세조회 위함
+	 * 조회수 증가 후 조회
+	 */
 	public int increaseCount(int recipeNo) {
 		Connection conn = getConnection();
 		int result = new RecipeDao().increaseCount(conn, recipeNo);
@@ -69,6 +73,41 @@ public class RecipeService {
 		ArrayList<Cooking> list = new RecipeDao().selectCooking(conn, recipeNo);
 		close(conn);
 		return list;
+	}
+	
+	public int insertHeart(int userNo, int recipeNo) {
+		Connection conn = getConnection();
+		int result = new RecipeDao().insertHeart(conn, userNo, recipeNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int deleteHeart(int userNo, int recipeNo) {
+		Connection conn = getConnection();
+		int result = new RecipeDao().deleteHeart(conn, userNo, recipeNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	/**
+	 * @param recipeNo
+	 * @param userNo
+	 * @return HEART 테이블에 등록되어있는지 : 있으면 1, 없으면 0
+	 */
+	public int selectHeartCount(int recipeNo, int userNo) {
+		Connection conn = getConnection();
+		int count = new RecipeDao().selectHeartCount(conn, recipeNo, userNo);
+		close(conn);
+		return count;
 	}
 
 }

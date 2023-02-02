@@ -74,12 +74,20 @@ public class AdminOrderListController extends HttpServlet {
 		// 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 boardLimit수만큼 조회
 		
 		String order = request.getParameter("order");
+		String by = request.getParameter("by");
 		
-		ArrayList<AdminOrder> list = new AdminOrderService().selectList(pi, order);
+		ArrayList<AdminOrder> list = new AdminOrderService().selectList(pi, order, by);
 		
 		request.setAttribute("pi",pi);
 		request.setAttribute("list",list);
 		request.setAttribute("order",order);
+		request.setAttribute("by", by);
+		
+		if(by.equals("ASC")) {
+			request.setAttribute("byAdv", "DESC");
+		}else if(by.equals("DESC")) {
+			request.setAttribute("byAdv", "ASC");
+		}
 		
 		request.getRequestDispatcher("views/order/adminOrderListView.jsp").forward(request, response);
 		

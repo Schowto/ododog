@@ -99,9 +99,11 @@ p:hover {
 			<% for(UserProduct p : list){ %>
 			
 				<div class="thumbnail" align="center">
-					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px"
-						onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
-					<p> <%= p.getProName() %> <br>
+					<input type="hidden" value="<%=p.getProNo() %>">
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px">
+					<p> 
+						
+						<%= p.getProName() %> <br>
 						<b><%= p.getPrice() %>원</b>
 					</p>
 					<div class="badge bg-info text-light">추천</div>
@@ -112,6 +114,14 @@ p:hover {
 				
 					
 	</div>
+	
+	<script>
+		$(function(){
+			$(".thumbnail").click(function(){
+				location.href = "<%=contextPath%>/detail.pro?no=" + $(this).children('input').val();
+			})
+		})
+	</script>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br>
