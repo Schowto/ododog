@@ -50,29 +50,27 @@
         font-size: 14px;
         color:  rgb(100, 100, 100);
     }
-    
-    
-        </style>
+</style>
 </head>
+
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
 
     <div class="login-wrapper">
         <h2 style="text-align: center;">아이디 찾기</h2>
-        <form method="post" action="" id="login-form" name="lf">
-            <label for="" id="label"><b>이름</b></label>
-            <input type="text" name="user_Name" placeholder="내용을 입력해주세요.">
-            <label for="" id="label"><b>이메일</b></label>
-            <input type="email" name="email" placeholder="내용을 입력해주세요.">
-            <div class="in" style="text-align: center;">
-        </div>
-            <input type="button" value="아이디 찾기" onclick="searchId()">
+        
+        <form action="<%= request.getContextPath() %>/searchId.me" method="post" id="login-form">
+          
+            <input type="text" name="user_Name" placeholder="이름을 입력해주세요.">
+            <input type="email" name="email" placeholder="이메일을 입력해주세요.">
+
+            <input type="submit" value="아이디 찾기">
         </form>
         
     </div>
     
     <script> 
-    
+
 
     </script>
    
