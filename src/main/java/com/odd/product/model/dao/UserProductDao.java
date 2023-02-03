@@ -30,6 +30,7 @@ public class UserProductDao {
 	}
 	
 	public ArrayList<UserProduct> selectFoodList(Connection conn){
+		
 		ArrayList<UserProduct> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;	
@@ -151,7 +152,7 @@ public class UserProductDao {
 		
 	}
 	
-	public ArrayList<ProAtt> productDetail(Connection conn){
+	public ArrayList<ProAtt> productDetail(Connection conn, int productNo){
 		ArrayList<ProAtt> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;	
@@ -160,13 +161,14 @@ public class UserProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
 				list.add(new ProAtt(
 										rset.getInt("pro_no"),
-										rset.getString("filepath"),
-										rset.getInt("filelevel")
+										rset.getString("file_path"),
+										rset.getInt("file_level")
 										
 						));
 			}
@@ -179,11 +181,11 @@ public class UserProductDao {
 		return list;
 	}
 	
-	public ArrayList<UserProduct> productDetailFood(Connection conn, int productNo){
-		ArrayList<UserProduct> list2 = new ArrayList<>();
+	public UserProduct productDetailFood(Connection conn, int productNo){
+		UserProduct p = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectDetail");
+		String sql = prop.getProperty("productDetailFood");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -192,15 +194,15 @@ public class UserProductDao {
 			rset = pstmt.executeQuery();
 			
 			
-			while(rset.next()) {
-				list2.add(new UserProduct(
-										rset.getInt("pro_no"),
-										rset.getString("pro_name"),
-										rset.getInt("price"),
-										rset.getString("thumb_img")
+			if(rset.next()) {
+				p = new UserProduct(	rset.getInt("pro_no"),
+						rset.getString("pro_name"),
+						rset.getInt("price"),
+						rset.getString("thumb_img")
+									
 										
 										
-						));
+						);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -208,7 +210,7 @@ public class UserProductDao {
 			close(rset);
 			close(pstmt);
 		}
-		return list2;
+		return p;
 		
 	}
 	

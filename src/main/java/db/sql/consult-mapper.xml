@@ -52,6 +52,8 @@
 		  JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
 		 WHERE M.USER_NO = ?
 		   AND C.STATUS = 'Y'
+		 ORDER
+		    BY CONSULT_NO DESC
 	</entry>
 
 	<entry key="insertConsult">

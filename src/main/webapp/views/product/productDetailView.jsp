@@ -4,8 +4,9 @@
 <%@ page import="java.util.ArrayList, com.odd.product.model.vo.ProAtt, com.odd.product.model.vo.UserProduct" %>	
 
 <%
-	ArrayList<ProAtt> list = (ArrayList<ProAtt>)request.getAttribute("list");
-	ArrayList<UserProduct> list2 = (ArrayList<UserProduct>)request.getAttribute("list2");
+ArrayList<ProAtt> list = (ArrayList<ProAtt>)request.getAttribute("list");
+UserProduct p = (UserProduct)request.getAttribute("p");
+	
 %>		
 	
 <!DOCTYPE html>
@@ -53,6 +54,53 @@ input[type=number]::-webkit-inner-spin-button {
     opacity: 1
 }
 
+	/******리뷰 스타일*******/
+	.reviewLine{
+    width:1000px;
+    height:3px;
+    background: rgba(128, 128, 128, 0.26);
+    margin:auto;
+    }
+	.reviewContent{
+		width:1000px;
+		margin:auto;
+	}
+	.reviewTable{
+		width:100%;
+	}
+    .reviewTable textarea{
+        resize:none; 
+        border:none;
+        background-color: rgba(128, 128, 128, 0.285);
+		width:1000px;
+		height:400px;
+    }
+    .reviewTable table{
+        border-collapse: collapse;
+        border-spacing: 0;
+        width:800px;
+        margin:auto;
+        border-top:2px solid rgba(128, 128, 128, 0.26);
+        margin:auto;
+
+    }
+    .reviewTable td{
+		border-bottom: 2px solid rgb(220,220,220);
+    }
+    .reviewTable img{
+        box-sizing: border-box;
+        width:100px;
+        height:100px;
+    }
+    .reviewTable td:last-child{
+        border-bottom:3px solid rgba(128, 128, 128, 0.26);
+    }
+	.reviewTable td{
+		border-bottom:3px solid rgb(220,220,220);
+		
+	}
+
+
 </style>
 <script src="./jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="./bootstrapt/css/bootstrap.min.css" />
@@ -61,17 +109,18 @@ input[type=number]::-webkit-inner-spin-button {
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
+		<div class="content">
 		<form action="/list.de" method="post">
 			<div class="left">
 				<div class="file-area">
 					<!--대표이미지-->
-					<img src="<%=contextPath%>/"
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
 						width="400px" height="400px">
 				</div>
 
 				<div class="float-file">
 					<!--미리보기1-->
-					<img src="<%=contextPath%>/"
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
 						width="100px" height="100px">
 				</div>
 
@@ -101,20 +150,20 @@ input[type=number]::-webkit-inner-spin-button {
 			
 				<br> <span> <b>상품명</b> </span> 
 				
-				<span>  </span> 
+				<span> 　　<%= p.getProName() %> </span> 
 				<br><br> 
 				<span> <b>판매가</b></span> 
-				<span> 가격 </span> 
+				<span> 　　<%= p.getPrice() %>원 </span> 
 				<br><br> 
 				<span><b>적립금</b></span> 
-				<span> 1% </span> 
+				<span> 　　1% </span> 
 				<br> <br>
 				<span><b>제조사</b></span>
-				<span>도그쿡</span>
+				<span>　　도그쿡</span>
 				<br><br>
 
 				<hr style="border: 1px color= silver;" width="100%">
-				<br> <span> 수량 </span> 
+				<br> <span> 수량 　</span> 
 					<input type="number" name="quantity" style="width: 50px">
 				</span> <br> <br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>
@@ -206,8 +255,8 @@ input[type=number]::-webkit-inner-spin-button {
 					});
 				</script>
 				
-				<button type="button" class="btn btn-dark" onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'">구매하기</button>
-
+				<button type="submit" class="btn btn-dark" >구매하기</button>
+					<!--  onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'"-->
 				<br>
 				<br>
 				<br> <br> <br> <br> <br> <br> <br>
@@ -247,11 +296,94 @@ input[type=number]::-webkit-inner-spin-button {
 						width="800px" height="1500px">
 				</div>
 
+	
 			</div>
+			
+			<script>
+		$(function(){
+			$(".thumbnail").click(function(){
+				location.href = "<%=contextPath%>/detail.pro?no=" + $(this).children('input').val();
+			})
+		})
+	</script>
 			<br> <br>
-
+			
 
 		</form>
+	</div>
+
+	<br><br>
+
+	<div class="reviewContent">
+
+		<H2 align="center">상품리뷰</H2>
+
+        <div class="reviewLine"></div>
+        <br><br>
+
+        	<form action="">
+                <table class="reviewTable">
+					<thead>
+					<!-- 리뷰가없을때 -->
+                	<tr style="text-align:center;">
+                		<td colspan="4" style="height:50px; font-weight: 600;" >
+	                		<br>
+							<br> <img src="<%=contextPath%>/resources/images/error.png"> <br><br>
+								상품에 대한 리뷰가 존재하지않습니다. <br>
+							<br>
+							<br>
+						</td>
+                	</tr>
+                	
+                	<!-- 리뷰가있을때 -->
+						<tr>
+							<td style="height:50px; width:60%; border-bottom: none;">&nbsp;&nbsp;⭐⭐⭐</td>
+							<td rowspan="2"><img src=""></td>
+							<td rowspan="2">
+								&nbsp;&nbsp;상품명 : 댕댕츄르 <br>
+								&nbsp;&nbsp;작성자 : 와그작<br>
+								&nbsp;&nbsp;작성일 : 2023.01.22
+							</td>
+						</tr>
+						<tr>
+							<td style="height:50px;">&nbsp;&nbsp;리뷰제목입니다끝내줘요</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td colspan="3">
+								<p>
+									&nbsp;&nbsp;리뷰내용 : <br><br>
+									&nbsp;&nbsp;<textarea name="reviewContent">리뷰내용들어오는자리냠호로로로로로롤</textarea>
+								</p>
+							</td>
+						</tr>
+					</tbody>
+                    
+                </table>
+                
+                <script>
+      					$( document ).ready( function() {
+        					$( '.reviewTable>thead' ).click( function() {
+          						$( '.reviewContent' ).slideDown();
+        					} );
+      					} );
+    				</script>	
+
+        </div>
+
+		<br><br><br><br><br><br><br><br><br>
+
+	</div>
+
+
+
+
+
+
+
+
+
 	</div>
 	<%@ include file="../common/userFooterbar.jsp"%>
 </body>

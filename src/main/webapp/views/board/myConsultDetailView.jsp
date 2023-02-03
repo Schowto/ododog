@@ -111,7 +111,7 @@
 		animation-iteration-count:infinite;
 		animation-timing-function:step-end;
 	}
-	.consultEnroll input[name=consultTitle]{
+	.consultEnroll input[name=consultTitle], .consultEnroll input[name=upfile]{
 		width:300px;
 		height:20px;
 		border:none;
@@ -180,7 +180,7 @@
 						</tr>
 						<tr>
 							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 </td>
-							<td colspan="5">&nbsp;&nbsp;<input type="file" name="upfile" value="<%=c.getOriginName()%>" readonly></td>
+							<td colspan="5">&nbsp;&nbsp;<input type="text" name="upfile" value="<%=c.getOriginName()%>" readonly></td>
 						</tr>
 						
 					</table>

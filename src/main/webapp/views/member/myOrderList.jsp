@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.order.model.vo.*, com.odd.member.model.vo.*"%>
+<%
+	Review r = (Review)request.getAttribute("r");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,6 +106,9 @@
         opacity: 0.7;
         cursor: pointer;
     }
+    .myOderList>tbody>tr>td:hover{
+    	background:rgb(220,220,220);
+    }
 </style>
 </head>
 <body>
@@ -141,8 +148,7 @@
                 </div>
                 <br>
                 <div class="myOrderView">
-                    <form action="">
-                        <table>
+                    <table>
                             <tr>
                                 <td colspan="2" style="padding-left: 15px;">
                                     <select name="" id="" >
@@ -174,30 +180,46 @@
 
                             </tr>
                         </table>
-                    </form>
                 </div>
 
                 <br>
-                <!--주문내역이없을때-->
+                
                 <div class="myOrderList">
-                    <form action="">
+                    <form action="" method="post">
+                    	<input type="hidden" name="reviewNo" value="<%=r.getReviewNo() %>">
                         <table>
-                            <tr>
-                                <td style="width:200px;">주문일자[주문번호]</td>
-                                <td style="width:150px;">이미지</td>
-                                <td style="width:150px;">상품정보</td>
-                                <td style="width:100px;">수량</td>
-                                <td style="width:200px;">상품구매금액</td>
-                                <td style="width:200px;">주문처리상태</td>
-                            </tr>
-                            <tr>
-                                <td colspan="6" style="height:150px; font-weight: 600;">
-                                    <br><br>
-                                    <img src="<%=contextPath%>/resources/images/error.png"> <br>
-                                    찾으시는 기간 내에 해당하는 내역이 없습니다.
-                                    <br><br><br>
-                                </td>
-                            </tr>
+                        	<thead>
+	                            <tr>
+	                                <td style="width:200px;">주문일자[주문번호]</td>
+	                                <td style="width:150px;">이미지</td>
+	                                <td style="width:150px;">상품이름</td>
+	                                <td style="width:100px;">수량</td>
+	                                <td style="width:200px;">결제금액</td>
+	                                <td style="width:200px;">주문처리상태</td>
+	                            </tr>
+                         	</thead>
+                         	<tbody>
+                         	
+	                         	<!--주문내역이없을때-->
+	                            <tr>
+	                                <td colspan="6" style="height:150px; font-weight: 600;">
+	                                    <br><br>
+	                                    <img src="<%=contextPath%>/resources/images/error.png"> <br>
+	                                    찾으시는 기간 내에 해당하는 내역이 없습니다.
+	                                    <br><br><br>
+	                                </td>
+	                            </tr>
+	                            
+	                        	<!-- 주문내역이있을때 -->
+	                            <tr>
+	                                <td style="width:200px; height:150px;" id="orderNo">20230122-1234567</td>
+	                                <td style="width:150px;"><img src=""></td>
+	                                <td style="width:150px;">댕댕이수제간식</td>
+	                                <td style="width:100px;">1</td>
+	                                <td style="width:200px;">15,000원</td>
+	                                <td style="width:200px;">배송준비중</td>
+	                            </tr>
+                            </tbody>
                         </table>
                     </form>
 
@@ -206,38 +228,6 @@
 
                 </div>
 
-                <!--주문내역이있을때-->
-                <div class="myOrderList">
-                    <form action="">
-                        <table>
-                            <tr>
-                                <td style="width:200px;">주문일자[주문번호]</td>
-                                <td style="width:150px;">이미지</td>
-                                <td style="width:150px;">상품정보</td>
-                                <td style="width:100px;">수량</td>
-                                <td style="width:200px;">상품구매금액</td>
-                                <td style="width:200px;">주문처리상태</td>
-                            </tr>
-                            <tr>
-                                <td id="orderNo" style="width:200px; height:150px;" onclick="location.href='<%=contextPath%>/orderDetail.me'">20230122-1234567</td>
-                                <td style="width:150px;"><img src=""></td>
-                                <td style="width:150px;">댕댕이수제간식</td>
-                                <td style="width:100px;">1</td>
-                                <td style="width:200px;">15,000원</td>
-                                <td style="width:200px;">배송준비중</td>
-                            </tr>
-                            <tr>
-                                <td style="width:200px; height:150px;" id="orderNo">20230122-1234567</td>
-                                <td style="width:150px;"><img src=""></td>
-                                <td style="width:150px;">댕댕이수제간식</td>
-                                <td style="width:100px;">1</td>
-                                <td style="width:200px;">15,000원</td>
-                                <td style="width:200px;">배송준비중</td>
-                            </tr>
-                        </table>
-                    </form>
-
-                </div>
             </div>
 
         </div>

@@ -34,6 +34,13 @@ public class UserProduct {
 		this.thumbImg = thumbImg;
 	}
 
+	public UserProduct(int proNo, String proName, int price) {
+		super();
+		this.proNo = proNo;
+		this.proName = proName;
+		this.price = price;
+	}
+
 	public int getProNo() {
 		return proNo;
 	}
