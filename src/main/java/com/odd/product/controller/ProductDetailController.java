@@ -36,6 +36,7 @@ public class ProductDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 응답페이지
+	
 		
 		
 		

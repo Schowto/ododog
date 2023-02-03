@@ -1,11 +1,16 @@
 package com.odd.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.odd.order.model.service.OrderService;
+import com.odd.product.model.vo.UserProduct;
 
 /**
  * Servlet implementation class btnBuyController
@@ -26,6 +31,9 @@ public class btnBuyController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		
 		request.getRequestDispatcher("views/order/orderListView.jsp").forward(request,response);
 	}
 

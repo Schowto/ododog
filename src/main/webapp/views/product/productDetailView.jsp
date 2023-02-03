@@ -62,7 +62,7 @@ input[type=number]::-webkit-inner-spin-button {
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
-		<form action="/list.de" method="post">
+		<form action="/../order/orderListView" method="post">
 			<div class="left">
 				<div class="file-area">
 					<!--대표이미지-->
@@ -102,20 +102,20 @@ input[type=number]::-webkit-inner-spin-button {
 			
 				<br> <span> <b>상품명</b> </span> 
 				
-				<span> <%= p.getProName() %> </span> 
+				<span> 　　<%= p.getProName() %> </span> 
 				<br><br> 
 				<span> <b>판매가</b></span> 
-				<span> <%= p.getPrice() %> </span> 
+				<span> 　　<%= p.getPrice() %>원 </span> 
 				<br><br> 
 				<span><b>적립금</b></span> 
-				<span> 1% </span> 
+				<span> 　　1% </span> 
 				<br> <br>
 				<span><b>제조사</b></span>
-				<span>도그쿡</span>
+				<span>　　도그쿡</span>
 				<br><br>
 
 				<hr style="border: 1px color= silver;" width="100%">
-				<br> <span> 수량 </span> 
+				<br> <span> 수량 　</span> 
 					<input type="number" name="quantity" style="width: 50px">
 				</span> <br> <br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>
@@ -207,8 +207,8 @@ input[type=number]::-webkit-inner-spin-button {
 					});
 				</script>
 				
-				<button type="button" class="btn btn-dark" onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'">구매하기</button>
-
+				<button type="submit" class="btn btn-dark" >구매하기</button>
+					<!--  onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'"-->
 				<br>
 				<br>
 				<br> <br> <br> <br> <br> <br> <br>
@@ -248,9 +248,18 @@ input[type=number]::-webkit-inner-spin-button {
 						width="800px" height="1500px">
 				</div>
 
+	
 			</div>
+			
+			<script>
+		$(function(){
+			$(".thumbnail").click(function(){
+				location.href = "<%=contextPath%>/detail.pro?no=" + $(this).children('input').val();
+			})
+		})
+	</script>
 			<br> <br>
-
+			
 
 		</form>
 	</div>

@@ -28,6 +28,6 @@ public class ProductDetailService {
 		UserProduct p = new UserProductDao().productDetailFood(conn,productNo);
 		close(conn);
 		return p;  //상품테이블값
-	
+	    
 }
 }
