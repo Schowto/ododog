@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-	<propertise>
-	
+<properties>
+
+	<!-- 페이징처리 사용하려면 수정필요함 -->
 	<entry key="selectList">
 		SELECT *
 		  FROM (
@@ -25,6 +26,37 @@
 		  		
 	</entry>
 	
+	<entry key="selectListCount">
+		SELECT COUNT(*) "COUNT"
+		  FROM CONSULT
+		 WHERE STATUS = 'Y'
+	</entry>
+
+	<entry key="selectReview">
+		SELECT 
+		       REVIEW_NO
+		     , PRO_NAME
+		     , P.PRICE
+		     , P.THUMB_IMG
+		     , M.USER_ID
+		     , REVIEW_TITLE
+		     , REVIEW_CONTENT
+		     , STAR
+		     , R.MODIFY_DATE
+		     , R.ENROLL_DATE
+		     , REVIEW_PHOTO
+		     , R.FILE_PATH
+		     , R.STATUS
+		 FORM REVIEW R
+		 JOIN ORD_PRO O ON (O.PRO_NO = R.PRO_NO)
+		 JOIN PRODUCT P ON (P.PRO_NO = R.PRO_NO)
+		 JOIN MEMBER M ON (M.USER_NO = R.USER_NO)
+	    WHERE ORD_NO = ? 
+	</entry>
+
+</properties>
+
 	
 	
-	</propertise>
+	
+	

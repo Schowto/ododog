@@ -1,3 +1,4 @@
+
 package com.odd.product.model.vo;
 
 public class AdminProSearch {

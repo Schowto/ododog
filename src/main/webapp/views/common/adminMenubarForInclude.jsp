@@ -195,7 +195,7 @@
                     회원관리
                 </div>
                 <p>
-                    <a href="<%=contextPath%>/views/member/adminUserListView.jsp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원관리</a>
+                    <a href="<%=contextPath%>/list.ad">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp회원관리</a>
                 </p>
 
                 <div>

@@ -58,14 +58,25 @@
 	
 	
 	<entry key="detailProduct">
-		SELECT PRO_NO
+		SELECT 
+			   PRO_NO
 	       
 	       , FILE_PATH
 	       , FILE_LEVEL
 	        
-	
+			FROM PRO_ATT
+			WHERE PRO_NO=?
 	</entry>
 
+	<entry key = "productDetailFood">
+		SELECT
+       PRO_NO
+       , PRO_NAME
+       , PRICE
+       , THUMB_IMG
+       FROM PRODUCT
+       WHERE PRO_NO=?
 	
+	</entry>
 	
 </properties>

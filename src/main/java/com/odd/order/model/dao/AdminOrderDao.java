@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.odd.common.model.vo.PageInfo;
+import com.odd.order.model.vo.AdminOrdSearch;
 import com.odd.order.model.vo.AdminOrder;
 
 public class AdminOrderDao {
@@ -102,6 +103,73 @@ public class AdminOrderDao {
 		}
 		
 		return list;
+	}
+	
+	public ArrayList<AdminOrder> searchList(Connection conn, AdminOrdSearch ordSearch){
+
+		ArrayList<AdminOrder> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String proName = ordSearch.getProName();
+		String userName = ordSearch.getUserName();
+		String lowPrice = ordSearch.getLowPrice();
+		String highPrice = ordSearch.getHighPrice();
+		
+		String sql = prop.getProperty("searchList");
+		
+		if(!proName.equals("")) {
+			sql += " AND 상품이름 LIKE '%" + proName + "%'"; 
+		}
+		if(!userName.equals("")) {
+			sql += " AND 유저이름 LIKE '%" + userName + "%'"; 
+		}
+		if(!lowPrice.equals("")) {
+			sql += " AND 최종결제금액 >= " + lowPrice; 
+		}
+		if(!highPrice.equals("")) {
+			sql += " AND 최종결제금액 <= " + highPrice;
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(
+							new AdminOrder(
+									rset.getInt("주문번호"),
+									
+									rset.getString("상품이름"),
+									rset.getInt("상품개수"),
+									
+									rset.getInt("유저번호"),
+									rset.getString("유저이름"),
+									rset.getString("배송지"),
+									rset.getString("휴대전화"),
+									rset.getString("이메일"),
+									
+									rset.getInt("사용적립금"),
+									rset.getInt("최종결제금액"),
+									rset.getDouble("적립률"),
+									
+									
+									rset.getString("배송여부"),
+									rset.getString("배송시요청사항")									
+									)
+						);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+		
+		
 	}
 
 }

@@ -17,16 +17,24 @@
 		                       RECIPE_NO
 		                     , RECIPE_TITLE
 		                     , THUMBIMG
-		                     , (SELECT COUNT(*)
+		                     , (
+		                     	SELECT COUNT(*)
 		                          FROM REPLY
 		                         WHERE BOARD_TYPE = 3
 		                           AND BOARD_NO = RECIPE_NO
 		                           AND STATUS = 'Y'
 		                       ) "REPLY_COUNT"
-		                     , (SELECT COUNT(*) COUNT
+		                     , (
+		                     	SELECT COUNT(*) COUNT
 						          FROM HEART
 						         WHERE RECIPE_NO = R.RECIPE_NO
-						       ) "HEART_COUNT" 
+						       ) "HEART_COUNT"
+						     , (
+						        SELECT COUNT(*)
+						          FROM HEART
+						         WHERE RECIPE_NO = R.RECIPE_NO
+						           AND USER_NO = ?
+						      ) "MY_HEART_STATUS"
 		                  FROM RECIPE R
 		                 WHERE STATUS = 'Y'
 		                 ORDER
@@ -62,6 +70,12 @@
 		                          FROM HEART
 		                         WHERE RECIPE_NO = R.RECIPE_NO
 		                       ) "HEART_COUNT"
+		                     , (
+						        SELECT COUNT(*)
+						          FROM HEART
+						         WHERE RECIPE_NO = R.RECIPE_NO
+						           AND USER_NO = ?
+						      ) "MY_HEART_STATUS"
 		                  FROM RECIPE R
 		                  WHERE STATUS = 'Y'
 		                    AND INGREDIENT LIKE '%' || ? || '%'
@@ -85,7 +99,13 @@
 						     , (SELECT COUNT(*) COUNT
 						          FROM HEART
 						         WHERE RECIPE_NO = R.RECIPE_NO
-						       ) "HEART_COUNT" 
+						       ) "HEART_COUNT"
+						     , (
+						        SELECT COUNT(*)
+						          FROM HEART
+						         WHERE RECIPE_NO = R.RECIPE_NO
+						           AND USER_NO = ?
+						      ) "MY_HEART_STATUS" 
 						  FROM RECIPE R
 						 WHERE STATUS = 'Y'
 						 ORDER
@@ -113,6 +133,12 @@
 						          FROM HEART
 						         WHERE RECIPE_NO = R.RECIPE_NO
 						       ) "HEART_COUNT" 
+						     , (
+						        SELECT COUNT(*)
+						          FROM HEART
+						         WHERE RECIPE_NO = R.RECIPE_NO
+						           AND USER_NO = ?
+						      ) "MY_HEART_STATUS"
 						  FROM RECIPE R
 						 WHERE STATUS = 'Y'
 						 ORDER

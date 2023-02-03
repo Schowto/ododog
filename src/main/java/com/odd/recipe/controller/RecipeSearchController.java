@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.common.model.vo.PageInfo;
+import com.odd.member.model.vo.Member;
 import com.odd.recipe.model.service.RecipeService;
 import com.odd.recipe.model.vo.Recipe;
 
@@ -36,7 +37,9 @@ public class RecipeSearchController extends HttpServlet {
 		String[] effectArr = request.getParameterValues("effect");
 		String[] timeArr = request.getParameterValues("time");
 		String ingredient = request.getParameter("ingredient");
-
+		// 검색 후 정렬버튼 눌렀을 때
+		String sort = request.getParameter("sort");
+		
 		PageInfo pi = null;
 		int listCount; 		// 현재 게시글 개수
 		int currentPage; 	// 사용자가 요청한 페이지 ( == 현재페이지)
@@ -58,21 +61,16 @@ public class RecipeSearchController extends HttpServlet {
 			endPage = maxPage;
 		}
 		pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		
-		ArrayList<Recipe> list = new RecipeService().searchRecipe(pi, effectArr, timeArr, ingredient);
-		
-		String searchEffect = "";
-		String searchTime = "";
-		if(effectArr != null) {
-			searchEffect = String.join(",", effectArr);
+		int loginUser = 0;
+		if(request.getSession().getAttribute("loginUser") != null) {
+			loginUser = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
 		}
-		if(timeArr != null) {
-			searchTime = String.join(",", timeArr);			
-		}
+		ArrayList<Recipe> list = new RecipeService().searchRecipe(pi, loginUser, effectArr, timeArr, ingredient, sort);
 		
-		request.setAttribute("searchEffect", searchEffect);
-		request.setAttribute("searchTime", searchTime);
+		request.setAttribute("effectArr", effectArr);
+		request.setAttribute("timeArr", timeArr);
 		request.setAttribute("ingredient", ingredient);
+		request.setAttribute("sort", sort);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/recipe/recipeListView.jsp").forward(request, response);

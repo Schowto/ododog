@@ -1,8 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.board.model.vo.Board"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.board.model.vo.Board, com.odd.board.model.service.*"%>
 
 <%
+
+
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+
+	String keyword = (String)request.getAttribute("keyword");
 %>
 
 <!DOCTYPE html>
@@ -99,9 +103,9 @@
         <div id="content" align="center">
             <div class="membertable">
                 <div class="memberbutton">
-                <form name="search-form"> 
-                <input type="text" placeholder="아이디로 검색" id="serch" style="float: left;">
-                    <button style="float: left;" onclick="serch();">조회하기</button>
+                <form name="search-form" action="<%=contextPath%>/search.rp" method="post"> 
+                <input type="text" name="keyword" placeholder="아이디로 검색" id="serch" style="float: left;">
+                    <button style="float: left;">조회하기</button>
                 </form>
                </div>
             

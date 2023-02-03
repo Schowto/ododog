@@ -565,4 +565,35 @@ public class BoardDao {
 		
 		 return result;
 	}
+	
+	public ArrayList<Board> searchReport(Connection conn, String keyword){
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchReport");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Board(rset.getInt("report_No"),
+								   rset.getInt("user_No"),
+								   rset.getInt("post_No"),
+								   rset.getInt("comment_No"),
+								   rset.getString("report_Content"),
+								   rset.getDate("report_Date"),
+								   rset.getString("done")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
 }

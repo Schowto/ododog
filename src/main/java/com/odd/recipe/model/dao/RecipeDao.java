@@ -46,7 +46,7 @@ public class RecipeDao {
 		return count;
 	}
 	
-	public ArrayList<Recipe> selectList(Connection conn, PageInfo pi){
+	public ArrayList<Recipe> selectList(Connection conn, PageInfo pi, int loginUser){
 		ArrayList<Recipe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -55,15 +55,17 @@ public class RecipeDao {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit()-1;
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, loginUser);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Recipe(rset.getInt("recipe_no"),
 								    rset.getString("recipe_title"),
 								    rset.getString("thumbimg"),
 								    rset.getInt("reply_count"),
-								    rset.getInt("heart_count")));
+								    rset.getInt("heart_count"),
+								    rset.getInt("my_heart_status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -73,7 +75,7 @@ public class RecipeDao {
 		}
 		return list;
 	}
-	public ArrayList<Recipe> selectListSortByHeart(Connection conn, PageInfo pi){
+	public ArrayList<Recipe> selectListSortByHeart(Connection conn, PageInfo pi, int loginUser){
 		ArrayList<Recipe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -82,15 +84,17 @@ public class RecipeDao {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit()-1;
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, loginUser);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Recipe(rset.getInt("recipe_no"),
 								    rset.getString("recipe_title"),
 								    rset.getString("thumbimg"),
 								    rset.getInt("reply_count"),
-								    rset.getInt("heart_count")));
+								    rset.getInt("heart_count"),
+								    rset.getInt("my_heart_status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,7 +104,7 @@ public class RecipeDao {
 		}
 		return list;
 	}
-	public ArrayList<Recipe> selectListSortByReply(Connection conn, PageInfo pi){
+	public ArrayList<Recipe> selectListSortByReply(Connection conn, PageInfo pi, int loginUser){
 		ArrayList<Recipe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -109,15 +113,17 @@ public class RecipeDao {
 			pstmt = conn.prepareStatement(sql);
 			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 			int endRow = startRow + pi.getBoardLimit()-1;
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
+			pstmt.setInt(1, loginUser);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Recipe(rset.getInt("recipe_no"),
 								    rset.getString("recipe_title"),
 								    rset.getString("thumbimg"),
 								    rset.getInt("reply_count"),
-								    rset.getInt("heart_count")));
+								    rset.getInt("heart_count"),
+								    rset.getInt("my_heart_status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -339,11 +345,12 @@ public class RecipeDao {
 		}
 		return count;
 	}
-	public ArrayList<Recipe> searchRecipe(Connection conn, PageInfo pi, String[] effectArr, String[] timeArr, String ingredient){
+	public ArrayList<Recipe> searchRecipe(Connection conn, PageInfo pi, int loginUser, String[] effectArr, String[] timeArr, String ingredient, String sort){
 		ArrayList<Recipe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("searchRecipe");
+		
 		if(timeArr != null) {
 			sql += "AND TIME IN (";
 			sql += String.join(",", timeArr);
@@ -359,21 +366,31 @@ public class RecipeDao {
 				}
 			}
 		}
-		sql += ")A)";
+		// 정렬기준
+		if(sort == null || sort.equals("new")) {
+			sql += " ORDER BY RECIPE_NO DESC )A)";			
+		} else if(sort.equals("heart")) {
+			sql += " ORDER BY HEART_COUNT DESC, RECIPE_NO DESC )A)";
+		} else {
+			sql += " ORDER BY REPLY_COUNT DESC, RECIPE_NO DESC )A)";
+		}
+		
 		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 		int endRow = startRow + pi.getBoardLimit()-1;
 		sql += "WHERE RNUM BETWEEN " + startRow + " AND " + endRow;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ingredient);
+			pstmt.setInt(1, loginUser);
+			pstmt.setString(2, ingredient);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Recipe(rset.getInt("recipe_no"),
 								    rset.getString("recipe_title"),
 								    rset.getString("thumbimg"),
 								    rset.getInt("reply_count"),
-								    rset.getInt("heart_count")));
+								    rset.getInt("heart_count"),
+								    rset.getInt("my_heart_status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

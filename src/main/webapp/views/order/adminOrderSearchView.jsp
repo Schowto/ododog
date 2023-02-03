@@ -5,6 +5,11 @@
 
 <%
 	ArrayList<AdminOrder> list = (ArrayList<AdminOrder>)request.getAttribute("list");
+	String proName = request.getParameter("proName");
+	String userName = request.getParameter("userName");
+	String lowPrice = request.getParameter("lowPrice");
+	String highPrice = request.getParameter("highPrice");
+	String cpage = request.getParameter("cpage");
 %>    
     
     
@@ -112,11 +117,11 @@
                    <thead>
                        <tr style="white-space: nowrap;">
                            <th width="50px">배송여부</th>
-                           <th width="5px">번호</th>
+                           <th width="10px">주문번호</th>
                            <th width="170px">상품명</th>
+                           <th width="25px">고객이름</th>
                            <th width="170px">배송지</th>                           
                            <th width="15px">최종결제금액</th>
-                           <th width="5px">적립률</th>
                            <th width="300px">배송시 요청 사항</th>
                            
                        </tr>
@@ -128,15 +133,24 @@
                            <td colspan="7"> 조회된 주문이 없습니다.</td>
                        </tr>
                        <%}else{ %>
-                           <% for(AdminOrder p : list){ %>
-                       <tr role="button" data-toggle="modal" data-target="#myModal">
-                          
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                          
-                       </tr>
+                           <% for(AdminOrder o : list){ %>
+	                       <tr role="button" data-toggle="modal" data-target="#myModal">
+	                          
+	                           <td><%= o.getDelivery() %></td>
+	                           <td>
+	                           		<input type="hidden" name="amount" value="<%= o.getAmount()%>">
+	                           		<input type="hidden" name="email" value="<%= o.getEmail() %>">
+	                           		<input type="hidden" name="discount" value="<%= o.getDiscount() %>">
+	                           		<input type="hidden" name="save" value="<%= o.getSave() %>">
+	                           		<%= o.getOrdNo() %>
+                         	   </td>
+	                           <td><%= o.getProName() %></td>
+	                           <td><%= o.getUserName() %></td>
+	                           <td><%= o.getDelAdd() %></td>
+	                           <td><%= o.getTotalPrice() %></td>
+	                           <td><%= o.getRequire() %></td>
+	                          
+	                       </tr>
                            <%} %>
                        <%} %>  
                        
@@ -172,7 +186,7 @@
                     <tr>
                         <th>고객명</th>
                         <td>
-                            <input type="text" class="form-control-sm" name="proName" style="width:300px"> 
+                            <input type="text" class="form-control-sm" name="userName" style="width:300px"> 
                         </td>
                     </tr>
                     
@@ -187,7 +201,27 @@
                     </td>
                     </tr>
                   </table>
-
+				  
+				  <script>
+       		
+       		<!-- 검색 폼의 값을 다시 채워줌 --> 
+			$(function(){
+ 	    		
+ 	    		let proName = "<%=proName%>"; 
+ 	    		let username = "<%=userName%>";
+ 	    		let lowPrice = "<%=lowPrice%>";
+ 	    		let highPrice ="<%=highPrice%>";
+ 	    		
+ 	    		<!-- 최초 페이지가 아닐 경우 -->
+ 	    		if(<%=cpage%> != 1){
+ 	    			$("input[name='proName']").val(proName);
+					$("input[name='userName']").val(userName);
+					$("input[name='lowPrice']").val(lowPrice);
+					$("input[name='highPrice']").val(highPrice);
+ 	    		}	
+ 	    	});
+			
+       		</script>	
 				  
 				  <br>
 				  <button type="submit" class="btn btn-primary">검색</button>

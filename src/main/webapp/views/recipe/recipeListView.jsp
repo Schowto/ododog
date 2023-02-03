@@ -4,8 +4,8 @@
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Recipe> list = (ArrayList<Recipe>)request.getAttribute("list");
-	String searchEffect = (String)request.getAttribute("searchEffect");
-	String searchTime = (String)request.getAttribute("searchTime");
+	String[] effectArr = (String[])request.getAttribute("effectArr");
+	String[] timeArr = (String[])request.getAttribute("timeArr");
 	String ingredient = (String)request.getAttribute("ingredient");
 	String sort = (String)request.getAttribute("sort");
 %>
@@ -168,6 +168,7 @@
             
             <form id="search-area" action="<%= contextPath %>/search.re">
             <input type="hidden" name="cpage" value="1">
+            <input type="hidden" name="sort" value="" id="sort-input">
                 <table style="font-size:15px;">
                     <tr>
                         <td width="200" height="50" style="font-weight:600;">아이들에게 필요한 건?</td>
@@ -237,33 +238,42 @@
                     }
                 })
                 
+                // 검색 후
                 $(function(){
+                	// 재료검색창 ""으로
 					<% if(ingredient == null){ %>
 						$("#ingredient").val("");
 		        	<% } else { %>
 			        	$("#ingredient").val("<%= ingredient %>");
 		        	<% } %>
-		        	
-		        	const searchEffect = "<%= searchEffect %>";
-		        	const searchTime = "<%= searchTime %>";
-	        		$("#select-effect :checkbox").each(function(){
-	        			if(searchEffect.includes($(this).val())){
-	        				$(this).prop("checked", true);
-	        				$(this).parent().css("backgroundColor","rgb(200, 140, 140)").css("color","white");
-	        			}
-	        		})
-	        		$("#select-time :checkbox").each(function(){
-	        			if(searchTime.includes($(this).val())){
-	        				$(this).prop("checked", true);
-	        				$(this).parent().css("backgroundColor","rgb(200, 140, 140)").css("color","white");
-	        			}
-	        		})
-	        		
         		})
+                
+        		// 효과 버튼 유지, 체크상태 유지
+        		<% if(effectArr != null){ %>
+		        	<% for(String e : effectArr){ %>
+			        	$("#select-effect :checkbox").each(function(){
+		        			if($(this).val() == <%= e %>){
+		        				$(this).prop("checked", true);
+		        				$(this).parent().css("backgroundColor","rgb(200, 140, 140)").css("color","white");
+		        			}
+		        		})
+		        	<% } %>
+	        	<% } %>
+	        	<% if(timeArr != null) { %>
+		        	<% for(String r : timeArr){ %>
+			        	$("#select-time :checkbox").each(function(){
+		        			if($(this).val() == <%= r %>){
+		        				$(this).prop("checked", true);
+		        				$(this).parent().css("backgroundColor","rgb(200, 140, 140)").css("color","white");
+		        			}
+		        		})
+		        	<% } %>
+	        	<% } %>
+                
             </script>
 
             <br><br><br><br>
-
+			
             <div class="sort-filter-area" style="font-size:13px;">
             	<label class="sort" style="border-radius:5px;">
                     <input type="radio" name="sort-by" value="reply" style="cursor:pointer;">
@@ -278,16 +288,22 @@
                     <span>최신순</span>
                 </label>
             </div>
+            
             <br>
             
             <script>
                 $(".sort-filter-area label").click(function(){
-                    //console.log($(this).text());
+                    // 정렬기준 버튼 클릭시
                     $(this).addClass('selected');
                     $(this).siblings().removeClass('selected');
                     location.href = "<%= contextPath %>/list.re?cpage=1&sort=" + $(this).children("input").val();
+                    
+                    $("#sort-input").val($(this).children("input").val());
+                    $("#search-area").submit();
                 })
+                
             	$(function(){
+            		// 선택된 기준 회색으로 유지
             		const sortList = $(".sort-filter-area :radio");
             		$(sortList).each(function(){
             			if($(this).val() == "<%= sort %>"){
@@ -317,43 +333,38 @@
 	                    <div align="right" style="width:250px; font-size:12px;">
 	                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> <%= r.getReplyCount() %>
 	                        <div style="display:inline-block;">
-	                            <img src="<%= contextPath %>/resources/icons/heart.png" id="heart-area<%= r.getRecipeNo() %>" width="15" style="margin-left:7px; cursor:pointer;">
-	                            <%= r.getHeartCount() %>
+	                        
+	                        	<input type="hidden" value = "<%= r.getRecipeNo() %>">
+	                        	
+	                        	<% if(r.getMyHeartStatus() > 0) { %>
+	                            	<img src="<%= contextPath %>/resources/icons/heartR.png" class="heart-area" width="15" style="margin-left:7px; cursor:pointer;">
+	                            <% } else { %>
+	                            	<img src="<%= contextPath %>/resources/icons/heart.png" class="heart-area" width="15" style="margin-left:7px; cursor:pointer;">
+	                            <% } %>
+	                            <span><%= r.getHeartCount() %></span>
+	                            
 	                        </div>
 	                    </div>
 	                </div>
-	                <% if(loginUser != null){ %>
+                	<% } %>
+                <% } %>
+            </div>
+            
+            <% if(loginUser != null){ %>
 	                <script>
-		            	// 첫화면 로딩시 하트 데이터 불러오기
-		            	$(function(){selectHeartStatus();})
-		            	function selectHeartStatus(){
-		            		$.ajax({
-		            			url:"<%= contextPath %>/hcount.re",
-		            			data:{no:"<%= r.getRecipeNo() %>"},
-		            			type:"post",
-		            			success:function(count){
-		            				if(count > 0){
-		            					$("#heart-area<%= r.getRecipeNo() %>").attr("src", "<%= contextPath %>/resources/icons/heartR.png");
-		            				} else {
-		            					$("#heart-area<%= r.getRecipeNo() %>").attr("src", "<%= contextPath %>/resources/icons/heart.png");
-		            				}
-		            			}, error:function(){
-		            				console.log("하트 조회용 ajax 통신 실패")
-		            			}
-		            		})
-		            	}
 		            	// 하트 등록/삭제
-		                $("#heart-area<%= r.getRecipeNo() %>").click(function () {
+		                $(".heart-area").click(function () {
+		                	const a = $(this);
 		                	if ($(this).attr("src") == "<%= contextPath %>/resources/icons/heart.png") {
 		                		// 하트가 눌려있지 않았을 때
 		                		$.ajax({
 		                    		url:"<%=contextPath%>/hinsert.re",
-		                    		data:{no:<%= r.getRecipeNo() %>},
+		                    		data:{no:a.prev().val()},
 		                    		type:"post",
 		                    		success:function(result){
 		                    			if(result>0){
-		                    				alert("성공적으로 하트 등록되었습니다.");
-		                    				$("#heart-area<%= r.getRecipeNo() %>").attr("src", "<%= contextPath %>/resources/icons/heartR.png");
+		                    				a.attr("src", "<%= contextPath %>/resources/icons/heartR.png");
+		                    				a.next().html(Number(a.next().html()) + 1);
 		                    			} else {
 		                    				alert("하트 등록 실패")
 		                    			}
@@ -365,28 +376,30 @@
 		                		// 하트가 눌려있었을 때
 		                		$.ajax({
 		                    		url:"<%=contextPath%>/hdelete.re",
-		                    		data:{no:<%= r.getRecipeNo() %>},
+		                    		data:{no:a.prev().val()},
 		                    		type:"post",
 		                    		success:function(result){
-		                    			alert("성공적으로 하트 해제됨")
-		                    			$("#heart-area<%= r.getRecipeNo() %>").attr("src", "<%= contextPath %>/resources/icons/heart.png");
+		                    			if(result>0){
+			                    			a.attr("src", "<%= contextPath %>/resources/icons/heart.png");
+			                    			a.next().html(Number(a.next().html()) - 1);
+		                    			} else {
+		                    				alert("하트 해제 실패")
+		                    			}
 		                    		}, error:function(){
 		                    			console.log("하트 삭제용 ajax 통신 실패")
 		                    		}
 		                    	})
 		                	}
 		                })
+		                
 		            </script>
 	                <% } else { %>
 	                <script>
-	                	$("#heart-area<%= r.getRecipeNo() %>").click(function () {
+	                	$(".heart-area").click(function () {
 	                		alert("로그인 후 이용 가능합니다.");
 	                	})
 	                </script>
 	                <% } %>
-                	<% } %>
-                <% } %>
-            </div>
             
             <script>
                 $(".thumbnail>p").mouseover(function(){
@@ -410,20 +423,51 @@
             <br><br><br>
             
             <div class="paging-area" align="center">
-            
-        		<!-- 페이지1일 때는 < 버튼 출력 X -->
-	        	<% if(pi.getCurrentPage() != 1){ %>
-	        		<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=pi.getCurrentPage()-1%>';">&lt;</button>
-	        	<% } %>
-	        	
-	        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
-	        		<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=p%>';"><%= p %></button>
-	        	<% } %>
-	        	
-	        	<!-- 마지막페이지일 때 -->
-	        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
-	            	<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=pi.getCurrentPage()+1%>'">&gt;</button>
-	            <% } %>
+            	<% if (ingredient == null){ %>
+            	<!-- 검색 안돼있을 때 : 전체 조회 -->
+	        		<!-- 페이지1일 때는 < 버튼 출력 X -->
+		        	<% if(pi.getCurrentPage() != 1){ %>
+		        		<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=pi.getCurrentPage()-1%>';">&lt;</button>
+		        	<% } %>
+		        	
+		        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+		        		<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=p%>';"><%= p %></button>
+		        	<% } %>
+		        	
+		        	<!-- 마지막페이지일 때 -->
+		        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+		            	<button onclick="location.href='<%=contextPath%>/list.re?cpage=<%=pi.getCurrentPage()+1%>'">&gt;</button>
+		            <% } %>
+            	
+            	<% } else { %>
+            	<!-- 검색돼있을 때 : 검색 조회 -->
+            	
+            		<% 
+        			String href = ""; 
+        			if(effectArr != null){
+        				for(String e : effectArr){
+        					href += "&effect=" + e;
+        				}
+        			}
+        			if(timeArr != null){
+        				for(String t : timeArr){
+        					href += "$time=" + t;
+        				}
+        			}
+		        	%>
+            	
+		        	<% if(pi.getCurrentPage() != 1){ %>
+		        		<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%=pi.getCurrentPage()-1%>&sort=<%=sort%><%= href %>&ingredient=<%=ingredient%>';">&lt;</button>
+		        	<% } %>
+		        	
+		        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+		        		<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%= p %>&sort=<%=sort%><%= href %>&ingredient=<%=ingredient%>';"><%= p %></button>
+		        	<% } %>
+		        	
+		        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+		            	<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%=pi.getCurrentPage()+1%>&sort=<%=sort%><%= href %>&ingredient=<%=ingredient%>';">&gt;</button>
+		            <% } %>
+            	<% } %>
             
         </div>
             <br><br><br><br><br><br><br>

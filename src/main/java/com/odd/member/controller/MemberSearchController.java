@@ -1,28 +1,28 @@
 package com.odd.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.odd.common.JDBCTemplate;
-import com.odd.member.model.dao.MemberDao;
+import com.odd.member.model.service.MemberService;
 import com.odd.member.model.vo.Member;
 
 /**
- * Servlet implementation class AjaxSerchMemberController
+ * Servlet implementation class MemberSearchController
  */
-@WebServlet("/serchId.me")
-public class AjaxSerchMemberController extends HttpServlet {
+@WebServlet("/searchmem.ad")
+public class MemberSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxSerchMemberController() {
+    public MemberSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,15 @@ public class AjaxSerchMemberController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String userId = request.getParameter("id");
+		request.setCharacterEncoding("UTF-8");
 		
-		Member m = new MemberDao().selectLoginMember(JDBCTemplate.getConnection(), userId);
+		String keyword = request.getParameter("keyword");
 		
-		//response.getWriter().print(m);
+		ArrayList<Member> list = new MemberService().searchMember(keyword);
 		
-		response.setContentType("application/json; charset=UTF-8");
-		new Gson().toJson(m, response.getWriter());
+		request.setAttribute("keyword", keyword);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("views/member/adminUserListView.jsp").forward(request, response);
 	}
 
 	/**

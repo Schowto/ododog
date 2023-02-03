@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.odd.order.model.service.AdminOrderService;
+import com.odd.order.model.vo.AdminOrdSearch;
 import com.odd.order.model.vo.AdminOrder;
 
 
@@ -37,11 +39,31 @@ public class AdminOrderSearchController extends HttpServlet {
 		
 		ArrayList<AdminOrder> list = new ArrayList<>();
 		
+		AdminOrdSearch ordSearch = null;
 		
+		// 첫 화면이 아닐 경우
 		if(!request.getParameter("cpage").equals("1")) {
-			// 기본 화면
+			
+			ordSearch = new AdminOrdSearch(
+											request.getParameter("proName") ,
+											request.getParameter("userName") ,
+											request.getParameter("lowPrice") ,
+											request.getParameter("highPrice")
+										  );
+
+					
+		}else {
+			
+			ordSearch = new AdminOrdSearch(
+											"" ,
+											"" ,
+											"" ,
+											""
+										  );
+
 		}
 		
+		list = new AdminOrderService().searchList(ordSearch);
 		request.setAttribute("list",list);
 		
 		request.getRequestDispatcher("views/order/adminOrderSearchView.jsp").forward(request, response);

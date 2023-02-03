@@ -15,14 +15,14 @@ import com.odd.board.model.vo.FAQ;
 /**
  * Servlet implementation class FAQSerchController
  */
-@WebServlet("/search.faq")
-public class FAQSearchController extends HttpServlet {
+@WebServlet("/searchU.faq")
+public class FAQSearchUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FAQSearchController() {
+    public FAQSearchUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,7 +46,7 @@ public class FAQSearchController extends HttpServlet {
 		request.setAttribute("keyword", keyword);
 		//request.setAttribute("slist", slist);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/board/FAQuser.jsp").forward(request, response);
 		
 		
 	}

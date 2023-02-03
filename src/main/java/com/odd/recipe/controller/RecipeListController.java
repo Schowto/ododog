@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.common.model.vo.PageInfo;
+import com.odd.member.model.vo.Member;
 import com.odd.recipe.model.service.RecipeService;
 import com.odd.recipe.model.vo.Recipe;
 
@@ -55,18 +56,22 @@ public class RecipeListController extends HttpServlet {
 		}
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		String sort = request.getParameter("sort");
+		int loginUser = 0;
+		if(request.getSession().getAttribute("loginUser") != null) {
+			loginUser = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
+		}
 		
+		String sort = request.getParameter("sort");
 		ArrayList<Recipe> list = null;
 		if(sort == null || sort.equals("new")) {
 			// 최신순
-			list = new RecipeService().selectList(pi);
+			list = new RecipeService().selectList(pi, loginUser);
 		} else if(sort.equals("heart")) {
 			// 하트순
-			list = new RecipeService().selectListSortByHeart(pi);
+			list = new RecipeService().selectListSortByHeart(pi, loginUser);
 		} else {
 			// 댓글순
-			list = new RecipeService().selectListSortByReply(pi);
+			list = new RecipeService().selectListSortByReply(pi, loginUser);
 		}
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

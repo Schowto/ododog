@@ -6,12 +6,17 @@
 <%
 	FAQService faq = new FAQService();
 	
-	ArrayList<FAQ> list = faq.selectFAQList(); 
-	// list = (ArrayList<FAQ>)request.getAttribute("list");
+	//ArrayList<FAQ> list = faq.selectFAQList(); 
 	
-	ArrayList<FAQ> slist = faq.searchFAQ();
+	ArrayList<FAQ> list = (ArrayList<FAQ>)request.getAttribute("list");
+	
+	//ArrayList<FAQ> slist = faq.searchFAQ("keyword");
+	
+	
 
 	String keyword = (String)request.getAttribute("keyword"); 
+	
+	
 
 %>
  
@@ -135,14 +140,14 @@
                 <option value="배송">배송</option>
             </select>  -->
             
-            <input type="text" name="keyword" placeholder="키워드 검색" id="search" style="float: left; margin-left: 40px; font-size: 11px;">
+            <input type="text" name="keyword" placeholder="제목으로검색(키워드)" id="search" style="float: left; margin-left: 40px; font-size: 11px;">
             <button type="submit" style="float: left;">검색하기</button>            
             
-            </form>
-			
+        	</form>
+            <button style="float: left;" onclick="location.href ='<%=contextPath%>//FAQlist.ad'">전체조회</button>
 
+            <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQenrollForm.ad'">등록하기</button>        
             
-            <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQenrollForm.ad'">등록하기</button>
             <br><br> 
 			
             
@@ -168,8 +173,11 @@
             </ul> 
 			
             
+
         </div>
-        
     </div>
+    
+
+                
 </body>
 </html>

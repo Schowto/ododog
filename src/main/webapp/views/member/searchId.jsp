@@ -71,7 +71,8 @@ Member searchId = (Member)session.getAttribute("searchId");
         </form>
         
     </div>
-    
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <%@ include file="../common/userFooterbar.jsp"%>
 
    
 
