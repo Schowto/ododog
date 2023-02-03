@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct" %>	
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct, com.odd.product.model.vo.ProAtt" %>	
 <%
-	ArrayList<UserProduct> list = (ArrayList<UserProduct>)request.getAttribute("list");
+	ArrayList<UserProduct>list=(ArrayList<UserProduct>)request.getAttribute("list");
 %>	
 
 <!DOCTYPE html>

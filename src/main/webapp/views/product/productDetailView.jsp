@@ -4,8 +4,9 @@
 <%@ page import="java.util.ArrayList, com.odd.product.model.vo.ProAtt, com.odd.product.model.vo.UserProduct" %>	
 
 <%
-	ArrayList<ProAtt> list = (ArrayList<ProAtt>)request.getAttribute("list");
-	ArrayList<UserProduct> list2 = (ArrayList<UserProduct>)request.getAttribute("list2");
+ArrayList<ProAtt> list = (ArrayList<ProAtt>)request.getAttribute("list");
+UserProduct p = (UserProduct)request.getAttribute("p");
+	
 %>		
 	
 <!DOCTYPE html>
@@ -65,13 +66,13 @@ input[type=number]::-webkit-inner-spin-button {
 			<div class="left">
 				<div class="file-area">
 					<!--대표이미지-->
-					<img src="<%=contextPath%>/"
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
 						width="400px" height="400px">
 				</div>
 
 				<div class="float-file">
 					<!--미리보기1-->
-					<img src="<%=contextPath%>/"
+					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
 						width="100px" height="100px">
 				</div>
 
@@ -101,10 +102,10 @@ input[type=number]::-webkit-inner-spin-button {
 			
 				<br> <span> <b>상품명</b> </span> 
 				
-				<span>  </span> 
+				<span> <%= p.getProName() %> </span> 
 				<br><br> 
 				<span> <b>판매가</b></span> 
-				<span> 가격 </span> 
+				<span> <%= p.getPrice() %> </span> 
 				<br><br> 
 				<span><b>적립금</b></span> 
 				<span> 1% </span> 
