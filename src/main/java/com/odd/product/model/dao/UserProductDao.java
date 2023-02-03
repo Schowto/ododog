@@ -1,6 +1,6 @@
 package com.odd.product.model.dao;
 
-import static com.odd.common.JDBCTemplate.close;
+import static com.odd.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -214,6 +214,192 @@ public class UserProductDao {
 		
 	}
 	
+	
+	public ArrayList<ProAtt> detailDry(Connection conn, int productNo){
+		ArrayList<ProAtt> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		
+		String sql = prop.getProperty("detailProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new ProAtt(
+										rset.getInt("pro_no"),
+										rset.getString("file_path"),
+										rset.getInt("file_level")
+										
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public UserProduct productDetailDry(Connection conn, int productNo){
+		UserProduct p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("productDetailFood");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				p = new UserProduct(	rset.getInt("pro_no"),
+						rset.getString("pro_name"),
+						rset.getInt("price"),
+						rset.getString("thumb_img")
+									
+										
+										
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return p;
+		
+	}
+	
+	public ArrayList<ProAtt> detailOven(Connection conn, int productNo){
+		ArrayList<ProAtt> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		
+		String sql = prop.getProperty("detailProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new ProAtt(
+										rset.getInt("pro_no"),
+										rset.getString("file_path"),
+										rset.getInt("file_level")
+										
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public UserProduct productDetailOven(Connection conn, int productNo){
+		UserProduct p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("productDetailFood");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				p = new UserProduct(	rset.getInt("pro_no"),
+						rset.getString("pro_name"),
+						rset.getInt("price"),
+						rset.getString("thumb_img")
+									
+										
+										
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return p;
+		
+	}
+	
+	public ArrayList<ProAtt> detailParty(Connection conn, int productNo){
+		ArrayList<ProAtt> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		
+		String sql = prop.getProperty("detailProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new ProAtt(
+										rset.getInt("pro_no"),
+										rset.getString("file_path"),
+										rset.getInt("file_level")
+										
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	public UserProduct productDetailParty(Connection conn, int productNo){
+		UserProduct p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("productDetailFood");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			if(rset.next()) {
+				p = new UserProduct(	rset.getInt("pro_no"),
+						rset.getString("pro_name"),
+						rset.getInt("price"),
+						rset.getString("thumb_img")
+									
+										
+										
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return p;
+		
+	}
 	
 	
 }

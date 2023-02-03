@@ -165,7 +165,7 @@ input[type=number]::-webkit-inner-spin-button {
 				<hr style="border: 1px color= silver;" width="100%">
 				<br> <span> 수량 　</span>
 					<input type="number" name="quantity" style="width: 50px">  <button type=submit>변경</button>
-				</span> <br> <br> <span> <b>TOTAL : </b>
+				<br> <br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>
 				</span> <br> <br> <br>
 				　　　　　　　　

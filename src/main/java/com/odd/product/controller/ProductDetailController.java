@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.product.model.service.ProductDetailService;
-import com.odd.product.model.service.ProductFoodService;
 import com.odd.product.model.vo.ProAtt;
-import com.odd.product.model.vo.Product;
 import com.odd.product.model.vo.UserProduct;
 
 /**
@@ -41,8 +39,7 @@ public class ProductDetailController extends HttpServlet {
 		ArrayList<ProAtt> list = new ProductDetailService().productDetail(productNo);  //상품상세테이블값
 		UserProduct p = new ProductDetailService().productDetailFood(productNo);
 
-		
-		
+			
 		request.setAttribute("list", list);
 		request.setAttribute("p", p);
 		request.getRequestDispatcher("views/product/productDetailView.jsp").forward(request,response);
