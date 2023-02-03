@@ -225,7 +225,7 @@
  	    		
  	    		<!-- 최초 페이지가 아닐 경우 -->
  	    		if(<%=cpage%> != 1){
- 	    			$("input[name=proName]").val(proName);
+ 	    			$("input[name='proName']").val(proName);
  	    	
 	    		    $("input[name='category']").each(function() {
 						if($(this).val() == category){
@@ -242,10 +242,10 @@
 							$(this).attr("checked",true);							
 						} 
 	    		    })
-					$("input[name=lowPrice]").val(lowPrice);
-					$("input[name=highPrice]").val(highPrice);
-					$("input[name=firstDate]").val(firstDate);
-					$("input[name=secondDate]").val(secondDate);
+					$("input[name='lowPrice']").val(lowPrice);
+					$("input[name='highPrice']").val(highPrice);
+					$("input[name='firstDate']").val(firstDate);
+					$("input[name='secondDate']").val(secondDate);
  	    		}	
  	    	});
        		</script>
