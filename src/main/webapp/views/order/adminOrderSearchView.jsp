@@ -136,14 +136,13 @@
                            <% for(AdminOrder o : list){ %>
 	                       <tr role="button" data-toggle="modal" data-target="#myModal">
 	                          
-	                           <td><%= o.getDelivery() %></td>
-	                           <td>
-	                           		<input type="hidden" name="amount" value="<%= o.getAmount()%>">
-	                           		<input type="hidden" name="email" value="<%= o.getEmail() %>">
-	                           		<input type="hidden" name="discount" value="<%= o.getDiscount() %>">
-	                           		<input type="hidden" name="save" value="<%= o.getSave() %>">
-	                           		<%= o.getOrdNo() %>
-                         	   </td>
+	                           <td><%= o.getDelivery() %>
+	                           		<input type="hidden" value="<%= o.getAmount()%>">
+	                           		<input type="hidden" value="<%= o.getUserNo() %>">
+	                           		<input type="hidden" value="<%= o.getDiscount() %>">
+	                           		<input type="hidden" value="<%= o.getSave() %>">
+                               </td>
+	                           <td><%= o.getOrdNo() %></td>
 	                           <td><%= o.getProName() %></td>
 	                           <td><%= o.getUserName() %></td>
 	                           <td><%= o.getDelAdd() %></td>
@@ -228,6 +227,108 @@
 			</form>
 			
    		</div>
+   		
+   		<script>
+   				$(".list-area>tbody>tr").click(function(){
+   					
+	   					let value = "<tr>"
+									+ "<th>주문번호</th>"
+									+ "<td>" + $(this).children().eq(1).text() + "</td>"
+									+ "</tr>"
+									
+									
+									+ "<tr>"
+									+ "<th>고객번호</th>"
+									+ "<td>" + $(this).find("input").eq(1).val() + "</td>"
+									+ "</tr>"
+									
+									+ "<tr>"
+									+ "<th>고객이름</th>"
+									+ "<td>" + $(this).children().eq(3).text() + "</td>"
+									+ "</tr>"
+									
+									+ "<tr>"
+									+ "<th>상품명</th>"
+									+ "<td>" + $(this).children().eq(2).text() + "</td>"
+									+ "</tr>"
+									
+									+ "<tr>"
+									+ "<th>상품수량</th>"
+									+ "<td>" + $(this).find("input").eq(0).val() + "</td>"
+									+ "</tr>"
+									
+									+ "<tr>"
+									+ "<th>배송지</th>"
+									+ "<td>" + $(this).children().eq(4).text() + "</td>"
+									+ "</tr>"
+									
+									
+						$(".motalT").html(value);
+						
+									
+						console.log($(".motalT td").eq(0).text());
+				})
+ 		</script>
+       
+		
+		<!-- The Modal -->
+		<div class="modal" id="myModal">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		
+		      <!-- Modal Header -->
+		      <div class="modal-header">
+		        <h4 class="modal-title">배송 처리</h4>
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		      </div>
+		
+		      <!-- Modal body -->
+		      <div class="modal-body">
+		        <table class="table motalT" style='text-align:center;'>
+				    <tbody>
+				    </tbody>
+				  </table>
+		      </div>
+		
+		      <!-- Modal footer -->
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal" id="Confirm">배송 시작</button>
+		      </div>
+		
+		    </div>
+		  </div>
+		</div>
+        
+        <script>
+			$("#Confirm").click(function(){
+				
+				$.ajax({
+					
+					
+					url:"confirm.adOrd" , 
+					data:{
+							userNo:$(".motalT").find("td").eq(0).text() ,
+							ordNo:$(".motalT").find("td").eq(1).text()		
+					} ,
+					type : "post" ,
+					success : function(result){
+						if(result > 0) {
+            			}else { 
+            				alert("상품 삭제 실패");
+            			} 
+						
+						// 페이지 새로 고침
+						location.reload();
+					} ,
+					error : function(){
+            				alert("상품 삭제 성공");
+						
+					} 
+				})
+			})	
+			
+		</script>
+        
         
     </div>
 </body>

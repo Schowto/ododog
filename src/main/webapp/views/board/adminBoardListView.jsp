@@ -58,19 +58,18 @@
         
             <br>
             <div align="left">
-                <p>게시글 관리</p>
+                <p>일반 게시글 관리</p>
             </div>
             <hr>
 
             <div align="right" style="margin:15px 0px;">
                 <form action="" style="font-size:13px;">
-                
                     <select name="search-order" style="height:25px; border:1px solid rgb(220, 220, 220); border-radius:5px;">
                         <option value="title">제목</option>
                         <option value="writer">작성자</option>
                     </select>
                 
-                    <input type="text" name=""
+                    <input type="text" name="keyword"
                         style="width:200px; height:25px; border-right:none; border:1px solid rgb(220, 220, 220); border-radius:5px;">
                 
                     <button type="submit" style="height:25px; width:40px; border:1px solid rgb(220,220,220);">
