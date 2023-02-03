@@ -54,7 +54,51 @@ input[type=number]::-webkit-inner-spin-button {
     opacity: 1
 }
 
-	
+	/******리뷰 스타일*******/
+	.reviewLine{
+    width:1000px;
+    height:3px;
+    background: rgba(128, 128, 128, 0.26);
+    margin:auto;
+    }
+	.reviewContent{
+		width:1000px;
+		margin:auto;
+	}
+	.reviewTable{
+		width:100%;
+	}
+    .reviewTable textarea{
+        resize:none; 
+        border:none;
+        background-color: rgba(128, 128, 128, 0.285);
+		width:1000px;
+		height:400px;
+    }
+    .reviewTable table{
+        border-collapse: collapse;
+        border-spacing: 0;
+        width:800px;
+        margin:auto;
+        border-top:2px solid rgba(128, 128, 128, 0.26);
+        margin:auto;
+
+    }
+    .reviewTable td{
+		border-bottom: 2px solid rgb(220,220,220);
+    }
+    .reviewTable img{
+        box-sizing: border-box;
+        width:100px;
+        height:100px;
+    }
+    .reviewTable td:last-child{
+        border-bottom:3px solid rgba(128, 128, 128, 0.26);
+    }
+	.reviewTable td{
+		border-bottom:3px solid rgb(220,220,220);
+		
+	}
 
 
 </style>
@@ -268,7 +312,8 @@ input[type=number]::-webkit-inner-spin-button {
 			
 		</form>
 		
-	</div
+	</div>
+</div>
 	<%@ include file="../common/userFooterbar.jsp"%>
 </body>
 </html>
