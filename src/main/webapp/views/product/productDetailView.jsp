@@ -110,7 +110,7 @@ input[type=number]::-webkit-inner-spin-button {
 	<%@ include file="../common/userMenubar.jsp"%>
 	<div class="outer">
 		<div class="content">
-		<form action="/list.de" method="post">
+		<form action="<%=contextPath%>/dir.buy" method="post">
 			<div class="left">
 				<div class="file-area">
 					<!--대표이미지-->
@@ -169,7 +169,7 @@ input[type=number]::-webkit-inner-spin-button {
 				</span> <span> <b>16000원</b>
 				</span> <br> <br> <br>
 				　　　　　　　　
-				<button type="submit" class="btn btn-light" id="like">관심상품
+				<button type="button" class="btn btn-light" id="like">관심상품
 					등록</button>
 				<!-- like modal-->
 				<div class="modal fade2" id="testModal2" tabindex="-1" role="dialog"
@@ -257,19 +257,16 @@ input[type=number]::-webkit-inner-spin-button {
 				
 				<span class="pay">
 				<input type="hidden" value="<%=p.getProNo() %>">
-				<button type="button" class="btn btn-dark" onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'">구매하기</button>
+				<button type="submit" class="btn btn-dark" >구매하기</button>
+				<!-- onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp' -->
 				</span>
 				</div>	
 				<br>
 				<br>
 				<br> <br> <br> <br> <br> <br> <br>
 				<br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> 
-			</div>
+			</div> 
 			
-
-
-			
-
 			<br> <br>
 			<div class="content" align="center">
 
@@ -281,7 +278,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 					<span><b>상품 상세정보</b></span> 　　　　　　<span><b>상품 사용후기</b></span>
 					<hr style="border: 1px color= silver;" width="100%">
-					<
+					
 					<img src="<%=contextPath%>/resources/product_img/본문1.jpg"
 						width="800px" height="600px">
 				</div>
@@ -313,7 +310,7 @@ input[type=number]::-webkit-inner-spin-button {
 	</script>
 			<br> <br>
 			
-
+		
 		</form>
 	</div>
 

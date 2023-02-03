@@ -36,10 +36,6 @@ public class ProductDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 응답페이지
-	
-		
-		
-		
 		int productNo = Integer.parseInt(request.getParameter("no")); //넘어오는 자손값
 		
 		ArrayList<ProAtt> list = new ProductDetailService().productDetail(productNo);  //상품상세테이블값
