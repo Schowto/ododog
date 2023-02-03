@@ -174,14 +174,15 @@
           		</div>
 
 				<script>
+				
+				<!-- 클릭시 파일 업로드 -->
                 function clickFile(num){
                 
                     $("input[name=file"+num+"]").click();
                 
                 }
 
-
-
+				<!-- 파일 업로드시 이미지 반영 -->
                 function loadImg(inputFile, num){
                 	
                     if(inputFile.files.length == 1){

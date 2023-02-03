@@ -269,11 +269,11 @@ public class ConsultDao {
 		return result;
 	}
 	
-	public int insertAnswer(Connection conn, int consultNo, String consultAnswer) {
+	public int consultAnswer(Connection conn, int consultNo, String consultAnswer) {
 		
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAnswer");
+		String sql = prop.getProperty("consultAnswer");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

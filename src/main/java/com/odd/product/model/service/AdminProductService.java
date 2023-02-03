@@ -13,6 +13,12 @@ import com.odd.product.model.vo.Product;
 
 public class AdminProductService {
 	
+
+	/** >> 전체 상품 개수 조회 
+	 *     (AdminProductListController에서 페이징 처리를 위해 필요)
+	 *     
+	 * @return listCount >> 전체 상품 개수
+	 */
 	public int selectListCount() {
 		
 		Connection conn = getConnection();
@@ -23,6 +29,12 @@ public class AdminProductService {
 		return result;
 	}
 	
+	/** >> 상품 목록 조회
+	 * @param pi >> 페이지 처리 정보 (AdminProductListController에서 지정해줌)
+	 * @param order >> 정렬 기준 ("PRO_NO", "CATEGORY" ...)
+	 * @param by >>  오름차순/내림차순 ("ASC", "DESC")
+	 * @return list >> 현재 페이지에 들어갈 상품 리스트
+	 */
 	public ArrayList<Product> selectList(PageInfo pi, String order, String by){
 		
 		Connection conn = getConnection();
@@ -79,6 +91,10 @@ public class AdminProductService {
 		return result1 * result2;
 	}
 	
+	/** >> 상품 상세 정보 조회
+	 * @param proNo >> 클릭한 상품 번호
+	 * @return p >> 번호로 조회한 상품 정보
+	 */
 	public Product selectProduct(int proNo) {
 		Connection conn = getConnection();
 		
@@ -88,6 +104,10 @@ public class AdminProductService {
 		return p;
 	}
 	
+	/** >> 상품 이미지 조회
+	 * @param proNo >> 클릭한 상품 번호
+	 * @return list >> 번호로 조회한 상품 이미지 리스트
+	 */
 	public ArrayList<ProAtt> selectProAtt(int proNo){
 		Connection conn = getConnection();
 		

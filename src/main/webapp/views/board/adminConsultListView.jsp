@@ -102,19 +102,9 @@
  	      
  	      
         <div id="content" align="center">
-            <div class="membertable">
-                <div class="memberbutton">
-                <form name="search-form"> 
-                <input type="text" placeholder="아이디로 회원검색" id="serch" style="float: left;">
-                    <button style="float: left;" onclick="serch();">조회하기</button>
-                </form>
-
-      				
-					
-               <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
-               </div>
             
-              <table id="usertable" class="usertable" style="text-align: center;">
+            
+              <table id="userTable" class="userTable" style="text-align: center;">
                 <thead>
 	                <tr>
 	                  <th>번호</th>
@@ -128,7 +118,7 @@
                 <tbody>
 	            	<% if(list.isEmpty()) { %>
 	                <tr>
-	                <td clospan="5">존재하는 회원이 없습니다.</td>
+	                <td colspan="6">존재하는 회원이 없습니다.</td>
 	                </tr>
 	                <% }else { %>
 	                <% for(Consult c : list){ %> 
@@ -139,18 +129,24 @@
 	                  <td><%=c.getEnrollDate()%></td>
 	                  <td><%=c.getAnswerStatus()%></td>
 	                  <td>
-	                  <a id="point" data-toggle="modal"  data-target="#myModal" value="" onclick="selectPointList(<%= c.getConsultNo() %>);"></a>
+	                  <button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">게시물삭제</button> 
 	                  </td>
-	                  
-	                  <td><button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">게시물삭제</button> </td>
 	                </tr>
 	                <%} %>
 	            <%} %>          
     			</tbody>
               </table>
+              
+              <script>
+              	$(function(){
+              		$("#userTable>tbody>tr").click(function(){
+              			location.href='<%=contextPath%>/detailAdmin.co?no=' + "$(this).children().ep(0).text();"
+              		})
+              	})
+              </script>
               </div>            
         </div>
-        
+       </div>
         
 
         

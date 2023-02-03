@@ -234,7 +234,7 @@
         <script>
 	        
 	        $(function(){
-	        	console.log($("#search-form :text").val());
+	        	//console.log($("#search-form :text").val());
 	        	<% if(keyword == null){ %>
 	        		$("#search-form :text").val("");
 	        	<% } else { %>

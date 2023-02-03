@@ -9,7 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
 import com.odd.board.model.service.ConsultService;
+import com.odd.board.model.vo.Consult;
+import com.odd.common.MyFileRenamePolicy;
 
 /**
  * Servlet implementation class MyConsultAnswerController
@@ -31,10 +35,10 @@ public class MyConsultAnswerController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int consultNo = Integer.parseInt(request.getParameter("no"));
+		int consultNo = Integer.parseInt(request.getParameter("consultNo"));
 		String consultAnswer = request.getParameter("consultAnswer");
 		
-		int result = new ConsultService().insertAnswer(consultNo, consultAnswer);
+		int result = new ConsultService().consultAnswer(consultNo, consultAnswer);
 		
 		if(result > 0) {
 			HttpSession session = request.getSession();

@@ -22,10 +22,68 @@
 		                           AND BOARD_NO = RECIPE_NO
 		                           AND STATUS = 'Y'
 		                       ) "REPLY_COUNT"
-		                  FROM RECIPE
+		                     , (SELECT COUNT(*) COUNT
+						          FROM HEART
+						         WHERE RECIPE_NO = R.RECIPE_NO
+						       ) "HEART_COUNT" 
+		                  FROM RECIPE R
 		                 WHERE STATUS = 'Y'
 		                 ORDER
 		                    BY RECIPE_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectListSortByHeart">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT 
+						       RECIPE_NO
+						     , RECIPE_TITLE
+						     , THUMBIMG
+						     , (SELECT COUNT(*)
+						          FROM REPLY
+						         WHERE BOARD_TYPE = 3
+						           AND BOARD_NO = RECIPE_NO
+						           AND STATUS = 'Y'
+						       ) "REPLY_COUNT"
+						     , (SELECT COUNT(*) COUNT
+						          FROM HEART
+						         WHERE RECIPE_NO = R.RECIPE_NO
+						       ) "HEART_COUNT" 
+						  FROM RECIPE R
+						 WHERE STATUS = 'Y'
+						 ORDER
+						    BY "HEART_COUNT" DESC, RECIPE_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectListSortByReply">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT 
+						       RECIPE_NO
+						     , RECIPE_TITLE
+						     , THUMBIMG
+						     , (SELECT COUNT(*)
+						          FROM REPLY
+						         WHERE BOARD_TYPE = 3
+						           AND BOARD_NO = RECIPE_NO
+						           AND STATUS = 'Y'
+						       ) "REPLY_COUNT"
+						     , (SELECT COUNT(*) COUNT
+						          FROM HEART
+						         WHERE RECIPE_NO = R.RECIPE_NO
+						       ) "HEART_COUNT" 
+						  FROM RECIPE R
+						 WHERE STATUS = 'Y'
+						 ORDER
+						    BY "REPLY_COUNT" DESC, RECIPE_NO DESC
 		               ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?

@@ -4,6 +4,7 @@
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Recipe> list = (ArrayList<Recipe>)request.getAttribute("list");
+	String sort = (String)request.getAttribute("sort");
 %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,6 @@
 
     /****** 사이드 ******/
     #side{
-        /*border:1px solid blue;*/
         width:20%; height:100%;
         padding:20px;
         color: rgb(50, 50, 50);
@@ -32,7 +32,6 @@
     
     /****** 내용 ******/
     #board-area{
-        /*border:1px solid blue;*/
         width:80%; height:100%;
         float:left;
     }
@@ -82,23 +81,19 @@
     }
 
     /* 정렬순서 */
-    .sort-filter{
-        list-style-type:none;
-        padding:0;
-        margin:0;
-        width:100%;
-        height:100%;
-    }
-    .sort-filter>li{
+    .sort-filter-area label{
+    	position:relative;
+    	margin:0px;
         border:1px solid rgb(220, 220, 220);
         border-radius: 5px;
         float:right;
         width:6%;
-        height:100%;
         cursor:pointer;
     }
-
-    .sort-filter{overflow:hidden}
+    .sort-filter-area input{
+    	position:absolute;
+        opacity:0;
+    }
 
     /* 썸네일 */
     .thumbnail{
@@ -172,11 +167,9 @@
             <form id="search-area">
 
                 <table style="font-size:15px;">
-
                     <tr>
                         <td width="200" height="50" style="font-weight:600;">아이들에게 필요한 건?</td>
                         <td width="500" id="select-effect">
-
                             <label class="checkbox" style="border-radius:5px; background: white;">
                                 <input type="checkbox" name="effect" value="10">
                                 <span>다이어트</span>
@@ -197,10 +190,8 @@
                                 <input type="checkbox" name="effect" value="50">
                                 <span>장관련</span>
                             </label>
-
                         </td>
                     </tr>
-
                     <tr>
                         <td height="50" style="font-weight:600;">만드는 시간은?</td>
                         <td id="select-time">
@@ -222,7 +213,6 @@
                             </label>
                         </td>
                     </tr>
-
                     <tr>
                         <td colspan="2" align="center" style="padding-top:50px; font-size:18px; font-weight:600; line-height:26px;">
                             내가 가진 재료로 레시피 추천받기 <br>
@@ -230,44 +220,57 @@
                             <button type="submit" style="height:25px; width:50px; border:none; margin-top:10px;">
                                 <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:5px;">
                             </button>
-                            
                         </td>
                     </tr>
-
                 </table>
 
             </form>
 
             <script>
-
                 $(":checkbox").change(function(){
                     //console.log($(this).prop("checked"));
-
                     if($(this).prop("checked")){
                         $(this).parent().css("backgroundColor","rgb(200, 140, 140)").css("color","white");
                     } else {
                         $(this).parent().css("backgroundColor", "white").css("color","rgb(50, 50, 50)");
                     }
-
                 })
-
             </script>
 
             <br><br><br><br>
 
-            <ul class="sort-filter" style="font-size:13px;">
-            <li class>댓글순</li>
-            <li class>하트순</li>
-            <li class="selected">최신순</li>
-            </ul>
+            <div class="sort-filter-area" style="font-size:13px;">
+            	<label class="sort" style="border-radius:5px;">
+                    <input type="radio" name="sort-by" value="reply" style="cursor:pointer;">
+                    <span>댓글순</span>
+                </label>
+                <label class="sort" style="border-radius:5px;">
+                    <input type="radio" name="sort-by" value="heart" style="cursor:pointer;">
+                    <span>하트순</span>
+                </label>
+                <label class="sort selected" style="border-radius:5px;">
+                    <input type="radio" name="sort-by" value="new" style="cursor:pointer;">
+                    <span>최신순</span>
+                </label>
+            </div>
             <br>
-
+            
             <script>
-                $(".sort-filter>li").click(function(){
+                $(".sort-filter-area label").click(function(){
                     //console.log($(this).text());
                     $(this).addClass('selected');
                     $(this).siblings().removeClass('selected');
+                    location.href = "<%= contextPath %>/list.re?cpage=1&sort=" + $(this).children("input").val();
                 })
+            	$(function(){
+            		const sortList = $(".sort-filter-area :radio");
+            		$(sortList).each(function(){
+            			if($(this).val() == "<%= sort %>"){
+            				$(this).parents("label").addClass("selected");
+            				$(this).parents("label").siblings().removeClass('selected');
+            			}
+            		})
+            	})
             </script>
             
             <div class="list-area" style="font-size:15px;">
@@ -290,6 +293,7 @@
 	                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> <%= r.getReplyCount() %>
 	                        <div style="display:inline-block;">
 	                            <img src="<%= contextPath %>/resources/icons/heart.png" id="heart-area<%= r.getRecipeNo() %>" width="15" style="margin-left:7px; cursor:pointer;">
+	                            <%= r.getHeartCount() %>
 	                        </div>
 	                    </div>
 	                </div>

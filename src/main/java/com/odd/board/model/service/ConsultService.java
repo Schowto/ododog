@@ -105,9 +105,9 @@ public class ConsultService {
 	}
 	
 	
-	public int insertAnswer(int consultNo, String consultAnswer) {
+	public int consultAnswer(int consultNo, String consultAnswer) {
 		Connection conn = getConnection();
-		int result = new ConsultDao().insertAnswer(conn, consultNo, consultAnswer);
+		int result = new ConsultDao().consultAnswer(conn, consultNo, consultAnswer);
 		
 		if(result > 0) {
 			commit(conn);

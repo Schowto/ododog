@@ -75,6 +75,18 @@
 	.consultAnswer textarea{
 		display:none;
 	}
+	.consultEnroll input[name=consultNo]{
+		width:70px;
+		border:none;
+		height:20px;
+		color:rgb(50, 50, 50);
+	}
+	.consultEnroll input[name=consultCategory]{
+		width:150px;
+		border:none;
+		height:20px;
+		color:rgb(50, 50, 50);
+	}
 	.blink:hover{
 		opacity:0.7;
 		cursor:pointer;
@@ -99,10 +111,9 @@
 		animation-timing-function:step-end;
 	}
 	.consultEnroll input[name=consultTitle]{
-
-	}
-	.consultEnroll input[name=consultCategory]{
-		
+		width:300px;
+		height:20px;
+		border:none;
 	}
 </style>
 </head>
@@ -139,9 +150,10 @@
 
 
 			<div class="consultEnroll">
-				<form action="<%=contextPath%>/update.co" method="post" enctype="multipart/form-data">
+				<form action="<%=contextPath %>/update.co" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="consultNo" value="<%=c.getConsultNo() %>">	
 					<table>
-							<input type="hidden" name="consultNo" value="<%=c.getConsultNo()%>">
+						
 							<tr>
 								<td style="font-size:14px; width:15%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
 								<td style="width:50%; border-right:1px solid rgb(220,220,220);">
@@ -171,19 +183,12 @@
 						<br>
 						
 						<div align="center">
-						<button type="submit" class="btnUpdate">확인</button>
-						<button class="btn-red" onclick="location.href='<%=contextPath%>/list.co'">취소</button>
-					</div>
-    					
-    				<script>
-						$(function(){
-							$(".btnUpdate").click(function(){
-								location.href='<%=contextPath%>/updateForm.co?no=<%=c.getConsultNo()%>';
-							})
-						})
-					</script>
+							<button type="submit">확인</button>
+							<button class="btn-red" onclick="location.href='<%=contextPath%>/list.co>'">취소</button>
+						</div>
 						
 					</form>
+					
 					<br>
 					
 					<%if(c.getConsultAnswer() != null){ %>

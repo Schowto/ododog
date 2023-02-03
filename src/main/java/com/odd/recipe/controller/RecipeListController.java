@@ -53,15 +53,25 @@ public class RecipeListController extends HttpServlet {
 		if (endPage > maxPage) {
 			endPage = maxPage;
 		}
-		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-
-		ArrayList<Recipe> list = new RecipeService().selectList(pi);
-
+		
+		String sort = request.getParameter("sort");
+		
+		ArrayList<Recipe> list = null;
+		if(sort == null || sort.equals("new")) {
+			// 최신순
+			list = new RecipeService().selectList(pi);
+		} else if(sort.equals("heart")) {
+			// 하트순
+			list = new RecipeService().selectListSortByHeart(pi);
+		} else {
+			// 댓글순
+			list = new RecipeService().selectListSortByReply(pi);
+		}
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		request.setAttribute("sort", sort);
 		request.getRequestDispatcher("views/recipe/recipeListView.jsp").forward(request, response);
-		
 	}
 
 	/**

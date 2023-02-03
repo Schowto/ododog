@@ -210,6 +210,8 @@
             <br><br><br>
        		
        		<script>
+       		
+       		<!-- 검색 폼의 값을 다시 채워줌 --> 
 			$(function(){
  	    		
  	    		let proName = "<%=proName%>"; 
@@ -221,6 +223,7 @@
  	    		let firstDate ="<%=firstDate%>";
  	    		let secondDate = "<%=secondDate%>";
  	    		
+ 	    		<!-- 최초 페이지가 아닐 경우 -->
  	    		if(<%=cpage%> != 1){
  	    			$("input[name=proName]").val(proName);
  	    	
@@ -577,14 +580,18 @@
                    <input type="hidden" name="thumbImg">
                    
           		</div>
-
+				
+				
 				<script>
+				
+				<!-- 클릭시 파일 업로드 -->
                 function clickFile(num){
                 
                     $("input[name=file"+num+"]").click();
                 
                 }
-
+				
+                <!-- 파일 업로드시 이미지 반영 -->
                 function loadImg(inputFile, num){
                 	
                     if(inputFile.files.length == 1){
