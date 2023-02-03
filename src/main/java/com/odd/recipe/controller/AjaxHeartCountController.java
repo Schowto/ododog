@@ -34,7 +34,6 @@ public class AjaxHeartCountController extends HttpServlet {
 		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
 		
 		int count = new RecipeService().selectHeartCount(recipeNo, userNo);
-		
 		response.getWriter().print(count);	// 하트 등록되어있으면 1, 없으면 0
 	}
 

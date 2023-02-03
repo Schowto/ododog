@@ -19,7 +19,6 @@ public class RecipeService {
 		close(conn);
 		return count;
 	}
-	
 	public ArrayList<Recipe> selectList(PageInfo pi) {
 		Connection conn = getConnection();
 		ArrayList<Recipe> list = new RecipeDao().selectList(conn, pi);
@@ -38,6 +37,8 @@ public class RecipeService {
 		close(conn);
 		return list;
 	}
+	
+	
 	
 	/**
 	 * 레시피 등록
@@ -122,4 +123,22 @@ public class RecipeService {
 		return count;
 	}
 
+	/**
+	 * 효과, 재료로 검색
+	 * @param effectArr
+	 * @param ingredient
+	 * @return
+	 */
+	public int selectSearchListCount(String[] effectArr, String[] timeArr, String ingredient) {
+		Connection conn = getConnection();
+		int count = new RecipeDao().selectSearchListCount(conn, effectArr, timeArr, ingredient);
+		close(conn);
+		return count;
+	}
+	public ArrayList<Recipe> searchRecipe(PageInfo pi, String[] effectArr, String[] timeArr, String ingredient){
+		Connection conn = getConnection();
+		ArrayList<Recipe> list = new RecipeDao().searchRecipe(conn, pi, effectArr, timeArr, ingredient);
+		close(conn);
+		return list;
+	}
 }
