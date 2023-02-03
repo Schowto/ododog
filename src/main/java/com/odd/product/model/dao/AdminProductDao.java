@@ -29,8 +29,10 @@ public class AdminProductDao {
 	}
 	
 	
-	/**
-	 * @return 전체 상품 개수
+	/** >> 전체 상품 개수 조회 
+	 *     (페이징 처리를 위해 필요)
+	 *     
+	 * @return listCount >> 전체 상품 개수
 	 */
 	public int selectListCount(Connection conn) {
 		
@@ -56,11 +58,11 @@ public class AdminProductDao {
 		return listCount;
 	}
 
-	/**
-	 * @param pi >> 페이지 처리 정보
-	 * @param order >> 정렬 기준
-	 * @param by >>  오름차순/내림차순
-	 * @return 현재 페이지에 들어갈 상품 리스트
+	/** >> 상품 목록 조회
+	 * @param pi >> 페이지 처리 정보 (AdminProductListController에서 지정해줌)
+	 * @param order >> 정렬 기준 ("PRO_NO", "CATEGORY" ...)
+	 * @param by >>  오름차순/내림차순 ("ASC", "DESC")
+	 * @return list >> 현재 페이지에 들어갈 상품 리스트
 	 */
 	public ArrayList<Product> selectList(Connection conn, PageInfo pi, String order, String by){
 		
@@ -110,8 +112,8 @@ public class AdminProductDao {
 	
 	/**
 	 * @param conn
-	 * @param proSearch >> 검색 조건 객체
-	 * @return 검색된 상품 리스트
+	 * @param proSearch >> 검색 조건 객체 (컨트롤러에서 담아줌)
+	 * @return list >> 검색된 상품 리스트
 	 */
 	public ArrayList<Product> searchList(Connection conn, AdminProSearch proSearch) {
 		
@@ -310,7 +312,7 @@ public class AdminProductDao {
 	
 	/**
 	 * @param proNo >> 클릭한 상품 번호
-	 * @return 번호로 조회한 상품 정보
+	 * @return p >> 번호로 조회한 상품 정보
 	 */
 	public Product selectProduct(Connection conn, int proNo) {
 		
@@ -353,7 +355,7 @@ public class AdminProductDao {
 	
 	/**
 	 * @param proNo >> 클릭한 상품 번호
-	 * @return 번호로 조회한 상품 이미지 리스트
+	 * @return list >> 번호로 조회한 상품 이미지 리스트
 	 */
 	public ArrayList<ProAtt> selectProAtt(Connection conn, int proNo){
 		
