@@ -318,4 +318,16 @@
 	    DONE
 	   FROM REPORT
 	</entry>
+	<entry key="searchReport">
+		SELECT
+	    REPORT_NO ,
+	    USER_NO ,
+	    POST_NO ,
+	    COMMENT_NO ,
+	    REPORT_CONTENT ,
+	    REPORT_DATE,
+	    DONE
+	   FROM REPORT
+	   WHERE USER_NO LIKE ?	
+	</entry>
 </properties>

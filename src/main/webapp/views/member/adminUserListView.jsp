@@ -61,7 +61,7 @@
             border-radius:5px;
         }
         
-    #serch{
+    #searchId{
             margin-left: 20px;
             font-size: 13px;
             border:2px solid rgb(220,220,220);
@@ -117,7 +117,7 @@
                     <button type="submit" style="float: left;">조회하기</button>
                 </form>
       									
-               <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
+               <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad'">전체조회</button>
                </div>
             
               <table id="usertable" class="usertable" style="text-align: center;">
