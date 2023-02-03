@@ -19,21 +19,21 @@ public class RecipeService {
 		close(conn);
 		return count;
 	}
-	public ArrayList<Recipe> selectList(PageInfo pi) {
+	public ArrayList<Recipe> selectList(PageInfo pi, int loginUser) {
 		Connection conn = getConnection();
-		ArrayList<Recipe> list = new RecipeDao().selectList(conn, pi);
+		ArrayList<Recipe> list = new RecipeDao().selectList(conn, pi, loginUser);
 		close(conn);
 		return list;
 	}
-	public ArrayList<Recipe> selectListSortByHeart(PageInfo pi) {
+	public ArrayList<Recipe> selectListSortByHeart(PageInfo pi, int loginUser) {
 		Connection conn = getConnection();
-		ArrayList<Recipe> list = new RecipeDao().selectListSortByHeart(conn, pi);
+		ArrayList<Recipe> list = new RecipeDao().selectListSortByHeart(conn, pi, loginUser);
 		close(conn);
 		return list;
 	}
-	public ArrayList<Recipe> selectListSortByReply(PageInfo pi) {
+	public ArrayList<Recipe> selectListSortByReply(PageInfo pi, int loginUser) {
 		Connection conn = getConnection();
-		ArrayList<Recipe> list = new RecipeDao().selectListSortByReply(conn, pi);
+		ArrayList<Recipe> list = new RecipeDao().selectListSortByReply(conn, pi, loginUser);
 		close(conn);
 		return list;
 	}
@@ -135,9 +135,9 @@ public class RecipeService {
 		close(conn);
 		return count;
 	}
-	public ArrayList<Recipe> searchRecipe(PageInfo pi, String[] effectArr, String[] timeArr, String ingredient){
+	public ArrayList<Recipe> searchRecipe(PageInfo pi, int loginUser, String[] effectArr, String[] timeArr, String ingredient){
 		Connection conn = getConnection();
-		ArrayList<Recipe> list = new RecipeDao().searchRecipe(conn, pi, effectArr, timeArr, ingredient);
+		ArrayList<Recipe> list = new RecipeDao().searchRecipe(conn, pi, loginUser, effectArr, timeArr, ingredient);
 		close(conn);
 		return list;
 	}

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.odd.common.model.vo.PageInfo;
+import com.odd.member.model.vo.Member;
 import com.odd.recipe.model.service.RecipeService;
 import com.odd.recipe.model.vo.Recipe;
 
@@ -58,8 +59,11 @@ public class RecipeSearchController extends HttpServlet {
 			endPage = maxPage;
 		}
 		pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		
-		ArrayList<Recipe> list = new RecipeService().searchRecipe(pi, effectArr, timeArr, ingredient);
+		int loginUser = 0;
+		if(request.getSession().getAttribute("loginUser") != null) {
+			loginUser = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
+		}
+		ArrayList<Recipe> list = new RecipeService().searchRecipe(pi, loginUser, effectArr, timeArr, ingredient);
 		
 		String searchEffect = "";
 		String searchTime = "";
