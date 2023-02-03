@@ -34,16 +34,17 @@ public class FAQSearchController extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		ArrayList<FAQ> list = new FAQService().selectFAQList();
+		//ArrayList<FAQ> list = new FAQService().selectFAQList();
 		
 		String keyword = request.getParameter("keyword");
 		
-		ArrayList<FAQ> slist = new FAQService().searchFAQ(keyword);
+		ArrayList<FAQ> list = new FAQService().searchFAQ(keyword);
+		
 		
 		
 		
 		request.setAttribute("keyword", keyword);
-		request.setAttribute("slist", slist);
+		//request.setAttribute("slist", slist);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/board/FAQadminListView.jsp").forward(request, response);
 		

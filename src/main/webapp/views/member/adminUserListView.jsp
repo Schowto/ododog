@@ -9,6 +9,7 @@
 	
 	ArrayList<Point> plist = (ArrayList<Point>)request.getAttribute("plist");
 	
+	
 %>
 
 <!DOCTYPE html>

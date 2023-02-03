@@ -6,12 +6,17 @@
 <%
 	FAQService faq = new FAQService();
 	
-	ArrayList<FAQ> list = faq.selectFAQList(); 
-	// list = (ArrayList<FAQ>)request.getAttribute("list");
+	//ArrayList<FAQ> list = faq.selectFAQList(); 
 	
-	ArrayList<FAQ> slist = faq.searchFAQ();
+	ArrayList<FAQ> list = (ArrayList<FAQ>)request.getAttribute("list");
+	
+	//ArrayList<FAQ> slist = faq.searchFAQ("keyword");
+	
+	
 
 	String keyword = (String)request.getAttribute("keyword"); 
+	
+	
 
 %>
  
@@ -138,8 +143,7 @@
             <input type="text" name="keyword" placeholder="키워드 검색" id="search" style="float: left; margin-left: 40px; font-size: 11px;">
             <button type="submit" style="float: left;">검색하기</button>            
             
-            </form>
-			
+        	</form>
 
             
             <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQenrollForm.ad'">등록하기</button>
@@ -171,5 +175,18 @@
         </div>
         
     </div>
+    
+    
+			 <!-- <script>
+                    $(function(){
+                    //console.log($("#search-form :text").val());
+                    <% if(keyword == null){ %>
+                        $("#search-form :text").val("");
+                    <% } else { %>
+                        $("#search-form :text").val("<%= keyword %>");
+                    <% } %>
+                    })
+                </script>  -->  
+                
 </body>
 </html>
