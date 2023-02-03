@@ -67,7 +67,7 @@ public class MyConsultInsertController extends HttpServlet {
 			
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				c.setOriginName(multiRequest.getOriginalFileName("upfile"));
-				c.setFilePath(multiRequest.getFilesystemName("resources/consult_upfiles/" + "upfile"));
+				c.setFilePath("resources/consult_upfiles/" + multiRequest.getFilesystemName("upfile"));
 			}
 			
 			

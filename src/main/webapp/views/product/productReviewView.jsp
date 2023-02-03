@@ -12,13 +12,13 @@
         margin:auto;
         margin-top:50px;
     }
-    .line{
+    .reviewLine{
             width:1000px;
             height:3px;
             background: rgba(128, 128, 128, 0.26);
             margin:auto;
     }
-    textarea{
+    .review textarea{
         resize:none; 
         border:none;
         background-color: rgba(128, 128, 128, 0.285);
@@ -32,12 +32,13 @@
         margin:auto;
 
     }
-    td{
+    .review td{
         width:100%;
     }
-    img{
+    .review img{
         box-sizing: border-box;
-        border:1px solid black;
+        width:100px;
+        height:100px;
     }
     .review td:last-child{
         border-bottom:2px solid rgba(128, 128, 128, 0.26);
@@ -83,7 +84,7 @@
                     </tr>
                     <tr>
                         <td style="height:50px;">&nbsp;&nbsp;⭐⭐⭐⭐</td>
-                        <td rowspan="2"><img src=""></td>
+                        <td rowspan="2" style="border-bottom:2px solid rgb(220,220,220)"><img src=""></td>
                         <td rowspan="2">
                             &nbsp;&nbsp;상품명 : 댕댕츄르 <br>
                             &nbsp;&nbsp;작성자 : 와그작<br>

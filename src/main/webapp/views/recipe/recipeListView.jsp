@@ -4,6 +4,9 @@
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Recipe> list = (ArrayList<Recipe>)request.getAttribute("list");
+	String searchEffect = (String)request.getAttribute("searchEffect");
+	String searchTime = (String)request.getAttribute("searchTime");
+	String ingredient = (String)request.getAttribute("ingredient");
 	String sort = (String)request.getAttribute("sort");
 %>
 <!DOCTYPE html>
@@ -137,8 +140,7 @@
 	<%@ include file="../common/userMenubar.jsp" %>
 	
 	<div id="content">
-    
-    
+	
         <div id="side">
             <br><br><br><br><br>
             <p style="font-size:23px;">COMMUNITY</p>
@@ -164,8 +166,8 @@
             </div>
             <br><br>
             
-            <form id="search-area">
-
+            <form id="search-area" action="<%= contextPath %>/search.re">
+            <input type="hidden" name="cpage" value="1">
                 <table style="font-size:15px;">
                     <tr>
                         <td width="200" height="50" style="font-weight:600;">아이들에게 필요한 건?</td>
@@ -216,16 +218,15 @@
                     <tr>
                         <td colspan="2" align="center" style="padding-top:50px; font-size:18px; font-weight:600; line-height:26px;">
                             내가 가진 재료로 레시피 추천받기 <br>
-                            <input type="text" name="ingredient" style="width:400px; height:25px; border-radius:5px; border:none;">
+                            <input type="text" name="ingredient" id="ingredient" style="width:400px; height:25px; border-radius:5px; border:none;">
                             <button type="submit" style="height:25px; width:50px; border:none; margin-top:10px;">
                                 <img src="<%= contextPath %>/resources/icons/search.png" width="12px" style="opacity:0.5; margin-bottom:5px;">
                             </button>
                         </td>
                     </tr>
                 </table>
-
             </form>
-
+            
             <script>
                 $(":checkbox").change(function(){
                     //console.log($(this).prop("checked"));
@@ -235,6 +236,30 @@
                         $(this).parent().css("backgroundColor", "white").css("color","rgb(50, 50, 50)");
                     }
                 })
+                
+                $(function(){
+					<% if(ingredient == null){ %>
+						$("#ingredient").val("");
+		        	<% } else { %>
+			        	$("#ingredient").val("<%= ingredient %>");
+		        	<% } %>
+		        	
+		        	const searchEffect = "<%= searchEffect %>";
+		        	const searchTime = "<%= searchTime %>";
+	        		$("#select-effect :checkbox").each(function(){
+	        			if(searchEffect.includes($(this).val())){
+	        				$(this).prop("checked", true);
+	        				$(this).parent().css("backgroundColor","rgb(200, 140, 140)").css("color","white");
+	        			}
+	        		})
+	        		$("#select-time :checkbox").each(function(){
+	        			if(searchTime.includes($(this).val())){
+	        				$(this).prop("checked", true);
+	        				$(this).parent().css("backgroundColor","rgb(200, 140, 140)").css("color","white");
+	        			}
+	        		})
+	        		
+        		})
             </script>
 
             <br><br><br><br>
@@ -300,8 +325,8 @@
 	                <% if(loginUser != null){ %>
 	                <script>
 		            	// 첫화면 로딩시 하트 데이터 불러오기
-		            	$(function(){selectHeart();})
-		            	function selectHeart(){
+		            	$(function(){selectHeartStatus();})
+		            	function selectHeartStatus(){
 		            		$.ajax({
 		            			url:"<%= contextPath %>/hcount.re",
 		            			data:{no:"<%= r.getRecipeNo() %>"},

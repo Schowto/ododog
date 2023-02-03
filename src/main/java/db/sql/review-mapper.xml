@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+	<propertise>
+	
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		  		SELCT ROWNUM "RNUM", A.*
+		  		 FROM (
+		  		 		SELECT 
+		  		 			   CONSULT_NO
+		  		 	  		 , CONSULT_TITLE
+		  		 	  		 , TO_CHAR(ENROLL_DATE, 'YYYY/MM/DD') "ENROLL_DATE"
+		  		 	  		 , CONSULT_CATEGORY
+		  		 	  		 , ANSWER_STATUS
+		  		 	      FROM CONSULT C
+		  		 	      JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
+		  		 	     WHERE C.USER_NO = ?
+		  		 	     	 , C.STATUS = 'Y'
+		  		 	     ORDER 
+		  		 	        BY COUNSULT_NO DESC
+		  		 	   ) A
+		  		)
+		 WHERE RNUM BETWEEN ? AND ?
+		  		
+	</entry>
+	
+	
+	
+	</propertise>

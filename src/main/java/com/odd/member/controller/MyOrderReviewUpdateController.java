@@ -1,27 +1,23 @@
-package com.odd.recipe.controller;
+package com.odd.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.member.model.vo.Member;
-import com.odd.recipe.model.service.RecipeService;
-
 /**
- * Servlet implementation class HeartSelectController
+ * Servlet implementation class MyOrderReviewUpdateController
  */
-@WebServlet("/hcount.re")
-public class AjaxHeartCountController extends HttpServlet {
+@WebServlet("/reviewUpdate.me")
+public class MyOrderReviewUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxHeartCountController() {
+    public MyOrderReviewUpdateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,11 +26,8 @@ public class AjaxHeartCountController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int recipeNo = Integer.parseInt(request.getParameter("no"));
-		int userNo = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
-		
-		int count = new RecipeService().selectHeartCount(recipeNo, userNo);
-		response.getWriter().print(count);	// 하트 등록되어있으면 1, 없으면 0
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
