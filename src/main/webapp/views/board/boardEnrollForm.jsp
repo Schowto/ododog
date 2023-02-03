@@ -66,7 +66,7 @@
             <p style="font-size:23px;">COMMUNITY</p>
             <hr>
             <a href="<%= contextPath %>/list.bo?cpage=1" style="font-size:17px; color:rgb(200, 140, 140);">자유게시판</a> <br><br>
-            <a href="" style="font-size:17px;">레시피게시판</a>
+            <a href="<%= contextPath %>/list.re?cpage=1" style="font-size:17px;">레시피게시판</a>
         </div>
 
         <script>
