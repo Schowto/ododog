@@ -5,7 +5,7 @@ public class Recipe {
 	private String recipeTitle;
 	private String recipeContent;
 	private String recipeThumbImg;	// 썸네일 파일경로 + 수정명
-	private String effect;			// 효과들
+	private String effect;			// 효과들 (10,20,30,40,50)
 	private String time;			// 소요시간 (10,20,30,40)
 	private String ingredient;		// 재료들
 	private int processCount;		// 요리순서 개수 (2~10)
@@ -15,6 +15,7 @@ public class Recipe {
 	
 	private int replyCount;
 	private int heartCount;
+	private int myHeartStatus;		// 0,1
 	
 	public Recipe() {}
 	public Recipe(int recipeNo, String recipeTitle, String recipeContent, String recipeThumbImg, String effect,
@@ -47,13 +48,14 @@ public class Recipe {
 		this.processCount = processCount;
 	}
 	// selectList
-	public Recipe(int recipeNo, String recipeTitle, String recipeThumbImg, int replyCount, int heartCount) {
+	public Recipe(int recipeNo, String recipeTitle, String recipeThumbImg, int replyCount, int heartCount, int myHeartStatus) {
 		super();
 		this.recipeNo = recipeNo;
 		this.recipeTitle = recipeTitle;
 		this.recipeThumbImg = recipeThumbImg;
 		this.replyCount = replyCount;
 		this.heartCount = heartCount;
+		this.myHeartStatus = myHeartStatus;
 	}
 
 	public int getRecipeNo() {
@@ -134,6 +136,12 @@ public class Recipe {
 	}
 	public void setHeartCount(int heartCount) {
 		this.heartCount = heartCount;
+	}
+	public int getMyHeartStatus() {
+		return myHeartStatus;
+	}
+	public void setMyHeartStatus(int myHeartStatus) {
+		this.myHeartStatus = myHeartStatus;
 	}
 	
 	@Override

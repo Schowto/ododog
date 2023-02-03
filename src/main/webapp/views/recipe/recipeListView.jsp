@@ -317,43 +317,39 @@
 	                    <div align="right" style="width:250px; font-size:12px;">
 	                        <img src="<%= contextPath %>/resources/icons/comment.png" width="15"> <%= r.getReplyCount() %>
 	                        <div style="display:inline-block;">
-	                            <img src="<%= contextPath %>/resources/icons/heart.png" id="heart-area<%= r.getRecipeNo() %>" width="15" style="margin-left:7px; cursor:pointer;">
-	                            <%= r.getHeartCount() %>
+	                        
+	                        	<input type="hidden" value = "<%= r.getRecipeNo() %>">
+	                        	
+	                        	<% if(r.getMyHeartStatus() > 0) { %>
+	                            	<img src="<%= contextPath %>/resources/icons/heartR.png" class="heart-area" width="15" style="margin-left:7px; cursor:pointer;">
+	                            <% } else { %>
+	                            	<img src="<%= contextPath %>/resources/icons/heart.png" class="heart-area" width="15" style="margin-left:7px; cursor:pointer;">
+	                            <% } %>
+	                            <span><%= r.getHeartCount() %></span>
+	                            
 	                        </div>
 	                    </div>
 	                </div>
-	                <% if(loginUser != null){ %>
+                	<% } %>
+                <% } %>
+            </div>
+            
+            <% if(loginUser != null){ %>
 	                <script>
-		            	// 첫화면 로딩시 하트 데이터 불러오기
-		            	$(function(){selectHeartStatus();})
-		            	function selectHeartStatus(){
-		            		$.ajax({
-		            			url:"<%= contextPath %>/hcount.re",
-		            			data:{no:"<%= r.getRecipeNo() %>"},
-		            			type:"post",
-		            			success:function(count){
-		            				if(count > 0){
-		            					$("#heart-area<%= r.getRecipeNo() %>").attr("src", "<%= contextPath %>/resources/icons/heartR.png");
-		            				} else {
-		            					$("#heart-area<%= r.getRecipeNo() %>").attr("src", "<%= contextPath %>/resources/icons/heart.png");
-		            				}
-		            			}, error:function(){
-		            				console.log("하트 조회용 ajax 통신 실패")
-		            			}
-		            		})
-		            	}
 		            	// 하트 등록/삭제
-		                $("#heart-area<%= r.getRecipeNo() %>").click(function () {
+		                $(".heart-area").click(function () {
+		                	const a = $(this);
 		                	if ($(this).attr("src") == "<%= contextPath %>/resources/icons/heart.png") {
 		                		// 하트가 눌려있지 않았을 때
 		                		$.ajax({
 		                    		url:"<%=contextPath%>/hinsert.re",
-		                    		data:{no:<%= r.getRecipeNo() %>},
+		                    		data:{no:a.prev().val()},
 		                    		type:"post",
 		                    		success:function(result){
 		                    			if(result>0){
 		                    				alert("성공적으로 하트 등록되었습니다.");
-		                    				$("#heart-area<%= r.getRecipeNo() %>").attr("src", "<%= contextPath %>/resources/icons/heartR.png");
+		                    				a.attr("src", "<%= contextPath %>/resources/icons/heartR.png");
+		                    				a.next().html(Number(a.next().html()) + 1);
 		                    			} else {
 		                    				alert("하트 등록 실패")
 		                    			}
@@ -365,28 +361,27 @@
 		                		// 하트가 눌려있었을 때
 		                		$.ajax({
 		                    		url:"<%=contextPath%>/hdelete.re",
-		                    		data:{no:<%= r.getRecipeNo() %>},
+		                    		data:{no:a.prev().val()},
 		                    		type:"post",
 		                    		success:function(result){
 		                    			alert("성공적으로 하트 해제됨")
-		                    			$("#heart-area<%= r.getRecipeNo() %>").attr("src", "<%= contextPath %>/resources/icons/heart.png");
+		                    			a.attr("src", "<%= contextPath %>/resources/icons/heart.png");
+		                    			a.next().html(Number(a.next().html()) - 1);
 		                    		}, error:function(){
 		                    			console.log("하트 삭제용 ajax 통신 실패")
 		                    		}
 		                    	})
 		                	}
 		                })
+		                
 		            </script>
 	                <% } else { %>
 	                <script>
-	                	$("#heart-area<%= r.getRecipeNo() %>").click(function () {
+	                	$(".heart-area").click(function () {
 	                		alert("로그인 후 이용 가능합니다.");
 	                	})
 	                </script>
 	                <% } %>
-                	<% } %>
-                <% } %>
-            </div>
             
             <script>
                 $(".thumbnail>p").mouseover(function(){
