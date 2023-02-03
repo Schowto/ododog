@@ -151,7 +151,7 @@ public class FAQDao {
 
 
 	public ArrayList<FAQ> searchFAQ(Connection conn, String keyword){
-		ArrayList<FAQ> slist = new ArrayList<>();
+		ArrayList<FAQ> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("searchFAQ");
@@ -168,7 +168,7 @@ public class FAQDao {
 				faq.setCategory(rset.getString("category"));
 				faq.setContactTitle(rset.getString("contact_title"));
 				faq.setContactAnswer(rset.getString("contact_answer"));
-				slist.add(faq);
+				list.add(faq);
 			}
 
 		} catch (SQLException e) {
@@ -177,7 +177,7 @@ public class FAQDao {
 			close(rset);
 			close(pstmt);
 		}
-		return slist;
+		return list;
 	}
 	
 

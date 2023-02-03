@@ -5,9 +5,12 @@
 <%
 	MemberService ms = new MemberService();
 
-	ArrayList<Member> list = ms.selectMemberList();
+	//ArrayList<Member> list = ms.selectMemberList();
+	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
 	
 	ArrayList<Point> plist = (ArrayList<Point>)request.getAttribute("plist");
+	
+	String keyword = (String)request.getAttribute("keyword");
 	
 	
 %>
@@ -108,48 +111,12 @@
         <div id="content" align="center">
             <div class="membertable">
                 <div class="memberbutton">
-                <form name="searchId"> 
-                <input type="text" placeholder="아이디로 회원검색" id="searchId" style="float: left;">
-                    <button type="submit" style="float: left;" onclick="searchId();">조회하기</button>
+                
+                <form name="searchId" action="<%=contextPath%>/searchmem.ad" method="post"> 
+                <input type="text" name="keyword" placeholder="아이디로 회원검색" id="searchId" style="float: left;">
+                    <button type="submit" style="float: left;">조회하기</button>
                 </form>
-     	<script>
-         function searchId(){
-			$.ajax({
-				url:"<%=contextPath%>/searchId.me",
-				data:{id:$("#searchId").val()},
-				success:function(result){
-					
-					console.log(result);
-					
-					let value = "";
-					
-					if(result == null){
-						value += "<tr>"
-							+"<td colspan='8'>조회된 회원이 없습니다</td>"
-							+"</tr>";
-					}else {
-						value += "<tr>"
-			                + "<td>" + result.user_No + "</td>"
-			                + "<td>" + result.user_Id + "</td>"
-			                + "<td>" + result.user_Name + "</td>"
-			                + "<td>" + result.email + "</td>"
-			                + "<td>" + result.phone + "</td>"
-			                + "<td>" + result.post_Code + "/" + result.address + "/" + result.Detailed_Address + "</td>"
-			                + "<td>" + result.user_No + "</td>"
-			                + "<td>" + result.user_No + "</td>"
-			                + "</tr>";
-						
-					}$("#user").html(value);
-					
-				}, error:function(){
-					console.log("ajax 통신 실패");
-				}
-			})
-		}
-     	</script>
-
-      				
-					
+      									
                <button style="float: right;" onclick="location.href='<%=contextPath%>/list.ad">전체조회</button>
                </div>
             

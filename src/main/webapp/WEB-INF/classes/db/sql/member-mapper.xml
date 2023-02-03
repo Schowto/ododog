@@ -171,6 +171,21 @@
 		   AND USER_NAME = ?
 		   AND EMAIL = ?
 	</entry>
+	<entry key="searchMember">
+	SELECT
+		USER_NO ,
+		USER_ID ,
+		USER_NAME ,
+		EMAIL ,
+		PHONE ,
+		POST_CODE,
+		ADDRESS ,
+		DETAILED_ADDRESS,
+		POINT
+	FROM MEMBER
+	WHERE STATUS = 'Y'
+	AND USER_ID LIKE ?
+	</entry>
 	
 
 </properties>

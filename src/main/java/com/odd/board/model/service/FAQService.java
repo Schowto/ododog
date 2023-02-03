@@ -90,8 +90,8 @@ public class FAQService {
 	 */
 	public ArrayList<FAQ> searchFAQ(String keyword){
 		Connection conn = getConnection();
-		ArrayList<FAQ> slist = new FAQDao().searchFAQ(conn, keyword);
+		ArrayList<FAQ> list = new FAQDao().searchFAQ(conn, keyword);
 		close(conn);
-		return slist;
+		return list;
 	}
 }
