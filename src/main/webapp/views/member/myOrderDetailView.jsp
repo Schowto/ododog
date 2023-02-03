@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page improt="com.odd.product.medel.vo.*, com.odd.order.model.vo.*, com.odd.member.model.vo.*" %>
+<%
+	//Order o = (Order)request.getAttribute("o");
+	//Review r = (Review)request.getAttribute("r");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,8 +140,7 @@
                     <br>
 
                     <div class="myOrderView">
-                        <form action="">
-                            <table>
+                        <table>
                                 <tr>
                                     <td style="width:150px;"><img src="" ></td>
                                     <td style="width:250px;">댕댕이 수제간식</td>
@@ -150,7 +154,6 @@
                                     </td>
                                 </tr>
                             </table>
-                        </form>
                     </div>
 
                     <script>
@@ -197,8 +200,8 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td>결제방법</td>
-                                    <td>카드결제</td>
+                                    <td>배송비</td>
+                                    <td>3,000</td>
                                 </tr>
                                 <tr>
                                     <td>상품금액</td>
