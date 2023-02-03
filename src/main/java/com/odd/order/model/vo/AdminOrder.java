@@ -65,6 +65,26 @@ public class AdminOrder {
 		this.delivery = delivery;
 		this.require = require;
 	}
+	
+	
+	
+	public AdminOrder(int ordNo, String proName, int amount, int userNo, String userName, String delAdd, String phone,
+			String email, int discount, int totalPrice, double save, String delivery, String require) {
+		super();
+		this.ordNo = ordNo;
+		this.proName = proName;
+		this.amount = amount;
+		this.userNo = userNo;
+		this.userName = userName;
+		this.delAdd = delAdd;
+		this.phone = phone;
+		this.email = email;
+		this.discount = discount;
+		this.totalPrice = totalPrice;
+		this.save = save;
+		this.delivery = delivery;
+		this.require = require;
+	}
 
 	public int getOrdNo() {
 		return ordNo;
