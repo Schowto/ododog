@@ -208,7 +208,12 @@ public class MemberService {
 		
 	}
 	
-
+	public ArrayList<Member> searchMember(String keyword){
+		Connection conn = getConnection();
+		ArrayList<Member> list = new MemberDao().searchMember(conn, keyword);
+		close(conn);
+		return list;
+	}
 	
 	
 	

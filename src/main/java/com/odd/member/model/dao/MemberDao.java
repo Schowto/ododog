@@ -11,7 +11,6 @@ import java.util.Properties;
 
 import static com.odd.common.JDBCTemplate.*;
 
-import com.odd.board.model.vo.FAQ;
 import com.odd.member.model.vo.Member;
 import com.odd.member.model.vo.Point;
 
@@ -478,7 +477,40 @@ public class MemberDao {
 		
 	}
 	
-	
+	public ArrayList<Member> searchMember(Connection conn, String keyword){
+		ArrayList<Member> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+keyword+"%");
+			
+			rset = pstmt.executeQuery();
+		
+			while(rset.next()) {
+				Member m = new Member();
+				m.setUser_No(rset.getInt("User_No"));
+				m.setUser_Id(rset.getString("User_Id"));
+				m.setUser_Name(rset.getString("User_Name"));
+				m.setEmail(rset.getString("Email"));
+				m.setPhone(rset.getString("Phone"));
+				m.setPost_Code(rset.getInt("Post_Code"));
+				m.setAddress(rset.getString("Address"));
+				m.setDetailed_Address(rset.getString("Detailed_Address"));
+				m.setPoint(rset.getInt("Point"));
+				list.add(m);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 	
 	

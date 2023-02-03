@@ -36,33 +36,38 @@ public class AdminProductSearchController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		
 		ArrayList<Product> list = new ArrayList<>();
+		AdminProSearch proSearch = null;
 		
 		// 첫 화면이 아닐 경우
 		if(!request.getParameter("cpage").equals("1")) {
 			
-			String proName = request.getParameter("proName");
-			String category = request.getParameter("category");
-			String soldout = request.getParameter("soldout");
-			String expDateRemain = request.getParameter("expDateRemain");
-			String lowPrice = request.getParameter("lowPrice");
-			String highPrice = request.getParameter("highPrice");
-			String firstDate = request.getParameter("firstDate");
-			String secondDate = request.getParameter("secondDate");
-			
-			AdminProSearch proSearch = new AdminProSearch(
-													proName
-												  ,	category
-												  , soldout
-												  , expDateRemain
-												  , lowPrice
-												  , highPrice
-												  , firstDate
-												  , secondDate
+			proSearch = new AdminProSearch(
+													request.getParameter("proName")
+												  ,	request.getParameter("category")
+												  , request.getParameter("soldout")
+												  , request.getParameter("expDateRemain")
+												  , request.getParameter("lowPrice")
+												  , request.getParameter("highPrice")
+												  , request.getParameter("firstDate")
+												  , request.getParameter("secondDate")
 												);
 			
-			list = new AdminProductService().searchList(proSearch);
+		} else {
+			
+			proSearch = new AdminProSearch(
+												""
+											  , "전체"
+											  , "all"
+											  , "1"
+											  , ""
+											  , ""
+											  , ""
+											  , ""
+											);
+
 		}
 		
+		list = new AdminProductService().searchList(proSearch);
 		request.setAttribute("list",list);
 		
 		request.getRequestDispatcher("views/product/adminProductSearchView.jsp").forward(request, response);

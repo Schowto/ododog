@@ -163,11 +163,12 @@ public class FAQDao {
 			rset = pstmt.executeQuery();
 		
 			while(rset.next()) {
-				list.add(new FAQ(rset.getInt("contact_no"),
-								  rset.getString("category"),
-								  rset.getString("contact_title"),
-								  rset.getString("contact_answer")));
-			
+				FAQ faq = new FAQ();
+				faq.setContactNo(rset.getInt("contact_no"));
+				faq.setCategory(rset.getString("category"));
+				faq.setContactTitle(rset.getString("contact_title"));
+				faq.setContactAnswer(rset.getString("contact_answer"));
+				list.add(faq);
 			}
 
 		} catch (SQLException e) {
