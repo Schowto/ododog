@@ -27,6 +27,15 @@ public class MyOrderDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		//int userNo = Integer.parseInt(request.getParameter(userNo));
+		//int proNo = Integer.parseInt(request.getParameter(proNo));
+		
+		//Member m = new MemberService().selectMember(userNo);
+		//Product p = new AdminProductService().selectProduct(proNo);
+		
+		//request.setAttribute("m", m);
+		//request.sestAttribute("p", p);
+		
 		request.getRequestDispatcher("views/member/myOrderDetailView.jsp").forward(request, response);
 	}
 

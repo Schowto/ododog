@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MyOrderReviewController
  */
-@WebServlet("/review.me")
+@WebServlet("/reviewForm.me")
 public class MyOrderReviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,10 @@ public class MyOrderReviewController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/member/myOrderReview.jsp").forward(request, response);
+		// TB_ORDER테이블에서 주문번호 받아오기
+		
+		
+		request.getRequestDispatcher("views/member/myOrderReviewForm.jsp").forward(request, response);
 	}
 
 	/**

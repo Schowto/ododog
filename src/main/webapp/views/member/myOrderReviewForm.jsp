@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.order.model.vo.*, com.odd.member.model.vo.*, com.odd.order.model.vo.*"%>
+<%
+	//Order o = (Order)request.getAttribute("o");
+	//Review r = (Review)request.getAttribute("r");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +51,7 @@
         border:1px solid rgb(220,220,220);
     }
     .myOrderReview{
-        width:800px;
+        width:100%;
         margin:auto;
     }
     .myOrderView table{
@@ -57,12 +62,12 @@
        text-align: center;
        font-weight: 600;
     }
-    img{
+    .myOrderView img{
         width:100%;
         height:100%;
         box-sizing: border-box;
     }
-    .review1 td:first-child{
+    .starTable td:first-child{
         width:200px;
         height:50px;
         border-right:1px solid rgb(220,220,220);
@@ -71,11 +76,11 @@
         font-weight: 600;
         color:rgb(50, 50, 50);
     }
-    .review1 td:last-child{
+    .starTable td:last-child{
         width:600px;
         height:50px;
     }
-    .review1 td{
+    .starTatble td{
         border-collapse: collapse;
         border-spacing: 0;
         border-top:1px solid rgb(220,220,220);
@@ -100,15 +105,16 @@
     #myStar label:hover~label{
         text-shadow:rgba(255, 255, 0, 0.505);
     }
-    .review2 td{
+    .contentTable td{
         border-top:1px solid rgb(220,220,220);
         border-bottom:1px solid rgb(220,220,220);
     }
     textarea{
+        resize:none; 
         border:none;
-        resize: none;
+        background-color: rgba(128, 128, 128, 0.285);
     }
-    .review1, .review2{
+    .starTable, .contentTatble{
         width:100%;
         margin:auto;
     }
@@ -117,15 +123,56 @@
     }
     .reviewContent{
         margin:auto;
-        width:800px;
-    }
-    table{
-        border-collapse: collapse;
-        border-spacing: 0;
+        width:100%;
     }
     #btnWrap{
         width:70px;
         margin:auto;
+    }
+    table{
+		width:100%;
+		border-top:1px solid rgb(220,220,220);
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+	.contentTable td{
+		height:50px;
+		color:rgb(50, 50, 50);
+		border-bottom:1px solid rgb(220,220,220);
+		font-size:14px;
+	}
+	.consultEnroll input[type=text]{
+		width:300px;
+		border:1px solid rgb(220,220,220);
+		color:rgb(50, 50, 50);
+	}
+	textarea{
+		width:100%;
+		height:400px;
+		background: rgb(220,220,220);
+		border:none;
+		font-size:14px;
+		box-sizing: border-box;
+	}
+	button{
+		width:80px;
+		height:40px;
+	}
+    #reviewStar{
+        width:200px;
+        height:30px;
+    }
+    .contentTable input[type=text]{
+        width:400px;
+        height:30px;
+        border:1px solid rgb(220,220,220);
+
+    }
+    .starTable select, .starTable option{
+        color:rgb(255, 230, 0);
+        font-size: 20px;
+        line-height: 30px;
+        border:1px solid rgb(220,220,220);
     }
 </style>
 </head>
@@ -163,7 +210,7 @@
             <div class="myOrderReview">
 
                 <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
-                    2023.01.22 20:20 (주문날짜시간들어갈자리)
+                    <input type="text" value="주문번호들어올자리">
                 </div>
 
                 <br>
@@ -188,52 +235,66 @@
                 <br>
 
                 <div class="reviewContent">
-                    <form>
-                        <table class="review1">
-                            <tr>
-                                <td>상품을 사용해보셨나요?</td>
-                                <td>
-                                    <div name="myStar" id="myStar" class="myStar">
-                                        <fieldset>
-                                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                                    
-                                        </fieldset>
+                    <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
+                        <table class="starTable">
+                                <tr>
+                                    <td style="width:40%;">상품을 사용해보셨나요?</td>
+                                    <td>
+                                        <div name="myStar" id="myStar">
+                                            &nbsp;&nbsp;
+
+                                                <select name="starSelect" id="reviewStar" style="height:30px; line-height:30px;" onchange="starCount()">
+                                                    <option name="star" value="5" id="star1">&nbsp;★★★★★</option>
+                                                    <option name="star" value="4" id="star1">&nbsp;★★★★</option>
+                                                    <option name="star" value="3" id="star1">&nbsp;★★★</option>
+                                                    <option name="star" value="2" id="star1">&nbsp;★★</option>
+                                                    <option name="star" value="1" id="star1">&nbsp;★</option>
+                                                </select>
+                                        
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table class="contentTable">
+                                <tr>
+                                            <td colspan="2" style="font-size:14px; font-weight: 600; text-align: center; width:40%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;제목</td>
+                                            <td colspan="2">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="reviewTitle" required>
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <br>
+                                                <textarea name="reviewContent" style="resize:none;" required></textarea>
+                                                <br><br>
+                                            </td>
+                                        </tr>
+                                        <tr>
+											<td style="font-size:14px; font-weight: 600; text-align: center; width:40%; border-right:1px solid rgb(220,220,220);">첨부파일</td>
+											<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile"></td>
+										</tr>
+                            </table>
+
+                            <br>
+                
+                                    <div align="center">
+                                    <button type="submit" id="btn">작성완료</button> &nbsp;&nbsp;
+                                    <button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/myOrder.me'">취소</button>
                                     </div>
-                                </td>
-                            </tr>
-                        </table>
-
-                        <table class="review2">
-                            <tr>
-                                <td height="35px" width="20%;">제목 : </td>
-                                <td><input type="text" name="title" size="50px;" value="내리뷰제목이들어올자리"></td>
-                            </tr>
-                            <tr>
-                                <td>내용 : </td>
-                                <td>
-                                    <br>
-                                    <textarea name="" id="" cols="100%" rows="30" style="resize:none;">내리뷰내용이들어올자리</textarea>
-                                    <br><br>
-                                </td>
-                            </tr>
-                        </table>
                     </form>
-                    
-                    <br>
-                    
-                    <div id="btnWrap">
-                        <button type="submit" id="btn">작성완료</button>
-                    </div>
 
-                    <script>
-                        $(function(){
-                            $("#btn").click(function(){
-                                location.href="<%=contextPath%>/orderDetail.me";
-                            })
-                        })
-                    </script>
+					<script>
+                         
+						function starCount() {
+							var star = document.getElementById("reviewStar").value;
+							//console.log(star);
+							
+						}
+					</script>
 
-                </div>
+				</div>
 
             </div>
 

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.odd.order.model.vo.*, com.odd.member.model.vo.*"%>
+<%@ page import="java.util.ArrayList, com.odd.order.model.vo.*, com.odd.member.model.vo.*, com.odd.order.model.vo.*"%>
 <%
-	Review r = (Review)request.getAttribute("r");
+	//ArrayList list = (ArrayList<Order>)request.getAttribute("list");
+	//Review r = (Review)request.getAttribute("r");
 %>
 <!DOCTYPE html>
 <html>
@@ -186,7 +187,7 @@
                 
                 <div class="myOrderList">
                     <form action="" method="post">
-                    	<input type="hidden" name="reviewNo" value="<%=r.getReviewNo() %>">
+                    	<input type="hidden" name="reviewNo" value="주문번호넘기기">
                         <table>
                         	<thead>
 	                            <tr>

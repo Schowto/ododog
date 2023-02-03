@@ -15,6 +15,9 @@ public class Review {
 	private String reviewPhoto;
 	private String filePath;
 	
+	public Review() {
+		
+	}
 	
 	public Review(int reviewNo, int proNo, int userNo, String reviewTitle, String reviewContent, double star,
 			Date modifyDate, Date enrollDate, String reviewPhoto, String filePath) {
@@ -30,6 +33,7 @@ public class Review {
 		this.reviewPhoto = reviewPhoto;
 		this.filePath = filePath;
 	}
+	
 	public int getReviewNo() {
 		return reviewNo;
 	}
