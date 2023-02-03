@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.order.model.vo.*" %>
+<%
+	ArrayList<Order> list = (ArrayList<Order>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -141,8 +145,7 @@
                 </div>
                 <br>
                 <div class="myOrderView">
-                    <form action="">
-                        <table>
+                    <table>
                             <tr>
                                 <td colspan="2" style="padding-left: 15px;">
                                     <select name="" id="" >
@@ -174,13 +177,14 @@
 
                             </tr>
                         </table>
-                    </form>
                 </div>
 
                 <br>
-                <!--주문내역이없을때-->
+                
                 <div class="myOrderList">
-                    <form action="">
+                    <form action="" method="post">
+                    <!--주문내역이없을때-->
+                    	<%if(list.isEmpty()){ %>
                         <table>
                             <tr>
                                 <td style="width:200px;">주문일자[주문번호]</td>
@@ -199,16 +203,8 @@
                                 </td>
                             </tr>
                         </table>
-                    </form>
-
-
-
-
-                </div>
-
-                <!--주문내역이있을때-->
-                <div class="myOrderList">
-                    <form action="">
+                       <%}else{ %> 
+                        <!-- 주문내역이있을때 -->
                         <table>
                             <tr>
                                 <td style="width:200px;">주문일자[주문번호]</td>
@@ -235,9 +231,14 @@
                                 <td style="width:200px;">배송준비중</td>
                             </tr>
                         </table>
+                        <%} %>
                     </form>
 
+
+
+
                 </div>
+
             </div>
 
         </div>
