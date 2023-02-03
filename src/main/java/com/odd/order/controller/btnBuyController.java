@@ -31,8 +31,8 @@ public class btnBuyController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int productNo = Integer.parseInt(request.getParameter("no")); //넘어가는 상품번호
-		UserProduct p = new OrderService().productFoodOrder(productNo); //UserProduct에 담아놓은 정보들
+		
+		UserProduct p = new OrderService().productFoodOrder(); //UserProduct에 담아놓은 정보들
 		
 		request.setAttribute("p", p);
 		request.getRequestDispatcher("views/order/orderListView.jsp").forward(request,response);

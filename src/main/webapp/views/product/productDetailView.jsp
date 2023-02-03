@@ -301,92 +301,19 @@ input[type=number]::-webkit-inner-spin-button {
 	
 			</div>
 			
-			<script>
+			<!--  <script>
 		$(function(){
 			$(".pay").click(function(){
 				location.href = "<%=contextPath%>/order.pro?no=" + $(this).children('input').val();
 			})
 		})
-	</script>
+	</script>-->
 			<br> <br>
 			
-		
 		</form>
+		
 	</div>
-
-	<br><br>
-
-	<div class="reviewContent">
-
-		<H2 align="center">상품리뷰</H2>
-
-        <div class="reviewLine"></div>
-        <br><br>
-
-        	<form action="detail.pro">
-                <table class="reviewTable">
-					<thead>
-					<!-- 리뷰가없을때 -->
-                	<tr style="text-align:center;">
-                		<td colspan="4" style="height:50px; font-weight: 600;" >
-	                		<br>
-							<br> <img src="<%=contextPath%>/resources/images/error.png"> <br><br>
-								상품에 대한 리뷰가 존재하지않습니다. <br>
-							<br>
-							<br>
-						</td>
-                	</tr>
-                	
-                	<!-- 리뷰가있을때 -->
-						<tr>
-							<td style="height:50px; width:60%; border-bottom: none;">&nbsp;&nbsp;⭐⭐⭐</td>
-							<td rowspan="2"><img src=""></td>
-							<td rowspan="2">
-								&nbsp;&nbsp;상품명 : 댕댕츄르 <br>
-								&nbsp;&nbsp;작성자 : 와그작<br>
-								&nbsp;&nbsp;작성일 : 2023.01.22
-							</td>
-						</tr>
-						<tr>
-							<td style="height:50px;">&nbsp;&nbsp;리뷰제목입니다끝내줘요</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td colspan="3">
-								<p>
-									&nbsp;&nbsp;리뷰내용 : <br><br>
-									&nbsp;&nbsp;<textarea name="reviewContent">리뷰내용들어오는자리냠호로로로로로롤</textarea>
-								</p>
-							</td>
-						</tr>
-					</tbody>
-                    
-                </table>
-                
-                <script>
-      					$( document ).ready( function() {
-        					$( '.reviewTable>thead' ).click( function() {
-          						$( '.reviewContent' ).slideDown();
-        					} );
-      					} );
-    				</script>	
-
-        </div>
-
-		<br><br><br><br><br><br><br><br><br>
-
-	</div>
-
-
-
-
-
-
-
-
-
-	</div>
+</div>
 	<%@ include file="../common/userFooterbar.jsp"%>
 </body>
 </html>

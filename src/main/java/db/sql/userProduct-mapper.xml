@@ -13,16 +13,7 @@
 	
 	</entry>
 	
-	<entry key="selectDetail">
-			SELECT
-				PRO_NO
-			  ,	PRO_NAME
-		      , PRICE
-			  , THUMB_IMG
-		     FROM PRODUCT
-		     WHERE PRO_NO = ?
-	</entry>
-	
+
 	<entry key="selectDryList">
 		SELECT	
 				PRO_NO		
@@ -78,5 +69,36 @@
        WHERE PRO_NO=?
 	
 	</entry>
+	
+		<entry key = "productDetailDry">
+		SELECT
+       PRO_NO
+       , PRO_NAME
+       , PRICE
+       , THUMB_IMG
+       FROM PRODUCT
+       WHERE PRO_NO=?
+	
+	</entry>
+	
+		<entry key="detailProductDry">
+		SELECT 
+			   PRO_NO
+	       
+	       , FILE_PATH
+	       , FILE_LEVEL
+	        
+			FROM PRO_ATT
+			WHERE PRO_NO=?
+		</entry>
+		
+			
+			<entry key="orderList">
+			SELECT
+				PRO_NO
+			  ,	PRO_NAME
+		      , PRICE
+			  , THUMB_IMG
+		     FROM PRODUCT
 	
 </properties>

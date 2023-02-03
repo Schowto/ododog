@@ -9,10 +9,10 @@ import com.odd.product.model.vo.UserProduct;
 
 public class OrderService {
 
-	public UserProduct productFoodOrder (int productNo) {
+	public UserProduct productFoodOrder () {
 	
 		Connection conn = getConnection();
-		UserProduct p = new OrderDao().productFoodOrder(conn,productNo);
+		UserProduct p = new OrderDao().productFoodOrder(conn);
 		close(conn);
 		return p;
 		

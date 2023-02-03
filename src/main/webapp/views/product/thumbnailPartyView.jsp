@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct" %>	
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct, com.odd.product.model.vo.ProAtt" %>	
 <%
-	ArrayList<UserProduct> list = (ArrayList<UserProduct>)request.getAttribute("list");
+	ArrayList<UserProduct>list=(ArrayList<UserProduct>)request.getAttribute("list");
 %>	
 
 <!DOCTYPE html>
@@ -99,6 +99,7 @@ p:hover {
 			<% for(UserProduct p : list){ %>
 			
 				<div class="thumbnail" align="center">
+					<input type="hidden" value="<%=p.getProNo() %>">
 					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px"
 						onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
 					<p> <%= p.getProName() %> <br>
@@ -112,6 +113,15 @@ p:hover {
 				
 					
 	</div>
+	
+	
+	<script>
+		$(function(){
+			$(".thumbnail").click(function(){
+				location.href = "<%=contextPath%>/detail.pro?no=" + $(this).children('input').val();
+			})
+		})
+	</script>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br>

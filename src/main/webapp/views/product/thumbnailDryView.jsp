@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct" %>	
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct, com.odd.product.model.vo.ProAtt" %>	
 <%
-	ArrayList<UserProduct> list = (ArrayList<UserProduct>)request.getAttribute("list");
+	ArrayList<UserProduct>list=(ArrayList<UserProduct>)request.getAttribute("list");
 %>	
 
 <!DOCTYPE html>
@@ -102,7 +102,8 @@ p:hover {
 					<input type="hidden" value="<%=p.getProNo() %>">
 					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px">
 					
-					<p> <%= p.getProName() %> <br>
+					<p> 
+						<%= p.getProName() %> <br>
 						<b><%= p.getPrice() %>원</b>
 					</p>
 					<div class="badge bg-info text-light">추천</div>
@@ -115,7 +116,7 @@ p:hover {
 	</div>
 	
 	<script>
-		$(function)(){
+		$(function(){
 			$(".thumbnail").click(function(){
 				location.href = "<%=contextPath%>/detail.pro?no=" + $(this).children('input').val();
 			})
