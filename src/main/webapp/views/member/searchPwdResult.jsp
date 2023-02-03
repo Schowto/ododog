@@ -74,13 +74,25 @@ Member searchPwd = (Member)session.getAttribute("searchPwd");
     <div class="login-wrapper">
         <h2 style="text-align: center;">비밀번호 찾기</h2>
             <br><br><br>
-            <p>회원님의 비밀번호는 <span style="color: rgb(226, 36, 36); font-weight: bolder;" ><%= searchPwd.getUser_Pwd() %></span> 입니다.</p>
+            <p>회원님의 비밀번호는 <span name="maskingPwd" style="color: rgb(226, 36, 36); font-weight: bolder;" ><%= searchPwd.getUser_Pwd() %></span> 입니다.</p>
             <br><br><br>
 
             <input type="button" value="로그인 하러가기" id="btn" onclick="location.href ='<%=contextPath%>/views/member/loginUser.jsp'"> 
         
         
     </div>
+    
+    <script>
+    // \d [0-9]와 동일하다.
+    // x(?=y)
+    // y가 뒤따라오는 x에만 대응됩니다. lookahead라고 불립니다.
+    // \d(?=\d{4})를 번역하면 [0-9] 뒤에 또 숫자가 4자리가 더 있을 시.
+    // /g 맨 뒤의 g는 전역 검색을 뜻한다.
+    function maskingPwd() {
+      return number.replace(/\d(?=\d{4})/g, "*");
+    }
+    
+    </script>
 
         <!-- 
     <div class="login-wrapper">

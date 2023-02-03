@@ -1109,6 +1109,28 @@ Insert into PRO_ATT (FILE_NO,PRO_NO,FILE_PATH,UPLOAD_DATE,STATUS,FILE_LEVEL) val
 
 --------------------------------------------------------
 
+-- MEMBER테이블 데이터
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'qqqq', 'qqqq', ' 이배추', 'qqqq@naver.com', '010-1111-1111', 12345, '서울', '강아지집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'wwww', 'wwww', '이호두', 'wwww@naver.com', '010-2222-2222', 12346, '부산', '햄스터집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'eeee', 'eeee', '김토끼', 'eeee@naver.com', '010-3333-3333', 12347, '대구', '토끼집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'rrrr', 'rrrr', '강다람쥐', 'rrrr@naver.com', '010-4444-4444', 12348, '대전', '다람쥐집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'tttt', 'ttt', '최냥이', 'tttt@naver.com', '010-5555-5555', 12313, '강원도', '고양이집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'yyyy', 'yyyy', '오구리', 'yyyy@naver.com', '010-6666-6666', 12435, '전주', '너구리집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'uuuu', 'uuuu', '박호랭', 'uuuu@naver.com', '010-7777-7777', 12343, '부산', '호랑이집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'iiii', 'iiii', '차라이언', 'iiii@naver.com', '010-8888-8888', 15345, '서울', '사자집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'oooo', 'oooo', '홍끼리', 'oooo@naver.com', '010-9999-9999', 23542, '강원도', '코끼리집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'pppp', 'pppp', '나콘다', 'pppp@naver.com', '010-0000-0000', 12353, '서울', '아나콘다집', SYSDATE, SYSDATE, 'Y', 0);
+
+-- FAQ테이블 데이터
+INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '등록한 환불계좌를 등록/변경하고 싶어요.', '마이페이지에서 환불 계좌 등록 및 수정이 가능합니다. 환불계좌는 주문자 명의의 본인 계좌만 등록할 수 있습니다. 주문 진행 상태가 '환불진행중' 또는 '환불완료' 에서는 환불계좌를 변경할 수 없습니다.', '배송', 1, 'Y');
+INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '배송된 상품이 부재중으로 반송된 경우 어떻게 하나요?', '부재 등의 사유로 반송된 상품은 "마이페이지 > 주문 조회"]"에서 택배사 영업소, 또는 배송 담당 택배원 연락처를 통해 재배송 요청을 할 수 있습니다. 상품이 이미 반송되어 해당 업체로 입고된 경우, 왕복 배송비를 추가 부담하셔야 합니다.', '배송', 1, 'Y');
+INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '반품 신청을 철회하고 싶어요.', '반품할 상품을 아직 보내지 않은 경우, 마이페이지에서 반품철회를 하실 수 있습니다. 반품철회 후 택배사에서 상품 수거가 된 것으로 확인될 경우 해당 주문은 반품처리한 것으로 재 변경됩니다.', '결제', 1, 'Y');
+INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '다른 사람 명의의 계좌로 환불받을 수 있나요?', '다른 사람 명의로는 환불할 수 없습니다. 고객님 본인 명의 계좌로만 환불이 가능합니다.', '결제', 1, 'Y');
+INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '상품에 대해서 문의하려면 어떻게 해야 하나요?', '상품에 관한 내용은 상품상세 화면에 자세히 안내되어 있습니다. 마이페이지 > 주문내역에서 주문한 상품을 선택하면 상세페이지로 이동합니다. 상품 상세 내용에 표시되어 있지 않은 내용은 판매자에게 문의해 주십시오.', '상품', 1, 'Y');
+
+-- ADMIN 테이블
+INSERT INTO ADMIN VALUES(1, 'admin', '1234');
+
 
 
 

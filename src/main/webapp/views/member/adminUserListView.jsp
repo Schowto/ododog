@@ -107,10 +107,45 @@
         <div id="content" align="center">
             <div class="membertable">
                 <div class="memberbutton">
-                <form name="search-form"> 
-                <input type="text" placeholder="아이디로 회원검색" id="serch" style="float: left;">
-                    <button style="float: left;" onclick="serch();">조회하기</button>
+                <form name="searchId"> 
+                <input type="text" placeholder="아이디로 회원검색" id="searchId" style="float: left;">
+                    <button type="submit" style="float: left;" onclick="searchId();">조회하기</button>
                 </form>
+     	<script>
+         function searchId(){
+			$.ajax({
+				url:"<%=contextPath%>/searchId.me",
+				data:{id:$("#searchId").val()},
+				success:function(result){
+					
+					console.log(result);
+					
+					let value = "";
+					
+					if(result == null){
+						value += "<tr>"
+							+"<td colspan='8'>조회된 회원이 없습니다</td>"
+							+"</tr>";
+					}else {
+						value += "<tr>"
+			                + "<td>" + result.user_No + "</td>"
+			                + "<td>" + result.user_Id + "</td>"
+			                + "<td>" + result.user_Name + "</td>"
+			                + "<td>" + result.email + "</td>"
+			                + "<td>" + result.phone + "</td>"
+			                + "<td>" + result.post_Code + "/" + result.address + "/" + result.Detailed_Address + "</td>"
+			                + "<td>" + result.user_No + "</td>"
+			                + "<td>" + result.user_No + "</td>"
+			                + "</tr>";
+						
+					}$("#user").html(value);
+					
+				}, error:function(){
+					console.log("ajax 통신 실패");
+				}
+			})
+		}
+     	</script>
 
       				
 					
@@ -128,6 +163,7 @@
                   <th>적립금</th>
                   <th>관리</th>
                 </tr>
+                <tbody id="user">
             	<% if(list.isEmpty()) { %>
                 <tr>
                 <td clospan="8">존재하는 회원이 없습니다.</td>
@@ -141,16 +177,14 @@
                   <td><%= m.getEmail() %></td>
                   <td><%= m.getPhone() %></td>
                   <td><%= m.getPost_Code()%> / <%= m.getAddress() %> / <%=m.getDetailed_Address() %></td>
-                  
                   <td>
                   <a id="point" data-toggle="modal"  data-target="#myModal" value="" onclick="selectPointList(<%= m.getUser_No() %>);"><%= m.getPoint() %></a>
                   </td>
-                  
                   <td><button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.ad?no=<%=m.getUser_No()%>'">회원삭제</button> </td>
                 </tr>
                 <%} %>
             <%} %>          
-    
+   			</tbody>
               </table>
               </div>            
         </div>
@@ -243,6 +277,5 @@
             </div>
         </div>
      	
-
 </body>
 </html>

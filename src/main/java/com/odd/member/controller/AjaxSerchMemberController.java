@@ -15,7 +15,7 @@ import com.odd.member.model.vo.Member;
 /**
  * Servlet implementation class AjaxSerchMemberController
  */
-@WebServlet("/serch.ad")
+@WebServlet("/serchId.me")
 public class AjaxSerchMemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -35,6 +35,9 @@ public class AjaxSerchMemberController extends HttpServlet {
 		String userId = request.getParameter("id");
 		
 		Member m = new MemberDao().selectLoginMember(JDBCTemplate.getConnection(), userId);
+		
+		//response.getWriter().print(m);
+		
 		response.setContentType("application/json; charset=UTF-8");
 		new Gson().toJson(m, response.getWriter());
 	}

@@ -8,6 +8,10 @@
 	
 	ArrayList<FAQ> list = faq.selectFAQList(); 
 	// list = (ArrayList<FAQ>)request.getAttribute("list");
+	
+	ArrayList<FAQ> slist = faq.searchFAQ();
+
+	String keyword = (String)request.getAttribute("keyword"); 
 
 %>
  
@@ -122,15 +126,20 @@
         <br><br>    
         <h1 align="center">FAQ</h1>
          <br><br>   
-        	<select name="" id="" style="float: left; margin-left: 40px; font-size: 11px;">
-                <option>전체</option>
-                <option>제품</option>
-                <option>배송</option>
-            </select>
-            <form action="<%=contextPath%>/search.faq" method="post">
-            <input type="text" placeholder="키워드 검색" id="search" style="float: left; font-size: 11px;">
+         
+        	<form action="<%=contextPath%>/search.faq" method="post" id="search-form">
+        	
+        	<!--  <select name="how" id="" style="float: left; margin-left: 40px; font-size: 11px;">
+                <option value="결제">결제</option>
+                <option value="제품">제품</option>
+                <option value="배송">배송</option>
+            </select>  -->
+            
+            <input type="text" name="keyword" placeholder="키워드 검색" id="search" style="float: left; margin-left: 40px; font-size: 11px;">
             <button type="submit" style="float: left;">검색하기</button>            
+            
             </form>
+			
 
             
             <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQenrollForm.ad'">등록하기</button>
@@ -142,7 +151,7 @@
             	<li></li>
             	<li>존재하는 FAQ가 없습니다.</li> 
             <% }else{ int count = 0; %>    <li></li>  
-            <% for(FAQ f : list){ %>      
+            <% for(FAQ f : list){ %> 
                 <li>
                     <input type="checkbox" id="qna-<%=count%>">
                     
@@ -155,7 +164,7 @@
                     </div>
                 </li>
             	<%} %>
-            <%} %>
+            <%} %> 
             </ul> 
 			
             

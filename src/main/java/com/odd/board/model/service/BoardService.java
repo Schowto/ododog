@@ -217,7 +217,11 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
-	
+	/**
+	 * 신고게시글 블라인드 처리 해제하기
+	 * @param reportNo
+	 * @return
+	 */
 	public int exposeReport(int reportNo) {
 		Connection conn = getConnection();
 		int result = new BoardDao().exposeReport(conn, reportNo);
