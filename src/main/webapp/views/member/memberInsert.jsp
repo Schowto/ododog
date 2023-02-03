@@ -112,11 +112,11 @@ button {
                   
               
                   <label>비밀번호*</label>
-                  <input type="password" id="user_pwd" name="user_Pwd" placeholder="비밀번호를 입력해주세요." required>
+                  <input type="password" id="password" name="user_Pwd" placeholder="비밀번호를 입력해주세요." required>
                   <br>
         
                   <label>비밀번호확인*</label>
-                  <input type="password" id="user_pwd" name="user_Pwd" placeholder="비밀번호 확인" required>
+                  <input type="password" id="confirm_password" name="user_Pwd" placeholder="비밀번호 확인" required>
                   <br>
         
                   <label>이름*</label>
@@ -132,7 +132,7 @@ button {
                   <br>
         
                   <label>주소*</label>
-                  <input type="text" id="post_code" name="post_Code" placeholder="우편번호 입력" required>
+                  <input type="number" id="post_code" name="post_Code" placeholder="우편번호 입력" required>
                   <input type="text" id="address" name="address" placeholder="기본주소 입력" style="margin-top:-10px;" required>
                   <input type="text" id="detailed_address" name="detailed_Address" placeholder="상세주소 입력" style="margin-top:-10px;" required>
                   <br>
@@ -213,7 +213,24 @@ button {
             }
                
                 </script>
-                 
+                <script type="text/javascript">
+                var password = document.getElementById("password")
+                ,confirm_password = document.getElementById("confirm_password");
+               
+              function validatePassword(){
+                if(password.value != confirm_password.value) { 
+                  confirm_password.setCustomValidity("비밀번호가 일치하지 않습니다."); 
+                } 
+                else {
+                  confirm_password.setCustomValidity(''); 
+                }
+              }
+               
+              password.onchange = validatePassword;
+              confirm_password.onkeyup = validatePassword;
+                </script>
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <%@ include file="../common/userFooterbar.jsp"%>
                
 </body>
 </html>

@@ -74,7 +74,7 @@
                 <tr>
                     <th width="70" style="text-align:center;">카테고리</th>
                     <td width="500">
-                        <select name="category" id="category" required>
+                        <select name="category" id="category" required >
                             <option value="<%= f.getCategory() %>"><%= f.getCategory() %></option>
                             <option value="배송">배송</option>
                             <option value="결제">결제</option>
