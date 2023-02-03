@@ -106,7 +106,7 @@
         opacity: 0.7;
         cursor: pointer;
     }
-    .myOderList>tbody>tr:hover{
+    .myOderList>tbody>tr>td:hover{
     	background:rgb(220,220,220);
     }
 </style>
