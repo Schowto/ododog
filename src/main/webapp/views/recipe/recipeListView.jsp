@@ -441,16 +441,31 @@
             	
             	<% } else { %>
             	<!-- 검색돼있을 때 : 검색 조회 -->
+            	
+            		<% 
+        			String href = ""; 
+        			if(effectArr != null){
+        				for(String e : effectArr){
+        					href += "&effect=" + e;
+        				}
+        			}
+        			if(timeArr != null){
+        				for(String t : timeArr){
+        					href += "$time=" + t;
+        				}
+        			}
+		        	%>
+            	
 		        	<% if(pi.getCurrentPage() != 1){ %>
-		        		<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%=pi.getCurrentPage()-1%>&effectArr=<%= effectArr %>&timeArr=<%= timeArr %>';">&lt;</button>
+		        		<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%=pi.getCurrentPage()-1%>&sort=<%=sort%><%= href %>&ingredient=<%=ingredient%>';">&lt;</button>
 		        	<% } %>
 		        	
 		        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
-		        		<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%= p %>&effectArr=<%= effectArr %>&timeArr=<%= timeArr %>';"><%= p %></button>
+		        		<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%= p %>&sort=<%=sort%><%= href %>&ingredient=<%=ingredient%>';"><%= p %></button>
 		        	<% } %>
 		        	
 		        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
-		            	<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%=pi.getCurrentPage()+1%>&effectArr=<%= effectArr %>&timeArr=<%= timeArr %>';">&gt;</button>
+		            	<button onclick="location.href='<%=contextPath%>/search.re?cpage=<%=pi.getCurrentPage()+1%>&sort=<%=sort%><%= href %>&ingredient=<%=ingredient%>';">&gt;</button>
 		            <% } %>
             	<% } %>
             
