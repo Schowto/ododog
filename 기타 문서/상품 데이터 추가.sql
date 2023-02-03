@@ -1129,7 +1129,6 @@ INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '다른 사람 명의의 계좌로 환
 INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '상품에 대해서 문의하려면 어떻게 해야 하나요?', '상품에 관한 내용은 상품상세 화면에 자세히 안내되어 있습니다. 마이페이지 > 주문내역에서 주문한 상품을 선택하면 상세페이지로 이동합니다. 상품 상세 내용에 표시되어 있지 않은 내용은 판매자에게 문의해 주십시오.', '상품', 1, 'Y');
 
 -- ADMIN 테이블
-INSERT INTO ADMIN VALUES(1, 'admin', '1234');
 
 
 

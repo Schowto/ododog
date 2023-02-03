@@ -150,21 +150,21 @@ input[type=number]::-webkit-inner-spin-button {
 			
 				<br> <span> <b>상품명</b> </span> 
 				
-				<span> 　　<%= p.getProName() %> </span> 
+				<span> 　　<b><%= p.getProName() %></b> </span> 
 				<br><br> 
 				<span> <b>판매가</b></span> 
-				<span> 　　<%= p.getPrice() %>원 </span> 
+				<span> 　　<b><%= p.getPrice() %>원</b> </span> 
 				<br><br> 
 				<span><b>적립금</b></span> 
-				<span> 　　1% </span> 
+				<span> 　　<b>1%</b> </span> 
 				<br> <br>
 				<span><b>제조사</b></span>
-				<span>　　도그쿡</span>
+				<span>　　<b>도그쿡</b></span>
 				<br><br>
 
 				<hr style="border: 1px color= silver;" width="100%">
-				<br> <span> 수량 　</span> 
-					<input type="number" name="quantity" style="width: 50px">
+				<br> <span> 수량 　</span>
+					<input type="number" name="quantity" style="width: 50px">  <button type=submit>변경</button>
 				</span> <br> <br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>
 				</span> <br> <br> <br>
@@ -255,28 +255,33 @@ input[type=number]::-webkit-inner-spin-button {
 					});
 				</script>
 				
-				<button type="submit" class="btn btn-dark" >구매하기</button>
-					<!--  onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'"-->
+				<span class="pay">
+				<input type="hidden" value="<%=p.getProNo() %>">
+				<button type="button" class="btn btn-dark" onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'">구매하기</button>
+				</span>
+				</div>	
 				<br>
 				<br>
 				<br> <br> <br> <br> <br> <br> <br>
-				<br> <br> <br> <br>
+				<br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> 
 			</div>
+			
 
 
-			<hr style="border: 1px color= silver;" width="100%">
+			
 
 			<br> <br>
 			<div class="content" align="center">
 
 
-				<span>.</span>
+				
 				<hr style="border: 1px color= silver;" width="100%">
 
 				<div>
 
 					<span><b>상품 상세정보</b></span> 　　　　　　<span><b>상품 사용후기</b></span>
 					<hr style="border: 1px color= silver;" width="100%">
+					<
 					<img src="<%=contextPath%>/resources/product_img/본문1.jpg"
 						width="800px" height="600px">
 				</div>
@@ -301,8 +306,8 @@ input[type=number]::-webkit-inner-spin-button {
 			
 			<script>
 		$(function(){
-			$(".thumbnail").click(function(){
-				location.href = "<%=contextPath%>/detail.pro?no=" + $(this).children('input').val();
+			$(".pay").click(function(){
+				location.href = "<%=contextPath%>/order.pro?no=" + $(this).children('input').val();
 			})
 		})
 	</script>
@@ -321,7 +326,7 @@ input[type=number]::-webkit-inner-spin-button {
         <div class="reviewLine"></div>
         <br><br>
 
-        	<form action="">
+        	<form action="detail.pro">
                 <table class="reviewTable">
 					<thead>
 					<!-- 리뷰가없을때 -->
