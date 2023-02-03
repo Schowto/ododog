@@ -135,9 +135,9 @@ public class RecipeService {
 		close(conn);
 		return count;
 	}
-	public ArrayList<Recipe> searchRecipe(PageInfo pi, int loginUser, String[] effectArr, String[] timeArr, String ingredient){
+	public ArrayList<Recipe> searchRecipe(PageInfo pi, int loginUser, String[] effectArr, String[] timeArr, String ingredient, String sort){
 		Connection conn = getConnection();
-		ArrayList<Recipe> list = new RecipeDao().searchRecipe(conn, pi, loginUser, effectArr, timeArr, ingredient);
+		ArrayList<Recipe> list = new RecipeDao().searchRecipe(conn, pi, loginUser, effectArr, timeArr, ingredient, sort);
 		close(conn);
 		return list;
 	}

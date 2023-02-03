@@ -37,7 +37,9 @@ public class RecipeSearchController extends HttpServlet {
 		String[] effectArr = request.getParameterValues("effect");
 		String[] timeArr = request.getParameterValues("time");
 		String ingredient = request.getParameter("ingredient");
-
+		// 검색 후 정렬버튼 눌렀을 때
+		String sort = request.getParameter("sort");
+		
 		PageInfo pi = null;
 		int listCount; 		// 현재 게시글 개수
 		int currentPage; 	// 사용자가 요청한 페이지 ( == 현재페이지)
@@ -63,20 +65,12 @@ public class RecipeSearchController extends HttpServlet {
 		if(request.getSession().getAttribute("loginUser") != null) {
 			loginUser = ((Member)request.getSession().getAttribute("loginUser")).getUser_No();
 		}
-		ArrayList<Recipe> list = new RecipeService().searchRecipe(pi, loginUser, effectArr, timeArr, ingredient);
+		ArrayList<Recipe> list = new RecipeService().searchRecipe(pi, loginUser, effectArr, timeArr, ingredient, sort);
 		
-		String searchEffect = "";
-		String searchTime = "";
-		if(effectArr != null) {
-			searchEffect = String.join(",", effectArr);
-		}
-		if(timeArr != null) {
-			searchTime = String.join(",", timeArr);			
-		}
-		
-		request.setAttribute("searchEffect", searchEffect);
-		request.setAttribute("searchTime", searchTime);
+		request.setAttribute("effectArr", effectArr);
+		request.setAttribute("timeArr", timeArr);
 		request.setAttribute("ingredient", ingredient);
+		request.setAttribute("sort", sort);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/recipe/recipeListView.jsp").forward(request, response);

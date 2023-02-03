@@ -345,11 +345,12 @@ public class RecipeDao {
 		}
 		return count;
 	}
-	public ArrayList<Recipe> searchRecipe(Connection conn, PageInfo pi, int loginUser, String[] effectArr, String[] timeArr, String ingredient){
+	public ArrayList<Recipe> searchRecipe(Connection conn, PageInfo pi, int loginUser, String[] effectArr, String[] timeArr, String ingredient, String sort){
 		ArrayList<Recipe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("searchRecipe");
+		
 		if(timeArr != null) {
 			sql += "AND TIME IN (";
 			sql += String.join(",", timeArr);
@@ -365,7 +366,15 @@ public class RecipeDao {
 				}
 			}
 		}
-		sql += ")A)";
+		// 정렬기준
+		if(sort == null || sort.equals("new")) {
+			sql += " ORDER BY RECIPE_NO DESC )A)";			
+		} else if(sort.equals("heart")) {
+			sql += " ORDER BY HEART_COUNT DESC, RECIPE_NO DESC )A)";
+		} else {
+			sql += " ORDER BY REPLY_COUNT DESC, RECIPE_NO DESC )A)";
+		}
+		
 		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
 		int endRow = startRow + pi.getBoardLimit()-1;
 		sql += "WHERE RNUM BETWEEN " + startRow + " AND " + endRow;
