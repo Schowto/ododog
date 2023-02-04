@@ -26,7 +26,7 @@ private Properties prop = new Properties();
 			e.printStackTrace();
 		}
 	}
-	public UserProduct productFoodOrder(Connection conn){
+	public UserProduct productOrderList(Connection conn, int productNo){
 		UserProduct p = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -34,6 +34,7 @@ private Properties prop = new Properties();
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
 			
 			rset = pstmt.executeQuery();
 			

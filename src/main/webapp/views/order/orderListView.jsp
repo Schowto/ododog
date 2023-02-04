@@ -21,7 +21,6 @@ UserProduct p = (UserProduct)request.getAttribute("p");
         .header{
         margin-top:80px;
             box-sizing: border-box;
-           border: 1px solid black; 
             width: 1200px;
             height: 100px;
             background: gray;
@@ -29,7 +28,7 @@ UserProduct p = (UserProduct)request.getAttribute("p");
            
         }
         #destination{
-            border: 1px solid silver;
+            
             width: 1200px;
             
         }
@@ -54,7 +53,7 @@ UserProduct p = (UserProduct)request.getAttribute("p");
 
     <%@ include file="../common/userMenubar.jsp"%>
    <div class="wrap">
-    <form action="<%= contextPath %>/" id="destination" ac>
+    <form action="" id="destination">
         <div class="header">
         <br>
             <h4 align="center">주문/결제</h4>
@@ -95,20 +94,25 @@ UserProduct p = (UserProduct)request.getAttribute("p");
         <hr style="border:1px color= silver;" width="100%">
         <div>
         <b>주문상품</b> <br><br>
+        <table>
                 <div class="left">
                 	<!--상품자리-->
-                	<img src="<%=contextPath%>/resources/product_img/오븐14.png" width="200px" height="200px">
                 	
+                	<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="200px" height="200px">
+					 
                 </div>
                 <div class="right">
+                	<%=p.getProName()%><br><br>
                 	수량 : 3개<!-- 수량 불러오기 -->
-                	<b><%=p.getProName()%></b><br><br>
-                	<br><br>
-                	<b>58,000원</b> <!-- 금액 불러오기 -->
+                	<b></b><br><br>
+                	
+                	<b><%=p.getPrice()%>원</b> <!-- 조건문 써서 금액 불러오기 -->
                 </div>
                 <br><br><br><br><br><br><br><br><br>
                 <hr style="border:1px color= silver;" width="100%">
-        </div> <br>
+        </div>
+        
+        <br>
         <div>        
             <b>적립금</b> <input type="number">원
         </div>
@@ -146,11 +150,11 @@ UserProduct p = (UserProduct)request.getAttribute("p");
         <div>
         	<button type="button" onclick="payment();">결제하기</button>
         </div>
+		 </form>   
+		<br><br>
 
-		
 
-
-    </form>
+    
     
     <script>
 	    var IMP = window.IMP; // 생략 가능
@@ -183,7 +187,8 @@ UserProduct p = (UserProduct)request.getAttribute("p");
 	      }
     </script>
 </div> 
-    
+
+	
 
 </body>
 </html>

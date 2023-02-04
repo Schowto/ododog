@@ -108,11 +108,11 @@ input[type=number]::-webkit-inner-spin-button {
 </head>
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
-	<div class="outer">
-		<div class="content">
-		<form action="<%=contextPath%>/dir.buy" method="post">
-			<div class="left">
-				<div class="file-area">
+	<div class="outer"> <!-- 전ㅊㅔ시작 -->
+		<div class="content"> <!-- 1 -->
+		<form action="<%=contextPath%>/dir.buy" method="post">  
+			<div class="left"> <!-- 2 -->
+				<div class="file-area"> 
 					<!--대표이미지-->
 					<img src="<%=contextPath%>/<%= p.getThumbImg()%>"
 						width="400px" height="400px">
@@ -141,11 +141,11 @@ input[type=number]::-webkit-inner-spin-button {
 					<img src="<%=contextPath%>/resources/product_img/주식1-4.png"
 						width="100px" height="100px">
 				</div>
-			</div>
+			</div> <!-- 2 -->
 
 			
 			
-			<div class="right">
+			<div class="right"> <!-- 3 -->
 			<br>
 			
 				<br> <span> <b>상품명</b> </span> 
@@ -164,13 +164,16 @@ input[type=number]::-webkit-inner-spin-button {
 
 				<hr style="border: 1px color= silver;" width="100%">
 				<br> <span> 수량 　</span>
-					<input type="number" name="quantity" style="width: 50px">  <button type=submit>변경</button>
+					<input type="number" name="quantity" style="width: 50px"> 
+					
+					<button type=button>변경</button>
 				<br> <br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>
 				</span> <br> <br> <br>
 				　　　　　　　　
 				<button type="button" class="btn btn-light" id="like">관심상품
 					등록</button>
+					
 				<!-- like modal-->
 				<div class="modal fade2" id="testModal2" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -257,14 +260,14 @@ input[type=number]::-webkit-inner-spin-button {
 				
 				<span class="pay">
 				<input type="hidden" value="<%=p.getProNo() %>">
-				<button type="submit" class="btn btn-dark" >구매하기</button>
-				<!-- onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp' -->
+				<button type="button" class="btn btn-dark"  onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'" >구매하기</button>
+				 
 				</span>
 				</div>	
-				<br>
-				<br>
+				<br><br> <br> <br> <br><br> <br> <br> <br><br> <br> <br><br>
 				<br> <br> <br> <br> <br> <br> <br>
-				<br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> 
+				
+				 
 			</div> 
 			
 			<br> <br>
@@ -301,19 +304,18 @@ input[type=number]::-webkit-inner-spin-button {
 	
 			</div>
 			
-			<!--  <script>
+	 <script>
 		$(function(){
 			$(".pay").click(function(){
 				location.href = "<%=contextPath%>/order.pro?no=" + $(this).children('input').val();
 			})
 		})
-	</script>-->
+	</script>
 			<br> <br>
+	</form>	
 			
-		</form>
+	</div> <!--전체끝 -->
 		
-	</div>
-</div>
 	<%@ include file="../common/userFooterbar.jsp"%>
 </body>
 </html>
