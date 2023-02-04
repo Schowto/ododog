@@ -11,8 +11,6 @@ public class Reply {
 	private String status;
 	private int count;
 	
-	private String boardTitle;
-	
 	public Reply() {}
 	public Reply(int replyNo, int boardType, int boardNo, String replyWriter, String replyContent, String createDate,
 			String status) {
@@ -36,8 +34,7 @@ public class Reply {
 	}
 	
 	// selectReplyList(관리자)
-	public Reply(int replyNo, int boardNo, String replyWriter, String replyContent, String createDate, String status,
-			String boardTitle) {
+	public Reply(int replyNo, int boardNo, String replyWriter, String replyContent, String createDate, String status) {
 		super();
 		this.replyNo = replyNo;
 		this.boardNo = boardNo;
@@ -45,7 +42,6 @@ public class Reply {
 		this.replyContent = replyContent;
 		this.createDate = createDate;
 		this.status = status;
-		this.boardTitle = boardTitle;
 	}
 	
 	public int getReplyNo() {
@@ -98,13 +94,6 @@ public class Reply {
 		this.count = count;
 	}
 	
-	
-	public String getBoardTitle() {
-		return boardTitle;
-	}
-	public void setBoardTitle(String boardTitle) {
-		this.boardTitle = boardTitle;
-	}
 	@Override
 	public String toString() {
 		return "Reply [replyNo=" + replyNo + ", boardType=" + boardType + ", boardNo=" + boardNo + ", replyWriter="

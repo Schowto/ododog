@@ -15,16 +15,16 @@ import com.odd.board.model.vo.Reply;
 import com.odd.common.model.vo.PageInfo;
 
 /**
- * Servlet implementation class AdminBoardListController
+ * Servlet implementation class adminBoardSearchController
  */
-@WebServlet("/list.adBo")
-public class AdminBoardListController extends HttpServlet {
+@WebServlet("/search.adBo")
+public class AdminBoardSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminBoardListController() {
+    public AdminBoardSearchController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,6 +33,11 @@ public class AdminBoardListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String boardSort = request.getParameter("bSort");
+		String boardKeyword = request.getParameter("bKeyword");
+		String replySort = request.getParameter("rSort");
+		String replyKeyword = request.getParameter("rKeyword");
+		
 		// ----------------- 페이징 처리 ------------------
 		int listCount; 		// 현재 게시글 개수
 		int boardPage; 		// 사용자가 요청한 일반 게시글 페이지 ( == 현재페이지)
@@ -49,8 +54,8 @@ public class AdminBoardListController extends HttpServlet {
 		int replyStartPage;
 		int replyEndPage;
 
-		listCount = new AdminBoardService().selectListCount();
-		replyListCount = new AdminBoardService().selectReplyListCount();
+		listCount = new AdminBoardService().selectSearchListCount(boardSort, boardKeyword);
+		replyListCount = new AdminBoardService().selectSearchReplyListCount(replySort, replyKeyword);
 		boardPage = Integer.parseInt(request.getParameter("bpage"));
 		replyPage = Integer.parseInt(request.getParameter("rpage"));
 		
@@ -72,14 +77,9 @@ public class AdminBoardListController extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, boardPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		PageInfo replyPi = new PageInfo(replyListCount, replyPage, pageLimit, boardLimit, replyMaxPage, replyStartPage, replyEndPage);
-		ArrayList<Board> list = new AdminBoardService().selectList(pi);
-		ArrayList<Reply> replyList = new AdminBoardService().selectReplyList(replyPi);
-		request.setAttribute("pi", pi);
-		request.setAttribute("replyPi", replyPi);
-		request.setAttribute("list", list);
-		request.setAttribute("replyList", replyList);
-		request.getRequestDispatcher("views/board/adminBoardListView.jsp").forward(request, response);
-		
+		// 여기부터 하장 setAttribute로 검색기준,값들 다 넘겨서 페이지 url 처리까지,,!
+		//ArrayList<Board> list = new AdminBoardService().searchList(pi);
+		//ArrayList<Reply> replyList = new AdminBoardService().searchReplyList(replyPi);
 		
 	}
 

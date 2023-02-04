@@ -122,8 +122,7 @@ public class AdminBoardDao {
 								   rset.getString("user_id"),
 								   rset.getString("reply_content"),
 								   rset.getString("create_date"),
-								   rset.getString("status"),
-								   rset.getString("board_title")));
+								   rset.getString("status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,6 +131,64 @@ public class AdminBoardDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int selectSearchListCount(Connection conn, String boardSort, String boardKeyword) {
+		// select
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSearchListCount");
+		
+		if(boardSort.equals("title")) {
+			sql += " WHERE BOARD_TITLE LIKE '%' || " + boardKeyword + " || '%'";
+		} else {
+			sql += " WHERE (SELECT USER_ID FROM MEMBER WHERE BOARD_WRITER = USER_NO) LIKE '%' || ";
+			sql += boardKeyword;
+			sql += " || '%'";
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return count;
+	}
+	public int selectSearchReplyListCount(Connection conn, String replySort, String replyKeyword) {
+		// select
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectSearchReplyListCount");
+		
+		if(replySort.equals("content")) {
+			sql += " WHERE REPLY_CONTENT LIKE '%' || " + replyKeyword +  " || '%'";
+		} else {
+			sql += " WHERE (SELECT USER_ID FROM MEMBER WHERE REPLY_WRITER = USER_NO) LIKE '%' || ";
+			sql += "keyword";
+			sql += " || '%'";
+		}
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return count;
 	}
 	
 }

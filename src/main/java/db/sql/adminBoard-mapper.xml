@@ -43,19 +43,27 @@
 		                SELECT
 						       REPLY_NO
 						     , BOARD_NO
-						     , BOARD_TITLE
 						     , REPLY_CONTENT
 						     , USER_ID
-						     , TO_CHAR(R.CREATE_DATE, 'YY-MM-DD HH:MI') "CREATE_DATE"
+						     , TO_CHAR(R.CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
 						     , R.STATUS
 						  FROM REPLY R
 						  JOIN MEMBER ON (REPLY_WRITER = USER_NO)
 						  JOIN BOARD USING (BOARD_NO)
 						 WHERE R.BOARD_TYPE IN (1, 2)
 						 ORDER
-						    BY REPLY_NO
+						    BY REPLY_NO DESC
 		               ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectSearchListCount">
+		SELECT COUNT(*) COUNT
+  		  FROM BOARD
+	</entry>
+	<entry key="selectSearchReplyListCount">
+		SELECT COUNT(*) COUNT
+  		  FROM REPLY
 	</entry>
 </properties>
