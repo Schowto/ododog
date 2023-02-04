@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		SELECT
+			   COUNT(*) count
+		  FROM BOARD
+		 WHERE BOARD_TYPE = 2
+	</entry>
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT 
+		                       BOARD_NO,
+		                       BOARD_TITLE,
+		                       USER_ID,
+		                       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
+		                       COUNT,
+		                       B.STATUS
+		                  FROM BOARD B
+		                  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+		                 WHERE BOARD_TYPE = 2
+		                 ORDER
+		                    BY BOARD_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectReplyListCount">
+		SELECT
+			   COUNT(*) count
+		  FROM BOARD
+	</entry>
+</properties>

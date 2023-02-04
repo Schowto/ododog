@@ -102,6 +102,16 @@ public class Board {
 		this.count = count;
 		this.createDate = createDate;
 	}
+	// admin - selectList
+	public Board(int boardNo, String boardTitle, String boardWriter, int count, String createDate, String status) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.boardWriter = boardWriter;
+		this.count = count;
+		this.createDate = createDate;
+		this.status = status;
+	}
 	
 	// detail
 	public Board(int boardNo, int boardType, String boardTitle, String boardContent, String boardWriter, int count,

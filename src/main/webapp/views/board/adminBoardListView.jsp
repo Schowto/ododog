@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.Board" %>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +26,7 @@
         margin:10px 0px;
         border:1px solid rgb(220,220,220);
     }
-
+	
     .list-area{
         width:850px;
         font-size:13px;
@@ -35,7 +40,28 @@
         padding:5px 0px; line-height:30px;
     }
     .list-area>tbody>tr:hover{font-weight:700; cursor: pointer;}
-
+    .status-n{
+    	width:30px;	height:23px;
+    	border:2px solid rgb(220,220,220);
+    	border-radius:5px;
+    	vertical-align:middle;
+    	line-height:15px;
+    }
+	.status-n:hover{
+		background:rgb(220,220,220);
+	}
+	.status-y{
+		width:30px; height:23px;
+		border-radius:5px;
+		vertical-align:middle;
+		line-height:15px;
+		background:rgb(220,220,220);
+	}
+	.status-y:hover{
+		border:2px solid rgb(200,200,200);
+		background:rgb(200,200,200);
+	}
+	
     .paging-area button{
         border:none;
         background:none;
@@ -82,76 +108,43 @@
             <table class="list-area">
                 <thead>
                     <tr>
-                        <th width="60"></th>
                         <th width="40">글번호</th>
-                        <th width="500">제목</th>
-                        <th width="100">작성자</th>
-                        <th width="100">작성일</th>
-                        <th width="50">조회수</th>
+                        <th width="470">제목</th>
+                        <th width="80">작성자</th>
+                        <th width="80">작성일</th>
+                        <th width="70">조회수</th>
+                        <th width="60">상태</th>
+                        <th width="50"></th>
                     </tr>
                 </thead>
-                <tbody>
+               	<% if(list.isEmpty()){ %>
                     <tr>
                         <td colspan="6" style="height:300px;"> 조회된 게시글이 없습니다.</td>
                     </tr>
-                    
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>123</td>
-                        <td>제목입니다요</td>
-                        <td>나는 작성자</td>
-                        <td>2023-01-27</td>
-                        <td>3212</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>123</td>
-                        <td>제목입니다요</td>
-                        <td>나는 작성자</td>
-                        <td>2023-01-27</td>
-                        <td>3212</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>123</td>
-                        <td>제목입니다요</td>
-                        <td>나는 작성자</td>
-                        <td>2023-01-27</td>
-                        <td>3212</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>123</td>
-                        <td>제목입니다요</td>
-                        <td>나는 작성자</td>
-                        <td>2023-01-27</td>
-                        <td>3212</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>123</td>
-                        <td>제목입니다요</td>
-                        <td>나는 작성자</td>
-                        <td>2023-01-27</td>
-                        <td>3212</td>
-                    </tr>
-                </tbody>
-
-                <tfoot>
-                    <tr>
-                        <td>
-                            <button class="btn-red" style="height:25px; line-height:20px;">삭제</button>
+               	<% } else { %>
+               		<% for(Board b : list){ %>
+               			<tr>
+                        <td><%= b.getBoardNo() %></td>
+                        <td><%= b.getBoardTitle() %></td>
+                        <td><%= b.getBoardWriter() %></td>
+                        <td><%= b.getCreateDate() %></td>
+                        <td><%= b.getCount() %></td>
+                        <td align="center">
+                        	<% if(b.getStatus().equals("Y")){ %>
+                        	<button class="status-y">Y</button>
+                        	<% } else { %>
+                        		<button class="status-n">N</button>
+                        	<% } %>
                         </td>
-                        <td colspan="5"></td>
+                        <td>
+                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+                        </td>
                     </tr>
-                </tfoot>
+               		<% } %>
+               	<% } %>
                 
-
             </table>
-            
-        
             <br>
-    
             <div class="paging-area" align="center">
     
                 <button>&lt;</button>
@@ -195,12 +188,13 @@
             <table class="list-area">
                 <thead>
                     <tr>
-                        <th width="60"></th>
-                        <th width="100">작성자</th>
+                        <th width="80">작성자</th>
                         <th width="40">글번호</th>
-                        <th width="200">글제목</th>
+                        <th width="190">글제목</th>
                         <th width="350">댓글내용</th>
-                        <th width="100">작성일</th>
+                        <th width="80">작성일</th>
+                        <th width="60">상태</th>
+                        <th width="50"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -209,44 +203,69 @@
                     </tr>
             
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td>나는 작성자</td>
-                        <td>공지</td>
-                        <td>제목입니다요</td>
-                        <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
+                        <td>user01</td>
+                        <td>1</td>
+                        <td>공지사항제목입니당</td>
+                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
                         <td>2023-01-27</td>
+                        <td align="center">
+                        	<button class="status-y">Y</button>
+                        </td>
+                        <td>
+                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td>나는 작성자</td>
-                        <td>123</td>
-                        <td>제목입니다요</td>
-                        <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
+                        <td>user01</td>
+                        <td>1</td>
+                        <td>공지사항제목입니당</td>
+                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
                         <td>2023-01-27</td>
+                        <td align="center">
+                        	<button class="status-y">Y</button>
+                        </td>
+                        <td>
+                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td>나는 작성자</td>
-                        <td>공지</td>
-                        <td>제목입니다요</td>
-                        <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
+                        <td>user01</td>
+                        <td>1</td>
+                        <td>공지사항제목입니당</td>
+                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
                         <td>2023-01-27</td>
+                        <td align="center">
+                        	<button class="status-y">Y</button>
+                        </td>
+                        <td>
+                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td>나는 작성자</td>
-                        <td>123</td>
-                        <td>제목입니다요</td>
-                        <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
+                        <td>user01</td>
+                        <td>1</td>
+                        <td>공지사항제목입니당</td>
+                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
                         <td>2023-01-27</td>
+                        <td align="center">
+                        	<button class="status-y">Y</button>
+                        </td>
+                        <td>
+                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+                        </td>
                     </tr>
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td>나는 작성자</td>
-                        <td>123</td>
-                        <td>제목입니다요</td>
-                        <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
+                        <td>user01</td>
+                        <td>1</td>
+                        <td>공지사항제목입니당</td>
+                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
                         <td>2023-01-27</td>
+                        <td align="center">
+                        	<button class="status-y">Y</button>
+                        </td>
+                        <td>
+                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+                        </td>
                     </tr>
                 </tbody>
             
