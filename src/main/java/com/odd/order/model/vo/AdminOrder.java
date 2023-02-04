@@ -23,8 +23,36 @@ public class AdminOrder {
 	private String delivery;
 	
 	private String require;
+	private String orderDate;
 	
 	public AdminOrder() {}
+	
+	
+
+	public AdminOrder(int ordNo, int proNo, String proName, int amount, int userNo, String userName, String delAdd,
+			String phone, String email, String address, int discount, int totalPrice, double save, String payment,
+			String delivery, String require, String orderDate) {
+		super();
+		this.ordNo = ordNo;
+		this.proNo = proNo;
+		this.proName = proName;
+		this.amount = amount;
+		this.userNo = userNo;
+		this.userName = userName;
+		this.delAdd = delAdd;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.discount = discount;
+		this.totalPrice = totalPrice;
+		this.save = save;
+		this.payment = payment;
+		this.delivery = delivery;
+		this.require = require;
+		this.orderDate = orderDate;
+	}
+
+
 
 	public AdminOrder(int ordNo, int proNo, String proName, int amount, int userNo, String userName, String delAdd,
 			String phone, String email, String address, int discount, int totalPrice, double save, String payment,
@@ -82,9 +110,55 @@ public class AdminOrder {
 		this.discount = discount;
 		this.totalPrice = totalPrice;
 		this.save = save;
+		this.require = require;
+	}
+	
+	
+
+	public AdminOrder(int ordNo, String userName, String delAdd, String phone, String email, int totalPrice,
+			String payment, String delivery, String require) {
+		super();
+		this.ordNo = ordNo;
+		this.userName = userName;
+		this.delAdd = delAdd;
+		this.phone = phone;
+		this.email = email;
+		this.totalPrice = totalPrice;
+		this.payment = payment;
 		this.delivery = delivery;
 		this.require = require;
 	}
+	
+	
+
+	public AdminOrder(int ordNo, int userNo, String userName, String delAdd, String phone, String email, int discount,
+			int totalPrice, String delivery, String require) {
+		super();
+		this.ordNo = ordNo;
+		this.userNo = userNo;
+		this.userName = userName;
+		this.delAdd = delAdd;
+		this.phone = phone;
+		this.email = email;
+		this.discount = discount;
+		this.totalPrice = totalPrice;
+		this.delivery = delivery;
+		this.require = require;
+	}
+
+	
+	
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+
+
 
 	public int getOrdNo() {
 		return ordNo;

@@ -85,15 +85,6 @@
                             $("#btn1").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
                        break;
                             
-                       case "상품이름" :
-                           if(by == "ASC"){
-                               $("#btn2").html("상품이름↑");
-                           }else{
-                               $("#btn2").html("상품이름↓");
-                           }
-                           $("#btn2").css("opacity","1");
-                           $("#btn2").attr("href","<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=<%=order%>&&by=<%=byAdv%>");
-                       break;
                        
                        case "유저이름" :
                            if(by == "ASC"){
@@ -126,7 +117,7 @@
             <br>
             	<div class="order">
 	                <a class="btn btn-sm btn-secondary" id="btn1" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=주문번호&&by=ASC">주문번호</a>
-	                <a class="btn btn-sm btn-secondary" id="btn2" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=상품이름&&by=ASC">상품이름</a>
+	     
 	                <a class="btn btn-sm btn-secondary" id="btn3" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=유저이름&&by=ASC">유저이름</a>
 	                <a class="btn btn-sm btn-secondary" id="btn4" href="<%=contextPath%>/list.adOrd?cpage=<%=pi.getCurrentPage()%>&&order=최종결제금액&&by=ASC">최종결제금액</a>
 				</div>
@@ -138,10 +129,6 @@
 	                    <thead>
 	                        <tr>
 	                           <th width="10px">주문 번호</th>
-	                           
-	                           <th width="170px">상품명</th>
-	                           <th width="10px">상품 개수</th>
-	                           
 	                           <th width="20px">유저 이름</th>
 	                           <th width="150px">배송지</th>
 	                           <th width="30px">휴대전화</th>
@@ -161,16 +148,13 @@
 	                    
 	                        <%if (list.isEmpty()){ %>
 	                        <tr>
-	                            <td colspan="11"> 조회된 주문이 없습니다.</td>
+	                            <td colspan="9"> 조회된 주문이 없습니다.</td>
 	                        </tr>
 	                        <%}else{ %>
 	                            <% for(AdminOrder o : list){ %>
 	                        <tr>
 	                            <td><%= o.getOrdNo() %></td>
-	                            
-	                            <td><%= o.getProName() %></td>
-	                            <td><%= o.getAmount() %></td>
-	                            
+	                  
 	                            <td><%= o.getUserName() %></td>
 	                            <td><%= o.getDelAdd() %></td>
 	                            <td><%= o.getPhone() %></td>

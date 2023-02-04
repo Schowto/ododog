@@ -14,6 +14,8 @@ import java.util.Properties;
 import com.odd.common.model.vo.PageInfo;
 import com.odd.order.model.vo.AdminOrdSearch;
 import com.odd.order.model.vo.AdminOrder;
+import com.odd.product.model.vo.ProAtt;
+import com.odd.product.model.vo.Product;
 
 public class AdminOrderDao {
 	
@@ -73,10 +75,7 @@ public class AdminOrderDao {
 			
 	        while(rset.next()){	
 								list.add(
-										new AdminOrder(rset.getInt("주문번호")
-												
-												, rset.getString("상품이름")
-												, rset.getInt("상품개수")
+										new AdminOrder(rset.getInt("주문번호")											
 												
 												, rset.getString("유저이름")
 												, rset.getString("배송지")
@@ -111,16 +110,14 @@ public class AdminOrderDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String proName = ordSearch.getProName();
+
 		String userName = ordSearch.getUserName();
 		String lowPrice = ordSearch.getLowPrice();
 		String highPrice = ordSearch.getHighPrice();
 		
 		String sql = prop.getProperty("searchList");
 		
-		if(!proName.equals("")) {
-			sql += " AND 상품이름 LIKE '%" + proName + "%'"; 
-		}
+	
 		if(!userName.equals("")) {
 			sql += " AND 유저이름 LIKE '%" + userName + "%'"; 
 		}
@@ -140,10 +137,7 @@ public class AdminOrderDao {
 				list.add(
 							new AdminOrder(
 									rset.getInt("주문번호"),
-									
-									rset.getString("상품이름"),
-									rset.getInt("상품개수"),
-									
+								
 									rset.getInt("유저번호"),
 									rset.getString("유저이름"),
 									rset.getString("배송지"),
@@ -152,7 +146,6 @@ public class AdminOrderDao {
 									
 									rset.getInt("사용적립금"),
 									rset.getInt("최종결제금액"),
-									rset.getDouble("적립률"),
 									
 									
 									rset.getString("배송여부"),
@@ -171,5 +164,76 @@ public class AdminOrderDao {
 		
 		
 	}
+	
+	public AdminOrder selectOrder(Connection conn, int ordNo) {
+			
+			AdminOrder o = null;
+			ResultSet rset = null;
+			PreparedStatement pstmt= null;
+			
+			String sql = prop.getProperty("selectOrder");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, ordNo);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){	
+					
+					
+					
+					
+					
+					
+								
+								}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return o;
+			
+		}
+		
+	
+		public ArrayList<AdminOrder> selectOrdPro(Connection conn, int ordNo){
+			
+			ResultSet rset = null;
+			ArrayList<AdminOrder> list = new ArrayList<>();
+			PreparedStatement pstmt = null;
+			
+			String sql = prop.getProperty("selectProAtt");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, ordNo);
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()){	
+			
+					
+					
+					
+					
+					
+						}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+		}
 
 }
