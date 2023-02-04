@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+	
+	<!-- 내주문페이지List -->
+	<entry key="selectAllMyOrder">
+		SELECT
+		       T.ORD_NO
+		     , T.PRO_NO
+		     , T.USER_NO
+		     , DEL_ADD
+		     , PAYMENT
+		     , T.DELIVERY
+		     , T.PHONE
+		     , T.ADDRESS
+		     , REQUIRE
+		     
+		     , P.THUMB_IMG
+		     , P.PRO_NAME
+		     , P.PRICE
+		     
+		     , O.AMOUNT
+		     
+		 FROM TB_ORDER T
+    LEFT JOIN PRODUCT P ON (T.PRO_NO = P.PRO_NO)
+	LEFT JOIN ORD_PRO O ON (T.ORD_NO = O.ORD_NO)
+	LEFT JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
+	    WHERE T.USER_NO = ?
+	</entry>
+	
+	<entry key="selectMyOrder">
+		SELECT
+		       T.ORD_NO
+		     , T.PRO_NO
+		     , T.USER_NO
+		     , DEL_ADD
+		     , PAYMENT
+		     , T.DELIVERY
+		     , T.PHONE
+		     , T.ADDRESS
+		     , REQUIRE
+		     
+		     , P.THUMB_IMG
+		     , P.PRO_NAME
+		     , P.PRICE
+		     
+		     , AMOUNT
+		     
+		     , M.USER_ID
+		     , M.USER_NAME
+		     
+		     , A.TOTAL_PRICE
+		     , A.DELIVERY
+		     , A.DISCOUNT
+		     
+		 FROM TB_ORDER T
+    LEFT JOIN PRODUCT P ON (T.PRO_NO = P.PRO_NO)
+    LEFT JOIN ORD_PRO O ON (T.ORD_NO = O.ORD_NO)
+	LEFT JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
+	LEFT JOIN PAYMENT A ON (T.ORD_NO = A.ORD_NO)
+	    WHERE T.ORD_NO = ?
+	</entry>
+
+</properties>

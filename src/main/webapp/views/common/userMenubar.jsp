@@ -214,7 +214,7 @@
 
                     <li><a href="<%=contextPath%>/myPageMain.me">MY PAGE</a>
                         <ul>
-                            <li><a href="<%=contextPath%>/orderDetail.me">주문조회</a></li>
+                            <li><a href="<%=contextPath%>/review.me">주문조회</a></li>
                             <li><a href="<%=contextPath%>/myPage.me">회원정보</a></li>
                             <li><a href="<%=contextPath%>/myWhish.me">관심상품</a></li>
                             <li><a href="<%=contextPath%>/myPoint.me">적립금</a></li>

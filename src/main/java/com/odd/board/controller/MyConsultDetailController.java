@@ -43,6 +43,7 @@ public class MyConsultDetailController extends HttpServlet {
 		}else {
 			request.setAttribute("alertMsg", "상세조회 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/list.co");
 		}
 		
 		

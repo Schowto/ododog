@@ -53,6 +53,74 @@
 		 JOIN MEMBER M ON (M.USER_NO = R.USER_NO)
 	    WHERE ORD_NO = ? 
 	</entry>
+	
+	<entry key="insertReview">
+		INSERT
+		  INTO
+		  (
+		  	REVIEW_NO
+		  , PRO_NAME
+		  , USER_ID
+		  , REVIEW_TITLE
+		  , REVIEW_CONTENT
+		  , STAR
+		  , MODIFY_DATE
+		  , ENROLL_DATE
+		  , REVIEW_PHOTO
+		  , FILE_PATH
+		  )
+		  VALUES
+		  (
+		  	SEQ_REVIEWNO
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , SYSDATE
+		  , ?
+		  , ?
+		  )
+		   
+	</entry>
+	
+	<enrty key="updateReview">
+		UPDATE
+		       REVIEW
+		   SET REVIEW_TITLE = ?
+		     , REVIEW_CONTENT = ?
+		     , STAR = ?
+		     , MODIFY_DATE = SYSDATE
+		     , REVIEW_PHOTO = ?
+		     , FILE_PATH = ?
+		 WHERE REVIEW_NO = ?
+		   AND STATUS = 'Y'  
+	</enrty>
+	
+	<entry key="deleteReview">
+		UPDATE 
+			   REVIEW
+		   SET STATUS = 'N'
+		 WHERE REVIEW_NO = ?
+	</entry>
+	
+	<entry key="selectReview">
+		SELECT REVIEW_NO
+			 , PRO_NAME
+			 , USER_ID
+		     , REVIEW_TITLE
+		     , REVIEW_CONTENT
+		     , STAR
+		     , MODIFY_DATE
+		     , ENROLL_DATE
+		     , REVIEW_PHOTO
+		     , FILE_PATH
+		  FROM REVIEW R
+	 LEFT JOIN PRODUCT P ON (R.PRO_NO = P.PRO_NO) 
+	 LEFT JOIN MEMBER M ON (R.USER_NO = M.USER_NO)
+		 WHERE PRO_NO = ? 
+	</entry>
 
 </properties>
 

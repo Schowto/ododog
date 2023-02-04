@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.odd.member.model.vo.*" %>
+<%
+	Review r = (Review)request.getAttribute("r");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,40 +69,41 @@
         <div class="reviewLine"></div>
         <br><br>
 
-        	<form action="detail.pro">
-                <table class="reviewTable">
-					<thead>
+        	<table class="reviewTable">
+					<thaed>
+					<%if(r == null){ %>
 					<!-- 리뷰가없을때 -->
-                	<tr style="text-align:center;">
-                		<td colspan="4" style="height:50px; font-weight: 600;" >
-	                		<br>
-							<br> <img src="<%=contextPath%>/resources/images/error.png"> <br><br>
-								상품에 대한 리뷰가 존재하지않습니다. <br>
-							<br>
-							<br>
-						</td>
-                	</tr>
-                	
+	                	<tr style="text-align:center;">
+	                		<td colspan="4" style="height:50px; font-weight: 600;" >
+		                		<br>
+								<br> <img src="<%=contextPath%>/resources/images/error.png"> <br><br>
+									상품에 대한 리뷰가 존재하지않습니다. <br>
+								<br>
+								<br>
+							</td>
+	                	</tr>
+                	<%}else{ %>
                 	<!-- 리뷰가있을때 -->
 						<tr>
-							<td style="height:50px; width:60%; border-bottom: none;">&nbsp;&nbsp;⭐⭐⭐</td>
-							<td rowspan="2"><img src=""></td>
+							<td style="height:50px; width:60%; border-bottom: none;">&nbsp;&nbsp;<%=r.getStar() %></td>
+							<td rowspan="2"><img src="<%=r.getReviewPhoto()%>"></td>
 							<td rowspan="2">
-								&nbsp;&nbsp;상품명 : 댕댕츄르 <br>
-								&nbsp;&nbsp;작성자 : 와그작<br>
-								&nbsp;&nbsp;작성일 : 2023.01.22
+								&nbsp;&nbsp;상품명 : <%=r.getProName() %> <br>
+								&nbsp;&nbsp;작성자 : <%=r.getUserId() %><br>
+								&nbsp;&nbsp;작성일 : <%=r.getModifyDate() %>
 							</td>
 						</tr>
 						<tr>
-							<td style="height:50px;">&nbsp;&nbsp;리뷰제목입니다끝내줘요</td>
+							<td style="height:50px;">&nbsp;&nbsp;<%=r.getReviewTitle() %></td>
 						</tr>
+					<%} %>
 					</thead>
 					<tbody>
 						<tr>
 							<td colspan="3">
 								<p>
 									&nbsp;&nbsp;리뷰내용 : <br><br>
-									&nbsp;&nbsp;<textarea name="reviewContent">리뷰내용들어오는자리냠호로로로로로롤</textarea>
+									&nbsp;&nbsp;<textarea name="reviewContent"><%=r.getReviewContent() %></textarea>
 								</p>
 							</td>
 						</tr>

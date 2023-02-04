@@ -3,7 +3,25 @@
 
 <properties>
 	
-	
-	
+	<!-- 내주문페이지List -->
+	<entry key="selectAllMyOrder">
+		SELECT
+		       ORD_NO
+		     , PRO_NO
+		     , USER_NO
+		     , DEL_ADD
+		     , PAYMENT
+		     , DELEVERY
+		     , STATU
+		     , THUMB_IMG
+		     , PRO_NAME
+		     , PRICE
+		     , AMOUNT
+		 FROM TB_ORDER T
+		 JOIN PRODUCT P ON (T.PRO_NO = P.PRO_NO)
+		 JOIN ORD_PRO O ON (T.ORD_NO = O.ORD_NO)
+		 JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
+	    WHERE USER_NO = ? 
+	</entry>
 
 </properties>

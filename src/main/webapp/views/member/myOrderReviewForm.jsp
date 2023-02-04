@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.odd.order.model.vo.*, com.odd.member.model.vo.*, com.odd.order.model.vo.*"%>
+<%@ page import="java.util.ArrayList, com.odd.member.model.vo.*"%>
 <%
-	//Order o = (Order)request.getAttribute("o");
+	MyOrder m = (MyOrder)request.getAttribute("m");
 	//Review r = (Review)request.getAttribute("r");
 %>
 <!DOCTYPE html>
@@ -210,7 +210,7 @@
             <div class="myOrderReview">
 
                 <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
-                    <input type="text" value="주문번호들어올자리">
+                    주문번호 : <input type="text" value="<%=m.getOrdNo()%>">
                 </div>
 
                 <br>
@@ -219,13 +219,13 @@
                     <form>
                         <table>
                             <tr>
-                                <td style="width:150px;"><img src="" ></td>
-                                <td style="width:250px;">댕댕이 수제간식</td>
+                                <td style="width:150px;"><img src="<%=m.getTumbImg() %>" ></td>
+                                <td style="width:250px;"><%=m.getProName() %></td>
                                 <td style="width:200px; padding-right: 20px;"></td>
                                 <td style="width:200px; text-align:left;">
-                                    &nbsp;상품명 : 댕댕츄르 <br><br>
-                                    &nbsp;구매자 : 와그작 <br><br>
-                                    &nbsp;총금액 : 15,000원
+                                    &nbsp;상품명 : <%=m.getProName() %> <br><br>
+                                    &nbsp;구매자 : <%=m.getUserId() %> <br><br>
+                                    &nbsp;총금액 : <%=m.getPrice() %>원
                                     
                                 </td>
                             </tr>
@@ -236,6 +236,9 @@
 
                 <div class="reviewContent">
                     <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
+                    	<input type="hidden" name="ordNo" value="<%=m.getOrdNo() %>">
+                    	<input type="hidden" name="proName" value="<%=m.getProName() %>">
+                    	<input type="hidden" name="userId" value="<%=m.getUserId() %>">
                         <table class="starTable">
                                 <tr>
                                     <td style="width:40%;">상품을 사용해보셨나요?</td>
@@ -285,6 +288,7 @@
                                     </div>
                     </form>
 
+					<!--  
 					<script>
                          
 						function starCount() {
@@ -293,6 +297,8 @@
 							
 						}
 					</script>
+					-->
+					
 
 				</div>
 
