@@ -35,6 +35,8 @@ public class ProductReviewListController extends HttpServlet {
 		
 		Review r = new ReviewService().selectReview(proNo);
 		
+		MyOrder m = new MyOrderService().selectMyOrder()
+		
 		request.setAttribute("r", r);
 		
 		request.getRequestDispatcher("views/product/productReviewView.jsp").forward(request,response);
