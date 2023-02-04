@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.Board" %>
+<%@ page import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.Board, com.odd.board.model.vo.Reply" %>
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+	PageInfo replyPi = (PageInfo)request.getAttribute("replyPi");
+	ArrayList<Reply> replyList = (ArrayList<Reply>)request.getAttribute("replyList");
 %>
 <!DOCTYPE html>
 <html>
@@ -131,7 +133,7 @@
                         <td><%= b.getCount() %></td>
                         <td align="center">
                         	<% if(b.getStatus().equals("Y")){ %>
-                        	<button class="status-y">Y</button>
+                        		<button class="status-y">Y</button>
                         	<% } else { %>
                         		<button class="status-n">N</button>
                         	<% } %>
@@ -142,7 +144,6 @@
                     </tr>
                		<% } %>
                	<% } %>
-                
             </table>
             <br>
             <div class="paging-area" align="center">
@@ -197,88 +198,31 @@
                         <th width="50"></th>
                     </tr>
                 </thead>
-                <tbody>
+               	<% if(replyList.isEmpty()){ %>
                     <tr>
                         <td colspan="6" style="height:300px;"> 조회된 댓글이 없습니다.</td>
                     </tr>
-            
-                    <tr>
-                        <td>user01</td>
-                        <td>1</td>
-                        <td>공지사항제목입니당</td>
-                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
-                        <td>2023-01-27</td>
-                        <td align="center">
-                        	<button class="status-y">Y</button>
-                        </td>
-                        <td>
-                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>user01</td>
-                        <td>1</td>
-                        <td>공지사항제목입니당</td>
-                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
-                        <td>2023-01-27</td>
-                        <td align="center">
-                        	<button class="status-y">Y</button>
-                        </td>
-                        <td>
-                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>user01</td>
-                        <td>1</td>
-                        <td>공지사항제목입니당</td>
-                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
-                        <td>2023-01-27</td>
-                        <td align="center">
-                        	<button class="status-y">Y</button>
-                        </td>
-                        <td>
-                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>user01</td>
-                        <td>1</td>
-                        <td>공지사항제목입니당</td>
-                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
-                        <td>2023-01-27</td>
-                        <td align="center">
-                        	<button class="status-y">Y</button>
-                        </td>
-                        <td>
-                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>user01</td>
-                        <td>1</td>
-                        <td>공지사항제목입니당</td>
-                        <td>어쩌꾸저쩌구우우ㅜ구구구구구구구구ㅜ</td>
-                        <td>2023-01-27</td>
-                        <td align="center">
-                        	<button class="status-y">Y</button>
-                        </td>
-                        <td>
-                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
-                        </td>
-                    </tr>
-                </tbody>
-            
-                <tfoot>
-                    <tr>
-                        <td>
-                            <button class="btn-red" style="height:25px; line-height:20px;">삭제</button>
-                        </td>
-                        <td colspan="5"></td>
-                    </tr>
-                </tfoot>
-            
-            
+               	<% } else { %>
+               		<% for(Reply r : replyList){ %>
+	                    <tr>
+	                        <td><%= r.getReplyWriter() %></td>
+	                        <td><%= r.getBoardNo() %></td>
+	                        <td><%= r.getBoardTitle() %></td>
+	                        <td><%= r.getReplyContent() %></td>
+	                        <td><%= r.getCreateDate() %></td>
+	                        <td align="center">
+	                        	<% if(r.getStatus().equals("Y")){ %>
+	                        		<button class="status-y">Y</button>
+	                        	<% } else { %>
+	                        		<button class="status-n">N</button>
+                       			<% } %>
+	                        </td>
+	                        <td>
+	                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+	                        </td>
+	                    </tr>
+               		<% } %>
+               	<% } %>
             </table>
             
             

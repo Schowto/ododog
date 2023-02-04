@@ -103,5 +103,35 @@ public class AdminBoardDao {
 		}
 		return count;
 	}
+	public ArrayList<Reply> selectReplyList(Connection conn, PageInfo pi){
+		// select
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReplyList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_no"),
+								   rset.getInt("board_no"),
+								   rset.getString("user_id"),
+								   rset.getString("reply_content"),
+								   rset.getString("create_date"),
+								   rset.getString("status"),
+								   rset.getString("board_title")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
 }

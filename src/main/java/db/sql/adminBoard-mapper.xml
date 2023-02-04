@@ -32,6 +32,30 @@
 	<entry key="selectReplyListCount">
 		SELECT
 			   COUNT(*) count
-		  FROM BOARD
+		  FROM REPLY
+		 WHERE BOARD_TYPE IN (1, 2)
+	</entry>
+	<entry key="selectReplyList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT
+						       REPLY_NO
+						     , BOARD_NO
+						     , BOARD_TITLE
+						     , REPLY_CONTENT
+						     , USER_ID
+						     , TO_CHAR(R.CREATE_DATE, 'YY-MM-DD HH:MI') "CREATE_DATE"
+						     , R.STATUS
+						  FROM REPLY R
+						  JOIN MEMBER ON (REPLY_WRITER = USER_NO)
+						  JOIN BOARD USING (BOARD_NO)
+						 WHERE R.BOARD_TYPE IN (1, 2)
+						 ORDER
+						    BY REPLY_NO
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 </properties>

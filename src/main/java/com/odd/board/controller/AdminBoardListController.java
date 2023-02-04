@@ -62,11 +62,12 @@ public class AdminBoardListController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, boardPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		PageInfo replyPi = new PageInfo(replyListCount, replyPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		ArrayList<Board> list = new AdminBoardService().selectList(pi);
-		// 여기서ㅏ부터 하기! 댓글 목록 어떻게 구현할지 생각해야될듯
-		ArrayList<Reply> replyList;
+		ArrayList<Reply> replyList = new AdminBoardService().selectReplyList(pi);
 
 		request.setAttribute("pi", pi);
+		request.setAttribute("replyPi", replyPi);
 		request.setAttribute("list", list);
+		request.setAttribute("replyList", replyList);
 		request.getRequestDispatcher("views/board/adminBoardListView.jsp").forward(request, response);
 		
 		

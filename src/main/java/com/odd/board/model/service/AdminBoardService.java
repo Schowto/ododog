@@ -32,5 +32,11 @@ public class AdminBoardService {
 		close(conn);
 		return count;
 	}
+	public ArrayList<Reply> selectReplyList(PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new AdminBoardDao().selectReplyList(conn, pi);
+		close(conn);
+		return list;
+	}
 
 }
