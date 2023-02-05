@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class AdminBoardStatusController
  */
 @WebServlet("/status.adBo")
-public class AdminBoardStatusController extends HttpServlet {
+public class AjaxAdminBoardStatusController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminBoardStatusController() {
+    public AjaxAdminBoardStatusController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,7 @@ public class AdminBoardStatusController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**

@@ -137,7 +137,7 @@
                         <td><%= b.getBoardWriter() %></td>
                         <td><%= b.getCreateDate() %></td>
                         <td><%= b.getCount() %></td>
-                        <td align="center">
+                        <td align="center" class="status-area">
                         	<% if(b.getStatus().equals("Y")){ %>
                         		<button class="status-y">Y</button>
                         	<% } else { %>
@@ -153,7 +153,24 @@
             </table>
             
             <script>
-            	
+            	$(".status-area button").click(function(){
+            		const a = $(this);
+            		if(a.text()=="Y"){
+            			// 상태가 Y일때 -> N 으로
+            			$.ajax({
+            				url:"<%=contextPath%>/status.adBo",
+            				data:{no:$(this).parent().prev().prev().prev().prev().prev().text()},
+            				success:function(result){
+            					
+            				}, error:function(){
+            					
+            				}
+            			})
+            		} else {
+            			
+            		
+            		}
+            	})
             </script>
             
             <br>
@@ -236,7 +253,6 @@
         		})
         		// 정렬옵션 유지
 	        	$("#bSort option").each(function(){
-	        		console.log($(this).val());
         			if($(this).val() == "<%= bSort %>"){
         				$(this).attr("selected", true);
         			}
