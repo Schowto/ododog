@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList" %>
+<%
+	ArrayList<Point> list = (ArrayList<Point>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +90,7 @@
             <a href="<%=contextPath%>/myWhish.me" style="font-size:17px;">관심상품</a> <br><br>
             <a href="<%=contextPath%>/myPoint.me" style="font-size:17px; color:rgb(200, 140, 140);">적립금</a> <br><br>
             <a href="<%=contextPath%>/myBoard.me" style="font-size:17px;">게시글조회</a> <br><br>
-            <a href="<%=contextPath%>/consult.bo" style="font-size:17px;">1:1맞춤상담</a>
+            <a href="<%=contextPath%>/list.co" style="font-size:17px;">1:1맞춤상담</a>
         </div>
 
         <script>
@@ -102,38 +106,38 @@
             <h2 align="center" style="color:rgb(50, 50, 50); font-weight:600;">적립금</h2>
             <br><br><br><br>
 
+            <!--
             <div class="pointView">
                   (회원아이디자리) 님의 총 적립금 내역은 (적립금총금액자리) 원 입니다.
             </div>
-            <br><br>
+            -->
 
             <div class="pointHistory">
                     
                 <form>
                     <table>
+                    	<thead>
                          <tr>
                             <td style="width:200px;">날짜</td>
-                               <td style="width:400px;"">내용</th>
+                               <td style="width:400px;">내용</th>
                                <td style="width:200px;">금액</td>
                          </tr>
-
-                          <tr>
-                             <td>적립된날짜들어올자리</td>
-                               <td style="text-align:center;">적립내역줄줄줄줄</td>
-                            <th>적립금액들어올자리</th>
-                         </tr>
-                            
-                         <tr>
-                            <td>적립된날짜들어올자리</td>
-                              <td style="text-align:center;">적립내역줄줄줄줄</td>
-                               <th>적립금액들어올자리</th>
-                         </tr>
-                            
-                        <tr>
-                             <td>적립된날짜들어올자리</td>
-                             <td style="text-align:center;">적립내역줄줄줄줄</td>
-                             <th>적립금액들어올자리</th>
-                        </tr>
+						</thead>
+						<tbody>
+							<%if(list.isEmpty()){ %>
+                          	<tr>
+                             	<th colspan="3">적립금내역이 존재하지않습니다.</th>
+                         	</tr>
+                         	<%}else{ %>
+                         	<%for(Point p : list) {%>
+                         	<tr>
+                             	<td style="width:200px;"><%=p.getPointDate() %></td>
+                                <td style="text-align:center; width:400px;"><%=p.getPointUse() %></td>
+                            	<th style="text-align:center; width:200px;"><%=p.getPointPrice() %></th>
+                         	</tr>
+                         	<%} %>
+                         	<%} %>
+                         </tbody>
                     </table>
                  </form>
 

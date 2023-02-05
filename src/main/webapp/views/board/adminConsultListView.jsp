@@ -27,11 +27,8 @@
   }
   .searchTable{
     width:80%;
+    height: 50px;
     
-  }
-  .searchTable input{
-    border:1px soliod rgb(220,220,220);
-    height:30px;
   }
   .searchTable ::placeholder{
         font-size:14px;
@@ -99,7 +96,19 @@
     border-radius: 6px;
     background-color: #ffffff;
         }
-    
+   .searchTable>input {   
+            font-size: 13px;
+            border: 2px solid rgb(220, 220, 220);
+            background: white;
+            color: rgb(50, 50, 50);
+            border-radius: 5px;
+            width:70px;
+            height: 30px;
+        }
+        .searchTable>input:hover{
+            font-weight: 600;
+            background: rgb(220, 220, 220);
+        }
 </style>
 </head>
 <body>
@@ -113,11 +122,8 @@
 
             <br><br>
             <div class="searchTable" align="left">
-                <select name="answerStatus" id="answerStatus" style="height:30px; width:100px;" onchange="searchAnswer();">
-                    <option value="no">미답변</option>
-                    <option value="yes">답변</option>
-                </select>
-                <input type="button" value="검색" onclick="searchUser();">
+                <input type="button" name="consultAnswer" id="answerNo" value="미답변">
+                <input type="button" name="consultAnswer" id="answerYes" value="답변">
             </div>
             <br><br>
             
@@ -165,24 +171,55 @@
         </div>
        </div>
         
-       <script>
-        function searchAnswer(){
-          $.ajax({
-            url: "<%=c.getContextPath()%>/",
-            date: {answer : $("searchAnswer option:selected").val()},
-            type: "post",
-            success: function(result){
-
-            },
-            error:function(){
-
-            } ,
-
-          })
+      <!-- ajax부분 -->
+      <script>
+      // 답변 미답변 조회 AJAX
+      $j("#search").on("click",function(){
+        var ch = $j('input:checked').val();
+        if(ch==null){
+          alert("체크 하세요");
+          return false;
         }
-
-       </script>
         
+        
+        var $frm = $j("input[class=checktype]:checked");
+        var param = $frm.serialize();
+        
+        var table = document.getElementById('boardTest');
+        
+        $j.ajax({
+            url : "<%=contextPath%>/searchAnswer.co",
+            dataType: "json",
+            type: "POST",
+            data : param,
+
+            success: function(data)
+            {
+              console.log(data.list.length)
+              
+              $j('#cntbox').html("total : " + data.totalCnt);
+              //데이터를 새로 뿌리기 위해 이전 표를 지움 
+              var trlength = $j('#boardTest tr').length;
+              for(var t=trlength-1;t>0;t--){
+                table.deleteRow(t);
+              }
+              //데이터 뿌리기 
+              for(var i=0;i<data.list.length;i++){
+              $j('#boardTest').append("<tr><td align='center'>" + data.codeMap[data.list[i].boardType] + "</td>" +
+                            "<td>" + data.list[i].boardNum + "</td>" +
+                            "<td><a href= '/board/" + data.list[i].boardType 
+                                + "/" + data.list[i].boardNum 
+                                + "/boardView.do?pageNo=" ;
+              }
+            },
+            error: function ()
+            {
+              alert("검색실패");
+              
+            }
+        });	
+      }); 
+    </script>  
      	
 
 </body>
