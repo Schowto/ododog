@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page improt="com.odd.product.medel.vo.*, com.odd.order.model.vo.*, com.odd.member.model.vo.*" %>
+<%@ page import="com.odd.member.model.vo.*" %>
 <%
-	//Order o = (Order)request.getAttribute("o");
-	//Review r = (Review)request.getAttribute("r");
+	MyOrder m = (MyOrder)request.getAttribute("m");
 %>
 <!DOCTYPE html>
 <html>
@@ -133,36 +132,23 @@
             <br><br><br><br>
 
             <div class="myOrderDetailView">
-                    <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
-                        2023.01.22 20:20 (주문날짜시간들어갈자리)
-                    </div>
-
-                    <br>
-
                     <div class="myOrderView">
                         <table>
                                 <tr>
-                                    <td style="width:150px;"><img src="" ></td>
-                                    <td style="width:250px;">댕댕이 수제간식</td>
+                                    <td style="width:150px;"><img src="<%=m.getTumbImg() %>" ></td>
+                                    <td style="width:250px;"></td>
                                     <td style="width:200px; padding-right: 20px;">
-                                        <button class="btn-red">리뷰작성</button>
+                                        <button type="button"><a href="<%=contextPath%>/review.me?no=<%=m.getOrdNo()%>">리뷰작성</a></button>
                                     </td>
                                     <td style="width:200px; text-align:left;">
-                                        &nbsp;상품명 : 댕댕츄르 <br><br>
-                                        &nbsp;구매자 : 와그작 <br><br>
-                                        &nbsp;총금액 : 15,000원
+                                        &nbsp;상품명 : <%=m.getProName() %> <br><br>
+                                        &nbsp;구매자 : <%=m.getUserId() %> <br><br>
+                                        &nbsp;총금액 : <%=m.getTotalPrice() %>원
                                     </td>
                                 </tr>
                             </table>
+                       	
                     </div>
-
-                    <script>
-                        $(function(){
-                            $(".btn-red").click(function(){
-                                location.href="<%=contextPath%>/review.me";
-                            })
-                        })
-                    </script>
 
 
                     <br><br>
@@ -176,15 +162,15 @@
                                 </tr>
                                 <tr>
                                     <td>주문번호</td>
-                                    <td>20230122-1234567</td>
+                                    <td><%=m.getOrdNo() %></td>
                                 </tr>
                                 <tr>
                                     <td>주문일자</td>
-                                    <td>2023.01.22</td>
+                                    <td><%=m.getOrderDate() %></td>
                                 </tr>
                                 <tr>
                                     <td>주문자</td>
-                                    <td>와그작</td>
+                                    <td><%=m.getUserId() %></td>
                                 </tr>
                                 <tr>
                                     <td>주문처리상태</td>
@@ -201,19 +187,19 @@
                                 </tr>
                                 <tr>
                                     <td>배송비</td>
-                                    <td>3,000</td>
+                                    <td><%=m.getDeliveryPrice() %></td>
                                 </tr>
                                 <tr>
                                     <td>상품금액</td>
-                                    <td>18,000</td>
+                                    <td><%=m.getPrice() %></td>
                                 </tr>
                                 <tr>
                                     <td>적립금 할인</td>
-                                    <td>3,000</td>
+                                    <td><%=m.getDiscount() %></td>
                                 </tr>
                                 <tr>
                                     <td>총 결제 금액</td>
-                                    <td>15,000</td>
+                                    <td><%=m.getTotalPrice() %></td>
                                 </tr>
                             </table>
                         </form>
@@ -226,15 +212,15 @@
                                 </tr>
                                 <tr>
                                     <td>받는분</td>
-                                    <td>와그작</td>
+                                    <td><%=m.getUserName() %></td>
                                 </tr>
                                 <tr>
                                     <td>연락처</td>
-                                    <td>010-111-1111</td>
+                                    <td><%=m.getPhone() %></td>
                                 </tr>
                                 <tr>
                                     <td>주소</td>
-                                    <td>메롱시 바보동</td>
+                                    <td><%=m.getDelAdd() %></td>
                                 </tr>
                             </table>
                         </form>

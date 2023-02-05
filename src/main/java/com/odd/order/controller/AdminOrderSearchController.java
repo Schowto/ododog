@@ -45,7 +45,7 @@ public class AdminOrderSearchController extends HttpServlet {
 		if(!request.getParameter("cpage").equals("1")) {
 			
 			ordSearch = new AdminOrdSearch(
-											request.getParameter("proName") ,
+											
 											request.getParameter("userName") ,
 											request.getParameter("lowPrice") ,
 											request.getParameter("highPrice")
@@ -55,7 +55,7 @@ public class AdminOrderSearchController extends HttpServlet {
 		}else {
 			
 			ordSearch = new AdminOrdSearch(
-											"" ,
+											
 											"" ,
 											"" ,
 											""

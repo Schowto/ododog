@@ -15,6 +15,14 @@ public class AdminOrdSearch {
 		this.lowPrice = lowPrice;
 		this.highPrice = highPrice;
 	}
+	
+	
+	public AdminOrdSearch(String userName, String lowPrice, String highPrice) {
+		super();
+		this.userName = userName;
+		this.lowPrice = lowPrice;
+		this.highPrice = highPrice;
+	}
 
 	public String getProName() {
 		return proName;

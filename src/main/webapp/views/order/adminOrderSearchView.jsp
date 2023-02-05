@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import="java.util.ArrayList, com.odd.order.model.vo.AdminOrder" %>
+<%@ page import="java.util.ArrayList, com.odd.order.model.vo.AdminOrder, com.odd.order.model.vo.OrdPro" %>
 
 <%
 	ArrayList<AdminOrder> list = (ArrayList<AdminOrder>)request.getAttribute("list");
-	String proName = request.getParameter("proName");
+
 	String userName = request.getParameter("userName");
 	String lowPrice = request.getParameter("lowPrice");
 	String highPrice = request.getParameter("highPrice");
@@ -105,7 +105,7 @@
         
             <br>
             <h2>배송 가능한 주문 
-            	<span class="font-italic font-weight-lighter" style="font-size:0.4em;"> 유통기한, 재고, 결제 유무</span>
+            	<span class="font-italic font-weight-lighter" style="font-size:0.4em;">결제 후 배송 전</span>
            	</h2>
             <br>
 			
@@ -118,7 +118,6 @@
                        <tr style="white-space: nowrap;">
                            <th width="50px">배송여부</th>
                            <th width="10px">주문번호</th>
-                           <th width="170px">상품명</th>
                            <th width="25px">고객이름</th>
                            <th width="170px">배송지</th>                           
                            <th width="15px">최종결제금액</th>
@@ -130,20 +129,14 @@
                    
                        <%if (list.isEmpty()){ %>
                        <tr>
-                           <td colspan="7"> 조회된 주문이 없습니다.</td>
+                           <td colspan="6"> 조회된 주문이 없습니다.</td>
                        </tr>
                        <%}else{ %>
                            <% for(AdminOrder o : list){ %>
 	                       <tr role="button" data-toggle="modal" data-target="#myModal">
-	                          
-	                           <td><%= o.getDelivery() %>
-	                           		<input type="hidden" value="<%= o.getAmount()%>">
-	                           		<input type="hidden" value="<%= o.getUserNo() %>">
-	                           		<input type="hidden" value="<%= o.getDiscount() %>">
-	                           		<input type="hidden" value="<%= o.getSave() %>">
-                               </td>
+	                                                      
+	                           <td><%= o.getDelivery() %></td>
 	                           <td><%= o.getOrdNo() %></td>
-	                           <td><%= o.getProName() %></td>
 	                           <td><%= o.getUserName() %></td>
 	                           <td><%= o.getDelAdd() %></td>
 	                           <td><%= o.getTotalPrice() %></td>
@@ -175,12 +168,7 @@
 				  <input type="hidden" name="cpage" value="2" >
 
                   <table class="table-bordered" style="width:700px">
-                    <tr>
-                        <th>상품명</th>
-                        <td>
-                            <input type="text" class="form-control-sm" name="proName" style="width:300px"> 
-                        </td>
-                    </tr>
+                   
                     
                     <tr>
                         <th>고객명</th>
@@ -206,14 +194,14 @@
        		<!-- 검색 폼의 값을 다시 채워줌 --> 
 			$(function(){
  	    		
- 	    		let proName = "<%=proName%>"; 
+ 	    	
  	    		let username = "<%=userName%>";
  	    		let lowPrice = "<%=lowPrice%>";
  	    		let highPrice ="<%=highPrice%>";
  	    		
  	    		<!-- 최초 페이지가 아닐 경우 -->
  	    		if(<%=cpage%> != 1){
- 	    			$("input[name='proName']").val(proName);
+ 	    			
 					$("input[name='userName']").val(userName);
 					$("input[name='lowPrice']").val(lowPrice);
 					$("input[name='highPrice']").val(highPrice);
@@ -231,7 +219,17 @@
    		<script>
    				$(".list-area>tbody>tr").click(function(){
    					
-	   					let value = "<tr>"
+   					$.ajax({
+   						
+   						
+   						url:"select.adOrd" , 
+   						data:{
+   								ordNo:$(this).children().eq(1).text();
+   						} ,
+   						type : "post" ,
+   						success : function(proList){
+   							
+   								let value = "<tr>"
 									+ "<th>주문번호</th>"
 									+ "<td>" + $(this).children().eq(1).text() + "</td>"
 									+ "</tr>"
@@ -248,25 +246,37 @@
 									+ "</tr>"
 									
 									+ "<tr>"
-									+ "<th>상품명</th>"
-									+ "<td>" + $(this).children().eq(2).text() + "</td>"
-									+ "</tr>"
-									
-									+ "<tr>"
-									+ "<th>상품수량</th>"
-									+ "<td>" + $(this).find("input").eq(0).val() + "</td>"
-									+ "</tr>"
-									
-									+ "<tr>"
 									+ "<th>배송지</th>"
 									+ "<td>" + $(this).children().eq(4).text() + "</td>"
-									+ "</tr>"
+									+ "</tr>";
+									
+									for (let i ; i < listSize; i++){
+										value += "<tr>"
+											+ "<th>상품명</th>"
+											+ "<td>" + sth['ordPro' + i] + "</td>"
+											+ "</tr>"
+											
+											+ "<tr>"
+											+ "<th>상품수량</th>"
+											+ "<td>" + th['amount' + i] + "</td>"
+											+ "</tr>"
+									}
 									
 									
 						$(".motalT").html(value);
+   	            			}else { 
+   	            			} 
+   							
+   							// 페이지 새로 고침
+   							location.reload();
+   						} ,
+   						error : function(){
+   	            				
+   							
+   						} 
+   					})
+	   					
 						
-									
-						console.log($(".motalT td").eq(0).text());
 				})
  		</script>
        
@@ -313,6 +323,7 @@
 					type : "post" ,
 					success : function(result){
 						if(result > 0) {
+							alert("상품 삭제 성공");
             			}else { 
             				alert("상품 삭제 실패");
             			} 
@@ -321,7 +332,6 @@
 						location.reload();
 					} ,
 					error : function(){
-            				alert("상품 삭제 성공");
 						
 					} 
 				})

@@ -16,8 +16,7 @@
 		          FROM (
 		                SELECT TB_ORDER.ORD_NO 주문번호
 		                
-		                     , PRODUCT.PRO_NAME 상품이름
-		                     , ORD_PRO.AMOUNT 상품개수
+		                   
 		                     
 		                     , MEMBER.USER_NAME 유저이름
 		                     , TB_ORDER.DEL_ADD 배송지
@@ -30,11 +29,10 @@
 		                     , TB_ORDER.DELIVERY 배송여부
 		                     
 		                     , TB_ORDER.REQUIRE 배송시요청사항
-		                  FROM TB_ORDER 
-                     LEFT JOIN PRODUCT ON( TB_ORDER.PRO_NO = PRODUCT.PRO_NO)
-                     LEFT JOIN ORD_PRO ON ( TB_ORDER.ORD_NO = ORD_PRO.ORD_NO)
+		                  FROM TB_ORDER      
                      LEFT JOIN PAYMENT ON ( TB_ORDER.ORD_NO = PAYMENT.ORD_NO)
                      LEFT JOIN MEMBER  ON ( TB_ORDER.USER_NO = MEMBER.USER_NO)
+       
 		                 WHERE TB_ORDER.STATUS = 'Y'
 	</entry>
 		
@@ -48,9 +46,6 @@
 		SELECT ORD.*
 		  FROM (
 		        SELECT TB_ORDER.ORD_NO 주문번호
-		        
-		             , PRODUCT.PRO_NAME 상품이름
-		             , ORD_PRO.AMOUNT 상품개수
 		             
 		             , MEMBER.USER_NO 유저번호
 		             , MEMBER.USER_NAME 유저이름
@@ -61,58 +56,21 @@
 		             
 		             , PAYMENT.DISCOUNT 사용적립금
 		             , PAYMENT.TOTAL_PRICE 최종결제금액
-		             , PRODUCT.SAVE 적립률
 		             
 		             , TB_ORDER.PAYMENT 결제여부
 		             , TB_ORDER.DELIVERY 배송여부
-		             , PRODUCT.SOLDOUT 품절여부
-		             , TO_DATE(PRODUCT.EXPIRED_DATE, 'YYYY-MM-DD') - SYSDATE 남은유통기한
 		       
 		             , TB_ORDER.REQUIRE 배송시요청사항
+		             
 		          FROM TB_ORDER 
-		     LEFT JOIN PRODUCT ON( TB_ORDER.PRO_NO = PRODUCT.PRO_NO)
-		     LEFT JOIN ORD_PRO ON ( TB_ORDER.ORD_NO = ORD_PRO.ORD_NO)
 		     LEFT JOIN PAYMENT ON ( TB_ORDER.ORD_NO = PAYMENT.ORD_NO)
 		     LEFT JOIN MEMBER  ON ( TB_ORDER.USER_NO = MEMBER.USER_NO)
 		         WHERE TB_ORDER.STATUS = 'Y'
 		        ) ORD
 		    WHERE 결제여부 = 'Y'
 		      AND 배송여부 = 'N'
-		      AND 품절여부 = 'N'
-		      AND 남은유통기한 > 0
+		
 	</entry>
 	
-	
-	<!-- 사용 X -->
-	<entry key="dummy"> 
-			SELECT RNUM, TB1.*
-		  FROM (
-		        SELECT ROWNUM RNUM, TB.*
-		          FROM (
-		                SELECT TB_ORDER.ORD_NO 주문번호
-		                     , TB_ORDER.PRO_NO 상품번호
-		                     , PRODUCT.PRO_NAME 상품이름
-		                     , ORD_PRO.AMOUNT 상품개수
-		                     , TB_ORDER.USER_NO 유저번호
-		                     , MEMBER.USER_NAME 유저이름
-		                     , TB_ORDER.DEL_ADD 배송지
-		                     , TB_ORDER.PAYMENT 결제여부
-		                     , TB_ORDER.DELIVERY 배송여부
-		                     , TB_ORDER.PHONE 휴대전화
-		                     , TB_ORDER.EMAIL 이메일
-		                     , TB_ORDER.ADDRESS 주소
-		                     , PAYMENT.DISCOUNT 사용적립금
-		                     , PAYMENT.TOTAL_PRICE 최종결제금액
-		                     , PRODUCT.SAVE 적립률
-		                     , TB_ORDER.REQUIRE 배송시요청사항
-		                  FROM TB_ORDER 
-                     LEFT JOIN PRODUCT ON( TB_ORDER.PRO_NO = PRODUCT.PRO_NO)
-                     LEFT JOIN ORD_PRO ON ( TB_ORDER.ORD_NO = ORD_PRO.ORD_NO)
-                     LEFT JOIN PAYMENT ON ( TB_ORDER.ORD_NO = PAYMENT.ORD_NO)
-                     LEFT JOIN MEMBER  ON ( TB_ORDER.USER_NO = MEMBER.USER_NO)
-		                 WHERE TB_ORDER.STATUS = 'Y'	
-	</entry>
-
-
 
 </properties>

@@ -3,80 +3,142 @@
 <properties>
 
 	<entry key="selectFoodList">
-		SELECT 
-				PRO_NO
-			  ,	PRO_NAME
-		      , PRICE
-			  , THUMB_IMG
-		     FROM PRODUCT
-	 WHERE CATEGORY = '주식'	     
-	
-	</entry>
-	
-	<entry key="selectDetail">
-			SELECT
-				PRO_NO
-			  ,	PRO_NAME
-		      , PRICE
-			  , THUMB_IMG
-		     FROM PRODUCT
-		     WHERE PRO_NO = ?
-	</entry>
-	
-	<entry key="selectDryList">
-		SELECT	
-				PRO_NO		
-			  ,	PRO_NAME
-		      , PRICE
-			  , THUMB_IMG
-			  FROM PRODUCT
-	 WHERE CATEGORY = '건조간식'	     
-	
-	</entry>
-	
-	<entry key="selectOvenList">
-		SELECT 
-				PRO_NO
-			  ,	PRO_NAME
-		      , PRICE
-			  , THUMB_IMG
-		     FROM PRODUCT
-	 WHERE CATEGORY = '오븐간식'	     
-	
-	</entry>
-	
-	<entry key="selectPartyList">
-	SELECT 
-				PRO_NO
-			  ,	PRO_NAME
-		      , PRICE
-			  , THUMB_IMG
-		     FROM PRODUCT
-	 WHERE CATEGORY = 'PARTY'	     
-	
-	</entry>
-	
-	
-	<entry key="detailProduct">
-		SELECT 
-			   PRO_NO
-	       
-	       , FILE_PATH
-	       , FILE_LEVEL
-	        
-			FROM PRO_ATT
-			WHERE PRO_NO=?
+		SELECT
+		PRO_NO
+		, PRO_NAME
+		, PRICE
+		, THUMB_IMG
+		FROM PRODUCT
+		WHERE CATEGORY = '주식'
+
 	</entry>
 
-	<entry key = "productDetailFood">
+
+	<entry key="selectDryList">
 		SELECT
-       PRO_NO
-       , PRO_NAME
-       , PRICE
-       , THUMB_IMG
-       FROM PRODUCT
-       WHERE PRO_NO=?
-	
+		PRO_NO
+		, PRO_NAME
+		, PRICE
+		, THUMB_IMG
+		FROM PRODUCT
+		WHERE CATEGORY = '건조간식'
+
+	</entry>
+
+	<entry key="selectOvenList">
+		SELECT
+		PRO_NO
+		, PRO_NAME
+		, PRICE
+		, THUMB_IMG
+		FROM PRODUCT
+		WHERE CATEGORY = '오븐간식'
+
+	</entry>
+
+	<entry key="selectPartyList">
+		SELECT
+		PRO_NO
+		, PRO_NAME
+		, PRICE
+		, THUMB_IMG
+		FROM PRODUCT
+		WHERE CATEGORY = 'PARTY'
+
+	</entry>
+
+
+	<entry key="detailProduct">
+		SELECT
+		PRO_NO
+
+		, FILE_PATH
+		, FILE_LEVEL
+
+		FROM PRO_ATT
+		WHERE
+		PRO_NO=?
+	</entry>
+
+	<entry key="productDetailFood">
+		SELECT
+		PRO_NO
+		, PRO_NAME
+		, PRICE
+		, THUMB_IMG
+		FROM PRODUCT
+		WHERE PRO_NO=?
+
+	</entry>
+
+	<entry key="productDetailDry">
+		SELECT
+		PRO_NO
+		, PRO_NAME
+		, PRICE
+		, THUMB_IMG
+		FROM PRODUCT
+		WHERE PRO_NO=?
+
+	</entry>
+
+	<entry key="detailProductDry">
+		SELECT
+		PRO_NO
+
+		, FILE_PATH
+		, FILE_LEVEL
+
+		FROM PRO_ATT
+		WHERE
+		PRO_NO=?
+	</entry>
+
+
+	<entry key="orderList">
+		SELECT
+		PRO_NO
+		, PRO_NAME
+		, PRICE
+		, THUMB_IMG
+		FROM PRODUCT
+		WHERE PRO_NO=?
+	</entry>
+
+	<entry key="orderbyNewParty">
+		
+		SELEC
+		PRO_NO 
+	  ,	PRO_NAME
+	  , PRICE
+	  , THUMB_IMG
+		FROM PRODUCT
+		WHERE CATEGORY='PARTY'
+		ORDER BY ENROLL_DATE DESC
 	</entry>
 	
+	<entry key="orderbyRowParty">
+		
+		  SELECT 
+		  PRO_NO
+		, PRO_NAME
+		, PRICE
+		, THUMB_IMG
+    	  FROM PRODUCT
+    	WHERE CATEGORY='PARTY'
+        ORDER BY PRICE;
+	</entry>
+	
+	<entry key="orderbyHighParty">
+		     
+		    SELECT 
+		    PRO_NO
+		  ,	PRO_NAME
+		  , PRICE
+	  	  , THUMB_IMG
+		    FROM PRODUCT
+		  WHERE CATEGORY='PARTY'
+		  ORDER BY PRICE DESC;    
+	</entry>
+
 </properties>

@@ -1,4 +1,4 @@
-package com.odd.member.controller;
+package com.odd.product.controller;
 
 import java.io.IOException;
 
@@ -8,20 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.member.model.service.MyOrderService;
-import com.odd.member.model.vo.MyOrder;
+import com.odd.member.model.service.ReviewService;
+import com.odd.member.model.vo.Review;
 
 /**
- * Servlet implementation class MyOrderReviewController
+ * Servlet implementation class ProductReviewListController
  */
-@WebServlet("/review.me")
-public class MyOrderReviewController extends HttpServlet {
+@WebServlet("/review.pro")
+public class ProductReviewListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyOrderReviewController() {
+    public ProductReviewListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +31,16 @@ public class MyOrderReviewController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 상품번호 받아오기
-		//MyOrder to = new MyOrderService().selectreviewNo(상품번호);
+		int proNo = Integer.parseInt(request.getParameter("proNo"));
 		
-		// TB_ORDER테이블에서 주문번호 받아오기
-		int ordNo = Integer.parseInt(request.getParameter("ordNo"));
+		Review r = new ReviewService().selectReview(proNo);
 		
-		MyOrder m = new MyOrderService().selectMyOrder(ordNo);
+		MyOrder m = new MyOrderService().selectMyOrder()
 		
-		request.setAttribute("m", m);
+		request.setAttribute("r", r);
 		
+		request.getRequestDispatcher("views/product/productReviewView.jsp").forward(request,response);
 		
-		request.getRequestDispatcher("views/member/myOrderReviewForm.jsp").forward(request, response);
 	}
 
 	/**

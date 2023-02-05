@@ -46,5 +46,23 @@ public class AdminOrderService {
 		return list;
 		
 	}
+	
+	public AdminOrder selectOrder(int ordNo) {
+		Connection conn = getConnection();
+		
+		AdminOrder o = new AdminOrderDao().selectOrder(conn, ordNo);
+		close(conn);
+		
+		return o;
+	}
+	
+	public ArrayList<AdminOrder> selectOrdPro(int ordNo){
+		Connection conn = getConnection();
+		
+		ArrayList<AdminOrder> list = new AdminOrderDao().selectOrdPro(conn, ordNo);
+		close(conn);
+		
+		return list;
+	}
 
 }

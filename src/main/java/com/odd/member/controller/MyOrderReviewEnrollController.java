@@ -45,11 +45,16 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/review_upfiles/");
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
+			int ordNo = Integer.parseInt(multiRequest.getParameter("ordNo"));
+			String proName = multiRequest.getParameter("proName");
+			String userId = multiRequest.getParameter("userId");
 			double star = Double.parseDouble(multiRequest.getParameter("star"));
 			String reviewTitle = multiRequest.getParameter("reviewTitle");
 			String reviewContent = multiRequest.getParameter("reviewContent");
 			
 			Review r = new Review();
+			r.setProName(proName);
+			r.setUserId(userId);
 			r.setStar(star);
 			r.setReviewTitle(reviewTitle);
 			r.setReviewContent(reviewContent);
@@ -59,7 +64,7 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 				r.setFilePath("resources/review_upfiles" + multiRequest.getFilesystemName("upfile"));
 			}
 			
-			/*int result = new ReviewService().insertReview();
+			int result = new ReviewService().insertReview(r);
 			
 			if(result > 0) {
 				HttpSession session = request.getSession();
@@ -77,7 +82,7 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 			
 			response.sendRedirect(request.getContextPath() + "/order.me");
 			
-			*/
+			
 		}
 		
 		

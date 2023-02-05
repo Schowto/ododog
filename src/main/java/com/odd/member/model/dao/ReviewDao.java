@@ -4,9 +4,13 @@ import static com.odd.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Properties;
 
-import org.apache.catalina.authenticator.jaspic.PersistentProviderRegistrations.Property;
+import com.odd.member.model.vo.Review;
 
 public class ReviewDao {
 	
@@ -22,10 +26,116 @@ public class ReviewDao {
 		}
 	}
 	
+	public int insertReview(Connection conn, Review r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getProName());
+			pstmt.setString(2, r.getUserId());
+			pstmt.setString(3, r.getReviewTitle());
+			pstmt.setString(4, r.getReviewContent());
+			pstmt.setDouble(5, r.getStar());
+			pstmt.setString(4, r.getReviewPhoto());
+			pstmt.setString(5, r.getFilePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
-	public 
+	public int updateReview(Connection conn, Review r) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReviewTitle());
+			pstmt.setString(2, r.getReviewContent());
+			pstmt.setDouble(3, r.getStar());
+			pstmt.setString(4, r.getReviewPhoto());
+			pstmt.setString(5, r.getFilePath());
+			pstmt.setInt(6, r.getReviewNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
-	
+	public int deleteReview(Connection conn, int reviewNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reviewNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public Review selectReview(Connection conn, int proNo) {
+		Review r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, proNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = new Review(rset.getInt("review_no"),
+							   rset.getString("pro_name"),
+							   rset.getString("user_id"),
+							   rset.getString("review_title"),
+							   rset.getString("review_content"),
+							   rset.getDouble("star"),
+							   rset.getDate("modify_date"),
+							   rset.getDate("enroll_date"),
+							   rset.getString("review_photo"),
+							   rset.getString("file_path"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return r;
+		
+		
+	}
+
+	private Connection getConnection() {
+		return null;
+	}
 	
 	
 

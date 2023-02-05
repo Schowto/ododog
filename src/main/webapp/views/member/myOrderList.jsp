@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.odd.order.model.vo.*, com.odd.member.model.vo.*, com.odd.order.model.vo.*"%>
 <%
-	//ArrayList list = (ArrayList<Order>)request.getAttribute("list");
+	ArrayList<MyOrder> list = (ArrayList<MyOrder>)request.getAttribute("list");
 	//Review r = (Review)request.getAttribute("r");
 %>
 <!DOCTYPE html>
@@ -107,8 +107,12 @@
         opacity: 0.7;
         cursor: pointer;
     }
-    .myOderList>tbody>tr>td:hover{
+    .myOderList tr:hover{
     	background:rgb(220,220,220);
+        cursor: pointer;
+    }
+    .myOrderList{
+    	box-sizing: border-box;
     }
 </style>
 </head>
@@ -186,11 +190,9 @@
                 <br>
                 
                 <div class="myOrderList">
-                    <form action="" method="post">
-                    	<input type="hidden" name="reviewNo" value="주문번호넘기기">
-                        <table>
+                    <table>
                         	<thead>
-	                            <tr>
+	                            <tr style="font-size:13px;">
 	                                <td style="width:200px;">주문일자[주문번호]</td>
 	                                <td style="width:150px;">이미지</td>
 	                                <td style="width:150px;">상품이름</td>
@@ -202,6 +204,7 @@
                          	<tbody>
                          	
 	                         	<!--주문내역이없을때-->
+                                <% if(list.isEmpty()){%>
 	                            <tr>
 	                                <td colspan="6" style="height:150px; font-weight: 600;">
 	                                    <br><br>
@@ -210,19 +213,29 @@
 	                                    <br><br><br>
 	                                </td>
 	                            </tr>
-	                            
+	                            <% } else{ %>
 	                        	<!-- 주문내역이있을때 -->
-	                            <tr>
-	                                <td style="width:200px; height:150px;" id="orderNo">20230122-1234567</td>
-	                                <td style="width:150px;"><img src=""></td>
-	                                <td style="width:150px;">댕댕이수제간식</td>
-	                                <td style="width:100px;">1</td>
-	                                <td style="width:200px;">15,000원</td>
-	                                <td style="width:200px;">배송준비중</td>
-	                            </tr>
+	                        		<%for(MyOrder m : list) {%>
+		                            <tr style="font-size:13px;">
+		                                <td style="width:100px; height:100px;"><%=m.getOrdNo() %></td>
+		                                <td style="width:150px;"><img src="<%=m.getThumbImg()%>" style="width:100px; height:100px; padding:5px;"></td>
+		                                <td style="width:150px;"><%=m.getProName() %></td>
+		                                <td style="width:100px;"><%=m.getAmount() %></td>
+		                                <td style="width:200px;"><%=m.getPrice() %></td>
+		                                <td style="width:200px;"><%=m.getDeliveryStatus() %></td>
+		                            </tr>
+		                            <%} %>
+                                <%}%>
                             </tbody>
                         </table>
-                    </form>
+                        
+                        <script>
+                        	$(function(){
+                        		$(".myOrderList>tbody>tr").click(function(){
+                        			location.href='<%=contextPath%>/myOrderDetail.me?no=' + $(this).children().ep(0).text();
+                        		})
+                        	})
+                        </script>
 
 
 

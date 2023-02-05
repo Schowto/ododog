@@ -32,5 +32,30 @@ public class AdminBoardService {
 		close(conn);
 		return count;
 	}
+	public ArrayList<Reply> selectReplyList(PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new AdminBoardDao().selectReplyList(conn, pi);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 게시글 검색 결과 개수 구하는 메소드
+	 * @param boardSort 게시글 검색 필터
+	 * @param boardKeyword 게시글 검색 키워드
+	 * @return
+	 */
+	public int selectSearchListCount(String boardSort, String boardKeyword) {
+		Connection conn = getConnection();
+		int count = new AdminBoardDao().selectSearchListCount(conn, boardSort, boardKeyword);
+		close(conn);
+		return count;
+	}
+	public int selectSearchReplyListCount(String replySort, String replyKeyword) {
+		Connection conn = getConnection();
+		int count = new AdminBoardDao().selectSearchReplyListCount(conn, replySort, replyKeyword);
+		close(conn);
+		return count;
+	}
 
 }

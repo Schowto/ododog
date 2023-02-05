@@ -33,6 +33,16 @@ public class Reply {
 		this.count = count;
 	}
 	
+	// selectReplyList(관리자)
+	public Reply(int replyNo, int boardNo, String replyWriter, String replyContent, String createDate, String status) {
+		super();
+		this.replyNo = replyNo;
+		this.boardNo = boardNo;
+		this.replyWriter = replyWriter;
+		this.replyContent = replyContent;
+		this.createDate = createDate;
+		this.status = status;
+	}
 	
 	public int getReplyNo() {
 		return replyNo;
