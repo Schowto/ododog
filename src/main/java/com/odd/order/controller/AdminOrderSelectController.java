@@ -37,31 +37,17 @@ public class AdminOrderSelectController extends HttpServlet {
 		
 		int ordNo = Integer.parseInt(request.getParameter("ordNo"));
 				
-				AdminOrder o = new AdminOrderService().selectProduct(ordNo);
+				AdminOrder o = new AdminOrderService().selectOrder(ordNo);
 				ArrayList<OrdPro> list = new AdminOrderService().selectOrdPro(ordNo); 
 				
+				request.setAttribute("o", o);
+				request.setAttribute("list", list);
 				
-				// Gson 사용 가능
-				JSONObject jObj = new JSONObject();
-				jObj.put("ordNo", o.getOrdNo());
-				jObj.put("userNo", o.getOrdNo());
-				jObj.put("delAdd", o.getDelAdd());
-				jObj.put("phone", o.getPhone());
-				jObj.put("email", o.getEmail());
-				jObj.put("address", o.getAddress());
-				jObj.put("require", o.getRequire());
-				jObj.put("orderDate", o.getOrderDate());
-				jObj.put("listSize", list.size());
 				
-				for(int i = 0; i < list.size() ; i++) {
-					jObj.put("ordPro" + (i+1), list.get(i).getProNo());
-					jObj.put("amout" + (i+1), list.get(i).getAmount());
-					}
+				request.getRequestDispatcher("views/order/adminOrderDetailView.jsp").forward(request, response);
 				
-				response.setContentType("application/json; charset=utf-8");
-				response.getWriter().print(jObj);
-			
-	
+				System.out.println(ordNo);
+				System.out.println(list);
 	}
 
 	/**

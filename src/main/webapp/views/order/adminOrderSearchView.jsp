@@ -105,7 +105,7 @@
         
             <br>
             <h2>배송 가능한 주문 
-            	<span class="font-italic font-weight-lighter" style="font-size:0.4em;">결제 후 배송 전</span>
+            	<span class="font-italic font-weight-lighter" style="font-size:0.4em;">결제완료, 배송 시작 전</span>
            	</h2>
             <br>
 			
@@ -217,128 +217,15 @@
    		</div>
    		
    		<script>
+   		 $(function(){
    				$(".list-area>tbody>tr").click(function(){
-   					
-   					$.ajax({
-   						
-   						
-   						url:"select.adOrd" , 
-   						data:{
-   								ordNo:$(this).children().eq(1).text();
-   						} ,
-   						type : "post" ,
-   						success : function(proList){
-   							
-   								let value = "<tr>"
-									+ "<th>주문번호</th>"
-									+ "<td>" + $(this).children().eq(1).text() + "</td>"
-									+ "</tr>"
-									
-									
-									+ "<tr>"
-									+ "<th>고객번호</th>"
-									+ "<td>" + $(this).find("input").eq(1).val() + "</td>"
-									+ "</tr>"
-									
-									+ "<tr>"
-									+ "<th>고객이름</th>"
-									+ "<td>" + $(this).children().eq(3).text() + "</td>"
-									+ "</tr>"
-									
-									+ "<tr>"
-									+ "<th>배송지</th>"
-									+ "<td>" + $(this).children().eq(4).text() + "</td>"
-									+ "</tr>";
-									
-									for (let i ; i < listSize; i++){
-										value += "<tr>"
-											+ "<th>상품명</th>"
-											+ "<td>" + sth['ordPro' + i] + "</td>"
-											+ "</tr>"
-											
-											+ "<tr>"
-											+ "<th>상품수량</th>"
-											+ "<td>" + th['amount' + i] + "</td>"
-											+ "</tr>"
-									}
-									
-									
-						$(".motalT").html(value);
-   	            			}else { 
-   	            			} 
-   							
-   							// 페이지 새로 고침
-   							location.reload();
-   						} ,
-   						error : function(){
-   	            				
-   							
-   						} 
-   					})
-	   					
-						
-				})
+ 					$(location).attr("href", "<%=contextPath%>/select.adOrd?ordNo=" + $(this).children().eq(1).text());
+ 					
+			})
+   		})
  		</script>
        
-		
-		<!-- The Modal -->
-		<div class="modal" id="myModal">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		
-		      <!-- Modal Header -->
-		      <div class="modal-header">
-		        <h4 class="modal-title">배송 처리</h4>
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		      </div>
-		
-		      <!-- Modal body -->
-		      <div class="modal-body">
-		        <table class="table motalT" style='text-align:center;'>
-				    <tbody>
-				    </tbody>
-				  </table>
-		      </div>
-		
-		      <!-- Modal footer -->
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary" data-dismiss="modal" id="Confirm">배송 시작</button>
-		      </div>
-		
-		    </div>
-		  </div>
-		</div>
-        
-        <script>
-			$("#Confirm").click(function(){
-				
-				$.ajax({
-					
-					
-					url:"confirm.adOrd" , 
-					data:{
-							userNo:$(".motalT").find("td").eq(0).text() ,
-							ordNo:$(".motalT").find("td").eq(1).text()		
-					} ,
-					type : "post" ,
-					success : function(result){
-						if(result > 0) {
-							alert("상품 삭제 성공");
-            			}else { 
-            				alert("상품 삭제 실패");
-            			} 
-						
-						// 페이지 새로 고침
-						location.reload();
-					} ,
-					error : function(){
-						
-					} 
-				})
-			})	
-			
-		</script>
-        
+     
         
     </div>
 </body>

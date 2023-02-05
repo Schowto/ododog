@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.odd.common.model.vo.PageInfo;
 import com.odd.order.model.vo.AdminOrdSearch;
 import com.odd.order.model.vo.AdminOrder;
+import com.odd.order.model.vo.OrdPro;
 import com.odd.product.model.vo.ProAtt;
 import com.odd.product.model.vo.Product;
 
@@ -181,12 +182,23 @@ public class AdminOrderDao {
 				rset = pstmt.executeQuery();
 				
 				while(rset.next()){	
+							o = new AdminOrder(rset.getInt("ord_no")
+									, rset.getInt("user_no")
+									, rset.getString("user_name")
+									, rset.getString("del_add")
+									, rset.getString("phone")
+									, rset.getString("email")
+									, rset.getInt("discount")
+									, rset.getInt("total_Price")
+									, rset.getString("delivery")
+									, rset.getString("require")
+									);
 					
-					
-					
-					
-					
-					
+							o.setPayment(rset.getString("payment"));
+							o.setDeliveryPrice(rset.getInt("배송비"));
+							o.setAddress(rset.getString("address"));
+							o.setOrderDate(rset.getString("order_Date"));
+							
 								
 								}
 				
@@ -202,13 +214,14 @@ public class AdminOrderDao {
 		}
 		
 	
-		public ArrayList<AdminOrder> selectOrdPro(Connection conn, int ordNo){
+		public ArrayList<OrdPro> selectOrdPro(Connection conn, int ordNo){
 			
 			ResultSet rset = null;
-			ArrayList<AdminOrder> list = new ArrayList<>();
+			ArrayList<OrdPro> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
+			OrdPro op = null;
 			
-			String sql = prop.getProperty("selectProAtt");
+			String sql = prop.getProperty("selectOrdPro");
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -218,12 +231,20 @@ public class AdminOrderDao {
 				rset = pstmt.executeQuery();
 				
 				while(rset.next()){	
-			
-					
-					
-					
-					
-					
+							op = new OrdPro(rset.getInt("ord_Pro_No")
+									, rset.getInt("ord_No")
+									, rset.getInt("pro_No")
+									, rset.getInt("amount")
+									);
+							
+							op.setProName(rset.getString("pro_name"));
+							op.setPrice(rset.getInt("price"));
+							op.setThumbImg(rset.getString("thumb_Img"));
+							op.setCategory(rset.getString("category"));
+							op.setSave(rset.getDouble("save"));
+							
+							list.add(op);
+							
 						}
 				
 			} catch (SQLException e) {

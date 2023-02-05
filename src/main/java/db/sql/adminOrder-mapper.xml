@@ -16,8 +16,6 @@
 		          FROM (
 		                SELECT TB_ORDER.ORD_NO 주문번호
 		                
-		                   
-		                     
 		                     , MEMBER.USER_NAME 유저이름
 		                     , TB_ORDER.DEL_ADD 배송지
 		                     , TB_ORDER.PHONE 휴대전화
@@ -70,6 +68,22 @@
 		    WHERE 결제여부 = 'Y'
 		      AND 배송여부 = 'N'
 		
+	</entry>
+	
+	<entry key ="selectOrder">
+			SELECT T.*, P.*, M.*, P.DELIVERY 배송비
+			  FROM TB_ORDER T
+			  LEFT JOIN PAYMENT P ON (T.USER_NO =P.ORD_NO)
+			  LEFT JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
+			 WHERE T.ORD_NO = ?
+	
+	</entry>
+	
+	<entry key ="selectOrdPro">
+		 SELECT *
+		   FROM ORD_PRO
+		   JOIN PRODUCT ON (ORD_PRO.PRO_NO = PRODUCT.PRO_NO)
+		  WHERE ORD_NO = ?
 	</entry>
 	
 

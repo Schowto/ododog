@@ -10,6 +10,7 @@ import com.odd.common.model.vo.PageInfo;
 import com.odd.order.model.dao.AdminOrderDao;
 import com.odd.order.model.vo.AdminOrdSearch;
 import com.odd.order.model.vo.AdminOrder;
+import com.odd.order.model.vo.OrdPro;
 
 public class AdminOrderService {
 	
@@ -56,10 +57,10 @@ public class AdminOrderService {
 		return o;
 	}
 	
-	public ArrayList<AdminOrder> selectOrdPro(int ordNo){
+	public ArrayList<OrdPro> selectOrdPro(int ordNo){
 		Connection conn = getConnection();
 		
-		ArrayList<AdminOrder> list = new AdminOrderDao().selectOrdPro(conn, ordNo);
+		ArrayList<OrdPro> list = new AdminOrderDao().selectOrdPro(conn, ordNo);
 		close(conn);
 		
 		return list;

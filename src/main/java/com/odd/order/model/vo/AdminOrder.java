@@ -25,6 +25,8 @@ public class AdminOrder {
 	private String require;
 	private String orderDate;
 	
+	private int deliveryPrice;
+	
 	public AdminOrder() {}
 	
 	
@@ -148,6 +150,18 @@ public class AdminOrder {
 
 	
 	
+	public int getDeliveryPrice() {
+		return deliveryPrice;
+	}
+
+
+
+	public void setDeliveryPrice(int deliveryPrice) {
+		this.deliveryPrice = deliveryPrice;
+	}
+
+
+
 	public String getOrderDate() {
 		return orderDate;
 	}
