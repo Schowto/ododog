@@ -46,8 +46,6 @@ public class AdminOrderSelectController extends HttpServlet {
 				
 				request.getRequestDispatcher("views/order/adminOrderDetailView.jsp").forward(request, response);
 				
-				System.out.println(ordNo);
-				System.out.println(list);
 	}
 
 	/**

@@ -166,6 +166,24 @@ public class AdminOrderDao {
 		
 	}
 	
+	/**  주문 정보 조회 (상품정보제외) 
+	 * 
+	 * @param ordNo -- > 상품 번호
+	 * @return AdminOrder -- 주문 정보
+	 *          >> 주문번호 ordNo
+	 *          >> 회원번호 userNo
+	 *          >> 배송지 delAdd
+	 *          >> 전화번호 phone
+	 *          >> 이메일 email
+	 *          >> 사용적립금 discount
+	 *          >> 최종사용금액 totalPrice
+	 *          >> 배송여부('Y' or 'N') delivery
+	 *          >> 입금여부('Y' or 'N') payment
+	 *          >> 배송시요구사항 require
+	 *          >> 회원주소 address
+	 *          >> 배송비 deliveryPrice
+	 *          >> 주문등록날짜 orderDate
+	 */
 	public AdminOrder selectOrder(Connection conn, int ordNo) {
 			
 			AdminOrder o = null;
@@ -214,6 +232,23 @@ public class AdminOrderDao {
 		}
 		
 	
+		/** 주문별 상품정보 조회
+		 * 
+		 * @param ordNo
+		 * @return list -- 상품 정보
+		 * 			>> ordProNo 인덱스
+		 * 
+		 * 			>> ordNo 주문 번호
+		 * 
+		 * 			>> proNo 상품 번호
+		 *          >> proName 상품 이름
+		 *          >> price 상품 가격 
+		 *          >> thumbImg 섬네일 이미지
+		 *          >> category 카테고리
+		 *          >> save 적립률
+		 * 			>> amount 상품 수량
+		 * 
+		 */
 		public ArrayList<OrdPro> selectOrdPro(Connection conn, int ordNo){
 			
 			ResultSet rset = null;
