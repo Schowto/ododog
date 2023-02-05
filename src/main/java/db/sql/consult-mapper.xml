@@ -97,7 +97,7 @@
 		     , CONSULT_ANSWER
 		     , ANSWER_DATE
 		     , C.STATUS
-		     , ORIGIN_NAME
+		     , NVL(ORIGIN_NAME, '없음') "ORIGIN_NAME"
 		     , FILE_PATH
 		     , CONSULT_CATEGORY
 		     , RESPONDENTS

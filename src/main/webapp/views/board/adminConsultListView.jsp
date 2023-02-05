@@ -113,7 +113,7 @@
 
             <br><br>
             <div class="searchTable" align="left">
-                <select name="answerStatus" id="answerStatus" style="height:30px; width:100px;">
+                <select name="answerStatus" id="answerStatus" style="height:30px; width:100px;" onchange="searchAnswer();">
                     <option value="no">미답변</option>
                     <option value="yes">답변</option>
                 </select>
@@ -146,7 +146,7 @@
 	                  <td><%=c.getEnrollDate()%></td>
 	                  <td><%=c.getAnswerStatus()%></td>
 	                  <td>
-	                  <button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">게시물삭제</button> 
+	                  <button type="button" id="delete" style="float: right;" onclick="location.href ='<%=contextPath%>/deleteAdmin.co?no=<%=c.getConsultNo()%>'">게시물삭제</button> 
 	                  </td>
 	                </tr>
 	                <%} %>
@@ -165,7 +165,23 @@
         </div>
        </div>
         
+       <script>
+        function searchAnswer(){
+          $.ajax({
+            url: "<%=c.getContextPath()%>/",
+            date: {answer : $("searchAnswer option:selected").val()},
+            type: "post",
+            success: function(result){
 
+            },
+            error:function(){
+
+            } ,
+
+          })
+        }
+
+       </script>
         
      	
 

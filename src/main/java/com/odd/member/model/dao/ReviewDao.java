@@ -26,7 +26,7 @@ public class ReviewDao {
 		}
 	}
 	
-	public int insertReview(Connection conn, Review r) {
+	public int insertReview(Connection conn, int proNo, int userNo, Review r) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -39,9 +39,10 @@ public class ReviewDao {
 			pstmt.setString(3, r.getReviewTitle());
 			pstmt.setString(4, r.getReviewContent());
 			pstmt.setDouble(5, r.getStar());
-			pstmt.setString(4, r.getReviewPhoto());
-			pstmt.setString(5, r.getFilePath());
-			
+			pstmt.setString(6, r.getReviewPhoto());
+			pstmt.setString(7, r.getFilePath());
+			pstmt.setInt(8, proNo);
+			pstmt.setInt(9, userNo);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,8 +134,39 @@ public class ReviewDao {
 		
 	}
 
-	private Connection getConnection() {
-		return null;
+	public Review reviewStar(Connection conn, int proNo) {
+		Review r = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("reviewStar");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, proNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = new Review(rset.getInt("review_no"),
+						   rset.getString("pro_name"),
+						   rset.getString("user_id"),
+						   rset.getString("review_title"),
+						   rset.getString("review_content"),
+						   rset.getDouble("star"),
+						   rset.getDate("modify_date"),
+						   rset.getDate("enroll_date"),
+						   rset.getString("review_photo"),
+						   rset.getString("file_path"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return r;
+		
 	}
 	
 	

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.odd.member.model.vo.*" %>
+<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList" %>
 <%
-	Review r = (Review)request.getAttribute("r");
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -71,7 +71,7 @@
 
         	<table class="reviewTable">
 					<thaed>
-					<%if(r == null){ %>
+					<%if(list.isEmpty()){ %>
 					<!-- 리뷰가없을때 -->
 	                	<tr style="text-align:center;">
 	                		<td colspan="4" style="height:50px; font-weight: 600;" >
@@ -83,20 +83,23 @@
 							</td>
 	                	</tr>
                 	<%}else{ %>
-                	<!-- 리뷰가있을때 -->
-						<tr>
-							<td style="height:50px; width:60%; border-bottom: none;">&nbsp;&nbsp;<%=r.getStar() %></td>
-							<td rowspan="2"><img src="<%=r.getReviewPhoto()%>"></td>
-							<td rowspan="2">
-								&nbsp;&nbsp;상품명 : <%=r.getProName() %> <br>
-								&nbsp;&nbsp;작성자 : <%=r.getUserId() %><br>
-								&nbsp;&nbsp;작성일 : <%=r.getModifyDate() %>
-							</td>
-						</tr>
-						<tr>
-							<td style="height:50px;">&nbsp;&nbsp;<%=r.getReviewTitle() %></td>
-						</tr>
-					<%} %>
+	                	<%for(Review r : list) %>
+	                	<!-- 리뷰가있을때 -->
+							<tr>
+								<td style="height:50px; width:60%; border-bottom: none;">
+									<input type="text" style="border:none; font-size:15px; font-weight:600; width:30px; color:yellow;" value="<%=r.getStar()%>"> 점</td>
+								<td rowspan="2"><img src="<%=r.getReviewPhoto()%>"></td>
+								<td rowspan="2">
+									&nbsp;&nbsp;상품명 : <%=r.getProName() %> <br>
+									&nbsp;&nbsp;작성자 : <%=r.getUserId() %><br>
+									&nbsp;&nbsp;작성일 : <%=r.getModifyDate() %>
+								</td>
+							</tr>
+							<tr>
+								<td style="height:50px;">&nbsp;&nbsp;<%=r.getReviewTitle() %></td>
+							</tr>
+						<%} %>
+					<% } %>
 					</thead>
 					<tbody>
 						<tr>
@@ -124,6 +127,10 @@
 		<br><br><br><br><br><br><br><br><br>
 
 	</div>
+	
+	<script>
+		function 
+	</script>
 
 	
 	

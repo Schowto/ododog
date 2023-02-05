@@ -1,27 +1,26 @@
-package com.odd.member.controller;
+package com.odd.board.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.MyOrderService;
-import com.odd.member.model.vo.MyOrder;
+import com.odd.board.model.service.ConsultService;
 
 /**
- * Servlet implementation class MyOrderReviewController
+ * Servlet implementation class MyConsultAdminDeleteController
  */
-@WebServlet("/review.me")
-public class MyOrderReviewController extends HttpServlet {
+@WebServlet("/deleteAdmin.co")
+public class MyConsultAdminDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyOrderReviewController() {
+    public MyConsultAdminDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +30,20 @@ public class MyOrderReviewController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 상품번호 받아오기
-		//MyOrder to = new MyOrderService().selectreviewNo(상품번호);
+		int consultNo = Integer.parseInt(request.getParameter("no"));
 		
-		// TB_ORDER테이블에서 주문번호 받아오기
-		//int ordNo = Integer.parseInt(request.getParameter("ordNo"));
+		int result = new ConsultService().deleteConsult(consultNo);
 		
-		//MyOrder m = new MyOrderService().selectMyOrder(ordNo);
+		if(result > 0) {
+			HttpSession session = request.getSession();
+			session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
+			
+		}else {
+			request.setAttribute("errorMsg", "삭제에 실패했습니다.");
+			
+		}
 		
-		//request.setAttribute("m", m);
-		
-		
-		request.getRequestDispatcher("views/member/myOrderReviewForm.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/admin.co");
 	}
 
 	/**

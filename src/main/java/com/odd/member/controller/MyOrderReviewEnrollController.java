@@ -14,6 +14,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.odd.common.MyFileRenamePolicy;
 import com.odd.member.model.service.ReviewService;
+import com.odd.member.model.vo.Member;
 import com.odd.member.model.vo.Review;
 import com.oreilly.servlet.MultipartRequest;
 
@@ -45,7 +46,9 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/review_upfiles/");
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
-			int ordNo = Integer.parseInt(multiRequest.getParameter("ordNo"));
+			HttpSession session = request.getSession();
+			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
+			int proNo = Integer.parseInt(multiRequest.getParameter("proNo"));
 			String proName = multiRequest.getParameter("proName");
 			String userId = multiRequest.getParameter("userId");
 			double star = Double.parseDouble(multiRequest.getParameter("star"));
@@ -64,10 +67,10 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 				r.setFilePath("resources/review_upfiles" + multiRequest.getFilesystemName("upfile"));
 			}
 			
-			int result = new ReviewService().insertReview(r);
+			int result = new ReviewService().insertReview(proNo, userNo, r);
 			
 			if(result > 0) {
-				HttpSession session = request.getSession();
+				
 				session.setAttribute("alertMsg", "리뷰가 등록되었습니다.");
 				
 				
