@@ -212,7 +212,35 @@ public class UserProductDao {
 		
 	}
 	
-	
+	public ArrayList<UserProduct> orderbyParty(Connection conn){
+		ArrayList<UserProduct> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;	
+		
+		String sql = prop.getProperty("orderbyNewParty");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new UserProduct(
+										rset.getInt("pro_no"),
+										rset.getString("pro_name"),
+										rset.getInt("price"),
+										rset.getString("thumb_img")
+										
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
 	
 	
 	

@@ -171,9 +171,11 @@ input[type=number]::-webkit-inner-spin-button {
 				</span> <span> <b>16000원</b>
 				</span> <br> <br> <br>
 				　　　　　　　　
+				<script type="text/javascript">
+
 				<button type="button" class="btn btn-light" id="like">관심상품
 					등록</button>
-					
+			 	
 				<!-- like modal-->
 				<div class="modal fade2" id="testModal2" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -189,6 +191,8 @@ input[type=number]::-webkit-inner-spin-button {
 									<span aria-hidden="true">X</span>
 								</button>
 							</div>
+							
+							
 							<br>
 							<br>
 							<div id="img" align="center">

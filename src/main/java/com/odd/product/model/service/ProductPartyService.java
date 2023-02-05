@@ -15,4 +15,12 @@ public class ProductPartyService {
 		close(conn);
 		return list;
 	}
+	
+	public ArrayList<UserProduct> orderbyParty() {
+		Connection conn = getConnection();
+		ArrayList<UserProduct> list = new UserProductDao().selectPartyList(conn); 
+		close(conn);
+		return list;
+	}
+	
 }

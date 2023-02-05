@@ -10,6 +10,19 @@ UserProduct p = (UserProduct)request.getAttribute("p");
 <html>
 <head>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+        }
+    }).open();
+</script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <style>
@@ -78,7 +91,7 @@ UserProduct p = (UserProduct)request.getAttribute("p");
                 <td><input type="text" name="address1" size=40; placeholder="우편주소" required></td>
                 <td><button>우편번호 찾기</button></td> 
             </tr>
-
+			
             <!--<tr>
     
                     
@@ -152,14 +165,22 @@ UserProduct p = (UserProduct)request.getAttribute("p");
         </div>
 		 </form>   
 		<br><br>
-
-
-    
     
     <script>
 	    var IMP = window.IMP; // 생략 가능
 	    IMP.init("imp87336721"); // 예: imp00000000
-
+	       const make_merchant_uid = () => {
+	            const current_time = new Date();
+	            const year = current_time.getFullYear().toString();
+	            const month = (current_time.getMonth()+1).toString();
+	            const day = current_time.getDate().toString();
+	            const hour = current_time.getHours().toString();
+	            const minute = current_time.getMinutes().toString();
+	            const second = current_time.getSeconds().toString();
+	            const merchant_uid = 'MIHEE' + year + month + day + hour + minute + second;
+	            return merchant_uid;
+	        };
+	        const merchant_uid = make_merchant_uid()
 	    function payment() {
 	        // IMP.request_pay(param, callback) 결제창 호출
 	        IMP.request_pay({ // param
