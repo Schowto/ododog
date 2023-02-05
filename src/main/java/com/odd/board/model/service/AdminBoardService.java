@@ -57,5 +57,17 @@ public class AdminBoardService {
 		close(conn);
 		return count;
 	}
+	public ArrayList<Board> searchList(PageInfo pi, String boardSort, String boardKeyword){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new AdminBoardDao().searchList(conn, pi, boardSort, boardKeyword);
+		close(conn);
+		return list;
+	}
+	public ArrayList<Reply> searchReplyList(PageInfo replyPi, String replySort, String replyKeyword){
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new AdminBoardDao().searchReplyList(conn, replyPi, replySort, replyKeyword);
+		close(conn);
+		return list;
+	}
 
 }

@@ -61,9 +61,44 @@
 	<entry key="selectSearchListCount">
 		SELECT COUNT(*) COUNT
   		  FROM BOARD
+  		 WHERE BOARD_TYPE IN (1, 2)
 	</entry>
 	<entry key="selectSearchReplyListCount">
 		SELECT COUNT(*) COUNT
   		  FROM REPLY
+  		 WHERE BOARD_TYPE IN(1, 2)
+	</entry>
+	<entry key="searchList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT 
+		                       BOARD_NO,
+		                       BOARD_TITLE,
+		                       USER_ID,
+		                       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
+		                       COUNT,
+		                       B.STATUS
+		                  FROM BOARD B
+		                  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+		                 WHERE BOARD_TYPE = 2
+	</entry>
+	<entry key="searchReplyList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT
+						       REPLY_NO
+						     , BOARD_NO
+						     , REPLY_CONTENT
+						     , USER_ID
+						     , TO_CHAR(R.CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+						     , R.STATUS
+						  FROM REPLY R
+						  JOIN MEMBER ON (REPLY_WRITER = USER_NO)
+						  JOIN BOARD USING (BOARD_NO)
+						 WHERE R.BOARD_TYPE IN (1, 2)
 	</entry>
 </properties>

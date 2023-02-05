@@ -78,9 +78,19 @@ public class AdminBoardSearchController extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, boardPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		PageInfo replyPi = new PageInfo(replyListCount, replyPage, pageLimit, boardLimit, replyMaxPage, replyStartPage, replyEndPage);
 		// 여기부터 하장 setAttribute로 검색기준,값들 다 넘겨서 페이지 url 처리까지,,!
-		//ArrayList<Board> list = new AdminBoardService().searchList(pi);
-		//ArrayList<Reply> replyList = new AdminBoardService().searchReplyList(replyPi);
+		ArrayList<Board> list = new AdminBoardService().searchList(pi, boardSort, boardKeyword);
+		ArrayList<Reply> replyList = new AdminBoardService().searchReplyList(replyPi, replySort, replyKeyword);
 		
+		request.setAttribute("bSort", boardSort);
+		request.setAttribute("rSort", replySort);
+		request.setAttribute("bKeyword", boardKeyword);
+		request.setAttribute("rKeyword", replyKeyword);
+		
+		request.setAttribute("pi", pi);
+		request.setAttribute("replyPi", replyPi);
+		request.setAttribute("list", list);
+		request.setAttribute("replyList", replyList);
+		request.getRequestDispatcher("views/board/adminBoardListView.jsp").forward(request, response);
 	}
 
 	/**
