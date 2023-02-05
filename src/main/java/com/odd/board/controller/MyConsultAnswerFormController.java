@@ -13,6 +13,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.odd.board.model.service.ConsultService;
 import com.odd.board.model.vo.Consult;
 import com.odd.common.MyFileRenamePolicy;
+import com.odd.member.model.vo.Member;
 
 /**
  * Servlet implementation class MyConsultAnswerController
@@ -34,11 +35,18 @@ public class MyConsultAnswerFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
-		/*
+		HttpSession session = request.getSession();
+		
+		request.setCharacterEncoding("UTF-8");
+		
+		int consultNo = Integer.parseInt(request.getParameter("consultNo"));
+		String consultAnswer = request.getParameter("consultAnswer");
+		
+		int result = new ConsultService().consultAnswer(consultNo, consultAnswer);
+		
 		if(result > 0) {
-			HttpSession session = request.getSession();
 			session.setAttribute("alertMsg", "답변이 등록되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/admin.co");
 			
 			
 		}else {
@@ -47,8 +55,8 @@ public class MyConsultAnswerFormController extends HttpServlet {
 			
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/admin.co");
-			*/
+		
+		
 			
 			
 		}

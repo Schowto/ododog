@@ -127,7 +127,7 @@
 							<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>" readonly>
 						</td>
 						<td style="font-size:13px; width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
-						<td style="width:20%">
+						<td style="width:15%">
 							&nbsp;&nbsp;
 							<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>" readonly>
 						</td>
@@ -153,7 +153,6 @@
 				
 					<button type="button" onclick="location.href='<%=contextPath%>/admin.co'">목록</button>
 					<button type="submit">답변등록</button>
-					<button type="button" onclick="location.href='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">답변수정</button>
 				
 				
 				</div>

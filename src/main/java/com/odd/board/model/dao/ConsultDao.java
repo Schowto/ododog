@@ -278,8 +278,7 @@ public class ConsultDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, consultAnswer);
-			pstmt.setInt(2, consultNo);
-			
+			pstmt.setInt(2, consultNo);		
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

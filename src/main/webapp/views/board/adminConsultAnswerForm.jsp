@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*
-    , com.odd.member.model.vo.Point"%>
-<%@ page import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.Consult "%>
+    pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.*, com.odd.member.model.vo.* "%>
 <%
-	
+	//PageInfo pi = (PageInfo) request.getAttribute("pi");
 	Consult c = (Consult)request.getAttribute("c");
 %>
 
@@ -25,13 +24,12 @@
       padding-top: 20px;
       color: rgb(50, 50, 50);
       background: white;
-  }  
-  .consultEnroll{
-	margin: auto;
-	width:85%;
   }
-    table{
-		width:100%;
+  .consultTable{
+	width:100%;
+	margin:auto;
+  }
+  table{
 		border-top:1px solid rgb(220,220,220);
 		border-collapse: collapse;
 		border-spacing: 0;
@@ -48,11 +46,6 @@
 		height:30px;
 		color:rgb(50, 50, 50);
 	}
-	.consultEnroll input[type=text]{
-		width:300px;
-		border:1px solid rgb(220,220,220);
-		color:rgb(50, 50, 50);
-	}
 	textarea{
 		width:100%;
 		height:400px;
@@ -63,6 +56,29 @@
 	}
 	.consultAnswer textarea{
 		display:none;
+	}
+	button{
+		width:70px;
+		height:30px;
+	}
+	.blink:hover{
+		opacity:0.7;
+		cursor:pointer;
+	}
+	@keyframes blink-effect {
+		50%{
+			opacity:0;
+		}
+	}
+
+	.blink{
+		/*color:blue;*/
+		animation:blink-effect is step-end infinite;
+
+		animation-name: blink-effect;
+		animation-duration: 1s;
+		animation-iteration-count:infinite;
+		animation-timing-function:step-end;
 	}
 	input[name=consultNo]{
 		width:30px;
@@ -79,10 +95,7 @@
 	input[name=upfile]{
 		border:none;
 	}
-	button{
-		width:70px;
-		height:30px;
-	}
+    
 </style>
 </head>
 <body>
@@ -91,61 +104,63 @@
  	    
  	      <%@ include file="../common/adminMenubarForInclude.jsp" %>
  	      
- 	    <br><br>
+ 	      
         <div id="content" align="center">
-			
 
-			<div class="consultEnroll">
+            
+			<div class="consultTable" >
 				<br>
            		<h6 align="center" style="font-weight:600; color:rgb(50, 50, 50);">1:1 문의 답변등록</h6>
             	<hr><br>
+			<form action="<%=contextPath%>/answerInsert.co" method="post">
+				<input type="hidden" name="consultNo" value="<%=c.getConsultNo()%>">
+				<table>
+					<tr>
+						<td style="font-size:13px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;번호</td>
+						<td style="width:10%; border-right:1px solid rgb(220,220,220);">
+							&nbsp;&nbsp;
+							<input type="text" name="consultNo" value="<%=c.getConsultNo()%>" readonly>
+						</td>
+						<td style="font-size:13px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
+						<td style="width:40%; border-right:1px solid rgb(220,220,220);">
+							&nbsp;&nbsp;
+							<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>" readonly>
+						</td>
+						<td style="font-size:13px; width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
+						<td style="width:15%">
+							&nbsp;&nbsp;
+							<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>" readonly>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6">
+							<br>
+							<textarea name="consultAnswer" style="resize:none;"></textarea>
+							<br><br>
+						</td>
+					</tr>
+					
+				</table>
 				
-				<form action="<%=contextPath %>/answerInsert.co" method="post" enctype="mutipart/form-data">
-					<table>
-						<tr>
-							<td style="font-size:13px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;번호</td>
-							<td style="width:10%; border-right:1px solid rgb(220,220,220);">
-								&nbsp;&nbsp;
-								<input type="text" name="consultNo" value="<%=c.getConsultNo()%>" readonly>
-							</td>
-							<td style="font-size:13px; width:10%; border-right:1px solid rgb(220,220,220); width:10%;">&nbsp;&nbsp;&nbsp;제목</td>
-							<td style="width:40%; border-right:1px solid rgb(220,220,220);">
-								&nbsp;&nbsp;
-								<input type="text" name="consultTitle" value="<%=c.getConsultTitle()%>" readonly>
-							</td>
-							<td style="font-size:13px; width:15%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
-							<td style="width:20%">
-								&nbsp;&nbsp;
-								<input type="text" name="consultCategory" value="<%=c.getConsultCategory()%>" readonly>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="6">
-								<br>
-								<textarea name="consultContent" style="resize:none;" readonly><%=c.getConsultContent()%></textarea>
-								<br><br>
-							</td>
-						</tr>
-						<tr>
-							<td style="border-right:1px solid rgb(220,220,220);">첨부파일 </td>
-							<td colspan="5">&nbsp;&nbsp;<input type="text" name="upfile" value="<%=c.getOriginName()%>" readonly></td>
-						</tr>
-						
-					</table>
-					
-					<br>
-		
-					<div align="center">
-						<button type="submit">등록</button>
-						<button type="button" onclick="location.href='<%=contextPath%>/admin.co>'">취소</button>
-					</div>
-					
-				</form>	
-    		</div>
-          </div> 
-          
-          
-       </div>
+				<br>
+	
+				<div align="center">
+				
+				
+					<button type="submit">등록</button>
+					<button type="button" onclick="location.href='<%=contextPath%>/admin.co'">취소</button>
+				
+				
+				</div>
+				
+			</form>	
+			</div>
+			<br><br><br><br>
+              
+              
+        </div>            
+        </div>
+    </div>
         
 
         

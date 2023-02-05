@@ -113,8 +113,7 @@
 
             <br><br>
             <div class="searchTable" align="left">
-                <input type="text" name="userId" placeholder="사용자아이디입력">
-                <select name="answerStatus" id="answerStatus" style="height:30px;">
+                <select name="answerStatus" id="answerStatus" style="height:30px; width:100px;">
                     <option value="no">미답변</option>
                     <option value="yes">답변</option>
                 </select>
