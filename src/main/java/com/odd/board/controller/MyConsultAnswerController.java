@@ -36,22 +36,16 @@ public class MyConsultAnswerController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int consultNo = Integer.parseInt(request.getParameter("consultNo"));
-		String consultAnswer = request.getParameter("consultAnswer");
 		
-		int result = new ConsultService().consultAnswer(consultNo, consultAnswer);
+		Consult c = new ConsultService().selectConsult(consultNo);
 		
-		if(result > 0) {
-			HttpSession session = request.getSession();
-			session.setAttribute("alertMsg", "답변이 등록되었습니다.");
-			
-			
-		}else {
-			request.setAttribute("errorMsg", "답변등록에 실패했습니다.");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			
-		}
+		request.setAttribute("c", c);
 		
-		response.sendRedirect(request.getContextPath() + "/admin.co");
+		request.getRequestDispatcher("views/board/adminConsultAnswerForm.jsp").forward(request,response);
+		
+		
+		
+		
 		
 		
 	}

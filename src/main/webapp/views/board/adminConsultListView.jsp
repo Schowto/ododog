@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.odd.member.model.vo.Member, com.odd.member.model.vo.Admin, com.odd.member.model.service.*
-    , com.odd.member.model.vo.Point"%>
-<%@ page import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.Consult "%>
+    pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.board.model.vo.*, com.odd.member.model.vo.* "%>
 <%
-	
 	//PageInfo pi = (PageInfo) request.getAttribute("pi");
 	ArrayList<Consult> list = (ArrayList<Consult>) request.getAttribute("list");
 %>
@@ -26,17 +24,22 @@
       padding-top: 20px;
       color: rgb(50, 50, 50);
       background: white;
-  }    
-  .membertable{
-      height:1160px; width:900px;
-      margin: auto;
-      margin-top: 50px;
   }
-  .usertable{
-      border-collapse: collapse;
-      width: 100%;
+  .searchTable{
+    width:80%;
+    
   }
-
+  .searchTable input{
+    border:1px soliod rgb(220,220,220);
+    height:30px;
+  }
+  .searchTable ::placeholder{
+        font-size:14px;
+       
+    }
+  #userTable{
+    width:80%;
+  }
   th,td{
       padding: 8px;
       text-align: center;
@@ -44,7 +47,11 @@
       font-size: 13px;
   }
 
-    tr:hover {background-color: #D6EEEE;}
+    tbody>tr:hover {
+        background-color: #D6EEEE;
+        opacity: 0.7;
+        cursor: pointer;
+    }
         
     button{
             font-size: 12px;
@@ -92,6 +99,7 @@
     border-radius: 6px;
     background-color: #ffffff;
         }
+    
 </style>
 </head>
 <body>
@@ -102,7 +110,17 @@
  	      
  	      
         <div id="content" align="center">
-            
+
+            <br><br>
+            <div class="searchTable" align="left">
+                <input type="text" name="userId" placeholder="사용자아이디입력">
+                <select name="answerStatus" id="answerStatus" style="height:30px;">
+                    <option value="no">미답변</option>
+                    <option value="yes">답변</option>
+                </select>
+                <input type="button" value="검색" onclick="searchUser();">
+            </div>
+            <br><br>
             
               <table id="userTable" class="userTable" style="text-align: center;">
                 <thead>
@@ -118,7 +136,7 @@
                 <tbody>
 	            	<% if(list.isEmpty()) { %>
 	                <tr>
-	                <td colspan="6">존재하는 회원이 없습니다.</td>
+	                <td colspan="6">존재하는 상담내역이 없습니다.</td>
 	                </tr>
 	                <% }else { %>
 	                <% for(Consult c : list){ %> 
@@ -138,12 +156,12 @@
               </table>
               
               <script>
-              	$(function(){
-              		$("#userTable>tbody>tr").click(function(){
-              			location.href='<%=contextPath%>/detailAdmin.co?no=' + "$(this).children().ep(0).text();"
-              		})
-              	})
-              </script>
+                $(function(){
+                    $(".userTable>tbody>tr").click(function(){
+                        location.href = "<%=contextPath%>/detailAdmin.co?no=" + $(this).children().eq(0).text();
+                    })
+                })
+            </script>
               </div>            
         </div>
        </div>

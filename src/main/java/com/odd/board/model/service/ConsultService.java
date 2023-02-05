@@ -120,7 +120,12 @@ public class ConsultService {
 	}
 	
 	
-	
+	public ArrayList<Consult> selectAdminConsult(){
+		Connection conn = getConnection();
+		ArrayList<Consult> list = new ConsultDao().selectAdminConsult(conn);
+		close(conn);
+		return list;
+	}
 	
 	
 	
