@@ -114,12 +114,13 @@
                 <br>
             </div>
     
-    
+    		<% if(loginUser != null){ %>
             <div align="right" style="width:900px">
             	<br><br>
                 <a href="<%= contextPath %>/enrollForm.bo"><button>글쓰기</button></a>
                 <br>
             </div>
+            <% } %>
     
             <table class="list-area">
                 <thead>

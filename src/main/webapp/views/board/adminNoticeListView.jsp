@@ -109,10 +109,10 @@
                 <% } else { %>
                 	<% for(Board b : list){ %>
 	                    <tr>
-	                        <td><%= b.getBoardNo() %></td>
-	                        <td><%= b.getBoardTitle() %></td>
-	                        <td><%= b.getCreateDate() %></td>
-	                        <td><%= b.getCount() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/updateForm.adNo?no=<%= b.getBoardNo() %>'"><%= b.getBoardNo() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/updateForm.adNo?no=<%= b.getBoardNo() %>'"><%= b.getBoardTitle() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/updateForm.adNo?no=<%= b.getBoardNo() %>'"><%= b.getCreateDate() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/updateForm.adNo?no=<%= b.getBoardNo() %>'"><%= b.getCount() %></td>
 	                        <td align="center" class="notice-status-area">
 	                        	<% if(b.getStatus().equals("Y")){ %>
 	                        		<button class="status-y">Y</button>

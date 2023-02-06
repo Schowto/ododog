@@ -194,7 +194,7 @@
 
             
             <table id="prev-next" width="900">
-            <% if(b.getBoardTitle() != null){ %>
+            <% if(b.getPrevTitle() != null){ %>
                 <tr id="prev-board">
                     <th width="120">
                         <img src="<%= contextPath %>/resources/icons/upArrow.png">
@@ -207,7 +207,7 @@
             <% } %>
             <% if(b.getNextTitle() != null){ %>
                 <tr id="next-board">
-                    <th>
+                    <th width="120">
                         <img src="<%= contextPath %>/resources/icons/downArrow.png">
                         다음글
                     </th>
