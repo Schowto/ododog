@@ -127,8 +127,8 @@
 
             <br><br>
             <div class="searchTable" align="left">
-              <input type="button" name="answer" id="answerNo" value="no" onclick="answerNo();">
-              <input type="button" name="answer" id="answerYes" value="yes" onclick="answerNo();">
+              <input type="button" name="answer" id="answerNo" value="미답변" onclick="answerNo();">
+              <input type="button" name="answer" id="answerYes" value="답변" onclick="answerNo();">
             </div>
             <br><br>
             
