@@ -33,6 +33,8 @@ public class AjaxConsultAnswerController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("UTF-8");
+		
 		String answer = request.getParameter("answer");
 		
 		ArrayList<Consult> list = new ConsultService().selectAnswer(answer);
