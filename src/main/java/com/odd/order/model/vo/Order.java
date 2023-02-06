@@ -1,4 +1,4 @@
-package com.odd.product.model.vo;
+package com.odd.order.model.vo;
 
 import java.security.Timestamp;
 

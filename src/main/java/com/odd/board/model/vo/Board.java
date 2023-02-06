@@ -29,6 +29,12 @@ public class Board {
 	
 	
 	
+	public Board(int userNo, int reportSort, int postNo, String reportContent) {
+		super();
+		this.userNo = userNo;
+		this.reportSort = reportSort;
+		this.postNo = postNo;
+		this.reportContent = reportContent;
 	public Board(int boardNo, String boardTitle, String createDate) {
 		super();
 		this.boardNo = boardNo;

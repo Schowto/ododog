@@ -127,5 +127,77 @@ public class AdminRecipeDao {
 		}
 		return list;
 	}
+	
+	public int updateStatus(Connection conn, int recipeNo, String status) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateStatus");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if(status.equals("Y")) {
+				pstmt.setString(1, "N");
+			} else {
+				pstmt.setString(1, "Y");
+			}
+			pstmt.setInt(2, recipeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int updateStatusR(Connection conn, int replyNo, String status) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateStatusR");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if(status.equals("Y")) {
+				pstmt.setString(1, "N");
+			} else {
+				pstmt.setString(1, "Y");
+			}
+			pstmt.setInt(2, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int deleteRecipe(Connection conn, int recipeNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteRecipe");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recipeNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int deleteReply(Connection conn, int replyNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteReply");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 
 }

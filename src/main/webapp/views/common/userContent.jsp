@@ -113,6 +113,7 @@
 
 </head>
 <body>
+	<%@ include file="userMenubar.jsp" %>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 
   <!-- Indicators -->
@@ -125,13 +126,13 @@
   <!-- The slideshow -->
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="../../resources/icons/메인상단1" alt="Los Angeles">
+      <img src="<%= contextPath %>/resources/icons/메인상단1.jpg" alt="Los Angeles">
     </div>
     <div class="carousel-item">
-      <img src="chicago.jpg" alt="Chicago">
+      <img src="<%= contextPath %>/resources/icons/메인상단2.jpg" alt="Chicago">
     </div>
     <div class="carousel-item">
-      <img src="ny.jpg" alt="New York">
+      <img src="<%= contextPath %>/resources/icons/메인상단3.jpg" alt="New York">
     </div>
   </div>
 
