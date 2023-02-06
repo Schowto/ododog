@@ -114,7 +114,7 @@
                 <hr>
 
                 <div align="left" style="width:200px; float:left;">
-                    <button style="width:100px; height:30px; margin:15px 20px 10px;">레시피 작성</button>
+                    <button style="width:100px; height:30px; margin:15px 20px 10px;" onclick="location.href='<%= contextPath %>/enrollForm.re'">레시피 작성</button>
                 </div>
     
                 <ul class="sort-filter" style="width:700px; font-size:13px;">
@@ -161,13 +161,67 @@
 	                        	<% } %>
 	                        </td>
 	                        <td>
-	                            <button class="btn-red notice-delete-area"style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+	                            <button class="btn-red recipe-delete-area"style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
 	                        </td>
 	                    </tr>
                 	<% } %>
                 <% } %>
             </table>
-    
+            <script>
+            	$(".recipe-status-area button").click(function(){
+            		const a = $(this);
+           			// 상태가 Y일때 -> N 으로 || N일때 -> Y로
+           			if(confirm("게시글의 상태를 변경하시겠습니까?")){
+	           			$.ajax({
+	           				url:"<%=contextPath%>/status.adRe",
+	           				data:{
+	           					from:"recipe",
+	           					no:$(this).parent().prev().prev().prev().prev().text(),
+	           					status:$(this).text()
+	           					},
+	           				success:function(result){
+	           					if(result > 0){
+	           						if(a.text() == "Y"){
+	           							a.attr("class", "status-n");
+	           							a.text("N");
+	           						} else {
+	           							a.attr("class", "status-y");
+	           							a.text("Y");
+	           						}
+	           					} else {
+	           						alert("상태 변경 실패");
+	           					}
+	           				}, error:function(){
+	           					console.log("상태 변경용 ajax 통신 실패");
+	           				}
+	           			})
+           			}
+            	})
+            	$(".recipe-delete-area").click(function(){
+            		const a = $(this);
+           			// 게시글 완전 삭제
+           			if(confirm("게시글을 완전히 삭제하시겠습니까? \n삭제 후 취소할 수 없습니다.")){
+	           			$.ajax({
+	           				url:"<%=contextPath%>/delete.adRe",
+	           				data:{
+	           					from:"recipe",
+	           					no:$(this).parent().prev().prev().prev().prev().prev().text()
+	           					},
+	           				success:function(result){
+	           					if(result > 0){
+	           						alert("성공적으로 삭제되었습니다.");
+	           					} else {
+	           						alert("삭제 실패");
+	           					}
+	           					location.reload();
+	           				}, error:function(){
+	           					console.log("삭제용 ajax 통신 실패");
+	           				}
+	           			})
+           			}
+            	})
+            </script>
+            
     
                 <br>
     
@@ -250,6 +304,59 @@
                		<% } %>
                	<% } %>
             </table>
+            <script>
+	            $(".reply-status-area button").click(function(){
+	        		const a = $(this);
+	       			// 상태가 Y일때 -> N 으로 || N일때 -> Y로
+	       			if(confirm("댓글의 상태를 변경하시겠습니까?")){
+	           			$.ajax({
+	           				url:"<%=contextPath%>/status.adRe",
+	           				data:{
+	           					from:"reply",
+	           					no:$(this).parent().prev().prev().prev().prev().prev().text(),
+	           					status:$(this).text()
+	           					},
+	           				success:function(result){
+	           					if(result > 0){
+	           						if(a.text() == "Y"){
+	           							a.attr("class", "status-n");
+	           							a.text("N");
+	           						} else {
+	           							a.attr("class", "status-y");
+	           							a.text("Y");
+	           						}
+	           					} else {
+	           						alert("상태 변경 실패");
+	           					}
+	           				}, error:function(){
+	           				}
+	           			})
+	       			}
+	        	})
+	        	$(".reply-delete-area").click(function(){
+	        		const a = $(this);
+	       			// 댓글 완전 삭제
+	       			if(confirm("댓글을 완전히 삭제하시겠습니까? \n삭제 후 취소할 수 없습니다.")){
+	           			$.ajax({
+	           				url:"<%=contextPath%>/delete.adRe",
+	           				data:{
+	           					from:"reply",
+	           					no:$(this).parent().prev().prev().prev().prev().prev().prev().text()
+	           					},
+           					success:function(result){
+	           					if(result > 0){
+	           						alert("성공적으로 삭제되었습니다.");
+	           					} else {
+	           						alert("삭제 실패");
+	           					}
+	           					location.reload();
+	           				}, error:function(){
+	           					console.log("삭제용 ajax 통신 실패");
+	           				}
+	           			})
+	       			}
+	        	})
+            </script>
 		
 		
 		    <br>
