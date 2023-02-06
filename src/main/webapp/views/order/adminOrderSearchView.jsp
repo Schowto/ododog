@@ -111,7 +111,7 @@
             <br>
 			
 			<!-- 상하 스크롤바 -->
-			<div style="width:100%; height:350px; overflow:auto white-space: nowrap;">
+			<div style="width:100%; height:350px; overflow:auto; white-space: nowrap;">
 			 
 			   <!-- 주문 검색 결과 테이블 -->				
                <table class="list-area table" >

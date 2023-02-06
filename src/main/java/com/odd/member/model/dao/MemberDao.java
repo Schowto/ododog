@@ -428,7 +428,6 @@ public class MemberDao {
 		
 		String sql = prop.getProperty("searchPwd");
 		
-		System.out.println(user_Id + "" + user_Name + "" + email);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -443,7 +442,6 @@ public class MemberDao {
 					 	    rset.getString("user_pwd"));	
 			}
 			
-			System.out.println(m.toString());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -488,25 +486,7 @@ public class MemberDao {
 		return list;
 	}
 	
-	public int searchUpdatePwd(Connection conn, String userId, String updatePwd, String userName, String email) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("searchUpdatePwd");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, updatePwd);
-			pstmt.setString(2, userId);
-			pstmt.setString(3, userName);
-			pstmt.setString(4, email);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}return result;
-	}
+
 	
 	
 	

@@ -140,8 +140,16 @@
                            <td width="60%" colspan="2"><%=o.getRequire() %></td>
                        </tr>
                        <tr>
+                           <th width="40%" colspan="2">사용 적립급</th>
+                           <td width="60%" colspan="2"><%=o.getDiscount() %></td>
+                       </tr>
+                       <tr>
                            <th width="40%" colspan="2">최종 결제 금액</th>
                            <td width="60%" colspan="2"><%=o.getTotalPrice() %></td>
+                       </tr>
+                       <tr>
+                           <th width="40%" colspan="2">예상 적립금</th>
+                           <td width="60%" colspan="2"><%=savePoint%></td>
                        </tr>
                    </thead>
                    <tbody>

@@ -14,8 +14,6 @@
 <style>
 
     /******** 내용 *******/
-    #content{/*border:1px solid pink;*/}
-
     #content p{
         margin-top:10px;
         margin-bottom:3px;
@@ -90,7 +88,7 @@
             <hr>
 
             <div align="right" style="margin:15px 0px;">
-                <button style="height:30px;">공지사항 작성</button>
+                <button style="height:30px;" onclick="location.href='<%=contextPath%>/enrollForm.adNo'">공지사항 작성</button>
             </div>
             
             <table class="list-area">
@@ -188,35 +186,17 @@
             <br>
             <div class="paging-area" align="center">
     
-                <button>&lt;</button>
-                <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>10</button>
-                <button>&gt;</button>
+                <% if(pi.getCurrentPage() != 1){ %>
+	        		<button onclick="location.href='<%=contextPath%>/list.adNo?cpage=<%=pi.getCurrentPage()%>';">&lt;</button>
+	        	<% } %>
+	        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+	        		<button onclick="location.href='<%=contextPath%>/list.adNo?cpage=<%=pi.getCurrentPage()%>';"><%= p %></button>
+	        	<% } %>
+	        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+	            	<button onclick="location.href='<%=contextPath%>/list.adNo?cpage=<%=pi.getCurrentPage()%>'">&gt;</button>
+		        <% } %>
     
             </div>
-        
-        
-        
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         </div>
 
     </div>

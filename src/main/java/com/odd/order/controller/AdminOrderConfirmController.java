@@ -44,7 +44,7 @@ public class AdminOrderConfirmController extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/search.adOrd?cpage=1");
 			
 		}else {
-			request.setAttribute("errorMsg", "주문 승인 실패");
+			session.setAttribute("alertMsg", "주문 승인 실패");
 			response.sendRedirect(request.getContextPath()+"/search.adOrd?cpage=1");
 			
 		}

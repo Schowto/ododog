@@ -34,24 +34,24 @@ public class MyOrderListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
-		if(session.getAttribute("loginUser") == null) {
-			
-			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
-			response.sendRedirect(request.getContextPath());
-			
-			
-		}else {
-			
-			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
-			
-			ArrayList<MyOrder> list = new MyOrderService().selectAllMyOrder(userNo);
-			
-			request.setAttribute("list", list);
-			
-			request.getRequestDispatcher("views/member/myOrderList.jsp").forward(request, response);
-			
-		}
+			HttpSession session = request.getSession();
+	      if(session.getAttribute("loginUser") == null) {
+	         
+	         session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
+	         response.sendRedirect(request.getContextPath());
+	         
+	         
+	      }else {
+	         
+	         int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
+	         
+	         ArrayList<MyOrder> list = new MyOrderService().selectAllMyOrder(userNo);
+	         
+	         request.setAttribute("list", list);
+	         
+	         request.getRequestDispatcher("views/member/myOrderList.jsp").forward(request, response);
+	         
+	      }
 		
 			
 	}

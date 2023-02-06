@@ -330,4 +330,19 @@
 	   FROM REPORT
 	   WHERE USER_NO LIKE ?	
 	</entry>
+
+	
+	<!-- 내게시물조회(정은) -->
+	<entry key="selectMyBoard">
+		SELECT
+		       BOARD_NO
+		     , BOARD_TITLE
+		     , CREATE_DATE
+		  FROM BOARD B
+		  JOIN MEMBER M ON (B.BOARD_WRITER = M.USER_NO) 
+		 WHERE BOARD_TYPE = 2
+		   AND BOARD_WRITER = ?
+		   AND B.STATUS = 'Y'
+		       
+	</entry>
 </properties>

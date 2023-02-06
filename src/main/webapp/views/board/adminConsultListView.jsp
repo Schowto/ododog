@@ -127,8 +127,8 @@
 
             <br><br>
             <div class="searchTable" align="left">
-              <input type="button" name="answer" id="answerNo" value="미답변" onclick="answerNo();">
-              <input type="button" name="answer" id="answerYes" value="답변" onclick="answerNo();">
+              <input type="button" name="answer" id="answerNo" value="미답변" onclick="answerNo('미답변');">
+              <input type="button" name="answer" id="answerYes" value="답변" onclick="answerNo('답변완료');">
             </div>
             <br><br>
             
@@ -177,12 +177,13 @@
        </div>
         
        <script>
-        function answerNo(){
-          const $answer = $("input[name=answer]");
+        function answerNo(a){
+          console.log(a);
+          const $answer = a;
 
           $.ajax({
             url:"<%=contextPath%>/answerList.co",
-            data:{answer:$answer.val()} , 
+            data:{answer:$answer} , 
             success:function(list){
             	
             	console.log(list);
@@ -200,12 +201,12 @@
                 	$("#tbodyTable").empty();
                   for(let i=0;i<list.length; i++){
                     value += "<tr>"
-                          + "<td>" + list[i].ConsultNo + "</td>"
-                          + "<td>" + list[i].ConsultTitle + "</td>"
-                          + "<td>" + list[i].ConsultCategory + "</td>"
-                          + "<td>" + list[i].EnrollDate + "</td>"
-                          + "<td>" + list[i].ConsultNo + "</td>"
-                          + "<td>" + list[i].AnswerStatus + "</td>"
+                          + "<td>" + list[i].consultNo + "</td>"
+                          + "<td>" + list[i].consultTitle + "</td>"
+                          + "<td>" + list[i].consultCategory + "</td>"
+                          + "<td>" + list[i].enrollDate + "</td>"
+                          + "<td>" + list[i].consultNo + "</td>"
+                          + "<td>" + list[i].answerStatus + "</td>"
                           + "</tr>";
                   }
                 }

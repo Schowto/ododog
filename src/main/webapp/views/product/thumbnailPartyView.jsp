@@ -70,42 +70,7 @@ p:hover {
 		<br>
 		<!--카테고리순-->
 		<div align="right" style="width: 1110px" class="category">
-			<button type=button class="btn btn-outline-light text-dark btn-sm">신상품</button>
-			<!-- JSON부분 
-			<script>
-				function orderby(){
-				
-				$.ajax({
-					url:"<%=contextPath%>/orderby.pro",
-					success:function(result){
-						console.log(result);
-						
-					}, error:function(){
-						console.log("ajax 통신 실패");
-					}
-				})
-			}
-			</script>		
-					
-					<div class="list-area">
-			<% for(UserProduct p : list){ %>
-			
-				<div class="thumbnail" align="center">
-					<input type="hidden" value="<%=p.getProNo() %>">
-					<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px"
-						onclick="location.href='<%=contextPath%>/views/product/productDetailView.jsp'">
-					<p> <%= p.getProName() %> <br>
-						<b><%= p.getPrice() %>원</b>
-					</p>
-					<div class="badge bg-info text-light">추천</div>
-					<span class="badge bg-primary text-light">NEW</span>
-				</div>
-				<%} %>
-			</div>
-		</div>
-		-->
-		
-		
+			<a href="" class="btn btn-outline-light text-dark btn-sm">신상품</a>
 		</div>
 		<div align="right" class="category">
 			<a href="" class="btn btn-outline-light text-dark btn-sm">상품명</a>
@@ -145,8 +110,9 @@ p:hover {
 				</div>
 				<%} %>
 			</div>
-				  	
-		</div>
+				
+					
+	</div>
 	
 	
 	<script>

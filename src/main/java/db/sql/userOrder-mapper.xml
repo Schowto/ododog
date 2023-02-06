@@ -2,26 +2,96 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 
 <properties>
-	
-	<!-- 내주문페이지List -->
-	<entry key="selectAllMyOrder">
-		SELECT
-		       ORD_NO
-		     , PRO_NO
-		     , USER_NO
-		     , DEL_ADD
-		     , PAYMENT
-		     , DELEVERY
-		     , STATU
-		     , THUMB_IMG
-		     , PRO_NAME
-		     , PRICE
-		     , AMOUNT
-		 FROM TB_ORDER T
-		 JOIN PRODUCT P ON (T.PRO_NO = P.PRO_NO)
-		 JOIN ORD_PRO O ON (T.ORD_NO = O.ORD_NO)
-		 JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
-	    WHERE USER_NO = ? 
+	<entry key="insertCart">
+		INSERT INTO TB_CART values(
+			SEQ_CARTNO.NEXTVAL
+			, ?
+			, ?
+			, ?
+		)
+
 	</entry>
 
+	<entry key="selectOneCartNoByUserNo">
+		SELECT
+			CART_NO
+		FROM
+			TB_CART
+		WHERE
+			user_no = ?
+		AND
+			pro_no = ?
+	</entry>
+
+	<entry key="updateCart">
+		update TB_CART
+		set
+			CART_QTY = CART_QTY + ?
+		where
+			CART_NO	= ?
+	</entry>
+
+	<entry key="selectCartList">
+		SELECT
+			c.cart_no
+			,c.pro_no
+			,c.cart_qty
+			,p.pro_name
+			,p.price
+			,p.save
+			,p.thumb_img
+		FROM
+			TB_CART c JOIN product p
+			ON c.pro_no = p.pro_no
+		WHERE
+			user_no = ?
+	</entry>
+
+	<entry key="deleteCart">
+		delete from TB_CART where cart_no = ?
+	</entry>
+
+	<entry key="insertPick">
+		insert into "LIKE" values(
+			?
+			,?
+			,sysdate
+		)
+	</entry>
+
+	<entry key="selectOnePick">
+		select
+			count(*)
+		from
+			"LIKE"
+		where
+			pro_no = ?
+		and
+			user_no = ?
+	</entry>
+
+	<entry key="deletePick">
+		delete from "LIKE"
+		where
+			pro_no = ?
+		and
+			user_no = ?
+
+	</entry>
+
+	<entry key="deleteAllCart">
+		delete from TB_CART
+		where
+			user_no = ?
+	</entry>
+	
+	<entry key="selectLike">
+		SELECT PRO_NO
+		     , USER_NO
+		     , LIKE_DATE
+		  FROM LIKE L
+		  JOIN PRODUCT P ON (L.PRO_NO = P.PRO_NO)
+		  JOIN MEMBER M ON (L.USER_NO = M.USER_NO)
+		 WHERE USER_NO = ?
+	</entry>
 </properties>

@@ -224,7 +224,7 @@
                 <p>
                     <a href="<%=contextPath%>/list.adNo?cpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp공지사항 관리</a>
                     <a href="<%=contextPath%>/list.adBo?bpage=1&rpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp자유게시판 관리</a>
-                    <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp레시피게시판 관리</a>
+                    <a href="<%=contextPath%>/list.adRe?cpage=1&rpage=1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp레시피게시판 관리</a>
                 </p>
 
                 <div>

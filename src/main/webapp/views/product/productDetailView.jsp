@@ -6,6 +6,7 @@
 <%
 ArrayList<ProAtt> list = (ArrayList<ProAtt>)request.getAttribute("list");
 UserProduct p = (UserProduct)request.getAttribute("p");
+int count = request.getAttribute("count") != null ? (int) request.getAttribute("count") : 0 ;
 	
 %>		
 	
@@ -108,9 +109,10 @@ input[type=number]::-webkit-inner-spin-button {
 </head>
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
+
 	<div class="outer"> <!-- 전ㅊㅔ시작 -->
 		<div class="content"> <!-- 1 -->
-		<form action="<%=contextPath%>/dir.buy" method="post">  
+		<form action="<%=contextPath%>/order.pro" method="get" id="frm">  
 			<div class="left"> <!-- 2 -->
 				<div class="file-area"> 
 					<!--대표이미지-->
@@ -145,7 +147,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 			
 			
-			<div class="right"> <!-- 3 -->
+		<div class="right"> <!-- 3 -->
 			<br>
 			
 				<br> <span> <b>상품명</b> </span> 
@@ -161,21 +163,35 @@ input[type=number]::-webkit-inner-spin-button {
 				<span><b>제조사</b></span>
 				<span>　　<b>도그쿡</b></span>
 				<br><br>
-
+				
+				<input type="hidden" name="proNo" value="<%= p.getProNo() %>">
+				<input type="hidden" name="price" value="<%= p.getPrice() %>">
+				
 				<hr style="border: 1px color= silver;" width="100%">
 				<br> <span> 수량 　</span>
-					<input type="number" name="quantity" style="width: 50px"> 
+					<input type="number" name="quantity" id="quantity" value="1" style="width: 50px"> 
 					
 					<button type=button>변경</button>
 				<br> <br> <span> <b>TOTAL : </b>
 				</span> <span> <b>16000원</b>
 				</span> <br> <br> <br>
 				　　　　　　　　
-				<script type="text/javascript">
-
-				<button type="button" class="btn btn-light" id="like">관심상품
-					등록</button>
-			 	
+					<%
+					if(count > 0){
+					%>
+						<button type="button" class="btn btn-light" id="like" onclick="delPick();">
+							관심상품 삭제
+						</button>
+					<%
+					}else{
+					%>
+						<button type="button" class="btn btn-light" id="like" onclick="addPick();">
+							관심상품 등록
+						</button>
+					<%
+					}
+					%>
+					
 				<!-- like modal-->
 				<div class="modal fade2" id="testModal2" tabindex="-1" role="dialog"
 					aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -191,8 +207,6 @@ input[type=number]::-webkit-inner-spin-button {
 									<span aria-hidden="true">X</span>
 								</button>
 							</div>
-							
-							
 							<br>
 							<br>
 							<div id="img" align="center">
@@ -212,12 +226,12 @@ input[type=number]::-webkit-inner-spin-button {
 				</div>
 
 				<script>
-					$('#like').click(function(e) {
+					/* $('#like').click(function(e) {
 						e.preventDefault();
 						$('#testModal2').modal("show");
-					});
+					}); */
 				</script>
-				<button type="submit" class="btn btn-secondary" id="shoppingcartBtn">장바구니
+				<button type="button" class="btn btn-secondary" id="shoppingcartBtn" onclick="addCart();">장바구니
 					담기</button>　
 
 				<!-- 장바구니 modal-->
@@ -246,7 +260,7 @@ input[type=number]::-webkit-inner-spin-button {
 							<br>
 							<br>
 							<div class="modal-footer">
-								<a class="btn btn-dark" id="modalY" href="#">장바구니로 이동</a>
+								<a class="btn btn-dark" id="modalY" href="<%=contextPath%>/cart.ord">장바구니로 이동</a>
 								<button class="btn btn-light" type="button" data-dismiss="modal">계속
 									쇼핑하기</button>
 							</div>
@@ -256,23 +270,23 @@ input[type=number]::-webkit-inner-spin-button {
 
 
 				<script>
-					$('#shoppingcartBtn').click(function(e) {
+					/* $('#shoppingcartBtn').click(function(e) {
 						e.preventDefault();
-						$('#testModal').modal("show");
-					});
+						
+						//$('#testModal').modal("show");
+					}); */
 				</script>
 				
 				<span class="pay">
-				<input type="hidden" value="<%=p.getProNo() %>">
-				<button type="button" class="btn btn-dark"  onclick="location.href='<%=contextPath%>/views/order/orderListView.jsp'" >구매하기</button>
+				<button type="submit" class="btn btn-dark"  >구매하기</button>
 				 
 				</span>
-				</div>	
+			</div>	
 				<br><br> <br> <br> <br><br> <br> <br> <br><br> <br> <br><br>
 				<br> <br> <br> <br> <br> <br> <br>
 				
-				 
-			</div> 
+		 </form>	
+	</div> 
 			
 			<br> <br>
 			<div class="content" align="center">
@@ -309,14 +323,95 @@ input[type=number]::-webkit-inner-spin-button {
 			</div>
 			
 	 <script>
-		$(function(){
+		<%-- $(function(){
 			$(".pay").click(function(){
 				location.href = "<%=contextPath%>/order.pro?no=" + $(this).children('input').val();
 			})
+		}) --%>
+		
+		//장바구니 담기 여부에 따른모달 처리
+		$(function (){
+			const urlParams = new URL(location.href).searchParams;
+			const state = urlParams.get('state');
+			
+			//담기지 않았다면 오류 메세지 출력
+			
+			if(state == 'fail'){
+				$('#testModal .modal-body').text('장바구니에 담기지 않았습니다!!!');
+				$('#testModal').modal("show");
+			}else if(state == 'success'){
+				$('#testModal .modal-body').text('장바구니에 상품이 정상적으로 담겼습니다.');
+				$('#testModal').modal("show");
+			}
+			
+			
+			
+			
+			
 		})
+		//관심상품 담기 여부에 따른모달 처리
+		$(function (){
+			const urlParams = new URL(location.href).searchParams;
+			const pickState = urlParams.get('pickState');
+			
+			//담기지 않았다면 오류 메세지 출력
+			if(pickState == 'fail'){
+				$('#testModal2 .modal-body').text('관심상품에 담기지 않았습니다!!!');
+				$('#testModal2').modal("show");
+			}else if(pickState == 'success'){
+				$('#testModal2 .modal-body').text('관심상품에 상품이 정상적으로 담겼습니다.');
+				$('#testModal2').modal("show");
+			}else if(pickState == 'exist'){
+				$('#testModal2 .modal-body').text('이미 관심상품에 담겼습니다.');
+				$('#testModal2').modal("show");
+			}else if(pickState == 'delSuccess'){
+				$('#testModal2 .modal-body').text('관심상품이 삭제되었습니다.');
+				$('#testModal2').modal("show");
+			}else if(pickState == 'delFail'){
+				$('#testModal2 .modal-body').text('관심상품 삭제 실패...!');
+				$('#testModal2').modal("show");
+			}else if(pickState == 'delExist'){
+				$('#testModal2 .modal-body').text('이미 삭제된 상품입니다.');
+				$('#testModal2').modal("show");
+			}
+		
+			
+			
+			
+		})
+		
+		//장바구니 담기
+		function addCart() {
+			let $form = $('#frm');
+		
+			$form.attr('action', `<%=contextPath%>/addCart.ord`);//form 주소 변경
+			$form.attr('method', 'post');
+			
+			$form.submit();
+		}
+		//관심상품 담기
+		function addPick() {
+			let $form = $('#frm');
+		
+			$form.attr('action', `<%=contextPath%>/addPick.ord`);//form 주소 변경
+			$form.attr('method', 'post');
+			
+			$form.submit();
+		}
+		//관심상품 삭제
+		function delPick() {
+			let $form = $('#frm');
+		
+			$form.attr('action', `<%=contextPath%>/delPick.ord`);//form 주소 변경
+			$form.attr('method', 'post');
+			
+			$form.submit();
+		}
+		
+		
 	</script>
 			<br> <br>
-	</form>	
+	
 			
 	</div> <!--전체끝 -->
 		

@@ -198,25 +198,14 @@ public class MemberService {
 		return list;
 	}
 	
-	public Member searchUpdatePwd(String userId, String updatePwd, String userName, String email) {
+
+	
+	public Member selectLoginMember(String userId) {
 		Connection conn = getConnection();
-		int result = new MemberDao().searchUpdatePwd(conn, userId, updatePwd, userName, email);
-		
-		Member changPwd = null;
-		
-		if(result > 0) {
-			commit(conn);
-			changPwd = new MemberDao().selectLoginMember(conn, userId);
-		}else {
-			rollback(conn);
-		}
+		Member m = new MemberDao().selectLoginMember(conn, userId);
 		close(conn);
-		
-		return changPwd;
+		return m;
 	}
-	
-	
-	
 	
 	
 	

@@ -40,6 +40,8 @@ public class AdminOrderSelectController extends HttpServlet {
 				AdminOrder o = new AdminOrderService().selectOrder(ordNo);
 				ArrayList<OrdPro> list = new AdminOrderService().selectOrdPro(ordNo); 
 				
+				request.setAttribute("o", o);
+				request.setAttribute("list", list);
 				
 				// 상품 전체 소수점 평균 구하기
 				double save = 0; 

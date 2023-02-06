@@ -133,7 +133,7 @@ UserProduct p = (UserProduct)request.getAttribute("p");
         
         <div>
             <hr style="border:1px color= silver;" width="100%">
-            <b>결제정보</b>
+            <b>결제정보</b><br>
             <!--주문 상품가격, 배송비 자리 -->
             <div>
             	<!-- 주문 상품가격 -->

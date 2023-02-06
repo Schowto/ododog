@@ -15,6 +15,8 @@ import com.odd.common.model.vo.PageInfo;
 import com.odd.order.model.vo.AdminOrdSearch;
 import com.odd.order.model.vo.AdminOrder;
 import com.odd.order.model.vo.OrdPro;
+import com.odd.product.model.vo.ProAtt;
+import com.odd.product.model.vo.Product;
 
 public class AdminOrderDao {
 	

@@ -50,7 +50,8 @@ public class BoardInsertController extends HttpServlet {
 			request.getSession().setAttribute("alertMsg", "성공적으로 작성되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
 		} else {
-			
+			session.setAttribute("alertMsg", "공지사항 작성 실패");
+			response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
 		}
 	}
 

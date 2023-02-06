@@ -9,6 +9,7 @@ import com.odd.board.model.dao.AdminBoardDao;
 import com.odd.board.model.vo.Board;
 import com.odd.board.model.vo.Reply;
 import com.odd.common.model.vo.PageInfo;
+import com.odd.recipe.model.vo.Recipe;
 
 public class AdminBoardService {
 	
@@ -128,6 +129,18 @@ public class AdminBoardService {
 		if(result > 0) {
 			commit(conn);
 		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int insertNotice(Board b) {
+		Connection conn = getConnection();
+		int result = new AdminBoardDao().insertNotice(conn, b);
+		if(result > 0) {
+			commit(conn);
+		}else {
 			rollback(conn);
 		}
 		close(conn);
