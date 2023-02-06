@@ -161,7 +161,30 @@
 		    BY C.ENROLL_DATE DESC
 	</entry>
 	
-	
+	<entry key="selectAnswer">
+		SELECT 
+			   CONSULT_NO
+			 , USER_ID
+		     , CONSULT_TITLE
+		     , CONSULT_CONTENT
+		     , C.ENROLL_DATE
+		     , C.MODIFY_DATE
+		     , CONSULT_ANSWER
+		     , ANSWER_DATE
+		     , C.STATUS
+		     , ORIGIN_NAME
+		     , FILE_PATH
+		     , CONSULT_CATEGORY
+		     , RESPONDENTS
+		     , ANSWER_STATUS
+		  FROM CONSULT C
+		  JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
+		 WHERE C.STATUS = 'Y'
+		   AND ANSWER_STATUS = ?
+		 ORDER
+		    BY C.ENROLL_DATE DESC
+		       
+	</entry>
 
 
 

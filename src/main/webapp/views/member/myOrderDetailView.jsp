@@ -138,7 +138,7 @@
                                     <td style="width:150px;"><img src="<%=m.getTumbImg() %>" ></td>
                                     <td style="width:250px;"></td>
                                     <td style="width:200px; padding-right: 20px;">
-                                        <button type="button"><a href="<%=contextPath%>/review.me?no=<%=m.getOrdNo()%>">리뷰작성</a></button>
+                                        <button type="button"><a href="<%=contextPath%>/review.me?no=<%=m.getProNo()%>">리뷰작성</a></button>
                                     </td>
                                     <td style="width:200px; text-align:left;">
                                         &nbsp;상품명 : <%=m.getProName() %> <br><br>
