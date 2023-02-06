@@ -7,7 +7,6 @@
 	<entry key="selectAllMyOrder">
 		SELECT
 		       T.ORD_NO
-		     , T.PRO_NO
 		     , T.USER_NO
 		     , DEL_ADD
 		     , PAYMENT
@@ -16,15 +15,9 @@
 		     , T.ADDRESS
 		     , REQUIRE
 		     
-		     , P.THUMB_IMG
-		     , P.PRO_NAME
-		     , P.PRICE
 		     
-		     , O.AMOUNT
 		     
 		 FROM TB_ORDER T
-    LEFT JOIN PRODUCT P ON (T.PRO_NO = P.PRO_NO)
-	LEFT JOIN ORD_PRO O ON (T.ORD_NO = O.ORD_NO)
 	LEFT JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
 	    WHERE T.USER_NO = ?
 	</entry>

@@ -163,14 +163,7 @@
 	   AND EMAIL = ?
 	   AND STATUS = 'Y'
 	</entry>
-	<entry key="updatePwdUser">
-		UPDATE MEMBER
-		    SET USER_PWD = ?
-		    , MODIFY_DATE = SYSDATE
-		   WHERE USER_ID = ?
-		   AND USER_NAME = ?
-		   AND EMAIL = ?
-	</entry>
+
 	<entry key="searchMember">
 	SELECT
 		USER_NO ,
@@ -186,6 +179,6 @@
 	WHERE STATUS = 'Y'
 	AND USER_ID LIKE ?
 	</entry>
-	
+
 
 </properties>

@@ -74,7 +74,7 @@ Member searchPwd = (Member)session.getAttribute("searchPwd");
     <div class="login-wrapper">
         <h2 style="text-align: center;">비밀번호 찾기</h2>
             <br><br><br>
-            <p>회원님의 비밀번호는 <span name="maskingPwd" style="color: rgb(226, 36, 36); font-weight: bolder;" ><%= searchPwd.getUser_Pwd() %></span> 입니다.</p>
+            <p>회원님의 비밀번호는<span id="userPwd" style="color: rgb(226, 36, 36); font-weight: bolder;"></span> 입니다.</p>
             <br><br><br>
 
             <input type="button" value="로그인 하러가기" id="btn" onclick="location.href ='<%=contextPath%>/views/member/loginUser.jsp'"> 
@@ -82,35 +82,31 @@ Member searchPwd = (Member)session.getAttribute("searchPwd");
         
     </div>
     
-    <script>
-    // \d [0-9]와 동일하다.
-    // x(?=y)
-    // y가 뒤따라오는 x에만 대응됩니다. lookahead라고 불립니다.
-    // \d(?=\d{4})를 번역하면 [0-9] 뒤에 또 숫자가 4자리가 더 있을 시.
-    // /g 맨 뒤의 g는 전역 검색을 뜻한다.
-    function maskingPwd() {
-      return number.replace(/\d(?=\d{4})/g, "*");
-    }
+
+    <script type="text/javascript">
     
+        var password = '<%= searchPwd.getUser_Pwd() %>';
+	    var maskedPw = '';
+	    
+	    console.log(password.length);
+	    
+	    if(password.length <= 3)
+	    {
+	       maskedPw = password.substring(0,password.length).replace(/[0-9a-zA-Z]/g, "*");
+	    }
+	    else 
+	    {
+	       maskedPw =  password.substring(0,3) + password.substring(3,password.length).replace(/[0-9a-zA-Z]/g, "*")
+	    }
+	    
+	    console.log(maskedPw);	
+	    $("#userPwd").html(maskedPw);
+
     </script>
 
-        <!-- 
-    <div class="login-wrapper">
-        <h2 style="text-align: center;">비밀번호 변경</h2>
-        <form method="post" action="<%= contextPath %>/searchUpdate.pwd" id="login-form">
-            <input type="hidden" name="user_Id" value="<%= searchPwd.getUser_Id() %>">
-            <input type="hidden" name="user_Pwd" value="<%= searchPwd.getUser_Pwd() %>">
-            
-            <input type="password" name="update_Pwd" placeholder="변경할 비밀번호">
-           <input type="password" name="update_Pwd2" placeholder="비밀번호 확인"> 
-            <div class="in" style="text-align: center;">
-        </div>
-            <input type="submit" value="변경">
-        </form>
-        
-    </div>
+     
     
-     -->
+    
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <%@ include file="../common/userFooterbar.jsp"%>
 

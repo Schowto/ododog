@@ -4,6 +4,7 @@
 <%
 	//MyOrder m = (MyOrder)request.getAttribute("m");
 	//Review r = (Review)request.getAttribute("r");
+	MyOrder m = (MyOrder)request.getAttribute("m");
 %>
 <!DOCTYPE html>
 <html>
@@ -174,6 +175,33 @@
         line-height: 30px;
         border:1px solid rgb(220,220,220);
     }
+    /*****별점구현부분*****/
+    /*덮어씌워진회색별*/
+    .star {
+    position: relative;
+    font-size: 2rem;
+    color: #ddd;
+  }
+  
+  /*range부분*/
+  .star input { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /*노란색으로표시될별*/
+  .star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: yellow;
+    overflow: hidden; 
+    pointer-events: none;
+  }
 </style>
 </head>
 <body>
@@ -246,15 +274,11 @@
                                     <td style="width:40%;">상품을 사용해보셨나요?</td>
                                     <td>
                                         <div name="myStar" id="myStar">
-                                            &nbsp;&nbsp;
-
-                                                <select name="starSelect" id="reviewStar" style="height:30px; line-height:30px;" onchange="starCount()">
-                                                    <option name="star" value="5" id="star1">&nbsp;★★★★★</option>
-                                                    <option name="star" value="4" id="star1">&nbsp;★★★★</option>
-                                                    <option name="star" value="3" id="star1">&nbsp;★★★</option>
-                                                    <option name="star" value="2" id="star1">&nbsp;★★</option>
-                                                    <option name="star" value="1" id="star1">&nbsp;★</option>
-                                                </select>
+                                            <span class="star">
+                                                ★★★★★
+                                                <span>★★★★★</span>
+                                                <input type="range" name="star" id="reviewStar" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+                                              </span>
                                         
                                         </div>
                                     </td>
@@ -289,17 +313,6 @@
                                     <button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/myOrder.me'">취소</button>
                                     </div>
                     </form>
-
-					<!--  
-					<script>
-                         
-						function starCount() {
-							var star = document.getElementById("reviewStar").value;
-							//console.log(star);
-							
-						}
-					</script>
-					-->
 					
 
 				</div>
@@ -311,6 +324,14 @@
 
 
     </div>
+
+    <!--별점구현부분-->
+    <script>
+        const drawStar = (target) => {
+            document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+            let value = document.querySelector("#reviewStar").value();
+        }
+    </script>
 
 </body>
 </html>

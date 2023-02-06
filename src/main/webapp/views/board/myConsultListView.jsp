@@ -119,7 +119,7 @@ td {
 
 		<div class="content">
 
-			<h2 align="center" style="font-weight: 600; color: rgb(50, 50, 50);">1:1문의 게시판</h2>
+			<h2 align="center" style="font-weight: 600; color: rgb(50, 50, 50);">1:1 문의 게시판</h2>
 			<br> <br> <br> <br>
 
 			<table class="list-area">
@@ -162,6 +162,7 @@ td {
 			
 			<br>
 			
+			<!--
 			<div class="consultAnswer" align="center">
 				<select name="searchAnswer" id="searchAnswer" onchange="">
 					<option value="" selected>전체</option>
@@ -172,6 +173,7 @@ td {
 				<button type="button" id="btn2" onclick="">찾기</button>
 
 			</div>
+			-->
 			
 			<!-- 게시글 상세보기 -->
         	<script>

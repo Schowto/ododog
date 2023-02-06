@@ -1,7 +1,6 @@
 package com.odd.board.model.service;
 
-import static com.odd.common.JDBCTemplate.close;
-import static com.odd.common.JDBCTemplate.getConnection;
+import static com.odd.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -12,6 +11,19 @@ import com.odd.board.model.vo.Reply;
 import com.odd.common.model.vo.PageInfo;
 
 public class AdminBoardService {
+	
+	public int selectNoticeListCount() {
+		Connection conn = getConnection();
+		int count = new AdminBoardDao().selectNoticeListCount(conn);
+		close(conn);
+		return count;
+	}
+	public ArrayList<Board> selectNoticeList(PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new AdminBoardDao().selectNoticeList(conn, pi);
+		close(conn);
+		return list;
+	}
 	
 	public int selectListCount() {
 		Connection conn = getConnection();
@@ -56,6 +68,82 @@ public class AdminBoardService {
 		int count = new AdminBoardDao().selectSearchReplyListCount(conn, replySort, replyKeyword);
 		close(conn);
 		return count;
+	}
+	public ArrayList<Board> searchList(PageInfo pi, String boardSort, String boardKeyword){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new AdminBoardDao().searchList(conn, pi, boardSort, boardKeyword);
+		close(conn);
+		return list;
+	}
+	public ArrayList<Reply> searchReplyList(PageInfo replyPi, String replySort, String replyKeyword){
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new AdminBoardDao().searchReplyList(conn, replyPi, replySort, replyKeyword);
+		close(conn);
+		return list;
+	}
+	
+	/**
+	 * 게시글 상태 변경 : 일반게시글, 댓글, 공지사항
+	 * @param boardNo
+	 * @param status 기존 상태
+	 * @return
+	 */
+	public int updateStatus(int boardNo, String status) {
+		Connection conn = getConnection();
+		int result = new AdminBoardDao().updateStatus(conn, boardNo, status);
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int updateStatusR(int replyNo, String status) {
+		Connection conn = getConnection();
+		int result = new AdminBoardDao().updateStatusR(conn, replyNo, status);
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int deleteBoard(int boardNo) {
+		Connection conn = getConnection();
+		int result = new AdminBoardDao().deleteBoard(conn, boardNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int deleteReply(int replyNo) {
+		Connection conn = getConnection();
+		int result = new AdminBoardDao().deleteReply(conn, replyNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	
+	public int insertNotice(Board b) {
+		Connection conn = getConnection();
+		int result = new AdminBoardDao().insertNotice(conn, b);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 }

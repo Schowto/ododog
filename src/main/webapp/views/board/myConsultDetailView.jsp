@@ -215,7 +215,7 @@
 					<table class="consultAnswer">
 						<tr>
 							<td style="text-align:center; width:15%; border-right:1px solid rgb(220,220,220);">클릭해서 확인하기</td>
-							<td class="blink">&nbsp;&nbsp;안녕하세요 오도독(DOG)입니다. 문의에 대해 답변드립니다.</td>
+							<td class="blink" style="color:rgb(200,140,140);">&nbsp;&nbsp;안녕하세요 오도독(DOG)입니다. 문의에 대해 답변드립니다.</td>
 						</tr>
 						<tr>
 							<td colspan="6">

@@ -1130,7 +1130,57 @@ INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '상품에 대해서 문의하려면 �
 
 -- ADMIN 테이블
 
+-- REVIEW 테이블
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,2,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,3,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,4,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,5,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,6,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,7,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,8,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,9,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,10,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
 
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,2,'추천합니다 ','리뷰가 많은 이유가 있네요', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,2,2,'추천합니다 ','리뷰가 많은 이유가 있네요', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,3,2,'추천합니다 ','리뷰가 많은 이유가 있네요', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,4,2,'추천합니다 ','리뷰가 많은 이유가 있네요', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,5,2,'추천합니다 ','리뷰가 많은 이유가 있네요', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,6,2,'추천합니다 ','리뷰가 많은 이유가 있네요', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,3,'강아지를 위한간식!! ','강아지를 사랑한다면 꼭 여기꺼 사서 먹여보세요!! 진짜 추천입니다!!', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,2,3,'강아지를 위한간식!! ','강아지를 사랑한다면 꼭 여기꺼 사서 먹여보세요!! 진짜 추천입니다!!', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,3,3,'강아지를 위한간식!! ','강아지를 사랑한다면 꼭 여기꺼 사서 먹여보세요!! 진짜 추천입니다!!', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,4,3,'강아지를 위한간식!! ','강아지를 사랑한다면 꼭 여기꺼 사서 먹여보세요!! 진짜 추천입니다!!', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,4,'잘먹네요 ','아기가 너무 잘먹네요', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,2,4,'잘먹네요 ','아기가 너무 잘먹네요', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,3,4,'잘먹네요 ','아기가 너무 잘먹네요', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,5,'그냥그랬어요','걍 다른간식마냥 쏘쏘했어요. 굳이 다시 안시켜먹을듯', 2,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,3,5,'그냥그랬어요','걍 다른간식마냥 쏘쏘했어요. 굳이 다시 안시켜먹을듯', 2,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,5,5,'그냥그랬어요','걍 다른간식마냥 쏘쏘했어요. 굳이 다시 안시켜먹을듯', 2,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,6,5,'그냥그랬어요','걍 다른간식마냥 쏘쏘했어요. 굳이 다시 안시켜먹을듯', 2,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,7,5,'그냥그랬어요','걍 다른간식마냥 쏘쏘했어요. 굳이 다시 안시켜먹을듯', 2,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,6,'흠 ','사줘도안먹네요', 1,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,2,6,'흠 ','사줘도안먹네요', 1,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,3,6,'흠 ','사줘도안먹네요', 1,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,7,'괜찮네요~~','인공적인게 아니라 수제라그런가 마음에 더 놓여요~', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,2,7,'괜찮네요~~','인공적인게 아니라 수제라그런가 마음에 더 놓여요~', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,3,7,'괜찮네요~~','인공적인게 아니라 수제라그런가 마음에 더 놓여요~', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,4,7,'괜찮네요~~','인공적인게 아니라 수제라그런가 마음에 더 놓여요~', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,5,7,'괜찮네요~~','인공적인게 아니라 수제라그런가 마음에 더 놓여요~', 4,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,8,'멍멍멍멍멍멍멍멍','왈왈왈왈왈왈 ', 3,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,2,8,'멍멍멍멍멍멍멍멍','왈왈왈왈왈왈 ', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+
+INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,9,'너무좋아해요','강아지가 진짜잘먹어요 냠냠', 5,SYSDATE,SYSDATE,'원본명','파일경로','Y');
+
+-- CONSULT 테이블(임시)
+INSERT INTO CONSULT VALUES(SEQ_CONSULTNO.NEXTVAL,1,'배송문의드립니다','배송이 너무안와요. 아니 아무리 수제간식이라지만 농작물다 클때까지 기다려야되나요. 우리강아지 지금 간식못먹어서 울상이란말이예요.. 빨리 배송해주세요',SYSDATE,SYSDATE,'고객님 정말 죄송합니다. 현재 주문하신상품은 물량이 충분하지않아 배송에 어려움을겪고있습니다. 넓은 아량으로 조금만 기다려주신다면 울상 강아지가 해피 강아지가 될 수 있게 빠르게 배송드리겠습니다. 항상 주문해주시고 기다려주시는 고객님께 감사합니다.', SYSDATE,'Y','원본명','파일루트','배송','1','답변완료');   
 
 
 

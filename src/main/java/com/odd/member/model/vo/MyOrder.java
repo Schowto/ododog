@@ -78,6 +78,21 @@ public class MyOrder {
 		this.amount = amount;
 	}
 
+	
+	
+	public MyOrder(int ordNo, int userNo, String delAdd, String payment, String deliveryStatus, String phone,
+			String address, String require) {
+		super();
+		this.ordNo = ordNo;
+		this.userNo = userNo;
+		this.delAdd = delAdd;
+		this.payment = payment;
+		this.deliveryStatus = deliveryStatus;
+		this.phone = phone;
+		this.address = address;
+		this.require = require;
+	}
+
 	public int getOrdNo() {
 		return ordNo;
 	}

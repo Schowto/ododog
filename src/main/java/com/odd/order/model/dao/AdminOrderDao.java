@@ -115,12 +115,16 @@ public class AdminOrderDao {
 		String userName = ordSearch.getUserName();
 		String lowPrice = ordSearch.getLowPrice();
 		String highPrice = ordSearch.getHighPrice();
+		String require = ordSearch.getRequire();
 		
 		String sql = prop.getProperty("searchList");
 		
 	
 		if(!userName.equals("")) {
 			sql += " AND 유저이름 LIKE '%" + userName + "%'"; 
+		}
+		if(!require.equals("")) {
+			sql += " AND 배송시요청사항 LIKE '%" + require + "%'"; 
 		}
 		if(!lowPrice.equals("")) {
 			sql += " AND 최종결제금액 >= " + lowPrice; 
@@ -172,11 +176,12 @@ public class AdminOrderDao {
 	 * @return AdminOrder -- 주문 정보
 	 *          >> 주문번호 ordNo
 	 *          >> 회원번호 userNo
+	 *          >> 회원이름 userName
 	 *          >> 배송지 delAdd
 	 *          >> 전화번호 phone
 	 *          >> 이메일 email
 	 *          >> 사용적립금 discount
-	 *          >> 최종사용금액 totalPrice
+	 *          >> 최종결제금액 totalPrice
 	 *          >> 배송여부('Y' or 'N') delivery
 	 *          >> 입금여부('Y' or 'N') payment
 	 *          >> 배송시요구사항 require
@@ -200,22 +205,22 @@ public class AdminOrderDao {
 				rset = pstmt.executeQuery();
 				
 				while(rset.next()){	
-							o = new AdminOrder(rset.getInt("ord_no")
-									, rset.getInt("user_no")
-									, rset.getString("user_name")
-									, rset.getString("del_add")
-									, rset.getString("phone")
-									, rset.getString("email")
-									, rset.getInt("discount")
-									, rset.getInt("total_Price")
-									, rset.getString("delivery")
-									, rset.getString("require")
+							o = new AdminOrder(rset.getInt("주문번호")
+									, rset.getInt("회원번호")
+									, rset.getString("회원이름")
+									, rset.getString("배송지")
+									, rset.getString("전화번호")
+									, rset.getString("이메일")
+									, rset.getInt("사용적립금")
+									, rset.getInt("최종결제금액")
+									, rset.getString("배송여부")
+									, rset.getString("배송시요구사항")
 									);
 					
-							o.setPayment(rset.getString("payment"));
+							o.setPayment(rset.getString("입금여부"));
 							o.setDeliveryPrice(rset.getInt("배송비"));
-							o.setAddress(rset.getString("address"));
-							o.setOrderDate(rset.getString("order_Date"));
+							o.setAddress(rset.getString("회원주소"));
+							o.setOrderDate(rset.getString("주문등록날짜"));
 							
 								
 								}
@@ -291,5 +296,92 @@ public class AdminOrderDao {
 			
 			return list;
 		}
-
+		
+		public int confirmOrder(Connection conn, int ordNo) {
+			
+			int result = 0;
+			PreparedStatement pstmt = null;
+			
+			String sql = prop.getProperty("confirmOrder");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, ordNo);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			return result;
+		}
+		
+		public int confirmMemberSP(Connection conn, int userNo, int point) {
+			
+			int result = 0;
+			PreparedStatement pstmt = null;
+			
+			String sql = prop.getProperty("confirmMemberSP");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, point);
+				pstmt.setInt(2, userNo);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		
+		public int confirmMemberDC(Connection conn, int userNo, int point) {
+			
+			int result = 0;
+			PreparedStatement pstmt = null;
+			
+			
+			String sql = prop.getProperty("confirmMemberDC");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, point);
+				pstmt.setInt(2, userNo);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+		
+		public int confirmPoint(Connection conn, int ordNo, int userNo, int point, String pm) {
+			
+			int result = 0;
+			PreparedStatement pstmt = null;
+			
+			
+			String sql = prop.getProperty("confirmPoint");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1,pm);
+				pstmt.setString(2,pm);
+				pstmt.setInt(3, point);
+				pstmt.setInt(4, userNo);
+				pstmt.setInt(5, ordNo);
+				
+				result = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			return result;
+			
+		}
+		
 }

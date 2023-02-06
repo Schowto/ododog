@@ -190,23 +190,6 @@ public class MemberService {
 		return m;
 	}
 	
-	public Member updatePwdUser(String user_Id, String user_Name, String email, String user_Pwd, String update_Pwd) {
-		Connection conn = getConnection();
-		int result = new MemberDao().updatePwdUser(conn, user_Id, user_Name, email, user_Pwd, update_Pwd);
-		
-		Member updatePwd= null;
-		
-		if(result > 0) {
-			commit(conn);
-			updatePwd = new MemberDao().selectLoginMember(conn, user_Id);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		
-		return updatePwd;
-		
-	}
 	
 	public ArrayList<Member> searchMember(String keyword){
 		Connection conn = getConnection();
@@ -215,6 +198,7 @@ public class MemberService {
 		return list;
 	}
 	
+
 	
 	
 	

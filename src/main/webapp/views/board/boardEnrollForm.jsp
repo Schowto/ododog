@@ -77,7 +77,7 @@
             })
         </script>
     
-        <form action="<%= contextPath %>/insert.bo" id="board-area" method="post">
+        <form action="<%= contextPath %>/insert.bo" id="board-area" method="post" style="font-size:13px;">
     
             <div align="center";>
                 <br><br><br><br><br><br><br>

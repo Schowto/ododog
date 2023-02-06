@@ -1,7 +1,6 @@
 package com.odd.order.model.service;
 
-import static com.odd.common.JDBCTemplate.close;
-import static com.odd.common.JDBCTemplate.getConnection;
+import static com.odd.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -54,11 +53,12 @@ public class AdminOrderService {
 	 * @return AdminOrder -- 주문 정보
 	 *          >> 주문번호 ordNo
 	 *          >> 회원번호 userNo
+ 	 *          >> 회원이름 userName
 	 *          >> 배송지 delAdd
 	 *          >> 전화번호 phone
 	 *          >> 이메일 email
 	 *          >> 사용적립금 discount
-	 *          >> 최종사용금액 totalPrice
+	 *          >> 최종결제금액 totalPrice
 	 *          >> 배송여부('Y' or 'N') delivery
 	 *          >> 입금여부('Y' or 'N') payment
 	 *          >> 배송시요구사항 require
@@ -100,6 +100,35 @@ public class AdminOrderService {
 		close(conn);
 		
 		return list;
+	}
+	
+	public int confirmOrder(int ordNo, int userNo, int savePoint, int discount) {
+
+		Connection conn = getConnection();
+		
+		int result1 = new AdminOrderDao().confirmOrder(conn, ordNo);
+		int result2 = new AdminOrderDao().confirmMemberSP(conn, userNo, savePoint);
+		int result3 = new AdminOrderDao().confirmMemberDC(conn, userNo, discount);
+		
+		int result5 = 1;
+		if(discount > 0) {
+			result5 = new AdminOrderDao().confirmPoint(conn, ordNo, userNo, discount, "사용");
+		}
+		
+		int result4 = 1;
+		if(savePoint > 0) {
+			result4 = new AdminOrderDao().confirmPoint(conn, ordNo, userNo, savePoint, "적립");
+		}
+		
+		if(result1 > 0 && result2 >0 && result3 >0 && result4 >0 && result5 >0 ) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result1*result2*result3*result4*result5;
+		
 	}
 
 }

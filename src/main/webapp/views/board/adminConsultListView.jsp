@@ -27,11 +27,8 @@
   }
   .searchTable{
     width:80%;
+    height: 50px;
     
-  }
-  .searchTable input{
-    border:1px soliod rgb(220,220,220);
-    height:30px;
   }
   .searchTable ::placeholder{
         font-size:14px;
@@ -99,7 +96,24 @@
     border-radius: 6px;
     background-color: #ffffff;
         }
-    
+   .searchTable>input {   
+            font-size: 13px;
+            border: 2px solid rgb(220, 220, 220);
+            background: white;
+            color: rgb(50, 50, 50);
+            border-radius: 5px;
+            width:70px;
+            height: 30px;
+        }
+        .searchTable>input:hover{
+            font-weight: 600;
+            background: rgb(220, 220, 220);
+        }
+        .searchTable button{
+          width:70px;
+          height:30px;
+          text-decoration: none;
+        }
 </style>
 </head>
 <body>
@@ -113,11 +127,8 @@
 
             <br><br>
             <div class="searchTable" align="left">
-                <select name="answerStatus" id="answerStatus" style="height:30px; width:100px;" onchange="searchAnswer();">
-                    <option value="no">미답변</option>
-                    <option value="yes">답변</option>
-                </select>
-                <input type="button" value="검색" onclick="searchUser();">
+              <input type="button" name="answer" id="answerNo" value="no" onclick="answerNo();">
+              <input type="button" name="answer" id="answerYes" value="yes" onclick="answerNo();">
             </div>
             <br><br>
             
@@ -166,23 +177,47 @@
        </div>
         
        <script>
-        function searchAnswer(){
+        function answerNo(){
+          const $answer = $("input[name=answer]");
+
           $.ajax({
-            url: "<%=c.getContextPath()%>/",
-            date: {answer : $("searchAnswer option:selected").val()},
-            type: "post",
-            success: function(result){
+            url:"<%=contextPath%>/answerList.co",
+            data:{answer:$answer.val()} , 
+            success:function(list){
+            	
+            	console.log(list);
 
-            },
-            error:function(){
+              let value = "";
+              if(list.length == 0){
 
-            } ,
+            	  $("#tbodyTable").empty();
+                value += "<tbody>" 
+                      + "<tr>"
+                       + "<td colspan='6'>존재하는 상담내역이 없습니다.</td>"
+                       + "</tr>"
+                       + "</tbody>";
+                }else{
+                	$("#tbodyTable").empty();
+                  for(let i=0;i<list.length; i++){
+                    value += "<tr>"
+                          + "<td>" + list[i].ConsultNo + "</td>"
+                          + "<td>" + list[i].ConsultTitle + "</td>"
+                          + "<td>" + list[i].ConsultCategory + "</td>"
+                          + "<td>" + list[i].EnrollDate + "</td>"
+                          + "<td>" + list[i].ConsultNo + "</td>"
+                          + "<td>" + list[i].AnswerStatus + "</td>"
+                          + "</tr>";
+                  }
+                }
 
+                $("#userTable tbody").html(value);
+              },
+              error:function(){
+                console.log("ajax 통신 실패");
+              }
           })
         }
-
-       </script>
-        
+      </script>
      	
 
 </body>

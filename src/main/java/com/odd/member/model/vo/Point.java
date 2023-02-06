@@ -16,6 +16,17 @@ public class Point {
 	 
 	 
 
+	public Point(int pointNo, String pointCategory, Date pointDate, String pointUse, int pointPrice) {
+		super();
+		this.pointNo = pointNo;
+		this.pointCategory = pointCategory;
+		this.pointDate = pointDate;
+		this.pointUse = pointUse;
+		this.pointPrice = pointPrice;
+	}
+
+
+
 	public Point(int userNo, Date pointDate, String pointUse, int pointPrice) {
 		super();
 		this.userNo = userNo;
