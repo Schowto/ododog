@@ -57,7 +57,15 @@ public class Recipe {
 		this.heartCount = heartCount;
 		this.myHeartStatus = myHeartStatus;
 	}
-
+	// adminSelectList
+	public Recipe(int recipeNo, String recipeTitle, int count, String createDate, String status) {
+		super();
+		this.recipeNo = recipeNo;
+		this.recipeTitle = recipeTitle;
+		this.count = count;
+		this.createDate = createDate;
+		this.status = status;
+	}
 	public int getRecipeNo() {
 		return recipeNo;
 	}
