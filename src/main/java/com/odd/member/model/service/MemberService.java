@@ -190,29 +190,29 @@ public class MemberService {
 		return m;
 	}
 	
-	public Member updatePwdUser(String user_Id, String user_Name, String email, String user_Pwd, String update_Pwd) {
-		Connection conn = getConnection();
-		int result = new MemberDao().updatePwdUser(conn, user_Id, user_Name, email, user_Pwd, update_Pwd);
-		
-		Member updatePwd= null;
-		
-		if(result > 0) {
-			commit(conn);
-			updatePwd = new MemberDao().selectLoginMember(conn, user_Id);
-		}else {
-			rollback(conn);
-		}
-		close(conn);
-		
-		return updatePwd;
-		
-	}
 	
 	public ArrayList<Member> searchMember(String keyword){
 		Connection conn = getConnection();
 		ArrayList<Member> list = new MemberDao().searchMember(conn, keyword);
 		close(conn);
 		return list;
+	}
+	
+	public Member searchUpdatePwd(String userId, String updatePwd, String userName, String email) {
+		Connection conn = getConnection();
+		int result = new MemberDao().searchUpdatePwd(conn, userId, updatePwd, userName, email);
+		
+		Member changPwd = null;
+		
+		if(result > 0) {
+			commit(conn);
+			changPwd = new MemberDao().selectLoginMember(conn, userId);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return changPwd;
 	}
 	
 	

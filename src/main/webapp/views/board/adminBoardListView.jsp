@@ -137,7 +137,7 @@
                         <td><%= b.getBoardWriter() %></td>
                         <td><%= b.getCreateDate() %></td>
                         <td><%= b.getCount() %></td>
-                        <td align="center" id="board-status-area">
+                        <td align="center" class="board-status-area">
                         	<% if(b.getStatus().equals("Y")){ %>
                         		<button class="status-y">Y</button>
                         	<% } else { %>
@@ -145,7 +145,7 @@
                         	<% } %>
                         </td>
                         <td>
-                            <button class="btn-red" id="board-delete-area" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+                            <button class="btn-red board-delete-area"style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
                         </td>
                     </tr>
                		<% } %>
@@ -153,7 +153,7 @@
             </table>
             
             <script>
-            	$("#board-status-area button").click(function(){
+            	$(".board-status-area button").click(function(){
             		const a = $(this);
            			// 상태가 Y일때 -> N 으로 || N일때 -> Y로
            			if(confirm("게시글의 상태를 변경하시겠습니까?")){
@@ -177,11 +177,12 @@
 	           						alert("상태 변경 실패");
 	           					}
 	           				}, error:function(){
+	           					console.log("상태 변경용 ajax 통신 실패");
 	           				}
 	           			})
            			}
             	})
-            	$("#board-delete-area").click(function(){
+            	$(".board-delete-area").click(function(){
             		const a = $(this);
            			// 게시글 완전 삭제
            			if(confirm("게시글을 완전히 삭제하시겠습니까? \n삭제 후 취소할 수 없습니다.")){
@@ -189,22 +190,17 @@
 	           				url:"<%=contextPath%>/delete.adBo",
 	           				data:{
 	           					from:"board",
-	           					no:$(this).parent().prev().prev().prev().prev().prev().text(),
-	           					status:$(this).text()
+	           					no:$(this).parent().prev().prev().prev().prev().prev().prev().text()
 	           					},
 	           				success:function(result){
 	           					if(result > 0){
-	           						if(a.text() == "Y"){
-	           							a.attr("class", "status-n");
-	           							a.text("N");
-	           						} else {
-	           							a.attr("class", "status-y");
-	           							a.text("Y");
-	           						}
+	           						alert("성공적으로 삭제되었습니다.");
 	           					} else {
-	           						alert("상태 변경 실패");
+	           						alert("삭제 실패");
 	           					}
+	           					location.reload();
 	           				}, error:function(){
+	           					console.log("삭제용 ajax 통신 실패");
 	           				}
 	           			})
            			}
@@ -326,7 +322,7 @@
 	                        <td><%= r.getReplyWriter() %></td>
 	                        <td><%= r.getCreateDate() %></td>
 	                        <td><%= r.getBoardNo() %></td>
-	                        <td align="center" id="reply-status-area">
+	                        <td align="center" class="reply-status-area">
 	                        	<% if(r.getStatus().equals("Y")){ %>
 	                        		<button class="status-y">Y</button>
 	                        	<% } else { %>
@@ -334,7 +330,7 @@
                        			<% } %>
 	                        </td>
 	                        <td>
-	                            <button class="btn-red" id="reply-delete-area" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+	                            <button class="btn-red reply-delete-area" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
 	                        </td>
 	                    </tr>
                		<% } %>
@@ -342,7 +338,7 @@
             </table>
             
             <script>
-	            $("#reply-status-area button").click(function(){
+	            $(".reply-status-area button").click(function(){
 	        		const a = $(this);
 	       			// 상태가 Y일때 -> N 으로 || N일때 -> Y로
 	       			if(confirm("댓글의 상태를 변경하시겠습니까?")){
@@ -370,30 +366,25 @@
 	           			})
 	       			}
 	        	})
-	        	$("#reply-delete-area").click(function(){
+	        	$(".reply-delete-area").click(function(){
 	        		const a = $(this);
 	       			// 댓글 완전 삭제
 	       			if(confirm("댓글을 완전히 삭제하시겠습니까? \n삭제 후 취소할 수 없습니다.")){
 	           			$.ajax({
 	           				url:"<%=contextPath%>/delete.adBo",
 	           				data:{
-	           					from:"board",
-	           					no:$(this).parent().prev().prev().prev().prev().prev().text(),
-	           					status:$(this).text()
+	           					from:"reply",
+	           					no:$(this).parent().prev().prev().prev().prev().prev().prev().text()
 	           					},
-	           				success:function(result){
+           					success:function(result){
 	           					if(result > 0){
-	           						if(a.text() == "Y"){
-	           							a.attr("class", "status-n");
-	           							a.text("N");
-	           						} else {
-	           							a.attr("class", "status-y");
-	           							a.text("Y");
-	           						}
+	           						alert("성공적으로 삭제되었습니다.");
 	           					} else {
-	           						alert("상태 변경 실패");
+	           						alert("삭제 실패");
 	           					}
+	           					location.reload();
 	           				}, error:function(){
+	           					console.log("삭제용 ajax 통신 실패");
 	           				}
 	           			})
 	       			}
