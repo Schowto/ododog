@@ -49,7 +49,6 @@
 						     , R.STATUS
 						  FROM REPLY R
 						  JOIN MEMBER ON (REPLY_WRITER = USER_NO)
-						  JOIN BOARD USING (BOARD_NO)
 						 WHERE R.BOARD_TYPE IN (1, 2)
 						 ORDER
 						    BY REPLY_NO DESC
@@ -112,6 +111,17 @@
 		UPDATE
 			   REPLY
 		   SET STATUS = ?
+		 WHERE REPLY_NO = ?
+	</entry>
+	
+	<entry key="deleteBoard">
+		DELETE
+		  FROM BOARD
+		 WHERE BOARD_NO = ?
+	</entry>
+	<entry key="deleteReply">
+		DELETE
+		  FROM REPLY
 		 WHERE REPLY_NO = ?
 	</entry>
 </properties>

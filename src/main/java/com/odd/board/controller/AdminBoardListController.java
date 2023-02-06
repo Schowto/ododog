@@ -80,7 +80,6 @@ public class AdminBoardListController extends HttpServlet {
 		request.setAttribute("replyList", replyList);
 		request.getRequestDispatcher("views/board/adminBoardListView.jsp").forward(request, response);
 		
-		
 	}
 
 	/**
