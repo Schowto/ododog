@@ -148,11 +148,11 @@
                     </tr>
                 <% } else { %>
                 	<% for(Recipe r : list){ %>
-	                    <tr onclick="location.href='<%= contextPath %>/updateForm.re?no=<%= r.getRecipeNo() %>'"> 
-	                        <td><%= r.getRecipeNo() %></td>
-	                        <td><%= r.getRecipeTitle() %></td>
-	                        <td><%= r.getCreateDate() %></td>
-	                        <td><%= r.getCount() %></td>
+	                    <tr> 
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>'"><%= r.getRecipeNo() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>'"><%= r.getRecipeTitle() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>'"><%= r.getCreateDate() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>'"><%= r.getCount() %></td>
 	                        <td align="center" class="recipe-status-area">
 	                        	<% if(r.getStatus().equals("Y")){ %>
 	                        		<button class="status-y">Y</button>
@@ -284,12 +284,12 @@
                     </tr>
                	<% } else { %>
                		<% for(Reply r : replyList){ %>
-	                    <tr onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getBoardNo() %>'">
-	                        <td><%= r.getReplyNo() %></td>
-	                        <td><%= r.getReplyContent() %></td>
-	                        <td><%= r.getReplyWriter() %></td>
-	                        <td><%= r.getCreateDate() %></td>
-	                        <td><%= r.getBoardNo() %></td>
+	                    <tr>
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getBoardNo() %>'"><%= r.getReplyNo() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getBoardNo() %>'"><%= r.getReplyContent() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getBoardNo() %>'"><%= r.getReplyWriter() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getBoardNo() %>'"><%= r.getCreateDate() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getBoardNo() %>'"><%= r.getBoardNo() %></td>
 	                        <td align="center" class="reply-status-area">
 	                        	<% if(r.getStatus().equals("Y")){ %>
 	                        		<button class="status-y">Y</button>

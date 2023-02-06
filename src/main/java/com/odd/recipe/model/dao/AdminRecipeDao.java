@@ -239,6 +239,7 @@ public class AdminRecipeDao {
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Cooking c = new Cooking();
+				c.setCookingNo(rset.getInt("cooking_no"));
 				c.setCookingOrder(rset.getInt("cooking_order"));
 				c.setCookingContent(rset.getString("cooking_content"));
 				c.setFilePath(rset.getString("file_path"));
@@ -252,5 +253,5 @@ public class AdminRecipeDao {
 		}
 		return list;
 	}
-
+	
 }

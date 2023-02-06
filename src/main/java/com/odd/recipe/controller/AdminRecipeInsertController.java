@@ -82,6 +82,8 @@ public class AdminRecipeInsertController extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/list.adRe?cpage=1&rpage=1");
 			} else {
 				// 실패 => 에러페이지
+				request.getSession().setAttribute("alertMsg", "레시피 등록 실패");
+				response.sendRedirect(request.getContextPath() + "/list.adRe?cpage=1&rpage=1");
 			}
 			
 		}
