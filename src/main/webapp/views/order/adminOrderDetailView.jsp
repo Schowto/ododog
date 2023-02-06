@@ -6,6 +6,7 @@
 <%
 	AdminOrder o = (AdminOrder)request.getAttribute("o");
 	ArrayList<OrdPro> list = (ArrayList<OrdPro>)request.getAttribute("list");
+	Object savePoint = request.getAttribute("savePoint");
 %>    
     
     
@@ -84,6 +85,10 @@
    	 	width:140px;
    	 }
    	 
+   	 .list-area th{
+   	 	background-color: rgba(228, 228, 228, 0.384);
+   	 }
+   	 
 </style>
 
 </head>
@@ -134,9 +139,13 @@
                            <th width="40%" colspan="2">배송시 요청 사항</th>
                            <td width="60%" colspan="2"><%=o.getRequire() %></td>
                        </tr>
+                       <tr>
+                           <th width="40%" colspan="2">최종 결제 금액</th>
+                           <td width="60%" colspan="2"><%=o.getTotalPrice() %></td>
+                       </tr>
                    </thead>
                    <tbody>
-                   
+                   	 
                        <%if (list.isEmpty()){ %>
                        <tr>
                            <td colspan="4"> 조회된 주문이 없습니다.</td>
@@ -165,14 +174,19 @@
                    </tbody>
                </table>
                
-               <a href="" class="btn btn-primary" style="float:right; margin-top:50px; margin-right:150px;">주문 승인</a>
-               
+                   <form action="<%=contextPath%>/confirm.adOrd" method="post">
+				    	<input type="hidden" name="ordNo" value="<%=o.getOrdNo()%>">
+				    	<input type="hidden" name="userNo" value="<%=o.getUserNo()%>">
+				    	<input type="hidden" name="savePoint" value="<%=savePoint%>">
+				    	<input type="hidden" name="discount" value="<%=o.getDiscount()%>">
+				    	<button type="submit" class="btn btn-primary">주문 승인</button>
+				    </form>
+				               
             </div>
                
-            <br><br><br>
-            <br><br><br>
-            <br><br><br>
-            <br><br><br>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
+            <br><br><br><br><br><br>
         
         
     </div>

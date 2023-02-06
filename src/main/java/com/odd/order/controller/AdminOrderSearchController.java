@@ -48,7 +48,8 @@ public class AdminOrderSearchController extends HttpServlet {
 											
 											request.getParameter("userName") ,
 											request.getParameter("lowPrice") ,
-											request.getParameter("highPrice")
+											request.getParameter("highPrice") ,
+											request.getParameter("require")
 										  );
 
 					
@@ -58,6 +59,7 @@ public class AdminOrderSearchController extends HttpServlet {
 											
 											"" ,
 											"" ,
+											"" ,
 											""
 										  );
 
@@ -65,7 +67,6 @@ public class AdminOrderSearchController extends HttpServlet {
 		
 		list = new AdminOrderService().searchList(ordSearch);
 		request.setAttribute("list",list);
-		
 		request.getRequestDispatcher("views/order/adminOrderSearchView.jsp").forward(request, response);
 	}
 	
