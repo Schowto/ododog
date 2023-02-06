@@ -82,6 +82,9 @@ public class OrderController extends HttpServlet {
 //		request.setAttribute("p", p);
 		request.setAttribute("list", list);
 		request.setAttribute("quantity", quantity);
+		
+		System.out.println(request.getAttribute("proNo0"));
+		
 		request.getRequestDispatcher("views/order/orderListView.jsp").forward(request,response);
 	}
 

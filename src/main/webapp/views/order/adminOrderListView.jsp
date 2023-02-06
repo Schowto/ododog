@@ -148,7 +148,7 @@
 	                    
 	                        <%if (list.isEmpty()){ %>
 	                        <tr>
-	                            <td colspan="9"> 조회된 주문이 없습니다.</td>
+	                            <td colspan="9"> 조회된 주문에 상품이 없습니다.</td>
 	                        </tr>
 	                        <%}else{ %>
 	                            <% for(AdminOrder o : list){ %>

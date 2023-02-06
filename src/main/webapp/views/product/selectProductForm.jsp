@@ -35,7 +35,6 @@
         <form action="" >
             <table align="center">
                 <br>
-                <h4 style="text-align: center;">
                 <img src="<%=contextPath%>/resources/icons/search.png" width=30px; height=30px;>
                 상품 상세 검색</h4>
                 <br><br>
