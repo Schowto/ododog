@@ -192,10 +192,18 @@
 					
 						<button type="button" onclick="location.href='<%=contextPath%>/list.co'">목록</button>
 						<button type="submit">수정</button>
-						<button type="button" class="btn-red" onclick="location.href='<%=contextPath%>/delete.co?no=<%=c.getConsultNo()%>'">삭제</button>
+						<button type="button" class="btn-red" onclick="deleteConsult();">삭제</button>
 					
 					
 					</div>
+
+					<script>
+						function deleteConsult(){
+							if(confirm("정말 삭제하시겠습니까?")){
+								location.href = "<%= contextPath %>/delete.co?no=<%=c.getConsultNo()%>";
+							}
+						}
+					</script>
 					
 					<script>
 						$(function(){

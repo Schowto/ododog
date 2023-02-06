@@ -1,6 +1,7 @@
 package com.odd.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.member.model.service.MyOrderService;
-import com.odd.member.model.vo.MyOrder;
+import com.odd.order.model.service.AdminOrderService;
+import com.odd.order.model.vo.AdminOrder;
+import com.odd.order.model.vo.OrdPro;
 
 /**
  * Servlet implementation class MyOrderDetailController
@@ -41,18 +43,13 @@ public class MyOrderDetailController extends HttpServlet {
 		//request.sestAttribute("p", p);
 		
 		int ordNo = Integer.parseInt(request.getParameter("no"));
+		AdminOrder o = new AdminOrderService().selectOrder(ordNo);
+		ArrayList<OrdPro> list = new AdminOrderService().selectOrdPro(ordNo);
 		
-		MyOrder m = new MyOrderService().selectMyOrder(ordNo);
+		request.setAttribute("o", o);
+		request.setAttribute("list", list);
 		
-		if(m != null) {
-			request.setAttribute("m", m);
-			request.getRequestDispatcher("views/member/myOrderDetailView.jsp").forward(request, response);
-		}else {
-			request.setAttribute("alertMsg", "상세조회 실패");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
-			response.sendRedirect(request.getContextPath() + "/myOrder.me");
-		}
-		
+		request.getRequestDispatcher("views/member/myOrderDetailView.jsp").forward(request, response);
 	}
 
 	/**

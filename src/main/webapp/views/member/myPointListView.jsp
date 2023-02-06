@@ -3,6 +3,7 @@
 <%@ page import="com.odd.member.model.vo.*, java.util.ArrayList" %>
 <%
 	ArrayList<Point> list = (ArrayList<Point>)request.getAttribute("list");
+    Member m = (Member)request.getAttribute("m");
 %>
 <!DOCTYPE html>
 <html>
@@ -78,6 +79,8 @@
 <body>
 
 	<%@ include file="../common/userMenubar.jsp" %>
+	
+	
 
     <div class="outer"> 
 
@@ -106,11 +109,9 @@
             <h2 align="center" style="color:rgb(50, 50, 50); font-weight:600;">적립금</h2>
             <br><br><br><br>
 
-            <!--
             <div class="pointView">
-                  (회원아이디자리) 님의 총 적립금 내역은 (적립금총금액자리) 원 입니다.
+                  <%= m.getUser_Id() %> 님의 총 적립금 내역은 <%= m.getPoint() %> 원 입니다.
             </div>
-            -->
 
             <div class="pointHistory">
                     
@@ -126,7 +127,7 @@
 						<tbody>
 							<%if(list.isEmpty()){ %>
                           	<tr>
-                             	<th colspan="3">적립금내역이 존재하지않습니다.</th>
+                             	<th colspan="3" style="text-align:center">적립금내역이 존재하지않습니다.</th>
                          	</tr>
                          	<%}else{ %>
                          	<%for(Point p : list) {%>

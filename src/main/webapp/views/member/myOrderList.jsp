@@ -149,7 +149,7 @@
 
             <div class="myOrde">
                 <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
-                    나의 주문조회 내역(주문횟수들어갈자리)
+                    나의 주문조회 내역
                 </div>
                 <br>
                 <div class="myOrderView">
@@ -194,11 +194,11 @@
                         	<thead>
 	                            <tr style="font-size:13px;">
 	                                <td style="width:200px;">주문일자[주문번호]</td>
-	                                <td style="width:150px;">이미지</td>
-	                                <td style="width:150px;">상품이름</td>
-	                                <td style="width:100px;">수량</td>
-	                                <td style="width:200px;">결제금액</td>
-	                                <td style="width:200px;">주문처리상태</td>
+	                                <td style="width:150px;">상품번호</td>
+	                                <td style="width:150px;">배송지</td>
+	                                <td style="width:100px;">입금 여부</td>
+	                                <td style="width:200px;">배송시작여부</td>
+	                                <td style="width:200px;">배송시요청사항</td>
 	                            </tr>
                          	</thead>
                          	<tbody>

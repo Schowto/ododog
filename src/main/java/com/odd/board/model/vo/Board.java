@@ -28,6 +28,13 @@ public class Board {
 	private int commentNo;
 	
 	
+	
+	public Board(int boardNo, String boardTitle, String createDate) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
+		this.createDate = createDate;
+	}
 	public int getReportNo() {
 		return reportNo;
 	}
