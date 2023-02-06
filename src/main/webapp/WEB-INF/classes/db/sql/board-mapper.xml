@@ -330,6 +330,7 @@
 	   FROM REPORT
 	   WHERE USER_NO LIKE ?	
 	</entry>
+
 	
 	<!-- 내게시물조회(정은) -->
 	<entry key="selectMyBoard">

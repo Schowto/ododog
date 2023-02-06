@@ -437,12 +437,12 @@
                     </div>
         
                     <!-- Modal body -->
+        			<form action="" method="post">
                     <div class="modal-body" style="color:gray; font-size:13px;">
                         <br>
                         글 또는 댓글이 이용규칙 위반으로 관리자에 의해 삭제되어야 마땅하다 판단된다면 신고해주세요. <br>
                         신고 3회 이상의 글 또는 댓글은 블라인드 처리 될 수 있습니다.
                         <br><br><br>
-        
                         <div style="margin-bottom:10px;">
                             <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report1" name="report">
                             <label for="report1">
@@ -477,9 +477,10 @@
                         <textarea name="alert-content"
                             style="width:400px; height:70px; margin-left:25px; border:1px solid rgb(220,220,220); border-radius:5px; resize:none;"></textarea>
                         <br><br>
-                        <button style="margin-left:384px;">제출</button>
+                        <button type="submit" "margin-left:384px;">제출</button>
         
                     </div>
+        				</form>
                 </div>
             </div>
         </div>
