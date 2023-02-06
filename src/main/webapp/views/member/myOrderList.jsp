@@ -3,7 +3,6 @@
 <%@ page import="java.util.ArrayList, com.odd.order.model.vo.*, com.odd.member.model.vo.*, com.odd.order.model.vo.*"%>
 <%
 	ArrayList<MyOrder> list = (ArrayList<MyOrder>)request.getAttribute("list");
-	//Review r = (Review)request.getAttribute("r");
 %>
 <!DOCTYPE html>
 <html>
@@ -197,9 +196,10 @@
                     <table>
                         	<thead>
 	                            <tr style="font-size:13px;">
-	                                <td style="width:200px;">주문일자[주문번호]</td>
-	                                <td style="width:200px;">결제금액</td>
-	                                <td style="width:200px;">배송지</td>
+	                                <td style="width:40%;">주문일자[주문번호]</td>
+	                                <td style="width:10%;">입금여부</td>
+	                                <td style="width:10%;">배송시작여부</td>
+	                                <td style="width:40%;">주문일자</td>
 	                            </tr>
                          	</thead>
                          	<tbody>
@@ -216,11 +216,12 @@
 	                            </tr>
 	                            <% } else{ %>
 	                        	<!-- 주문내역이있을때 -->
-	                        		<%for(MyOrder m : list) {%>
+	                        		<%for(MyOrder mo : list) {%>
 		                            <tr style="font-size:13px;">
-		                                <td style="width:100px; height:100px;"><%=m.getOrdNo() %></td>
-		                                <td style="width:200px;"><%=m.getPrice() %></td>
-		                                <td style="width:200px;"><%=m.getDeliveryStatus() %></td>
+		                                <td style="width:40%;"><%= mo.getOrdNo() %></td>
+	                                	<td style="width:10%;"><%=mo.getPayment() %></td>
+	                                	<td style="width:10%;"><%=mo.getDeliverStatus() %></td>
+	                                	<td style="width:40%;"><%=mo.getOrderDate() %></td>
 		                            </tr>
 		                            <%} %>
                                 <%}%>
@@ -230,7 +231,7 @@
                         <script>
                         	$(function(){
                         		$(".myOrderList>tbody>tr").click(function(){
-                        			location.href='<%=contextPath%>/myOrderDetail.me?no=' + $(this).children().ep(0).text();
+                        			location.href='<%=contextPath%>/myOrderDetail.me?no=' + $(this).children().eq(0).text();
                         		})
                         	})
                         </script>

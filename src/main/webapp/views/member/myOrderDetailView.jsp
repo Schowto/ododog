@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.odd.member.model.vo.*" %>
+<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList, com.odd.order.model.vo.*, com.odd.product.model.vo.*" %>
 <%
 	AdminOrder o = (AdminOrder)request.getAttribute("o");
     ArrayList<OrderPro> list = (ArrayList<OrderPro>)request.getAttribute("list");

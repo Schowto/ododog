@@ -14,9 +14,7 @@
 		     , T.PHONE
 		     , T.ADDRESS
 		     , REQUIRE
-		     
-		     
-		     
+		     , TO_CHAR(ORDER_DATE, 'YYMMDD') "ORDER_DATE"
 		 FROM TB_ORDER T
 	LEFT JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
 	    WHERE T.USER_NO = ?
@@ -33,6 +31,7 @@
 		     , T.PHONE
 		     , T.ADDRESS
 		     , REQUIRE
+		     , TO_CHAR(ORDER_DATE, 'YYMMDD') "ORDER_DATE"
 		     
 		     , P.THUMB_IMG
 		     , P.PRO_NAME
