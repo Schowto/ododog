@@ -74,10 +74,7 @@ Member searchPwd = (Member)session.getAttribute("searchPwd");
     <div class="login-wrapper">
         <h2 style="text-align: center;">비밀번호 찾기</h2>
             <br><br><br>
-            <p>회원님의 비밀번호는 
-            <span id="userPwd" style="color: rgb(226, 36, 36); font-weight: bolder;" >
-            <%= searchPwd.getUser_Pwd() %>
-            </span> 입니다.</p>
+            <p>회원님의 비밀번호는<span id="userPwd" style="color: rgb(226, 36, 36); font-weight: bolder;"></span> 입니다.</p>
             <br><br><br>
 
             <input type="button" value="로그인 하러가기" id="btn" onclick="location.href ='<%=contextPath%>/views/member/loginUser.jsp'"> 
@@ -87,6 +84,23 @@ Member searchPwd = (Member)session.getAttribute("searchPwd");
     
 
     <script type="text/javascript">
+    
+        var password = '<%= searchPwd.getUser_Pwd() %>';
+	    var maskedPw = '';
+	    
+	    console.log(password.length);
+	    
+	    if(password.length <= 3)
+	    {
+	       maskedPw = password.substring(0,password.length).replace(/[0-9a-zA-Z]/g, "*");
+	    }
+	    else 
+	    {
+	       maskedPw =  password.substring(0,3) + password.substring(3,password.length).replace(/[0-9a-zA-Z]/g, "*")
+	    }
+	    
+	    console.log(maskedPw);	
+	    $("#userPwd").html(maskedPw);
 
     </script>
 
