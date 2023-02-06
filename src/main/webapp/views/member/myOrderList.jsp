@@ -221,7 +221,7 @@
 		                                <td style="width:40%;"><%= mo.getOrdNo() %></td>
 	                                	<td style="width:10%;"><%=mo.getPayment() %></td>
 	                                	<td style="width:10%;"><%=mo.getDeliveryStatus() %></td>
-	                                	<td style="width:40%;"><%=mo.getOrderDate() %></td>
+	                                	<td style="width:40%;"><%=mo.getOrderDateStr() %></td>
 		                            </tr>
 		                            <%} %>
                                 <%}%>

@@ -55,7 +55,7 @@ private Properties prop = new Properties();
 								     rset.getString("phone"),
 								     rset.getString("address"),
 								     rset.getString("require"),
-								     rset.getDate("order_date")
+								     rset.getString("order_date")
 								     ));
 			}
 		} catch (SQLException e) {

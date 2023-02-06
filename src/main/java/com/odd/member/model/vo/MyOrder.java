@@ -15,6 +15,7 @@ public class MyOrder {
 	private String address;
 	private String require;
 	private Date orderDate;
+	private String orderDateStr;
 	
 	// PRODUCT
 	private String thumbImg;
@@ -74,6 +75,29 @@ public class MyOrder {
 		this.totalPrice = totalPrice;
 		this.deliveryPrice = deliveryPrice;
 		this.discount = discount;
+	}
+	
+	public MyOrder(int ordNo, int userNo, String delAdd, String payment, String deliveryStatus, String phone,
+			String address, String require, String orderDateStr) {
+		super();
+		this.ordNo = ordNo;
+		this.userNo = userNo;
+		this.delAdd = delAdd;
+		this.payment = payment;
+		this.deliveryStatus = deliveryStatus;
+		this.phone = phone;
+		this.address = address;
+		this.require = require;
+		this.orderDateStr = orderDateStr;
+	}
+	
+	
+	public String getOrderDateStr() {
+		return orderDateStr;
+	}
+
+	public void setOrderDateStr(String orderDateStr) {
+		this.orderDateStr = orderDateStr;
 	}
 	
 	public int getOrdNo() {
