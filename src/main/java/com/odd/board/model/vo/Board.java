@@ -7,7 +7,7 @@ public class Board {
 	private int boardNo;
 	private int boardType;			// 공지사항1 | 자유게시판2
 	private String boardTitle;
-	private String boardContent;	// 나중에 CLOB -> String 구문 추가해야함
+	private String boardContent;
 	private String boardWriter;
 	private int count;
 	private String createDate;
@@ -115,6 +115,15 @@ public class Board {
 		this.boardNo = boardNo;
 		this.boardTitle = boardTitle;
 		this.boardWriter = boardWriter;
+		this.count = count;
+		this.createDate = createDate;
+		this.status = status;
+	}
+	// admin - selectNoticeList
+	public Board(int boardNo, String boardTitle, int count, String createDate, String status) {
+		super();
+		this.boardNo = boardNo;
+		this.boardTitle = boardTitle;
 		this.count = count;
 		this.createDate = createDate;
 		this.status = status;

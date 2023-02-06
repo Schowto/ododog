@@ -1,6 +1,8 @@
-package com.odd.member.controller;
+package com.odd.order.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,43 +10,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.MemberService;
-
+import com.odd.member.model.vo.Member;
+import com.odd.order.model.service.CartService;
+import com.odd.order.model.vo.Cart;
 
 /**
- * Servlet implementation class SearchUpdatePwdController
+ * Servlet implementation class CartController
  */
-@WebServlet("/searchupdate.pwd")
-public class SearchUpdatePwdController extends HttpServlet {
+@WebServlet("/cart.ord")
+public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SearchUpdatePwdController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
+	private CartService cartService = new CartService();
+   
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String userId = request.getParameter("userId");
-		String updatePwd = request.getParameter("updatePwd");
-		String userName = request.getParameter("userName");
-		String email = request.getParameter("email");
-		
-		new MemberService().searchUpdatePwd(userId, updatePwd, userName, email);
-		
 		HttpSession session = request.getSession();
-	
-		session.setAttribute("alertMsg", "비밀번호 변경에 성공했습니다.");
-		session.setAttribute("loginUser", changPwd);
+		//로그인 여부 검사
+		if(session.getAttribute("loginUser") == null) {
+			
+			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
+			response.sendRedirect(request.getContextPath());
+			
+		}else {
+			Member member = (Member) session.getAttribute("loginUser");
+			List<Cart> list = cartService.selectCartList(member);
+			
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/order/shoppingCartView.jsp").forward(request,response);
+			
+		}
 		
-		
-		response.sendRedirect(request.getContextPath());
 		
 	}
 

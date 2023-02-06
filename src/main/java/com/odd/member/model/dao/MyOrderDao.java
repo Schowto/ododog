@@ -48,18 +48,14 @@ private Properties prop = new Properties();
 			
 			while(rset.next()) {
 				list.add(new MyOrder(rset.getInt("ord_no"),
-									 rset.getInt("pro_no"),
 									 rset.getInt("user_no"),
 									 rset.getString("del_add"),
 									 rset.getString("payment"),
 								     rset.getString("delivery"),
 								     rset.getString("phone"),
 								     rset.getString("address"),
-								     rset.getString("require"),
-								     rset.getString("thumb_img"),
-								     rset.getString("pro_name"),
-								     rset.getInt("price"),
-								     rset.getInt("amount")));
+								     rset.getString("require")
+								     ));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

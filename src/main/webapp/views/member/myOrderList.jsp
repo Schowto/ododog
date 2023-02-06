@@ -194,11 +194,8 @@
                         	<thead>
 	                            <tr style="font-size:13px;">
 	                                <td style="width:200px;">주문일자[주문번호]</td>
-	                                <td style="width:150px;">상품번호</td>
-	                                <td style="width:150px;">배송지</td>
-	                                <td style="width:100px;">입금 여부</td>
-	                                <td style="width:200px;">배송시작여부</td>
-	                                <td style="width:200px;">배송시요청사항</td>
+	                                <td style="width:200px;">결제금액</td>
+	                                <td style="width:200px;">배송지</td>
 	                            </tr>
                          	</thead>
                          	<tbody>
@@ -218,9 +215,6 @@
 	                        		<%for(MyOrder m : list) {%>
 		                            <tr style="font-size:13px;">
 		                                <td style="width:100px; height:100px;"><%=m.getOrdNo() %></td>
-		                                <td style="width:150px;"><img src="<%=m.getThumbImg()%>" style="width:100px; height:100px; padding:5px;"></td>
-		                                <td style="width:150px;"><%=m.getProName() %></td>
-		                                <td style="width:100px;"><%=m.getAmount() %></td>
 		                                <td style="width:200px;"><%=m.getPrice() %></td>
 		                                <td style="width:200px;"><%=m.getDeliveryStatus() %></td>
 		                            </tr>

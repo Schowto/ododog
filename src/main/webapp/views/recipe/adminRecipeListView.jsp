@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.common.model.vo.PageInfo, com.odd.recipe.model.vo.Recipe, com.odd.board.model.vo.Reply" %>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Recipe> list = (ArrayList<Recipe>)request.getAttribute("list");
+	PageInfo replyPi = (PageInfo)request.getAttribute("replyPi");
+	ArrayList<Reply> replyList = (ArrayList<Reply>)request.getAttribute("replyList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -68,6 +75,28 @@
         background:rgb(220,220,220);
     }
     
+    .status-n{
+    	width:30px;	height:23px;
+    	border:2px solid rgb(220,220,220);
+    	border-radius:5px;
+    	vertical-align:middle;
+    	line-height:15px;
+    }
+	.status-n:hover{
+		background:rgb(220,220,220);
+	}
+	.status-y{
+		width:30px; height:23px;
+		border-radius:5px;
+		vertical-align:middle;
+		line-height:15px;
+		background:rgb(220,220,220);
+	}
+	.status-y:hover{
+		border:2px solid rgb(200,200,200);
+		background:rgb(200,200,200);
+	}
+    
 </style>
 
 </head>
@@ -103,89 +132,56 @@
                 </script>
     
                 <table class="list-area">
-                    <thead>
-                        <tr>
-                            <th width="60"></th>
-                            <th width="40">글번호</th>
-                            <th width="500">제목</th>
-                            <th width="100">작성자</th>
-                            <th width="100">작성일</th>
-                            <th width="50">조회수</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6" style="height:300px;"> 조회된 게시글이 없습니다.</td>
-                        </tr>
-    
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>123</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-27</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>123</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-27</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>123</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-27</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>123</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-27</td>
-                            <td>3212</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>123</td>
-                            <td>제목입니다요</td>
-                            <td>나는 작성자</td>
-                            <td>2023-01-27</td>
-                            <td>3212</td>
-                        </tr>
-                    </tbody>
-    
-                    <tfoot>
-                        <tr>
-                            <td>
-                                <button class="btn-red" style="height:25px; line-height:20px;">삭제</button>
-                            </td>
-                            <td colspan="5"></td>
-                        </tr>
-                    </tfoot>
-    
-    
-                </table>
+                <thead>
+                    <tr>
+                        <th width="40">번호</th>
+                        <th width="550">제목</th>
+                        <th width="80">작성일</th>
+                        <th width="70">조회수</th>
+                        <th width="60">상태</th>
+                        <th width="50"></th>
+                    </tr>
+                </thead>
+                <% if(list.size()==0){ %>
+                    <tr>
+                        <td colspan="6" style="height:300px;"> 조회된 게시글이 없습니다.</td>
+                    </tr>
+                <% } else { %>
+                	<% for(Recipe r : list){ %>
+	                    <tr>
+	                        <td><%= r.getRecipeNo() %></td>
+	                        <td><%= r.getRecipeTitle() %></td>
+	                        <td><%= r.getCreateDate() %></td>
+	                        <td><%= r.getCount() %></td>
+	                        <td align="center" class="recipe-status-area">
+	                        	<% if(r.getStatus().equals("Y")){ %>
+	                        		<button class="status-y">Y</button>
+	                        	<% } else { %>
+	                        		<button class="status-n">N</button>
+	                        	<% } %>
+	                        </td>
+	                        <td>
+	                            <button class="btn-red notice-delete-area"style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+	                        </td>
+	                    </tr>
+                	<% } %>
+                <% } %>
+            </table>
     
     
                 <br>
     
                 <div class="paging-area" align="center">
-    
-                    <button>&lt;</button>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>&gt;</button>
-    
-                </div>
+	                <% if(pi.getCurrentPage() != 1){ %>
+		        		<button onclick="location.href='<%=contextPath%>/list.adRe?cpage=<%=pi.getCurrentPage()-1%>&rpage=<%=replyPi.getCurrentPage()%>';">&lt;</button>
+		        	<% } %>
+		        	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++){ %>
+		        		<button onclick="location.href='<%=contextPath%>/list.adRe?cpage=<%=p%>&rpage=<%=replyPi.getCurrentPage()%>';"><%= p %></button>
+		        	<% } %>
+		        	<% if(pi.getCurrentPage() != pi.getMaxPage()){ %>
+		            	<button onclick="location.href='<%=contextPath%>/list.adRe?cpage=<%=pi.getCurrentPage()+1%>&rpage=<%=replyPi.getCurrentPage()%>'">&gt;</button>
+			        <% } %>
+	            </div>
     
                 <br><br>
                 <hr style="border:3px solid rgb(220,220,220);">
@@ -217,93 +213,60 @@
                 </div>
     
                 <table class="list-area">
-                    <thead>
-                        <tr>
-                            <th width="60"></th>
-                            <th width="100">작성자</th>
-                            <th width="40">글번호</th>
-                            <th width="200">글제목</th>
-                            <th width="350">댓글내용</th>
-                            <th width="100">작성일</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6" style="height:300px;"> 조회된 댓글이 없습니다.</td>
-                        </tr>
-    
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>나는 작성자</td>
-                            <td>공지</td>
-                            <td>제목입니다요</td>
-                            <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
-                            <td>2023-01-27</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>나는 작성자</td>
-                            <td>123</td>
-                            <td>제목입니다요</td>
-                            <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
-                            <td>2023-01-27</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>나는 작성자</td>
-                            <td>공지</td>
-                            <td>제목입니다요</td>
-                            <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
-                            <td>2023-01-27</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>나는 작성자</td>
-                            <td>123</td>
-                            <td>제목입니다요</td>
-                            <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
-                            <td>2023-01-27</td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td>나는 작성자</td>
-                            <td>123</td>
-                            <td>제목입니다요</td>
-                            <td>!@#$%^&*^$#@$#@$@$#!@#@#!!!!</td>
-                            <td>2023-01-27</td>
-                        </tr>
-                    </tbody>
-    
-                    <tfoot>
-                        <tr>
-                            <td>
-                                <button class="btn-red" style="height:25px; line-height:20px;">삭제</button>
-                            </td>
-                            <td colspan="5"></td>
-                        </tr>
-                    </tfoot>
-    
-    
-                </table>
-    
-    
-                <br>
-    
-                <div class="paging-area" align="center">
-    
-                    <button>&lt;</button>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>&gt;</button>
-    
-                </div>
-    
-                <br><br><br>
-    
-            </div>
+                <thead>
+                    <tr>
+                        <th width="40">번호</th>
+                        <th width="500">댓글내용</th>
+                        <th width="80">작성자</th>
+                        <th width="80">작성일</th>
+                        <th width="40">글번호</th>
+                        <th width="60">상태</th>
+                        <th width="50"></th>
+                    </tr>
+                </thead>
+               	<% if(replyList.isEmpty()){ %>
+                    <tr>
+                        <td colspan="6" style="height:300px;">조회된 댓글이 없습니다.</td>
+                    </tr>
+               	<% } else { %>
+               		<% for(Reply r : replyList){ %>
+	                    <tr>
+	                        <td><%= r.getReplyNo() %></td>
+	                        <td><%= r.getReplyContent() %></td>
+	                        <td><%= r.getReplyWriter() %></td>
+	                        <td><%= r.getCreateDate() %></td>
+	                        <td><%= r.getBoardNo() %></td>
+	                        <td align="center" class="reply-status-area">
+	                        	<% if(r.getStatus().equals("Y")){ %>
+	                        		<button class="status-y">Y</button>
+	                        	<% } else { %>
+	                        		<button class="status-n">N</button>
+                       			<% } %>
+	                        </td>
+	                        <td>
+	                            <button class="btn-red reply-delete-area" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+	                        </td>
+	                    </tr>
+               		<% } %>
+               	<% } %>
+            </table>
+		
+		
+		    <br>
+		
+		    <div class="paging-area" align="center">
+		        <% if(replyPi.getCurrentPage() != 1){ %>
+	        		<button onclick="location.href='<%=contextPath%>/list.adRe?cpage=<%=pi.getCurrentPage()%>&rpage=<%=replyPi.getCurrentPage()-1%>';">&lt;</button>
+	        	<% } %>
+	        	<% for(int p = replyPi.getStartPage(); p <= replyPi.getEndPage(); p++){ %>
+	        		<button onclick="location.href='<%=contextPath%>/list.adRe?cpage=<%=pi.getCurrentPage()%>&rpage=<%=p%>';"><%= p %></button>
+	        	<% } %>
+	        	<% if(replyPi.getCurrentPage() != replyPi.getMaxPage()){ %>
+	            	<button onclick="location.href='<%=contextPath%>/list.adRe?cpage=<%=pi.getCurrentPage()%>&rpage=<%=replyPi.getCurrentPage()+1%>'">&gt;</button>
+	            <% } %>
+		    </div>
+		    <br><br><br>
+		</div>
     
     </div>
 

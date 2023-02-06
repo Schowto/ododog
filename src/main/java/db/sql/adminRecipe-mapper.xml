@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectListCount">
+		SELECT
+			   COUNT(*) count
+		  FROM RECIPE
+	</entry>
+	<entry key="selectReplyListCount">
+		SELECT
+			   COUNT(*) count
+		  FROM REPLY
+		 WHERE BOARD_TYPE = 3
+	</entry>
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT 
+		                       RECIPE_NO,
+		                       RECIPE_TITLE,
+		                       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
+		                       COUNT,
+		                       STATUS
+		                  FROM RECIPE
+		                 ORDER
+		                    BY RECIPE_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	<entry key="selectReplyList">
+		SELECT *
+		  FROM (
+		        SELECT ROWNUM RNUM, A.*
+		          FROM (
+		                SELECT
+						       REPLY_NO
+						     , BOARD_NO
+						     , REPLY_CONTENT
+						     , USER_ID
+						     , TO_CHAR(R.CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE"
+						     , R.STATUS
+						  FROM REPLY R
+						  JOIN MEMBER ON (REPLY_WRITER = USER_NO)
+						 WHERE R.BOARD_TYPE = 3
+						 ORDER
+						    BY REPLY_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+</properties>
