@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.ArrayList, com.odd.product.model.vo.UserProduct, com.odd.product.model.vo.ProAtt" %>	
+<%
+	ArrayList<UserProduct>list=(ArrayList<UserProduct>)request.getAttribute("list");
+%>	    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,12 +82,45 @@
             <br><br>
             <button type="submit" id="select" class="btn btn-secondary btn-sm">검색</button>
             <br><br>
+            </form>
+           	
+           	
+           	<% if(list.isEmpty()) { %>
+				<div>
+				<p>존재하는 상품이 없습니다.</p>
+				</div>
+				<% }%>
+				
+				<div class="list-area">
+					<% for(UserProduct p : list){ %>
+					
+						<div class="thumbnail" align="center">
+							<input type="hidden" value="<%=p.getProNo() %>">
+							<img src="<%=contextPath%>/<%= p.getThumbImg()%>" width="300px" height="300px">
+							
+							<p> 
+								<%= p.getProName() %> <br>
+								<b><%= p.getPrice() %>원</b>
+							</p>
+							<div class="badge bg-info text-light">추천</div>
+						
+						</div>
+						<%} %>
+					</div>
+						
+							
+			</div>
+			
+			<script>
+				$(function(){
+					$(".thumbnail").click(function(){
+						location.href = "<%=contextPath%>/detail.pro?no=" + $(this).children('input').val();
+					})
+				})
+			</script>
            
-        </form>
-        <hr style="border: 1px color= silver;" width="100%">
-            <br><br>
-        
-    </div>
+           
+       
     <%@ include file="../common/userFooterbar.jsp"%>
     
                 
