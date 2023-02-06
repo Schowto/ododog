@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.board.model.vo.*" %>
+<%
+	ArrayList<Board> list = (ArrayList<Board>)(request.getAttribute("list"));
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,6 +66,9 @@
         text-decoration-line:none ;
         color:black;
     }
+    td{
+    	text-align:center;
+    }
 </style>
 </head>
 <body>
@@ -102,82 +109,58 @@
                     </div>
                     <br>
                     <!-- 작성한 게시글이 없을때 -->
-                    <form class="logoutUser">
-                        <table>
-                            <tr style="height:50px;"> 
+                    <table>
+                    	<thead>
+                            <tr style="height:50px; text-align:center;"> 
                                 <td style="width:15%;">번호</td>
-                                <td style="width:15%;">작성일</td>
-                                <td style="width:40%;">제목</td>
-                                <td style="width:15%;">수정</td>
-                                <td style="width:15%;">삭제</td>
+                                <td style="width:30%;">작성일</td>
+                                <td style="width:35%;">제목</td>
+                                <td style="width:10%;">수정</td>
+                                <td style="width:10%;">삭제</td>
 
                             </tr>
-                            <tr style="height:100px;">
-                                <td colspan="5" style="font-weight:600; color:rgba(18, 17, 17, 0.795);">
+                          </thead>
+                          <tbody>
+                          	<%if(list.isEmpty()){ %>
+                          	<tr style="height:100px;">
+                                <td colspan="5" style="font-weight:600; color:rgba(18, 17, 17, 0.795); margin:auto; text-align:center; border-bottom: 1px solid rgb(220,220,220);">
                                     <br><br>
                                     <img src="<%=contextPath%>/resources/images/error.png"> <br>
                                     게시글이 존재하지 않습니다. 
                                     <br><br><br>
                                 </td>
                             </tr>
-                        </table>
-                    </form>
-                    <br><br><br>
-
-                    <!-- 작성한 게시글이 있을때 -->
-                    <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
-                        내가 쓴 게시글
-                    </div>
-
-                    <br>
-
-                    <form class="loginUser">
-                        <table>
+                            <%}else{ %>
+                            <%for(Board b :list){ %>
                             <tr>
-                                <td style="width:120px;">번호</td>
-                                <td style="width:120px;">작성일</td>
-                                <td style="width:320px;;">제목</td>
-                                <td style="width:120px;">수정</td>
-                                <td style="width:120px;">삭제</td>
-
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>2023.01.22</td>
-                                <td>유기견봉사같이하실분구해욥~</td>
+                                <td><%=b.getBoardNo() %></td>
+                                <td><%=b.getCreateDate() %></td>
+                                <td><%=b.getBoardTitle() %></td>
                                 <td>
-                                    <button>
-                                       <a href="<%=contextPath%>/boardEnroll.me" id="modified">수정</a>
-                                    </button>
+                                    <a href="<%= contextPath %>/updateForm.bo?no=<%= b.getBoardNo() %>" ><button>수정</button></a>
                                 </td>
-                                <td><button class="btn-red">삭제</button></td>
+                                <td>
+                                	<button class="btn-red" id="delete-post" onclick="deleteBoard();">삭제</button>
+                                </td>
+                                
+                                <script>
+                            	function deleteBoard(){
+                                	if(confirm("정말 삭제하시겠습니까?")){
+                                    	location.href = "<%= contextPath %>/delete.bo?no=<%= b.getBoardNo()%>";
+                               		 }
+                            	}
+                        		</script>
                             </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>2023.01.22</td>
-                                <td>유기견봉사같이하실분구해욥~</td>
-                                <td><button>수정</button></td>
-                                <td><button class="btn-red">삭제</button></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>2023.01.22</td>
-                                <td>유기견봉사같이하실분구해욥~</td>
-                                <td><button>수정</button></td>
-                                <td><button class="btn-red">삭제</button></td>
-                            </tr>
-                        </table>
-                    </form>
+                            <%} %>
+                            <%} %>
+                          </tbody>
 
-                    <!--
-                    <script>
-                        $(function(){
-                            $("#modified").click(function(){
-                                location.href="<%=contextPath%>/boardEnroll.me";
-                            });
-                        })
-                    </script>
-                    -->
+                          
+                            
+                        </table>
+                        
+                        
+                    <br><br><br>
                     
                 </div>
 

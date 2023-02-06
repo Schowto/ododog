@@ -96,7 +96,7 @@ Member searchPwd = (Member)session.getAttribute("searchPwd");
 	    }
 	    else 
 	    {
-	       maskedPw =  password.substring(0,3) + password.substring(3,password.length).replace(/[0-9a-zA-Z]/g, "*")
+	       maskedPw =  password.substring(0,2) + password.substring(2,password.length).replace(/[0-9a-zA-Z]/g, "*")
 	    }
 	    
 	    console.log(maskedPw);	

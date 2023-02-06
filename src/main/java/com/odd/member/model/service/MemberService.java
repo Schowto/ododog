@@ -200,7 +200,12 @@ public class MemberService {
 	
 
 	
-	
+	public Member selectLoginMember(String userId) {
+		Connection conn = getConnection();
+		Member m = new MemberDao().selectLoginMember(conn, userId);
+		close(conn);
+		return m;
+	}
 	
 	
 	

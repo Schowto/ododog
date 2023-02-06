@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.odd.member.model.service.MemberService;
 import com.odd.member.model.service.PointService;
 import com.odd.member.model.vo.Member;
 import com.odd.member.model.vo.Point;
@@ -43,8 +44,13 @@ public class MyPointController extends HttpServlet {
 			
 		}else {
 			
+			String userId = ((Member)session.getAttribute("loginUser")).getUser_Id();
 			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
+			
+			Member m = new MemberService().selectLoginMember(userId);
 			ArrayList<Point> list = new PointService().selectAllPoint(userNo);
+			
+			request.setAttribute("m", m);
 			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("views/member/myPointListView.jsp").forward(request, response);

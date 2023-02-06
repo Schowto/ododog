@@ -1,7 +1,9 @@
 package com.odd.recipe.model.service;
 
 import static com.odd.common.JDBCTemplate.close;
+import static com.odd.common.JDBCTemplate.commit;
 import static com.odd.common.JDBCTemplate.getConnection;
+import static com.odd.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -37,6 +39,51 @@ public class AdminRecipeService {
 		ArrayList<Reply> list = new AdminRecipeDao().selectReplyList(conn, pi);
 		close(conn);
 		return list;
+	}
+	
+	public int updateStatus(int recipeNo, String status) {
+		Connection conn = getConnection();
+		int result = new AdminRecipeDao().updateStatus(conn, recipeNo, status);
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int updateStatusR(int replyNo, String status) {
+		Connection conn = getConnection();
+		int result = new AdminRecipeDao().updateStatusR(conn, replyNo, status);
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int deleteRecipe(int recipeNo) {
+		Connection conn = getConnection();
+		int result = new AdminRecipeDao().deleteRecipe(conn, recipeNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int deleteReply(int replyNo) {
+		Connection conn = getConnection();
+		int result = new AdminRecipeDao().deleteReply(conn, replyNo);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 }

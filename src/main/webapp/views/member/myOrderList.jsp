@@ -149,7 +149,7 @@
 
             <div class="myOrde">
                 <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
-                    나의 주문조회 내역(주문횟수들어갈자리)
+                    나의 주문조회 내역
                 </div>
                 <br>
                 <div class="myOrderView">

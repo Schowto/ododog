@@ -442,7 +442,6 @@ public class MemberDao {
 					 	    rset.getString("user_pwd"));	
 			}
 			
-			System.out.println(m.toString());
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

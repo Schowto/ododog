@@ -51,4 +51,29 @@
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	
+	<entry key="updateStatus">
+		UPDATE
+			   RECIPE
+		   SET STATUS = ?
+		 WHERE RECIPE_NO = ?
+	</entry>
+	<entry key="updateStatusR">
+		UPDATE
+			   REPLY
+		   SET STATUS = ?
+		 WHERE REPLY_NO = ?
+	</entry>
+	
+	<entry key="deleteRecipe">
+		DELETE
+		  FROM RECIPE
+		 WHERE RECIPE_NO = ?
+	</entry>
+	<entry key="deleteReply">
+		DELETE
+		  FROM REPLY
+		 WHERE REPLY_NO = ?
+	</entry>
+	
 </properties>

@@ -5,15 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<!-- Popper JS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-
 <style>
 
     input{border:1px solid gray; border-radius:5px;}
@@ -293,7 +284,7 @@
                                    +        "<input type='file' name='input-img" + (count+1) + "' id='input-img" + (count+1) + "' accept='image/*'' onchange='loadImg(this);'' style='display:none;'>"
                                    +    "</td>"
                                    + "</tr>";
-                            document.getElementById("cooking-area").innerHTML += value;
+                            document.getElementById("cooking-area").insertAdjacentHTML("beforeend", value);
                             count++;
                         } else {
                             alert("10개까지만 등록 가능합니다.")

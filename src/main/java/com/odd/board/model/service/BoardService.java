@@ -240,4 +240,16 @@ public class BoardService {
 		close(conn);
 		return list;
 	}
+	
+	/**
+	 * 내게시물조회(정은)
+	 * @param useNo
+	 * @return
+	 */
+	public ArrayList<Board> selectMyBoard(int useNo){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new BoardDao().selectMyBoard(conn, useNo);
+		close(conn);
+		return list;
+	}
 }
