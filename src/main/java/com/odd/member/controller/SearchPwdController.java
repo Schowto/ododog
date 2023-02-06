@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.odd.member.model.dao.MemberDao;
 import com.odd.member.model.service.MemberService;
 import com.odd.member.model.vo.Member;
 
@@ -41,7 +42,9 @@ public class SearchPwdController extends HttpServlet {
 		
 		Member searchPwd =  new MemberService().searchPwd(user_Id, user_Name, email);
 		
-		 //System.out.println(searchPwd);
+		
+		
+		
 		 
 		
 		 if(searchPwd == null) {
