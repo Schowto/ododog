@@ -144,4 +144,26 @@
 		 WHERE FILE_NO = ?    
 	</entry>
 	
+	
+	<entry key="upsertProAtt">
+	
+		INSERT
+		  INTO PRO_ATT
+			  (
+			     FILE_NO
+			   , PRO_NO
+			   , FILE_PATH
+			   , FILE_LEVEL
+			  )
+		VALUES 
+			  (
+			    SEQ_FILENO.NEXTVAL
+			  , ?
+			  , ?
+			  , ?
+		 		)
+	
+	</entry>
+	
+	
 </properties>

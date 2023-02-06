@@ -450,6 +450,34 @@ public class AdminProductDao {
 		return result;
 	}
 	
+	public int upsertProAtt(Connection conn, int proNo, ArrayList<ProAtt> list) {
+		
+		int result = 1;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("upsertProAtt");
+		
+		try {
+			for(ProAtt at : list) {
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setInt(1, proNo);
+				pstmt.setString(2, at.getFilePath());
+				pstmt.setInt(3, at.getFileLevel());
+				
+				result *= pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
 	
 	
 	

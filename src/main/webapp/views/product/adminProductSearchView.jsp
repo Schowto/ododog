@@ -387,6 +387,28 @@
 							$("#price").val(p.price);
 							$("#expiredDate").val(p.expiredDate);
 							
+							$("#thumbImg").attr("src", "");
+							$("#contentImg1").attr("src", "");
+							$("#contentImg2").attr("src", "");
+							$("#contentImg3").attr("src", "");
+							$("#contentImg4").attr("src", "");
+							$("#contentImg5").attr("src", "");
+							$("#contentImg6").attr("src", "");
+							$("#contentImg7").attr("src", "");
+							$("#contentImg8").attr("src", "");
+							$("#contentImg9").attr("src", "");
+							
+							$("input[name=file1No]").val("");
+							$("input[name=file2No]").val("");
+							$("input[name=file3No]").val("");
+							$("input[name=file4No]").val("");
+							$("input[name=file5No]").val("");
+							$("input[name=file6No]").val("");
+							$("input[name=file7No]").val("");
+							$("input[name=file8No]").val("");
+							$("input[name=file9No]").val("");
+							$("input[name=file10No]").val("");
+							
 							$("#thumbImg").attr("src", p.proAtt1);
 							$("#contentImg1").attr("src", p.proAtt2);
 							$("#contentImg2").attr("src", p.proAtt3);

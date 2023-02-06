@@ -46,6 +46,8 @@ public class AdminProductUpdateController extends HttpServlet {
 			
 			MultipartRequest multipartRequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new MyFileRenamePolicy());
 			
+			int proNo = Integer.parseInt(multipartRequest.getParameter("proNo"));
+			
 			Product p = new Product();
 			p.setProNo(Integer.parseInt(multipartRequest.getParameter("proNo")));
 			p.setCategory(multipartRequest.getParameter("category"));
@@ -68,7 +70,7 @@ public class AdminProductUpdateController extends HttpServlet {
 					at.setFilePath("resources/product_img/" + multipartRequest.getFilesystemName(key));
 					
 					// 기존에 이미지가 존재 했다면  
-					if(multipartRequest.getParameter("file" + i + "No") != null || !(multipartRequest.getParameter("file" + i + "No").equals(""))) {
+					if(multipartRequest.getParameter("file" + i + "No") != null && !(multipartRequest.getParameter("file" + i + "No").equals(""))) {
 						
 						at.setFileNo(Integer.parseInt(multipartRequest.getParameter("file" + i + "No")));
 				
@@ -80,20 +82,20 @@ public class AdminProductUpdateController extends HttpServlet {
 					}
 					
 					// 기존에 이미지가 존재 하지 않았다면 (보완 필요)
-//					else {
-//						
-//						at.setFileLevel(2);
-//						
-//						insertList.add(at);
-//					}
+					else {
+						
+						at.setFileLevel(2);
+						
+						insertList.add(at);
+					}
 						
 				}
 			}
 			
 			int result = new AdminProductService().updateProduct(p, updateList);
-//			int result2 = new AdminProductService().insertProduct(p, updateList);
+			int result2 = new AdminProductService().upsertProAtt(proNo, insertList);
 			
-			if(result>0) {
+			if(result*result2>0) {
 				request.getSession().setAttribute("alertMsg", "상품 수정 성공");
 				response.sendRedirect(request.getContextPath() + "/search.adPro?cpage=1");
 			} else {
