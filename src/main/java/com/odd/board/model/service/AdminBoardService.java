@@ -9,6 +9,7 @@ import com.odd.board.model.dao.AdminBoardDao;
 import com.odd.board.model.vo.Board;
 import com.odd.board.model.vo.Reply;
 import com.odd.common.model.vo.PageInfo;
+import com.odd.recipe.model.vo.Recipe;
 
 public class AdminBoardService {
 	

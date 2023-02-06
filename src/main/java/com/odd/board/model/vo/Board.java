@@ -35,6 +35,7 @@ public class Board {
 		this.reportSort = reportSort;
 		this.postNo = postNo;
 		this.reportContent = reportContent;
+	}
 	public Board(int boardNo, String boardTitle, String createDate) {
 		super();
 		this.boardNo = boardNo;

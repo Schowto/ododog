@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.odd.recipe.model.vo.Recipe" %>
+<%@ page import="java.util.ArrayList, com.odd.recipe.model.vo.Recipe, com.odd.recipe.model.vo.Cooking" %>
 <%
 	Recipe r = (Recipe)request.getAttribute("r");
+	ArrayList<Cooking> list = (ArrayList<Cooking>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>

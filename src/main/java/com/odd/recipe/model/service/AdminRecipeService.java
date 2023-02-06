@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import com.odd.board.model.vo.Reply;
 import com.odd.common.model.vo.PageInfo;
 import com.odd.recipe.model.dao.AdminRecipeDao;
+import com.odd.recipe.model.dao.RecipeDao;
+import com.odd.recipe.model.vo.Cooking;
 import com.odd.recipe.model.vo.Recipe;
 
 
@@ -84,6 +86,19 @@ public class AdminRecipeService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public Recipe selectRecipe(int recipeNo) {
+		Connection conn = getConnection();
+		Recipe r = new RecipeDao().selectRecipe(conn, recipeNo);
+		close(conn);
+		return r;
+	}
+	public ArrayList<Cooking> selectCooking(int recipeNo){
+		Connection conn = getConnection();
+		ArrayList<Cooking> list = new RecipeDao().selectCooking(conn, recipeNo);
+		close(conn);
+		return list;
 	}
 
 }
