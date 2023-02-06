@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.odd.common.model.vo.PageInfo;
 import com.odd.order.model.vo.AdminOrdSearch;
 import com.odd.order.model.vo.AdminOrder;
+import com.odd.order.model.vo.OrdPro;
 import com.odd.product.model.vo.ProAtt;
 import com.odd.product.model.vo.Product;
 
@@ -165,6 +166,24 @@ public class AdminOrderDao {
 		
 	}
 	
+	/**  주문 정보 조회 (상품정보제외) 
+	 * 
+	 * @param ordNo -- > 상품 번호
+	 * @return AdminOrder -- 주문 정보
+	 *          >> 주문번호 ordNo
+	 *          >> 회원번호 userNo
+	 *          >> 배송지 delAdd
+	 *          >> 전화번호 phone
+	 *          >> 이메일 email
+	 *          >> 사용적립금 discount
+	 *          >> 최종사용금액 totalPrice
+	 *          >> 배송여부('Y' or 'N') delivery
+	 *          >> 입금여부('Y' or 'N') payment
+	 *          >> 배송시요구사항 require
+	 *          >> 회원주소 address
+	 *          >> 배송비 deliveryPrice
+	 *          >> 주문등록날짜 orderDate
+	 */
 	public AdminOrder selectOrder(Connection conn, int ordNo) {
 			
 			AdminOrder o = null;
@@ -181,12 +200,23 @@ public class AdminOrderDao {
 				rset = pstmt.executeQuery();
 				
 				while(rset.next()){	
+							o = new AdminOrder(rset.getInt("ord_no")
+									, rset.getInt("user_no")
+									, rset.getString("user_name")
+									, rset.getString("del_add")
+									, rset.getString("phone")
+									, rset.getString("email")
+									, rset.getInt("discount")
+									, rset.getInt("total_Price")
+									, rset.getString("delivery")
+									, rset.getString("require")
+									);
 					
-					
-					
-					
-					
-					
+							o.setPayment(rset.getString("payment"));
+							o.setDeliveryPrice(rset.getInt("배송비"));
+							o.setAddress(rset.getString("address"));
+							o.setOrderDate(rset.getString("order_Date"));
+							
 								
 								}
 				
@@ -202,13 +232,31 @@ public class AdminOrderDao {
 		}
 		
 	
-		public ArrayList<AdminOrder> selectOrdPro(Connection conn, int ordNo){
+		/** 주문별 상품정보 조회
+		 * 
+		 * @param ordNo
+		 * @return list -- 상품 정보
+		 * 			>> ordProNo 인덱스
+		 * 
+		 * 			>> ordNo 주문 번호
+		 * 
+		 * 			>> proNo 상품 번호
+		 *          >> proName 상품 이름
+		 *          >> price 상품 가격 
+		 *          >> thumbImg 섬네일 이미지
+		 *          >> category 카테고리
+		 *          >> save 적립률
+		 * 			>> amount 상품 수량
+		 * 
+		 */
+		public ArrayList<OrdPro> selectOrdPro(Connection conn, int ordNo){
 			
 			ResultSet rset = null;
-			ArrayList<AdminOrder> list = new ArrayList<>();
+			ArrayList<OrdPro> list = new ArrayList<>();
 			PreparedStatement pstmt = null;
+			OrdPro op = null;
 			
-			String sql = prop.getProperty("selectProAtt");
+			String sql = prop.getProperty("selectOrdPro");
 			
 			try {
 				pstmt = conn.prepareStatement(sql);
@@ -218,12 +266,20 @@ public class AdminOrderDao {
 				rset = pstmt.executeQuery();
 				
 				while(rset.next()){	
-			
-					
-					
-					
-					
-					
+							op = new OrdPro(rset.getInt("ord_Pro_No")
+									, rset.getInt("ord_No")
+									, rset.getInt("pro_No")
+									, rset.getInt("amount")
+									);
+							
+							op.setProName(rset.getString("pro_name"));
+							op.setPrice(rset.getInt("price"));
+							op.setThumbImg(rset.getString("thumb_Img"));
+							op.setCategory(rset.getString("category"));
+							op.setSave(rset.getDouble("save"));
+							
+							list.add(op);
+							
 						}
 				
 			} catch (SQLException e) {

@@ -51,7 +51,7 @@
 		 JOIN ORD_PRO O ON (O.PRO_NO = R.PRO_NO)
 		 JOIN PRODUCT P ON (P.PRO_NO = R.PRO_NO)
 		 JOIN MEMBER M ON (M.USER_NO = R.USER_NO)
-	    WHERE ORD_NO = ? 
+	    WHERE PRO_NO = ? 
 	</entry>
 	
 	<entry key="insertReview">
@@ -82,10 +82,11 @@
 		  , ?
 		  , ?
 		  )
-		   
+	     WHERE PRO_NO = ?
+	       AND USER_NO = ?   
 	</entry>
 	
-	<enrty key="updateReview">
+	<entry key="updateReview">
 		UPDATE
 		       REVIEW
 		   SET REVIEW_TITLE = ?
@@ -96,7 +97,7 @@
 		     , FILE_PATH = ?
 		 WHERE REVIEW_NO = ?
 		   AND STATUS = 'Y'  
-	</enrty>
+	</entry>
 	
 	<entry key="deleteReview">
 		UPDATE 
@@ -120,6 +121,14 @@
 	 LEFT JOIN PRODUCT P ON (R.PRO_NO = P.PRO_NO) 
 	 LEFT JOIN MEMBER M ON (R.USER_NO = M.USER_NO)
 		 WHERE PRO_NO = ? 
+	</entry>
+	
+	<entry key="reviewStar">
+		SELECT PRO_NO, ROUND(AVG(STAR),1)
+  		  FROM REVIEW
+ 	 	 WHERE PRO_NO = ?
+ 		 GROUP 
+   		    BY PRO_NO;
 	</entry>
 
 </properties>

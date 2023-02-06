@@ -1,7 +1,7 @@
-package com.odd.product.controller;
+package com.odd.order.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,44 +12,37 @@ import javax.servlet.http.HttpSession;
 
 import com.odd.member.model.vo.Member;
 import com.odd.order.model.service.CartService;
-import com.odd.product.model.service.ProductDetailService;
-import com.odd.product.model.vo.ProAtt;
-import com.odd.product.model.vo.UserProduct;
+import com.odd.order.model.vo.Cart;
 
 /**
- * Servlet implementation class ProductDetailController
+ * Servlet implementation class CartController
  */
-@WebServlet("/detail.pro")
-public class ProductDetailController extends HttpServlet {
+@WebServlet("/cart.ord")
+public class CartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CartService cartService = new CartService();
-	
+   
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		// 응답페이지
-		int proNo = Integer.valueOf(request.getParameter("no")); //넘어오는 자손값
-		
-		ArrayList<ProAtt> list = new ProductDetailService().productDetail(proNo);  //상품상세테이블값
-		UserProduct userProduct = new ProductDetailService().productDetailFood(proNo);
-		
 		HttpSession session = request.getSession();
-		
-		//로그인 사용자 일경우만 관심상품 상태 조회
-		if(session.getAttribute("loginUser") != null) {
+		//로그인 여부 검사
+		if(session.getAttribute("loginUser") == null) {
 			
+			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
+			response.sendRedirect(request.getContextPath());
+			
+		}else {
 			Member member = (Member) session.getAttribute("loginUser");
+			List<Cart> list = cartService.selectCartList(member);
 			
-			int count = cartService.selectOnePick(member, proNo);
-			request.setAttribute("count", count);
+			request.setAttribute("list", list);
+			request.getRequestDispatcher("views/order/shoppingCartView.jsp").forward(request,response);
 			
 		}
 		
-		request.setAttribute("list", list);
-		request.setAttribute("p", userProduct);
-		request.getRequestDispatcher("views/product/productDetailView.jsp").forward(request,response);
+		
 	}
 
 	/**

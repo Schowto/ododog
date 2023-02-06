@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.odd.member.model.vo.*"%>
 <%
-	MyOrder m = (MyOrder)request.getAttribute("m");
+	//MyOrder m = (MyOrder)request.getAttribute("m");
 	//Review r = (Review)request.getAttribute("r");
 %>
 <!DOCTYPE html>
@@ -236,9 +236,11 @@
 
                 <div class="reviewContent">
                     <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
-                    	<input type="hidden" name="ordNo" value="<%=m.getOrdNo() %>">
+                    	<input type="hidden" name="ordNo" value="<%=m.getProNo() %>">
                     	<input type="hidden" name="proName" value="<%=m.getProName() %>">
                     	<input type="hidden" name="userId" value="<%=m.getUserId() %>">
+                        <input type="hidden" name="star" value="">
+                        -->
                         <table class="starTable">
                                 <tr>
                                     <td style="width:40%;">상품을 사용해보셨나요?</td>

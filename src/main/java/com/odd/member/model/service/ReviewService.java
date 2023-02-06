@@ -9,9 +9,9 @@ import com.odd.member.model.vo.Review;
 
 public class ReviewService {
 	
-	public int insertReview(Review r) {
+	public int insertReview(int proNo, int userNo, Review r) {
 		Connection conn = getConnection();
-		int result = new ReviewDao().insertReview(conn, r);
+		int result = new ReviewDao().insertReview(conn, proNo, userNo, r);
 		
 		if(result > 0) {
 			commit(conn);
@@ -58,6 +58,11 @@ public class ReviewService {
 		return r;
 	}
 	
-	
+	public Review reviewStar(int proNo) {
+		Connection conn = getConnection();
+		Review r = new ReviewService().reviewStar(proNo);
+		close(conn);
+		return r;
+	}
 
 }

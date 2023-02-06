@@ -35,11 +35,11 @@ public class MyOrderReviewController extends HttpServlet {
 		//MyOrder to = new MyOrderService().selectreviewNo(상품번호);
 		
 		// TB_ORDER테이블에서 주문번호 받아오기
-		int ordNo = Integer.parseInt(request.getParameter("ordNo"));
+		//int ordNo = Integer.parseInt(request.getParameter("ordNo"));
 		
-		MyOrder m = new MyOrderService().selectMyOrder(ordNo);
+		//MyOrder m = new MyOrderService().selectMyOrder(ordNo);
 		
-		request.setAttribute("m", m);
+		//request.setAttribute("m", m);
 		
 		
 		request.getRequestDispatcher("views/member/myOrderReviewForm.jsp").forward(request, response);

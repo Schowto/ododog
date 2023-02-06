@@ -35,7 +35,7 @@
 	<entry key="selectAllConsult">
 		SELECT 
 			   CONSULT_NO
-			 , USER_Id
+			 , USER_ID
 		     , CONSULT_TITLE
 		     , CONSULT_CONTENT
 		     , C.ENROLL_DATE
@@ -97,7 +97,7 @@
 		     , CONSULT_ANSWER
 		     , ANSWER_DATE
 		     , C.STATUS
-		     , ORIGIN_NAME
+		     , NVL(ORIGIN_NAME, '없음') "ORIGIN_NAME"
 		     , FILE_PATH
 		     , CONSULT_CATEGORY
 		     , RESPONDENTS
@@ -138,7 +138,28 @@
 		 WHERE CONSULT_NO = ?
 	</entry>
 	
-	
+	<entry key="selectAdminConsult">
+		SELECT 
+			   CONSULT_NO
+			 , USER_ID
+		     , CONSULT_TITLE
+		     , CONSULT_CONTENT
+		     , C.ENROLL_DATE
+		     , C.MODIFY_DATE
+		     , CONSULT_ANSWER
+		     , ANSWER_DATE
+		     , C.STATUS
+		     , ORIGIN_NAME
+		     , FILE_PATH
+		     , CONSULT_CATEGORY
+		     , RESPONDENTS
+		     , ANSWER_STATUS
+		  FROM CONSULT C
+		  JOIN MEMBER M ON (M.USER_NO = C.USER_NO)
+		 WHERE C.STATUS = 'Y'
+		 ORDER
+		    BY C.ENROLL_DATE DESC
+	</entry>
 	
 	
 

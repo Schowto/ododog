@@ -278,8 +278,7 @@ public class ConsultDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, consultAnswer);
-			pstmt.setInt(2, consultNo);
-			
+			pstmt.setInt(2, consultNo);		
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -291,6 +290,46 @@ public class ConsultDao {
 		
 	}
 	
+public ArrayList<Consult> selectAdminConsult(Connection conn){
+		
+		ArrayList<Consult> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAdminConsult");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Consult(rset.getInt("consult_no"),
+									 rset.getString("user_Id"),
+									 rset.getString("consult_title"),
+									 rset.getString("consult_content"),
+									 rset.getDate("enroll_date"),
+									 rset.getDate("modify_date"),
+									 rset.getString("consult_answer"),
+									 rset.getDate("answer_date"),
+									 rset.getString("status"),
+									 rset.getString("origin_name"),
+									 rset.getString("file_path"),
+									 rset.getString("consult_category"),
+									 rset.getInt("respondents"),
+									 rset.getString("answer_status")
+						));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return list;
+		
+	}
 	
 	
 	

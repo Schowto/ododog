@@ -36,7 +36,7 @@ public class MyConsultAdminDetailView extends HttpServlet {
 		
 		if(c != null) {
 			request.setAttribute("c", c);
-			request.getRequestDispatcher("views/board/myConsultAdminDetailView.jsp").forward(request,response);
+			request.getRequestDispatcher("views/board/adminConsultDetailView.jsp").forward(request,response);
 		}else {
 			request.setAttribute("alertMsg", "상세조회 실패");
 			response.sendRedirect(request.getContextPath() + "/admin.co");
