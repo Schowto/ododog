@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.odd.member.model.vo.Member;
+import com.odd.product.model.vo.Product;
 
 /**
  * Servlet implementation class MyOrderReviewController
@@ -42,10 +43,17 @@ public class MyOrderReviewController extends HttpServlet {
 		//request.setAttribute("m", m);
 		
 		int proNo = Integer.parseInt(request.getParameter("no"));
+		String proName = request.getParameter("pName");
 		HttpSession session = request.getSession();
 		Member m = (Member)session.getAttribute("loginUser");
 		
-		request.setAttribute("proNo", proNo);
+		Product p = new Product();
+		p.setProNo(proNo);
+		p.setProName(proName);
+		
+		request.setAttribute("p", p);
+		request.setAttribute("proName", proName);
+		request.setAttribute("m", m);
 		
 		request.getRequestDispatcher("views/member/myOrderReviewForm.jsp").forward(request, response);
 	}

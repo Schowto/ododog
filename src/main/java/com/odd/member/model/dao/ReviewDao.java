@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import com.odd.member.model.vo.Review;
@@ -98,11 +99,11 @@ public class ReviewDao {
 		return result;
 	}
 
-	public Review selectReview(Connection conn, int proNo) {
-		Review r = null;
+	public ArrayList<Review> selectAllReview(Connection conn, int proNo) {
+		ArrayList<Review> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectReview");
+		String sql = prop.getProperty("selectAllReview");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -111,7 +112,7 @@ public class ReviewDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				r = new Review(rset.getInt("review_no"),
+				list.add(new Review(rset.getInt("review_no"),
 							   rset.getString("pro_name"),
 							   rset.getString("user_id"),
 							   rset.getString("review_title"),
@@ -120,7 +121,7 @@ public class ReviewDao {
 							   rset.getDate("modify_date"),
 							   rset.getDate("enroll_date"),
 							   rset.getString("review_photo"),
-							   rset.getString("file_path"));
+							   rset.getString("file_path")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -129,7 +130,7 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		
-		return r;
+		return list;
 		
 		
 	}

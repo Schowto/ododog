@@ -1,8 +1,12 @@
 package com.odd.member.model.service;
 
-import static com.odd.common.JDBCTemplate.*;
+import static com.odd.common.JDBCTemplate.close;
+import static com.odd.common.JDBCTemplate.commit;
+import static com.odd.common.JDBCTemplate.getConnection;
+import static com.odd.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.odd.member.model.dao.ReviewDao;
 import com.odd.member.model.vo.Review;
@@ -51,11 +55,11 @@ public class ReviewService {
 		return result;
 	}
 	
-	public Review selectReview(int proNo) {
+	public ArrayList<Review> selectAllReview(int proNo) {
 		Connection conn = getConnection();
-		Review r = new ReviewService().selectReview(proNo);
+		ArrayList<Review> list = new ReviewService().selectAllReview(proNo);
 		close(conn);
-		return r;
+		return list;
 	}
 	
 	public Review reviewStar(int proNo) {

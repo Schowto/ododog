@@ -101,7 +101,7 @@
 		 WHERE PRO_NO = ? 
 	</entry>
 	
-	<entry key="selectReview">
+	<entry key="selectAllReview">
 		SELECT REVIEW_NO
 			 , PRO_NAME
 			 , USER_ID

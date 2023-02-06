@@ -1,14 +1,19 @@
 package com.odd.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.odd.member.model.service.MyOrderService;
 import com.odd.member.model.service.ReviewService;
+import com.odd.member.model.vo.Member;
+import com.odd.member.model.vo.MyOrder;
 import com.odd.member.model.vo.Review;
 
 /**
@@ -31,13 +36,16 @@ public class ProductReviewListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int proNo = Integer.parseInt(request.getParameter("proNo"));
+		int proNo = Integer.parseInt(request.getParameter("no"));
 		
-		Review r = new ReviewService().selectReview(proNo);
+		ArrayList<Review> rlist = new ReviewService().selectAllReview(proNo);
 		
-		MyOrder m = new MyOrderService().selectMyOrder()
+		HttpSession session = request.getSession();
+		int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
+		ArrayList<MyOrder> olist = new MyOrderService().selectAllMyOrder(userNo);
 		
-		request.setAttribute("r", r);
+		request.setAttribute("rlist", rlist);
+		request.setAttribute("olist", olist);
 		
 		request.getRequestDispatcher("views/product/productReviewView.jsp").forward(request,response);
 		

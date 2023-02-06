@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.order.model.vo.* " %>
 <%
-	
+	ArrayList<Like> list = (ArrayList<Like>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -100,12 +101,16 @@
 				<!--관심상품이 없는경우-->
 				<form action="">
 					<table>
+						<thead>
 						<tr style="height:50px;">
 							<td style="width:100px;">이미지</td>
 							<td style="width:500px;">상품정보</td>
 							<td style="width:100px;">판매가격</td>
 							<td style="width:300px;">선택</td>
 						</tr>
+						</thead>
+						<tbody>
+						<%if(list.isEmpty()){ %>
 						<tr>
 							<td colspan="6" style="height:150px; font-weight: 600;">
 								<br><br>
@@ -114,51 +119,23 @@
 								<br><br><br>
 							</td>
 						</tr>
-					</table>
-				</form>
-
-				<br><br>
-
-				<!--관심상품이있는경우-->
-				<form action="">
-					<table>
-						<tr style="height:50px;">
+						<%}else{ %>
+							<%for(Like l : list){ %>
+							<tr style="height:50px;">
 							<td style="width:100px;">이미지</td>
 							<td style="width:500px;">상품정보</td>
 							<td style="width:100px;">판매가격</td>
 							<td style="width:300px;">선택</td>
 						</tr>
-						<tr style="height:150px;">
-							<td style="width:100px;">
-								<img src="">
-							</td>
-							<td style="width:400px;">댕댕이수제간식</td>
-							<td style="width:100px;">15,000</td>
-							<td style="width:400px;">
-								<div style="margin-bottom:5px;">
-									<button onclick="location.href='<%=contextPath%>/dir.buy'">주문하기</button> <br>
-								</div>
-								<div style="margin-bottom:5px;">
-									<button onclick="location.href='<%=contextPath%>/'">장바구니담기</button> <br>
-								</div>
-								<div>
-									<button class="btn-red">삭제</button>
-								</div>
-							</td>
-						</tr>
+							<%} %>
+						<%} %>
+						</tbody>
 					</table>
 				</form>
 
-
-
-
-
-
+				<br><br>
 
 			</div>
-
-
-
 		</div>
 
 

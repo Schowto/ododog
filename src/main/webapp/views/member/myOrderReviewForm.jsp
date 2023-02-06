@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.odd.member.model.vo.*, com.odd.order.model.vo.*"%>
+<%@ page import="java.util.ArrayList, com.odd.member.model.vo.*, com.odd.order.model.vo.*, com.odd.product.model.vo.*"%>
 <%
 	//MyOrder m = (MyOrder)request.getAttribute("m");
 	//Review r = (Review)request.getAttribute("r");
 	ArrayList<OrdPro> list = (ArrayList<OrdPro>)request.getAttribute("list");
-	MyOrder m = (MyOrder)request.getAttribute("m");
+	MyOrder mo = (MyOrder)request.getAttribute("m");
+	Product p = (Product)request.getAttribute("p");
+	Member m = (Member)request.getAttribute("m");
 %>
 <!DOCTYPE html>
 <html>
@@ -208,8 +210,8 @@
 <body>
 
 	<%@include file="../common/userMenubar.jsp" %>
-
-    <div class="outer">
+	
+	<div class="outer">
 
         <div id="side">
             <br><br><br><br><br>
@@ -264,9 +266,9 @@
 
                 <div class="reviewContent">
                     <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
-                    	<input type="hidden" name="ordNo" value="<%=m.getProNo() %>">
-                    	<input type="hidden" name="proName" value="<%=m.getProName() %>">
-                    	<input type="hidden" name="userId" value="<%=m.getUserId() %>">
+                    	<input type="hidden" name="ordNo" value="<%=p.getProNo() %>">
+                    	<input type="hidden" name="proName" value="<%=p.getProName() %>">
+                    	<input type="hidden" name="userId" value="<%=m.getUser_Id() %>">
                         -->
                         <table class="starTable">
                                 <tr>

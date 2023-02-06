@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.odd.member.model.vo.*, java.util.ArrayList" %>
 <%
-	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+	ArrayList<Review> rlist = (ArrayList<Review>)request.getAttribute("rlist");
+	ArrayList<MyOrder> olist = (ArrayList<MyOrder>)request.getAttribute("olist");
 %>
 <!DOCTYPE html>
 <html>
@@ -55,6 +56,33 @@
 		border-bottom:3px solid rgb(220,220,220);
 		
 	}
+	/*****별점구현부분*****/
+    /*덮어씌워진회색별*/
+    .star {
+    position: relative;
+    font-size: 2rem;
+    color: #ddd;
+  }
+  
+  /*range부분*/
+  .star input { 
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /*노란색으로표시될별*/
+  .star span {
+    width: 0;
+    position: absolute; 
+    left: 0;
+    color: yellow;
+    overflow: hidden; 
+    pointer-events: none;
+  }
 
 </style>
 </head>
@@ -83,11 +111,17 @@
 							</td>
 	                	</tr>
                 	<%}else{ %>
-	                	<%for(Review r : list) %>
+	                	<%for(Review r : rlist) %>
 	                	<!-- 리뷰가있을때 -->
 							<tr>
 								<td style="height:50px; width:60%; border-bottom: none;">
-									<input type="text" style="border:none; font-size:15px; font-weight:600; width:30px; color:yellow;" value="<%=r.getStar()%>"> 점</td>
+									<div name="myStar" id="myStar">
+                                            <span class="star">
+                                                ★★★★★
+                                                <span>★★★★★</span>
+                                                <input type="range" name="star" id="reviewStar" oninput="drawStar(this)" value="<%=r.getStar() %>" step="1" min="0" max="10">
+                                              </span>
+                                        </div>
 								<td rowspan="2"><img src="<%=r.getReviewPhoto()%>"></td>
 								<td rowspan="2">
 									&nbsp;&nbsp;상품명 : <%=r.getProName() %> <br>
@@ -128,9 +162,13 @@
 
 	</div>
 	
-	<script>
-		function 
-	</script>
+	<!--별점구현부분-->
+    <script>
+        const drawStar = (target) => {
+            document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+            let value = document.querySelector("#reviewStar").value();
+        }
+    </script>
 
 	
 	
