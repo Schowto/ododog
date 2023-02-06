@@ -272,4 +272,46 @@ public class AdminBoardDao {
 		return list;
 	}
 	
+	public int updateStatus(Connection conn, int boardNo, String status) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateStatus");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if(status.equals("Y")) {
+				pstmt.setString(1, "N");
+			} else {
+				pstmt.setString(1, "Y");
+			}
+			pstmt.setInt(2, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int updateStatusR(Connection conn, int replyNo, String status) {
+		System.out.println(replyNo + ", " + status);
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateStatusR");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			if(status.equals("Y")) {
+				pstmt.setString(1, "N");
+			} else {
+				pstmt.setString(1, "Y");
+			}
+			pstmt.setInt(2, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 }

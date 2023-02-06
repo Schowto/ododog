@@ -101,4 +101,17 @@
 						  JOIN BOARD USING (BOARD_NO)
 						 WHERE R.BOARD_TYPE IN (1, 2)
 	</entry>
+	
+	<entry key="updateStatus">
+		UPDATE
+			   BOARD
+		   SET STATUS = ?
+		 WHERE BOARD_NO = ?
+	</entry>
+	<entry key="updateStatusR">
+		UPDATE
+			   REPLY
+		   SET STATUS = ?
+		 WHERE REPLY_NO = ?
+	</entry>
 </properties>

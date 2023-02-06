@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.odd.board.model.service.AdminBoardService;
+
+
 /**
  * Servlet implementation class AdminBoardStatusController
  */
@@ -26,7 +29,16 @@ public class AjaxAdminBoardStatusController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		String from = request.getParameter("from");
+		int no = Integer.parseInt(request.getParameter("no"));
+		String status = request.getParameter("status");
+		int result=0;
+		if(from.equals("board")) {
+			result = new AdminBoardService().updateStatus(no, status);			
+		} else {
+			result = new AdminBoardService().updateStatusR(no, status);		
+		}
+		response.getWriter().print(result);
 	}
 
 	/**

@@ -1,7 +1,6 @@
 package com.odd.board.model.service;
 
-import static com.odd.common.JDBCTemplate.close;
-import static com.odd.common.JDBCTemplate.getConnection;
+import static com.odd.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -68,6 +67,35 @@ public class AdminBoardService {
 		ArrayList<Reply> list = new AdminBoardDao().searchReplyList(conn, replyPi, replySort, replyKeyword);
 		close(conn);
 		return list;
+	}
+	
+	/**
+	 * 게시글 상태 변경 : 일반게시글, 댓글, 공지사항
+	 * @param boardNo
+	 * @param status 기존 상태
+	 * @return
+	 */
+	public int updateStatus(int boardNo, String status) {
+		Connection conn = getConnection();
+		int result = new AdminBoardDao().updateStatus(conn, boardNo, status);
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+	public int updateStatusR(int replyNo, String status) {
+		Connection conn = getConnection();
+		int result = new AdminBoardDao().updateStatusR(conn, replyNo, status);
+		if(result>0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 }
