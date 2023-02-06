@@ -240,4 +240,5 @@ public class BoardService {
 		close(conn);
 		return list;
 	}
+	
 }
