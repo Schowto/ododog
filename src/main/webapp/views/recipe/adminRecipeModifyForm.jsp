@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.odd.recipe.model.vo.Recipe" %>
+<%
+	Recipe r = (Recipe)request.getAttribute("r");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +66,6 @@
         margin-right:30px;
         line-height:30px;
     }
-    
 </style>
 
 </head>

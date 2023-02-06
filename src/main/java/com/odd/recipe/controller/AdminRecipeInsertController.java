@@ -79,7 +79,7 @@ public class AdminRecipeInsertController extends HttpServlet {
 			int result = new RecipeService().insertRecipe(r, list);
 			if(result > 0) {
 				request.getSession().setAttribute("alertMsg", "성공적으로 등록되었습니다.");
-				response.sendRedirect(request.getContextPath() + "/list.re?cpage=1");		// 수정해야됨!!!!!!!!!!!
+				response.sendRedirect(request.getContextPath() + "/list.adRe?cpage=1&rpage=1");
 			} else {
 				// 실패 => 에러페이지
 			}

@@ -148,7 +148,7 @@
                     </tr>
                 <% } else { %>
                 	<% for(Recipe r : list){ %>
-	                    <tr>
+	                    <tr onclick="location.href='<%= contextPath %>/updateForm.re?no=<%= r.getRecipeNo() %>'"> 
 	                        <td><%= r.getRecipeNo() %></td>
 	                        <td><%= r.getRecipeTitle() %></td>
 	                        <td><%= r.getCreateDate() %></td>
@@ -284,7 +284,7 @@
                     </tr>
                	<% } else { %>
                		<% for(Reply r : replyList){ %>
-	                    <tr>
+	                    <tr onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getBoardNo() %>'">
 	                        <td><%= r.getReplyNo() %></td>
 	                        <td><%= r.getReplyContent() %></td>
 	                        <td><%= r.getReplyWriter() %></td>
