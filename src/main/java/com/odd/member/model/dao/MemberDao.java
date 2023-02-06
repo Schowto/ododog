@@ -452,31 +452,7 @@ public class MemberDao {
 			close(rset);
 		}return m;
 	}
-	
-	public int updatePwdUser(Connection conn, String user_Id, String user_Name, 
-								String email, String user_Pwd, String update_Pwd) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("updatePwdUser");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, update_Pwd);
-			pstmt.setString(2, user_Id);
-			pstmt.setString(3, user_Name);
-			pstmt.setString(4, email);
-			
-			result = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		return result;
-		
-	}
-	
+
 	public ArrayList<Member> searchMember(Connection conn, String keyword){
 		ArrayList<Member> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
@@ -510,6 +486,26 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int searchUpdatePwd(Connection conn, String userId, String updatePwd, String userName, String email) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("searchUpdatePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, updatePwd);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, userName);
+			pstmt.setString(4, email);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}return result;
 	}
 	
 	
