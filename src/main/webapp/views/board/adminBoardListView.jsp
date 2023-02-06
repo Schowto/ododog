@@ -137,7 +137,7 @@
                         <td><%= b.getBoardWriter() %></td>
                         <td><%= b.getCreateDate() %></td>
                         <td><%= b.getCount() %></td>
-                        <td align="center" class="status-area">
+                        <td align="center" class="board-status-area">
                         	<% if(b.getStatus().equals("Y")){ %>
                         		<button class="status-y">Y</button>
                         	<% } else { %>
@@ -145,7 +145,7 @@
                         	<% } %>
                         </td>
                         <td>
-                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+                            <button class="btn-red board-delete-area"style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
                         </td>
                     </tr>
                		<% } %>
@@ -153,23 +153,57 @@
             </table>
             
             <script>
-            	$(".status-area button").click(function(){
+            	$(".board-status-area button").click(function(){
             		const a = $(this);
-            		if(a.text()=="Y"){
-            			// 상태가 Y일때 -> N 으로
-            			$.ajax({
-            				url:"<%=contextPath%>/status.adBo",
-            				data:{no:$(this).parent().prev().prev().prev().prev().prev().text()},
-            				success:function(result){
-            					
-            				}, error:function(){
-            					
-            				}
-            			})
-            		} else {
-            			
-            		
-            		}
+           			// 상태가 Y일때 -> N 으로 || N일때 -> Y로
+           			if(confirm("게시글의 상태를 변경하시겠습니까?")){
+	           			$.ajax({
+	           				url:"<%=contextPath%>/status.adBo",
+	           				data:{
+	           					from:"board",
+	           					no:$(this).parent().prev().prev().prev().prev().prev().text(),
+	           					status:$(this).text()
+	           					},
+	           				success:function(result){
+	           					if(result > 0){
+	           						if(a.text() == "Y"){
+	           							a.attr("class", "status-n");
+	           							a.text("N");
+	           						} else {
+	           							a.attr("class", "status-y");
+	           							a.text("Y");
+	           						}
+	           					} else {
+	           						alert("상태 변경 실패");
+	           					}
+	           				}, error:function(){
+	           					console.log("상태 변경용 ajax 통신 실패");
+	           				}
+	           			})
+           			}
+            	})
+            	$(".board-delete-area").click(function(){
+            		const a = $(this);
+           			// 게시글 완전 삭제
+           			if(confirm("게시글을 완전히 삭제하시겠습니까? \n삭제 후 취소할 수 없습니다.")){
+	           			$.ajax({
+	           				url:"<%=contextPath%>/delete.adBo",
+	           				data:{
+	           					from:"board",
+	           					no:$(this).parent().prev().prev().prev().prev().prev().prev().text()
+	           					},
+	           				success:function(result){
+	           					if(result > 0){
+	           						alert("성공적으로 삭제되었습니다.");
+	           					} else {
+	           						alert("삭제 실패");
+	           					}
+	           					location.reload();
+	           				}, error:function(){
+	           					console.log("삭제용 ajax 통신 실패");
+	           				}
+	           			})
+           			}
             	})
             </script>
             
@@ -288,7 +322,7 @@
 	                        <td><%= r.getReplyWriter() %></td>
 	                        <td><%= r.getCreateDate() %></td>
 	                        <td><%= r.getBoardNo() %></td>
-	                        <td align="center">
+	                        <td align="center" class="reply-status-area">
 	                        	<% if(r.getStatus().equals("Y")){ %>
 	                        		<button class="status-y">Y</button>
 	                        	<% } else { %>
@@ -296,16 +330,68 @@
                        			<% } %>
 	                        </td>
 	                        <td>
-	                            <button class="btn-red" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
+	                            <button class="btn-red reply-delete-area" style="height:25px; vertical-align:middle; line-height:20px;">삭제</button>
 	                        </td>
 	                    </tr>
                		<% } %>
                	<% } %>
             </table>
             
-            <%= bKeyword %>
-            <br>
+            <script>
+	            $(".reply-status-area button").click(function(){
+	        		const a = $(this);
+	       			// 상태가 Y일때 -> N 으로 || N일때 -> Y로
+	       			if(confirm("댓글의 상태를 변경하시겠습니까?")){
+	           			$.ajax({
+	           				url:"<%=contextPath%>/status.adBo",
+	           				data:{
+	           					from:"reply",
+	           					no:$(this).parent().prev().prev().prev().prev().prev().text(),
+	           					status:$(this).text()
+	           					},
+	           				success:function(result){
+	           					if(result > 0){
+	           						if(a.text() == "Y"){
+	           							a.attr("class", "status-n");
+	           							a.text("N");
+	           						} else {
+	           							a.attr("class", "status-y");
+	           							a.text("Y");
+	           						}
+	           					} else {
+	           						alert("상태 변경 실패");
+	           					}
+	           				}, error:function(){
+	           				}
+	           			})
+	       			}
+	        	})
+	        	$(".reply-delete-area").click(function(){
+	        		const a = $(this);
+	       			// 댓글 완전 삭제
+	       			if(confirm("댓글을 완전히 삭제하시겠습니까? \n삭제 후 취소할 수 없습니다.")){
+	           			$.ajax({
+	           				url:"<%=contextPath%>/delete.adBo",
+	           				data:{
+	           					from:"reply",
+	           					no:$(this).parent().prev().prev().prev().prev().prev().prev().text()
+	           					},
+           					success:function(result){
+	           					if(result > 0){
+	           						alert("성공적으로 삭제되었습니다.");
+	           					} else {
+	           						alert("삭제 실패");
+	           					}
+	           					location.reload();
+	           				}, error:function(){
+	           					console.log("삭제용 ajax 통신 실패");
+	           				}
+	           			})
+	       			}
+	        	})
+            </script>
             
+            <br>
             <div class="paging-area" align="center">
             	<% if (rKeyword == null){ %>
             	<!-- 검색 안돼있을 때 -->
