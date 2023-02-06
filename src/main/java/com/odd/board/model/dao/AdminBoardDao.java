@@ -68,7 +68,6 @@ public class AdminBoardDao {
 			while(rset.next()) {
 				list.add(new Board(rset.getInt("board_no"),
 						rset.getString("board_title"),
-						rset.getString("user_id"),
 						rset.getInt("count"),
 						rset.getString("create_date"),
 						rset.getString("status")));
@@ -389,6 +388,24 @@ public class AdminBoardDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertNotice(Connection conn, Board b) {
+		int result = 0;
+		PreparedStatement pstmt =null;
+		String sql = prop.getProperty("insertNotice");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, b.getBoardTitle());
+			pstmt.setString(2, b.getBoardContent());
+			pstmt.setInt(3, Integer.parseInt(b.getBoardWriter()));
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

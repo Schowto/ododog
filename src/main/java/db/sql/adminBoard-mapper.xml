@@ -15,12 +15,10 @@
 		                SELECT 
 		                       BOARD_NO,
 		                       BOARD_TITLE,
-		                       USER_ID,
 		                       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
 		                       COUNT,
-		                       B.STATUS
-		                  FROM BOARD B
-		                  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+		                       STATUS
+		                  FROM BOARD
 		                 WHERE BOARD_TYPE = 1
 		                 ORDER
 		                    BY BOARD_NO DESC
@@ -150,5 +148,25 @@
 		DELETE
 		  FROM REPLY
 		 WHERE REPLY_NO = ?
+	</entry>
+	
+	<entry key="insertNotice">
+		INSERT
+		  INTO BOARD
+		  (
+		    BOARD_NO
+		  , BOARD_TYPE
+		  , BOARD_TITLE
+		  , BOARD_CONTENT
+		  , BOARD_WRITER
+		  )
+		 VALUES
+		  (
+		    SEQ_BOARDNO.NEXTVAL
+		  , 1
+		  , ?
+		  , ?
+		  , ?
+		  )
 	</entry>
 </properties>
