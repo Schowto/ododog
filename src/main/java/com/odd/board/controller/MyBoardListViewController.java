@@ -1,12 +1,18 @@
 package com.odd.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.odd.board.model.service.BoardService;
+import com.odd.board.model.vo.Board;
+import com.odd.member.model.vo.Member;
 
 /**
  * Servlet implementation class MyBoardListViewController
@@ -36,6 +42,11 @@ HttpSession session = request.getSession();
 			
 			
 		}else {
+			
+			
+			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
+			ArrayList<Board> list = new BoardService().selectMyBoard(userNo);
+			request.setAttribute("list", list);
 			
 			request.getRequestDispatcher("views/board/myBoardListView.jsp").forward(request, response);
 			

@@ -71,16 +71,16 @@ p:hover {
 		<br>
 		<!--카테고리순-->
 		<div align="right" style="width: 1110px" class="category">
-			<a href="" class="btn btn-outline-light text-dark btn-sm">신상품</a>
+			<button onclick="productNew();" id = "new" class="btn btn-outline-light text-dark btn-sm">신상품</button>
 		</div>
 		<div align="right" class="category">
-			<a href="" class="btn btn-outline-light text-dark btn-sm">상품명</a>
+			<button onclick="productName();" id="name" class="btn btn-outline-light text-dark btn-sm">상품명</button>
 		</div>
 		<div align="right" class="category">
-			<a href="" class="btn btn-outline-light text-dark btn-sm">낮은가격</a>
+			<button onclick="productRow();" id="row" class="btn btn-outline-light text-dark btn-sm">낮은가격</button>
 		</div>
 		<div align="right" class="category">
-			<a href="" class="btn btn-outline-light text-dark btn-sm">높은가격</a>
+			<button onclick="productHigh();" id="high" class="btn btn-outline-light text-dark btn-sm">높은가격</button>
 		</div>
 		
      	<!-- 스크롤 부분 -->
@@ -128,8 +128,6 @@ p:hover {
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<%@ include file="../common/userFooterbar.jsp"%>
-	
-	
 	
 </body>
 </html>

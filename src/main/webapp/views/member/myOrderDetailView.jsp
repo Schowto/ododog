@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.odd.member.model.vo.*" %>
 <%
-	MyOrder m = (MyOrder)request.getAttribute("m");
+	AdminOrder o = (AdminOrder)request.getAttribute("o");
+    ArrayList<OrderPro> list = (ArrayList<OrderPro>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -134,18 +135,21 @@
             <div class="myOrderDetailView">
                     <div class="myOrderView">
                         <table>
+                                <%for(OrdPro o : list){%>
                                 <tr>
-                                    <td style="width:150px;"><img src="<%=m.getTumbImg() %>" ></td>
-                                    <td style="width:250px;"></td>
+                                    <td style="width:150px;"><img src="<%=o.getTumbImg() %>" ></td>
+                                    <td style="width:250px;"><%=o.getProName() %></td>
                                     <td style="width:200px; padding-right: 20px;">
                                         <button type="button"><a href="<%=contextPath%>/review.me?no=<%=m.getProNo()%>">리뷰작성</a></button>
                                     </td>
                                     <td style="width:200px; text-align:left;">
-                                        &nbsp;상품명 : <%=m.getProName() %> <br><br>
-                                        &nbsp;구매자 : <%=m.getUserId() %> <br><br>
-                                        &nbsp;총금액 : <%=m.getTotalPrice() %>원
+                                        &nbsp;카테고리 : <%=o.getCategory() %> <br><br>
+                                        &nbsp;상품금액 : <%=o.getPrice() %>원 <br><br>
+                                        &nbsp;상품수량 : <%=o.getAmount() %>
+
                                     </td>
                                 </tr>
+                                <%}%>
                             </table>
                        	
                     </div>
@@ -162,19 +166,19 @@
                                 </tr>
                                 <tr>
                                     <td>주문번호</td>
-                                    <td><%=m.getOrdNo() %></td>
+                                    <td><%=o.getOrdNo() %></td>
                                 </tr>
                                 <tr>
                                     <td>주문일자</td>
-                                    <td><%=m.getOrderDate() %></td>
+                                    <td><%=o.getOrderDate() %></td>
                                 </tr>
                                 <tr>
                                     <td>주문자</td>
-                                    <td><%=m.getUserId() %></td>
+                                    <td><%=o.getUserName() %></td>
                                 </tr>
                                 <tr>
-                                    <td>주문처리상태</td>
-                                    <td>배송준비중</td>
+                                    <td>입금여부</td>
+                                    <td><%=o.getPayment()%></td>
                                 </tr>
                             </table>
                         </form>
@@ -187,19 +191,15 @@
                                 </tr>
                                 <tr>
                                     <td>배송비</td>
-                                    <td><%=m.getDeliveryPrice() %></td>
-                                </tr>
-                                <tr>
-                                    <td>상품금액</td>
-                                    <td><%=m.getPrice() %></td>
+                                    <td><%=o.getDeliveryPrice() %></td>
                                 </tr>
                                 <tr>
                                     <td>적립금 할인</td>
-                                    <td><%=m.getDiscount() %></td>
+                                    <td><%=o.getDiscount() %></td>
                                 </tr>
                                 <tr>
                                     <td>총 결제 금액</td>
-                                    <td><%=m.getTotalPrice() %></td>
+                                    <td><%=o.getTotalPrice() %></td>
                                 </tr>
                             </table>
                         </form>
@@ -212,15 +212,15 @@
                                 </tr>
                                 <tr>
                                     <td>받는분</td>
-                                    <td><%=m.getUserName() %></td>
+                                    <td><%=o.getUserName() %></td>
                                 </tr>
                                 <tr>
                                     <td>연락처</td>
-                                    <td><%=m.getPhone() %></td>
+                                    <td><%=o.getPhone() %></td>
                                 </tr>
                                 <tr>
                                     <td>주소</td>
-                                    <td><%=m.getDelAdd() %></td>
+                                    <td><%=o.getDelAdd() %></td>
                                 </tr>
                             </table>
                         </form>

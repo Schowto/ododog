@@ -293,7 +293,7 @@
                                    +        "<input type='file' name='input-img" + (count+1) + "' id='input-img" + (count+1) + "' accept='image/*'' onchange='loadImg(this);'' style='display:none;'>"
                                    +    "</td>"
                                    + "</tr>";
-                            document.getElementById("cooking-area").innerHTML += value;
+                            document.getElementById("cooking-area").insertAdjacentHTML("beforeend", value);
                             count++;
                         } else {
                             alert("10개까지만 등록 가능합니다.")

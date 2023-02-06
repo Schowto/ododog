@@ -597,4 +597,39 @@ public class BoardDao {
 		
 	}
 	
+	/**
+	 * 내게시물조회(정은)
+	 * @param conn
+	 * @param userNo
+	 * @return
+	 */
+	public ArrayList<Board> selectMyBoard(Connection conn, int userNo){
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMyBoard");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Board(rset.getInt("board_no"),
+						           rset.getString("board_title"),
+						           rset.getString("create_date")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	
 }

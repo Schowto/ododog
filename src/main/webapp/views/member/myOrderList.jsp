@@ -149,7 +149,7 @@
 
             <div class="myOrde">
                 <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
-                    나의 주문조회 내역(주문횟수들어갈자리)
+                    나의 주문조회 내역
                 </div>
                 <br>
                 <div class="myOrderView">
@@ -194,11 +194,8 @@
                         	<thead>
 	                            <tr style="font-size:13px;">
 	                                <td style="width:200px;">주문일자[주문번호]</td>
-	                                <td style="width:150px;">이미지</td>
-	                                <td style="width:150px;">상품이름</td>
-	                                <td style="width:100px;">수량</td>
 	                                <td style="width:200px;">결제금액</td>
-	                                <td style="width:200px;">주문처리상태</td>
+	                                <td style="width:200px;">배송지</td>
 	                            </tr>
                          	</thead>
                          	<tbody>
@@ -218,9 +215,6 @@
 	                        		<%for(MyOrder m : list) {%>
 		                            <tr style="font-size:13px;">
 		                                <td style="width:100px; height:100px;"><%=m.getOrdNo() %></td>
-		                                <td style="width:150px;"><img src="<%=m.getThumbImg()%>" style="width:100px; height:100px; padding:5px;"></td>
-		                                <td style="width:150px;"><%=m.getProName() %></td>
-		                                <td style="width:100px;"><%=m.getAmount() %></td>
 		                                <td style="width:200px;"><%=m.getPrice() %></td>
 		                                <td style="width:200px;"><%=m.getDeliveryStatus() %></td>
 		                            </tr>

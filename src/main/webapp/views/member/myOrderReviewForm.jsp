@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.odd.member.model.vo.*"%>
 <%
+	//MyOrder m = (MyOrder)request.getAttribute("m");
+	//Review r = (Review)request.getAttribute("r");
 	MyOrder m = (MyOrder)request.getAttribute("m");
 %>
 <!DOCTYPE html>

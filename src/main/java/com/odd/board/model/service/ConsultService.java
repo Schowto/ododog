@@ -127,7 +127,6 @@ public class ConsultService {
 		return list;
 	}
 	
-	
 	public ArrayList<Consult> selectAnswer(String answer) {
 		Connection conn = getConnection();
 		ArrayList<Consult> list = new ConsultDao().selectAnswer(conn,answer);

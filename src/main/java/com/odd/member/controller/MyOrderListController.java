@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.service.MyOrderService;
 import com.odd.member.model.vo.Member;
-import com.odd.member.model.vo.MyOrder;
+import com.odd.order.model.service.AdminOrderService;
+import com.odd.order.model.vo.AdminOrder;
 
 /**
  * Servlet implementation class myOrderListController
@@ -44,10 +44,11 @@ public class MyOrderListController extends HttpServlet {
 		}else {
 			
 			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
+			int ordNo = Integer.parseInt(request.getParameter("no"));
 			
-			ArrayList<MyOrder> list = new MyOrderService().selectAllMyOrder(userNo);
+			AdminOrder o = new AdminOrderService().selectOrder(ordNo);
 			
-			request.setAttribute("list", list);
+			request.setAttribute("o", o);
 			
 			request.getRequestDispatcher("views/member/myOrderList.jsp").forward(request, response);
 			
