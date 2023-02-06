@@ -84,4 +84,14 @@
 		where
 			user_no = ?
 	</entry>
+	
+	<entry key="selectLike">
+		SELECT PRO_NO
+		     , USER_NO
+		     , LIKE_DATE
+		  FROM LIKE L
+		  JOIN PRODUCT P ON (L.PRO_NO = P.PRO_NO)
+		  JOIN MEMBER M ON (L.USER_NO = M.USER_NO)
+		 WHERE USER_NO = ?
+	</entry>
 </properties>
