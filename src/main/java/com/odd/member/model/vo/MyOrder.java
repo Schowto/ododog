@@ -75,14 +75,167 @@ public class MyOrder {
 		this.deliveryPrice = deliveryPrice;
 		this.discount = discount;
 	}
+	
+	public int getOrdNo() {
+		return ordNo;
+	}
+
+	public void setOrdNo(int ordNo) {
+		this.ordNo = ordNo;
+	}
+
+	public int getProNo() {
+		return proNo;
+	}
+
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
+	public String getDelAdd() {
+		return delAdd;
+	}
+
+	public void setDelAdd(String delAdd) {
+		this.delAdd = delAdd;
+	}
+
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+
+	public String getDeliveryStatus() {
+		return deliveryStatus;
+	}
+
+	public void setDeliveryStatus(String deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getRequire() {
+		return require;
+	}
+
+	public void setRequire(String require) {
+		this.require = require;
+	}
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public String getThumbImg() {
+		return thumbImg;
+	}
+
+	public void setThumbImg(String thumbImg) {
+		this.thumbImg = thumbImg;
+	}
+
+	public String getProName() {
+		return proName;
+	}
+
+	public void setProName(String proName) {
+		this.proName = proName;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public int getDeliveryPrice() {
+		return deliveryPrice;
+	}
+
+	public void setDeliveryPrice(int deliveryPrice) {
+		this.deliveryPrice = deliveryPrice;
+	}
+
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
 
 	@Override
 	public String toString() {
 		return "MyOrder [ordNo=" + ordNo + ", proNo=" + proNo + ", userNo=" + userNo + ", delAdd=" + delAdd
 				+ ", payment=" + payment + ", deliveryStatus=" + deliveryStatus + ", phone=" + phone + ", address="
-				+ address + ", require=" + require + ", thumbImg=" + thumbImg + ", proName=" + proName + ", price="
-				+ price + ", amount=" + amount + ", userId=" + userId + ", userName=" + userName + ", totalPrice="
-				+ totalPrice + ", deliveryPrice=" + deliveryPrice + ", discount=" + discount + "]";
+				+ address + ", require=" + require + ", orderDate=" + orderDate + ", thumbImg=" + thumbImg
+				+ ", proName=" + proName + ", price=" + price + ", amount=" + amount + ", userId=" + userId
+				+ ", userName=" + userName + ", totalPrice=" + totalPrice + ", deliveryPrice=" + deliveryPrice
+				+ ", discount=" + discount + "]";
 	}
 
 	

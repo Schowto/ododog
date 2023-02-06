@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList, com.odd.order.model.vo.*, com.odd.product.model.vo.*" %>
+<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList, com.odd.order.model.vo.*" %>
 <%
 	AdminOrder o = (AdminOrder)request.getAttribute("o");
-    ArrayList<OrderPro> list = (ArrayList<OrderPro>)request.getAttribute("list");
+    ArrayList<OrdPro> list = (ArrayList<OrdPro>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -135,17 +135,17 @@
             <div class="myOrderDetailView">
                     <div class="myOrderView">
                         <table>
-                                <%for(OrdPro o : list){%>
+                                <%for(OrdPro op : list){%>
                                 <tr>
-                                    <td style="width:150px;"><img src="<%=o.getTumbImg() %>" ></td>
-                                    <td style="width:250px;"><%=o.getProName() %></td>
+                                    <td style="width:150px;"><img src="<%= op.getThumbImg() %>" ></td>
+                                    <td style="width:250px;"><%=op.getProName() %></td>
                                     <td style="width:200px; padding-right: 20px;">
-                                        <button type="button"><a href="<%=contextPath%>/review.me?no=<%=m.getProNo()%>">리뷰작성</a></button>
+                                        <button type="button"><a href="<%=contextPath%>/review.me?no=<%=op.getProNo()%>&pName=<%=op.getProName()%>">리뷰작성</a></button>
                                     </td>
                                     <td style="width:200px; text-align:left;">
-                                        &nbsp;카테고리 : <%=o.getCategory() %> <br><br>
-                                        &nbsp;상품금액 : <%=o.getPrice() %>원 <br><br>
-                                        &nbsp;상품수량 : <%=o.getAmount() %>
+                                        &nbsp;카테고리 : <%=op.getCategory() %> <br><br>
+                                        &nbsp;상품금액 : <%=op.getPrice() %>원 <br><br>
+                                        &nbsp;상품수량 : <%=op.getAmount() %>
 
                                     </td>
                                 </tr>
@@ -229,7 +229,7 @@
 
                 <br>
                     <div align="center">               
-                        <button id="btn2">주문목록보기</button>
+                        <button type="button" id="btn2">주문목록보기</button>
                     </div> 
 
                     <script>

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.odd.member.model.vo.*"%>
+<%@ page import="java.util.ArrayList, com.odd.member.model.vo.*, com.odd.order.model.vo.*"%>
 <%
 	//MyOrder m = (MyOrder)request.getAttribute("m");
 	//Review r = (Review)request.getAttribute("r");
+	ArrayList<OrdPro> list = (ArrayList<OrdPro>)request.getAttribute("list");
 	MyOrder m = (MyOrder)request.getAttribute("m");
 %>
 <!DOCTYPE html>
@@ -237,29 +238,28 @@
 
             <div class="myOrderReview">
 
-                <div style="font-size:13px; color:rgb(50, 50, 50); font-weight:600;">
-                    주문번호 : <input type="text" value="<%=m.getOrdNo()%>">
-                </div>
-
                 <br>
 
                 <div class="myOrderView">
-                    <form>
                         <table>
-                            <tr>
-                                <td style="width:150px;"><img src="<%=m.getTumbImg() %>" ></td>
-                                <td style="width:250px;"><%=m.getProName() %></td>
-                                <td style="width:200px; padding-right: 20px;"></td>
-                                <td style="width:200px; text-align:left;">
-                                    &nbsp;상품명 : <%=m.getProName() %> <br><br>
-                                    &nbsp;구매자 : <%=m.getUserId() %> <br><br>
-                                    &nbsp;총금액 : <%=m.getPrice() %>원
-                                    
-                                </td>
-                            </tr>
-                        </table>
-                    </form>
-                </div>
+                                <%for(OrdPro op : list){%>
+                                <tr>
+                                    <td style="width:150px;"><img src="<%= op.getThumbImg() %>" ></td>
+                                    <td style="width:250px;"><%=op.getProName() %></td>
+                                    <td style="width:200px; padding-right: 20px;">
+                                        
+                                    </td>
+                                    <td style="width:200px; text-align:left;">
+                                        &nbsp;카테고리 : <%=op.getCategory() %> <br><br>
+                                        &nbsp;상품금액 : <%=op.getPrice() %>원 <br><br>
+                                        &nbsp;상품수량 : <%=op.getAmount() %>
+
+                                    </td>
+                                </tr>
+                                <%}%>
+                            </table>
+                       	
+                    </div>
                 <br>
 
                 <div class="reviewContent">
@@ -267,7 +267,6 @@
                     	<input type="hidden" name="ordNo" value="<%=m.getProNo() %>">
                     	<input type="hidden" name="proName" value="<%=m.getProName() %>">
                     	<input type="hidden" name="userId" value="<%=m.getUserId() %>">
-                        <input type="hidden" name="star" value="">
                         -->
                         <table class="starTable">
                                 <tr>
