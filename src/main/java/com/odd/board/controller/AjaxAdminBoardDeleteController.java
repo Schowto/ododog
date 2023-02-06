@@ -35,8 +35,10 @@ public class AjaxAdminBoardDeleteController extends HttpServlet {
 		int result = 0;
 		if(from.equals("board")) {
 			result = new AdminBoardService().deleteBoard(no);
-		} else {
+		} else if(from.equals("reply")) {
 			result = new AdminBoardService().deleteReply(no);
+		} else {
+			result = new AdminBoardService().deleteBoard(no);
 		}
 		response.getWriter().print(result);
 	}

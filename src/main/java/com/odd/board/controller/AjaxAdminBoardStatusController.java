@@ -35,8 +35,10 @@ public class AjaxAdminBoardStatusController extends HttpServlet {
 		int result=0;
 		if(from.equals("board")) {
 			result = new AdminBoardService().updateStatus(no, status);			
-		} else {
+		} else if(from.equals("reply")) {
 			result = new AdminBoardService().updateStatusR(no, status);		
+		} else {
+			result = new AdminBoardService().updateStatus(no, status);
 		}
 		response.getWriter().print(result);
 	}

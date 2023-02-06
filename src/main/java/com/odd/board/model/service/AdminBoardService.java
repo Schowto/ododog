@@ -12,6 +12,19 @@ import com.odd.common.model.vo.PageInfo;
 
 public class AdminBoardService {
 	
+	public int selectNoticeListCount() {
+		Connection conn = getConnection();
+		int count = new AdminBoardDao().selectNoticeListCount(conn);
+		close(conn);
+		return count;
+	}
+	public ArrayList<Board> selectNoticeList(PageInfo pi){
+		Connection conn = getConnection();
+		ArrayList<Board> list = new AdminBoardDao().selectNoticeList(conn, pi);
+		close(conn);
+		return list;
+	}
+	
 	public int selectListCount() {
 		Connection conn = getConnection();
 		int count = new AdminBoardDao().selectListCount(conn);

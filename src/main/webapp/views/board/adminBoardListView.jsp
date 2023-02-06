@@ -137,7 +137,7 @@
                         <td><%= b.getBoardWriter() %></td>
                         <td><%= b.getCreateDate() %></td>
                         <td><%= b.getCount() %></td>
-                        <td align="center" id="board-status-area">
+                        <td align="center" class="board-status-area">
                         	<% if(b.getStatus().equals("Y")){ %>
                         		<button class="status-y">Y</button>
                         	<% } else { %>
@@ -153,7 +153,7 @@
             </table>
             
             <script>
-            	$("#board-status-area button").click(function(){
+            	$(".board-status-area button").click(function(){
             		const a = $(this);
            			// 상태가 Y일때 -> N 으로 || N일때 -> Y로
            			if(confirm("게시글의 상태를 변경하시겠습니까?")){
@@ -322,7 +322,7 @@
 	                        <td><%= r.getReplyWriter() %></td>
 	                        <td><%= r.getCreateDate() %></td>
 	                        <td><%= r.getBoardNo() %></td>
-	                        <td align="center" id="reply-status-area">
+	                        <td align="center" class="reply-status-area">
 	                        	<% if(r.getStatus().equals("Y")){ %>
 	                        		<button class="status-y">Y</button>
 	                        	<% } else { %>
@@ -338,7 +338,7 @@
             </table>
             
             <script>
-	            $("#reply-status-area button").click(function(){
+	            $(".reply-status-area button").click(function(){
 	        		const a = $(this);
 	       			// 상태가 Y일때 -> N 으로 || N일때 -> Y로
 	       			if(confirm("댓글의 상태를 변경하시겠습니까?")){

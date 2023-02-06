@@ -31,6 +31,60 @@ public class AdminBoardDao {
 	 * @param conn
 	 * @return 총 일반게시글 수
 	 */
+	public int selectNoticeListCount(Connection conn) {
+		// select
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNoticeListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				count = rset.getInt("count");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return count;
+	}
+	public ArrayList<Board> selectNoticeList(Connection conn, PageInfo pi){
+		// select
+		ArrayList<Board> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNoticeList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+			int endRow = startRow + pi.getBoardLimit()-1;
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				list.add(new Board(rset.getInt("board_no"),
+						rset.getString("board_title"),
+						rset.getString("user_id"),
+						rset.getInt("count"),
+						rset.getString("create_date"),
+						rset.getString("status")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+	/**
+	 * @param conn
+	 * @return 총 일반게시글 수
+	 */
 	public int selectListCount(Connection conn) {
 		// select
 		int count = 0;
