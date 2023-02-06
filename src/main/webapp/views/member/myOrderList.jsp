@@ -152,7 +152,9 @@
                     나의 주문조회 내역
                 </div>
                 <br>
+                <!--
                 <div class="myOrderView">
+                    
                     <table>
                             <tr>
                                 <td colspan="2" style="padding-left: 15px;">
@@ -185,7 +187,9 @@
 
                             </tr>
                         </table>
+                        
                 </div>
+                -->
 
                 <br>
                 
