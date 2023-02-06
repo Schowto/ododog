@@ -109,6 +109,11 @@
             font-weight: 600;
             background: rgb(220, 220, 220);
         }
+        .searchTable button{
+          width:70px;
+          height:30px;
+          text-decoration: none;
+        }
 </style>
 </head>
 <body>
@@ -122,8 +127,8 @@
 
             <br><br>
             <div class="searchTable" align="left">
-                <input type="button" name="consultAnswer" id="answerNo" value="미답변">
-                <input type="button" name="consultAnswer" id="answerYes" value="답변">
+              <input type="button" name="answer" id="answerNo" value="no" onclick="answerNo();">
+              <input type="button" name="answer" id="answerYes" value="yes" onclick="answerNo();">
             </div>
             <br><br>
             
@@ -171,55 +176,48 @@
         </div>
        </div>
         
-      <!-- ajax부분 -->
-      <script>
-      // 답변 미답변 조회 AJAX
-      $j("#search").on("click",function(){
-        var ch = $j('input:checked').val();
-        if(ch==null){
-          alert("체크 하세요");
-          return false;
-        }
-        
-        
-        var $frm = $j("input[class=checktype]:checked");
-        var param = $frm.serialize();
-        
-        var table = document.getElementById('boardTest');
-        
-        $j.ajax({
-            url : "<%=contextPath%>/searchAnswer.co",
-            dataType: "json",
-            type: "POST",
-            data : param,
+       <script>
+        function answerNo(){
+          const $answer = $("input[name=answer]");
 
-            success: function(data)
-            {
-              console.log(data.list.length)
-              
-              $j('#cntbox').html("total : " + data.totalCnt);
-              //데이터를 새로 뿌리기 위해 이전 표를 지움 
-              var trlength = $j('#boardTest tr').length;
-              for(var t=trlength-1;t>0;t--){
-                table.deleteRow(t);
+          $.ajax({
+            url:"<%=contextPath%>/answerList.co",
+            data:{answer:$answer.val()} , 
+            success:function(list){
+            	
+            	console.log(list);
+
+              let value = "";
+              if(list.length == 0){
+
+            	  $("#tbodyTable").empty();
+                value += "<tbody>" 
+                      + "<tr>"
+                       + "<td colspan='6'>존재하는 상담내역이 없습니다.</td>"
+                       + "</tr>"
+                       + "</tbody>";
+                }else{
+                	$("#tbodyTable").empty();
+                  for(let i=0;i<list.length; i++){
+                    value += "<tr>"
+                          + "<td>" + list[i].ConsultNo + "</td>"
+                          + "<td>" + list[i].ConsultTitle + "</td>"
+                          + "<td>" + list[i].ConsultCategory + "</td>"
+                          + "<td>" + list[i].EnrollDate + "</td>"
+                          + "<td>" + list[i].ConsultNo + "</td>"
+                          + "<td>" + list[i].AnswerStatus + "</td>"
+                          + "</tr>";
+                  }
+                }
+
+                $("#userTable tbody").html(value);
+              },
+              error:function(){
+                console.log("ajax 통신 실패");
               }
-              //데이터 뿌리기 
-              for(var i=0;i<data.list.length;i++){
-              $j('#boardTest').append("<tr><td align='center'>" + data.codeMap[data.list[i].boardType] + "</td>" +
-                            "<td>" + data.list[i].boardNum + "</td>" +
-                            "<td><a href= '/board/" + data.list[i].boardType 
-                                + "/" + data.list[i].boardNum 
-                                + "/boardView.do?pageNo=" ;
-              }
-            },
-            error: function ()
-            {
-              alert("검색실패");
-              
-            }
-        });	
-      }); 
-    </script>  
+          })
+        }
+      </script>
      	
 
 </body>

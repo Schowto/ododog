@@ -5,23 +5,33 @@ public class AdminOrdSearch {
 	private String userName;
 	private String lowPrice;
 	private String highPrice;
+	private String require;
 	
 	public AdminOrdSearch() {}
-
-	public AdminOrdSearch(String proName, String userName, String lowPrice, String highPrice) {
-		super();
-		this.proName = proName;
-		this.userName = userName;
-		this.lowPrice = lowPrice;
-		this.highPrice = highPrice;
-	}
-	
 	
 	public AdminOrdSearch(String userName, String lowPrice, String highPrice) {
 		super();
 		this.userName = userName;
 		this.lowPrice = lowPrice;
 		this.highPrice = highPrice;
+	}
+
+	
+	
+	public AdminOrdSearch(String userName, String lowPrice, String highPrice, String require) {
+		super();
+		this.userName = userName;
+		this.lowPrice = lowPrice;
+		this.highPrice = highPrice;
+		this.require = require;
+	}
+
+	public String getRequire() {
+		return require;
+	}
+	
+	public void setRequire(String require) {
+		this.require = require;
 	}
 
 	public String getProName() {

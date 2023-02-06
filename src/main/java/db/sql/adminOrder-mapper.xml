@@ -71,11 +71,26 @@
 	</entry>
 	
 	<entry key ="selectOrder">
-			SELECT T.*, P.*, M.*, P.DELIVERY 배송비
-			  FROM TB_ORDER T
-			  LEFT JOIN PAYMENT P ON (T.USER_NO =P.ORD_NO)
-			  LEFT JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
-			 WHERE T.ORD_NO = ?
+				SELECT T.ORD_NO 주문번호
+			         , T.USER_NO 회원번호
+			         , M.USER_NAME 회원이름
+			         , T.DEL_ADD 배송지
+			         , T.PHONE 전화번호
+			         , T.EMAIL 이메일
+			         , P.DISCOUNT 사용적립금
+			         , P.TOTAL_PRICE 최종결제금액
+			         , T.DELIVERY 배송여부
+			         , T.PAYMENT 입금여부
+			         , T.REQUIRE 배송시요구사항
+			         , M.ADDRESS 회원주소
+			         , P.DELIVERY 배송비
+			         , T.ORDER_DATE 주문등록날짜
+			     
+			     
+			      FROM TB_ORDER T
+			      LEFT JOIN PAYMENT P ON (T.ORD_NO =P.ORD_NO)
+			      LEFT JOIN MEMBER M ON (T.USER_NO = M.USER_NO)
+			     WHERE T.ORD_NO = ?
 	
 	</entry>
 	
@@ -84,6 +99,46 @@
 		   FROM ORD_PRO
 		   JOIN PRODUCT ON (ORD_PRO.PRO_NO = PRODUCT.PRO_NO)
 		  WHERE ORD_NO = ?
+	</entry>
+	
+	<entry key ="confirmOrder">
+			UPDATE TB_ORDER
+			   SET DELIVERY = 'Y'
+			 WHERE ORD_NO = ?
+	</entry>
+	
+	<entry key="confirmMemberSP">
+		UPDATE MEMBER
+		   SET POINT = POINT + ?
+		 WHERE USER_NO = ?
+	</entry>
+	
+	<entry key="confirmMemberDC">
+		UPDATE MEMBER
+		   SET POINT = POINT - ?
+		 WHERE USER_NO = ?
+	</entry>
+	
+	<entry key="confirmPoint">
+		INSERT
+		  INTO POINT
+		            (
+		             POINT_NO
+		          ,  POINT_CATEGORY
+		          ,  POINT_USE
+		          ,  POINT_PRICE
+		          ,  USER_NO
+		          ,  ORD_NO
+		             )
+		VALUES
+		            (
+		            SEQ_POINTNO.NEXTVAL
+		          , ?
+		          , ?
+		          , ?
+		          , ?
+		          , ?
+          			)
 	</entry>
 	
 

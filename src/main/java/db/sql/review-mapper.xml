@@ -31,28 +31,6 @@
 		  FROM CONSULT
 		 WHERE STATUS = 'Y'
 	</entry>
-
-	<entry key="selectReview">
-		SELECT 
-		       REVIEW_NO
-		     , PRO_NAME
-		     , P.PRICE
-		     , P.THUMB_IMG
-		     , M.USER_ID
-		     , REVIEW_TITLE
-		     , REVIEW_CONTENT
-		     , STAR
-		     , R.MODIFY_DATE
-		     , R.ENROLL_DATE
-		     , REVIEW_PHOTO
-		     , R.FILE_PATH
-		     , R.STATUS
-		 FORM REVIEW R
-		 JOIN ORD_PRO O ON (O.PRO_NO = R.PRO_NO)
-		 JOIN PRODUCT P ON (P.PRO_NO = R.PRO_NO)
-		 JOIN MEMBER M ON (M.USER_NO = R.USER_NO)
-	    WHERE PRO_NO = ? 
-	</entry>
 	
 	<entry key="insertReview">
 		INSERT
@@ -104,6 +82,23 @@
 			   REVIEW
 		   SET STATUS = 'N'
 		 WHERE REVIEW_NO = ?
+	</entry>
+	
+	<entry key="selectAllReview">
+		SELECT REVIEW_NO
+			 , PRO_NAME
+			 , USER_ID
+		     , REVIEW_TITLE
+		     , REVIEW_CONTENT
+		     , STAR
+		     , MODIFY_DATE
+		     , ENROLL_DATE
+		     , REVIEW_PHOTO
+		     , FILE_PATH
+		  FROM REVIEW R
+	 LEFT JOIN PRODUCT P ON (R.PRO_NO = P.PRO_NO) 
+	 LEFT JOIN MEMBER M ON (R.USER_NO = M.USER_NO)
+		 WHERE PRO_NO = ? 
 	</entry>
 	
 	<entry key="selectReview">

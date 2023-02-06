@@ -9,6 +9,7 @@
 	String userName = request.getParameter("userName");
 	String lowPrice = request.getParameter("lowPrice");
 	String highPrice = request.getParameter("highPrice");
+	String require = request.getParameter("require");
 	String cpage = request.getParameter("cpage");
 %>    
     
@@ -105,7 +106,7 @@
         
             <br>
             <h2>배송 가능한 주문 
-            	<span class="font-italic font-weight-lighter" style="font-size:0.4em;">결제완료, 배송 시작 전</span>
+            	<span class="font-italic font-weight-lighter" style="font-size:0.4em;">결제 완료, 배송 시작 전</span>
            	</h2>
             <br>
 			
@@ -176,6 +177,13 @@
                     </tr>
                     
                     <tr>
+                        <th>요청사항</th>
+                        <td>
+                            <input type="text" class="form-control-sm" name="require" style="width:300px"> 
+                        </td>
+                    </tr>
+                    
+                    <tr>
                         <th>최종 결제 금액</th>
                         <td>
                             <div class="input-group-prepend input-group-sm">
@@ -189,23 +197,24 @@
 				  
 				  <script>
        		
-       		<!-- 검색 폼의 값을 다시 채워줌 --> 
-			$(function(){
- 	    		
- 	    	
- 	    		let username = "<%=userName%>";
- 	    		let lowPrice = "<%=lowPrice%>";
- 	    		let highPrice ="<%=highPrice%>";
- 	    		
- 	    		<!-- 최초 페이지가 아닐 경우 -->
- 	    		if(<%=cpage%> != 1){
- 	    			
-					$("input[name='userName']").val(userName);
-					$("input[name='lowPrice']").val(lowPrice);
-					$("input[name='highPrice']").val(highPrice);
- 	    		}	
- 	    	});
-			
+	       		<!-- 검색 폼의 값을 다시 채워줌 --> 
+				$(function(){
+	 	    		
+	 	    		let userName = "<%=userName%>";
+	 	    		let lowPrice = "<%=lowPrice%>";
+	 	    		let highPrice ="<%=highPrice%>";
+	 	    		let require ="<%=require%>";
+	 	    		
+	 	    		<!-- 최초 페이지가 아닐 경우 -->
+	 	    		if(<%=cpage%> != 1){
+						
+						$("input[name='userName']").val(userName);
+						$("input[name='lowPrice']").val(lowPrice);
+						$("input[name='highPrice']").val(highPrice);
+						$("input[name='require']").val(require);
+	 	    		}	
+	 	    	});
+				
        		</script>	
 				  
 				  <br>
