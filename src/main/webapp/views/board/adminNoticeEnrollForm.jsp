@@ -23,6 +23,12 @@
 <body>
 	<div class="wrap">
 		<%@ include file="../common/adminMenubarForInclude.jsp" %>
+		<% if(loginAdmin == null) { %>
+		<script>
+			alert("로그인 후 사용해주시기바랍니다.");
+			location.href = '<%= contextPath %>/loginForm.ad';
+		</script>
+		<% } %>
 		
 		<div id="content" align="center">
 		

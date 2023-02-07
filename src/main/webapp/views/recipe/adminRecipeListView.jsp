@@ -104,12 +104,7 @@
 
     <div class="wrap">
         <%@ include file="../common/adminMenubarForInclude.jsp" %>
-    	<% if(loginAdmin == null) { %>
-		<script>
-			alert("로그인 후 사용해주시기바랍니다.");
-			history.back();
-		</script>
-		<% } %>
+        
             <div id="content" align="center">
     
                 <br>
@@ -154,10 +149,10 @@
                 <% } else { %>
                 	<% for(Recipe r : list){ %>
 	                    <tr> 
-	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>'"><%= r.getRecipeNo() %></td>
-	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>'"><%= r.getRecipeTitle() %></td>
-	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>'"><%= r.getCreateDate() %></td>
-	                        <td onclick="location.href='<%= contextPath %>/detail.re?no=<%= r.getRecipeNo() %>'"><%= r.getCount() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/updateForm.re?no=<%= r.getRecipeNo() %>'"><%= r.getRecipeNo() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/updateForm.re?no=<%= r.getRecipeNo() %>'"><%= r.getRecipeTitle() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/updateForm.re?no=<%= r.getRecipeNo() %>'"><%= r.getCreateDate() %></td>
+	                        <td onclick="location.href='<%= contextPath %>/updateForm.re?no=<%= r.getRecipeNo() %>'"><%= r.getCount() %></td>
 	                        <td align="center" class="recipe-status-area">
 	                        	<% if(r.getStatus().equals("Y")){ %>
 	                        		<button class="status-y">Y</button>

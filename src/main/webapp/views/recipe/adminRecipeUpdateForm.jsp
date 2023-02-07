@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.odd.recipe.model.vo.Recipe, com.odd.recipe.model.vo.Cooking" %>
+<%
+	Recipe r = (Recipe)request.getAttribute("r");
+	ArrayList<Cooking> list = (ArrayList<Cooking>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,24 +67,18 @@
         margin-right:30px;
         line-height:30px;
     }
-    
 </style>
 
 </head>
 <body>
 	<div class="wrap">
         <%@ include file="../common/adminMenubarForInclude.jsp" %>
-        <% if(loginAdmin == null) { %>
-		<script>
-			alert("로그인 후 사용해주시기바랍니다.");
-			location.href = '<%= contextPath %>/loginForm.ad';
-		</script>
-		<% } %>
+        
         <div id="content" align="center">
 	    
 			<br>
 			<div align="left">
-				<p>레시피 작성</p>
+				<p>레시피 수정</p>
 			</div>
 			<hr>
 
@@ -89,19 +88,20 @@
                 <table>
                     <tr>
                         <td style="width:100px;">레시피 이름</td>
-                        <td style="padding:10px 30px;"><input type="text" name="title" style="width:350px;" required></td>
+                        <td style="padding:10px 30px;"><input type="text" name="title" style="width:350px;" value="<%= r.getRecipeTitle() %>" required></td>
                         <td rowspan="2" align="center" style="padding-left:30px;">
-                            <img id="thumbnail-img" style="width:200px; height:150px;">
+                            <img id="thumbnail-img" style="width:200px; height:150px;" src="<%= r.getRecipeThumbImg() %>">
                             <label id="input-thumbnail-btn" for="input-thumbnail">
                                 대표 이미지 등록
                             </label>
-                            <input type="file" id="input-thumbnail" name="thumbImg" accept="image/*" onchange="loadThumb(this);" style="display:none;" required>
+                            <input type="file" id="input-thumbnail" name="thumbImg" accept="image/*" onchange="loadThumb(this);" style="display:none;">
+                        	<input type="hidden" id="input-thumbnail-update" name="thumbImg-update" value="0">
                         </td>
                     </tr>
                     <tr>
                         <td>레시피 소개</td>
                         <td style="padding:10px 30px;">
-                            <textarea name="content" style="width:350px; height:80px; resize:none;" required></textarea>
+                            <textarea name="content" style="width:350px; height:80px; resize:none;" required><%= r.getRecipeContent() %></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -155,19 +155,44 @@
                         <td colspan="2" width="500" id="ingredient-insert" style="padding:10px 30px;">
                             <input type="text" id="ingredient-add" placeholder="재료를 입력해주세요">
                             <button type="button" onclick="input()">추가</button>
-                            <input type="hidden" name="ingredient" id="ingredient">
+                            <input type="hidden" name="ingredient" id="ingredient" value="<%= r.getIngredient() %>">
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td colspan="2" width="500" id="ingredient-print" style="padding:0px 30px;">
+                        <%
+                        	String[] ingredientArr = r.getIngredient().split(",");
+                        %>
+                        <% for(String i : ingredientArr){ %>
+                        	<span name='ingredient'><%= i %></span>
+                        <% } %>
                         </td>
                     </tr>
                 </table>
                 </div>
                 <script>
+	                $(function(){
+	            		const effect = "<%= r.getEffect() %>";
+	            		// "ㅇㅇ,ㅇㅇ," | null
+	            		$("#select-effect input").each(function(){
+	            			// indexof, search 메소드 이용 가능
+	            			if(effect != null && effect.search($(this).val()) != -1){	// effect 문자열에 value값이 포함되어있을 경우
+	            				$(this).attr("checked", true);
+	            				$(this).parent().css("backgroundColor", "rgb(200, 140, 140)").css("color", "white");
+	            			}
+	            		})
+	            		const time = "<%= r.getTime() %>";
+	            		$("#select-time input").each(function(){
+	            			if(time != null && time.search($(this).val()) != -1){	// effect 문자열에 value값이 포함되어있을 경우
+	            				$(this).attr("checked", true);
+	            				$(this).parent().css("backgroundColor", "rgb(200, 140, 140)").css("color", "white");
+	            			}
+	            		})
+	            	})
                     function loadThumb(inputFile) {
                         if (inputFile.files.length == 1) {
+	                    	console.log("바뀜");
                             const reader = new FileReader();
                             reader.readAsDataURL(inputFile.files[0]); // readAsDataURL메소드 호출시 읽어들이고자 하는 파일 객체 전달
                             // 파일 읽어들이기 완료됐을 때 실행할 함수
@@ -175,8 +200,10 @@
                                 // e.target.result => 현재 읽어들이기가 완료된 파일의 고유한 url
                                 $("#thumbnail-img").attr("src", e.target.result);
                             }
+	                        $("#input-thumbnail-update").val("1");
                         } else {
                             $("#thumbnail-img").attr("src", null);
+		                    $("#input-thumbnail-update").val("0");
                         }
                     }
                 </script>
@@ -197,17 +224,17 @@
                             $(this).parent().siblings().css("backgroundColor", "rgb(220,220,220)").css("color", "rgb(50, 50, 50)");
                         }
                     })
-                    let ingredients = new Array();
+                    let ingredient = "<%= r.getIngredient() %>";
                     function input() {
                         if($("#ingredient-add").val() != ""){
-                            // 재료 뿌리기
+                        	// 뿌리기
                             let value = $("#ingredient-add").val();
                             document.getElementById("ingredient-print").innerHTML += "<span name='ingredient'>" + value + "</span>";
-                            // 배열에 담기
-                            ingredients.push($("#ingredient-add").val());
+                            
+                            ingredient += ingredient + "," + value;
                             document.getElementById("ingredient-add").value = "";
                             // input으로 넘기기
-                            document.getElementById("ingredient").value = ingredients;
+                            document.getElementById("ingredient").value = ingredient;
                         }
                     }
                 </script>
