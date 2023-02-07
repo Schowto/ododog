@@ -141,5 +141,23 @@
           			)
 	</entry>
 	
+		<entry key="insertOrdPro">
+		Insert 
+		  into ORD_PRO
+		            (
+		              ORD_PRO_NO
+		            , ORD_NO
+		            , PRO_NO
+		            , AMOUNT
+		            )
+		values 
+		        (
+		           SEQ_ORDPRONO.NEXTVAL
+		         , SEQ_ORDERNO.CURRVAL
+		         , ?
+		         , ?
+		        )
+	</entry>
+	
 
 </properties>

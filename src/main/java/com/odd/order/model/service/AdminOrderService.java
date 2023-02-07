@@ -130,5 +130,16 @@ public class AdminOrderService {
 		return result1*result2*result3*result4*result5;
 		
 	}
+	
+	public int insertOrdPro(int[] proNo, int[] quantity) {
+		
+		Connection conn = getConnection();
+		
+		int result = new AdminOrderDao().insertOrdPro(conn, proNo, quantity);
+		close(conn);
+		
+		return result;
+		
+	}
 
 }
