@@ -123,5 +123,4 @@
 		   SET 
 		       COOKING_CONTENT = ?
 	</entry>
-	
 </properties>

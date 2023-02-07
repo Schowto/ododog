@@ -143,8 +143,8 @@
                 <br>
             </div>
 
-            <% if(loginUser != null && loginUser.getUser_Id().equals(b.getBoardWriter())){ %>
-            <!-- 내가 쓴 글일 때 -->
+            <% if(b.getBoardWriter() != null && loginUser != null && loginUser.getUser_Id().equals(b.getBoardWriter())){ %>
+            <!-- 공지가 아니고 내가 쓴 글일 때 -->
 	            <div align="right" style="width:900px">
 	                <br><br>
 	                <a href="<%= contextPath %>/updateForm.bo?no=<%= b.getBoardNo() %>" ><button style="margin-right:10px;">수정</button></a>
@@ -169,7 +169,11 @@
                 </tr>
                 <tr>
                 	<th height="40" style="background:rgb(220,220,220);">작성자</th>
-                	<td><%= b.getBoardWriter() %></td>
+                	<% if(b.getBoardWriter() == null){ %>
+	                	<td>오도독</td>
+                	<% } else { %>
+	                	<td><%= b.getBoardWriter() %></td>
+                	<% } %>
                 </tr>
                 <tr>
                 	<td colspan="2" style="font-size:11px; color:gray;">

@@ -113,7 +113,7 @@
 		                              AND STATUS = 'Y')
 		       ) "NEXT_TITLE"
 		  FROM BOARD
-		  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+		  LEFT JOIN MEMBER ON (BOARD_WRITER = USER_NO)
 		 WHERE BOARD_NO = ?
 	</entry>
 	

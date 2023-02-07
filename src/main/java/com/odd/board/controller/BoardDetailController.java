@@ -38,6 +38,7 @@ public class BoardDetailController extends HttpServlet {
 		if(result > 0) {	// 조회수 증가 성공
 			Board b = bService.selectBoard(boardNo);
 			request.setAttribute("b", b);
+			System.out.println(b);
 			request.getRequestDispatcher("views/board/boardDetailView.jsp").forward(request, response);	
 		} else {			// 조회수 증가 실패
 			request.setAttribute("errorMsg", "상세조회 실패");

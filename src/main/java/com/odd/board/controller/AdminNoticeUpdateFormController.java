@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.odd.board.model.service.AdminBoardService;
 import com.odd.board.model.service.BoardService;
 import com.odd.board.model.vo.Board;
 
@@ -31,7 +32,7 @@ public class AdminNoticeUpdateFormController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int boardNo = Integer.parseInt(request.getParameter("no"));
-		Board b = new BoardService().selectBoard(boardNo);
+		Board b = new AdminBoardService().selectBoard(boardNo);
 		request.setAttribute("b", b);
 		request.getRequestDispatcher("/views/board/adminNoticeUpdateForm.jsp").forward(request, response);
 	}

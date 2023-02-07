@@ -40,7 +40,7 @@ public class AdminNoticeUpdateController extends HttpServlet {
 		int result = new BoardService().updateBoard(b);
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "성공적으로 수정되었습니다.");
-			response.sendRedirect(request.getContextPath() + "/detail.bo?no=" + boardNo);
+			response.sendRedirect(request.getContextPath() + "/list.adNo?cpage=1");
 		} else {
 			request.setAttribute("errorMsg", "일반게시글 작성 실패");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
