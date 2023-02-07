@@ -20,6 +20,16 @@ public class Order {
 	
 
 	
+	public Order(int ordNo, int userNo, String delAdd, String phone, String email, String require) {
+		super();
+		this.ordNo = ordNo;
+		this.userNo = userNo;
+		this.delAdd = delAdd;
+		this.phone = phone;
+		Email = email;
+		this.require = require;
+	}
+
 	public Order(int ordNo, int userNo, String delAdd, int payment, String delivery, String status, String phone,
 			String email, String address, String require, Timestamp orderDate) {
 		super();
@@ -132,8 +142,15 @@ public class Order {
 				+ ", address=" + address + ", require=" + require + ", orderDate=" + orderDate + "]";
 	}
 
-	
-	
+
+	public Order(int userNo, String delAdd, String phone, String email, String require) {
+		super();
+		this.userNo = userNo;
+		this.delAdd = delAdd;
+		this.phone = phone;
+		Email = email;
+		this.require = require;
+	}
 	
 }
 

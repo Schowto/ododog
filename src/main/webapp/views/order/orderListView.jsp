@@ -7,11 +7,11 @@
 <%@ page import="com.odd.product.model.vo.UserProduct, java.util.ArrayList" %>
 
 <%
-UserProduct p = (UserProduct)request.getAttribute("p");
-List<Product> list = (List<Product>) request.getAttribute("list");
-int[] quantity = (int[]) request.getAttribute("quantity");
-DecimalFormat df = new DecimalFormat("#,###"); //금액 포맷
-int point = request.getAttribute("point") != null ? (int) request.getAttribute("point") : 0;
+    UserProduct p = (UserProduct)request.getAttribute("p");
+    ArrayList<Product> list = (ArrayList<Product>) request.getAttribute("list");
+    int[] quantity = (int[])request.getAttribute("quantity");
+    DecimalFormat df = new DecimalFormat("#,###"); //금액 포맷
+    int point = request.getAttribute("point") != null ? (int) request.getAttribute("point") : 0;
 %>    
 <!DOCTYPE html>
 <html>
@@ -60,7 +60,7 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
 
     <%@ include file="../common/userMenubar.jsp"%>
    <div class="wrap">
-    <form action="<%=contextPath%>/order.pro" method="post" id="destination">
+   <!-- <form action="contextPath/order.pro" method="post" id="destination">  --> 
         <div class="header">
         <br>
             <h4 align="center">주문/결제</h4>
@@ -69,20 +69,20 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
         <table align="center">
             <tr> 
                 <td>받는사람 *</td>
-                <td><input type="text" name="name" size=40; placeholder="이름을 입력해주세요" required ></td>
+                <td><input id="sendman" type="text" name="name" size=40; placeholder="이름을 입력해주세요" required ></td>
             </tr>
             <tr>
                 <td>휴대전화 * </td>
-                <td><input type="text" name="phone" size=40; placeholder="휴대전화를 입력해주세요" required ></td>
+                <td><input id="phone" type="text" name="phone" size=40; placeholder="휴대전화를 입력해주세요" required ></td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" name="email" size=40; placeholder="이메일을 입력해주세요" required></td>
+                <td><input id="email" type="email" name="email" size=40; placeholder="이메일을 입력해주세요" required></td>
                
             </tr>
             <tr>
                 <td>주소 * </td>
-                <td><input type="text" name="address1" size=40; placeholder="우편주소" required></td>
+                <td><input id='address' type="text" name="address1" size=40; placeholder="우편주소" required></td>
                 <td><button type="button">우편번호 찾기</button></td> 
             </tr>
 
@@ -93,7 +93,7 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
             </tr>-->
             <tr>
                 <td>배송시 요청사항&nbsp;</td>
-                <td><input type="text" name="request" size=40; placeholder="요청 사항을 입력해주세요"></td>
+                <td><input id="require" type="text" name="request" size=40; placeholder="요청 사항을 입력해주세요"></td>
                 
             </tr>
         </table>
@@ -172,9 +172,9 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
         </div>   
         <div>
         	<!-- <button type="button" class="btn btn-dark" onclick="payment();">결제하기</button> -->
-        	<button type="submit" class="btn btn-dark" onclick="payment();">결제하기</button>
+        	<button type="button" class="btn btn-dark" id="payment">결제하기</button>
         </div>
-		 </form>   
+		 <!-- </form>  -->
 		<br><br>
 
 
@@ -184,31 +184,58 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
 	    var IMP = window.IMP; // 생략 가능
 	    IMP.init("imp87336721"); // 예: imp00000000
 
-	    function payment() {
+	    $('#payment').click(function(){
+	    	//console.log(<%= loginUser.getUser_No() %>)
+	    	console.log($('#address').val())
+	    	console.log($('#phone').val())
+	    	console.log($('#email').val())
+	    	console.log($('#require').val())
+	    	let order = {
+	    		userNo: <%= loginUser.getUser_No() %>,
+	    		delAdd: $('#address').val(),
+	    		phone: $('#phone').val(),
+	    		email: $('#email').val(),
+	    		require: $('#require').val()
+	    	};
+	    	$.ajax({
+	    		url:"<%= contextPath %>/insert.or",
+	    		method:"post",
+	    		data: JSON.stringify(order),
+	    		dataType: "json",
+	    		contentType:"application/json; charset=UTF-8"
+	    	});
+	    	
+	   	
+	    	
 	        // IMP.request_pay(param, callback) 결제창 호출
 	        IMP.request_pay({ // param
 	            pg: "html5_inicis",
 	            pay_method: "card",
 	            merchant_uid: "ORD20180131-0000011",
-	            name: "노르웨이 회전 의자",
-	            amount: 64900,
-	            buyer_email: "gildong@gmail.com",
-	            buyer_name: "홍길동",
-	            buyer_tel: "010-4242-4242",
-	            buyer_addr: "서울특별시 강남구 신사동",
+	            name: getProNm(),
+	            amount: $('#hidFinalPrice').val(),
+	            buyer_email: order.email,
+	            buyer_name: $('#sendman').val(),
+	            buyer_tel: order.phone,
+	            buyer_addr: order.delAdd,
 	            buyer_postcode: "01181"
 	        }, function (rsp) { // callback
 	            if (rsp.success) {
 	                //...,
 	                // 결제 성공 시 로직,
 	                //...
+	                alert('success');
 	            } else {
 	                //...,
 	                // 결제 실패 시 로직,
 	                //...
+	            	alert('fail');
 	            }
+                
 	        });
-      }
+	    }) 
+    
+	    	
 	    //적용금액
 		$('#calPoint').text('-' + $('#pointBox').val() + '원');
 	    
@@ -231,6 +258,14 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
 			 $('#hidFinalPrice').val(<%= sum %>  + 4000 - $('#pointBox').val());
 		});
 	    
+	    function getProNm() {
+	    	let proNm = '<%= list.get(0).getProName() %>';
+			if(<%= list.size() %> > 1){
+				proNm += '외' + <%= list.size()-1 %> +  '건 상품';
+			}
+	    	
+			return proNm;
+		}
 	    
     </script>
 </div> 

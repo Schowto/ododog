@@ -112,7 +112,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 	<div class="outer"> <!-- 전ㅊㅔ시작 -->
 		<div class="content"> <!-- 1 -->
-		<form action="<%=contextPath%>/order.pro" method="get" id="frm">  
+		<form action="<%=contextPath%>/order.product" method="get" id="frm">  
 			<div class="left"> <!-- 2 -->
 				<div class="file-area"> 
 					<!--대표이미지-->

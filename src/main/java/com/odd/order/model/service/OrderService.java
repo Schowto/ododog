@@ -67,6 +67,14 @@ public class OrderService {
 		return result;
 	}
 
+	public int insertOrderList(com.odd.order.model.vo.Order o) {
+		Connection conn = getConnection();
+		int result = dao.insertOrderList(conn, o);
+		return result;
+	}
+	
+	
+
 
 
 
