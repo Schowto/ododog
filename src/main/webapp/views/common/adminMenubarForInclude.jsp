@@ -260,7 +260,6 @@
 
         <div id="header">
             <div id="page">
-                &nbsp&nbsp&nbsp<img src="<%= contextPath %>/resources/icons/home.png" width="15">&nbsp&nbsp&nbsp>&nbsp&nbsp나중에생각해보기
             </div>
             <div id="admin-profile">
 
