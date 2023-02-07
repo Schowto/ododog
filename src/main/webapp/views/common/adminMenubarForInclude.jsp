@@ -177,7 +177,7 @@
             
             <br><br>
             <div id="logo" style="color:white;" align="center">
-                <img src="<%= contextPath %>/resources/icons/logoW.png" width="150">
+                <img src="<%= contextPath %>/resources/icons/logoW.png" width="150" style="cursor:pointer;" onclick="location.href='<%=contextPath%>/main.ad'">
             </div>
             <hr>
             <div id="home">
