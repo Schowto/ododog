@@ -537,37 +537,37 @@
 						
 						<tr>
 							<td>
-								<img class="img-thumbnail" id="contentImg1" onclick="clickFile(2)">
+								<img class="img-thumbnail" id="contentImg1" onclick="clickFile(2)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
 							</td>
 							<td>
-								<img class="img-thumbnail" id="contentImg2" onclick="clickFile(3)">
+								<img class="img-thumbnail" id="contentImg2" onclick="clickFile(3)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
 							</td>
 							<td>
-								<img class="img-thumbnail" id="contentImg3" onclick="clickFile(4)">
-							</td>
-						</tr>
-						
-						<tr>
-							<td>
-								<img class="img-thumbnail" id="contentImg4" onclick="clickFile(5)">
-							</td>
-							<td>
-								<img class="img-thumbnail" id="contentImg5" onclick="clickFile(6)">
-							</td>	
-							<td>
-								<img class="img-thumbnail" id="contentImg6" onclick="clickFile(7)">
+								<img class="img-thumbnail" id="contentImg3" onclick="clickFile(4)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
 							</td>
 						</tr>
 						
 						<tr>
 							<td>
-								<img class="img-thumbnail" id="contentImg7" onclick="clickFile(8)">
+								<img class="img-thumbnail" id="contentImg4" onclick="clickFile(5)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
 							</td>
 							<td>
-								<img class="img-thumbnail" id="contentImg8" onclick="clickFile(9)">
+								<img class="img-thumbnail" id="contentImg5" onclick="clickFile(6)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
 							</td>	
 							<td>
-								<img class="img-thumbnail" id="contentImg9" onclick="clickFile(10)">
+								<img class="img-thumbnail" id="contentImg6" onclick="clickFile(7)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
+							</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<img class="img-thumbnail" id="contentImg7" onclick="clickFile(8)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
+							</td>
+							<td>
+								<img class="img-thumbnail" id="contentImg8" onclick="clickFile(9)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
+							</td>	
+							<td>
+								<img class="img-thumbnail" id="contentImg9" onclick="clickFile(10)" onerror="this.src='<%=contextPath%>/resources/icons/white.png';">
 							</td>
 						</tr>
 						
@@ -680,7 +680,7 @@
             </script>
 				
             <br>
-			<button type="submit" class="btn btn-primary" style="float:right; margin:15px;">등록하기</button>
+			<button type="submit" class="btn btn-primary" style="float:right; margin:15px;">수정하기</button>
 				
 	    	</form>        
 	      </div>
