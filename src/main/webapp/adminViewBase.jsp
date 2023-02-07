@@ -40,7 +40,9 @@
 
         <div id="content" align="center">
 			<!-- 세부페이지 들어갈 자리 -->
-
+        	<div id="welcome" align="center" style="text-align:center; vertical-align:middle;margin-top:50px;">
+				<h2>관리자용 메인 페이지</h2>
+       		</div>
         </div>
         
     </div>
