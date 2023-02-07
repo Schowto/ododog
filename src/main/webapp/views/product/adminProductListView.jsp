@@ -132,7 +132,7 @@
         	
         
             <br>
-            <h2>전체 물품 조회</h2>
+            <h2>전체 상품 조회</h2>
             <br>
             	<div class="order">
 	                <a class="btn btn-sm btn-secondary" id="btn1" href="<%=contextPath%>/list.adPro?cpage=<%=pi.getCurrentPage()%>&&order=PRO_NO&&by=ASC">번호</a>
