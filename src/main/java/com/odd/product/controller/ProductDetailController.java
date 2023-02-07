@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.odd.member.model.service.ReviewService;
 import com.odd.member.model.vo.Member;
+import com.odd.member.model.vo.Review;
 import com.odd.order.model.service.CartService;
 import com.odd.product.model.service.ProductDetailService;
 import com.odd.product.model.vo.ProAtt;
@@ -34,6 +36,7 @@ public class ProductDetailController extends HttpServlet {
 		
 		ArrayList<ProAtt> list = new ProductDetailService().productDetail(proNo);  //상품상세테이블값
 		UserProduct userProduct = new ProductDetailService().productDetailFood(proNo);
+		ArrayList<Review> rlist = new ReviewService().selectAllReview(proNo);
 		
 		HttpSession session = request.getSession();
 		
@@ -49,6 +52,7 @@ public class ProductDetailController extends HttpServlet {
 		
 		request.setAttribute("list", list);
 		request.setAttribute("p", userProduct);
+		request.setAttribute("rlist", rlist);
 		request.getRequestDispatcher("views/product/productDetailView.jsp").forward(request,response);
 	}
 

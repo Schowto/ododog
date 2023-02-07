@@ -1,8 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title><%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page import="com.odd.member.model.vo.*, java.util.ArrayList, com.odd.product.model.vo.*" %>
 <%
-	ArrayList<Review> rlist = (ArrayList<Review>)request.getAttribute("list");
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+	Product p = (Product)request.getAttribute("p");
 %>
 <!DOCTYPE html>
 <html>
@@ -86,7 +93,7 @@
 </style>
 </head>
 <body>
-	
+	<%@ include file="../common/userMenubar.jsp"%>
 	<br><br>
 
 	<div class="reviewContent">
@@ -97,7 +104,7 @@
         <br><br>
 
         	<table class="reviewTable">
-					<%if(rlist.isEmpty()){ %>
+					<%if(list.isEmpty()){ %>
 					<!-- 리뷰가없을때 -->
 	                	<tr style="text-align:center;">
 	                		<td colspan="4" style="height:50px; font-weight: 600;" >
@@ -109,7 +116,7 @@
 							</td>
 	                	</tr>
                 	<%}else{ %>
-	                	<%for(Review r : rlist){ %>
+	                	<%for(Review r : list){ %>
 	                	<!-- 리뷰가있을때 -->
 							<tr>
 								<td style="height:50px; width:60%; border-bottom: none;">
@@ -170,6 +177,11 @@
 
 	
 	
+
+</body>
+</html>
+</head>
+<body>
 
 </body>
 </html>

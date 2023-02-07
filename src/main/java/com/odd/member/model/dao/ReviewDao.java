@@ -100,7 +100,7 @@ public class ReviewDao {
 	}
 
 	public ArrayList<Review> selectAllReview(Connection conn, int proNo) {
-		ArrayList<Review> list = new ArrayList<>();
+		ArrayList<Review> rlist = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectAllReview");
@@ -112,7 +112,7 @@ public class ReviewDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				list.add(new Review(rset.getInt("review_no"),
+				rlist.add(new Review(rset.getInt("review_no"),
 							   rset.getString("pro_name"),
 							   rset.getString("user_id"),
 							   rset.getString("review_title"),
@@ -130,7 +130,7 @@ public class ReviewDao {
 			close(pstmt);
 		}
 		
-		return list;
+		return rlist;
 		
 		
 	}

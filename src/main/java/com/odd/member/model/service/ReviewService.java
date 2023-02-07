@@ -58,9 +58,9 @@ public class ReviewService {
 	
 	public ArrayList<Review> selectAllReview(int proNo) {
 		Connection conn = getConnection();
-		ArrayList<Review> list = new ReviewService().selectAllReview(proNo);
+		ArrayList<Review> rlist = new ReviewDao().selectAllReview(conn,proNo);
 		close(conn);
-		return list;
+		return rlist;
 	}
 	
 	public Review reviewStar(int proNo) {
