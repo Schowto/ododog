@@ -99,4 +99,22 @@
 		 WHERE RECIPE_NO = ?
 	</entry>
 	
+	<entry key="updateRecipe">
+		UPDATE
+		       RECIPE
+		   SET 
+		       RECIPE_TITLE = ?,
+		       RECIPE_CONTENT = ?,
+		       EFFECT = ?,
+		       TIME = ?,
+		       INGREDIENT = ?,
+		       PROCESS_COUNT = ?
+	</entry>
+	<entry key="updateCooking">
+		UPDATE
+		       COOKING
+		   SET 
+		       COOKING_CONTENT = ?
+	</entry>
+	
 </properties>

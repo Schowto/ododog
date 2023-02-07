@@ -100,4 +100,17 @@ public class AdminRecipeService {
 		return list;
 	}
 	
+	public int updateRecipe(Recipe r, ArrayList<Cooking> list) {
+		Connection conn = getConnection();
+		int result1 = new AdminRecipeDao().updateRecipe(conn, r);
+		int result2 = new AdminRecipeDao().updateCooking(conn, list);
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1 * result2;
+	}
+	
 }

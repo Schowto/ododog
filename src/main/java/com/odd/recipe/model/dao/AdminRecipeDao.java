@@ -254,4 +254,54 @@ public class AdminRecipeDao {
 		return list;
 	}
 	
+	public int updateRecipe(Connection conn, Recipe r) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateRecipe");
+		if(r.getRecipeThumbImg() != null) {
+			sql += ", THUMBIMG = " + r.getRecipeThumbImg();
+		}
+		sql += " WHERE RECIPE_NO = " + r.getRecipeNo();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getRecipeTitle());
+			pstmt.setString(2, r.getRecipeContent());
+			pstmt.setString(3, r.getEffect());
+			pstmt.setString(4, r.getTime());
+			pstmt.setString(5, r.getIngredient());
+			pstmt.setInt(6, r.getProcessCount());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int updateCooking(Connection conn, ArrayList<Cooking> list) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCooking");
+		try {
+			for(Cooking c : list) {
+				if(c.getFilePath() != null) {
+					sql += ", FILE_PATH = " + c.getFilePath();
+				}
+				sql += " WHERE COOKING_NO = " + c.getCookingNo();
+				System.out.println(sql);
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, c.getCookingContent());
+				// 실행
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 }
