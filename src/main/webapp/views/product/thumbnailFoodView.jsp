@@ -124,13 +124,6 @@ p:hover {
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br>
 	
-	<!-- 스크롤 부분 -->
-     	<div id="scrollbottom">
-     	<a style="display:scroll;position:fixed;bottom:80px; right:30px;" rel="nofollow"
-		href="#" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/upArrowWithCircle.png" width="30px"></a>
-		<a style="display:scroll;position:fixed;bottom:40px; right:30px;" rel="nofollow"
-		href="#scrollbottom" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/downArrowWithCircle.png" width="30px"></a>
-		</div>
 		
 	<%@ include file="../common/userFooterbar.jsp"%>
 	

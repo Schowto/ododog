@@ -173,8 +173,6 @@
 		<% session.removeAttribute("alertMsg"); %>
 		<% } %>
 		
- 
-
         <div id="side">
             
             <br><br>
@@ -184,7 +182,7 @@
             <hr>
             <div id="home">
                 <img src="<%= contextPath %>/resources/icons/logout.png" width="13">
-                <a href="">사이트 바로가기</a>
+                <a href="<%= contextPath %>">사이트 바로가기</a>
             </div>
             <hr>
             <br>
