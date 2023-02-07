@@ -59,7 +59,7 @@
 		
         <div id="content" align="center">
         	<br>
-            <h2>물품 등록</h2>
+            <h2>상품 등록</h2>
             <br>
 			<br>
 			

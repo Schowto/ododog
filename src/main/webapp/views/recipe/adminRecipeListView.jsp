@@ -6,6 +6,7 @@
 	ArrayList<Recipe> list = (ArrayList<Recipe>)request.getAttribute("list");
 	PageInfo replyPi = (PageInfo)request.getAttribute("replyPi");
 	ArrayList<Reply> replyList = (ArrayList<Reply>)request.getAttribute("replyList");
+	String sort = (String)request.getAttribute("sort");
 %>
 <!DOCTYPE html>
 <html>
@@ -96,7 +97,21 @@
 		border:2px solid rgb(200,200,200);
 		background:rgb(200,200,200);
 	}
-    
+
+    /* 정렬순서 */
+    .sort-filter-area label{
+    	position:relative;
+    	margin:0px;
+        border:1px solid rgb(220, 220, 220);
+        border-radius: 5px;
+        float:right;
+        width:6%;
+        cursor:pointer;
+    }
+    .sort-filter-area input{
+    	position:absolute;
+        opacity:0;
+    }
 </style>
 
 </head>
@@ -117,18 +132,42 @@
                     <button style="width:100px; height:30px; margin:15px 20px 10px;" onclick="location.href='<%= contextPath %>/enrollForm.re'">레시피 작성</button>
                 </div>
     
-                <ul class="sort-filter" style="width:700px; font-size:13px;">
-                    <li class>댓글순</li>
-                    <li class>하트순</li>
-                    <li class="selected">최신순</li>
-                </ul>
+                <div class="sort-filter-area" style="font-size:13px;">
+	            	<label class="sort" style="border-radius:5px;">
+	                    <input type="radio" name="sort-by" value="reply" style="cursor:pointer;">
+	                    <span>댓글순</span>
+	                </label>
+	                <label class="sort" style="border-radius:5px;">
+	                    <input type="radio" name="sort-by" value="heart" style="cursor:pointer;">
+	                    <span>하트순</span>
+	                </label>
+	                <label class="sort selected" style="border-radius:5px;">
+	                    <input type="radio" name="sort-by" value="new" style="cursor:pointer;">
+	                    <span>최신순</span>
+	                </label>
+	            </div>
                 
                 <script>
-                    $(".sort-filter>li").click(function () {
-                        //console.log($(this).text());
-                        $(this).addClass('selected');
-                        $(this).siblings().removeClass('selected');
-                    })
+                    $(".sort-filter-area label").click(function(){
+	                    // 정렬기준 버튼 클릭시
+	                    $(this).addClass('selected');
+	                    $(this).siblings().removeClass('selected');
+	                    location.href = "<%= contextPath %>/list.adRe?cpage=1&rpage=<%= replyPi.getCurrentPage() %>&sort=" + $(this).children("input").val();
+	                    
+	                    $("#sort-input").val($(this).children("input").val());
+	                    $("#search-area").submit();
+	                })
+	                
+	            	$(function(){
+	            		// 선택된 기준 회색으로 유지
+	            		const sortList = $(".sort-filter-area :radio");
+	            		$(sortList).each(function(){
+	            			if($(this).val() == "<%= sort %>"){
+	            				$(this).parents("label").addClass("selected");
+	            				$(this).parents("label").siblings().removeClass('selected');
+	            			}
+	            		})
+	            	})
                 </script>
     
                 <table class="list-area">

@@ -29,9 +29,9 @@ public class AdminRecipeService {
 		close(conn);
 		return count;
 	}
-	public ArrayList<Recipe> selectList(PageInfo pi){
+	public ArrayList<Recipe> selectList(PageInfo pi, String sort){
 		Connection conn = getConnection();
-		ArrayList<Recipe> list = new AdminRecipeDao().selectList(conn, pi);
+		ArrayList<Recipe> list = new AdminRecipeDao().selectList(conn, pi, sort);
 		close(conn);
 		return list;
 	}
