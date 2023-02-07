@@ -86,6 +86,7 @@ td {
 	opacity: 0.7;
 	cursor: pointer;
 }
+
 </style>
 </head>
 <body>

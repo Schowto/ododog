@@ -113,6 +113,11 @@
     .myOrderList{
     	box-sizing: border-box;
     }
+    #orderList:hover{
+        opacity: 0.7;
+        cursor: pointer;
+        background-color: rgb(220,220,220);
+    }
 </style>
 </head>
 <body>
@@ -199,7 +204,7 @@
 	                                <td style="width:40%;">주문일자[주문번호]</td>
 	                                <td style="width:10%;">입금여부</td>
 	                                <td style="width:10%;">배송시작여부</td>
-	                                <td style="width:40%;">주문일자</td>
+	                                <td style="width:10%;">주문일자</td>
 	                            </tr>
                          	</thead>
                          	<tbody>
@@ -210,18 +215,18 @@
 	                                <td colspan="6" style="height:150px; font-weight: 600;">
 	                                    <br><br>
 	                                    <img src="<%=contextPath%>/resources/images/error.png"> <br>
-	                                    찾으시는 기간 내에 해당하는 내역이 없습니다.
+	                                    주문내역이 없습니다.
 	                                    <br><br><br>
 	                                </td>
 	                            </tr>
 	                            <% } else{ %>
 	                        	<!-- 주문내역이있을때 -->
 	                        		<%for(MyOrder mo : list) {%>
-		                            <tr style="font-size:13px;">
+		                            <tr style="font-size:13px;" id="orderList">
 		                                <td style="width:40%;"><%=mo.getOrdNo() %></td>
 	                                	<td style="width:10%;"><%=mo.getPayment() %></td>
 	                                	<td style="width:10%;"><%=mo.getDeliveryStatus() %></td>
-	                                	<td style="width:40%;"><%=mo.getOrderDateStr() %></td>
+	                                	<td style="width:10%;"><%=mo.getOrderDate() %></td>
 		                            </tr>
 		                            <%} %>
                                 <%}%>
@@ -230,7 +235,7 @@
                         
                         <script>
                         	$(function(){
-                        		$(".myOrderList>tbody>tr").click(function(){
+                        		$("#orderList").click(function(){
                         			location.href='<%=contextPath%>/myOrderDetail.me?no=' + $(this).children().eq(0).text();
                         		})
                         	})

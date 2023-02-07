@@ -48,7 +48,7 @@ public class LikeDao {
 								  rset.getDate("like_date"),
 								  rset.getString("pro_name"),
 								  rset.getInt("price"),
-								  rset.getString("thumbImg")));
+								  rset.getString("thumb_img")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

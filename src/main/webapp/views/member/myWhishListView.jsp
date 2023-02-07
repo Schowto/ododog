@@ -64,6 +64,10 @@
 		width:100px;
 		height:30px;
 	}
+	.myWhishList tbody{
+		height:100px;
+		
+	}
 </style>
 </head>
 <body>
@@ -100,8 +104,7 @@
 			<div class="myWhishList">
 
 				<!--관심상품이 없는경우-->
-				<form action="">
-					<table>
+				<table>
 						<thead>
 						<tr style="height:50px;">
 							<td style="width:100px;">이미지</td>
@@ -113,7 +116,7 @@
 						<tbody>
 						<%if(list.isEmpty()){ %>
 						<tr>
-							<td colspan="6" style="height:150px; font-weight: 600;">
+							<td colspan="6" style="height:150px; font-weight: 600; margin:auto; text-align:center;">
 								<br><br>
 								<img src="<%=contextPath%>/resources/images/error.png"> <br>
 								관심상품이 없습니다.
@@ -124,24 +127,23 @@
 							<%for(Like k : list){ %>
 							<tr style="height:150px;">
 								<td style="width:100px;">
-									<img src="<%=k.getThumbImg()%>">
-								</td>
+									<img src="<%=k.getThumbImg()%>" style="width:100px; height:100px;">
+								</td><%=k.getPro_no() %>
 								<td style="width:400px;"><%=k.getProName() %></td>
 								<td style="width:100px;"><%=k.getPrice() %></td>
 								<td style="width:400px;">
 									<div style="margin-bottom:5px;">
-										<button onclick="location.href='<%=contextPath%>/addCart.ord?proNo=<%=k.getPro_no()%>'">장바구니담기</button> <br>
-									</div>
-									<div>
-										<button class="btn-red" onclick="location.href='<%=contextPath%>/delPick.ord?proNo=<%=k.getPro_no()%>'">삭제</button>
+										<button class="btn-red" onclick="location.href='<%=contextPath%>/delPick.ord?no=<%=k.getPro_no() %>'">삭제</button> <br>
 									</div>
 								</td>
 						</tr>
+						
+						
 							<%} %>
 						<%} %>
 						</tbody>
 					</table>
-				</form>
+					
 
 				<br><br>
 

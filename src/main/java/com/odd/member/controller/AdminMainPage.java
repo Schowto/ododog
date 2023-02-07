@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AdminLogoutController
+ * Servlet implementation class AdminMainPage
  */
-@WebServlet("/logout.ad")
-public class AdminLogoutController extends HttpServlet {
+@WebServlet("/main.ad")
+public class AdminMainPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminLogoutController() {
+    public AdminMainPage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,11 +26,7 @@ public class AdminLogoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session = request.getSession();
-		session.invalidate();
-		
-		response.sendRedirect(request.getContextPath() + "/main.ad");
+		request.getRequestDispatcher("views/common/adminMainPage.jsp").forward(request, response);
 	}
 
 	/**

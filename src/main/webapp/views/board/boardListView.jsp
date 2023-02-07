@@ -201,7 +201,7 @@
                         <% if(loginUser == null){ %>
                         	if($(this).children("td").eq(0).text() != "공지"){
                         		alert("로그인 후 이용 가능합니다.");
-    	                        location.href = '<%= contextPath %>/views/member/loginUser.jsp';
+    	                        location.href = '<%= contextPath %>/loginform.me';
                         	} else {
                         		location.href = '<%= contextPath %>/detail.bo?no=' + $(this).children("input").val();
                         	}
