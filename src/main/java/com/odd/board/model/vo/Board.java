@@ -20,19 +20,16 @@ public class Board {
 	
 	private int reportNo;
 	private int userNo; // 신고관리
-	private int reportSort;
 	private int postNo;
 	private String reportContent;
 	private String done;
 	private Date reportDate;
-	private int commentNo;
 	
 	
 	
-	public Board(int userNo, int reportSort, int postNo, String reportContent) {
+	public Board(int userNo, int postNo, String reportContent) {
 		super();
 		this.userNo = userNo;
-		this.reportSort = reportSort;
 		this.postNo = postNo;
 		this.reportContent = reportContent;
 	}
@@ -54,12 +51,7 @@ public class Board {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
-	public int getReportSort() {
-		return reportSort;
-	}
-	public void setReportSort(int reportSort) {
-		this.reportSort = reportSort;
-	}
+
 	public String getReportContent() {
 		return reportContent;
 	}
@@ -78,13 +70,12 @@ public class Board {
 	public void setReportDate(Date reportDate) {
 		this.reportDate = reportDate;
 	}
-	public Board(int reportNo, int userNo, int postNo, int commentNo, String reportContent,
+	public Board(int reportNo, int userNo, int postNo, String reportContent,
 			Date reportDate ,String done) {
 		super();
 		this.reportNo = reportNo;
 		this.userNo = userNo;
 		this.postNo= postNo;
-		this.commentNo = commentNo;
 		this.reportContent = reportContent;
 		this.reportDate = reportDate;
 		this.done = done;
@@ -239,12 +230,6 @@ public class Board {
 	public void setPostNo(int postNo) {
 		this.postNo = postNo;
 	}
-	public int getCommentNo() {
-		return commentNo;
-	}
-	public void setCommentNo(int commentNo) {
-		this.commentNo = commentNo;
-	}
-	
+
 	
 }

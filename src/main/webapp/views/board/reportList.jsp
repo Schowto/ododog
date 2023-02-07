@@ -112,7 +112,7 @@
               <table id="usertable" class="usertable" style="text-align: center;">
                 <tr>
                   <th>번호</th>
-                  <th>아이디</th>
+                  <th>회원번호</th>
                   <th>게시글 링크</th>
                   <th>신고내용</th>
                   <th>신고날짜</th>

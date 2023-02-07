@@ -508,7 +508,6 @@ public class BoardDao {
 				list.add(new Board(rset.getInt("report_No"),
 								   rset.getInt("user_No"),
 								   rset.getInt("post_No"),
-								   rset.getInt("comment_No"),
 								   rset.getString("report_Content"),
 								   rset.getDate("report_Date"),
 								   rset.getString("done")));
@@ -582,7 +581,6 @@ public class BoardDao {
 				list.add(new Board(rset.getInt("report_No"),
 								   rset.getInt("user_No"),
 								   rset.getInt("post_No"),
-								   rset.getInt("comment_No"),
 								   rset.getString("report_Content"),
 								   rset.getDate("report_Date"),
 								   rset.getString("done")));
@@ -629,6 +627,25 @@ public class BoardDao {
 		
 		return list;
 		
+	}
+	
+	public int postReport(Connection conn, Board r) {
+		// insert
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("postReport");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, r.getUserNo());
+			pstmt.setInt(2, r.getPostNo());
+			pstmt.setString(3, r.getReportContent());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 	
 	

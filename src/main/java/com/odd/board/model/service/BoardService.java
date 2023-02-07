@@ -252,4 +252,16 @@ public class BoardService {
 		close(conn);
 		return list;
 	}
+	
+	public int postReport(Board r){
+		Connection conn = getConnection();
+		int result = new BoardDao().postReport(conn, r);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

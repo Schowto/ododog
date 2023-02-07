@@ -292,7 +292,6 @@
 	    REPORT_NO ,
 	    USER_NO ,
 	    POST_NO ,
-	    COMMENT_NO ,
 	    REPORT_CONTENT ,
 	    REPORT_DATE,
 	    DONE
@@ -312,7 +311,6 @@
 	SELECT
 	    REPORT_NO ,
 	    USER_NO ,
-	    COMMENT_NO ,
 	    REPORT_CONTENT ,
 	    REPORT_DATE,
 	    DONE
@@ -323,7 +321,6 @@
 	    REPORT_NO ,
 	    USER_NO ,
 	    POST_NO ,
-	    COMMENT_NO ,
 	    REPORT_CONTENT ,
 	    REPORT_DATE,
 	    DONE
@@ -345,7 +342,25 @@
 		   AND B.STATUS = 'Y'
 		       
 	</entry>
-<entry key="">
-	
+<entry key="postReport">
+		INSERT
+		  INTO REPORT
+		  (
+		    REPORT_NO
+		  , USER_NO
+		  , POST_NO
+		  , REPORT_CONTENT
+		  , DONE
+          , REPORT_DATE
+		  )
+		  VALUES
+		  (
+		    SEQ_REPORTNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , 'N'
+          , SYSDATE
+		  )
 </entry>
 </properties>
