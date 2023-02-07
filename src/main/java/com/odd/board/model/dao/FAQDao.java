@@ -64,7 +64,7 @@ public class FAQDao {
 			pstmt.setString(1, f.getContactTitle());
 			pstmt.setString(2, f.getContactAnswer());
 			pstmt.setString(3, f.getCategory());
-			pstmt.setInt(4, 1);
+			pstmt.setInt(4, 0);
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
