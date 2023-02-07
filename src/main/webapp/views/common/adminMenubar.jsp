@@ -167,7 +167,6 @@
     <div class="wrap">
 
         <div id="side">
-
             <div id="logo" style="color:white;" align="center">
                 <img src="<%= contextPath %>/resources/icons/logoW.png" width="150">
             </div>
@@ -179,6 +178,7 @@
             <hr>
 
             <div id="navi">
+			<% if(loginAdmin != null) { %> 
                 <div>
                     &nbsp&nbsp&nbsp<img src="<%= contextPath %>/resources/icons/profileW.png" width="20">&nbsp
                     회원관리
@@ -224,8 +224,8 @@
                     <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp고객센터</a>
                     <a href="">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp관리</a>
                 </p>
+			<% } %>
             </div>
-
         </div>
 
         <script>
@@ -255,7 +255,7 @@
                 <!-- 로그인 전 -->
                 <% if(loginAdmin == null) { %>
                 <img src="<%= contextPath %>/resources/icons/profile.png" width="15" style="margin-right:10px;">
-                <a href="<%=contextPath %>/views/member/loginAdmin.jsp" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
+                <a href="<%=contextPath %>/loginform.ad" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
 				
 				 <%}else{ %>
 				 

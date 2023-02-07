@@ -173,7 +173,7 @@
                 <!-- 로그인 전 -->
                 
             <% if(loginUser == null) { %>
-                <img src="<%= contextPath %>/resources/icons/profile.png" onclick="location.href='<%=contextPath%>/views/member/loginUser.jsp'">
+                <img src="<%= contextPath %>/resources/icons/profile.png" onclick="location.href='<%=contextPath%>/loginform.me'">
             
             <%}else{ %>
                  

@@ -134,17 +134,21 @@
          
         	<form action="<%=contextPath%>/search.faq" method="post" id="search-form">
         	
-        	<!--  <select name="how" id="" style="float: left; margin-left: 40px; font-size: 11px;">
+        	<!--<select name="how" id="" style="float: left; margin-left: 40px; font-size: 11px;">
+        		<option value="<%=contextPath%>/FAQlist.ad">전체</option>
                 <option value="결제">결제</option>
                 <option value="제품">제품</option>
                 <option value="배송">배송</option>
-            </select>  -->
+            </select>  --> 
+            <a></a>
+           
             
-            <input type="text" name="keyword" placeholder="제목으로검색(키워드)" id="search" style="float: left; margin-left: 40px; font-size: 11px;">
+            
+            <input type="text" name="keyword" placeholder="제목으로검색(키워드)" id="search"style="float: left;  font-size: 11px;">
             <button type="submit" style="float: left;">검색하기</button>            
             
         	</form>
-            <button style="float: left;" onclick="location.href ='<%=contextPath%>//FAQlist.ad'">전체조회</button>
+            <!--<button style="float: left;" onclick="location.href ='<%=contextPath%>/FAQlist.ad'">전체조회</button>  -->
 
             <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQenrollForm.ad'">등록하기</button>        
             

@@ -190,6 +190,7 @@
             <br>
 
             <div id="navi">
+            <% if(loginAdmin != null) { %> 
                 <div>
                     &nbsp&nbsp&nbsp<img src="<%= contextPath %>/resources/icons/profileW.png" width="20">&nbsp
                     회원관리
@@ -231,6 +232,7 @@
                     &nbsp&nbsp&nbsp<img src="<%= contextPath %>/resources/icons/headphone.png" width="20">&nbsp
                     고객센터관리
                 </div>
+                <% } %>
                 <p>
                     <a href="<%=contextPath%>/FAQlist.ad">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFAQ</a>
                     <a href="<%=contextPath%>/list.rp">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp신고관리</a>
@@ -266,7 +268,7 @@
                 <!-- 로그인 전 -->
                 <% if(loginAdmin == null) { %>
                 <img src="<%= contextPath %>/resources/icons/profile.png" width="15" style="margin-right:10px;">
-                <a href="<%=contextPath %>/views/member/loginAdmin.jsp" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
+                <a href="<%=contextPath %>/loginform.ad" style="text-decoration:none; color:rgb(50, 50, 50); font-weight:700;">로그인</a>
 				 <%}else{ %>
                 <!-- 로그인 후 -->
                 <img src="<%= contextPath %>/resources/icons/loginProfile.png" width="15" style="margin-right:10px;">관리자님
