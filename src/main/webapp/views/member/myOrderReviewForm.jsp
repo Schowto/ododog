@@ -262,7 +262,6 @@
                     <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
                     	<input type="hidden" name="ordNo" value="<%=p.getProNo() %>">
                     	<input type="hidden" name="proName" value="<%=p.getProName() %>">
-                        <!-- 
                         <table class="starTable">
                                  
                                 <tr>
@@ -275,13 +274,10 @@
                                                 <span>★★★★★</span>
                                                 <input type="range" name="star" id="reviewStar" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
                                               </span>
-                                        
                                         </div>
-                                       
                                     </td>
                                 </tr>
                             </table>
-							 -->
                             <table class="contentTable">
                                 <tr>
                                             <td colspan="2" style="font-size:14px; font-weight: 600; text-align: center; width:40%; border-right:1px solid rgb(220,220,220);">
@@ -324,14 +320,14 @@
 
     </div>
 
-    <!--별점구현부분
+    <!--별점구현부분  -->
     <script>
         const drawStar = (target) => {
             document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
             let value = document.querySelector("#reviewStar").value();
         }
     </script>
-    -->
+  
 
 </body>
 </html>
