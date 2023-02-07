@@ -2,13 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.odd.member.model.vo.*, com.odd.order.model.vo.*, com.odd.product.model.vo.*"%>
 <%
-	//MyOrder m = (MyOrder)request.getAttribute("m");
-	//Review r = (Review)request.getAttribute("r");
-	ArrayList<OrdPro> list = (ArrayList<OrdPro>)request.getAttribute("list");
-	
-	MyOrder mo = (MyOrder)request.getAttribute("m");
 	Product p = (Product)request.getAttribute("p");
-	Member m = (Member)request.getAttribute("m");
 %>
 <!DOCTYPE html>
 <html>
@@ -245,21 +239,20 @@
 
                 <div class="myOrderView">
                         <table>
-                                <%for(OrdPro op : list){%>
                                 <tr>
-                                    <td style="width:150px;"><img src="<%= op.getThumbImg() %>" ></td>
-                                    <td style="width:250px;"><%=op.getProName() %></td>
+                                    <td style="width:140px; height:140px; padding-left:10px;"><img src="<%= p.getThumbImg() %>" ></td>
+                                    <td style="width:250px;"><%=p.getProName() %></td>
                                     <td style="width:200px; padding-right: 20px;">
                                         
                                     </td>
                                     <td style="width:200px; text-align:left;">
-                                        &nbsp;카테고리 : <%=op.getCategory() %> <br><br>
-                                        &nbsp;상품금액 : <%=op.getPrice() %>원 <br><br>
-                                        &nbsp;상품수량 : <%=op.getAmount() %>
+                                    	&nbsp;상품이름 : <%=p.getProName() %> <br><br>
+                                        &nbsp;카테고리 : <%=p.getCategory() %> <br><br>
+                                        &nbsp;상품금액 : <%=p.getPrice() %>원 
+                                        
 
                                     </td>
                                 </tr>
-                                <%}%>
                             </table>
                        	
                     </div>
@@ -269,12 +262,13 @@
                     <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
                     	<input type="hidden" name="ordNo" value="<%=p.getProNo() %>">
                     	<input type="hidden" name="proName" value="<%=p.getProName() %>">
-                    	<input type="hidden" name="userId" value="<%=m.getUser_Id() %>">
-                        -->
+                        <!-- 
                         <table class="starTable">
+                                 
                                 <tr>
                                     <td style="width:40%;">상품을 사용해보셨나요?</td>
                                     <td>
+                                        
                                         <div name="myStar" id="myStar">
                                             <span class="star">
                                                 ★★★★★
@@ -283,15 +277,18 @@
                                               </span>
                                         
                                         </div>
+                                       
                                     </td>
                                 </tr>
                             </table>
-
+							 -->
                             <table class="contentTable">
                                 <tr>
-                                            <td colspan="2" style="font-size:14px; font-weight: 600; text-align: center; width:40%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;제목</td>
+                                            <td colspan="2" style="font-size:14px; font-weight: 600; text-align: center; width:40%; border-right:1px solid rgb(220,220,220);">
+                                            	&nbsp;&nbsp;&nbsp;상품에 대한 솔직한 의견을 작성해주세요.
+                                            	</td>
                                             <td colspan="2">
-                                                &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="reviewTitle" required>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="reviewTitle" placholder="리뷰제목을 기입해주세요." required>
                                             </td>
                                             
                                         </tr>
@@ -327,13 +324,14 @@
 
     </div>
 
-    <!--별점구현부분-->
+    <!--별점구현부분
     <script>
         const drawStar = (target) => {
             document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
             let value = document.querySelector("#reviewStar").value();
         }
     </script>
+    -->
 
 </body>
 </html>
