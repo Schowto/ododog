@@ -73,7 +73,12 @@
 <body>
 	<div class="wrap">
         <%@ include file="../common/adminMenubarForInclude.jsp" %>
-        
+        <% if(loginAdmin == null) { %>
+		<script>
+			alert("로그인 후 사용해주시기바랍니다.");
+			location.href = '<%= contextPath %>/loginform.ad';
+		</script>
+		<% } %>
         <div id="content" align="center">
 	    
 			<br>
@@ -83,7 +88,8 @@
 			<hr>
 
             
-            <form action="<%= contextPath %>/insert.re" method="post" enctype="multipart/form-data">
+            <form action="<%= contextPath %>/update.re" method="post" enctype="multipart/form-data">
+            	<input type="hidden" name="recipe-no" value="<%= r.getRecipeNo() %>">
                 <div style="border: 1px solid rgb(220, 220, 220); border-radius:3px; width:800px; padding:20px; margin:40px 0px; font-size:14px;">
                 <table>
                     <tr>
@@ -192,7 +198,6 @@
 	            	})
                     function loadThumb(inputFile) {
                         if (inputFile.files.length == 1) {
-	                    	console.log("바뀜");
                             const reader = new FileReader();
                             reader.readAsDataURL(inputFile.files[0]); // readAsDataURL메소드 호출시 읽어들이고자 하는 파일 객체 전달
                             // 파일 읽어들이기 완료됐을 때 실행할 함수
@@ -231,7 +236,7 @@
                             let value = $("#ingredient-add").val();
                             document.getElementById("ingredient-print").innerHTML += "<span name='ingredient'>" + value + "</span>";
                             
-                            ingredient += ingredient + "," + value;
+                            ingredient += "," + value;
                             document.getElementById("ingredient-add").value = "";
                             // input으로 넘기기
                             document.getElementById("ingredient").value = ingredient;
@@ -244,84 +249,45 @@
 
 
                 <table id="cooking-area" style="margin:50px 0px;">
+                <% for(Cooking c : list){ %>
+                	<input type="hidden" value="<%= c.getCookingNo() %>" name="cooking-no<%= c.getCookingOrder() %>">
                     <tr>
                         <td width="60" align="center">
                             <div style="background:rgb(200, 140, 140); width:25px; height:25px; border-radius:25px; text-align:center; font-size:17px; font-weight:600; color:white;">
-                                1
+                                <%= c.getCookingOrder() %>
                             </div>
                         </td>
                         <td width="430" style="padding:30px 10px;">
-                            <textarea name="cooking-content1" style="width:370px; height:120px; resize:none; border:1px solid gray" required></textarea>
+                            <textarea name="cooking-content<%= c.getCookingOrder() %>" style="width:370px; height:120px; resize:none; border:1px solid gray" required><%= c.getCookingContent() %></textarea>
                         </td>
                         <td width="200" align="center">
-                            <img width="180" height="130" style="padding: 10px 0px;">
-                            <label class="input-img-btn" for="input-img1" style="margin-top:0;">
+                            <img width="180" height="130" style="padding: 10px 0px;" src="<%= c.getFilePath() %>">
+                            <label class="input-img-btn" for="input-img<%= c.getCookingOrder() %>" style="margin-top:0;">
                                 이미지 등록
                             </label>
-                            <input type="file" name="input-img1" id="input-img1" accept="image/*" onchange="loadImg(this);" style="display:none;">
+                            <input type="file" name="input-img<%= c.getCookingOrder() %>" id="input-img<%= c.getCookingOrder() %>" accept="image/*" onchange="loadImg(this);" style="display:none;">
+                        	<input type="hidden" name="thumbImg-update<%= c.getCookingOrder() %>" value="0">
                         </td>
                     </tr>
-                    <tr>
-                        <td width="60" align="center">
-                            <div
-                                style="background:rgb(200, 140, 140); width:25px; height:25px; border-radius:25px; text-align:center; font-size:17px; font-weight:600; color:white;">
-                                2
-                            </div>
-                        </td>
-                        <td width="430" style="padding:30px 10px;">
-                            <textarea name="cooking-content2" style="width:370px; height:120px; resize:none; border:1px solid gray" required></textarea>
-                        </td>
-                        <td width="200" align="center">
-                            <img width="180" height="130" style="padding: 10px 0px;">
-                            <label class="input-img-btn" for="input-img2" style="margin-top:0;">
-                                이미지 등록
-                            </label>
-                            <input type="file" name="input-img2" id="input-img2" accept="image/*" onchange="loadImg(this);" style="display:none;">
-                        </td>
-                    </tr>
+                <% } %>
                 </table>
 
-                <span style="color:rgb(200, 140, 140); font-weight:600; display:block; width:70px; height:30px; cursor:pointer;" onclick="add();">+ 추가</span>
-                <input type="hidden" name="process-count" id="process-count" value="2">
+                <input type="hidden" name="process-count" id="process-count" value="<%= r.getProcessCount() %>">
 
                 <script>
                     function loadImg(inputFile) {
-                            if (inputFile.files.length == 1) {
-                                const reader = new FileReader();
-                                reader.readAsDataURL(inputFile.files[0]);
-                                reader.onload = function (e) {
-                                                            // e.target.result => 현재 읽어들이기가 완료된 파일의 고유한 url
-                                    $(inputFile).prev().prev().attr("src", e.target.result);    // 인라인에서 $(this)는 window를 가리킴 -> inputFile로 받기!
-                                }
-                            } else {
-                                $(inputFile).prev().attr("src", null);
+                        if (inputFile.files.length == 1) {
+                            const reader = new FileReader();
+                            reader.readAsDataURL(inputFile.files[0]);
+                            reader.onload = function (e) {
+                                                        // e.target.result => 현재 읽어들이기가 완료된 파일의 고유한 url
+                                $(inputFile).prev().prev().attr("src", e.target.result);    // 인라인에서 $(this)는 window를 가리킴 -> inputFile로 받기!
                             }
-                        }
-
-                    // 요리과정 추가 기능
-                    let count = 2;
-                    function add(){
-                        let value = "";
-                        if(count < 10) {
-                            value  = "<tr>"
-                                   +    "<td width='60' align='center'>"
-                                   +        "<div style='background: rgb(200, 140, 140); width: 25px; height: 25px; border-radius: 25px; text-align: center; font-size: 17px; font-weight: 600; color: white;'>"+ (count + 1) +"</div>"
-                                   +    "</td>"
-                                   +    "<td width='430' style='padding: 30px 10px;''>"
-                                   +        "<textarea name='cooking-content" + (count+1) + "' style='width: 370px; height: 120px; resize: none; border: 1px solid gray' required></textarea>"
-                                   +    "</td>"
-                                   +    "<td width='200' align='center'>"
-                                   +        "<img width='180' height='130' style='padding: 10px 0px;'>"
-                                   +        "<label class='input-img-btn' for='input-img"+ (count+1) +"' style='margin-top: 0;'>이미지 등록</label>"
-                                   +        "<input type='file' name='input-img" + (count+1) + "' id='input-img" + (count+1) + "' accept='image/*'' onchange='loadImg(this);'' style='display:none;'>"
-                                   +    "</td>"
-                                   + "</tr>";
-                            document.getElementById("cooking-area").insertAdjacentHTML("beforeend", value);
-                            count++;
+                            $(inputFile).next().val("1");
                         } else {
-                            alert("10개까지만 등록 가능합니다.")
+                            $(inputFile).prev().prev().attr("src", null);
+                            $(inputFile).next().val("1");
                         }
-                        document.getElementById("process-count").value = count;
                     }
                 </script>
 

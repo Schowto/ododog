@@ -19,12 +19,6 @@
 <style>
 
 
-  #content {
-      width: 75%; height: 100%;
-      padding-top: 20px;
-      color: rgb(50, 50, 50);
-      background: white;
-  }
   .searchTable{
     width:80%;
     height: 50px;
@@ -165,13 +159,6 @@
     			</tbody>
               </table>
               
-              <script>
-                $(function(){
-                    $(".userTable>tbody>tr").click(function(){
-                        location.href = "<%=contextPath%>/detailAdmin.co?no=" + $(this).children().eq(0).text();
-                    })
-                })
-            </script>
               </div>            
         </div>
        </div>
@@ -219,6 +206,14 @@
           })
         }
       </script>
+      
+      <script>
+                $(function(){
+                    $(".userTable>tbody>tr").click(function(){
+                        location.href = "<%=contextPath%>/detailAdmin.co?no=" + $(this).children().eq(0).text();
+                    })
+                })
+            </script>
      	
 
 </body>

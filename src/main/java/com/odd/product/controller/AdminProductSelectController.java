@@ -48,6 +48,7 @@ public class AdminProductSelectController extends HttpServlet {
 		jObj.put("category", p.getCategory());
 		jObj.put("price", p.getPrice());
 		jObj.put("expiredDate", p.getExpiredDate());
+		jObj.put("soldout", p.getSoldout());
 		jObj.put("save", p.getSave());
 		jObj.put("thumbImg", p.getThumbImg());
 		

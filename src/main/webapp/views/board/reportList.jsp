@@ -104,7 +104,7 @@
             <div class="membertable">
                 <div class="memberbutton">
                 <form name="search-form" action="<%=contextPath%>/search.rp" method="post"> 
-                <input type="text" name="keyword" placeholder="아이디로 검색" id="serch" style="float: left;">
+                <input type="text" name="keyword" placeholder="회원번호로 검색" id="serch" style="float: left;">
                     <button style="float: left;">조회하기</button>
                 </form>
                </div>
@@ -112,8 +112,8 @@
               <table id="usertable" class="usertable" style="text-align: center;">
                 <tr>
                   <th>번호</th>
-                  <th>아이디</th>
-                  <th>게시글 링크</th>
+                  <th>회원번호</th>
+                  <th>게시글번호</th>
                   <th>신고내용</th>
                   <th>신고날짜</th>
                   <th>상태</th>
@@ -126,15 +126,15 @@
                 <% }else { %>
                 <% for(Board b : list){ %> 
                 <tr>
-                  <td><%=b.getReportNo() %></td>
-                  <td><%=b.getUserNo()%></td>
-                  <td><%=b.getPostNo() %></td>
-                  <td><%=b.getReportContent() %></td>
-                  <td><%=b.getReportDate() %></td>
+                  <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getReportNo() %></td>
+                  <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getUserNo() %></td>
+                  <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getPostNo() %></td>
+                  <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getReportContent() %></td>
+                  <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getReportDate() %></td>
                   <td><%=b.getDone() %></td>
                   <td>
-                    <button type="button" id="delete" onclick="location.href ='<%=contextPath%>/delete.rp?no=<%=b.getReportNo() %>'">블라인드</button>
-                    <button type="button" id="delete" onclick="location.href ='<%=contextPath%>/expose.rp?no=<%=b.getReportNo() %>'">블라인드 취소</button>
+                    <button type="button" id="delete" onclick="location.href ='<%=contextPath%>/delete.rp?no=<%=b.getReportNo() %>&&pno=<%= b.getPostNo() %>'">블라인드</button>
+                    <button type="button" id="delete" onclick="location.href ='<%=contextPath%>/expose.rp?no=<%=b.getReportNo() %>&&pno=<%= b.getPostNo() %>'">블라인드 취소</button>
                   </td>
                 </tr>
                 <%} %>

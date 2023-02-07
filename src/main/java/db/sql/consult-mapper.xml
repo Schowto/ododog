@@ -38,8 +38,8 @@
 			 , USER_ID
 		     , CONSULT_TITLE
 		     , CONSULT_CONTENT
-		     , TO_CHAR(C.ENROLL_DATE, 'YYMMDD') "ENROLL_DATE"
-		     , TO_CHAR(C.MODIFY_DATE, 'YYMMDD') "MODIFY_DATE"
+		     , C.ENROLL_DATE
+		     , C.MODIFY_DATE
 		     , CONSULT_ANSWER
 		     , ANSWER_DATE
 		     , C.STATUS
@@ -64,7 +64,7 @@
 		  , USER_NO
 		  , CONSULT_TITLE
 		  , CONSULT_CONTENT
-		  , TO_CHAR(ENROLL_DATE, 'YYMMDD') "ENROLL_DATE"
+		  , ENROLL_DATE
 		  , STATUS
 		  , ORIGIN_NAME
 		  , FILE_PATH
@@ -92,8 +92,8 @@
 			 , M.USER_NO
 		     , CONSULT_TITLE
 		     , CONSULT_CONTENT
-		     , TO_CHAR(C.ENROLL_DATE, 'YYMMDD') "ENROLL_DATE"
-		     , TO_CHAR(C.MODIFY_DATE, 'YYMMDD') "MODIFY_DATE"
+		     , C.ENROLL_DATE
+		     , C.MODIFY_DATE
 		     , CONSULT_ANSWER
 		     , ANSWER_DATE
 		     , C.STATUS
@@ -133,7 +133,7 @@
 		       CONSULT 
 		   SET CONSULT_ANSWER = ?
 		     , ANSWER_DATE = SYSDATE
-		     , RESPONDENTS = 1
+		     , RESPONDENTS = 0
 		     , ANSWER_STATUS = '답변완료'
 		 WHERE CONSULT_NO = ?
 	</entry>
@@ -144,8 +144,8 @@
 			 , USER_ID
 		     , CONSULT_TITLE
 		     , CONSULT_CONTENT
-		     , TO_CHAR(C.ENROLL_DATE, 'YYMMDD') "ENROLL_DATE"
-		     , TO_CHAR(C.MODIFY_DATE, 'YYMMDD') "MODIFY_DATE"
+		     , C.ENROLL_DATE
+		     , C.MODIFY_DATE
 		     , CONSULT_ANSWER
 		     , ANSWER_DATE
 		     , C.STATUS
@@ -167,8 +167,8 @@
 			 , USER_ID
 		     , CONSULT_TITLE
 		     , CONSULT_CONTENT
-		     , TO_CHAR(C.ENROLL_DATE, 'YYMMDD') "ENROLL_DATE"
-		     , TO_CHAR(C.MODIFY_DATE, 'YYMMDD') "MODIFY_DATE"
+		     , C.ENROLL_DATE
+		     , C.MODIFY_DATE
 		     , CONSULT_ANSWER
 		     , ANSWER_DATE
 		     , C.STATUS

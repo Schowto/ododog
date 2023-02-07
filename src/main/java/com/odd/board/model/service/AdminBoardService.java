@@ -146,5 +146,16 @@ public class AdminBoardService {
 		close(conn);
 		return result;
 	}
-
+	
+	/**
+	 * 공지사항 조회: 수정때
+	 * @param boardNo
+	 * @return
+	 */
+	public Board selectBoard(int boardNo) {
+		Connection conn = getConnection();
+		Board b = new AdminBoardDao().selectBoard(conn, boardNo);
+		close(conn);
+		return b;
+	}
 }

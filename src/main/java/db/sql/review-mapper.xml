@@ -32,6 +32,16 @@
 		 WHERE STATUS = 'Y'
 	</entry>
 	
+	<entry key="reviewProduct">
+		SELECT
+		       CATEGORY 
+		     , PRO_NAME
+		     , PRICE
+		     , THUMB_IMG
+		  FROM PRODUCT
+		 WHERE PRO_NO = ?
+	</entry>
+	
 	<entry key="insertReview">
 		INSERT
 		  INTO
@@ -58,7 +68,7 @@
 		  , ?
 		  , ?
 		  , ?
-		  , ?
+		  , ''
 		  , SYSDATE
 		  , SYSDATE
 		  , ?

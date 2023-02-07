@@ -71,18 +71,25 @@ public class AdminRecipeDao {
 		}
 		return count;
 	}
-	public ArrayList<Recipe> selectList(Connection conn, PageInfo pi){
+	public ArrayList<Recipe> selectList(Connection conn, PageInfo pi, String sort){
 		// select
 		ArrayList<Recipe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectList");
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit()-1;
+		if(sort == null || sort.equals("new")) {
+			sql += " ORDER BY RECIPE_NO DESC";
+		} else if (sort.equals("heart")) {
+			sql += " ORDER BY HEART_COUNT DESC, RECIPE_NO DESC";
+		} else {
+			sql += " ORDER BY REPLY_COUNT DESC, RECIPE_NO DESC";
+		}
+		sql += ") A ) WHERE RNUM BETWEEN " + startRow + "AND " + endRow;
+		System.out.println(sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
-			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit()-1;
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Recipe(rset.getInt("recipe_no"),
@@ -252,6 +259,56 @@ public class AdminRecipeDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int updateRecipe(Connection conn, Recipe r) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateRecipe");
+		if(r.getRecipeThumbImg() != null) {	// 넘어온 파일이 있을 경우
+			sql += ", THUMBIMG = '" + r.getRecipeThumbImg() + "'";
+		}
+		sql += " WHERE RECIPE_NO = " + r.getRecipeNo();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getRecipeTitle());
+			pstmt.setString(2, r.getRecipeContent());
+			pstmt.setString(3, r.getEffect());
+			pstmt.setString(4, r.getTime());
+			pstmt.setString(5, r.getIngredient());
+			pstmt.setInt(6, r.getProcessCount());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	public int updateCooking(Connection conn, ArrayList<Cooking> list) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		try {
+			for(Cooking c : list) {
+				String sql = prop.getProperty("updateCooking");
+				if(c.getFilePath() != null) {	// 넘어온 파일이 있을 경우
+					sql += ", FILE_PATH = '" + c.getFilePath() + "'";
+				}
+				sql += " WHERE COOKING_NO = " + c.getCookingNo();
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, c.getCookingContent());
+				// 실행
+				result = pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 	
 }

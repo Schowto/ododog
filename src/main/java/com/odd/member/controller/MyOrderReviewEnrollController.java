@@ -50,18 +50,14 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 			int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
 			int proNo = Integer.parseInt(multiRequest.getParameter("proNo"));
 			String proName = multiRequest.getParameter("proName");
-			String userId = multiRequest.getParameter("userId");
+			String userId = ((Member)session.getAttribute("loginUser")).getUser_Id();
 			double star = Double.parseDouble(multiRequest.getParameter("star"));
-			String reviewTitle = multiRequest.getParameter("reviewTitle");
-			String reviewContent = multiRequest.getParameter("reviewContent");
 			
 			Review r = new Review();
 			r.setProNo(proNo);
 			r.setUserNo(userNo);
 			r.setProName(proName);
 			r.setUserId(userId);
-			r.setReviewTitle(reviewTitle);
-			r.setReviewContent(reviewContent);
 			r.setStar(star);
 			
 			if(multiRequest.getOriginalFileName("upfile") != null) {
@@ -69,7 +65,7 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 				r.setFilePath("resources/review_upfiles" + multiRequest.getFilesystemName("upfile"));
 			}
 			
-			int result = new ReviewService().insertReview(proNo, userNo, r);
+			int result = new ReviewService().insertReview(r);
 			
 			if(result > 0) {
 				

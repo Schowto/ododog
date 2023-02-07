@@ -1,7 +1,6 @@
 package com.odd.member.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,9 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.odd.member.model.vo.Member;
-import com.odd.order.model.service.AdminOrderService;
-import com.odd.order.model.vo.OrdPro;
+import com.odd.member.model.service.ReviewService;
 import com.odd.product.model.vo.Product;
 
 /**
@@ -46,21 +43,12 @@ public class MyOrderReviewController extends HttpServlet {
 		//request.setAttribute("m", m);
 		
 		int proNo = Integer.parseInt(request.getParameter("no"));
-		String proName = request.getParameter("pName");
-		int ordNo = Integer.parseInt(request.getParameter("ordNo"));
 		
-		ArrayList<OrdPro> list = new AdminOrderService().selectOrdPro(ordNo);
 		HttpSession session = request.getSession();
-		Member m = (Member)session.getAttribute("loginUser");
 		
-		Product p = new Product();
-		p.setProNo(proNo);
-		p.setProName(proName);
+		Product p = new ReviewService().reviewProduct(proNo);
 		
-		request.setAttribute("list", list);
 		request.setAttribute("p", p);
-		request.setAttribute("proName", proName);
-		request.setAttribute("m", m);
 		
 		request.getRequestDispatcher("views/member/myOrderReviewForm.jsp").forward(request, response);
 	}

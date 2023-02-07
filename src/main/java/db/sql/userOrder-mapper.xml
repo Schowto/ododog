@@ -115,10 +115,10 @@
 		     
 		     , P.PRO_NAME
 		     , P.PRICE
-		     , P.TUMB_IMG
-		  FROM LIKE L
+		     , P.THUMB_IMG
+		  FROM "LIKE" L
 		  JOIN PRODUCT P ON (L.PRO_NO = P.PRO_NO)
 		  JOIN MEMBER M ON (L.USER_NO = M.USER_NO)
-		 WHERE USER_NO = ?
+		 WHERE L.USER_NO = ?
 	</entry>
 </properties>

@@ -3,6 +3,8 @@
 <%@ page import = "com.odd.board.model.vo.Board" %>
 <%
 	Board b = (Board)(request.getAttribute("b")); 
+
+	Board r = (Board)(request.getAttribute("r"));
 %>
 <!DOCTYPE html>
 <html>
@@ -141,8 +143,8 @@
                 <br>
             </div>
 
-            <% if(loginUser != null && loginUser.getUser_Id().equals(b.getBoardWriter())){ %>
-            <!-- 내가 쓴 글일 때 -->
+            <% if(b.getBoardWriter() != null && loginUser != null && loginUser.getUser_Id().equals(b.getBoardWriter())){ %>
+            <!-- 공지가 아니고 내가 쓴 글일 때 -->
 	            <div align="right" style="width:900px">
 	                <br><br>
 	                <a href="<%= contextPath %>/updateForm.bo?no=<%= b.getBoardNo() %>" ><button style="margin-right:10px;">수정</button></a>
@@ -167,7 +169,11 @@
                 </tr>
                 <tr>
                 	<th height="40" style="background:rgb(220,220,220);">작성자</th>
-                	<td><%= b.getBoardWriter() %></td>
+                	<% if(b.getBoardWriter() == null){ %>
+	                	<td>오도독</td>
+                	<% } else { %>
+	                	<td><%= b.getBoardWriter() %></td>
+                	<% } %>
                 </tr>
                 <tr>
                 	<td colspan="2" style="font-size:11px; color:gray;">
@@ -437,46 +443,53 @@
                     </div>
         
                     <!-- Modal body -->
-        			<form action="" method="post">
+        			<form action="<%=contextPath %>/postreport.me" method="post">
                     <div class="modal-body" style="color:gray; font-size:13px;">
+                   	<input type="hidden" name="postNo" value="<%= b.getBoardNo() %>">
+                    
+                    	
                         <br>
                         글 또는 댓글이 이용규칙 위반으로 관리자에 의해 삭제되어야 마땅하다 판단된다면 신고해주세요. <br>
                         신고 3회 이상의 글 또는 댓글은 블라인드 처리 될 수 있습니다.
                         <br><br><br>
-                        <div style="margin-bottom:10px;">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report1" name="report">
+                        <div style="margin-bottom:10px;" name="reportContent">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report1" name="report1">
                             <label for="report1">
                                 <b style="color:rgb(50, 50, 50)">집단간 싸움 유발</b> (서열/비교, 지역감정, 종교 등)
                             </label>
                         </div>
-                        <div style="margin-bottom:10px;">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report2" name="report">
+                        <div style="margin-bottom:10px;" name="reportContent">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report2" name="report2">
                             <label for="report2">
                                 <b style="color:rgb(50, 50, 50)">욕설, 비속어, 인신공격</b> (혐오, 심한 불쾌감 유발)
                             </label>
                         </div>
-                        <div style="margin-bottom:10px;">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report3" name="report">
+                        <div style="margin-bottom:10px;" name="reportContent">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report3" name="report3">
                             <label for="report3">
                                 <b style="color:rgb(50, 50, 50)">선정적, 음란성</b> (신고자가 선정적이라 판단)
                             </label>
                         </div>
-                        <div style="margin-bottom:10px;">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report4" name="report">
+                        <div style="margin-bottom:10px;" name="reportContent">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report4" name="report4">
                             <label for="report4">
                                 <b style="color:rgb(50, 50, 50)">홍보, 낚시성, 도배</b> (무의미한 짧은 글 포함)
                             </label>
                         </div>
-                        <div>
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report5" name="report">
+                        <div name="reportContent">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report5" name="report5">
                             <label for="report5">
                                 <b style="color:rgb(50, 50, 50)">기타</b> (악성코드, 사생활침해 등)
                             </label>
                         </div>
         
-                        <textarea name="alert-content"
+                        <textarea name="reportContent"
                             style="width:400px; height:70px; margin-left:25px; border:1px solid rgb(220,220,220); border-radius:5px; resize:none;"></textarea>
                         <br><br>
+                       
+                    	
+                        
+                        <br>
                         <button type="submit" "margin-left:384px;">제출</button>
         
                     </div>

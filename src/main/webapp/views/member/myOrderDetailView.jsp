@@ -99,6 +99,9 @@
         width:100px;
         height:30px;
     }
+    .myOrderView tr{
+    	height:50px;
+    }
 </style>
 </head>
 <body>
@@ -133,14 +136,15 @@
             <br><br><br><br>
 
             <div class="myOrderDetailView">
-                    <div class="myOrderView">
-                        <table>
+            	<div class="myOrderView" style="height:100%;">
+            	
+                    <table>
                                 <%for(OrdPro op : list){%>
                                 <tr>
                                     <td style="width:150px;"><img src="<%= op.getThumbImg() %>" ></td>
                                     <td style="width:250px;"><%=op.getProName() %></td>
                                     <td style="width:200px; padding-right: 20px;">
-                                        <button type="button"><a href="<%=contextPath%>/review.me?no=<%=op.getProNo()%>&pName=<%=op.getProName()%>&ordNo=<%=op.getOrdNo()%>">리뷰작성</a></button>
+                                        <button type="button" onclick="location.href='<%=contextPath%>/review.me?no=<%=op.getProNo()%>'">리뷰작성</a></button>
                                     </td>
                                     <td style="width:200px; text-align:left;">
                                         &nbsp;카테고리 : <%=op.getCategory() %> <br><br>
@@ -151,13 +155,12 @@
                                 </tr>
                                 <%}%>
                             </table>
-                       	
                     </div>
 
 
                     <br><br>
 
-                    <div class="myOrderList"> 
+                    <div class="myOrderList" style="height:100%;"> 
                         <form class="order">
                             <table>
                                 <tr>
@@ -182,7 +185,7 @@
                                 </tr>
                             </table>
                         </form>
-
+	
                         <form class="cash">
                             <table>
                                 <tr>
@@ -222,6 +225,7 @@
                                     <td>주소</td>
                                     <td><%=o.getDelAdd() %></td>
                                 </tr>
+                                
                             </table>
                         </form>
                     </div>
@@ -239,7 +243,7 @@
                             })
                         })
                     </script>
-
+		
         </div>
         
         

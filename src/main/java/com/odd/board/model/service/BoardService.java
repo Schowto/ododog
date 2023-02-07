@@ -234,6 +234,19 @@ public class BoardService {
 		return result;
 	}
 	
+	public int exposePostReport(int boardNo) {
+		Connection conn = getConnection();
+		int result = new BoardDao().exposePostReport(conn, boardNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	
 	public ArrayList<Board> searchReport(String keyword){
 		Connection conn = getConnection();
 		ArrayList<Board> list = new BoardDao().searchReport(conn, keyword);
@@ -251,5 +264,17 @@ public class BoardService {
 		ArrayList<Board> list = new BoardDao().selectMyBoard(conn, useNo);
 		close(conn);
 		return list;
+	}
+	
+	public int postReport(Board r){
+		Connection conn = getConnection();
+		int result = new BoardDao().postReport(conn, r);
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 }

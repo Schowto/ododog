@@ -415,4 +415,28 @@ public class AdminBoardDao {
 		return result;
 	}
 	
+	public Board selectBoard(Connection conn, int boardNo) {
+		Board b = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectBoard");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				b = new Board();
+				b.setBoardNo(Integer.parseInt(rset.getString("board_no")));
+				b.setBoardTitle(rset.getString("board_title"));
+				b.setBoardContent(rset.getString("board_content"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return b;
+	}
+	
 }

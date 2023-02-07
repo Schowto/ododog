@@ -22,7 +22,6 @@
 		       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
 		       COUNT
 		  FROM BOARD B
-		  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
 		 WHERE BOARD_TYPE = 1
 		   AND B.STATUS = 'Y'
 		 ORDER
@@ -114,7 +113,7 @@
 		                              AND STATUS = 'Y')
 		       ) "NEXT_TITLE"
 		  FROM BOARD
-		  JOIN MEMBER ON (BOARD_WRITER = USER_NO)
+		  LEFT JOIN MEMBER ON (BOARD_WRITER = USER_NO)
 		 WHERE BOARD_NO = ?
 	</entry>
 	
@@ -292,7 +291,6 @@
 	    REPORT_NO ,
 	    USER_NO ,
 	    POST_NO ,
-	    COMMENT_NO ,
 	    REPORT_CONTENT ,
 	    REPORT_DATE,
 	    DONE
@@ -312,7 +310,6 @@
 	SELECT
 	    REPORT_NO ,
 	    USER_NO ,
-	    COMMENT_NO ,
 	    REPORT_CONTENT ,
 	    REPORT_DATE,
 	    DONE
@@ -323,7 +320,6 @@
 	    REPORT_NO ,
 	    USER_NO ,
 	    POST_NO ,
-	    COMMENT_NO ,
 	    REPORT_CONTENT ,
 	    REPORT_DATE,
 	    DONE
@@ -344,5 +340,32 @@
 		   AND BOARD_WRITER = ?
 		   AND B.STATUS = 'Y'
 		       
+	</entry>
+<entry key="postReport">
+		INSERT
+		  INTO REPORT
+		  (
+		    REPORT_NO
+		  , USER_NO
+		  , POST_NO
+		  , REPORT_CONTENT
+		  , DONE
+          , REPORT_DATE
+		  )
+		  VALUES
+		  (
+		    SEQ_REPORTNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , 'N'
+          , SYSDATE
+		  )
+</entry>
+	<entry key="exposePostReport">
+		UPDATE
+		       BOARD
+		   SET STATUS = 'Y'
+		 WHERE BOARD_NO = ?
 	</entry>
 </properties>

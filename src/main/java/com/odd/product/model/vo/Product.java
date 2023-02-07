@@ -30,6 +30,15 @@ public class Product {
 		this.thumbImg = thumbImg;
 	}
 
+	
+	public Product(String category, String proName, int price, String thumbImg) {
+		super();
+		this.category = category;
+		this.proName = proName;
+		this.price = price;
+		this.thumbImg = thumbImg;
+	}
+
 	public Product(int proNo, String category, String proName, int price, String soldout, String expiredDate,
 			String enrollDate, double save, String thumbImg) {
 		super();

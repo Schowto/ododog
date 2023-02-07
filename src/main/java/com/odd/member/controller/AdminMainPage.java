@@ -1,28 +1,23 @@
-package com.odd.board.controller;
+package com.odd.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.odd.board.model.service.AdminBoardService;
-import com.odd.board.model.service.BoardService;
-import com.odd.board.model.vo.Board;
-
 /**
- * Servlet implementation class AdminNoticeUpdateController
+ * Servlet implementation class AdminMainPage
  */
-@WebServlet("/updateForm.adNo")
-public class AdminNoticeUpdateFormController extends HttpServlet {
+@WebServlet("/main.ad")
+public class AdminMainPage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminNoticeUpdateFormController() {
+    public AdminMainPage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,10 +26,7 @@ public class AdminNoticeUpdateFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int boardNo = Integer.parseInt(request.getParameter("no"));
-		Board b = new AdminBoardService().selectBoard(boardNo);
-		request.setAttribute("b", b);
-		request.getRequestDispatcher("/views/board/adminNoticeUpdateForm.jsp").forward(request, response);
+		request.getRequestDispatcher("views/common/adminMainPage.jsp").forward(request, response);
 	}
 
 	/**

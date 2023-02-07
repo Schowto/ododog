@@ -22,13 +22,20 @@
 		                       RECIPE_TITLE,
 		                       TO_CHAR(CREATE_DATE, 'YYYY-MM-DD') "CREATE_DATE",
 		                       COUNT,
-		                       STATUS
-		                  FROM RECIPE
-		                 ORDER
-		                    BY RECIPE_NO DESC
-		               ) A
-		       )
-		 WHERE RNUM BETWEEN ? AND ?
+		                       STATUS,
+		                       (
+		                     	SELECT COUNT(*)
+		                          FROM REPLY
+		                         WHERE BOARD_TYPE = 3
+		                           AND BOARD_NO = RECIPE_NO
+		                           AND STATUS = 'Y'
+		                       ) "REPLY_COUNT"
+		                     , (
+		                     	SELECT COUNT(*) COUNT
+						          FROM HEART
+						         WHERE RECIPE_NO = R.RECIPE_NO
+						       ) "HEART_COUNT"
+		                  FROM RECIPE R
 	</entry>
 	<entry key="selectReplyList">
 		SELECT *
@@ -99,4 +106,21 @@
 		 WHERE RECIPE_NO = ?
 	</entry>
 	
+	<entry key="updateRecipe">
+		UPDATE
+		       RECIPE
+		   SET 
+		       RECIPE_TITLE = ?,
+		       RECIPE_CONTENT = ?,
+		       EFFECT = ?,
+		       TIME = ?,
+		       INGREDIENT = ?,
+		       PROCESS_COUNT = ?
+	</entry>
+	<entry key="updateCooking">
+		UPDATE
+		       COOKING
+		   SET 
+		       COOKING_CONTENT = ?
+	</entry>
 </properties>

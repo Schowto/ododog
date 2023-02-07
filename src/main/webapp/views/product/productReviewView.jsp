@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList" %>
+<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList, com.odd.product.model.vo.*" %>
 <%
 	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+	Product p = (Product)request.getAttribute("p");
 %>
 <!DOCTYPE html>
 <html>
@@ -119,6 +120,9 @@
                                                 <span>★★★★★</span>
                                                 <input type="range" name="star" id="reviewStar" oninput="drawStar(this)" value="<%=r.getStar() %>" step="1" min="0" max="10">
                                               </span>
+                         
+                         
+                         
                                         </div>
 								<td rowspan="2"><img src="<%=r.getReviewPhoto()%>"></td>
 								<td rowspan="2">

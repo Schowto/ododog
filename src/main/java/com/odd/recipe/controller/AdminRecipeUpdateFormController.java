@@ -37,6 +37,7 @@ public class AdminRecipeUpdateFormController extends HttpServlet {
 		Recipe r = new AdminRecipeService().selectRecipe(recipeNo);
 		ArrayList<Cooking> list = new AdminRecipeService().selectCooking(recipeNo);
 		request.setAttribute("r", r);
+		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/recipe/adminRecipeUpdateForm.jsp").forward(request, response);
 	}
 

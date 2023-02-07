@@ -29,9 +29,9 @@ public class AdminRecipeService {
 		close(conn);
 		return count;
 	}
-	public ArrayList<Recipe> selectList(PageInfo pi){
+	public ArrayList<Recipe> selectList(PageInfo pi, String sort){
 		Connection conn = getConnection();
-		ArrayList<Recipe> list = new AdminRecipeDao().selectList(conn, pi);
+		ArrayList<Recipe> list = new AdminRecipeDao().selectList(conn, pi, sort);
 		close(conn);
 		return list;
 	}
@@ -98,6 +98,19 @@ public class AdminRecipeService {
 		ArrayList<Cooking> list = new AdminRecipeDao().selectCooking(conn, recipeNo);
 		close(conn);
 		return list;
+	}
+	
+	public int updateRecipe(Recipe r, ArrayList<Cooking> list) {
+		Connection conn = getConnection();
+		int result1 = new AdminRecipeDao().updateRecipe(conn, r);
+		int result2 = new AdminRecipeDao().updateCooking(conn, list);
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		return result1 * result2;
 	}
 	
 }

@@ -118,7 +118,7 @@
         <div id="content" align="center">
         
             <br>
-            <h2>물품 검색</h2>
+            <h2>상품 검색</h2>
             <br>
 			
 			<!-- 상품 삭제 버튼 -->
@@ -386,7 +386,7 @@
 					success : function(p){
 						
 							$("select>option").each(function(){
-		            			if(p.category == $(this).val() || p.save == $(this).val()){
+		            			if(p.category == $(this).val() || p.save == $(this).val() || p.soldout == $(this).val()){
 		            				$(this).attr("selected", true);
 		            			}
 		            		})
