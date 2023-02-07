@@ -66,14 +66,14 @@
     <div class="wrap">
  	    <%@ include file="../common/adminMenubarForInclude.jsp" %>
 		
-		<!-- 관리자 로그인 확인 (마지막에 추가 예정)
+		<!-- 관리자 로그인 확인 -->
 		<% if(loginAdmin == null) { %>
 		<script>
 			alert("로그인 후 사용해주시기바랍니다.");
 			history.back();
 		</script>
 		<% } %>
-		-->
+	
 		 
         <div id="content" align="center">
         	

@@ -1,3 +1,18 @@
+-- 관리자 추가
+
+INSERT 
+  INTO ADMIN
+            (
+            ADMIN_NO
+          , ADMIN_ID
+          , PASSWORD
+            )
+VALUES      (
+            0
+          , 'ADMIN'
+          , 'ADMIN'
+            )
+
 
 -- 상품 데이터 추가 (사진 포함)
 
