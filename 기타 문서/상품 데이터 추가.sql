@@ -1143,29 +1143,8 @@ INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '반품 신청을 철회하고 싶어�
 INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '다른 사람 명의의 계좌로 환불받을 수 있나요?', '다른 사람 명의로는 환불할 수 없습니다. 고객님 본인 명의 계좌로만 환불이 가능합니다.', '결제', 0, 'Y');
 INSERT INTO FAQ VALUES(SEQ_FAQNO.NEXTVAL, '상품에 대해서 문의하려면 어떻게 해야 하나요?', '상품에 관한 내용은 상품상세 화면에 자세히 안내되어 있습니다. 마이페이지 > 주문내역에서 주문한 상품을 선택하면 상세페이지로 이동합니다. 상품 상세 내용에 표시되어 있지 않은 내용은 판매자에게 문의해 주십시오.', '상품', 0, 'Y');
 
--- ADMIN 테이블
 
--- REVIEW 테이블
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,1,'맛있으면 짖는개 ','왈오라왈왈왈컹ㅋ엌어컹아르를르르', 5,SYSDATE,SYSDATE,'','','Y');)
 
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,2,'추천합니다 ','리뷰가 많은 이유가 있네요', 4,SYSDATE,SYSDATE,'','','Y');
-
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,3,'강아지를 위한간식!! ','강아지를 사랑한다면 꼭 여기꺼 사서 먹여보세요!! 진짜 추천입니다!!', 5,SYSDATE,SYSDATE,'','','Y');
-
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,4,'잘먹네요 ','아기가 너무 잘먹네요', 5,SYSDATE,SYSDATE,'','','Y');
-
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,5,'그냥그랬어요','걍 다른간식마냥 쏘쏘했어요. 굳이 다시 안시켜먹을듯', 2,SYSDATE,SYSDATE,'','','Y');
-
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,6,'흠 ','사줘도안먹네요', 1,SYSDATE,SYSDATE,'','','Y');
-
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,7,'괜찮네요~~','인공적인게 아니라 수제라그런가 마음에 더 놓여요~', 4,SYSDATE,SYSDATE,'','','Y');
-
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,8,'멍멍멍멍멍멍멍멍','왈왈왈왈왈왈 ', 3,SYSDATE,SYSDATE,'','','Y');
-
-INSERT INTO REVIEW VALUES(SEQ_REVIEWNO.NEXTVAL,1,9,'너무좋아해요','강아지가 진짜잘먹어요 냠냠', 5,SYSDATE,SYSDATE,'','','Y');
-
--- CONSULT 테이블(임시)
-INSERT INTO CONSULT VALUES(SEQ_CONSULTNO.NEXTVAL,1,'배송문의드립니다','배송이 너무안와요. 아니 아무리 수제간식이라지만 농작물다 클때까지 기다려야되나요. 우리강아지 지금 간식못먹어서 울상이란말이예요.. 빨리 배송해주세요',SYSDATE,SYSDATE,'고객님 정말 죄송합니다. 현재 주문하신상품은 물량이 충분하지않아 배송에 어려움을겪고있습니다. 넓은 아량으로 조금만 기다려주신다면 울상 강아지가 해피 강아지가 될 수 있게 빠르게 배송드리겠습니다. 항상 주문해주시고 기다려주시는 고객님께 감사합니다.', SYSDATE,'Y','원본명','파일루트','배송','1','답변완료');   
 
 
 
