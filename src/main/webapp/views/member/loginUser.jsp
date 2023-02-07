@@ -58,9 +58,11 @@
         <a href="<%=contextPath%>/views/member/memberInsert.jsp">회원가입</a> |
         <a href="<%=contextPath%>/views/member/searchId.jsp"">아이디찾기</a>  |
         <a href="<%=contextPath%>/views/member/searchPwd.jsp"">비밀번호찾기</a> 
+    
         </div>
             <input type="submit" value="로그인">
         </form>
+    
         
     </div>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
