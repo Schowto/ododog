@@ -71,18 +71,25 @@ public class AdminRecipeDao {
 		}
 		return count;
 	}
-	public ArrayList<Recipe> selectList(Connection conn, PageInfo pi){
+	public ArrayList<Recipe> selectList(Connection conn, PageInfo pi, String sort){
 		// select
 		ArrayList<Recipe> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectList");
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit()-1;
+		if(sort == null || sort.equals("new")) {
+			sql += " ORDER BY RECIPE_NO DESC";
+		} else if (sort.equals("heart")) {
+			sql += " ORDER BY HEART_COUNT DESC, RECIPE_NO DESC";
+		} else {
+			sql += " ORDER BY REPLY_COUNT DESC, RECIPE_NO DESC";
+		}
+		sql += ") A ) WHERE RNUM BETWEEN " + startRow + "AND " + endRow;
+		System.out.println(sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
-			int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
-			int endRow = startRow + pi.getBoardLimit()-1;
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				list.add(new Recipe(rset.getInt("recipe_no"),
