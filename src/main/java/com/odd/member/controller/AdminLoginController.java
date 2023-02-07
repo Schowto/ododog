@@ -48,7 +48,7 @@ public class AdminLoginController extends HttpServlet {
 			session.setAttribute("loginAdmin", loginAdmin);
 			
 			
-			response.sendRedirect(request.getContextPath() + "/adminViewBase.jsp");
+			response.sendRedirect(request.getContextPath() + "/main.ad");
 		}
 	}
 

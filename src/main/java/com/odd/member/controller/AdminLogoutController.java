@@ -31,7 +31,7 @@ public class AdminLogoutController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		
-		response.sendRedirect(request.getContextPath() + "/adminViewBase.jsp");
+		response.sendRedirect(request.getContextPath() + "/main.ad");
 	}
 
 	/**
