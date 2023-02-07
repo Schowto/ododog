@@ -31,10 +31,13 @@ public class ReportExposeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		int reportNo = Integer.parseInt(request.getParameter("no"));
+		int postNo = Integer.parseInt(request.getParameter("pno"));
 		
 		int result = new BoardService().exposeReport(reportNo);
+		int result1 = new BoardService().deleteBoard(postNo);
 		
-		if(result > 0) {
+		
+		if(result > 0 && result1 > 0) {
 			request.getSession().setAttribute("alertMsg", "블라인드 해제 되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/list.rp");
 		}else {

@@ -441,7 +441,6 @@
                     <!-- Modal body -->
         			<form action="<%=contextPath %>/postreport.me" method="post">
                     <div class="modal-body" style="color:gray; font-size:13px;">
-                    <input type="hidden" name="userNo" value="<%= loginUser.getUser_No() %>">
                    	<input type="hidden" name="postNo" value="<%= b.getBoardNo() %>">
                     
                     	

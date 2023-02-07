@@ -133,8 +133,8 @@
                   <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getReportDate() %></td>
                   <td><%=b.getDone() %></td>
                   <td>
-                    <button type="button" id="delete" onclick="location.href ='<%=contextPath%>/delete.rp?no=<%=b.getReportNo() %>'">블라인드</button>
-                    <button type="button" id="delete" onclick="location.href ='<%=contextPath%>/expose.rp?no=<%=b.getReportNo() %>'">블라인드 취소</button>
+                    <button type="button" id="delete" onclick="location.href ='<%=contextPath%>/delete.rp?no=<%=b.getReportNo() %>&&pno=<%= b.getPostNo() %>'">블라인드</button>
+                    <button type="button" id="delete" onclick="location.href ='<%=contextPath%>/expose.rp?no=<%=b.getReportNo() %>&&pno=<%= b.getPostNo() %>'">블라인드 취소</button>
                   </td>
                 </tr>
                 <%} %>

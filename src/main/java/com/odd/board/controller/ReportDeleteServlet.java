@@ -31,9 +31,12 @@ public class ReportDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int reportNo = Integer.parseInt(request.getParameter("no"));
+		int postNo = Integer.parseInt(request.getParameter("pno"));
 
 		int result = new BoardService().deleteReport(reportNo);
-
+		
+		
+		
 		
 		
 		if(result > 0) {
