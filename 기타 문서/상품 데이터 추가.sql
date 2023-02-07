@@ -1110,7 +1110,7 @@ Insert into PRO_ATT (FILE_NO,PRO_NO,FILE_PATH,UPLOAD_DATE,STATUS,FILE_LEVEL) val
 --------------------------------------------------------
 
 -- MEMBER테이블 데이터
-INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'qqqq', 'qqqq', ' 이배추', 'qqqq@naver.com', '010-1111-1111', 12345, '서울', '강아지집', SYSDATE, SYSDATE, 'Y', 0);
+INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'qqqq', 'qqqq', '이배추', 'qqqq@naver.com', '010-1111-1111', 12345, '서울', '강아지집', SYSDATE, SYSDATE, 'Y', 0);
 INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'wwww', 'wwww', '이호두', 'wwww@naver.com', '010-2222-2222', 12346, '부산', '햄스터집', SYSDATE, SYSDATE, 'Y', 0);
 INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'eeee', 'eeee', '김토끼', 'eeee@naver.com', '010-3333-3333', 12347, '대구', '토끼집', SYSDATE, SYSDATE, 'Y', 0);
 INSERT INTO MEMBER VALUES(SEQ_MEMBERNO.NEXTVAL,'rrrr', 'rrrr', '강다람쥐', 'rrrr@naver.com', '010-4444-4444', 12348, '대전', '다람쥐집', SYSDATE, SYSDATE, 'Y', 0);

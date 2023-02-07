@@ -43,27 +43,19 @@ public class AdminOrderSelectController extends HttpServlet {
 				request.setAttribute("o", o);
 				request.setAttribute("list", list);
 				
-				// 상품 전체 소수점 평균 구하기
-				double save = 0; 
+				// 상품 전체 적립금
+				int savePoint = 0;
 				
 				for(OrdPro op : list) {
 					
-					save += op.getSave();
+					savePoint += op.getPrice() * op.getSave() * op.getAmount();
 					
 				}
-				
-				// 소수점 한자리 수 반올림
-				save = Math.round(save / list.size() * 10) / 10.0;
-				
-				// 적립금 구하기
-				int savePoint = (int)(Math.round(o.getTotalPrice() * save)); 
-				
 				
 				request.setAttribute("o", o);
 				request.setAttribute("list", list);
 				request.setAttribute("savePoint", savePoint);
 				
-				System.out.println(o.getDiscount());
 				
 				request.getRequestDispatcher("views/order/adminOrderDetailView.jsp").forward(request, response);
 				
