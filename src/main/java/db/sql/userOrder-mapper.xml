@@ -87,9 +87,13 @@
 	
 	<!-- 찜하기조회(정은) -->
 	<entry key="selectLike">
-		SELECT PRO_NO
-		     , USER_NO
-		     , LIKE_DATE
+		SELECT L.PRO_NO
+		     , L.USER_NO
+		     , L.LIKE_DATE
+		     
+		     , P.PRO_NAME
+		     , P.PRICE
+		     , P.TUMB_IMG
 		  FROM LIKE L
 		  JOIN PRODUCT P ON (L.PRO_NO = P.PRO_NO)
 		  JOIN MEMBER M ON (L.USER_NO = M.USER_NO)

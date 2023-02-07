@@ -50,6 +50,7 @@
 		border-bottom: 1px solid rgb(220,220,220);
 		font-size: 14px;
 		color:rgb(50, 50, 50);
+		text-align:center;
 	}
 	myWhishList img{
 		height:100px;
@@ -123,19 +124,16 @@
 							<%for(Like k : list){ %>
 							<tr style="height:150px;">
 								<td style="width:100px;">
-									<img src="">
+									<img src="<%=k.getThumbImg()%>">
 								</td>
-								<td style="width:400px;">댕댕이수제간식</td>
-								<td style="width:100px;">15,000</td>
+								<td style="width:400px;"><%=k.getProName() %></td>
+								<td style="width:100px;"><%=k.getPrice() %></td>
 								<td style="width:400px;">
 									<div style="margin-bottom:5px;">
-										<button onclick="location.href='<%=contextPath%>/dir.buy'">주문하기</button> <br>
-									</div>
-									<div style="margin-bottom:5px;">
-										<button onclick="location.href='<%=contextPath%>/'">장바구니담기</button> <br>
+										<button onclick="location.href='<%=contextPath%>/addCart.ord?proNo=<%=k.getPro_no()%>'">장바구니담기</button> <br>
 									</div>
 									<div>
-										<button class="btn-red" onclick="location.href='<%=contextPath%>/delPick.ord?prono=<%=k.getPro_no()%>'">삭제</button>
+										<button class="btn-red" onclick="location.href='<%=contextPath%>/delPick.ord?proNo=<%=k.getPro_no()%>'">삭제</button>
 									</div>
 								</td>
 						</tr>

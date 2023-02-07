@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.odd.order.model.vo.Like;
+import com.odd.product.model.vo.Product;
+
 import com.odd.product.model.dao.UserProductDao;
 
 public class LikeDao {
@@ -43,7 +45,10 @@ public class LikeDao {
 			while(rset.next()) {
 				list.add(new Like(rset.getInt("pro_no"),
 								  rset.getInt("user_no"),
-								  rset.getDate("like_date")));
+								  rset.getDate("like_date"),
+								  rset.getString("pro_name"),
+								  rset.getInt("price"),
+								  rset.getString("thumbImg")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
