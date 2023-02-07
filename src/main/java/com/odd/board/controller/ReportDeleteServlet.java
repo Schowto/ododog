@@ -31,8 +31,10 @@ public class ReportDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int reportNo = Integer.parseInt(request.getParameter("no"));
-		
+
 		int result = new BoardService().deleteReport(reportNo);
+
+		
 		
 		if(result > 0) {
 			request.getSession().setAttribute("alertMsg", "블라인드처리 되었습니다.");
