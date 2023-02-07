@@ -17,6 +17,7 @@
         height:100%;
         width:1200px;
     }
+    
 
     /****** 사이드 ******/
     #side{
@@ -261,7 +262,7 @@
 
                 <div class="reviewContent">
                     <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
-                    	<input type="hidden" name="proNo" value="<%=p.getProNo() %>">
+                    	<input type="hidden" name="ordNo" value="<%=p.getProNo() %>">
                     	<input type="hidden" name="proName" value="<%=p.getProName() %>">
                         <table class="starTable">
                                  

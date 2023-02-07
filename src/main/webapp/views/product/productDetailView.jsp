@@ -74,8 +74,9 @@ input[type=number]::-webkit-inner-spin-button {
         resize:none; 
         border:none;
         background-color: rgba(128, 128, 128, 0.285);
-		width:1000px;
-		height:400px;
+		width:600px;
+		height:100px;
+		display:left;
     }
     .reviewTable table{
         border-collapse: collapse;
@@ -453,7 +454,7 @@ input[type=number]::-webkit-inner-spin-button {
 	                	<tr style="text-align:center;">
 	                		<td colspan="4" style="height:50px; font-weight: 600;" >
 		                		<br>
-								<br> <img src="<%=contextPath%>/resources/images/error.png"> <br><br>
+								<br> <img src="<%=contextPath%>/resources/images/error.png" style="margin:auto; text-align: center;"> <br><br>
 									상품에 대한 리뷰가 존재하지않습니다. <br>
 								<br>
 								<br>
@@ -474,20 +475,20 @@ input[type=number]::-webkit-inner-spin-button {
                          
                          
                                         </div>
-								<td rowspan="2"><img src="<%=r.getReviewPhoto()%>"></td>
-								<td rowspan="2">
+								<td rowspan="2" style="border-bottom:none;"><img src="<%=r.getReviewPhoto()%>"></td>
+								<td rowspan="2" style="border-bottom:none;">
 									&nbsp;&nbsp;상품명 : <%=r.getProName() %> <br>
 									&nbsp;&nbsp;작성자 : <%=r.getUserId() %><br>
 									&nbsp;&nbsp;작성일 : <%=r.getModifyDate() %>
 								</td>
 							</tr>
 							<tr>
-								<td style="height:50px;">&nbsp;&nbsp;<%=r.getReviewTitle() %></td>
+								<td style="height:50px; border-bottom:none; font-weight: 600; font-size: 18px;">&nbsp;&nbsp;<%=r.getReviewTitle() %></td>
 							</tr>
-							<tr>
-							<td colspan="3">
+							<tr >
+							<td colspan="3" style="border-top:none;">
 								<p>
-									&nbsp;&nbsp;리뷰내용 : <br><br>
+									<br>
 									&nbsp;&nbsp;<textarea name="reviewContent"><%=r.getReviewContent() %></textarea>
 								</p>
 							</td>
