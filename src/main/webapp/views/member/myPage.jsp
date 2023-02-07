@@ -179,17 +179,17 @@ input::placeholder{
                         <td rowspan="3" >주소 *</td>
                         <td colspan="3" style="border-bottom:none;">
                             &nbsp;&nbsp;<input type="text" name="postCode" id="postCode" value="<%=postCode%>"> 
-                            &nbsp;<input type="button" style="border-radius:4px; border:1px solid gray; background: white;" onclick="sample6_execDaumPostcode()" value="우편번호"></input>
+                            &nbsp;<input type="button" style="border-radius:4px; border:1px solid gray; background: white;" onclick="sample6_execDaumPostcode()" value="우편번호" required></input>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3" style="border-bottom:none; border-left:1px solid rgb(220,220,220);">
-                            &nbsp;&nbsp;<input type="text" name="address" id="address" value="<%=address%>" size="60"> &nbsp;<label>기본주소</label>
+                            &nbsp;&nbsp;<input type="text" name="address" id="address" value="<%=address%>" size="60" required> &nbsp;<label>기본주소</label>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="3" style="border-left:1px solid rgb(220,220,220);">
-                            &nbsp;&nbsp;<input type="text" name="detailedAddress" id="detailedAddress" value="<%=detailedAdress%>" size="60"> &nbsp;<label>상세주소</label>
+                            &nbsp;&nbsp;<input type="text" name="detailedAddress" id="detailedAddress" value="<%=detailedAdress%>" size="60" required> &nbsp;<label>상세주소</label>
                         </td>
                     </tr>
                 </table>

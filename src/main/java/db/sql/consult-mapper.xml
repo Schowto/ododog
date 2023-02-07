@@ -133,7 +133,7 @@
 		       CONSULT 
 		   SET CONSULT_ANSWER = ?
 		     , ANSWER_DATE = SYSDATE
-		     , RESPONDENTS = 1
+		     , RESPONDENTS = 0
 		     , ANSWER_STATUS = '답변완료'
 		 WHERE CONSULT_NO = ?
 	</entry>

@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="main.css" />
 <style>
     .outer{
         /*border:1px solid black;*/
