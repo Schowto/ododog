@@ -9,7 +9,7 @@
 <body>
 
 	<%@include file="views/common/userMenubar.jsp" %>
-	<%@include file="views/common/userContent.jsp" %>
+
 	<%@include file="views/common/userFooterbar.jsp" %>
 	
 	
