@@ -564,6 +564,28 @@ public class BoardDao {
 		
 		 return result;
 	}
+	/**
+	 * 신고게시글 삭제
+	 * @param conn
+	 * @param boardNo
+	 * @return
+	 */
+	public int deletePostReport(Connection conn, int reportNo) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deletePostReport");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, reportNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	public ArrayList<Board> searchReport(Connection conn, String keyword){
 		ArrayList<Board> list = new ArrayList<>();

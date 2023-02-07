@@ -233,6 +233,17 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	/**
+	 * 신고게시글 삭제
+	 * @param boardNo
+	 * @return
+	 */
+	public int deletePostReport(int boardNo) {
+		Connection conn = getConnection();
+		int result = new BoardDao().deleteBoard(conn, boardNo);
+		close(conn);
+		return result;
+	}
 	
 	public ArrayList<Board> searchReport(String keyword){
 		Connection conn = getConnection();
