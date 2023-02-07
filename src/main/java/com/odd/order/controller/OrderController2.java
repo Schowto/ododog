@@ -15,20 +15,24 @@ import com.odd.member.model.service.MemberService;
 import com.odd.member.model.vo.Member;
 import com.odd.order.model.service.CartService;
 import com.odd.order.model.service.OrderService;
-import com.odd.order.model.vo.Cart;
-import com.odd.product.model.vo.Order;
-import com.odd.product.model.vo.Payment;
 import com.odd.product.model.vo.Product;
-import com.odd.product.model.vo.UserProduct;
 
 /**
- * Servlet implementation class btnBuyController
+ * Servlet implementation class OrderController2
  */
-@WebServlet("/order.pro")
-public class OrderController extends HttpServlet {
+@WebServlet("/order.product")
+public class OrderController2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrderService orderService = new OrderService();
 	private CartService cartService = new CartService();
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public OrderController2() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -66,6 +70,7 @@ public class OrderController extends HttpServlet {
 
 			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
 			response.sendRedirect(request.getContextPath());
+			return;
 
 		}else {
 			Member member = (Member) session.getAttribute("loginUser");
@@ -90,70 +95,8 @@ public class OrderController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//입력정보
-		//String name = request.getParameter("name");
-		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		String address1 = request.getParameter("address1");
-		String delAdd = request.getParameter("address1"); //
-		String require = request.getParameter("request");
-
-		Order order = new Order();
-		order.setPhone(phone);
-		order.setEmail(email);
-		order.setDelAdd(""); //비워둠
-		order.setAddress(address1);
-		order.setRequire(require);
-
-
-		//적립급
-		int point = Integer.valueOf(request.getParameter("point"));
-		//결제금액
-		int price = Integer.valueOf(request.getParameter("finalPrice"));
-
-		HttpSession session = request.getSession();
-		//로그인 여부 검사
-		if(session.getAttribute("loginUser") == null) {
-
-			session.setAttribute("alertMsg", "로그인후에 다시 이용해주세요.");
-			response.sendRedirect(request.getContextPath());
-
-		}else {
-			Member member = (Member) session.getAttribute("loginUser");
-			order.setUserNo(member.getUser_No());
-			int result = orderService.insertOrder(order);
-
-			if(result > 0) {
-				orderService.updatePoint(member, point); //적립금 차감
-				cartService.deleteAllCart(member); //장바구니 비움
-				session.setAttribute("alertMsg", "주문 성공");
-				response.sendRedirect(request.getContextPath()); //해당 링크로 리다이렉트 수정하면됨
-//				Payment payment = new Payment();
-//				//payment.setOrdNo(); //주문번호 반환되어야 함
-//				payment.setDiscount(point);
-//				payment.setDelivery(4000);
-//				payment.setTotalPrice(price);
-		//		result  = orderService.insertPayment();
-				//결제
-//				if(result > 0) {
-//					session.setAttribute("alertMsg", "결제 성공");
-//					response.sendRedirect(request.getContextPath()); //해당 링크로 리다이렉트 수정하면됨
-//				}else {
-//					session.setAttribute("alertMsg", "결제 실패");
-//					response.sendRedirect(request.getContextPath()); //해당 링크로 리다이렉트 수정하면됨
-//				}
-
-			}else {
-				session.setAttribute("alertMsg", "주문 실패");
-				response.sendRedirect(request.getContextPath()); //해당 링크로 리다이렉트 수정하면됨
-			}
-
-		}
-
-
-
-
-
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

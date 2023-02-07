@@ -18,72 +18,94 @@
 		FROM
 			TB_CART
 		WHERE
-			user_no = ?
+			USER_NO = ?
 		AND
-			pro_no = ?
+			PRO_NO = ?
 	</entry>
 
 	<entry key="updateCart">
-		update TB_CART
-		set
+		UPDATE TB_CART
+		SET
 			CART_QTY = CART_QTY + ?
-		where
+		WHERE
 			CART_NO	= ?
 	</entry>
 
 	<entry key="selectCartList">
 		SELECT
-			c.cart_no
-			,c.pro_no
-			,c.cart_qty
-			,p.pro_name
-			,p.price
-			,p.save
-			,p.thumb_img
+			C.CART_NO
+			,C.PRO_NO
+			,C.CART_QTY
+			,P.PRO_NAME
+			,P.PRICE
+			,P.SAVE
+			,P.THUMB_IMG
 		FROM
 			TB_CART c JOIN product p
-			ON c.pro_no = p.pro_no
+			ON C.PRO = P.PRO_NO
 		WHERE
-			user_no = ?
+			USER_NO = ?
 	</entry>
 
 	<entry key="deleteCart">
-		delete from TB_CART where cart_no = ?
+		DELETE FROM TB_CART WHERE CART_NO = ?
 	</entry>
 
 	<entry key="insertPick">
-		insert into "LIKE" values(
+		INSERT INTO "LIKE" VALUES(
 			?
 			,?
-			,sysdate
+			,SYSDATE
 		)
 	</entry>
 
 	<entry key="selectOnePick">
-		select
-			count(*)
-		from
+		SELECT
+			COUNT(*)
+		FROM
 			"LIKE"
-		where
-			pro_no = ?
-		and
-			user_no = ?
+		WHERE
+			PRO_NO = ?
+		AND
+			USER_NO = ?
 	</entry>
 
 	<entry key="deletePick">
-		delete from "LIKE"
-		where
-			pro_no = ?
-		and
-			user_no = ?
+		DELETE FROM "LIKE"
+		WHERE
+			PRO_NO = ?
+		AND
+			USER_NO = ?
 
 	</entry>
 
 	<entry key="deleteAllCart">
-		delete from TB_CART
-		where
-			user_no = ?
+		DELTE FROM TB_CART
+		WHERE
+			USER_NO = ?
 	</entry>
+	
+ <entry key="insertOrderList">
+		INSERT
+			INTO TB_ORDER
+			   (
+				  
+			    USER_NO
+			   , DEL_ADD
+			   , PHONE
+			   , EMAIL
+			   , REQUIRE	
+			   )
+			VALUES
+			     (
+			      <!--   SEQ_ORDERNO-->
+			     , ?
+			     , ?
+			     , ?
+			     , ?
+			     , ?
+			     )			
+	</entry>-->
 	
 	<!-- 찜하기조회(정은) -->
 	<entry key="selectLike">

@@ -150,6 +150,24 @@ private Properties prop = new Properties();
 		}
 		return result;
 	}
+	public int insertOrderList(Connection conn, com.odd.order.model.vo.Order o) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertOrderList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, o.getUserNo());
+			pstmt.setString(2, o.getDelAdd());
+			pstmt.setString(3, o.getPhone());
+			pstmt.setString(4, o.getEmail());
+			pstmt.setString(6, o.getRequire());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 
 }

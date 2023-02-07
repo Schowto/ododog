@@ -31,8 +31,11 @@ public class Product {
 	}
 
 	
-	public Product(String category, String proName, int price, String thumbImg) {
+	
+
+	public Product(int proNo, String category, String proName, int price, String thumbImg) {
 		super();
+		this.proNo = proNo;
 		this.category = category;
 		this.proName = proName;
 		this.price = price;
