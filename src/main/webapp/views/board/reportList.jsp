@@ -21,6 +21,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 
+
+  #content {
+      width: 75%; height: 100%;
+      padding-top: 20px;
+      color: rgb(50, 50, 50);
+      background: white;
+  }    
   .membertable{
       height:1160px; width:900px;
       margin: auto;
@@ -121,7 +128,7 @@
                 <tr>
                   <td><%=b.getReportNo() %></td>
                   <td><%=b.getUserNo()%></td>
-                  <td><%=b.getPostNo() %></td>
+                  <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getPostNo() %></td>
                   <td><%=b.getReportContent() %></td>
                   <td><%=b.getReportDate() %></td>
                   <td><%=b.getDone() %></td>
