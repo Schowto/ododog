@@ -386,7 +386,7 @@
 					success : function(p){
 						
 							$("select>option").each(function(){
-		            			if(p.category == $(this).val() || p.save == $(this).val()){
+		            			if(p.category == $(this).val() || p.save == $(this).val() || p.soldout == $(this).val()){
 		            				$(this).attr("selected", true);
 		            			}
 		            		})
