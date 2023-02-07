@@ -42,7 +42,7 @@
 			,P.THUMB_IMG
 		FROM
 			TB_CART c JOIN product p
-			ON c.pro_no = p.pro_no
+			ON C.PRO = P.PRO_NO
 		WHERE
 			USER_NO = ?
 	</entry>
