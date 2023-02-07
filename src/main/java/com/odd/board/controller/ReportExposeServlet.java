@@ -34,8 +34,8 @@ public class ReportExposeServlet extends HttpServlet {
 		int postNo = Integer.parseInt(request.getParameter("pno"));
 		
 		int result = new BoardService().exposeReport(reportNo);
-		int result1 = new BoardService().deleteBoard(postNo);
-		
+		int result1 = new BoardService().exposePostReport(postNo);
+		System.out.println(postNo);
 		
 		if(result > 0 && result1 > 0) {
 			request.getSession().setAttribute("alertMsg", "블라인드 해제 되었습니다.");

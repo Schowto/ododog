@@ -565,6 +565,22 @@ public class BoardDao {
 		 return result;
 	}
 
+	public int exposePostReport(Connection conn, int boardNo) {
+		// update
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("exposePostReport");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	public ArrayList<Board> searchReport(Connection conn, String keyword){
 		ArrayList<Board> list = new ArrayList<>();

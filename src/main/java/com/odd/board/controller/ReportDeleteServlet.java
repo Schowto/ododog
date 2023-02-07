@@ -34,12 +34,13 @@ public class ReportDeleteServlet extends HttpServlet {
 		int postNo = Integer.parseInt(request.getParameter("pno"));
 
 		int result = new BoardService().deleteReport(reportNo);
+		int result1 = new BoardService().deleteBoard(postNo);
 		
 		
 		
 		
 		
-		if(result > 0) {
+		if(result > 0 && result1 > 0) {
 			request.getSession().setAttribute("alertMsg", "블라인드처리 되었습니다.");
 			response.sendRedirect(request.getContextPath() + "/list.rp");
 		}else {

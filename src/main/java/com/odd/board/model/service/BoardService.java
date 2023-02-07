@@ -233,6 +233,18 @@ public class BoardService {
 		close(conn);
 		return result;
 	}
+	
+	public int exposePostReport(int boardNo) {
+		Connection conn = getConnection();
+		int result = new BoardDao().exposePostReport(conn, boardNo);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 
 	
 	public ArrayList<Board> searchReport(String keyword){
