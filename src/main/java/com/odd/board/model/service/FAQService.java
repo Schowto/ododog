@@ -88,9 +88,9 @@ public class FAQService {
 	 * @param keyword
 	 * @return
 	 */
-	public ArrayList<FAQ> searchFAQ(String keyword){
+	public ArrayList<FAQ> searchFAQ(String keyword, String option){
 		Connection conn = getConnection();
-		ArrayList<FAQ> list = new FAQDao().searchFAQ(conn, keyword);
+		ArrayList<FAQ> list = new FAQDao().searchFAQ(conn, keyword, option);
 		close(conn);
 		return list;
 	}

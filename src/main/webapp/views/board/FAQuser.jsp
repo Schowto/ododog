@@ -167,20 +167,19 @@
 
         	<form action="<%=contextPath%>/searchU.faq" method="post" id="search-form">
         	
-        	 <!--
-        	<select name="how" id="" style="float: left; margin-left: 40px; font-size: 11px;">
-                <option value="전체">전체</option>
+        	
+        	<select name="option" id="option" style="float: left; margin-left: 40px; font-size: 11px;">
+                <option value="">전체</option>
                 <option value="결제">결제</option>
                 <option value="제품">제품</option>
                 <option value="배송">배송</option>
             </select>  
-              -->
             
-            <input type="text" name="keyword" placeholder="제목으로검색(키워드)" id="search" style="float: left; margin-left: 40px; font-size: 11px;">
+            
+            <input type="text" name="keyword" placeholder="제목으로검색(키워드)" id="search" style="float: left; font-size: 11px;">
             <button type="submit" style="float: left;">검색하기</button>            
             
         	</form>
-            <button style="float: right;" onclick="location.href ='<%=contextPath%>/FAQlist.ur'">전체조회</button>
       
 
 

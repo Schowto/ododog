@@ -37,14 +37,15 @@ public class FAQSearchUserController extends HttpServlet {
 		//ArrayList<FAQ> list = new FAQService().selectFAQList();
 		
 		String keyword = request.getParameter("keyword");
+		String option = request.getParameter("option");
 		
-		ArrayList<FAQ> list = new FAQService().searchFAQ(keyword);
+		ArrayList<FAQ> list = new FAQService().searchFAQ(keyword, option);
 		
 		
 		
 		
 		request.setAttribute("keyword", keyword);
-		//request.setAttribute("slist", slist);
+		request.setAttribute("option", option);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/board/FAQuser.jsp").forward(request, response);
 		

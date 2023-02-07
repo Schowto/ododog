@@ -150,7 +150,7 @@ public class FAQDao {
 	
 
 
-	public ArrayList<FAQ> searchFAQ(Connection conn, String keyword){
+	public ArrayList<FAQ> searchFAQ(Connection conn, String keyword, String option){
 		ArrayList<FAQ> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -158,7 +158,8 @@ public class FAQDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setString(1, "%"+option+"%");
+			pstmt.setString(2, "%"+keyword+"%");
 			
 			rset = pstmt.executeQuery();
 		
