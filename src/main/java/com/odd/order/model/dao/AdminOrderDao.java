@@ -384,4 +384,29 @@ public class AdminOrderDao {
 			
 		}
 		
+		public int insertOrdPro(Connection conn, int[] proNo, int[] quantity) {
+			int result = 1;
+			PreparedStatement pstmt = null;
+			
+			String sql = prop.getProperty("insertOrdPro");
+			
+			try {
+				for(int i = 0; i < proNo.length; i++) {
+					
+					pstmt = conn.prepareStatement(sql);
+					
+					pstmt.setInt(1, proNo[i]);
+					pstmt.setInt(2, quantity[i]);
+					
+					result *= pstmt.executeUpdate();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			return result;
+		}
+		
 }
