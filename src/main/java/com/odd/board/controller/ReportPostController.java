@@ -41,7 +41,6 @@ public class ReportPostController extends HttpServlet {
 		
 		int userNo = ((Member)session.getAttribute("loginUser")).getUser_No();
 		int postNo = Integer.parseInt(request.getParameter("postNo"));
-		///int postNo = request.getAttribute("postNo");
 		
 		String reportContent = request.getParameter("reportContent");
 		

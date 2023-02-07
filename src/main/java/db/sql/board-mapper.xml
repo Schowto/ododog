@@ -363,4 +363,14 @@
           , SYSDATE
 		  )
 </entry>
+	<entry key="deletePostReport">
+	UPDATE BOARD
+	  SET STATUS = 'N'
+	 WHERE BOARD_NO = ?
+	</entry>
+	<entry key="exposePostReport">
+	UPDATE BOARD
+	  SET STATUS = 'Y'
+	 WHERE BOARD_NO = ?
+	</entry>
 </properties>
