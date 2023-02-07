@@ -84,7 +84,7 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
 			
-			response.sendRedirect(request.getContextPath() + "/order.me");
+			response.sendRedirect(request.getContextPath() + "/myOrder.me");
 			
 			
 		}

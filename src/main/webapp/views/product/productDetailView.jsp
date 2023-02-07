@@ -109,6 +109,8 @@ input[type=number]::-webkit-inner-spin-button {
 </head>
 <body>
 	<%@ include file="../common/userMenubar.jsp"%>
+	
+	
 
 	<div class="outer"> <!-- 전ㅊㅔ시작 -->
 		<div class="content"> <!-- 1 -->
@@ -412,9 +414,10 @@ input[type=number]::-webkit-inner-spin-button {
 	</script>
 			<br> <br>
 	
-			
+	<%@ include file="productReviewView.jsp"%>			
 	</div> <!--전체끝 -->
-		
+	
+	
 	<%@ include file="../common/userFooterbar.jsp"%>
 </body>
 </html>
