@@ -104,7 +104,7 @@
             <div class="membertable">
                 <div class="memberbutton">
                 <form name="search-form" action="<%=contextPath%>/search.rp" method="post"> 
-                <input type="text" name="keyword" placeholder="아이디로 검색" id="serch" style="float: left;">
+                <input type="text" name="keyword" placeholder="회원번호로 검색" id="serch" style="float: left;">
                     <button style="float: left;">조회하기</button>
                 </form>
                </div>
@@ -127,7 +127,7 @@
                 <% for(Board b : list){ %> 
                 <tr>
                   <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getReportNo() %></td>
-                  <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getUserNo()%></td>
+                  <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getUserNo() %></td>
                   <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getPostNo() %></td>
                   <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getReportContent() %></td>
                   <td onclick="location.href='<%= contextPath %>/detail.bo?no=<%=b.getPostNo()%>'"><%=b.getReportDate() %></td>
