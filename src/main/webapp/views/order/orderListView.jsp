@@ -69,20 +69,20 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
         <table align="center">
             <tr> 
                 <td>받는사람 *</td>
-                <td><input type="text" name="name" size=40; placeholder="이름을 입력해주세요" required value="테스트"></td>
+                <td><input type="text" name="name" size=40; placeholder="이름을 입력해주세요" required ></td>
             </tr>
             <tr>
                 <td>휴대전화 * </td>
-                <td><input type="text" name="phone" size=40; placeholder="휴대전화를 입력해주세요" required value="010-1234-5678"></td>
+                <td><input type="text" name="phone" size=40; placeholder="휴대전화를 입력해주세요" required ></td>
             </tr>
             <tr>
                 <td>이메일</td>
-                <td><input type="email" name="email" size=40; placeholder="이메일을 입력해주세요" required value="test@test.com"></td>
+                <td><input type="email" name="email" size=40; placeholder="이메일을 입력해주세요" required></td>
                
             </tr>
             <tr>
                 <td>주소 * </td>
-                <td><input type="text" name="address1" size=40; placeholder="우편주소" required value="테스트시 테스트동 20-4"></td>
+                <td><input type="text" name="address1" size=40; placeholder="우편주소" required></td>
                 <td><button type="button">우편번호 찾기</button></td> 
             </tr>
 
@@ -131,7 +131,6 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
         <br>    
         
           <div class=payment>
-			<hr style="border:1px color= silver;" width="100%">
             <b>적용금액</b>
             <span id="calPoint">
                -3,000원  <!-- 금액자리 -->
@@ -139,7 +138,7 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
             <span>
                보유잔액<%=df.format(point)%>원<!-- 사용자적립금 -->
             </span> 
-            <hr style="border:1px color= silver;" width="100%"> <br>
+            <hr style="border:1px color= silver;" width="100%"> 
             <b>결제정보</b> <br>
              <span>
                 주문상품
@@ -154,24 +153,22 @@ int point = request.getAttribute("point") != null ? (int) request.getAttribute("
                 +4,000원
                 </span> <!-- 배송비 고정값 -->
              <span>
-                할인/부가결제
+                
                 </span> <!-- 적립금 사용시 금액 -->
           
-          <hr style="border:1px color= silver;" width="100%"> <br>
-          <b>최종 결제 금액</b> 
+          <hr style="border:1px color= silver;" width="100%"> 
+          <b>최종 결제 금액</b> <br>
           <span id="finalPrice">
             16,000원<!-- 최종 총 결제할 금액 자리-->
           </span>
           <input type="hidden" name="finalPrice" id="hidFinalPrice">
-            <br><br><br>
+            <br>
         </div> 
         
         <hr style="border:1px color= silver;" width="100%"> <br>
         <div>
             <b>결제수단</b> <br><br>
-            <input type="radio" name="payway"> 무통장 입금 <br><br>
-            <input type="radio" name="payway"> 신용카드 <br><br>
-            <input type="radio" name="payway"> 카카오페이 <br><br> 
+            <input type="radio" name="payway"> 무통장 입금 <br><br> 
         </div>   
         <div>
         	<!-- <button type="button" class="btn btn-dark" onclick="payment();">결제하기</button> -->

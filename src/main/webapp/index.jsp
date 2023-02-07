@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
         div{/*border:1px solid red;*/box-sizing:border-box;}
-        .wrap{width:1200px; margin:auto; align=center;}
+        .wrap{width:1200px; margin:auto; }
         
         /********* header *********/
         #header-carousel{
@@ -113,6 +113,7 @@
 <body>
 
 	<%@include file="views/common/userMenubar.jsp" %>
+    <br><br><br><br><br>
 		<div id="demo" class="carousel slide" data-ride="carousel">
 
   <!-- Indicators -->
@@ -123,15 +124,18 @@
   </ul>
 
   <!-- The slideshow -->
-  <div class="carousel-inner">
+  <div class="carousel-inner" align="center" >
     <div class="carousel-item active">
-      <img src="<%= contextPath %>/resources/icons/메인상단1.jpg" alt="Los Angeles">
+      <img src="<%= contextPath %>/resources/icons/메인상단1.jpg" alt="Los Angeles"
+      width="1200px" height="500px">
     </div>
     <div class="carousel-item">
-      <img src="<%= contextPath %>/resources/icons/메인상단2.jpg" alt="Chicago">
+      <img src="<%= contextPath %>/resources/icons/메인상단2.jpg" alt="Chicago"
+      width="1200px" height="500px">
     </div>
     <div class="carousel-item">
-      <img src="<%= contextPath %>/resources/icons/메인상단3.jpg" alt="New York">
+      <img src="<%= contextPath %>/resources/icons/메인상단3.jpg" alt="New York"
+      width="1200px" height="500px">
     </div>
   </div>
 
