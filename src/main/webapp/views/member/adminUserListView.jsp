@@ -28,12 +28,6 @@
 <style>
 
 
-  #content {
-      width: 75%; height: 100%;
-      padding-top: 20px;
-      color: rgb(50, 50, 50);
-      background: white;
-  }    
   .membertable{
       height:1160px; width:900px;
       margin: auto;

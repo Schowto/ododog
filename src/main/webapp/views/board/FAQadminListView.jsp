@@ -12,8 +12,6 @@
 	
 	//ArrayList<FAQ> slist = faq.searchFAQ("keyword");
 	
-	
-
 	String keyword = (String)request.getAttribute("keyword"); 
 	
 	
@@ -27,25 +25,6 @@
 <title>Insert title here</title>
 <style>
 
-    .wrap {
-            /* 전체 -> ????? 세로 사이즈는 여기서 조정 ,,????? */
-            /*border:1px solid blue;*/
-            width: 1200px; height: 700px;
-            margin: auto;
-            background: rgb(220, 220, 220);
-        }
-
-    .wrap>div {float: left;}
-
-    div {/*border:1px solid red;*/ box-sizing: border-box;}
-
-    #content {
-        width: 75%; height: 100%;
-        padding-top: 20px;
-        color: rgb(50, 50, 50);
-        background: white;
-        text-align: left;
-    }    
     #content p {
         margin-top:10px;
         margin-bottom:3px;

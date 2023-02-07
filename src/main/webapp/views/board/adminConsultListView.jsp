@@ -19,12 +19,6 @@
 <style>
 
 
-  #content {
-      width: 75%; height: 100%;
-      padding-top: 20px;
-      color: rgb(50, 50, 50);
-      background: white;
-  }
   .searchTable{
     width:80%;
     height: 50px;
