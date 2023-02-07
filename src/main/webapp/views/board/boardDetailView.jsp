@@ -452,38 +452,38 @@
                         글 또는 댓글이 이용규칙 위반으로 관리자에 의해 삭제되어야 마땅하다 판단된다면 신고해주세요. <br>
                         신고 3회 이상의 글 또는 댓글은 블라인드 처리 될 수 있습니다.
                         <br><br><br>
-                        <div style="margin-bottom:10px;" name="reportContent">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report1" name="report1">
+                        <div style="margin-bottom:10px;">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report1" name="reportContent" value="집단간 싸움 유발 (서열/비교, 지역감정, 종교 등)">
                             <label for="report1">
                                 <b style="color:rgb(50, 50, 50)">집단간 싸움 유발</b> (서열/비교, 지역감정, 종교 등)
                             </label>
                         </div>
-                        <div style="margin-bottom:10px;" name="reportContent">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report2" name="report2">
+                        <div style="margin-bottom:10px;">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report2" name="reportContent" value="욕설, 비속어, 인신공격 (혐오, 심한 불쾌감 유발)">
                             <label for="report2">
                                 <b style="color:rgb(50, 50, 50)">욕설, 비속어, 인신공격</b> (혐오, 심한 불쾌감 유발)
                             </label>
                         </div>
-                        <div style="margin-bottom:10px;" name="reportContent">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report3" name="report3">
+                        <div style="margin-bottom:10px;">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report3" name="reportContent" value="선정적, 음란성 (신고자가 선정적이라 판단)">
                             <label for="report3">
                                 <b style="color:rgb(50, 50, 50)">선정적, 음란성</b> (신고자가 선정적이라 판단)
                             </label>
                         </div>
-                        <div style="margin-bottom:10px;" name="reportContent">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report4" name="report4">
+                        <div style="margin-bottom:10px;">
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report4" name="reportContent" value="홍보, 낚시성, 도배 (무의미한 짧은 글 포함)">
                             <label for="report4">
                                 <b style="color:rgb(50, 50, 50)">홍보, 낚시성, 도배</b> (무의미한 짧은 글 포함)
                             </label>
                         </div>
-                        <div name="reportContent">
-                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report5" name="report5">
+                        <div>
+                            <input type="radio" style="margin-right:10px; vertical-align:middle;" id="report5" name="reportContent">
                             <label for="report5">
                                 <b style="color:rgb(50, 50, 50)">기타</b> (악성코드, 사생활침해 등)
                             </label>
                         </div>
         
-                        <textarea name="reportContent"
+                        <textarea id="report5"
                             style="width:400px; height:70px; margin-left:25px; border:1px solid rgb(220,220,220); border-radius:5px; resize:none;"></textarea>
                         <br><br>
                        

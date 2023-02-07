@@ -511,6 +511,7 @@ public class BoardDao {
 								   rset.getString("report_Content"),
 								   rset.getDate("report_Date"),
 								   rset.getString("done")));
+			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

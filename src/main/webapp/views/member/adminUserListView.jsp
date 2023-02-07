@@ -138,7 +138,7 @@
                   <td><%= m.getUser_Name() %></td>
                   <td><%= m.getEmail() %></td>
                   <td><%= m.getPhone() %></td>
-                  <td><%= m.getPost_Code()%> / <%= m.getAddress() %> / <%=m.getDetailed_Address() %></td>
+                  <td><%= m.getPost_Code()%> <br> <%= m.getAddress() %> <br> <%=m.getDetailed_Address() %></td>
                   <td>
                   <a id="point" data-toggle="modal"  data-target="#myModal" value="" onclick="selectPointList(<%= m.getUser_No() %>);"><%= m.getPoint() %></a>
                   </td>
