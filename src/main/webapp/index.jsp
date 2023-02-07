@@ -5,9 +5,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
-        div{/*border:1px solid red;*/box-sizing:border-box;}
-        .wrap{width:1200px; margin:auto; }
+        #content{margin:auto; width:1200px;}
+
         
         /********* header *********/
         #header-carousel{
@@ -97,6 +104,7 @@
 
 
         /********* footer *********/
+        #footer{clear:both}
         #footer>div{float:left; height:100%; padding:20px;}
         #footer-1{width:60%;}
         #footer-2{width:40%;}
@@ -113,68 +121,64 @@
 <body>
 
 	<%@include file="views/common/userMenubar.jsp" %>
-    <br><br><br><br><br>
-		<div id="demo" class="carousel slide" data-ride="carousel">
+    <div id="content">
 
-  <!-- Indicators -->
-  <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-  </ul>
-
-  <!-- The slideshow -->
-  <div class="carousel-inner" align="center" >
-    <div class="carousel-item active">
-      <img src="<%= contextPath %>/resources/icons/메인상단1.jpg" alt="Los Angeles"
-      width="1200px" height="500px">
-    </div>
-    <div class="carousel-item">
-      <img src="<%= contextPath %>/resources/icons/메인상단2.jpg" alt="Chicago"
-      width="1200px" height="500px">
-    </div>
-    <div class="carousel-item">
-      <img src="<%= contextPath %>/resources/icons/메인상단3.jpg" alt="New York"
-      width="1200px" height="500px">
-    </div>
-  </div>
-
-  <!-- Left and right controls -->
-  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </a>
-  <a class="carousel-control-next" href="#demo" data-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </a>
-
-</div>
-
-
-       <!---------------------------------- content ----------------------------------->
-        <div id="content">
+        <div id="demo" class="carousel slide" data-ride="carousel" style="z-index:-10;">
+            
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+            
+            <!-- The slideshow -->
+            <div class="carousel-inner" align="center" >
+                <div class="carousel-item active">
+                <img src="<%= contextPath %>/resources/icons/메인상단1.jpg" width="1200px" height="700px">
+                </div>
+                <div class="carousel-item">
+                <img src="<%= contextPath %>/resources/icons/메인상단2.jpg" width="1200px" height="700px">
+                </div>
+                <div class="carousel-item">
+                <img src="<%= contextPath %>/resources/icons/메인상단3.jpg" width="1200px" height="700px">
+                </div>
+            </div>
+            
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+    
+        </div>
             <br><br><br><br>
-
+        
             <div id="content1" style="height:430px">
                 <br>
                 <h4>NEW ARRIVALS</h4>
-                <div id="content1-icon"><img src="resources/plus.png" width="25"></div>
+                <div id="content1-icon"><img src="<%=contextPath%>/resources/icons/plus.png" width="25" style="cursor:pointer;" onclick="location.href='<%=contextPath%>/list.food'"></div>
                 
                 <div id="content1-products"><!-- 상품자리 --></div>
-
+        
             </div>
-
+        
             <br><br><br><br>
-
+        
             <div id="content2" style="height:430px">
                 <br>
                 <h4>BEST ITEMS</h4>
-                <div id="content2-icon"><img src="resources/plus.png" width="25"></div>
+                <div id="content2-icon"><img src="<%=contextPath%>/resources/icons/plus.png" width="25" style="cursor:pointer;" onclick="location.href='<%=contextPath%>/list.food'"></div>
                 
                 <div id="content1-products"><!-- 상품자리 --></div>
             </div>
 
-        </div>
-	</div>
+    </div>
+    
+
+        
 	
 	<br><br><br><br><br><br><br><br>
 
