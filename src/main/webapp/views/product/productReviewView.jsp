@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.odd.member.model.vo.*, java.util.ArrayList" %>
 <%
-	ArrayList<Review> rlist = (ArrayList<Review>)request.getAttribute("rlist");
-	ArrayList<MyOrder> olist = (ArrayList<MyOrder>)request.getAttribute("olist");
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html>
@@ -98,7 +97,6 @@
         <br><br>
 
         	<table class="reviewTable">
-					<thaed>
 					<%if(list.isEmpty()){ %>
 					<!-- 리뷰가없을때 -->
 	                	<tr style="text-align:center;">
@@ -111,7 +109,7 @@
 							</td>
 	                	</tr>
                 	<%}else{ %>
-	                	<%for(Review r : rlist) %>
+	                	<%for(Review r : list){ %>
 	                	<!-- 리뷰가있을때 -->
 							<tr>
 								<td style="height:50px; width:60%; border-bottom: none;">
@@ -132,11 +130,7 @@
 							<tr>
 								<td style="height:50px;">&nbsp;&nbsp;<%=r.getReviewTitle() %></td>
 							</tr>
-						<%} %>
-					<% } %>
-					</thead>
-					<tbody>
-						<tr>
+							<tr>
 							<td colspan="3">
 								<p>
 									&nbsp;&nbsp;리뷰내용 : <br><br>
@@ -144,8 +138,9 @@
 								</p>
 							</td>
 						</tr>
-					</tbody>
-                    
+						<%} %>
+					<% } %>
+						
                 </table>
                 
                 <script>
