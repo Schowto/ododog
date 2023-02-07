@@ -56,11 +56,9 @@ public class AdminRecipeUpdateController extends HttpServlet {
 			r.setIngredient(multiRequest.getParameter("ingredient"));
 			r.setProcessCount(Integer.parseInt(multiRequest.getParameter("process-count")));
 			
-			if(multiRequest.getOriginalFileName("thumbImg") != null) {
+			if(multiRequest.getOriginalFileName("thumbImg") != null) {	// 이미지를 수정하지 않았을 경우 : input file데이터 안넘어옴 *(input file은 value 안먹힘)
 				r.setRecipeThumbImg("resources/recipe_img/" + multiRequest.getFilesystemName("thumbImg"));
 			}
-			System.out.println(r.getRecipeThumbImg());	// null || 파일경로
-			System.out.println(r.getProcessCount());
 			
 			// Cooking에 여러번 insert할 데이터 담기
 			ArrayList<Cooking> list = new ArrayList<>();
@@ -68,7 +66,6 @@ public class AdminRecipeUpdateController extends HttpServlet {
 			for(int i=1; i<=10; i++) {
 				if(i <= r.getProcessCount()) {
 					String cookingNo = "cooking-no" + i;
-					System.out.println(cookingNo);
 					String imgName = "input-img" + i;
 					String content = "cooking-content" + i;
 					Cooking cook = new Cooking();
@@ -81,14 +78,13 @@ public class AdminRecipeUpdateController extends HttpServlet {
 					list.add(cook);
 				}
 			}
-			System.out.println(list);
 			int result = new AdminRecipeService().updateRecipe(r, list);
 			if(result > 0) {
-				request.getSession().setAttribute("alertMsg", "성공적으로 등록되었습니다.");
+				request.getSession().setAttribute("alertMsg", "성공적으로 수정되었습니다.");
 				response.sendRedirect(request.getContextPath() + "/list.adRe?cpage=1&rpage=1");
 			} else {
 				// 실패 => 에러페이지
-				request.getSession().setAttribute("alertMsg", "레시피 등록 실패");
+				request.getSession().setAttribute("alertMsg", "레시피 수정 실패");
 				response.sendRedirect(request.getContextPath() + "/list.adRe?cpage=1&rpage=1");
 			}
 		}

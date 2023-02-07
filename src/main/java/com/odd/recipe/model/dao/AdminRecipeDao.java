@@ -259,8 +259,8 @@ public class AdminRecipeDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("updateRecipe");
-		if(r.getRecipeThumbImg() != null) {
-			sql += ", THUMBIMG = " + r.getRecipeThumbImg();
+		if(r.getRecipeThumbImg() != null) {	// 넘어온 파일이 있을 경우
+			sql += ", THUMBIMG = '" + r.getRecipeThumbImg() + "'";
 		}
 		sql += " WHERE RECIPE_NO = " + r.getRecipeNo();
 		try {
@@ -283,14 +283,14 @@ public class AdminRecipeDao {
 		// update
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("updateCooking");
+		
 		try {
 			for(Cooking c : list) {
-				if(c.getFilePath() != null) {
-					sql += ", FILE_PATH = " + c.getFilePath();
+				String sql = prop.getProperty("updateCooking");
+				if(c.getFilePath() != null) {	// 넘어온 파일이 있을 경우
+					sql += ", FILE_PATH = '" + c.getFilePath() + "'";
 				}
 				sql += " WHERE COOKING_NO = " + c.getCookingNo();
-				System.out.println(sql);
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, c.getCookingContent());
 				// 실행

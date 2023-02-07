@@ -271,18 +271,17 @@
 
                 <script>
                     function loadImg(inputFile) {
-                            if (inputFile.files.length == 1) {
-                                const reader = new FileReader();
-                                reader.readAsDataURL(inputFile.files[0]);
-                                reader.onload = function (e) {
-                                                            // e.target.result => 현재 읽어들이기가 완료된 파일의 고유한 url
-                                    $(inputFile).prev().prev().attr("src", e.target.result);    // 인라인에서 $(this)는 window를 가리킴 -> inputFile로 받기!
-                                }
-                                $(inputFile).next().val("1");
-                            } else {
-                                $(inputFile).prev().prev().attr("src", null);
-                                $(inputFile).next().val("1");
+                        if (inputFile.files.length == 1) {
+                            const reader = new FileReader();
+                            reader.readAsDataURL(inputFile.files[0]);
+                            reader.onload = function (e) {
+                                                        // e.target.result => 현재 읽어들이기가 완료된 파일의 고유한 url
+                                $(inputFile).prev().prev().attr("src", e.target.result);    // 인라인에서 $(this)는 window를 가리킴 -> inputFile로 받기!
                             }
+                            $(inputFile).next().val("1");
+                        } else {
+                            $(inputFile).prev().prev().attr("src", null);
+                            $(inputFile).next().val("1");
                         }
                     }
                 </script>
