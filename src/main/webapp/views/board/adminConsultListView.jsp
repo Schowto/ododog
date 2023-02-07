@@ -165,13 +165,6 @@
     			</tbody>
               </table>
               
-              <script>
-                $(function(){
-                    $(".userTable>tbody>tr").click(function(){
-                        location.href = "<%=contextPath%>/detailAdmin.co?no=" + $(this).children().eq(0).text();
-                    })
-                })
-            </script>
               </div>            
         </div>
        </div>
@@ -219,6 +212,14 @@
           })
         }
       </script>
+      
+      <script>
+                $(function(){
+                    $(".userTable>tbody>tr").click(function(){
+                        location.href = "<%=contextPath%>/detailAdmin.co?no=" + $(this).children().eq(0).text();
+                    })
+                })
+            </script>
      	
 
 </body>

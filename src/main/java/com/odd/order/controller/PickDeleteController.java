@@ -23,8 +23,23 @@ public class PickDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		HttpSession session = request.getSession();
+		Member m = (Member)session.getAttribute("loginUser");
+		int proNo = Integer.parseInt(request.getParameter("no"));
+		
+		int result = new CartService().deletePick(m, proNo);
+		
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "삭제에 성공하였습니다.");
+			
+		}else {
+			request.setAttribute("errorMsg", "삭제에 실패했습니다.");
+			
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/myWhish.me");
 	}
 
 	/**

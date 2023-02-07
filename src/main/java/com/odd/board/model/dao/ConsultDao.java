@@ -1,6 +1,6 @@
 package com.odd.board.model.dao;
 
-import static com.odd.common.JDBCTemplate.close;
+import static com.odd.common.JDBCTemplate.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;

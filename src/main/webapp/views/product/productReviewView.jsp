@@ -119,6 +119,9 @@
                                                 <span>★★★★★</span>
                                                 <input type="range" name="star" id="reviewStar" oninput="drawStar(this)" value="<%=r.getStar() %>" step="1" min="0" max="10">
                                               </span>
+                         
+                         
+                         
                                         </div>
 								<td rowspan="2"><img src="<%=r.getReviewPhoto()%>"></td>
 								<td rowspan="2">

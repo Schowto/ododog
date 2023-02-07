@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.sql.Date;
 
 import com.odd.member.model.dao.ReviewDao;
 import com.odd.member.model.vo.MyOrder;
@@ -55,7 +56,7 @@ private Properties prop = new Properties();
 								     rset.getString("phone"),
 								     rset.getString("address"),
 								     rset.getString("require"),
-								     rset.getString("order_date")
+								     rset.getDate("order_date")
 								     ));
 			}
 		} catch (SQLException e) {
@@ -90,7 +91,7 @@ private Properties prop = new Properties();
 								     rset.getString("phone"),
 								     rset.getString("address"),
 								     rset.getString("require"),
-								     rset.getDate("oder_date"),
+								     rset.getDate("order_Date"),
 								     rset.getString("thumb_img"),
 								     rset.getString("pro_name"),
 								     rset.getInt("price"),
