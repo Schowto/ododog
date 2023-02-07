@@ -50,6 +50,8 @@ HttpSession session = request.getSession();
 			
 			ArrayList<Like> list = new LikeService().selectLike(userNo);
 			
+			request.setAttribute("list", list);
+			
 			request.getRequestDispatcher("views/member/myWhishListView.jsp").forward(request,response);
 			
 		}

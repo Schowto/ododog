@@ -35,15 +35,15 @@ public class ReviewDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, r.getProName());
-			pstmt.setString(2, r.getUserId());
-			pstmt.setString(3, r.getReviewTitle());
-			pstmt.setString(4, r.getReviewContent());
-			pstmt.setDouble(5, r.getStar());
-			pstmt.setString(6, r.getReviewPhoto());
-			pstmt.setString(7, r.getFilePath());
-			pstmt.setInt(8, proNo);
-			pstmt.setInt(9, userNo);
+			pstmt.setInt(1, r.getProNo());
+			pstmt.setInt(2, r.getUserNo());
+			pstmt.setString(3, r.getProName());
+			pstmt.setString(4, r.getUserId());
+			pstmt.setString(5, r.getReviewTitle());
+			pstmt.setString(6, r.getReviewContent());
+			pstmt.setDouble(7, r.getStar());
+			pstmt.setString(8, r.getReviewPhoto());
+			pstmt.setString(9, r.getFilePath());
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

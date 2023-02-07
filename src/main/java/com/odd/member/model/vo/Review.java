@@ -5,6 +5,8 @@ import java.sql.Date;
 public class Review {
 	
 	private int reviewNo;
+	private int proNo;
+	private int userNo;
 	private String proName;
 	private String userId;
 	private String reviewTitle;
@@ -19,10 +21,29 @@ public class Review {
 		
 	}
 
+	
 	public Review(int reviewNo, String proName, String userId, String reviewTitle, String reviewContent, double star,
 			Date modifyDate, Date enrollDate, String reviewPhoto, String filePath) {
 		super();
 		this.reviewNo = reviewNo;
+		this.proName = proName;
+		this.userId = userId;
+		this.reviewTitle = reviewTitle;
+		this.reviewContent = reviewContent;
+		this.star = star;
+		this.modifyDate = modifyDate;
+		this.enrollDate = enrollDate;
+		this.reviewPhoto = reviewPhoto;
+		this.filePath = filePath;
+	}
+
+
+	public Review(int reviewNo, int proNo, int userNo, String proName, String userId, String reviewTitle,
+			String reviewContent, double star, Date modifyDate, Date enrollDate, String reviewPhoto, String filePath) {
+		super();
+		this.reviewNo = reviewNo;
+		this.proNo = proNo;
+		this.userNo = userNo;
 		this.proName = proName;
 		this.userId = userId;
 		this.reviewTitle = reviewTitle;
@@ -40,6 +61,22 @@ public class Review {
 
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
+	}
+
+	public int getProNo() {
+		return proNo;
+	}
+
+	public void setProNo(int proNo) {
+		this.proNo = proNo;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public String getProName() {
@@ -116,14 +153,13 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [reviewNo=" + reviewNo + ", proName=" + proName + ", userId=" + userId + ", reviewTitle="
-				+ reviewTitle + ", reviewContent=" + reviewContent + ", star=" + star + ", modifyDate=" + modifyDate
-				+ ", enrollDate=" + enrollDate + ", reviewPhoto=" + reviewPhoto + ", filePath=" + filePath + "]";
+		return "Review [reviewNo=" + reviewNo + ", proNo=" + proNo + ", userNo=" + userNo + ", proName=" + proName
+				+ ", userId=" + userId + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", star="
+				+ star + ", modifyDate=" + modifyDate + ", enrollDate=" + enrollDate + ", reviewPhoto=" + reviewPhoto
+				+ ", filePath=" + filePath + "]";
 	}
-	
-	
 
-
+	
 
 	
 	

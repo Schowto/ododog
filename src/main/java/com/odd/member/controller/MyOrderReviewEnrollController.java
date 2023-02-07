@@ -56,11 +56,13 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 			String reviewContent = multiRequest.getParameter("reviewContent");
 			
 			Review r = new Review();
+			r.setProNo(proNo);
+			r.setUserNo(userNo);
 			r.setProName(proName);
 			r.setUserId(userId);
-			r.setStar(star);
 			r.setReviewTitle(reviewTitle);
 			r.setReviewContent(reviewContent);
+			r.setStar(star);
 			
 			if(multiRequest.getOriginalFileName("upfile") != null) {
 				r.setReviewPhoto(multiRequest.getOriginalFileName("upfile"));

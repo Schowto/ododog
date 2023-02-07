@@ -5,6 +5,7 @@
 	//MyOrder m = (MyOrder)request.getAttribute("m");
 	//Review r = (Review)request.getAttribute("r");
 	ArrayList<OrdPro> list = (ArrayList<OrdPro>)request.getAttribute("list");
+	
 	MyOrder mo = (MyOrder)request.getAttribute("m");
 	Product p = (Product)request.getAttribute("p");
 	Member m = (Member)request.getAttribute("m");

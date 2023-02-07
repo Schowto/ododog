@@ -37,6 +37,8 @@
 		  INTO
 		  (
 		  	REVIEW_NO
+		  , PRO_NO
+		  , USER_NO
 		  , PRO_NAME
 		  , USER_ID
 		  , REVIEW_TITLE
@@ -55,13 +57,13 @@
 		  , ?
 		  , ?
 		  , ?
+		  , ?
+		  , ?
 		  , SYSDATE
 		  , SYSDATE
 		  , ?
 		  , ?
-		  )
-	     WHERE PRO_NO = ?
-	       AND USER_NO = ?   
+		  )  
 	</entry>
 	
 	<entry key="updateReview">
@@ -82,23 +84,6 @@
 			   REVIEW
 		   SET STATUS = 'N'
 		 WHERE REVIEW_NO = ?
-	</entry>
-	
-	<entry key="selectAllReview">
-		SELECT REVIEW_NO
-			 , PRO_NAME
-			 , USER_ID
-		     , REVIEW_TITLE
-		     , REVIEW_CONTENT
-		     , STAR
-		     , MODIFY_DATE
-		     , ENROLL_DATE
-		     , REVIEW_PHOTO
-		     , FILE_PATH
-		  FROM REVIEW R
-	 LEFT JOIN PRODUCT P ON (R.PRO_NO = P.PRO_NO) 
-	 LEFT JOIN MEMBER M ON (R.USER_NO = M.USER_NO)
-		 WHERE PRO_NO = ? 
 	</entry>
 	
 	<entry key="selectAllReview">
