@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.odd.member.model.vo.Review;
+import com.odd.product.model.vo.Product;
 
 public class ReviewDao {
 	
@@ -27,7 +28,7 @@ public class ReviewDao {
 		}
 	}
 	
-	public int insertReview(Connection conn, int proNo, int userNo, Review r) {
+	public int insertReview(Connection conn, Review r) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -170,6 +171,32 @@ public class ReviewDao {
 		
 	}
 	
-	
+	public Product reviewProduct(Connection conn, int proNo) {
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("reviewProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, proNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				p = new Product(rset.getString("category"),
+						        rset.getString("pro_name"),
+						        rset.getInt("price"),
+						        rset.getString("thumb_img"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return p;
+	}
 
 }

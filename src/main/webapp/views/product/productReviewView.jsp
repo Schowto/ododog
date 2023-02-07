@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList" %>
+<%@ page import="com.odd.member.model.vo.*, java.util.ArrayList, com.odd.product.model.vo.*" %>
 <%
 	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+	Product p = (Product)request.getAttribute("p");
 %>
 <!DOCTYPE html>
 <html>

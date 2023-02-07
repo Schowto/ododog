@@ -10,12 +10,13 @@ import java.util.ArrayList;
 
 import com.odd.member.model.dao.ReviewDao;
 import com.odd.member.model.vo.Review;
+import com.odd.product.model.vo.Product;
 
 public class ReviewService {
 	
-	public int insertReview(int proNo, int userNo, Review r) {
+	public int insertReview(Review r) {
 		Connection conn = getConnection();
-		int result = new ReviewDao().insertReview(conn, proNo, userNo, r);
+		int result = new ReviewDao().insertReview(conn, r);
 		
 		if(result > 0) {
 			commit(conn);
@@ -67,6 +68,13 @@ public class ReviewService {
 		Review r = new ReviewService().reviewStar(proNo);
 		close(conn);
 		return r;
+	}
+	
+	public Product reviewProduct(int proNo) {
+		Connection conn = getConnection();
+		Product p = new ReviewDao().reviewProduct(conn, proNo);
+		close(conn);
+		return p;
 	}
 
 }
