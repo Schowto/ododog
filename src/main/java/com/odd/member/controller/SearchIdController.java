@@ -43,7 +43,7 @@ public class SearchIdController extends HttpServlet {
 		
 		if(searchId == null) {
 			request.setAttribute("errorMsg", "조회된 회원정보가 없습니다.");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPafe.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
 			view.forward(request, response);			
 		}else {
 			HttpSession session =  request.getSession();
