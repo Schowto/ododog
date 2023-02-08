@@ -168,7 +168,7 @@
         <hr style="border:1px color= silver;" width="100%"> <br>
         <div>
             <b>결제수단</b> <br><br>
-            <input type="radio" name="payway"> 무통장 입금 <br><br> 
+            <input type="radio" name="payway"> 신용 결제 <br><br> 
         </div>   
         <div>
         	<!-- <button type="button" class="btn btn-dark" onclick="payment();">결제하기</button> -->
@@ -229,12 +229,12 @@
 	                //...,
 	                // 결제 성공 시 로직,
 	                //...
-	                alert('success');
+	                alert('결제성공');
 	            } else {
 	                //...,
 	                // 결제 실패 시 로직,
 	                //...
-	            	alert('fail');
+	            	alert('결제실패');
 	            }
                 
 	        });

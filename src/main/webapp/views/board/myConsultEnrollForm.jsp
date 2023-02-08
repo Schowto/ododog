@@ -111,7 +111,7 @@
 							<td style="width:40%; border-right:1px solid rgb(220,220,220);">
 								&nbsp;&nbsp;<input type="text" name="consultTitle" required>
 							</td>
-							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);">&nbsp;&nbsp;&nbsp;카테고리</td>
+							<td style="font-size:14px; width:10%; border-right:1px solid rgb(220,220,220);" required>&nbsp;&nbsp;&nbsp;카테고리</td>
 							<td style="width:40%">
 								&nbsp;&nbsp;<input type="text" name="consultCategory" placeholder="배송, 결제, 주문, 기타">
 							</td>

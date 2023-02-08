@@ -119,7 +119,12 @@ p:hover {
 		})
 	</script>
 	
-	
+	<!-- 스크롤 부분 -->
+     	<a style="display:scroll;position:fixed;bottom:80px; right:30px;" rel="nofollow"
+		href="#" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/upArrowWithCircle.png" width="30px"></a>
+		<a style="display:scroll;position:fixed;bottom:40px; right:30px;" rel="nofollow"
+		href="#scrollbottom" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/downArrowWithCircle.png" width="30px"></a>
+		<div id="scrollbottom"></div>
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br>

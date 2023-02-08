@@ -464,17 +464,12 @@ input[type=number]::-webkit-inner-spin-button {
 	                	<%for(Review r : rlist){ %>
 	                	<!-- 리뷰가있을때 -->
 							<tr>
-								<td style="height:50px; width:60%; border-bottom: none;">
-									
-								<td rowspan="2" style="border-bottom:none;"></td>
-								<td rowspan="2" style="border-bottom:none;">
+								<td colspan="2" style="height:50px; width:60%; border-bottom: none; font-weight: 600; font-size: 18px;">&nbsp;&nbsp;<%=r.getReviewTitle() %></td>
+								<td style="border-bottom:none;">
 									&nbsp;&nbsp;상품명 : <%=r.getProName() %> <br>
 									&nbsp;&nbsp;작성자 : <%=r.getUserId() %><br>
 									&nbsp;&nbsp;작성일 : <%=r.getModifyDate() %>
 								</td>
-							</tr>
-							<tr>
-								<td style="height:50px; border-bottom:none; font-weight: 600; font-size: 18px;">&nbsp;&nbsp;<%=r.getReviewTitle() %></td>
 							</tr>
 							<tr >
 							<td colspan="3" style="border-top:none;">
@@ -506,6 +501,13 @@ input[type=number]::-webkit-inner-spin-button {
 	
     
 	</div> <!--전체끝 -->
+	
+	<!-- 스크롤 부분 -->
+     	<a style="display:scroll;position:fixed;bottom:80px; right:30px;" rel="nofollow"
+		href="#" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/upArrowWithCircle.png" width="30px"></a>
+		<a style="display:scroll;position:fixed;bottom:40px; right:30px;" rel="nofollow"
+		href="#scrollbottom" style="font-size:2.0em"><img src="<%=contextPath%>/resources/icons/downArrowWithCircle.png" width="30px"></a>
+		<div id="scrollbottom"></div>
 		
 	
 	

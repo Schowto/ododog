@@ -201,9 +201,9 @@
                     <table>
                         	<thead>
 	                            <tr style="font-size:13px;">
-	                                <td style="width:40%;">주문일자[주문번호]</td>
-	                                <td style="width:10%;">입금여부</td>
-	                                <td style="width:10%;">배송시작여부</td>
+	                                <td style="width:20%;">주문번호</td>
+	                                <td style="width:20%;">입금여부(Y/N)</td>
+	                                <td style="width:20%;">배송시작여부(Y/N)</td>
 	                                <td style="width:10%;">주문일자</td>
 	                            </tr>
                          	</thead>
