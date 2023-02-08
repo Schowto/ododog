@@ -181,6 +181,11 @@
     
     
     <script>
+    
+    
+  		let payPortNum = Math.floor(Math.random()*10000) + Math.floor(Math.random()*10000);
+    
+    
 	    var IMP = window.IMP; // 생략 가능
 	    IMP.init("imp87336721"); // 예: imp00000000
 
@@ -211,7 +216,7 @@
 	        IMP.request_pay({ // param
 	            pg: "html5_inicis",
 	            pay_method: "card",
-	            merchant_uid: "ORD20180131-0000011",
+	            merchant_uid: payPortNum,
 	            name: getProNm(),
 	            amount: $('#hidFinalPrice').val(),
 	            buyer_email: order.email,

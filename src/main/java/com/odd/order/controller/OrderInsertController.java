@@ -53,6 +53,7 @@ public class OrderInsertController extends HttpServlet {
 	      String phone = element.getAsJsonObject().get("phone").getAsString();
 	      String email = element.getAsJsonObject().get("email").getAsString();
 	      String require = element.getAsJsonObject().get("require").getAsString();
+	      int resNo = element.getAsJsonObject().get("resNo").getAsInt();
 	      
 	      // 결제 api로 주문정보 넘기기
 	      Order o = new Order(userNo, delAdd, phone, email, require);
