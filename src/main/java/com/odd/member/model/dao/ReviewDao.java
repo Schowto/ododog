@@ -40,9 +40,8 @@ public class ReviewDao {
 			pstmt.setInt(2, r.getUserNo());
 			pstmt.setString(3, r.getReviewTitle());
 			pstmt.setString(4, r.getReviewContent());
-			pstmt.setDouble(5, r.getStar());
-			pstmt.setString(6, r.getReviewPhoto());
-			pstmt.setString(7, r.getFilePath());
+			pstmt.setString(5, r.getReviewPhoto());
+			pstmt.setString(6, r.getFilePath());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -64,10 +63,9 @@ public class ReviewDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, r.getReviewTitle());
 			pstmt.setString(2, r.getReviewContent());
-			pstmt.setDouble(3, r.getStar());
-			pstmt.setString(4, r.getReviewPhoto());
-			pstmt.setString(5, r.getFilePath());
-			pstmt.setInt(6, r.getReviewNo());
+			pstmt.setString(3, r.getReviewPhoto());
+			pstmt.setString(4, r.getFilePath());
+			pstmt.setInt(5, r.getReviewNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

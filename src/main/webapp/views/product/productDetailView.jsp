@@ -465,19 +465,8 @@ input[type=number]::-webkit-inner-spin-button {
 	                	<!-- 리뷰가있을때 -->
 							<tr>
 								<td style="height:50px; width:60%; border-bottom: none;">
-									<!--
-									<div name="myStar" id="myStar">
-                                            <span class="star">
-                                                ★★★★★
-                                                <span>★★★★★</span>
-                                                <input type="range" name="star" id="reviewStar" oninput="drawStar(this)" value="<%=r.getStar() %>" step="1" min="0" max="10">
-                                              </span>
-                         
-                         
-                         
-                                        </div>
-										-->
-								<td rowspan="2" style="border-bottom:none;"><img src="<%=r.getReviewPhoto()%>"></td>
+									
+								<td rowspan="2" style="border-bottom:none;"></td>
 								<td rowspan="2" style="border-bottom:none;">
 									&nbsp;&nbsp;상품명 : <%=r.getProName() %> <br>
 									&nbsp;&nbsp;작성자 : <%=r.getUserId() %><br>
@@ -514,13 +503,7 @@ input[type=number]::-webkit-inner-spin-button {
 
 	</div>
 	
-	<!--별점구현부분-->
-    <script>
-        const drawStar = (target) => {
-            document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
-            let value = document.querySelector("#reviewStar").value();
-        }
-    </script>	
+	
     
 	</div> <!--전체끝 -->
 		

@@ -11,7 +11,6 @@ public class Review {
 	private String userId;
 	private String reviewTitle;
 	private String reviewContent;
-	private double star;
 	private Date modifyDate;
 	private Date enrollDate;
 	private String reviewPhoto;
@@ -38,7 +37,7 @@ public class Review {
 
 
 	public Review(int reviewNo, int proNo, int userNo, String proName, String userId, String reviewTitle,
-			String reviewContent, double star, Date modifyDate, Date enrollDate, String reviewPhoto, String filePath) {
+			String reviewContent, Date modifyDate, Date enrollDate, String reviewPhoto, String filePath) {
 		super();
 		this.reviewNo = reviewNo;
 		this.proNo = proNo;
@@ -47,7 +46,6 @@ public class Review {
 		this.userId = userId;
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
-		this.star = star;
 		this.modifyDate = modifyDate;
 		this.enrollDate = enrollDate;
 		this.reviewPhoto = reviewPhoto;
@@ -110,14 +108,6 @@ public class Review {
 		this.reviewContent = reviewContent;
 	}
 
-	public double getStar() {
-		return star;
-	}
-
-	public void setStar(double star) {
-		this.star = star;
-	}
-
 	public Date getModifyDate() {
 		return modifyDate;
 	}
@@ -153,8 +143,8 @@ public class Review {
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", proNo=" + proNo + ", userNo=" + userNo + ", proName=" + proName
-				+ ", userId=" + userId + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent + ", star="
-				+ star + ", modifyDate=" + modifyDate + ", enrollDate=" + enrollDate + ", reviewPhoto=" + reviewPhoto
+				+ ", userId=" + userId + ", reviewTitle=" + reviewTitle + ", reviewContent=" + reviewContent 
+				+ ", modifyDate=" + modifyDate + ", enrollDate=" + enrollDate + ", reviewPhoto=" + reviewPhoto
 				+ ", filePath=" + filePath + "]";
 	}
 

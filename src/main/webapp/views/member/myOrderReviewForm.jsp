@@ -264,8 +264,9 @@
                     <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
                     	<input type="hidden" name="proNo" value="<%=p.getProNo() %>">
                     	<input type="hidden" name="proName" value="<%=p.getProName() %>">
+                        <!-- 
                         <table class="starTable">
-                                <!-- 
+                                
                                 <tr>
                                     <td style="width:40%;">상품을 사용해보셨나요?</td>
                                     <td>
@@ -280,8 +281,9 @@
                                         
                                     </td>
                                 </tr>
-                                -->
+                               
                             </table>
+                             -->
                             <table class="contentTable">
                                 <tr>
                                             <td colspan="2" style="font-size:14px; font-weight: 600; text-align: center; width:40%; border-right:1px solid rgb(220,220,220);">
@@ -299,10 +301,12 @@
                                                 <br><br>
                                             </td>
                                         </tr>
+                                        <!--
                                         <tr>
 											<td style="font-size:14px; font-weight: 600; text-align: center; width:40%; border-right:1px solid rgb(220,220,220);">첨부파일</td>
 											<td colspan="3">&nbsp;&nbsp;<input type="file" name="upfile"></td>
 										</tr>
+                                        -->
                             </table>
 
                             <br>
