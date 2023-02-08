@@ -262,10 +262,10 @@
 
                 <div class="reviewContent">
                     <form action="<%=contextPath%>/reviewInsert.me" method="post" enctype="multipart/form-data">
-                    	<input type="hidden" name="ordNo" value="<%=p.getProNo() %>">
+                    	<input type="hidden" name="proNo" value="<%=p.getProNo() %>">
                     	<input type="hidden" name="proName" value="<%=p.getProName() %>">
                         <table class="starTable">
-                                 
+                                <!-- 
                                 <tr>
                                     <td style="width:40%;">상품을 사용해보셨나요?</td>
                                     <td>
@@ -277,8 +277,10 @@
                                                 <input type="range" name="star" id="reviewStar" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
                                               </span>
                                         </div>
+                                        
                                     </td>
                                 </tr>
+                                -->
                             </table>
                             <table class="contentTable">
                                 <tr>

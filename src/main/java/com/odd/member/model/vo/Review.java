@@ -22,7 +22,7 @@ public class Review {
 	}
 
 	
-	public Review(int reviewNo, String proName, String userId, String reviewTitle, String reviewContent, double star,
+	public Review(int reviewNo, String proName, String userId, String reviewTitle, String reviewContent,
 			Date modifyDate, Date enrollDate, String reviewPhoto, String filePath) {
 		super();
 		this.reviewNo = reviewNo;
@@ -30,7 +30,6 @@ public class Review {
 		this.userId = userId;
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
-		this.star = star;
 		this.modifyDate = modifyDate;
 		this.enrollDate = enrollDate;
 		this.reviewPhoto = reviewPhoto;

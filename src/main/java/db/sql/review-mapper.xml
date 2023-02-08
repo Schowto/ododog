@@ -101,7 +101,6 @@
 			 , M.USER_ID
 		     , REVIEW_TITLE
 		     , REVIEW_CONTENT
-		     , STAR
 		     , R.MODIFY_DATE
 		     , R.ENROLL_DATE
 		     , REVIEW_PHOTO

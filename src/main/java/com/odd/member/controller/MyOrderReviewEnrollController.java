@@ -54,12 +54,10 @@ public class MyOrderReviewEnrollController extends HttpServlet {
 			
 			String reviewTitle = multiRequest.getParameter("reviewTitle");
 			String reviewContent = multiRequest.getParameter("reviewContent");
-			double star = Double.parseDouble(multiRequest.getParameter("star"));
 			
 			Review r = new Review();
 			r.setProNo(proNo);
 			r.setUserNo(userNo);
-			r.setStar(star);
 			r.setReviewTitle(reviewTitle);
 			r.setReviewContent(reviewContent);
 			

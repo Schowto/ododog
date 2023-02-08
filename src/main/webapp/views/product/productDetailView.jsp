@@ -465,6 +465,7 @@ input[type=number]::-webkit-inner-spin-button {
 	                	<!-- 리뷰가있을때 -->
 							<tr>
 								<td style="height:50px; width:60%; border-bottom: none;">
+									<!--
 									<div name="myStar" id="myStar">
                                             <span class="star">
                                                 ★★★★★
@@ -475,6 +476,7 @@ input[type=number]::-webkit-inner-spin-button {
                          
                          
                                         </div>
+										-->
 								<td rowspan="2" style="border-bottom:none;"><img src="<%=r.getReviewPhoto()%>"></td>
 								<td rowspan="2" style="border-bottom:none;">
 									&nbsp;&nbsp;상품명 : <%=r.getProName() %> <br>
